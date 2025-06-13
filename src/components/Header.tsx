@@ -382,7 +382,7 @@ const Header: React.FC<HeaderProps> = ({
   // Going Hyper podcast episodes and content
   const goingHyperContent = {
     latestEpisode: {
-      title: 'Patch 14.5 & Gauntlet Meta Deep Dive',
+      title: 'Patch 1.10.1  & Gauntlet Meta Deep Dive',
       date: '29 May 2025',
       views: '445 views',
       description: 'Rich and Jackson break down the latest patch changes and discuss the evolving Gauntlet meta.',
@@ -876,7 +876,7 @@ const Header: React.FC<HeaderProps> = ({
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-3 text-sm">
                 <span className="bg-gradient-to-r from-slate-800/80 to-slate-700/80 border border-slate-600/50 px-4 py-2 rounded-xl text-slate-300 font-medium backdrop-blur-sm">
-                  <span className="text-green-400">●</span> Patch 14.5
+                  <span className="text-green-400">●</span> Patch 1.10.1
                 </span>
                 <span className="text-slate-400 flex items-center gap-2">
                   <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse" />
