@@ -3,7 +3,6 @@ import { ArrowLeft, Plus, X, Save, Star, Target, Users, Zap, Hammer, Sparkles, W
 import { Champion, Augment, Item } from '../types';
 import { mockChampions, mockAugments, mockItems } from '../data/mockData';
 import PositioningBoard from './PositioningBoard';
-import { useNavigate } from 'react-router-dom';
 
 interface CompBuilderProps {
   onBack: () => void;
@@ -43,18 +42,14 @@ const CompBuilder: React.FC<CompBuilderProps> = ({ onBack }) => {
   const [activeSection, setActiveSection] = useState<'basic' | 'champions' | 'augments' | 'items' | 'positioning' | 'strategy'>('basic');
   const [selectedPosition, setSelectedPosition] = useState<{ row: number; col: number } | null>(null);
   const [selectedChampionForPosition, setSelectedChampionForPosition] = useState<Champion | null>(null);
-  const [selectedChampion, setSelectedChampion] = useState<Champion | null>(null);
-  const [selectedAugment, setSelectedAugment] = useState<Augment | null>(null);
-  const [selectedItem, setSelectedItem] = useState<Item | null>(null);
-
-  const navigate = useNavigate();
-
-  const handleBack = () => {
-    navigate('/app');
-  };
 
   const addChampion = (champion: Champion) => {
-    setSelectedChampion(champion);
+    if (comp.champions.length < 8 && !comp.champions.find(c => c.id === champion.id)) {
+      setComp(prev => ({
+        ...prev,
+        champions: [...prev.champions, champion]
+      }));
+    }
   };
 
   const removeChampion = (championId: string) => {
@@ -76,21 +71,53 @@ const CompBuilder: React.FC<CompBuilderProps> = ({ onBack }) => {
   };
 
   const addAugment = (augment: Augment) => {
-    setSelectedAugment(augment);
+    if (comp.augments.length < 6 && !comp.augments.find(a => a.id === augment.id)) {
+      setComp(prev => ({
+        ...prev,
+        augments: [...prev.augments, augment]
+      }));
+    }
   };
 
   const addItem = (item: Item) => {
-    setSelectedItem(item);
-  };
-
-  const handlePositionSelect = (row: number, col: number) => {
-    setSelectedPosition({ row, col });
-    if (selectedChampion) {
+    if (comp.itemPriority.length < 6 && !comp.itemPriority.find(i => i.id === item.id)) {
       setComp(prev => ({
         ...prev,
-        positioning: [...prev.positioning, { champion: selectedChampion, position: { row, col } }]
+        itemPriority: [...prev.itemPriority, item]
       }));
-      setSelectedChampion(null);
+    }
+  };
+
+  const handlePositionClick = (row: number, col: number) => {
+    if (selectedChampionForPosition) {
+      // Place the selected champion
+      const existingPositionIndex = comp.positioning.findIndex(
+        p => p.position.row === row && p.position.col === col
+      );
+      
+      if (existingPositionIndex >= 0) {
+        // Replace existing champion at this position
+        setComp(prev => ({
+          ...prev,
+          positioning: prev.positioning.map((p, idx) => 
+            idx === existingPositionIndex 
+              ? { champion: selectedChampionForPosition, position: { row, col } }
+              : p
+          )
+        }));
+      } else {
+        // Add new positioning
+        setComp(prev => ({
+          ...prev,
+          positioning: [...prev.positioning, { champion: selectedChampionForPosition, position: { row, col } }]
+        }));
+      }
+      
+      setSelectedChampionForPosition(null);
+      setSelectedPosition(null);
+    } else {
+      // Select position for placing a champion
+      setSelectedPosition({ row, col });
     }
   };
 
@@ -156,11 +183,11 @@ const CompBuilder: React.FC<CompBuilderProps> = ({ onBack }) => {
             {/* Back Button */}
             <div className="mb-6">
               <button
-                onClick={handleBack}
+                onClick={onBack}
                 className="flex items-center gap-3 text-gray-400 hover:text-white transition-all duration-300 bg-gray-800/50 hover:bg-gray-700/50 px-4 py-2 rounded-xl border border-gray-700/50 backdrop-blur-sm"
               >
                 <ArrowLeft className="w-5 h-5" />
-                Back to Main
+                Back to Tools
               </button>
             </div>
 
@@ -495,7 +522,7 @@ const CompBuilder: React.FC<CompBuilderProps> = ({ onBack }) => {
                   <PositioningBoard 
                     champions={comp.positioning}
                     isInteractive={true}
-                    onPositionClick={handlePositionSelect}
+                    onPositionClick={handlePositionClick}
                     selectedPosition={selectedPosition}
                     size="large"
                   />
@@ -554,15 +581,6 @@ const CompBuilder: React.FC<CompBuilderProps> = ({ onBack }) => {
         }
         .animate-float {
           animation: float 4s ease-in-out infinite;
-        }
-        .positioning-board {
-          display: grid;
-          grid-template-columns: repeat(7, 1fr);
-          gap: 8px;
-          padding: 16px;
-          background: rgba(17, 24, 39, 0.5);
-          border-radius: 16px;
-          border: 1px solid rgba(75, 85, 99, 0.5);
         }
       `}</style>
     </div>

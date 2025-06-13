@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowLeft, Search, Filter, Sword, Zap, Target, Shield, Star, Gem, Crown, Crosshair, Wand2 } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
 
 interface WeaponPageProps {
   onBack: () => void;
@@ -172,18 +171,13 @@ const AmpModal = ({ amp, open, onClose }: { amp: any, open: boolean, onClose: ()
   );
 };
 
-const WeaponsPage: React.FC = () => {
-  const navigate = useNavigate();
+const WeaponsPage: React.FC<WeaponPageProps> = ({ onBack }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [typeFilter, setTypeFilter] = useState<'all' | 'melee' | 'ranged' | 'magic'>('all');
   const [rarityFilter, setRarityFilter] = useState<'all' | 'common' | 'uncommon' | 'rare' | 'epic' | 'legendary'>('all');
   const [weapons, setWeapons] = useState<any[]>([]);
   const [ampModalOpen, setAmpModalOpen] = useState(false);
   const [selectedAmp, setSelectedAmp] = useState<any>(null);
-
-  const handleBack = () => {
-    navigate('/app/set1');
-  };
 
   useEffect(() => {
     // Group base weapons and their amps
@@ -287,7 +281,7 @@ const WeaponsPage: React.FC = () => {
             {/* Back Button */}
             <div className="mb-6">
               <button
-                onClick={handleBack}
+                onClick={onBack}
                 className="flex items-center gap-3 text-gray-400 hover:text-white transition-all duration-300 bg-gray-800/50 hover:bg-gray-700/50 px-4 py-2 rounded-xl border border-gray-700/50 backdrop-blur-sm"
               >
                 <ArrowLeft className="w-5 h-5" />

@@ -1,18 +1,12 @@
 import React from 'react';
 import { ArrowLeft, Users, Sparkles, Star, Sword, Gem, Bot, Layers, Crown, Zap, Target, Shield, Wand2, Play, BookOpen, TrendingUp } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
 
-const Set1LandingPage: React.FC = () => {
-  const navigate = useNavigate();
+interface Set1LandingPageProps {
+  onBack: () => void;
+  onNavigateToPage: (page: string) => void;
+}
 
-  const handleNavigateToPage = (page: string) => {
-    navigate(`/app/set1/${page}`);
-  };
-
-  const handleBack = () => {
-    navigate('/app');
-  };
-
+const Set1LandingPage: React.FC<Set1LandingPageProps> = ({ onBack, onNavigateToPage }) => {
   const gameElements = [
     {
       category: 'Core Elements',
@@ -141,7 +135,7 @@ const Set1LandingPage: React.FC = () => {
             {/* Back Button */}
             <div className="mb-8">
               <button
-                onClick={handleBack}
+                onClick={onBack}
                 className="flex items-center gap-3 text-gray-400 hover:text-white transition-all duration-300 bg-gray-800/50 hover:bg-gray-700/50 px-4 py-2 rounded-xl border border-gray-700/50 backdrop-blur-sm"
               >
                 <ArrowLeft className="w-5 h-5" />
@@ -214,7 +208,7 @@ const Set1LandingPage: React.FC = () => {
                 <div
                   key={itemIdx}
                   className="group bg-gray-900/50 backdrop-blur-xl rounded-2xl p-8 border border-gray-700/50 hover:border-purple-500/30 transition-all duration-300 hover:scale-105 cursor-pointer"
-                  onClick={() => handleNavigateToPage(item.key)}
+                  onClick={() => onNavigateToPage(item.key)}
                 >
                   {/* Header */}
                   <div className="text-center mb-6">

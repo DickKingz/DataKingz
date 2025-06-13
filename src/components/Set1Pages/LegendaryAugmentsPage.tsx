@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ArrowLeft, Search, Filter, Sparkles, Star, Zap, Target, Shield, Coins, Crown, Gem, Wand2, Flame, Swords, Heart } from 'lucide-react';
 import { legendaryAugmentImageMap } from '../../data/AugmentData/Legendary/legendaryAugmentImageMap';
-import { useNavigate } from 'react-router-dom';
 
 interface LegendaryAugmentPageProps {
   onBack: () => void;
@@ -39,8 +38,7 @@ function parseLegendaryAugment(json: any): LegendaryAugment {
   };
 }
 
-const LegendaryAugmentsPage: React.FC = () => {
-  const navigate = useNavigate();
+const LegendaryAugmentsPage: React.FC<LegendaryAugmentPageProps> = ({ onBack }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [augments, setAugments] = useState<LegendaryAugment[]>([]);
 
@@ -53,10 +51,6 @@ const LegendaryAugmentsPage: React.FC = () => {
     }
     setAugments(loadedAugments);
   }, []);
-
-  const handleBack = () => {
-    navigate('/app/set1');
-  };
 
   const filteredAugments = augments.filter(augment => {
     const matchesSearch = augment.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -91,11 +85,11 @@ const LegendaryAugmentsPage: React.FC = () => {
 
         {/* Glass morphism overlay */}
         <div className="relative backdrop-blur-xl bg-gray-900/80 border-b border-gray-700/50">
-          <div className="px-8 py-12">
+          <div className="px-8 py-8">
             {/* Back Button */}
-            <div className="mb-8">
+            <div className="mb-6">
               <button
-                onClick={handleBack}
+                onClick={onBack}
                 className="flex items-center gap-3 text-gray-400 hover:text-white transition-all duration-300 bg-gray-800/50 hover:bg-gray-700/50 px-4 py-2 rounded-xl border border-gray-700/50 backdrop-blur-sm"
               >
                 <ArrowLeft className="w-5 h-5" />
@@ -103,23 +97,80 @@ const LegendaryAugmentsPage: React.FC = () => {
               </button>
             </div>
 
-            {/* Content */}
-            <div className="text-center mb-12">
-              <h1 className="text-4xl font-bold text-white mb-4">Legendary Augments</h1>
-              <p className="text-gray-400">Discover the most powerful augments in Set 1</p>
+            {/* Main Header */}
+            <div className="flex items-center justify-between mb-8">
+              <div className="flex items-center gap-6">
+                <div className="relative group">
+                  <div className="w-20 h-20 bg-gradient-to-br from-yellow-500 via-orange-500 to-red-400 rounded-2xl flex items-center justify-center shadow-2xl shadow-yellow-500/25 group-hover:shadow-yellow-500/40 transition-all duration-300 group-hover:scale-105">
+                    <Crown className="w-10 h-10 text-white" />
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-yellow-500 via-orange-500 to-red-400 rounded-2xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-300" />
+                  <Star className="w-6 h-6 text-yellow-400 absolute -top-2 -right-2 animate-bounce" />
+                </div>
+                <div>
+                  <h1 className="text-5xl font-black mb-2">
+                    <span className="bg-gradient-to-r from-white via-yellow-200 to-orange-200 bg-clip-text text-transparent">
+                      LEGENDARY AUGMENTS
+                    </span>
+                  </h1>
+                  <p className="text-xl text-gray-400 mb-2">Ultra-rare game-changing power-ups</p>
+                  <div className="flex items-center gap-3">
+                    <div className="bg-gradient-to-r from-yellow-600 to-orange-600 text-white px-4 py-1 rounded-full font-bold text-sm">
+                      META-DEFINING
+                    </div>
+                    <div className="flex gap-1">
+                      <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse" />
+                      <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }} />
+                      <div className="w-2 h-2 bg-red-400 rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Enhanced Search */}
+              <div className="relative group">
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 group-hover:text-yellow-400 transition-colors duration-300" />
+                <input
+                  type="text"
+                  placeholder="Search legendary augments..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="bg-gray-800/50 backdrop-blur-sm text-white pl-12 pr-6 py-3 rounded-xl border border-gray-700/50 focus:outline-none focus:ring-2 focus:ring-yellow-500/50 focus:border-yellow-500/50 transition-all duration-300 w-80 hover:bg-gray-700/50 group-hover:border-gray-600/50"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/5 to-orange-500/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+              </div>
             </div>
 
-            {/* Enhanced Search */}
-            <div className="relative group">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 group-hover:text-yellow-400 transition-colors duration-300" />
-              <input
-                type="text"
-                placeholder="Search legendary augments..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="bg-gray-800/50 backdrop-blur-sm text-white pl-12 pr-6 py-3 rounded-xl border border-gray-700/50 focus:outline-none focus:ring-2 focus:ring-yellow-500/50 focus:border-yellow-500/50 transition-all duration-300 w-80 hover:bg-gray-700/50 group-hover:border-gray-600/50"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/5 to-orange-500/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+            {/* Info Section: How to Obtain Legendary Augments */}
+            <div className="bg-gradient-to-r from-yellow-900/60 to-orange-900/60 border-l-4 border-yellow-400 rounded-xl p-6 mb-8 shadow-lg">
+              <h2 className="text-2xl font-bold text-yellow-200 mb-2 flex items-center gap-2">
+                <span role="img" aria-label="legendary">🏆</span>
+                How to Obtain Legendary Augments
+              </h2>
+              <ul className="list-disc pl-6 text-yellow-100 space-y-2">
+                <li>
+                  <b>Legendary Augment Crate:</b> At certain points, you may be offered a Legendary Augment Crate (e.g., after a milestone round). Choose 1 of 4 powerful Legendary Augments to apply to your Illuvial.
+                </li>
+                <li>
+                  <b>Region Effects:</b> Some regions, like <b>Shardbluff</b>, grant a Legendary Augment Crate at the start of the game.<br/>
+                  <span className="italic text-yellow-300">Example: "Shardbluff - Legendary Start: Players start with a Legendary Augment Crate."</span>
+                </li>
+                <li>
+                  <b>Special Rounds:</b> Legendary Augments may be offered as rewards or choices in specific rounds. Check the round progression for details.
+                </li>
+              </ul>
+            </div>
+
+            {/* Enhanced Stats Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+              <div className="bg-gray-800/50 backdrop-blur-xl rounded-xl p-6 border border-gray-700/50 hover:border-yellow-500/30 transition-all duration-300 group">
+                <div className="flex items-center gap-3 mb-2">
+                  <Crown className="w-6 h-6 text-yellow-400 group-hover:scale-110 transition-transform duration-200" />
+                  <span className="text-gray-300 font-medium">Total Legendary Augments</span>
+                </div>
+                <span className="text-white text-3xl font-bold">{augments.length}</span>
+                <div className="text-yellow-400 text-sm mt-1">Meta-Defining Power-ups</div>
+              </div>
             </div>
           </div>
         </div>
