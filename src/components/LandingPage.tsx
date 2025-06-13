@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Shield, Sparkles, Users, Trophy, Zap, Star, ArrowRight, Play, BookOpen, Target, Gem, Bot, Layers } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
-interface LandingPageProps {
-  onNavigate: (destination: 'guides' | 'tierlist' | 'tournaments') => void;
-}
-
-const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
+const LandingPage: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [currentFeature, setCurrentFeature] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsVisible(true);
@@ -19,6 +17,20 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
 
     return () => clearInterval(interval);
   }, []);
+
+  const handleNavigate = (destination: 'guides' | 'tierlist' | 'tournaments') => {
+    switch (destination) {
+      case 'guides':
+        navigate('/app/guides');
+        break;
+      case 'tierlist':
+        navigate('/app/tierlists');
+        break;
+      case 'tournaments':
+        navigate('/app/tournaments');
+        break;
+    }
+  };
 
   const features = [
     {
@@ -210,7 +222,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             <div className={`transition-all duration-1000 delay-1100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
               <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
                 <button
-                  onClick={() => onNavigate('tierlist')}
+                  onClick={() => handleNavigate('tierlist')}
                   className="group relative bg-gradient-to-r from-purple-700 to-blue-700 hover:from-purple-600 hover:to-blue-600 text-white px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-300 hover:scale-105 shadow-2xl shadow-purple-900/25 hover:shadow-purple-900/40"
                 >
                   <span className="relative z-10 flex items-center gap-3">
@@ -222,7 +234,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                 </button>
 
                 <button
-                  onClick={() => onNavigate('tournaments')}
+                  onClick={() => handleNavigate('tournaments')}
                   className="group relative bg-gradient-to-r from-yellow-600 to-orange-600 hover:from-yellow-500 hover:to-orange-500 text-white px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-300 hover:scale-105 shadow-2xl shadow-yellow-900/25 hover:shadow-yellow-900/40"
                 >
                   <span className="relative z-10 flex items-center gap-3">
@@ -234,7 +246,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                 </button>
 
                 <button
-                  onClick={() => onNavigate('guides')}
+                  onClick={() => handleNavigate('guides')}
                   className="group relative bg-gray-900/50 backdrop-blur-xl hover:bg-gray-800/50 text-white px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-300 hover:scale-105 border border-gray-800/50 hover:border-gray-700/50"
                 >
                   <span className="relative z-10 flex items-center gap-3">

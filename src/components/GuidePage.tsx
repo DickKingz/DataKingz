@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowLeft, Search, BookOpen, HelpCircle, Trophy, TrendingUp, Map, Coins, Crown, Swords, Zap, Filter, Sparkles, Star, Scroll, Brain } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 interface GuidePageProps {
   onBack: () => void;
@@ -16,6 +17,7 @@ interface FAQEntry {
 }
 
 const GuidePage: React.FC<GuidePageProps> = ({ onBack }) => {
+  const navigate = useNavigate();
   const [activeGuide, setActiveGuide] = useState<string>('gauntlet-knowledge');
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -194,6 +196,10 @@ const GuidePage: React.FC<GuidePageProps> = ({ onBack }) => {
     entry.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
     entry.answer.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  const handleBack = () => {
+    navigate('/app');
+  };
 
   const renderContent = () => {
     switch (activeGuide) {
@@ -652,7 +658,7 @@ const GuidePage: React.FC<GuidePageProps> = ({ onBack }) => {
             {/* Back Button */}
             <div className="mb-6">
               <button
-                onClick={onBack}
+                onClick={handleBack}
                 className="flex items-center gap-3 text-gray-400 hover:text-white transition-all duration-300 bg-gray-800/50 hover:bg-gray-700/50 px-4 py-2 rounded-xl border border-gray-700/50 backdrop-blur-sm"
               >
                 <ArrowLeft className="w-5 h-5" />

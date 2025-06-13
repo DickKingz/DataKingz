@@ -3,6 +3,7 @@ import { Search, Shield, ChevronDown, Plus, Users, BookOpen, HelpCircle, Trendin
 import { useAuth } from '../contexts/AuthContext';
 import LoginModal from './LoginModal';
 import UserProfile from './UserProfile';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 interface HeaderProps {
   activeTab: 'augments' | 'comps' | 'items' | 'gauntlet' | 'tournaments';
@@ -32,7 +33,9 @@ const Header: React.FC<HeaderProps> = ({
   currentPage,
   currentSubPage
 }) => {
-  const { user, isAuthenticated } = useAuth();
+  const { user, isAuthenticated, login, logout } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [showToolsDropdown, setShowToolsDropdown] = useState(false);
   const [showGuidesDropdown, setShowGuidesDropdown] = useState(false);
@@ -400,6 +403,14 @@ const Header: React.FC<HeaderProps> = ({
     return `${id.slice(0, 6)}...${id.slice(-4)}`;
   };
 
+  const isActive = (path: string) => {
+    return location.pathname.startsWith(path);
+  };
+
+  const handleTabChange = (path: string) => {
+    navigate(path);
+  };
+
   return (
     <div className="relative z-50">
       {/* Animated Background */}
@@ -447,8 +458,10 @@ const Header: React.FC<HeaderProps> = ({
               {/* Enhanced Navigation */}
               <nav className="flex items-center gap-6">
                 <button 
-                  onClick={() => onTabChange('comps')}
-                  className="relative group bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-6 py-2.5 rounded-xl font-bold hover:from-yellow-300 hover:to-orange-400 transition-all duration-300 shadow-lg shadow-yellow-500/25 hover:shadow-yellow-500/40 hover:scale-105"
+                  onClick={() => handleTabChange('/app/tierlists/augments')}
+                  className={`relative group bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-6 py-2.5 rounded-xl font-bold hover:from-yellow-300 hover:to-orange-400 transition-all duration-300 shadow-lg shadow-yellow-500/25 hover:shadow-yellow-500/40 hover:scale-105 ${
+                    isActive('/app/tierlists') ? 'bg-purple-600 text-white' : 'text-gray-300 hover:bg-gray-700'
+                  }`}
                 >
                   <span className="relative z-10">Tierlist</span>
                   <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-xl blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-300" />
@@ -466,7 +479,9 @@ const Header: React.FC<HeaderProps> = ({
                       onShowSet1Main?.();
                       setShowSet1Dropdown(false);
                     }}
-                    className="flex items-center gap-2 text-slate-300 hover:text-white transition-all duration-300 font-medium px-4 py-2 rounded-lg hover:bg-white/5 backdrop-blur-sm group"
+                    className={`flex items-center gap-2 text-slate-300 hover:text-white transition-all duration-300 font-medium px-4 py-2 rounded-lg hover:bg-white/5 backdrop-blur-sm group ${
+                      isActive('/app/set1') ? 'bg-purple-600 text-white' : 'text-gray-300 hover:bg-gray-700'
+                    }`}
                   >
                     <Gem className="w-4 h-4 group-hover:text-cyan-400 transition-colors" />
                     Set 1
@@ -563,8 +578,10 @@ const Header: React.FC<HeaderProps> = ({
                   onMouseLeave={() => handleMouseLeave('guides')}
                 >
                   <button
-                    onClick={() => setShowGuidesDropdown(!showGuidesDropdown)}
-                    className="flex items-center gap-2 text-slate-300 hover:text-white transition-all duration-300 font-medium px-4 py-2 rounded-lg hover:bg-white/5 backdrop-blur-sm group"
+                    onClick={() => handleTabChange('/app/guides')}
+                    className={`flex items-center gap-2 text-slate-300 hover:text-white transition-all duration-300 font-medium px-4 py-2 rounded-lg hover:bg-white/5 backdrop-blur-sm group ${
+                      isActive('/app/guides') ? 'bg-purple-600 text-white' : 'text-gray-300 hover:bg-gray-700'
+                    }`}
                   >
                     <BookOpen className="w-4 h-4 group-hover:text-purple-400 transition-colors" />
                     Guides
@@ -609,8 +626,10 @@ const Header: React.FC<HeaderProps> = ({
                   onMouseLeave={() => handleMouseLeave('studyhall')}
                 >
                   <button
-                    onClick={() => setShowStudyHallDropdown(!showStudyHallDropdown)}
-                    className="flex items-center gap-2 text-slate-300 hover:text-white transition-all duration-300 font-medium px-4 py-2 rounded-lg hover:bg-white/5 backdrop-blur-sm group"
+                    onClick={() => handleTabChange('/app/tournaments')}
+                    className={`flex items-center gap-2 text-slate-300 hover:text-white transition-all duration-300 font-medium px-4 py-2 rounded-lg hover:bg-white/5 backdrop-blur-sm group ${
+                      isActive('/app/tournaments') ? 'bg-purple-600 text-white' : 'text-gray-300 hover:bg-gray-700'
+                    }`}
                   >
                     <Play className="w-4 h-4 group-hover:text-cyan-400 transition-colors" />
                     Going Hyper
@@ -725,8 +744,10 @@ const Header: React.FC<HeaderProps> = ({
                   onMouseLeave={() => handleMouseLeave('tools')}
                 >
                   <button
-                    onClick={() => setShowToolsDropdown(!showToolsDropdown)}
-                    className="flex items-center gap-2 text-slate-300 hover:text-white transition-all duration-300 font-medium px-4 py-2 rounded-lg hover:bg-white/5 backdrop-blur-sm group"
+                    onClick={() => handleTabChange('/app/tools/builder')}
+                    className={`flex items-center gap-2 text-slate-300 hover:text-white transition-all duration-300 font-medium px-4 py-2 rounded-lg hover:bg-white/5 backdrop-blur-sm group ${
+                      isActive('/app/tools') ? 'bg-purple-600 text-white' : 'text-gray-300 hover:bg-gray-700'
+                    }`}
                   >
                     <Zap className="w-4 h-4 group-hover:text-cyan-400 transition-colors" />
                     Tools
@@ -772,7 +793,9 @@ const Header: React.FC<HeaderProps> = ({
                 {/* Enhanced Tournaments Button */}
                 <button
                   onClick={() => onShowTournaments?.()}
-                  className="relative group text-slate-300 hover:text-white transition-all duration-300 font-medium px-4 py-2 rounded-lg hover:bg-white/5 backdrop-blur-sm"
+                  className={`relative group text-slate-300 hover:text-white transition-all duration-300 font-medium px-4 py-2 rounded-lg hover:bg-white/5 backdrop-blur-sm ${
+                    isActive('/app/tournaments') ? 'bg-purple-600 text-white' : 'text-gray-300 hover:bg-gray-700'
+                  }`}
                 >
                   <span className="flex items-center gap-2">
                     <Trophy className="w-4 h-4 group-hover:text-yellow-400 transition-colors" />
@@ -789,8 +812,10 @@ const Header: React.FC<HeaderProps> = ({
                   onMouseLeave={() => handleMouseLeave('gauntlet')}
                 >
                   <button
-                    onClick={() => setShowGauntletDropdown(!showGauntletDropdown)}
-                    className="flex items-center gap-2 text-slate-300 hover:text-white transition-all duration-300 font-medium px-4 py-2 rounded-lg hover:bg-white/5 backdrop-blur-sm group"
+                    onClick={() => handleTabChange('/app/tierlists/gauntlet')}
+                    className={`flex items-center gap-2 text-slate-300 hover:text-white transition-all duration-300 font-medium px-4 py-2 rounded-lg hover:bg-white/5 backdrop-blur-sm group ${
+                      isActive('/app/tierlists/gauntlet') ? 'bg-purple-600 text-white' : 'text-gray-300 hover:bg-gray-700'
+                    }`}
                   >
                     <Shield className="w-4 h-4 group-hover:text-purple-400 transition-colors" />
                     Gauntlet
@@ -919,7 +944,7 @@ const Header: React.FC<HeaderProps> = ({
             <div className="flex items-center gap-6">
               {/* Enhanced Search */}
               <div className="relative group">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400 group-hover:text-purple-400 transition-colors duration-300" />
+                <div className="w-5 h-5 text-slate-400 group-hover:text-purple-400 transition-colors duration-300" />
                 <input
                   type="text"
                   placeholder={headerContent.searchPlaceholder}
@@ -993,24 +1018,24 @@ const Header: React.FC<HeaderProps> = ({
               ].map(({ key, label, icon }) => (
                 <button
                   key={key}
-                  onClick={() => onTabChange(key as any)}
+                  onClick={() => handleTabChange('/app/tierlists/' + key)}
                   className={`relative group flex items-center gap-2 pb-4 font-bold text-lg transition-all duration-300 ${
-                    activeTab === key
+                    isActive('/app/tierlists/' + key)
                       ? 'text-yellow-400'
                       : 'text-slate-400 hover:text-white'
                   }`}
                 >
-                  <span className={`transition-all duration-300 ${activeTab === key ? 'text-yellow-400' : 'text-slate-500 group-hover:text-purple-400'}`}>
+                  <span className={`transition-all duration-300 ${isActive('/app/tierlists/' + key) ? 'text-yellow-400' : 'text-slate-500 group-hover:text-purple-400'}`}>
                     {icon}
                   </span>
                   {label}
-                  {activeTab === key && (
+                  {isActive('/app/tierlists/' + key) && (
                     <>
                       <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full shadow-lg shadow-yellow-500/50" />
                       <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-sm opacity-50" />
                     </>
                   )}
-                  {activeTab !== key && (
+                  {!isActive('/app/tierlists/' + key) && (
                     <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-purple-500/0 via-purple-500/50 to-purple-500/0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   )}
                 </button>

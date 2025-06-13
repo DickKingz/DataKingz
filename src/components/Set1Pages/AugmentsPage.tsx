@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ArrowLeft, Search, Filter, Sparkles, Star, Zap, Target, Shield, Coins, Crown, Gem, Wand2 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 interface AugmentPageProps {
   onBack: () => void;
@@ -93,7 +94,8 @@ function AugmentCard({ augment, category, imageUrl }: AugmentCardProps) {
   );
 }
 
-const AugmentsPage: React.FC<AugmentPageProps> = ({ onBack }) => {
+const AugmentsPage: React.FC = () => {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [categoryFilter, setCategoryFilter] = useState<'all' | 'brawler' | 'energy' | 'fusion' | 'shield' | 'striker' | 'support'>('all');
   const [augments, setAugments] = useState<Augment[]>([]);
@@ -157,6 +159,10 @@ const AugmentsPage: React.FC<AugmentPageProps> = ({ onBack }) => {
     }
   };
 
+  const handleBack = () => {
+    navigate('/app/set1');
+  };
+
   return (
     <div className="min-h-screen bg-gray-950">
       {/* Custom Augments Header */}
@@ -188,7 +194,7 @@ const AugmentsPage: React.FC<AugmentPageProps> = ({ onBack }) => {
             {/* Back Button */}
             <div className="mb-6">
               <button
-                onClick={onBack}
+                onClick={handleBack}
                 className="flex items-center gap-3 text-gray-400 hover:text-white transition-all duration-300 bg-gray-800/50 hover:bg-gray-700/50 px-4 py-2 rounded-xl border border-gray-700/50 backdrop-blur-sm"
               >
                 <ArrowLeft className="w-5 h-5" />

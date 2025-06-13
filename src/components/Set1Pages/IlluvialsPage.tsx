@@ -3,6 +3,7 @@ import { ArrowLeft, Search, Filter, Users, Star, Zap, Shield, Sword, Heart, Eye,
 import costsData from '../../data/CostData/Costs.json';
 import iconUrls from '../../data/iconUrls.json';
 import styles from './IlluvialsPage.module.css';
+import { useNavigate } from 'react-router-dom';
 
 // Dynamically import all JSON files in CombatUnitData
 const illuvialModules = import.meta.glob('../../data/CombatUnitData/*.json', { eager: true });
@@ -143,7 +144,8 @@ function toImageName(name: string) {
 const getIconUrl = (name: string) =>
   `https://firebasestorage.googleapis.com/v0/b/illuvilytics.appspot.com/o/class_affinity%2FProperty%201%3D${encodeURIComponent(toImageName(name))}.png?alt=media`;
 
-const IlluvialsPage: React.FC<IlluvialProps> = ({ onBack }) => {
+const IlluvialsPage: React.FC = () => {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [costFilter, setCostFilter] = useState('all');
   const [affinityFilter, setAffinityFilter] = useState('all');
@@ -284,6 +286,10 @@ const IlluvialsPage: React.FC<IlluvialProps> = ({ onBack }) => {
   // Cost options
   const costOptions = [1, 2, 3, 4, 5];
 
+  const handleBack = () => {
+    navigate('/app/set1');
+  };
+
   return (
     <div className="min-h-screen bg-gray-950">
       {/* Custom Illuvials Header */}
@@ -301,7 +307,7 @@ const IlluvialsPage: React.FC<IlluvialProps> = ({ onBack }) => {
             {/* Back Button */}
             <div className="mb-6">
               <button
-                onClick={onBack}
+                onClick={handleBack}
                 className="flex items-center gap-3 text-gray-400 hover:text-white transition-all duration-300 bg-gray-800/50 hover:bg-gray-700/50 px-4 py-2 rounded-xl border border-gray-700/50 backdrop-blur-sm"
               >
                 <ArrowLeft className="w-5 h-5" />
