@@ -1,0 +1,116 @@
+{
+	"Name": "QuakeMaulersShatterDefense",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Amplifier",
+	"AmplifierForWeapon": {
+		"Name": "QuakeMaulers",
+		"Stage": 0,
+		"Variation": "Original",
+		"CombatAffinity": "Earth"
+	},
+	"Stats": {
+		"MaxHealth": 500000,
+		"StartingEnergy": 0,
+		"EnergyCost": 0,
+		"PhysicalResist": 0,
+		"EnergyResist": 0,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 0,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 0,
+		"MoveSpeedSubUnits": 0,
+		"HitChancePercentage": 0,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 0,
+		"CritAmplificationPercentage": 0,
+		"OmegaPowerPercentage": 0,
+		"AttackRangeUnits": 0,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 0,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 0,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 0,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [],
+	"InnateAbilities": [
+		{
+			"Name": "ShatterDefense",
+			"ActivationTrigger": {
+				"TriggerType": "OnActivateXAbilities",
+				"AbilityTypes": [
+					"Omega"
+				],
+				"EveryX": true,
+				"NumberOfAbilitiesActivated": 1
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "ShatterDefense_Ability",
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"PercentageOfAbilityDuration": 0,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Empower",
+								"DurationMs": 4000,
+								"IsConsumable": false,
+								"ActivatedBy": "Attack",
+								"AttachedEffects": [
+									{
+										"Type": "Debuff",
+										"Stat": "PhysicalResist",
+										"OverlapProcessType": "Stacking",
+										"DurationMs": -1,
+										"Expression": 5
+									}
+								]
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Shatter Defense",
+	"DisplayDescription": "+<MaxHealth>500</> Health.\r\nPhysical Resistance reduction is increased from 5 to <PhysicalResist>10</> per hit.",
+	"Description": {
+		"Format": "+<MaxHealth>{Health}</> Health.\r\nPhysical Resistance reduction is increased from 5 to <PhysicalResist>{Resist}</> per hit.",
+		"Parameters": {
+			"Health": {
+				"ParameterPath": "Stats.MaxHealth",
+				"ValueMultiplier": 0.001
+			},
+			"Resist": {
+				"ParameterPath": "InnateAbilities[0].Skills[0].EffectPackage.Effects[0].AttachedEffects[0].Expression",
+				"ValueMultiplier": 2.0
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "+500 Health.\r\nPhysical Resistance reduction is increased from 5 to 10 per hit."
+}

@@ -1,0 +1,192 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Lynx",
+	"Stage": 3,
+	"Path": "FighterAir",
+	"Variation": "Original",
+	"Tier": 2,
+	"CombatAffinity": "Air",
+	"CombatClass": "Fighter",
+	"DominantCombatAffinity": "Air",
+	"DominantCombatClass": "Fighter",
+	"SizeUnits": 7,
+	"Stats": {
+		"MaxHealth": 2300000,
+		"StartingEnergy": 40000,
+		"EnergyCost": 80000,
+		"PhysicalResist": 55,
+		"EnergyResist": 55,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 170000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 80,
+		"MoveSpeedSubUnits": 2500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 5,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 5,
+		"OmegaRangeUnits": 5,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Fighter Air Lynx Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 38
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Elusive Maul",
+			"TotalDurationMs": 1500,
+			"Skills": [
+				{
+					"Name": "Maul",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 69
+					},
+					"PercentageOfAbilityDuration": 80,
+					"EffectPackage": {
+						"Attributes": {
+							"VampiricPercentage": 30
+						},
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										825000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Relentless Zephyrlynx",
+	"DisplayDescription": "Relentless Zephyrlynx mauls their target, dealing <AttackPhysicalDamage>825</> (<OmegaPowerPercentage></>) Physical Damage and healing for <Omnivamp>30%</> of the damage dealt.\r\n\r\nDamage: <AttackPhysicalDamage>825</> (<OmegaPowerPercentage></>)",
+	"Intro": "The ruthless winds of Taiga Boreal erode the ice, forming peculiar structures that resemble wide funnels and satellite dishes. With active geysers and constantly billowing wind in the area, blasts of water and freezing air can come from any direction. In conditions like this, the giant cliffs that stretch into the sky seem unclimbable. Yet if there is a creature that can ascend, it is the Relentless Zephyrlynx. With snow-white clouds on its body, it is one with the frigid landscape.",
+	"Summary": "In the harsh and windy Taiga Boreal, the Relentless Zephyrlynx, with its snow-white clouds and teal markings, ascends the icy cliffs with ease, blending seamlessly into the frigid landscape. This Illuvial, emitting a chilling light from its forehead and trailing mist, is lightweight and nimble, capable of scaling vertical distances effortlessly and moving its mist at will. Mysterious and solitary, it occasionally plays with younger Lynxes and can see both infrared light and interdimensional rifts with its specialized eyes.",
+	"Biology": {
+		"Physiology": "The Relentless Zephyrlynx is turquoise and teal, with a chilling light beaming from its forehead. Its luminous white eyes are calm, and the thick gusts of air on its body are ever-shifting with the winds. The Relentless Zephyrlynx has dark teal markings that form distinct swirling lines, especially along its face and the long manes on either side of its chin. From afar, its ears look akin to two curved chimneys, with white puffs spouting from the top. The back of its neck is coated with furling clouds that leave streams of mist trailing behind, and its tail resembles a violent blast of snow.",
+		"Behaviour": "The Relentless Zephyrlynx moves silently and rarely reveals its presence to others. Capable of blending in with the snow, the Relentless Zephyrlynx seems to appear out of nowhere only to disappear again. Its intentions are mysterious, and its gaze lingers afar as though seeing into the future. It likes to keep to itself, although it occasionally visits and plays with younger Lynxes."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3FighterAir/LynxStage3FighterAir_default_default_webp.3840x2160/LynxStage3FighterAir_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3FighterAir/LynxStage3FighterAir_default_default_hls.m3u8/LynxStage3FighterAir_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Relentless Zephyrlynx is surprisingly lightweight and nimble on its large, broad paws. It can scale vertical distances with relative ease.",
+			"The Relentless Zephyrlynx has been observed staring in the distance upon mountain peaks, even when the sky is completely shrouded by clouds.",
+			"The Relentless Zephyrlynx has the ability to move the clouds of mist on its body at will. It has been found playing in the snow with smaller Lynxes, using the movement of mist to groom them."
+		],
+		"Buckley": [
+			"The Relentless Zephyrlynx has a specialised airlung in its chest cavity, which is composed of two layers of tissue with a spongy, porous inner layer that allows air to pass through. The airlung produces a powerful vacuum and propulsion effect that enables the Relentless Zephyrlynx to run faster.",
+			"The Relentless Zephyrlynx has a varied diet of smaller Illuvials and winged Morphopods.",
+			"The Relentless Zephyrlynx has a dense layer of fine underfur that insulates it from the cold. The air inside its fur is heated and gathers as visible puffs along its mane.",
+			"The Relentless Zephyrlynx has specialised cones in each of its eyes that detect different types of light waves. Its left eye can detect infrared light and its right eye can detect interdimensional rifts, allowing it to respond to heat signatures and movement from other dimensions.",
+			"The Relentless Zephyrlynx's nervous system is directly connected to the luminous orb upon its forehead, which can light up in varying degrees of illumination corresponding to its mental activity, particularly those involving ambushing prey."
+		]
+	},
+	"TraitOrderLegacy": [
+		2,
+		1,
+		4,
+		6,
+		3,
+		5
+	],
+	"Description": {
+		"Format": "Relentless Zephyrlynx mauls their target, dealing <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Physical Damage and healing for <Omnivamp>{Vampiric}%</> of the damage dealt.\r\n\r\nDamage: <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"Vampiric": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Attributes.VampiricPercentage"
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Relentless Zephyrlynx mauls their target, dealing 825 () Physical Damage and healing for 30% of the damage dealt.\r\n\r\nDamage: 825 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 2,
+			"AttackSpeed": 1,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 3,
+			"Resistance": 5
+		}
+	}
+}

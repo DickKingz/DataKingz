@@ -1,0 +1,21 @@
+{
+	"Name": "Earth",
+	"Stage": 1,
+	"Type": "Game",
+	"DisplayName": "Earth Module",
+	"DisplayDescription": "Gain a Earth Imprint.",
+	"Description": {
+		"Format": "Gain a Earth Imprint.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Earth",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

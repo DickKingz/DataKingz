@@ -1,0 +1,209 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Lynx",
+	"Stage": 3,
+	"Path": "PsionNature",
+	"Variation": "Original",
+	"Tier": 2,
+	"CombatAffinity": "Nature",
+	"CombatClass": "Psion",
+	"DominantCombatAffinity": "Nature",
+	"DominantCombatClass": "Psion",
+	"SizeUnits": 7,
+	"Stats": {
+		"MaxHealth": 2000000,
+		"StartingEnergy": 60000,
+		"EnergyCost": 120000,
+		"PhysicalResist": 40,
+		"EnergyResist": 40,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 180000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 60,
+		"MoveSpeedSubUnits": 2500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 50,
+		"OmegaRangeUnits": 50,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Psion Nature Lynx Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 60
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 10000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Fostering Sling",
+			"TotalDurationMs": 2500,
+			"Skills": [
+				{
+					"Name": "Wave",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 75
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 10,
+						"DurationMs": 3000,
+						"FrequencyMs": 100,
+						"MovementSpeedSubUnits": 8000,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 90,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										1000000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Arcane Floralynx",
+	"DisplayDescription": "Arcane Floralynx sends out a wave towards its target, dealing <AttackEnergyDamage>1,000</> (<OmegaPowerPercentage></>) Energy Damage to all enemies hit.\r\n\r\nDamage: <AttackEnergyDamage>1,000</> (<OmegaPowerPercentage></>)",
+	"Intro": "There is an area in Brightland Steppes that is full of death. The land here thrives from all the decomposing bodies which have made for nutrient-rich soil and allowed surviving life to ascend in biodiversity. Enormous Parachute Shrooms illuminate the foggy horizon, where one can find skulls and curved bones among the roots and damp grass. A lone assassin roams the fields, searching for its next kill. The Arcane Floralynx spies a victim in the distance and shoots them down.",
+	"Summary": "The Arcane Floralynx, a solitary hunter in the death-filled landscape of Brightland Steppes, blends into its environment with moss-covered fur and a dense, ornate mane adorned with pink tendrils and luminous orbs. Using its spring-loaded legs and keen eyesight, it hunts from great vantage points, launching precise long-range energy blasts at unsuspecting prey. It marks its territory with a trail of thick vapor and adapts its diet to smaller prey during scarcity.",
+	"Biology": {
+		"Physiology": "The Arcane Floralynx has the longest and most ornate mane out of all the Floralynxes, with lengthy pink tendrils and big green leaves tipped in vibrant pink. It also has the tallest ears, with a pronged branch at its end holding a large luminous orb. This ball of light leaves behind a trail of bright vapour, a similar cloud of yellow-green that puffs out from its back. Unique to the Arcane Floralynx is a spiralling branch that circles the side of its green coat. There are also curved magenta markings that form angled strokes and spoked crescents on its face ruffs and along its limbs.",
+		"Behaviour": "The Arcane Floralynx has a penchant for finding great vantage points, with spring-loaded legs that allow it to jump extremely high. It spends every morning scanning the area for prey and choosing a target. Although its moss-carpeted fur and thick mane make for great camouflage, its long-range blasts quickly alert prey of its presence. Accuracy is vital to securing a meal and an unsuccessful hunt means long ventures away from its original position. In times of great scarcity, the Arcane Floralynx may adapt its meals to smaller Morphopod prey or rely on its root appendages to take in nutrients from the soil."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3PsionNature/LynxStage3PsionNature_default_default_webp.3840x2160/LynxStage3PsionNature_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3PsionNature/LynxStage3PsionNature_default_default_hls.m3u8/LynxStage3PsionNature_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Arcane Floralynx's root appendages can curl in different directions and form spirals of different sizes.",
+			"The Arcane Floralynx leaves behind a trail of thick vapour that it uses to mark its territories and allies in battle.",
+			"The Arcane Floralynx can hone in on the movement of its target with the shooting apparatus upon its head, which looks like a big glowing orb."
+		],
+		"Buckley": [
+			"The Arcane Floralynx's luminous sphere, eyes, and clouds of vapour are all connected to its nervous system. It is capable of sensing through the energy blasts it shoots out and the vaporous trail it leaves behind, giving it a superior connection to its environment.",
+			"The Arcane Floralynx has porous skin which allows it to absorb moisture from the atmosphere on its coat in order to grow its leafy mane and the root appendages on its body.",
+			"The Arcane Floralynx has roots along its body which can store ample amounts of water and soil nutrients.",
+			"The Arcane Floralynx has a complex timing device in its nervous system that is capable of slowing and speeding up its perception of time, allowing it to aim precisely in nanoseconds or hold a position in stillness for prolonged periods.",
+			"The Arcane Floralynx's long ears are hypersensitive to sounds in its environment."
+		]
+	},
+	"TraitOrderLegacy": [
+		3,
+		2,
+		4,
+		6,
+		1,
+		5
+	],
+	"Description": {
+		"Format": "Arcane Floralynx sends out a wave towards its target, dealing <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Energy Damage to all enemies hit.\r\n\r\nDamage: <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Arcane Floralynx sends out a wave towards its target, dealing 1,000 () Energy Damage to all enemies hit.\r\n\r\nDamage: 1,000 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 3,
+			"AttackSpeed": 2,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 5
+		}
+	}
+}

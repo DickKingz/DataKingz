@@ -1,0 +1,344 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "PolarBear",
+	"Stage": 3,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 4,
+	"CombatAffinity": "Frost",
+	"CombatClass": "Behemoth",
+	"DominantCombatAffinity": "Air",
+	"DominantCombatClass": "Fighter",
+	"SizeUnits": 6,
+	"Stats": {
+		"MaxHealth": 2800000,
+		"StartingEnergy": 0,
+		"EnergyCost": 100000,
+		"PhysicalResist": 70,
+		"EnergyResist": 75,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 210000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 75,
+		"MoveSpeedSubUnits": 2150,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 5,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 3,
+		"OmegaRangeUnits": 3,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Polar Bear Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 49
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Cataclysmic Crunch III",
+			"TotalDurationMs": 700,
+			"Skills": [
+				{
+					"Name": "Steal stats",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "AttackPhysicalDamage",
+								"DurationMs": 6000,
+								"Expression": {
+									"Percentage": 15,
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "SenderFocus"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackEnergyDamage",
+								"DurationMs": 6000,
+								"Expression": {
+									"Percentage": 15,
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "SenderFocus"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackPureDamage",
+								"DurationMs": 6000,
+								"Expression": {
+									"Percentage": 15,
+									"Stat": "AttackPureDamage",
+									"StatSource": "SenderFocus"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackSpeed",
+								"DurationMs": 6000,
+								"Expression": {
+									"Percentage": 15,
+									"Stat": "AttackSpeed",
+									"StatSource": "SenderFocus"
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Bite",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										650000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Debuffs",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Debuff",
+								"Stat": "AttackPhysicalDamage",
+								"DurationMs": 6000,
+								"Expression": {
+									"Percentage": 15,
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Receiver"
+								}
+							},
+							{
+								"Type": "Debuff",
+								"Stat": "AttackEnergyDamage",
+								"DurationMs": 6000,
+								"Expression": {
+									"Percentage": 15,
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Receiver"
+								}
+							},
+							{
+								"Type": "Debuff",
+								"Stat": "AttackPureDamage",
+								"DurationMs": 6000,
+								"Expression": {
+									"Percentage": 15,
+									"Stat": "AttackPureDamage",
+									"StatSource": "Receiver"
+								}
+							},
+							{
+								"Type": "Debuff",
+								"Stat": "AttackSpeed",
+								"DurationMs": 6000,
+								"Expression": {
+									"Percentage": 15,
+									"Stat": "AttackSpeed",
+									"StatSource": "Receiver"
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Self Heal",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantHeal",
+								"HealType": "Normal",
+								"Expression": {
+									"Operation": "%",
+									"Operands": [
+										20,
+										{
+											"Operation": "-",
+											"Operands": [
+												{
+													"Stat": "MaxHealth",
+													"StatSource": "SenderFocus"
+												},
+												{
+													"Stat": "CurrentHealth",
+													"StatSource": "SenderFocus"
+												}
+											]
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Jotun",
+	"DisplayDescription": "Jotun bites its target, dealing 650 (<OmegaPowerPercentage></>) Pure Damage, stealing <AttackDamage>15%</> Attack Damage and <AttackSpeed>15%</> Attack Speed for 6 seconds. Jotun then heals for <MaxHealth>20%</> of the target's missing Health.\r\n\r\nDamage: 650 (<OmegaPowerPercentage></>)",
+	"Intro": "There is music in Taiga Boreal if one knows where to listen. From whistling wind to falling snowflakes, a  symphony plays for the winter lights to dance to. Every drop of melting ice and bursting geyser joins the melody of rushing currents and colliding glaciers. The Jotun can feel the planet's pulse through the ice, steam, and snow. He bears his soul and pounds its giant fists to the rhythm, determined to amplify the beat.",
+	"Summary": "The Jotun, a colossal presence in Taiga Boreal, resonates with the natural symphony of wind and ice. Its massive frame, adorned with frozen blades and a misty cape, amplifies the environment's rhythms through pounding fists and territorial displays. With keen senses and powerful adaptations like heat-retaining fur and a robust cardiovascular system, the Jotun navigates blizzards and underground caves to communicate with its kind through seismic signals and echoes.",
+	"Biology": {
+		"Physiology": "The Jotun has a mountainous frame with weighty muscles and enormous fists that are bigger than its head, encased in ice. Frozen blades cover its head like a helmet, coating the top of its snout and all around its nose. Snowflakes drift from its white frosted fur, and a cape of mist follows wherever it goes. The Jotun stands on two feet with icy, crystal blue claws. There's a mysterious blue marking on its muscular shoulder, and a narrow chasm at the centre of its chest shines as bright as the winter lights.",
+		"Behaviour": "The Jotun wanders through blizzards, using its might to stand against the storm and listen to the sounds of hiding Illuvial and Morphopod prey. Its ear twitches as it takes in the sounds of the frigid air. The Jotun can feel tremors in its environment with every step of its gigantic paws, sensing the vibrations of movement that may indicate a source of food or locate individuals in its tribe. As a territorial display or signal to others of its kind, it stands on its hind legs and pounds its fists against the icy floor. Occasionally, it digs into deep underground caves to perform this ritual."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/PolarBearStage3/PolarBearStage3_default_default_webp.3840x2160/PolarBearStage3_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/PolarBearStage3/PolarBearStage3_default_default_hls.m3u8/PolarBearStage3_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Jotun makes rounds around Taiga Boreal, putting its ears to the ground and the ice walls. If it hears the movement of another Jokull, it throws its fists onto the ground as a return signal.",
+			"The Jotun displaces massive amounts of snow when it digs with its humongous hands. It can unknowingly bury entire colonies of Morphopods in its descent into underground caves and create passageways for other Illuvials.",
+			"The Jotun enjoys beating its paws in caverns, creating echoes that quickly signal more Jotuns to join. When the Jotun encounters another of its own kind, it makes a sound that is a mix between a growl and a howl in greeting."
+		],
+		"Buckley": [
+			"The Jotun's fur is adapted to help it retain heat while encased in ice.",
+			"The Jotun's skeletal structure is adaptable to air pressure and water content, capable of rapid deconstruction and regrowth of temporary air and water stores.",
+			"The Jotun has a specially adapted cardiovascular system with its hearts and lungs working together to pump blood quickly to its extremities while transporting air and water throughout its body.",
+			"The Jotun has compressed blubber that functions as a thermal insulator, maintaining the temperature of its heat stores.",
+			"The Jotun's thick muscles and its robust respiratory system give it immense stamina to travel great distances on land or water."
+		]
+	},
+	"TraitOrderLegacy": [
+		2,
+		1,
+		3,
+		5,
+		6,
+		4
+	],
+	"Description": {
+		"Format": "Jotun bites its target, dealing {OmegaDamage} (<OmegaPowerPercentage></>) Pure Damage, stealing <AttackDamage>{StealAmount}%</> Attack Damage and <AttackSpeed>{StealAmount}%</> Attack Speed for {StealDuration} seconds. Jotun then heals for <MaxHealth>{HealAmount}%</> of the target's missing Health.\r\n\r\nDamage: {OmegaDamage} (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"StealAmount": {
+				"ParameterPath": "OmegaAbilities[0].Skills[2].EffectPackage.Effects[0].Expression.Percentage"
+			},
+			"StealDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[2].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"HealAmount": {
+				"ParameterPath": "OmegaAbilities[0].Skills[3].EffectPackage.Effects[0].Expression.Operands[0]"
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Jotun bites its target, dealing 650 () Pure Damage, stealing 15% Attack Damage and 15% Attack Speed for 6 seconds. Jotun then heals for 20% of the target's missing Health.\r\n\r\nDamage: 650 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 2,
+			"AttackSpeed": 1,
+			"Health": 3,
+			"MovementSpeed": 5,
+			"OmegaPower": 6,
+			"Resistance": 4
+		}
+	}
+}

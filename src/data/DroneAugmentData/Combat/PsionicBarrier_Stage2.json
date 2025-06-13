@@ -1,0 +1,69 @@
+{
+	"Name": "PsionicBarrier",
+	"Stage": 2,
+	"Type": "Simulation",
+	"Abilities": [
+		{
+			"Name": "PsionicBarrier_StartingShield",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Your Psions units receive 400% of their Omega Power as Starting Shield.",
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						]
+					},
+					"Targeting": {
+						"Type": "Allegiance",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						],
+						"Group": "Ally"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "SpawnShield",
+								"DurationMs": -1,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										{
+											"Percentage": 400,
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Receiver"
+										},
+										1000
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Psionic Barrier II",
+	"DisplayDescription": "Your units receive 400% of their Omega Power as Starting Shield.",
+	"Description": {
+		"Format": "Your units receive {ShieldVal}% of their Omega Power as Starting Shield.",
+		"Parameters": {
+			"ShieldVal": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0].Percentage"
+			}
+		}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [],
+		"GrantedCredits": 0
+	}
+}

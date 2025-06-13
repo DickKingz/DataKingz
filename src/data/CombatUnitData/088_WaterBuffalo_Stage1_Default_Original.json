@@ -1,0 +1,245 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "WaterBuffalo",
+	"Stage": 1,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 1,
+	"CombatAffinity": "Water",
+	"CombatClass": "Bulwark",
+	"DominantCombatAffinity": "Water",
+	"DominantCombatClass": "Bulwark",
+	"SizeUnits": 3,
+	"Stats": {
+		"MaxHealth": 1350000,
+		"StartingEnergy": 20000,
+		"EnergyCost": 120000,
+		"PhysicalResist": 40,
+		"EnergyResist": 45,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 75000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 60,
+		"MoveSpeedSubUnits": 1450,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 2,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Water Buffalo Basic Attack I",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 58
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Sharpened Taunt I",
+			"TotalDurationMs": 2000,
+			"Skills": [
+				{
+					"Name": "Thorns and Health",
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"PercentageOfAbilityDuration": 0,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "Thorns",
+								"DurationMs": 4000,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										20000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Receiver"
+										}
+									]
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "MaxHealth",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										100000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Receiver"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Roar",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 40
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 20,
+						"DurationMs": 500,
+						"FrequencyMs": 500,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Taunted",
+								"DurationMs": 2000
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Carablu",
+	"DisplayDescription": "Carablu's horns extend, Taunting enemies in 20-hexes for 2 seconds, gaining <Thorns>20</> (<OmegaPowerPercentage></>) Thorns for 4 seconds and <MaxHealth>100</> (<OmegaPowerPercentage></>) Health.\r\n\r\nThorns: <Thorns>20</> (<OmegaPowerPercentage></>)\r\nHealth: <MaxHealth>100</> (<OmegaPowerPercentage></>)",
+	"Intro": "Deep in the mangrove forest of Abyssal Basin, fungi grow so enormous that it is possible for creatures to leap from one to another. Only small patches of sunlight reach the marsh floor, but where it does, the water sparkles. Splish! Splish! Little hooves gallop through the pools, splashing drops of water upon the glowing plants growing everywhere. Jumping around the floating Abyssal Pumpkins, innocent Carablu tries to catch one.",
+	"Summary": "Amidst the Abyssal Basin, the Carablu stands out with its striking indigo and crystal blue body, adorned with curling horns and luminous features. Playful and curious, it grazes on swampy grasses and leaves, often in herds that coordinate feeding and defense against predators. With luminous ears guiding it in the dark, the Carablu communicates emotions through tail movements and adapts its leg patterns based on life events. It survives by storing water on its head, adapting its circulatory system for prolonged underwater stays.",
+	"Biology": {
+		"Physiology": "Half of the Carablu's body is dark indigo, and the other half glows crystal blue. A playful creature, the Carablu prances around on slim legs, chasing anything that glitters. Upon its head is a curling splash of water that always shimmers, and two curved black horns with white tips. The Carablu's floppy ears and long, swishing tail shines brightly. Its inquisitive eyes are golden just like its snout, which it uses to take in the wonderous plants around it. ",
+		"Behaviour": "Happy-go-lucky Carablu loves to find new places to graze, always running around and looking for swampy grass and leaves. It spends most of its time eating, chewing, and travelling in herds. Carablus gather together when they feed, taking turns to eat, with those positioned on the outside watching for predators. When Carablus in large enough herds are startled, they stampede away, trampling on dens and disrupting other Illuvials along the way."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/WaterBuffaloStage1/WaterBuffaloStage1_default_default_webp.3840x2160/WaterBuffaloStage1_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/WaterBuffaloStage1/WaterBuffaloStage1_default_default_hls.m3u8/WaterBuffaloStage1_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"After a long day of feeding, the Carablu submerges itself in water and uses its luminous ears to guide its path in the dark.",
+			"The Carablu expresses its emotions through the movements of its tail, flicking when it is interested in playing, curling in apprehension, and rising in warning.",
+			"The Carablu's leg patterns are unique to each individual. Interestingly enough, it has been observed to change shape after it experiences a life-changing event, such as losing a close companion."
+		],
+		"Buckley": [
+			"The Carablu has globules of water on its head that act as liquid stores. The bigger the globule, the stronger it is as an indicator of health.",
+			"The Carablu's circulatory system is capable of slowing and adapting the distribution of blood in its body to allow it to stay submerged in water for extended periods of time.",
+			"The Carablu's hide is buffered by an extra layer of protection made of the minerals it absorbs from the water.",
+			"The Carablu has a sensory organ at its feet that is receptive to seismic vibrations.",
+			"The Carablu has multiple chambers in its stomach which host cellulose-eating morphopods, enabling it to survive on a diet of tree wood and plants."
+		]
+	},
+	"TraitOrderLegacy": [
+		4,
+		3,
+		1,
+		5,
+		6,
+		2
+	],
+	"Description": {
+		"Format": "Carablu's horns extend, Taunting enemies in {TauntRadius}-hexes for {TauntDuration} seconds, gaining <Thorns>{ThornsValue}</> (<OmegaPowerPercentage></>) Thorns for {ThornsDuration} seconds and <MaxHealth>{MaxHealthBuff}</> (<OmegaPowerPercentage></>) Health.\r\n\r\nThorns: <Thorns>{ThornsValue}</> (<OmegaPowerPercentage></>)\r\nHealth: <MaxHealth>{MaxHealthBuff}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"TauntRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].Zone.RadiusUnits"
+			},
+			"TauntDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"ThornsValue": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"MaxHealthBuff": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"ThornsDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Carablu's horns extend, Taunting enemies in 20-hexes for 2 seconds, gaining 20 () Thorns for 4 seconds and 100 () Health.\r\n\r\nThorns: 20 ()\r\nHealth: 100 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 4,
+			"AttackSpeed": 3,
+			"Health": 1,
+			"MovementSpeed": 5,
+			"OmegaPower": 6,
+			"Resistance": 2
+		}
+	}
+}

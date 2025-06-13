@@ -1,0 +1,40 @@
+,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,
+,"The player starts with: Level 1, 5 Credits, 100 Health and 1 Random S1T0 Unit.",,,,,,,,,,,,,,,
+,"Credits Received at the Start of the Round: Base Income (5) + Interest Income (0-7) + Streak Income (0-3, only in PVP Rounds).",,,,,,,,,,,,,,,
+,Credits received at the end of the Round: Win Bonus (1) in PVP Rounds  OR  PVE Rewards for each unit eliminated in PVE Rounds.,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,
+,Interest Income,,,,,,,,,,,,,,,
+,Credits owned at the end of the round,Credits received as Interest,,"For Round Durations, please check Match Flow Tab ->  Illuvium Gauntlet Public Info Document",,,,,,,,,,,,
+,0-9,0,,,,,,,,,,,,,,
+,10-19,1,,,,,,,,,,,,,,
+,20-29,2,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,
+,30-39,3,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,
+,40-49,4,,,,,,,,,,,,,,
+,50-59,5,,,,,,,,,,,,,,
+,60-69,6,,,,,,,,,,,,,,
+,70+,7,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,
+,Streak Income,,,,,,,,,,,,,,,
+,Win/Loss Streak,Extra Credits Received,,,,,,,,,,,,,,
+,2-3,1,,,,,,,,,,,,,,
+,4-5,2,,,,,,,,,,,,,,
+,6+,3,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,
+,Examples of Different Round Incomes										,,,,,,,,,,,,,,,
+,Round,PVE/PVP,Current Credits at the end of the Round,,Win/Loss,Streak	,,Income received at the end of the current Round,,,Total Credits at the end of Current Round,,Total Income at the start of the next Round,,Streak Change,Total Credits At The Start of Next Round
+,12,PVE,20,,Win,Win Streak - 3,,14 (From PVE Units),,,34,,5(Base) + 3(Interest),,Win Streak remains 3,42
+,22,PVE,66,,Loss,Loss Streak - 3,,13 (From PVE Units),,,79,,5(Base) + 7(Interest),,Loss Streak remains 3,91
+,32,PVE,5,,Win,Loss Streak - 5,,28 (From PVE Units),,,33,,5(Base) + 3(Interest)  ,,Loss Streak remains 5,41
+,2,PVE,7,,Win,Streak - 0,,3 (From PVE Units),,,10,,5(Base) + 1(Interest),,Streak remains 0,16
+,14,PVP,31,,Loss,Win Streak - 4,,0 (Win Bonus),,,31,,5(Base) + 3(Interest) + 0(Streak),,Streak resets to 0,39
+,25,PVP,92,,Loss,Loss Streak - 5,,0 (Win Bonus),,,92,,5(Base) + 7(Interest) + 2(Streak),,Loss Streak becomes 6,106
+,16,PVP,49,,Win,Win Streak - 3,,1 (Win Bonus),,,50,,5(Base) + 5(Interest) + 1(Streak),,Win Streak becomes 4,61
+,14,PVP,38,,Loss,Streak - 0,,0 (Win Bonus),,,38,,5(Base) + 3(Interest) + 0(Streak),,Streak becomes Loss Streak - 1,46

@@ -1,0 +1,78 @@
+{
+	"Name": "Velthrax",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "GreaterPower",
+	"Abilities": [
+		{
+			"Name": "Velthrax_Ability1",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Velthrax - True Sight and Stats",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "PositiveState",
+								"PositiveState": "Truesight",
+								"DurationMs": -1
+							},
+							{
+								"Type": "Buff",
+								"Stat": "PhysicalPiercingPercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 30
+							},
+							{
+								"Type": "Buff",
+								"Stat": "EnergyPiercingPercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 30
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackSpeed",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 30,
+									"Stat": "AttackSpeed",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Velthrax",
+	"DisplayDescription": "Holder gains True Sight, <Piercing>30%</> <Piercing>Piercing</> and <AttackSpeed>30%</> <AttackSpeed>Attack Speed</>.\r\n\r\n<Italic>True Sight: Attacks cannot be Dodged.</>",
+	"Description": {
+		"Format": "Holder gains True Sight, <Piercing>{PiercingVal}%</> <Piercing>Piercing</> and <AttackSpeed>{ASVal}%</> <AttackSpeed>Attack Speed</>.\r\n\r\n<Italic>True Sight: Attacks cannot be Dodged.</>",
+		"Parameters": {
+			"PiercingVal": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[1].Expression",
+				"ValueMultiplier": 1.0
+			},
+			"ASVal": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[3].Expression.Percentage",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Holder gains True Sight, 30% Piercing and 30% Attack Speed.\r\n\r\nTrue Sight: Attacks cannot be Dodged."
+}

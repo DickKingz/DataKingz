@@ -1,0 +1,263 @@
+{
+	"Name": "SunderMatrix",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Normal",
+	"Abilities": [
+		{
+			"Name": "SunderMatrix_Stats",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "SunderMatrix - List of Stats",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "AttackPhysicalDamage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackEnergyDamage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackPureDamage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackPureDamage",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "OmegaPowerPercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 10
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"Name": "SunderMatrix_Ability",
+			"ActivationTrigger": {
+				"TriggerType": "OnActivateXAbilities",
+				"AbilityTypes": [
+					"Attack"
+				],
+				"EveryX": true,
+				"NumberOfAbilitiesActivated": 3
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "SunderMatrix - Piercing Buff",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "PhysicalPiercingPercentage",
+								"OverlapProcessType": "Stacking",
+								"MaxStacks": 15,
+								"DurationMs": -1,
+								"Expression": 3
+							},
+							{
+								"Type": "Buff",
+								"Stat": "EnergyPiercingPercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"MaxStacks": 15,
+								"Expression": 3
+							}
+						]
+					}
+				},
+				{
+					"Name": "SunderMatrix - Self Buff",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "AttackPhysicalDamage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 1,
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "SenderFocus"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackEnergyDamage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 1,
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "SenderFocus"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackPureDamage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 1,
+									"Stat": "AttackPureDamage",
+									"StatSource": "SenderFocus"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "OmegaPowerPercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 1,
+									"Stat": "OmegaPowerPercentage",
+									"StatSource": "SenderFocus"
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "SunderMatrix - Enemy Debuff",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Debuff",
+								"Stat": "AttackPhysicalDamage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 1,
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Receiver"
+								}
+							},
+							{
+								"Type": "Debuff",
+								"Stat": "AttackEnergyDamage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 1,
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Receiver"
+								}
+							},
+							{
+								"Type": "Debuff",
+								"Stat": "AttackPureDamage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 1,
+									"Stat": "AttackPureDamage",
+									"StatSource": "Receiver"
+								}
+							},
+							{
+								"Type": "Debuff",
+								"Stat": "OmegaPowerPercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 1,
+									"Stat": "OmegaPowerPercentage",
+									"StatSource": "Receiver"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Sunder Matrix",
+	"DisplayDescription": "Every 3 attacks, steal <OmegaPowerPercentage>1</> <OmegaPowerPercentage>Omega Power</> and <AttackDamage>1%</> <AttackDamage>Attack Damage</> from the target.\r\n\r\nAdditionally, gain <Piercing>3%</> <Piercing>Piercing</>, up to 15 stacks.\r\n\r\nStats:\r\n+10% <AttackDamage>Attack Damage</>\r\n+10 <OmegaPowerPercentage>Omega Power</>",
+	"Description": {
+		"Format": "Every {AttackNum} attacks, steal <OmegaPowerPercentage>{StealVal}</> <OmegaPowerPercentage>Omega Power</> and <AttackDamage>{StealVal}%</> <AttackDamage>Attack Damage</> from the target.\r\n\r\nAdditionally, gain <Piercing>{PierceVal}%</> <Piercing>Piercing</>, up to {Stacks} stacks.\r\n\r\nStats:\r\n+{Stat_AD}% <AttackDamage>Attack Damage</>\r\n+{Stat_OP} <OmegaPowerPercentage>Omega Power</>",
+		"Parameters": {
+			"AttackNum": {
+				"ParameterPath": "Abilities[1].ActivationTrigger.NumberOfAbilitiesActivated",
+				"ValueMultiplier": 1.0
+			},
+			"PierceVal": {
+				"ParameterPath": "Abilities[1].Skills[0].EffectPackage.Effects[0].Expression",
+				"ValueMultiplier": 1.0
+			},
+			"Stacks": {
+				"ParameterPath": "Abilities[1].Skills[0].EffectPackage.Effects[0].MaxStacks",
+				"ValueMultiplier": 1.0
+			},
+			"StealVal": {
+				"ParameterPath": "Abilities[1].Skills[1].EffectPackage.Effects[0].Expression.Percentage",
+				"ValueMultiplier": 1.0
+			},
+			"Stat_AD": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].Expression.Percentage",
+				"ValueMultiplier": 1.0
+			},
+			"Stat_OP": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[3].Expression",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Every 3 attacks, steal 1 Omega Power and 1% Attack Damage from the target.\r\n\r\nAdditionally, gain 3% Piercing, up to 15 stacks.\r\n\r\nStats:\r\n+10% Attack Damage\r\n+10 Omega Power"
+}

@@ -1,0 +1,417 @@
+{
+	"CombatClass": "Rogue",
+	"CombatClassComponents": [],
+	"SynergyThresholds": [
+		1,
+		4,
+		7
+	],
+	"SynergyThresholdsAbilities": {
+		"Variables": [
+			{
+				"Name": "Rogue_AllyCritChance",
+				"Values": [
+					6,
+					13,
+					22
+				]
+			},
+			{
+				"Name": "Rogue_RogueCritChance",
+				"Values": [
+					12,
+					26,
+					44
+				]
+			},
+			{
+				"Name": "Rogue_LastThreshold",
+				"Values": [
+					0,
+					0,
+					30
+				]
+			}
+		],
+		"UnitAbilities": [
+			{
+				"Name": "RogueClass_SpecialAbility",
+				"ActivationTrigger": {
+					"TriggerType": "OnDealCrit"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Rogue - Crit Amp",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "Self"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Buff",
+									"Stat": "CritAmplificationPercentage",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": {
+										"Operation": "/",
+										"Operands": [
+											"{Rogue_LastThreshold}",
+											10
+										]
+									}
+								}
+							]
+						}
+					}
+				]
+			}
+		],
+		"TeamAbilities": [
+			{
+				"Name": "RogueClass_SelfAbility",
+				"ActivationTrigger": {
+					"TriggerType": "OnBattleStart"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Rogue - Rogue Crit Chance",
+						"Deployment": {
+							"Type": "Direct",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							]
+						},
+						"Targeting": {
+							"Type": "Synergy",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							],
+							"Group": "Ally",
+							"CombatClass": "Rogue"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Buff",
+									"Stat": "CritChancePercentage",
+									"Expression": "{Rogue_RogueCritChance}",
+									"DurationMs": -1
+								}
+							]
+						}
+					}
+				]
+			},
+			{
+				"Name": "RogueClass_AllyAbility",
+				"ActivationTrigger": {
+					"TriggerType": "OnBattleStart"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Rogue - Ally Crit Chance",
+						"Deployment": {
+							"Type": "Direct",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							]
+						},
+						"Targeting": {
+							"Type": "Synergy",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							],
+							"Group": "Ally",
+							"NotCombatClass": "Rogue"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Buff",
+									"Stat": "CritChancePercentage",
+									"Expression": "{Rogue_AllyCritChance}",
+									"DurationMs": -1
+								}
+							]
+						}
+					}
+				]
+			}
+		]
+	},
+	"IntrinsicAbilities": [
+		{
+			"Name": "RogueSynergy_Blink",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 680,
+			"Skills": [
+				{
+					"Name": "Jumps across",
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Blink",
+								"BlinkTarget": "Across",
+								"BlinkDelayMs": 500,
+								"DurationMs": 680
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"HyperAbilities": [
+		{
+			"Name": "RogueHyperProgressAbility",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart",
+				"MaxActivations": 1
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "RogueHyperProgressSkill",
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						]
+					},
+					"Targeting": {
+						"Type": "Self",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						],
+						"Group": "Ally"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "AttackSpeed",
+								"OverlapProcessType": "Stacking",
+								"FrequencyMs": 100,
+								"DurationMs": -1,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										{
+											"Operation": "/",
+											"Operands": [
+												{
+													"Stat": "CurrentSubHyper",
+													"StatSource": "Receiver"
+												},
+												1000
+											]
+										},
+										{
+											"Operation": "%%",
+											"Operands": [
+												{
+													"Stat": "AttackSpeed",
+													"StatSource": "Receiver",
+													"StatEvaluationType": "Base"
+												},
+												50
+											]
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"Name": "RogueHyperActiveAbility",
+			"ActivationTrigger": {
+				"TriggerType": "OnHyperactive",
+				"MaxActivations": 1
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "RogueHyperActiveSkill",
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						]
+					},
+					"Targeting": {
+						"Type": "Self",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						],
+						"Group": "Ally"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "VulnerabilityPercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 10
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackPhysicalDamage",
+								"OverlapProcessType": "Merge",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Receiver"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackEnergyDamage",
+								"OverlapProcessType": "Merge",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Receiver"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackPureDamage",
+								"OverlapProcessType": "Merge",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackPureDamage",
+									"StatSource": "Receiver"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "OmegaDamagePercentage",
+								"OverlapProcessType": "Merge",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "OmegaDamagePercentage",
+									"StatSource": "Receiver"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Rogue",
+	"DisplayDescription": "\r\nYour team gains <CritChancePercentage>Crit Chance</>. Rogue units receive double the amount.\r\n\r\n(7) Rogues gain <CritAmplificationPercentage>3%</> <CritAmplificationPercentage>Crit Amp</> when they deal a Critical Hit.\r\n\r\n<Italic>Innate: Blink to the opposite side of the board.</>\r\n",
+	"DisplayDescriptionThresholds": [
+		"Gain <CritChancePercentage>6%</><CritChancePercentage></>",
+		"Gain <CritChancePercentage>13%</><CritChancePercentage></>",
+		"Gain <CritChancePercentage>22%</><CritChancePercentage></>"
+	],
+	"Description": {
+		"Format": "\r\nYour team gains <CritChancePercentage>Crit Chance</>. Rogue units receive double the amount.\r\n\r\n({LastThreshold}) Rogues gain <CritAmplificationPercentage>{Rogue_LastThreshold}%</> <CritAmplificationPercentage>Crit Amp</> when they deal a Critical Hit.\r\n\r\n<Italic>Innate: Blink to the opposite side of the board.</>\r\n",
+		"Parameters": {
+			"LastThreshold": {
+				"ParameterPath": "SynergyThresholds[2]",
+				"ValueMultiplier": 1.0
+			},
+			"Rogue_LastThreshold": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[2].Values[2]",
+				"ValueMultiplier": 0.1
+			}
+		}
+	},
+	"DescriptionThresholds": {
+		"Format": "Gain <CritChancePercentage>{Rogue_AllyCritChance}%</><CritChancePercentage></>",
+		"Parameters": [
+			{
+				"Rogue_AllyCritChance": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[0]",
+					"ValueMultiplier": 1.0
+				}
+			},
+			{
+				"Rogue_AllyCritChance": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[1]",
+					"ValueMultiplier": 1.0
+				}
+			},
+			{
+				"Rogue_AllyCritChance": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[2]",
+					"ValueMultiplier": 1.0
+				}
+			}
+		]
+	},
+	"HyperDisplayDescription": "Hyper Bonus (scaling): <AttackSpeed>0.5%</> <AttackSpeed>Attack Speed</>, up to 50%.\r\n\r\nHyper Bonus (full): 10% <DamageAmplification>Damage Amp</> and <DamageReduction>Damage Reduction</>.\r\n\r\n",
+	"HyperDescription": {
+		"Format": "Hyper Bonus (scaling): <AttackSpeed>0.5%</> <AttackSpeed>Attack Speed</>, up to 50%.\r\n\r\nHyper Bonus (full): 10% <DamageAmplification>Damage Amp</> and <DamageReduction>Damage Reduction</>.\r\n\r\n",
+		"Parameters": {}
+	},
+	"HyperDescriptionParts": [
+		{
+			"StatType": "AttackSpeed",
+			"DisplayDescription": "<AttackSpeed>0.5%</> per Hyper Point, up to 50%.\r\n\r\n",
+			"Description": {
+				"Format": "<AttackSpeed>0.5%</> per Hyper Point, up to 50%.\r\n\r\n",
+				"Parameters": {}
+			},
+			"DisplayDescriptionNormalized": "0.5% per Hyper Point, up to 50%."
+		},
+		{
+			"StatType": "VulnerabilityPercentage",
+			"DisplayDescription": "+10% <DamageAmplification></><DamageReduction></> at Full Hyper.\r\n\r\n",
+			"Description": {
+				"Format": "+10% <DamageAmplification></><DamageReduction></> at Full Hyper.\r\n\r\n",
+				"Parameters": {}
+			},
+			"DisplayDescriptionNormalized": "+10% at Full Hyper."
+		}
+	],
+	"DisplayDescriptionNormalized": "Your team gains Crit Chance. Rogue units receive double the amount.\r\n\r\n(7) Rogues gain 3% Crit Amp when they deal a Critical Hit.\r\n\r\nInnate: Blink to the opposite side of the board.",
+	"DisplayDescriptionThresholdsNormalized": [
+		"Gain 6%",
+		"Gain 13%",
+		"Gain 22%"
+	],
+	"HyperDisplayDescriptionNormalized": "Hyper Bonus (scaling): 0.5% Attack Speed, up to 50%.\r\n\r\nHyper Bonus (full): 10% Damage Amp and Damage Reduction."
+}

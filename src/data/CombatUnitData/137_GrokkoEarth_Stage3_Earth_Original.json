@@ -1,0 +1,206 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "GrokkoEarth",
+	"Stage": 3,
+	"Path": "Earth",
+	"Variation": "Original",
+	"Tier": 0,
+	"CombatAffinity": "Earth",
+	"CombatClass": "Bulwark",
+	"DominantCombatAffinity": "Earth",
+	"DominantCombatClass": "Bulwark",
+	"SizeUnits": 7,
+	"Stats": {
+		"MaxHealth": 2250000,
+		"StartingEnergy": 80000,
+		"EnergyCost": 200000,
+		"PhysicalResist": 60,
+		"EnergyResist": 55,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 135000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 60,
+		"MoveSpeedSubUnits": 2000,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 6,
+		"OmegaRangeUnits": 6,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Earth Grokko Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 35
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Slabquake III",
+			"TotalDurationMs": 1800,
+			"Skills": [
+				{
+					"Name": "Ground smash",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 40
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 22,
+						"DurationMs": 100,
+						"FrequencyMs": 100,
+						"GrowthRateSubUnits": 0,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										400000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Stun",
+								"DurationMs": 1500
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Exalted Earth Grokko",
+	"DisplayDescription": "Exalted Earth Grokko smashes the ground, dealing <AttackPhysicalDamage>400</> (<OmegaPowerPercentage></>) Physical Damage to all enemies within 22-hexes and Stunning them for 1.5 seconds.\r\n\r\nDamage: <AttackPhysicalDamage>400</> (<OmegaPowerPercentage></>)",
+	"Intro": "In the northern area of Brightland Steppes, there is a large, naturally formed stairway created by roots that have lifted the rocks out of the ground. Made of moss and root, these steps are difficult to ascend as they wobble from the slightest weight shift. The Exalted Earth Grokko is heavy and clumsy, but it reaches out with its big hands and attempts to ascend, often falling upon its head and knocking down other climbers along the way. Undeterred by bumps and crashes, it keeps trying to get to the top.",
+	"Summary": "This heavy, round creature with pink orb-like eyes, a bulbous head, and hexagonal rock plates moves clumsily on two feet, using its thick tail for balance. The Exalted Earth Grokko stands its ground stubbornly, intimidating other Illuvials, and can ingest and spit out various materials for nutrients. With a magnetic charge on its skin, a dense skeletal structure, and an adaptable stomach, it grows daily rock armor and relies on its immense weight and tough exterior for defense.",
+	"Biology": {
+		"Physiology": "The Exalted Earth Grokko is burly, rough, and round, with pink orb-like eyes and a bulbous head that makes up the entirety of its torso. Its big mouth opens up in the middle of its body, bottom fangs jutting out as it lumbers along on two feet. Hexagonal rock plates cover the top of its head and arms, with bits of floating rock following it around. The Exalted Earth Grokko has a flat nose and dull senses, but the glowing pink gems on its knuckles can wear down its opponent as it withstands the most brutal attacks. With a thick tail that acts as a counterweight for its heavy body, it can stand on its hind legs in a bipedal stance.",
+		"Behaviour": "The Exalted Earth Grokko ambles along, headstrong with its feet planted firmly upon grass fields, rocks, and roots. It does not avoid the territory of other Illuvials and goes where it wishes. It stands its ground even when it is clearly outmatched, perhaps out of tenacity, or perhaps stupidity. This stubbornness makes it intimidating to other Illuvials, and even those more powerful begin to doubt their skills when the Exalted Earth Grokko refuses to back down. It does not appear to tire, bullheaded from the moment it awakens until death. Although it does not appear to sleep, it may curl up in a ball to roll down hills or to protect itself from intense storms. This enigmatic Illuvial has also been observed ingesting various debris and spitting back up superfluous materials."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/GrokkoStage3Earth/GrokkoStage3Earth_default_default_webp.3840x2160/GrokkoStage3Earth_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/GrokkoStage3Earth/GrokkoStage3Earth_default_default_hls.m3u8/GrokkoStage3Earth_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Exalted Earth Grokko grows a fresh layer of plated rock armor every day, leaving rock crumbs behind as it sheds its old layers.",
+			"The Exalted Earth Grokko has been observed to put a variety of objects in its mouth, often crunching trees, seeds, stones, and even the lithic textures on its skin only to regenerate them again. After absorbing nutrients from the materials, it spits them back out in dense, compacted forms.",
+			"The Exalted Earth Grokko is a patient but unskilled climber that scales cliffs at a rate of roughly 20 m/day. It has been observed to stumble and roll down every few weeks, knocking over other Illuvials, and then walking away unharmed."
+		],
+		"Buckley": [
+			"The Exalted Earth Grokko has a magnetic charge on its skin and rock plates, with a mechanism for shedding that allows it to change the magnetic charge within its rock plates so that they are repelled from its skin.",
+			"The Exalted Earth Grokko has both benign and malignant growths upon and within its body. Fortunately, it has hosts of morphopods within its system that feed upon these intrusions.",
+			"The Exalted Earth Grokko has a dense skeletal structure which adds immense weight to its body.",
+			"The Exalted Earth Grokko's stomach is adaptable to different materials and its immune system develops defense mechanisms based on what it ingests.",
+			"The Exalted Earth Grokko has an immense weight of 2160 kg, with a rocky exterior that gains weight and hardens upon impact."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		4,
+		1,
+		6,
+		3,
+		2
+	],
+	"Description": {
+		"Format": "Exalted Earth Grokko smashes the ground, dealing <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Physical Damage to all enemies within {OmegaRadius}-hexes and Stunning them for {StunDuration} seconds.\r\n\r\nDamage: <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"OmegaRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Zone.RadiusUnits"
+			},
+			"StunDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Exalted Earth Grokko smashes the ground, dealing 400 () Physical Damage to all enemies within 22-hexes and Stunning them for 1.5 seconds.\r\n\r\nDamage: 400 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 4,
+			"Health": 1,
+			"MovementSpeed": 6,
+			"OmegaPower": 3,
+			"Resistance": 2
+		}
+	}
+}

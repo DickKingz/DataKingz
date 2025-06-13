@@ -1,0 +1,34 @@
+{
+    "Poison": {
+        "DurationMs": 5000,
+        "FrequencyTimeMs": 1000,
+        "MaxStacks": 10,
+        "CleanseOnMaxStacks": false,
+        "DotDamageType": "Pure",
+        "DotHighPrecisionPercentage": 100
+    },
+    "Wound": {
+        "DurationMs": 8000,
+        "FrequencyTimeMs": 1000,
+        "MaxStacks": 5,
+        "CleanseOnMaxStacks": false,
+        "DotDamageType": "Physical",
+        "DotHighPrecisionPercentage": 1000
+    },
+    "Burn": {
+        "DurationMs": 8000,
+        "FrequencyTimeMs": 1000,
+        "MaxStacks": 5,
+        "CleanseOnMaxStacks": true,
+        "DotDamageType": "Energy",
+        "DotHighPrecisionPercentage": 1600
+    },
+    "Frost": {
+        "DurationMs": 10000,
+        "FrequencyTimeMs": 1000,
+        "MaxStacks": 10,
+        "CleanseOnMaxStacks": true,
+        "DebuffStatType": "AttackSpeed",
+        "DebuffPercentage": 6
+    }
+}

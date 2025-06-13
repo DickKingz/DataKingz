@@ -1,0 +1,26 @@
+{
+	"Name": "Earth",
+	"Stage": 2,
+	"Type": "Game",
+	"DisplayName": "Earth Matrix",
+	"DisplayDescription": "Gain a Earth Imprint and Steadfast Pulse.",
+	"Description": {
+		"Format": "Gain a Earth Imprint and Steadfast Pulse.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Earth",
+				"Stage": 0,
+				"Variation": "Original"
+			},
+			{
+				"Name": "SteadfastPulse",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

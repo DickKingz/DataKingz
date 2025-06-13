@@ -1,0 +1,84 @@
+{
+	"Name": "GroveSwordSavageRhythm",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Amplifier",
+	"AmplifierForWeapon": {
+		"Name": "GroveSword",
+		"Stage": 0,
+		"Variation": "Original",
+		"CombatAffinity": "Nature"
+	},
+	"Stats": {
+		"MaxHealth": 500000,
+		"StartingEnergy": 0,
+		"EnergyCost": 0,
+		"PhysicalResist": 0,
+		"EnergyResist": 0,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 0,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 0,
+		"MoveSpeedSubUnits": 0,
+		"HitChancePercentage": 0,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 0,
+		"CritAmplificationPercentage": 0,
+		"OmegaPowerPercentage": 0,
+		"AttackRangeUnits": 0,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 0,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 0,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 0,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [],
+	"InnateAbilities": [],
+	"EffectsReplacements": [
+		{
+			"ID": "SavageRhythm",
+			"Type": "Buff",
+			"Stat": "AttackPureDamage",
+			"DurationMs": 3000,
+			"Expression": 50000
+		}
+	],
+	"DisplayName": "Savage Rhythm",
+	"DisplayDescription": "+<MaxHealth>500</> Health.\r\nOn Omega, gain 50 Attack Pure Damage for 3 seconds.",
+	"Description": {
+		"Format": "+<MaxHealth>{Health}</> Health.\r\nOn Omega, gain {PureDamage} Attack Pure Damage for {Duration} seconds.",
+		"Parameters": {
+			"Health": {
+				"ParameterPath": "Stats.MaxHealth",
+				"ValueMultiplier": 0.001
+			},
+			"PureDamage": {
+				"ParameterPath": "EffectsReplacements[0].Expression",
+				"ValueMultiplier": 0.001
+			},
+			"Duration": {
+				"ParameterPath": "EffectsReplacements[0].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "+500 Health.\r\nOn Omega, gain 50 Attack Pure Damage for 3 seconds."
+}

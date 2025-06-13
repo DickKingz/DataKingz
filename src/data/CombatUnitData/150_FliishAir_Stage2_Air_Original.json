@@ -1,0 +1,232 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "FliishAir",
+	"Stage": 2,
+	"Path": "Air",
+	"Variation": "Original",
+	"Tier": 0,
+	"CombatAffinity": "Air",
+	"CombatClass": "Psion",
+	"DominantCombatAffinity": "Air",
+	"DominantCombatClass": "Psion",
+	"SizeUnits": 5,
+	"Stats": {
+		"MaxHealth": 1100000,
+		"StartingEnergy": 20000,
+		"EnergyCost": 120000,
+		"PhysicalResist": 25,
+		"EnergyResist": 25,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 90000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 70,
+		"MoveSpeedSubUnits": 2150,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 5,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 60,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Air Fliish Basic Attack II",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 50
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 10000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Drifting Beam II",
+			"TotalDurationMs": 2000,
+			"Skills": [
+				{
+					"Name": "Damage beam",
+					"Targeting": {
+						"Type": "DistanceCheck",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"Group": "Enemy",
+						"Lowest": false,
+						"Num": 1
+					},
+					"PercentageOfAbilityDuration": 100,
+					"ChannelTimeMs": 2000,
+					"Deployment": {
+						"Type": "Beam",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 0
+					},
+					"Beam": {
+						"WidthUnits": 10,
+						"FrequencyMs": 200,
+						"ApplyOnce": false,
+						"IsHoming": true,
+						"IsBlockable": true,
+						"BlockAllegiance": "Enemy"
+					},
+					"EffectPackage": {
+						"Attributes": {
+							"RotateToTarget": true
+						},
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										80000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Greater Air Fliish",
+	"DisplayDescription": "Greater Air Fliish fires a beam at the furthest enemy, dealing <AttackEnergyDamage>800</> (<OmegaPowerPercentage></>) Energy Damage to the first enemy hit over 2 seconds.\r\n\r\nDamage: <AttackEnergyDamage>800</> = <AttackEnergyDamage>80</>/0.2s (<OmegaPowerPercentage></>)",
+	"Intro": "The frigid lake of Taiga Boreal is choked with icebergs and giant sheets that rage against one another. Their grinding creates fractures that release high-pitched sounds, which often become deafening in the wind. Many Illuvials with sensitive ears hide underground or travel far from the irritating noise. Others, like the Greater Air Fliish, mimic the sound in its call, echoing the movement of ice and snow in the region.",
+	"Summary": "The Greater Air Fliish, found in the icy Taiga Boreal, mimics the deafening sounds of grinding icebergs with its calls, often driving other Illuvials away. This light blue, air-affinity creature has red eyes, a wide mouth, and a luminous tail orb, using gusts of wind to leap across ice sheets. It engages in synchronized aerial routines with its kind, eating moss from caverns and using its ability to mimic sounds as a warning system.",
+	"Biology": {
+		"Physiology": "The Greater Air Fliish is light blue with red eyes and a wide gaping mouth, its long tongue dangling out from the side. It has round bumpy toes on its feet, and its hind legs are often bent in a crouch. Upon its head, lining the upper side of its big eyes, are dark teal, lumpy growths. Its tail has a pale crescent wreath at its end, holding a glowing white orb. There are holes along the curve of its tail which can expel air, shining white from the power of its luminous sphere.",
+		"Behaviour": "The Greater Air Fliish has an aerial routine that it conducts with others of its kind. They often gather in massive numbers and call for one another, mimicking the sounds carried in the wind. When a strong gust arrives, the Greater Air Fliish times its jump so that the current carries it over the water and onto a neighbouring ice sheet. It rarely ever stumbles, moving swiftly in the air. Even if it does fall, its body is so light that it can spread its limbs out without breaking the surface tension of the water. As a herbivorous Illuvial, it eats the moss inside the caverns of Taiga Boreal."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/FliishStage2Air/FliishStage2Air_default_default_webp.3840x2160/FliishStage2Air_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/FliishStage2Air/FliishStage2Air_default_default_hls.m3u8/FliishStage2Air_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Greater Air Fliish licks its eyeballs to keep them wet when the harsh winds dry them out. Its saliva maintains its lightness and fluidity even in below-freezing temperatures.",
+			"The Greater Air Fliish is so light that it can land on larger Illuvials without them noticing.",
+			"The Greater Air Fliish is the warning bell of Taiga Boreal. Its ability to mimic sounds it hears at a large scale with others of its kind has saved many Illuvials from impending danger. Sometimes, it mimics the sounds of avalanches or blizzards coming from afar, deceiving other Illuvials into running away and hitching a ride upon their backs."
+		],
+		"Buckley": [
+			"The Greater Air Fliish's lungs conduct a chemical process that lowers the density of the gas. This new air is used to inflate its feet, allowing them to float and lighten its weight. It can also expel the air from its limbs, aiding its movements.",
+			"The Greater Air Fliish's highly pressurized tail orb stores excess air and serves as a filtration system that expels micro debris.",
+			"The Greater Air Fliish has a field of vision of 270 degrees, allowing it to identify objects in motion in its periphery.",
+			"The ringed tail of the Greater Air Fliish is capable of vibrating at varying frequencies, likely as complex signals that it uses to communicate with others of its kind.",
+			"The Greater Air Fliish has mineral-rich armour that enables it to regulate its temperature."
+		]
+	},
+	"TraitOrderLegacy": [
+		3,
+		2,
+		4,
+		6,
+		1,
+		5
+	],
+	"Description": {
+		"Format": "Greater Air Fliish fires a beam at the furthest enemy, dealing <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Energy Damage to the first enemy hit over {BeamDuration} seconds.\r\n\r\nDamage: <AttackEnergyDamage>{OmegaDamage}</> = <AttackEnergyDamage>{SplitDamage}</>/0.2s (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.01
+			},
+			"BeamDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].ChannelTimeMs",
+				"ValueMultiplier": 0.001
+			},
+			"SplitDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Greater Air Fliish fires a beam at the furthest enemy, dealing 800 () Energy Damage to the first enemy hit over 2 seconds.\r\n\r\nDamage: 800 = 80/0.2s ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 3,
+			"AttackSpeed": 2,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 5
+		}
+	}
+}

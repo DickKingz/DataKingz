@@ -1,0 +1,234 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Pterodactyl",
+	"Stage": 3,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 5,
+	"CombatAffinity": "Inferno",
+	"CombatClass": "Phantom",
+	"DominantCombatAffinity": "Fire",
+	"DominantCombatClass": "Rogue",
+	"SizeUnits": 6,
+	"Stats": {
+		"MaxHealth": 2800000,
+		"StartingEnergy": 40000,
+		"EnergyCost": 180000,
+		"PhysicalResist": 70,
+		"EnergyResist": 55,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 210000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 75,
+		"MoveSpeedSubUnits": 3250,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 12,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Wing Cleave III",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 45
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Infernal Skyfall III",
+			"TotalDurationMs": 2800,
+			"Skills": [
+				{
+					"Name": "Jumps into air",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 85,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "PlaneChange",
+								"PlaneChange": "Airborne",
+								"DurationMs": 2800
+							}
+						]
+					}
+				},
+				{
+					"Name": "AOE Damage",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 70
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 38,
+						"DurationMs": 500,
+						"FrequencyMs": 500,
+						"GrowthRateSubUnits": 0,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 10,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										1000000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "Debuff",
+								"Stat": "HealthGainEfficiencyPercentage",
+								"DurationMs": 4000,
+								"Expression": 35
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Rhamphyre",
+	"DisplayDescription": "Rhamphyre takes to the skies, becoming Airborne for 2.8 seconds. As it descends, it summons a cloud of burning embers within 38-hexes, dealing <AttackEnergyDamage>1,000</> (<OmegaPowerPercentage></>) Energy Damage and decreasing their Healing effectiveness by <HealthGainEfficiencyPercentage>35%</> for 4 seconds.\r\n\r\nDamage: <AttackEnergyDamage>1,000</> (<OmegaPowerPercentage></>)",
+	"Intro": "Shardbluff Labyrinth is full of flying illuvials, who soar around jagged peaks high above the clouds. Occasionally, a piercing shriek can be heard echoing through the cliffs as Rhamphyre bursts in from the clouds, like a massive firebrand streaking embers across the sky. Smaller creatures look up in awe, bearing witness to her fire and then bowing in respect.",
+	"Summary": "Shardbluff Labyrinth hosts the awe-inspiring Rhamphyre, a majestic airborne predator whose fiery presence dominates the skies. With blazing eyes and golden-ringed wings and tail, it navigates effortlessly through updrafts from lava pools. Its ferocity is reserved for challengers, whom it entices with a mesmerizing display of flaming wings and screeches. Protected by thick scales and fireproof aerogel, it maneuvers with agility both in flight and on the ground.",
+	"Biology": {
+		"Physiology": "A brilliant torch streams from the crown of the Rhamphyre's head as fire streaks from its eyes and the golden rings on her long tail and wings surge with heat. The Rhamphyre's dark burgundy scales shift to bright magenta near the vents of open flame on its body. Its beaked mouth is full of gnashing fangs and the spines on its head run down along her lengthy neck.",
+		"Behaviour": "Elusive Rhamphyre is often in the air, scanning its territory for disturbances. It uses the rising air currents created by the lava pools to lift itself to immense heights with only a few flaps of its wings. Despite its ferocity, the Rhamphyre opts not to pick fights. It prefers to welcome willing challengers with open, blazing wings. This Queen of Crimson Waste has smouldering eyes that can enthral any that it locks eyes with, typically a naive contender. It is just as agile on the ground on its two feet as it is taking flight, a surprise to those who attempt to lure the Rhamphyre down into a trap. A masterful hunter, it drops fire from above to redirect prey before diving down for the kill."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/PterodactylStage3/PterodactylStage3_default_default_webp.3840x2160/PterodactylStage3_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/PterodactylStage3/PterodactylStage3_default_default_hls.m3u8/PterodactylStage3_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Rhamphyre is frequently flying, preferring to watch over its territory from above. If the Rhamphyre lands, it is typically a sign it is ready to engage in battle.",
+			"The Rhamphyre uses its ferocious appearance to intimidate others, opening its wings and flashing its teeth. It is aggressive towards Rhamphies and Rhamphites who breach its territory, often swooping down and giving them warning screeches.",
+			"Often heard or seen from afar, it is an incredibly rare sight to behold a Rhamphyre from a close-up. It has a mesmerizing effect on the few who witness it in proximity. Those who gaze upon the flaming titan will have the Rhamphyre seared into their memory forever like a photograph."
+		],
+		"Buckley": [
+			"The golden rings on the Rhamphyre's wings help it steer and manoeuvre around its many flames during flight.",
+			"The Rhamphyre is omnivorous but it can survive on a vegetarian diet due to the high protein from carnivorous plants.",
+			"The Rhamphyre has a layer of thick scales that protect it from the heat of its flaming vents.",
+			"The Rhamphyre has specialised fireproof aerogel secretions on its wings that allow flames to flow out without burning its membrane.",
+			"The Rhamphyre's tail rings can detect external flames and heat signatures, alerting the Rhamphyre of changes in its environment."
+		]
+	},
+	"TraitOrderLegacy": [
+		4,
+		3,
+		2,
+		6,
+		1,
+		5
+	],
+	"Description": {
+		"Format": "Rhamphyre takes to the skies, becoming Airborne for {AirborneDuration} seconds. As it descends, it summons a cloud of burning embers within {OmegaRadius}-hexes, dealing <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Energy Damage and decreasing their Healing effectiveness by <HealthGainEfficiencyPercentage>{HealingValue}%</> for {HealingDuration} seconds.\r\n\r\nDamage: <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"AirborneDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"OmegaRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].Zone.RadiusUnits"
+			},
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"HealingValue": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[1].Expression"
+			},
+			"HealingDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[1].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Rhamphyre takes to the skies, becoming Airborne for 2.8 seconds. As it descends, it summons a cloud of burning embers within 38-hexes, dealing 1,000 () Energy Damage and decreasing their Healing effectiveness by 35% for 4 seconds.\r\n\r\nDamage: 1,000 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 4,
+			"AttackSpeed": 3,
+			"Health": 2,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 5
+		}
+	}
+}

@@ -1,0 +1,413 @@
+{
+	"CombatClass": "Fighter",
+	"CombatClassComponents": [],
+	"SynergyThresholds": [
+		2,
+		3,
+		5,
+		7
+	],
+	"SynergyThresholdsAbilities": {
+		"Variables": [
+			{
+				"Name": "Fighter_AllyAttackSpeed",
+				"Values": [
+					9,
+					13,
+					21,
+					25
+				]
+			},
+			{
+				"Name": "Fighter_FighterAttackSpeed",
+				"Values": [
+					18,
+					26,
+					42,
+					50
+				]
+			},
+			{
+				"Name": "Fighter_LastThreshold",
+				"Values": [
+					0,
+					0,
+					0,
+					5
+				]
+			}
+		],
+		"UnitAbilities": [
+			{
+				"Name": "FighterClass_SpecialAbility",
+				"ActivationTrigger": {
+					"TriggerType": "OnBattleStart"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Fighter - Omnivamp",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "Self"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Buff",
+									"Stat": "PhysicalVampPercentage",
+									"DurationMs": -1,
+									"Expression": "{Fighter_LastThreshold}"
+								},
+								{
+									"Type": "Buff",
+									"Stat": "EnergyVampPercentage",
+									"DurationMs": -1,
+									"Expression": "{Fighter_LastThreshold}"
+								},
+								{
+									"Type": "Buff",
+									"Stat": "PureVampPercentage",
+									"DurationMs": -1,
+									"Expression": "{Fighter_LastThreshold}"
+								}
+							]
+						}
+					}
+				]
+			}
+		],
+		"TeamAbilities": [
+			{
+				"Name": "FighterClass_SelfAbility",
+				"ActivationTrigger": {
+					"TriggerType": "OnBattleStart"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Fighter - Fighter Attack Speed",
+						"Deployment": {
+							"Type": "Direct",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							]
+						},
+						"Targeting": {
+							"Type": "Synergy",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							],
+							"Group": "Ally",
+							"CombatClass": "Fighter"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Buff",
+									"Stat": "AttackSpeed",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Fighter_FighterAttackSpeed}",
+										"Stat": "AttackSpeed",
+										"StatSource": "Receiver",
+										"StatEvaluationType": "Base"
+									}
+								}
+							]
+						}
+					}
+				]
+			},
+			{
+				"Name": "FighterClass_AllyAbility",
+				"ActivationTrigger": {
+					"TriggerType": "OnBattleStart"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Fighter - Ally Attack Speed",
+						"Deployment": {
+							"Type": "Direct",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							]
+						},
+						"Targeting": {
+							"Type": "Synergy",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							],
+							"Group": "Ally",
+							"NotCombatClass": "Fighter"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Buff",
+									"Stat": "AttackSpeed",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Fighter_AllyAttackSpeed}",
+										"Stat": "AttackSpeed",
+										"StatSource": "Receiver",
+										"StatEvaluationType": "Base"
+									}
+								}
+							]
+						}
+					}
+				]
+			}
+		]
+	},
+	"IntrinsicAbilities": [],
+	"HyperAbilities": [
+		{
+			"Name": "FighterHyperProgressAbility",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart",
+				"MaxActivations": 1
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "FighterHyperProgressSkill",
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						]
+					},
+					"Targeting": {
+						"Type": "Self",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						],
+						"Group": "Ally"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "AttackSpeed",
+								"OverlapProcessType": "Stacking",
+								"FrequencyMs": 100,
+								"DurationMs": -1,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										{
+											"Operation": "/",
+											"Operands": [
+												{
+													"Stat": "CurrentSubHyper",
+													"StatSource": "Receiver"
+												},
+												1000
+											]
+										},
+										{
+											"Operation": "%%",
+											"Operands": [
+												{
+													"Stat": "AttackSpeed",
+													"StatSource": "Receiver",
+													"StatEvaluationType": "Base"
+												},
+												50
+											]
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"Name": "FighterHyperActiveAbility",
+			"ActivationTrigger": {
+				"TriggerType": "OnHyperactive",
+				"MaxActivations": 1
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "FighterHyperActiveSkill",
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						]
+					},
+					"Targeting": {
+						"Type": "Self",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						],
+						"Group": "Ally"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "VulnerabilityPercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 10
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackPhysicalDamage",
+								"OverlapProcessType": "Merge",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Receiver"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackEnergyDamage",
+								"OverlapProcessType": "Merge",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Receiver"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackPureDamage",
+								"OverlapProcessType": "Merge",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackPureDamage",
+									"StatSource": "Receiver"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "OmegaDamagePercentage",
+								"OverlapProcessType": "Merge",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "OmegaDamagePercentage",
+									"StatSource": "Receiver"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Fighter",
+	"DisplayDescription": "Your team gains <AttackSpeed>Attack Speed</>. Fighter units receive double the amount.\r\n\r\n(7) Fighters heal for <MaxHealth>5%</> of the damage dealt.\r\n",
+	"DisplayDescriptionThresholds": [
+		"Gain <AttackSpeed>9%</><AttackSpeed></>",
+		"Gain <AttackSpeed>13%</><AttackSpeed></>",
+		"Gain <AttackSpeed>21%</><AttackSpeed></>",
+		"Gain <AttackSpeed>25%</><AttackSpeed></>"
+	],
+	"Description": {
+		"Format": "Your team gains <AttackSpeed>Attack Speed</>. Fighter units receive double the amount.\r\n\r\n({LastThreshold}) Fighters heal for <MaxHealth>{Fighter_LastThreshold}%</> of the damage dealt.\r\n",
+		"Parameters": {
+			"LastThreshold": {
+				"ParameterPath": "SynergyThresholds[3]",
+				"ValueMultiplier": 1.0
+			},
+			"Fighter_LastThreshold": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[2].Values[3]",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DescriptionThresholds": {
+		"Format": "Gain <AttackSpeed>{Fighter_AllyAttackSpeed}%</><AttackSpeed></>",
+		"Parameters": [
+			{
+				"Fighter_AllyAttackSpeed": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[0]",
+					"ValueMultiplier": 1.0
+				}
+			},
+			{
+				"Fighter_AllyAttackSpeed": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[1]",
+					"ValueMultiplier": 1.0
+				}
+			},
+			{
+				"Fighter_AllyAttackSpeed": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[2]",
+					"ValueMultiplier": 1.0
+				}
+			},
+			{
+				"Fighter_AllyAttackSpeed": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[3]",
+					"ValueMultiplier": 1.0
+				}
+			}
+		]
+	},
+	"HyperDisplayDescription": "Hyper Bonus (scaling): <AttackSpeed>0.5%</> <AttackSpeed>Attack Speed</>, up to 50%.\r\n\r\nHyper Bonus (full): 10% <DamageAmplification>Damage Amp</> and <DamageReduction>Damage Reduction</>.\r\n\r\n",
+	"HyperDescription": {
+		"Format": "Hyper Bonus (scaling): <AttackSpeed>0.5%</> <AttackSpeed>Attack Speed</>, up to 50%.\r\n\r\nHyper Bonus (full): 10% <DamageAmplification>Damage Amp</> and <DamageReduction>Damage Reduction</>.\r\n\r\n",
+		"Parameters": {}
+	},
+	"HyperDescriptionParts": [
+		{
+			"StatType": "AttackSpeed",
+			"DisplayDescription": "<AttackSpeed>0.5%</> per Hyper Point, up to 50%.\r\n\r\n",
+			"Description": {
+				"Format": "<AttackSpeed>0.5%</> per Hyper Point, up to 50%.\r\n\r\n",
+				"Parameters": {}
+			},
+			"DisplayDescriptionNormalized": "0.5% per Hyper Point, up to 50%."
+		},
+		{
+			"StatType": "VulnerabilityPercentage",
+			"DisplayDescription": "+10% <DamageAmplification></><DamageReduction></> at Full Hyper.\r\n\r\n",
+			"Description": {
+				"Format": "+10% <DamageAmplification></><DamageReduction></> at Full Hyper.\r\n\r\n",
+				"Parameters": {}
+			},
+			"DisplayDescriptionNormalized": "+10% at Full Hyper."
+		}
+	],
+	"DisplayDescriptionNormalized": "Your team gains Attack Speed. Fighter units receive double the amount.\r\n\r\n(7) Fighters heal for 5% of the damage dealt.",
+	"DisplayDescriptionThresholdsNormalized": [
+		"Gain 9%",
+		"Gain 13%",
+		"Gain 21%",
+		"Gain 25%"
+	],
+	"HyperDisplayDescriptionNormalized": "Hyper Bonus (scaling): 0.5% Attack Speed, up to 50%.\r\n\r\nHyper Bonus (full): 10% Damage Amp and Damage Reduction."
+}

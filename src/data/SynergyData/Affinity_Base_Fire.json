@@ -1,0 +1,280 @@
+{
+	"Name": "Fire",
+	"CombatAffinity": "Fire",
+	"CombatAffinityComponents": [],
+	"SynergyThresholds": [
+		1,
+		3,
+		5,
+		8
+	],
+	"SynergyThresholdsAbilities": {
+		"Variables": [
+			{
+				"Name": "Fire_AllyDamage",
+				"Values": [
+					4,
+					9,
+					14,
+					20
+				]
+			},
+			{
+				"Name": "Fire_FireDamage",
+				"Values": [
+					8,
+					18,
+					28,
+					40
+				]
+			},
+			{
+				"Name": "Fire_LastThreshold",
+				"Values": [
+					0,
+					0,
+					0,
+					15
+				]
+			}
+		],
+		"UnitAbilities": [
+			{
+				"Name": "FireAffinity_SpecialAbility",
+				"ActivationTrigger": {
+					"TriggerType": "OnHit",
+					"AbilityTypes": [
+						"Attack"
+					],
+					"SenderAllegiance": "Self",
+					"ReceiverAllegiance": "Enemy",
+					"EveryX": true
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Fire - Pure DOT",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "CurrentFocus"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "InstantDamage",
+									"DamageType": "Pure",
+									"Expression": {
+										"Operation": "/",
+										"Operands": [
+											{
+												"Percentage": "{Fire_LastThreshold}",
+												"Stat": "MaxHealth",
+												"StatSource": "Receiver"
+											},
+											10
+										]
+									}
+								}
+							]
+						}
+					}
+				]
+			}
+		],
+		"TeamAbilities": [
+			{
+				"Name": "FireAffinity_SelfAbility",
+				"ActivationTrigger": {
+					"TriggerType": "OnBattleStart"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Fire - Fire Attack Damage",
+						"Deployment": {
+							"Type": "Direct",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							]
+						},
+						"Targeting": {
+							"Type": "Synergy",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							],
+							"Group": "Ally",
+							"CombatAffinity": "Fire"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Buff",
+									"Stat": "AttackPhysicalDamage",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Fire_FireDamage}",
+										"Stat": "AttackPhysicalDamage",
+										"StatSource": "Receiver",
+										"StatEvaluationType": "Base"
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "AttackEnergyDamage",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Fire_FireDamage}",
+										"Stat": "AttackEnergyDamage",
+										"StatSource": "Receiver",
+										"StatEvaluationType": "Base"
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "AttackPureDamage",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Fire_FireDamage}",
+										"Stat": "AttackPureDamage",
+										"StatSource": "Receiver",
+										"StatEvaluationType": "Base"
+									}
+								}
+							]
+						}
+					}
+				]
+			},
+			{
+				"Name": "FireAffinity_AllyAbility",
+				"ActivationTrigger": {
+					"TriggerType": "OnBattleStart"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Fire - Ally Attack Damage",
+						"Deployment": {
+							"Type": "Direct",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							]
+						},
+						"Targeting": {
+							"Type": "Synergy",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							],
+							"Group": "Ally",
+							"NotCombatAffinity": "Fire"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Buff",
+									"Stat": "AttackPhysicalDamage",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Fire_AllyDamage}",
+										"Stat": "AttackPhysicalDamage",
+										"StatSource": "Receiver",
+										"StatEvaluationType": "Base"
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "AttackEnergyDamage",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Fire_AllyDamage}",
+										"Stat": "AttackEnergyDamage",
+										"StatSource": "Receiver",
+										"StatEvaluationType": "Base"
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "AttackPureDamage",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Fire_AllyDamage}",
+										"Stat": "AttackPureDamage",
+										"StatSource": "Receiver",
+										"StatEvaluationType": "Base"
+									}
+								}
+							]
+						}
+					}
+				]
+			}
+		]
+	},
+	"IntrinsicAbilities": [],
+	"DisplayName": "Fire",
+	"DisplayDescription": "\r\nYour team gains <AttackDamage>Attack Damage</>. Fire units receive double the amount.\r\n\r\n(8) Fire attacks deal <AttackPureDamage>1.5%</> of target's <MaxHealth>Max Health</> as bonus <AttackPureDamage>Pure Damage</>.\r\n",
+	"DisplayDescriptionThresholds": [
+		"Gain <AttackDamage>4%</><AttackDamage></>",
+		"Gain <AttackDamage>9%</><AttackDamage></>",
+		"Gain <AttackDamage>14%</><AttackDamage></>",
+		"Gain <AttackDamage>20%</><AttackDamage></>"
+	],
+	"Description": {
+		"Format": "\r\nYour team gains <AttackDamage>Attack Damage</>. Fire units receive double the amount.\r\n\r\n({LastThreshold}) Fire attacks deal <AttackPureDamage>{Fire_LastThreshold}%</> of target's <MaxHealth>Max Health</> as bonus <AttackPureDamage>Pure Damage</>.\r\n",
+		"Parameters": {
+			"LastThreshold": {
+				"ParameterPath": "SynergyThresholds[3]"
+			},
+			"Fire_LastThreshold": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[2].Values[3]",
+				"ValueMultiplier": 0.1
+			}
+		}
+	},
+	"DescriptionThresholds": {
+		"Format": "Gain <AttackDamage>{Fire_AllyDamage}%</><AttackDamage></>",
+		"Parameters": [
+			{
+				"Fire_AllyDamage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[0]",
+					"ValueMultiplier": 1.0
+				}
+			},
+			{
+				"Fire_AllyDamage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[1]",
+					"ValueMultiplier": 1.0
+				}
+			},
+			{
+				"Fire_AllyDamage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[2]",
+					"ValueMultiplier": 1.0
+				}
+			},
+			{
+				"Fire_AllyDamage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[3]",
+					"ValueMultiplier": 1.0
+				}
+			}
+		]
+	},
+	"DisplayDescriptionNormalized": "Your team gains Attack Damage. Fire units receive double the amount.\r\n\r\n(8) Fire attacks deal 1.5% of target's Max Health as bonus Pure Damage.",
+	"DisplayDescriptionThresholdsNormalized": [
+		"Gain 4%",
+		"Gain 9%",
+		"Gain 14%",
+		"Gain 20%"
+	]
+}

@@ -1,0 +1,311 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Grilla",
+	"Stage": 1,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 1,
+	"CombatAffinity": "Earth",
+	"CombatClass": "Rogue",
+	"DominantCombatAffinity": "Earth",
+	"DominantCombatClass": "Rogue",
+	"SizeUnits": 3,
+	"Stats": {
+		"MaxHealth": 1100000,
+		"StartingEnergy": 90000,
+		"EnergyCost": 130000,
+		"PhysicalResist": 40,
+		"EnergyResist": 25,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 85000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 75,
+		"MoveSpeedSubUnits": 2100,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 3,
+		"OmegaRangeUnits": 3,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Grilla Basic Attack I",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 45
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Acroblink I",
+			"TotalDurationMs": 2000,
+			"Skills": [
+				{
+					"Name": "Blink and damage attack",
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 100
+					},
+					"PercentageOfAbilityDuration": 50,
+					"Targeting": {
+						"Type": "CombatStatCheck",
+						"Group": "Enemy",
+						"Stat": "PhysicalResist",
+						"Lowest": true,
+						"Num": 1
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Blink",
+								"BlinkTarget": "BehindReceiver",
+								"BlinkDelayMs": 0,
+								"DurationMs": 0,
+								"BlinkReservePreviousPosition": true
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										450000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Spawn Pet Skill",
+					"PercentageOfAbilityDuration": 50,
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": []
+					},
+					"Deployment": {
+						"Type": "SpawnedCombatUnit",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"SpawnCombatUnit": {
+						"OnReservedPosition": true,
+						"CombatUnit": {
+							"Path": "Default",
+							"Variation": "Original",
+							"Line": "GrillaPet",
+							"Stage": 1,
+							"UnitType": "Pet",
+							"CombatAffinity": "None",
+							"CombatClass": "None",
+							"Tier": 1,
+							"SizeUnits": 2,
+							"Stats": {
+								"MaxHealth": 150000,
+								"StartingEnergy": 100000,
+								"EnergyCost": 100000,
+								"PhysicalResist": 50,
+								"EnergyResist": 50,
+								"TenacityPercentage": 0,
+								"WillpowerPercentage": 0,
+								"Grit": 0,
+								"Resolve": 0,
+								"AttackPhysicalDamage": 0,
+								"AttackEnergyDamage": 0,
+								"AttackPureDamage": 0,
+								"AttackSpeed": 60,
+								"MoveSpeedSubUnits": 0,
+								"HitChancePercentage": 100,
+								"AttackDodgeChancePercentage": 0,
+								"CritChancePercentage": 25,
+								"CritAmplificationPercentage": 150,
+								"OmegaPowerPercentage": 100,
+								"AttackRangeUnits": 3,
+								"OmegaRangeUnits": 3,
+								"HealthRegeneration": 0,
+								"EnergyRegeneration": 0,
+								"EnergyGainEfficiencyPercentage": 100,
+								"OnActivationEnergy": 0,
+								"VulnerabilityPercentage": 100,
+								"EnergyPiercingPercentage": 0,
+								"PhysicalPiercingPercentage": 0,
+								"HealthGainEfficiencyPercentage": 100,
+								"PhysicalVampPercentage": 0,
+								"EnergyVampPercentage": 0,
+								"PureVampPercentage": 0,
+								"Thorns": 0,
+								"StartingShield": 0,
+								"CritReductionPercentage": 0
+							},
+							"AttackAbilitiesSelection": "Cycle",
+							"OmegaAbilitiesSelection": "Cycle",
+							"AttackAbilities": [],
+							"OmegaAbilities": [
+								{
+									"Name": "Pet Taunt",
+									"TotalDurationMs": 0,
+									"Skills": [
+										{
+											"Name": "Taunt",
+											"Targeting": {
+												"Type": "Self"
+											},
+											"Deployment": {
+												"Type": "Zone",
+												"PreDeploymentDelayPercentage": 0
+											},
+											"Zone": {
+												"Shape": "Hexagon",
+												"RadiusUnits": 20,
+												"DurationMs": 500,
+												"FrequencyMs": 500,
+												"ApplyOnce": true
+											},
+											"PercentageOfAbilityDuration": 100,
+											"EffectPackage": {
+												"Effects": [
+													{
+														"Type": "NegativeState",
+														"NegativeState": "Taunted",
+														"DurationMs": 1000
+													}
+												]
+											}
+										}
+									]
+								}
+							]
+						}
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Lesser Grilla",
+	"DisplayDescription": "Lesser Grilla Blinks to the lowest Physical Resist enemy, dealing <AttackPhysicalDamage>450</> (<OmegaPowerPercentage></>) Physical Damage and leaving behind a Mud statue with <MaxHealth>150</> Health which Taunts enemies in 20-hexes for 1 seconds.\r\n\r\n<AttackPhysicalDamage>450</> (<OmegaPowerPercentage></>)",
+	"Intro": "In the twinkling tunnels and floating crystal islands of Crystal Shores, an acrobatic presence catches the eye. Sunbeams bounce off shard walls and prism-like plants, occasionally illuminating a blur of motion - a Grilla in action. From nimble youngsters to imposing elders, these remarkable beings navigate the treacherous terrain with unparalleled agility, their blade-like appendages and prehensile tails defining their unmistakable silhouette.",
+	"Summary": "The Grilla appears in three distinct forms, each perfectly adapted to its environment. The smallest is incredibly agile and playful, while the largest is a formidable presence with scythe-like arms. Each form is characterised by increasing size, sharpness of appendages, and complexity of armour. The Grilla's fur varies from sleek grey to striking red, with bioluminescent patterns growing more intricate in larger specimens. These creatures display acrobatic social behaviours that turns simple communication into an impressive performance.",
+	"Biology": {
+		"Physiology": "The Grilla's physiology is a marvel of precision. The smallest Grillas have nimble, grey bodies with dark rocky armour and sharp blade-like appendages. Their long tails glow crystal pink underneath plated armour. Mid-sized Grillas develop white fur with purple markings, sporting impressive spikes on their hands and a curved javelin on their tails. The largest Grillas are adorned with striking red fur, black stripes, and formidable scythe-like arms. Their tails end in dominating jagged pikes, and their heads are crowned with inward-curving horns tipped with liquid crystal. All Grillas possess eyes that emit a pink glow, serving both as a light source and a means to project holographic images. As they increase in size, they develop more complex bioluminescent patterns, with the largest sporting a crown-like structure that regulates their considerable energy reserves.",
+		"Behaviour": "The Grilla's behavior changes with its size. The smallest are masters of acrobatics, often seen walking on their hands, leaping off tunnel walls, and playing games by throwing crystal shards. They gather in groups, challenging one another with daring feats of agility. Mid-sized Grillas are more solitary and always in motion. They use their tails to sharpen their body spikes and can pierce crystal walls to aid in climbing. These Grillas are highly attuned to their environment, always ready to leap away at a moment's notice. The largest Grillas display the most complex behavior. They strategically explore underground routes, using their tails to anchor themselves and their sharp arms to carve new pathways. They may assist smaller creatures trapped in difficult areas, though their patience for noisy companions is limited. Despite their varying sizes, all Grillas share a love for acrobatic displays and a constant need for motion. They use their sharp appendages for mobility and defense, but also for manipulating their environment and even creating art through holographic projections."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/GrillaStage1/GrillaStage1_default_default_webp.3840x2160/GrillaStage1_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/GrillaStage1/GrillaStage1_default_default_hls.m3u8/GrillaStage1_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Lesser Grilla's long tail and feet can grasp and manipulate objects with the same dexterity as its hands. It can throw crystal shards from foot to hand to tail as though playing a game with itself.",
+			"The Lesser Grilla enjoys racing against others of its kind, often playfighting with just its legs while walking upon its hands.",
+			"The Lesser Grilla frequently shows off its agility to others of its kind by slashing at crystal shards hanging from great heights, dislodging Morphopods and feeding upon them. It can be found jumping sideways and backwards from hands to feet afterwards."
+		],
+		"Buckley": [
+			"The Lesser Grilla's brain has a large motor cortex section dedicated to the coordination of complex simultaneous movements, including walking on its hands while grasping objects with its feet.",
+			"The Lesser Grilla is relatively lightweight despite the large plates upon its arms, which releases amino acids that burn fat stores encased in rock to lower its density and aid its overall movements.",
+			"The Lesser Grilla has a specialised projection sac full of rarified gasses positioned between its eye and its frontal cortex. The neurons from its brain can trigger electricity which generates light with the gas through its eyes, for the cost of compromising its vision during this time.",
+			"The Lesser Grilla has reduced finger bones which have fused to the mineral-dense rock plates upon its hands. However, analysis suggests that it has dormant growth genes which are capable of reforming these bones if needed.",
+			"The Lesser Grilla's tail has highly flexible muscles that enable it to wrap around various structures."
+		]
+	},
+	"TraitOrderLegacy": [
+		2,
+		1,
+		4,
+		6,
+		3,
+		5
+	],
+	"Description": {
+		"Format": "Lesser Grilla Blinks to the lowest Physical Resist enemy, dealing <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Physical Damage and leaving behind a Mud statue with <MaxHealth>{StatueHealth}</> Health which Taunts enemies in {TauntRadius}-hexes for {TauntDuration} seconds.\r\n\r\n<AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"StatueHealth": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].SpawnCombatUnit.CombatUnit.Stats.MaxHealth",
+				"ValueMultiplier": 0.001
+			},
+			"TauntRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].SpawnCombatUnit.CombatUnit.OmegaAbilities[0].Skills[0].Zone.RadiusUnits"
+			},
+			"TauntDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].SpawnCombatUnit.CombatUnit.OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Lesser Grilla Blinks to the lowest Physical Resist enemy, dealing 450 () Physical Damage and leaving behind a Mud statue with 150 Health which Taunts enemies in 20-hexes for 1 seconds.",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 2,
+			"AttackSpeed": 1,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 3,
+			"Resistance": 5
+		}
+	}
+}

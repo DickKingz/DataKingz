@@ -1,0 +1,21 @@
+{
+	"Name": "Empath",
+	"Stage": 1,
+	"Type": "Game",
+	"DisplayName": "Empath Module",
+	"DisplayDescription": "Gain a Empath Imprint.",
+	"Description": {
+		"Format": "Gain a Empath Imprint.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Empath",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

@@ -1,0 +1,195 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "VolanteEarth",
+	"Stage": 2,
+	"Path": "Earth",
+	"Variation": "Original",
+	"Tier": 0,
+	"CombatAffinity": "Earth",
+	"CombatClass": "Rogue",
+	"DominantCombatAffinity": "Earth",
+	"DominantCombatClass": "Rogue",
+	"SizeUnits": 5,
+	"Stats": {
+		"MaxHealth": 1300000,
+		"StartingEnergy": 40000,
+		"EnergyCost": 120000,
+		"PhysicalResist": 35,
+		"EnergyResist": 30,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 115000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 65,
+		"MoveSpeedSubUnits": 2250,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 3,
+		"OmegaRangeUnits": 3,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Earth Volante Basic Attack II",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 40
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Splitting Silence II",
+			"TotalDurationMs": 1200,
+			"Skills": [
+				{
+					"Name": "Claw slash",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 90
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										625000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Silenced",
+								"DurationMs": 1500
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Greater Earth Volante",
+	"DisplayDescription": "Greater Earth Volante rakes its claws at the target, dealing <AttackPhysicalDamage>625</> (<OmegaPowerPercentage></>) Physical Damage and Silencing it for 1.5 second.\r\n\r\nDamage: <AttackPhysicalDamage>625</> (<OmegaPowerPercentage></>)",
+	"Intro": "The tallest pillars in Shardbluff Labyrinth are the Jamala Pillars, which come in an array of towering colours. Some release smoke like giant chimneys, while others provide a calm, cooling sanctuary from the rest of the region. Tentifung ears sprout along all of them, providing landing pads for the Greater Earth Volante, who glides through the misty blue air from one platform to the next. Sometimes, when it's about to miss its mark, the Greater Earth Volante blinks out of existence entirely, only to reappear safely at its intended destination.",
+	"Summary": "This slender, purple Illuvial with pink eyes and rock-plated skin can blink out of existence to reappear safely at its destination. Heavier than other Volantes, it uses its weight and resilient, rock-like skin to navigate and hunt in the treacherous landscape. Adapted to heated environments, the Greater Earth Volante has a magnetic organ for direction changes, a calcium carbonate coating for protection, and the ability to become invisible while accelerating.",
+	"Biology": {
+		"Physiology": "The Greater Earth Volante has beady pink eyes, a flat head, and a slender purple body with webbed membranes between its thin, stick-like limbs. There are tiny pink spikes protruding from its rock-plated head and back. Its slim tail curls up behind it, surrounded by glowing amethyst sparks. The Greater Earth Volante has big, black claws on its feet and it can spring across far distances with its nimble legs. Its striped membranes help it glide in the air as it moves.",
+		"Behaviour": "The Greater Earth Volante is heavier than other Volantes of its size, which is why it cannot glide as far. Fortunately, there are lots of Tentifung ears and rock structures in Shardbluff Labyrinth which makes finding a place to land easier. This treacherous region is known for its shifting landscape, but the Greater Earth Volante has tricks up its sleeve as well. If a platform moves closer than expected, it rolls up into a ball mid-glide and uses its weight to its advantage, pulling itself down to safety. Curling up into a ball form also allows it to bring down flying Morphopod prey. Its rocky skin is resilient to scrapes and falls while being hardy enough to bounce off other surfaces when it is curled into a ball. By rebounding off pillars, the Greater Earth Volante can get around easily even when it is out of teleportation power."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/VolanteStage2Earth/VolanteStage2Earth_default_default_webp.3840x2160/VolanteStage2Earth_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/VolanteStage2Earth/VolanteStage2Earth_default_default_hls.m3u8/VolanteStage2Earth_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Greater Earth Volante marks its territory by shedding small pieces of rock onto different pillars.",
+			"The Greater Earth Volante exfoliates its rocky skin by rubbing its back on Bloodmoss-covered rock pillars.",
+			"The Greater Earth Volante prefers heated environments to cooler ones because it is able to glide further in hot air."
+		],
+		"Buckley": [
+			"The Greater Earth Volante has a mixed calcium carbonate coating on its back that creates a rock-like texture and protects it from attacks. It is primarily composed of argonite and chrovium.",
+			"The Greater Earth Volante has a specialised magnetic organ that is capable of changing directions, allowing it to use polarized charges to propel itself forward.",
+			"The Greater Earth Volante's overlapping scales allow for increased flexibility and manoeuvrability. Its scale movements may also hasten the shedding of overgrown calcium upon its back and lighten its weight.",
+			"The Greater Earth Volante is an ectotherm with a bodily composition that is highly resistant to overheating.",
+			"The Greater Earth Volante's scales can bend ultraviolet light rays away from its body, rendering it invisible to most organic life forms while it accelerates to its destination."
+		]
+	},
+	"TraitOrderLegacy": [
+		2,
+		1,
+		3,
+		6,
+		4,
+		5
+	],
+	"Description": {
+		"Format": "Greater Earth Volante rakes its claws at the target, dealing <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Physical Damage and Silencing it for {EffectDuration} second.\r\n\r\nDamage: <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"EffectDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Greater Earth Volante rakes its claws at the target, dealing 625 () Physical Damage and Silencing it for 1.5 second.\r\n\r\nDamage: 625 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 2,
+			"AttackSpeed": 1,
+			"Health": 3,
+			"MovementSpeed": 6,
+			"OmegaPower": 4,
+			"Resistance": 5
+		}
+	}
+}

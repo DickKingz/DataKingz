@@ -1,0 +1,250 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Turtle",
+	"Stage": 3,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 1,
+	"CombatAffinity": "Verdant",
+	"CombatClass": "Aegis",
+	"DominantCombatAffinity": "Nature",
+	"DominantCombatClass": "Empath",
+	"SizeUnits": 8,
+	"Stats": {
+		"MaxHealth": 2400000,
+		"StartingEnergy": 80000,
+		"EnergyCost": 150000,
+		"PhysicalResist": 55,
+		"EnergyResist": 40,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 120000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 60,
+		"MoveSpeedSubUnits": 2500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 40,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Turtle Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 40
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 8000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Rejuvenasis III",
+			"TotalDurationMs": 3000,
+			"Skills": [
+				{
+					"Name": "Turtle zone",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 30
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 10,
+						"DurationMs": 2900,
+						"FrequencyMs": 1000,
+						"GrowthRateSubUnits": 3500,
+						"MaxRadiusUnits": 35,
+						"ApplyOnce": false
+					},
+					"PercentageOfAbilityDuration": 100,
+					"ChannelTimeMs": 3000,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantHeal",
+								"HealType": "Normal",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										95000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										95000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Root",
+								"ActivationsUntilExpiry": 1,
+								"DurationMs": 3000
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Archeleon",
+	"DisplayDescription": "Archeleon slams its flippers into the ground, creating a thicket that grows to 35-hexes over 3 seconds.\r\n\r\nAllies within the radius are Healed for <MaxHealth>95</> (<OmegaPowerPercentage></>) Health per second, while enemies are Rooted and take <AttackEnergyDamage>95</> (<OmegaPowerPercentage></>) Energy Damage per second.\r\n\r\nHeal: <MaxHealth>285</> = <MaxHealth>95</>/s (<OmegaPowerPercentage></>)\r\nDamage: <AttackEnergyDamage>285</> = <AttackEnergyDamage>95</>/s (<OmegaPowerPercentage></>)\r\n\r\n<Italic>Root: Cannot move while affected.</>",
+	"Intro": "In the gusty fields of Brightland Steppes, a melodic whistle can often be heard. Puddles and bright flowers abound, some of which are carried away with the breeze, only to reform with the help of a mysterious guardian. When the storms come and the ravaging winds become all too much, the Archeleon emerges. Awash in the Archeleon's glow, the flowery fields renew in a fountain of light, flourishing with newfound strength.",
+	"Summary": "In the wind-swept fields of Brightland Steppes, the Archeleon stands as a gentle guardian and healer of its environment. Despite its imposing appearance, its peaceful nature is evident through its luminous green glow and wise eyes. Covered in moss and adorned with fungal caps and tendrils, the Archeleon harnesses energy through symbiotic relationships with fungi and bacteria. It emits calming waves and expels healing nutrients to restore and protect its surroundings, rarely engaging in battle except to defend allies.",
+	"Biology": {
+		"Physiology": "The benevolent Archeleon may have a monstrous appearance, but a peaceful nature radiates from within. A truly gentle healer, the Archeleon's green glow peeks out from everywhere, and its wise eyes shine with this same light. An enormous red fungal cap sits atop its shell, speckled and humped in the middle while three smaller caps grow from its head and shoulders. The Archeleon's entire body is overgrown with moss, with splotches of dark barnacles and purplish pink seaweed-like tendrils that sprout from all around.",
+		"Behaviour": "The Archeleon has a calming aura that emanates in invisible, rippling waves. This gentle, sublime force is like a breeze that bends blades of grass as it transmits across the land. When the Archeleon senses an area needing restoration, it expels restorative nutrients in that direction. Perhaps it holds a symbiotic relationship with regenerative bacteria. Nonviolent by nature, the Archeleon only enters battle to defend its allies. Often shrouded by plantlife that grows quickly around it, the Archeleon may be difficult to spot."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/TurtleStage3/TurtleStage3_default_default_webp.3840x2160/TurtleStage3_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/TurtleStage3/TurtleStage3_default_default_hls.m3u8/TurtleStage3_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"Wherever the Archeleon walks, the stems of plants and the boughs on trees bend ever slightly towards it, as if the planet itself is greeting it.",
+			"The Archeleon's long tendrils are highly sensitive feelers that respond to decay and disease in other life forms and transmit healing energy in response.",
+			"At the Archeleon's will, it sends out calmness through invisible, rippling waves. This gentle, sublime force is like a breeze that bends blades of grass as it scans the land for its well-being. If it senses an area in need of restoration, healing energies are expelled in that direction."
+		],
+		"Buckley": [
+			"The Archeleon's body is overgrown with moss and tendril-like growths which undergo photosynthesis and perform a symbiotic function of harnessing energy for the Archeleon.",
+			"The Archeleon's claws are made of root-like material that can grow feeder roots and embed deep within the soil to gather or distribute vital nutrients.",
+			"The Archeleon grows fungal caps upon its back which are cross-pollinations with other Archeleons and the greater ecosystem.",
+			"The Archeleon's brain relies on the mushroom hyphae to connect to the rest of its body and the mycelial network in its environment. It is incapable of performing basic motor functions without its mushroom.",
+			"The Archeleon has an internal sac for storing the spores of other mushrooms from its environment."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		4,
+		2,
+		6,
+		1,
+		3
+	],
+	"Description": {
+		"Format": "Archeleon slams its flippers into the ground, creating a thicket that grows to {GrowthRadius}-hexes over {GrowthDuration} seconds.\r\n\r\nAllies within the radius are Healed for <MaxHealth>{HealAmount}</> (<OmegaPowerPercentage></>) Health per second, while enemies are Rooted and take <AttackEnergyDamage>{DamageAmount}</> (<OmegaPowerPercentage></>) Energy Damage per second.\r\n\r\nHeal: <MaxHealth>{HealAmountFull}</> = <MaxHealth>{HealAmount}</>/s (<OmegaPowerPercentage></>)\r\nDamage: <AttackEnergyDamage>{DamageAmountFull}</> = <AttackEnergyDamage>{DamageAmount}</>/s (<OmegaPowerPercentage></>)\r\n\r\n<Italic>Root: Cannot move while affected.</>",
+		"Parameters": {
+			"GrowthRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Zone.MaxRadiusUnits"
+			},
+			"GrowthDuration": {
+				"ParameterPath": "OmegaAbilities[0].TotalDurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"HealAmount": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"DamageAmount": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"HealAmountFull": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.003
+			},
+			"DamageAmountFull": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].Expression.Operands[0]",
+				"ValueMultiplier": 0.003
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Archeleon slams its flippers into the ground, creating a thicket that grows to 35-hexes over 3 seconds.\r\n\r\nAllies within the radius are Healed for 95 () Health per second, while enemies are Rooted and take 95 () Energy Damage per second.\r\n\r\nHeal: 285 = 95/s ()\r\nDamage: 285 = 95/s ()\r\n\r\nRoot: Cannot move while affected.",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 4,
+			"Health": 2,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 3
+		}
+	}
+}

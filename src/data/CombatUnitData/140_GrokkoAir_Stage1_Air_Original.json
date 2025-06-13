@@ -1,0 +1,206 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "GrokkoAir",
+	"Stage": 1,
+	"Path": "Air",
+	"Variation": "Original",
+	"Tier": 0,
+	"CombatAffinity": "Air",
+	"CombatClass": "Bulwark",
+	"DominantCombatAffinity": "Air",
+	"DominantCombatClass": "Bulwark",
+	"SizeUnits": 4,
+	"Stats": {
+		"MaxHealth": 1300000,
+		"StartingEnergy": 80000,
+		"EnergyCost": 200000,
+		"PhysicalResist": 40,
+		"EnergyResist": 40,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 65000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 60,
+		"MoveSpeedSubUnits": 1500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 5,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 3,
+		"OmegaRangeUnits": 3,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Air Grokko Basic Attack I",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 35
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Whirlquake I",
+			"TotalDurationMs": 1800,
+			"Skills": [
+				{
+					"Name": "Ground smash",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 40
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 18,
+						"DurationMs": 100,
+						"FrequencyMs": 100,
+						"GrowthRateSubUnits": 0,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										200000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Stun",
+								"DurationMs": 1000
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Lesser Air Grokko",
+	"DisplayDescription": "Lesser Air Grokko smashes the ground, dealing <AttackPhysicalDamage>200</> (<OmegaPowerPercentage></>) Physical Damage to all enemies within 18-hexes and Stunning them for 1 seconds.\r\n\r\nDamage: <AttackPhysicalDamage>200</> (<OmegaPowerPercentage></>)",
+	"Intro": "A sparkling icy labyrinth stretches beneath Taiga Boreal, where sunlight shines through various holes and reflects off glistening icicles. Periodically, there is a large rumbling, followed by vibrations that cause the icicles to crack and fall. Many locals are quick-footed and avoid getting pierced, but the Lesser Air Grokko doesn't mind the impact, barely feeling the smatter of ice on its thick hide.",
+	"Summary": "This burly Illuvial with pink eyes and a bulbous head, covered in protective black coral horns, trudges through snow and ice, standing its ground even against stronger foes. The Lesser Air Grokko can exhale gusts of air through its horns, crunch and regenerate various materials, and scale cliffs. With a hollow skeletal structure, enlarged lungs, and an adaptable immune system, it feeds on diverse materials and uses its weight and air expulsion abilities to navigate its environment.",
+	"Biology": {
+		"Physiology": "The Lesser Air Grokko is burly, rough, and round, with pink orb-like eyes and a bulbous head that makes up the entirety of its torso. Its big mouth opens up in the middle of its body, bottom fangs jutting out as it lumbers along on two feet. Black coral horns arch out from its head and along its back, with shorter growths covering its arms and legs, giving it extra protection. The Lesser Air Grokko has a flat nose and dull senses, awash with an atmospheric glow upon its armour that can withstand the most brutal attacks. With a thick tail that acts as a counterweight for its heavy body, it can stand on its hind legs in a bipedal stance.",
+		"Behaviour": "The Lesser Air Grokko ambles along, headstrong with its feet planted firmly in snow and ice. It does not avoid the territory of other Illuvials and goes where it wishes. It stands its ground even when it is clearly outmatched, perhaps out of tenacity, or perhaps stupidity. This stubbornness makes it intimidating to other Illuvials, and even those more powerful begin to doubt their skills when the Lesser Air Grokko refuses to back down. It does not appear to tire, bullheaded from the moment it awakens until death. Although it does not appear to sleep, it may curl up in a ball to roll down hills or to protect itself from intense storms. This enigmatic Illuvial has a powerful suction ability that allows it to pull in flying Morphopod prey, uncaring if other debris drifts in along the way."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/GrokkoStage1Air/GrokkoStage1Air_default_default_webp.3840x2160/GrokkoStage1Air_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/GrokkoStage1Air/GrokkoStage1Air_default_default_hls.m3u8/GrokkoStage1Air_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Lesser Air Grokko can exhale large gusts of air through its black coral horns.",
+			"The Lesser Air Grokko has been observed to put a variety of objects in its mouth, often crunching rocks, glaciers, trees, and even the lithic textures on its skin only to regenerate them again. After absorbing nutrients from the materials, it spits them back out in powdery vapour forms.",
+			"The Lesser Air Grokko is a patient but unskilled climber that scales cliffs at a rate of roughly 20 m/day. It has been observed to stumble and roll down every few weeks, knocking over other Illuvials, and then walking away unharmed."
+		],
+		"Buckley": [
+			"The Lesser Air Grokko's black horns can expel pollutants from its body and intake nutrients from the atmosphere.",
+			"The Lesser Air Grokko has a hollow skeletal structure which reduces its weight.",
+			"The Lesser Air Grokko has enlarged lungs and an adapted respiratory system that allows it to absorb up to 90% of its lung air.",
+			"The Lesser Air Grokko is a generalist feeder with a stomach adaptable to different materials. Its immune system is capable of developing defence mechanisms based on what it ingests.",
+			"The Lesser Air Grokko has an immense weight of 1200 kg, with ventilation horns that can release air and lighten its body."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		4,
+		1,
+		6,
+		3,
+		2
+	],
+	"Description": {
+		"Format": "Lesser Air Grokko smashes the ground, dealing <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Physical Damage to all enemies within {OmegaRadius}-hexes and Stunning them for {StunDuration} seconds.\r\n\r\nDamage: <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"OmegaRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Zone.RadiusUnits"
+			},
+			"StunDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Lesser Air Grokko smashes the ground, dealing 200 () Physical Damage to all enemies within 18-hexes and Stunning them for 1 seconds.\r\n\r\nDamage: 200 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 4,
+			"Health": 1,
+			"MovementSpeed": 6,
+			"OmegaPower": 3,
+			"Resistance": 2
+		}
+	}
+}

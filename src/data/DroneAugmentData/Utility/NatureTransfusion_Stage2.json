@@ -1,0 +1,72 @@
+{
+	"Name": "NatureTransfusion",
+	"Stage": 2,
+	"Type": "Simulation",
+	"Abilities": [
+		{
+			"Name": "OmegaPowerFromMaxHealthBuff",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Your Nature Units gain 2% of their Max Health as Omega Power",
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						]
+					},
+					"Targeting": {
+						"Type": "Allegiance",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						],
+						"Group": "Ally"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "OmegaPowerPercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Operation": "/",
+									"Operands": [
+										{
+											"Percentage": 12,
+											"Stat": "MaxHealth",
+											"StatSource": "Receiver"
+										},
+										10000
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Nature Transfusion II",
+	"DisplayDescription": "Your units gain 1.2% of their Max Health as Omega Power",
+	"Description": {
+		"Format": "Your units gain {HealVal}% of their Max Health as Omega Power",
+		"Parameters": {
+			"HealVal": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0].Percentage",
+				"ValueMultiplier": 0.1
+			}
+		}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [],
+		"GrantedCredits": 0
+	}
+}

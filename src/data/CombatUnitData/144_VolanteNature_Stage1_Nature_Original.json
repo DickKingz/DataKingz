@@ -1,0 +1,195 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "VolanteNature",
+	"Stage": 1,
+	"Path": "Nature",
+	"Variation": "Original",
+	"Tier": 0,
+	"CombatAffinity": "Nature",
+	"CombatClass": "Rogue",
+	"DominantCombatAffinity": "Nature",
+	"DominantCombatClass": "Rogue",
+	"SizeUnits": 3,
+	"Stats": {
+		"MaxHealth": 1050000,
+		"StartingEnergy": 40000,
+		"EnergyCost": 120000,
+		"PhysicalResist": 25,
+		"EnergyResist": 25,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 85000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 65,
+		"MoveSpeedSubUnits": 2100,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 2,
+		"OmegaRangeUnits": 2,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Nature Volante Basic Attack I",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 40
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Immunal Drop I",
+			"TotalDurationMs": 1200,
+			"Skills": [
+				{
+					"Name": "Claw slash",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 90
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										400000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Silenced",
+								"DurationMs": 1000
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Lesser Nature Volante",
+	"DisplayDescription": "Lesser Nature Volante rakes its claws at the target, dealing <AttackPhysicalDamage>400</> (<OmegaPowerPercentage></>) Physical Damage and Silencing it for 1 second.\r\n\r\nDamage: <AttackPhysicalDamage>400</> (<OmegaPowerPercentage></>)",
+	"Intro": "In the forest of Abyssal Basin, the shared canopy is thrumming with life. Every spring among the dense underbrush, Illuvials call for one another, seeking companionship with others of their kind. Once found, they must impress their potential companions with their prowess. The Lesser Nature Volante exchanges leafy gifts and enters an experimental musical trio, showing off the full repertoire of sounds they can make.",
+	"Summary": "This slender, green Illuvial with yellow eyes and a bark-encrusted body uses its webbed membranes to glide and nimble legs to leap across distances. The Lesser Nature Volante imitates sounds to scare trespassers and attract prey, using its versatile voice box to mimic various Illuvials. Adapted to its environment, it builds decorated dens, has a hypnotic effect when moving at high speeds, and possesses complex visual and respiratory systems for communication and survival.",
+	"Biology": {
+		"Physiology": "The Lesser Nature Volante has beady yellow eyes, a flat head, and a slender patchy green body with webbed membranes between its thin, stick-like limbs. Shimmering green light rises from the shiny spikes on its bark-encrusted head and back. Its slim tail curls up behind it, sprouting vivid purple petals along its sides. With big, brown, chunky claws on its feet, the Lesser Nature Volante can spring across far distances with its nimble legs. Its striped membranes help it glide in the air as it moves.",
+		"Behaviour": "The Lesser Nature Volante imitates the noises other Illuvials make to scare trespassers from its den. From the grunts of Grokkos to the chest-thumping of Monikers, the Lesser Nature Volante has a versatile voice box that can nail any sound. It uses this ability to attract Morphopod prey for itself and companions of the same species. After it hunts, it teleports to a more secluded area where it can rest after expending energy on its calls."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/VolanteStage1Nature/VolanteStage1Nature_default_default_webp.3840x2160/VolanteStage1Nature_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/VolanteStage1Nature/VolanteStage1Nature_default_default_hls.m3u8/VolanteStage1Nature_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Lesser Nature Volante is an agile and flexible Illuvial that has been observed dancing. It conducts a series of head shakes and tail swings, twisting its entire body and swivelling its eyes in a bizarre display.",
+			"The Lesser Nature Volante builds a uniquely decorated den with plant sap, colourful leaves, or petals. Its nature affinity helps it to preserve the life of these organic items.",
+			"The Lesser Nature Volante appears to have close relationships with the Greater Nature Volante and the Exalted Nature Volante."
+		],
+		"Buckley": [
+			"The Lesser Nature Volante's patterned membranes are specially adapted to create a hypnotic effect when it is moving at high speeds, confusing other organic life forms while it accelerates to its destination.",
+			"The Lesser Nature Volante's tail petals increase in vibrancy in the sun. In the absence of light, it has an internal metabolic mechanism that causes the luminous spikes on its back to grow taller to compensate.",
+			"The Lesser Nature Volante's eyes can detect polarized light which is invisible to many other life forms. This ability allows them to distinguish between different bodies of water so they may forage for aquatic plants more effectively.",
+			"The Lesser Nature Volante has complex markings of varying vibrancy within the green patches of its body that can only be seen in polarized light.",
+			"The Lesser Nature Volante has a secondary respiratory system, with an additional oral cavity dedicated to producing more complex sounds."
+		]
+	},
+	"TraitOrderLegacy": [
+		2,
+		1,
+		3,
+		6,
+		4,
+		5
+	],
+	"Description": {
+		"Format": "Lesser Nature Volante rakes its claws at the target, dealing <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Physical Damage and Silencing it for {EffectDuration} second.\r\n\r\nDamage: <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"EffectDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Lesser Nature Volante rakes its claws at the target, dealing 400 () Physical Damage and Silencing it for 1 second.\r\n\r\nDamage: 400 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 2,
+			"AttackSpeed": 1,
+			"Health": 3,
+			"MovementSpeed": 6,
+			"OmegaPower": 4,
+			"Resistance": 5
+		}
+	}
+}

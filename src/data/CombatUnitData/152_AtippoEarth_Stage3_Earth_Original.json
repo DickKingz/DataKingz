@@ -1,0 +1,299 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "AtippoEarth",
+	"Stage": 3,
+	"Path": "Earth",
+	"Variation": "Original",
+	"Tier": 0,
+	"CombatAffinity": "Earth",
+	"CombatClass": "Empath",
+	"DominantCombatAffinity": "Earth",
+	"DominantCombatClass": "Empath",
+	"SizeUnits": 5,
+	"Stats": {
+		"MaxHealth": 1850000,
+		"StartingEnergy": 40000,
+		"EnergyCost": 140000,
+		"PhysicalResist": 45,
+		"EnergyResist": 40,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 135000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 60,
+		"MoveSpeedSubUnits": 2000,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 40,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Earth Atippo Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 45
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 8000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Knoll III",
+			"TotalDurationMs": 2000,
+			"Skills": [
+				{
+					"Name": "Orb pulse",
+					"Targeting": {
+						"Type": "Self",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 60
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 24,
+						"DurationMs": 4000,
+						"FrequencyMs": 1000,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 100,
+					"ChannelTimeMs": 2000,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Debuff",
+								"Stat": "AttackSpeed",
+								"DurationMs": 2500,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										{
+											"Percentage": 20,
+											"Stat": "AttackSpeed",
+											"StatSource": "Receiver"
+										},
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										200000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Shield Allies",
+					"PercentageOfAbilityDuration": 0,
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 0
+					},
+					"Targeting": {
+						"Type": "InZone",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						],
+						"Group": "Ally",
+						"RadiusUnits": 24,
+						"Self": true
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "SpawnShield",
+								"DurationMs": 4000,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										200000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Exalted Earth Atippo",
+	"DisplayDescription": "Exalted Earth Atippo throws its orb into the air, granting all allies within 24-hexes a <StartingShield>200</> (<OmegaPowerPercentage></>) Shield for 4 seconds. Enemies hit by the orb take <AttackEnergyDamage>200</> (<OmegaPowerPercentage></>) Energy Damage and reducing their Attack Speed by <AttackSpeed>20</> (<OmegaPowerPercentage></>) for 2.5 seconds.\r\n\r\nShield: <StartingShield>200</> (<OmegaPowerPercentage></>)\r\nDamage: <AttackEnergyDamage>200</> (<OmegaPowerPercentage></>)\r\nAttack Speed: <AttackSpeed>20%</> (<OmegaPowerPercentage></>)",
+	"Intro": "The sands of Crystal Shores are made of fine crystal dust grounded down from the many glittering structures in the region. There are millions of shard pieces in the Crystal dunes that are worn down from weather and time. However, many of them are still sharp enough to injure the creatures of this region. Fortunately, the Exalted Earth Atippo can heal itself easily, so it continues playing without a care, scooping sand into its horn.",
+	"Summary": "The Exalted Earth Atippo inhabits Crystal Shores, and uses its large scoop-shaped horn to play and gather sand. Distinguished by its purple, rock-textured horn and a vibrant pink orb, the Atippo has rock plates on its body and stout legs with small black claws. The Atippo's horn functions as an antenna for detecting vibrations, and it communicates using high-frequency sounds, while its abilities include blasting light at opponents and granting allies energy boosts.",
+	"Biology": {
+		"Physiology": "The Exalted Earth Atippo's crowning glory is a large, scoop-shaped horn on its head that's roughly the same size as the rest of its body. It balloons out like a collapsed mushroom, purple in colour with a knobbed grooved texture the texture of rock. Floating above the horn is a vibrant pink orb, pulsing with light just like the luminous dots drifting from its equally pink tail. Its back is covered with rock plates and there are other smaller plates on various parts of its body. Standing on four stout legs with small black claws, the Exalted Earth Atippo looks up with its yellow eyes, twitching its thin ears.",
+		"Behaviour": "The Exalted Earth Atippo is a playful Illuvial who enjoys shooting floating shards out of the sky. It can be found digging up sand with its horn and creating makeshift craters to rest in. Occasionally, the Exalted Earth Atippo builds mounds of sand and crystal shards with others of its kind, working together to gather fragments across the region. These distinct crystals attract Morphopod prey, allowing them to hunt large quantities of prey together. "
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/AtippoStage3Earth/AtippoStage3Earth_default_default_webp.3840x2160/AtippoStage3Earth_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/AtippoStage3Earth/AtippoStage3Earth_default_default_hls.m3u8/AtippoStage3Earth_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Exalted Earth Atippo leaves ethereal patterned grooves in the dunes as it walks. Although these markings disappear quickly with the wind, when another Illuvial comes across it, they are more likely to stop and rest there.",
+			"The Exalted Earth Atippo gathers in groups to collect sand and crystal shards into massive mounds. Some of the biggest dunes in Crystal Shores were created by Earth Atippos.",
+			"The Exalted Earth Atippo spends most of its time lying down, sinking in the sand to cool down its body."
+		],
+		"Buckley": [
+			"The Exalted Earth Atippo's respiratory system functions by taking in crystal dust from the air through its horn and using an internal pressure valve to produce and release bacteria into the sand.",
+			"The Exalted Earth Atippo's luminous orb can emit a layer of sound that is a higher frequency than the hearing range of most organic life forms, allowing it to communicate discreetly with others of its kind.",
+			"The Exalted Earth Atippo's scoop-shaped horn processes vibratory sensations and functions as a large antenna for detecting the electromagnetic impulse of life around it. The closer it is to the ground, the stronger the vibrations and the richer the natural sound it detects.",
+			"The Exalted Earth Atippo has mineral deposits infused in its skeleton that increase its density and lower its center of gravity.",
+			"The Exalted Earth Atippo's internal organs are protected by a layer of earth and stone, making it nearly impervious to physical trauma. However, excessive moisture can compromise this protection, leading to bloating and affecting its efficiency."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		2,
+		3,
+		6,
+		1,
+		4
+	],
+	"Description": {
+		"Format": "Exalted Earth Atippo throws its orb into the air, granting all allies within {OmegaRadius}-hexes a <StartingShield>{ShieldValue}</> (<OmegaPowerPercentage></>) Shield for {ShieldDuration} seconds. Enemies hit by the orb take <AttackEnergyDamage>{OrbDamage}</> (<OmegaPowerPercentage></>) Energy Damage and reducing their Attack Speed by <AttackSpeed>{ASVal}</> (<OmegaPowerPercentage></>) for {EffectDuration} seconds.\r\n\r\nShield: <StartingShield>{ShieldValue}</> (<OmegaPowerPercentage></>)\r\nDamage: <AttackEnergyDamage>{OrbDamage}</> (<OmegaPowerPercentage></>)\r\nAttack Speed: <AttackSpeed>{ASVal}%</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Zone.RadiusUnits"
+			},
+			"ShieldValue": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"ShieldDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Zone.DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"OrbDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"ASVal": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0].Percentage",
+				"ValueMultiplier": 1.0
+			},
+			"EffectDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Exalted Earth Atippo throws its orb into the air, granting all allies within 24-hexes a 200 () Shield for 4 seconds. Enemies hit by the orb take 200 () Energy Damage and reducing their Attack Speed by 20 () for 2.5 seconds.\r\n\r\nShield: 200 ()\r\nDamage: 200 ()\r\nAttack Speed: 20% ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 2,
+			"Health": 3,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 4
+		}
+	}
+}

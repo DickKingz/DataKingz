@@ -1,0 +1,203 @@
+{
+	"IsDisabled": true,
+	"UnitType": "Illuvial",
+	"Line": "Dummy1",
+	"Stage": 1,
+	"Path": "",
+	"Variation": "",
+	"Tier": 1,
+	"CombatAffinity": "Nature",
+	"CombatClass": "Empath",
+	"DominantCombatAffinity": "Nature",
+	"DominantCombatClass": "Empath",
+	"SizeUnits": 3,
+	"Stats": {
+		"MaxHealth": 900000,
+		"StartingEnergy": 80000,
+		"EnergyCost": 220000,
+		"PhysicalResist": 25,
+		"EnergyResist": 25,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 0,
+		"AttackEnergyDamage": 50000,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 70,
+		"MoveSpeedSubUnits": 1750,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 40,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Basic Attack",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 35
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 8000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Rejuvenasis",
+			"TotalDurationMs": 3000,
+			"Skills": [
+				{
+					"Name": "Turtle zone",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 5,
+						"DurationMs": 2900,
+						"FrequencyMs": 500,
+						"GrowthRateSubUnits": 2500,
+						"MaxRadiusUnits": 25,
+						"ApplyOnce": false
+					},
+					"PercentageOfAbilityDuration": 100,
+					"ChannelTimeMs": 3000,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantHeal",
+								"HealType": "Normal",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										{
+											"Value": 40000,
+											"IsUsedAsPercentage": false
+										},
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										{
+											"Value": 25000,
+											"IsUsedAsPercentage": false
+										},
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Root",
+								"ActivationsUntilExpiry": 1,
+								"DurationMs": 4000
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Dummy 1",
+	"ImageURL": "",
+	"AnimationURL": "",
+	"Facts": {
+		"Kol": [
+			""
+		],
+		"Buckley": [
+			""
+		]
+	},
+	"Intro": "",
+	"Summary": "",
+	"Biology": {
+		"Physiology": "",
+		"Behaviour": ""
+	}
+}

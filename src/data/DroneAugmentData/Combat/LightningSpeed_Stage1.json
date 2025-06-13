@@ -1,0 +1,73 @@
+{
+	"Name": "LightningSpeed",
+	"Stage": 1,
+	"Type": "Simulation",
+	"Abilities": [
+		{
+			"Name": "All allied units Move and Attack 10% Faster",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "All allied units Move and Attack 10% Faster",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Allegiance",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						],
+						"Group": "Ally"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "AttackSpeed",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackSpeed",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "MoveSpeedSubUnits",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "MoveSpeedSubUnits",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Lightning Speed I",
+	"DisplayDescription": "All allied units Move and Attack 10% Faster",
+	"Description": {
+		"Format": "All allied units Move and Attack {ASMSVal}% Faster",
+		"Parameters": {
+			"ASMSVal": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].Expression.Percentage"
+			}
+		}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [],
+		"GrantedCredits": 0
+	}
+}

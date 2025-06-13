@@ -1,0 +1,21 @@
+{
+	"Name": "Granite",
+	"Stage": 3,
+	"Type": "Game",
+	"DisplayName": "Granite Matrix",
+	"DisplayDescription": "Gain a Granite Imprint.",
+	"Description": {
+		"Format": "Gain a Granite Imprint.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Granite",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

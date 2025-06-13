@@ -1,0 +1,96 @@
+{
+	"Name": "RefreshTheFlow",
+	"Stage": 1,
+	"Type": "Simulation",
+	"Abilities": [
+		{
+			"Name": "Your Water Units refund 10% of Energy Cast on Omega.",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Your Water Units refund 10% of Energy Cast on Omega.",
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						]
+					},
+					"Targeting": {
+						"Type": "Allegiance",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						],
+						"Group": "Ally"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "SpawnMark",
+								"MarkType": "Beneficial",
+								"DurationMs": -1,
+								"AttachedAbilities": [
+									{
+										"Name": "TidalEconomy - Sub Ability",
+										"ActivationTrigger": {
+											"TriggerType": "OnActivateXAbilities",
+											"AbilityTypes": [
+												"Omega"
+											],
+											"EveryX": true,
+											"NumberOfAbilitiesActivated": 1
+										},
+										"TotalDurationMs": 0,
+										"Skills": [
+											{
+												"Name": "TidalEconomy - Refund Energy",
+												"Deployment": {
+													"Type": "Direct"
+												},
+												"Targeting": {
+													"Type": "Self"
+												},
+												"EffectPackage": {
+													"Effects": [
+														{
+															"Type": "InstantEnergyGain",
+															"Expression": {
+																"Percentage": 10,
+																"Stat": "EnergyCost",
+																"StatSource": "Sender"
+															}
+														}
+													]
+												}
+											}
+										]
+									}
+								]
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Refresh the Flow I",
+	"DisplayDescription": "Your units refund 10% of Energy Cost on Omega.",
+	"Description": {
+		"Format": "Your units refund {RefundVal}% of Energy Cost on Omega.",
+		"Parameters": {
+			"RefundVal": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].AttachedAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Percentage"
+			}
+		}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [],
+		"GrantedCredits": 0
+	}
+}

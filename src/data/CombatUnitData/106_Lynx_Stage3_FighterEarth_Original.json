@@ -1,0 +1,192 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Lynx",
+	"Stage": 3,
+	"Path": "FighterEarth",
+	"Variation": "Original",
+	"Tier": 2,
+	"CombatAffinity": "Earth",
+	"CombatClass": "Fighter",
+	"DominantCombatAffinity": "Earth",
+	"DominantCombatClass": "Fighter",
+	"SizeUnits": 7,
+	"Stats": {
+		"MaxHealth": 2300000,
+		"StartingEnergy": 40000,
+		"EnergyCost": 80000,
+		"PhysicalResist": 60,
+		"EnergyResist": 55,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 170000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 80,
+		"MoveSpeedSubUnits": 2500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 5,
+		"OmegaRangeUnits": 5,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Fighter Earth Lynx Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 38
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Unyielding Maul",
+			"TotalDurationMs": 1500,
+			"Skills": [
+				{
+					"Name": "Maul",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 69
+					},
+					"PercentageOfAbilityDuration": 80,
+					"EffectPackage": {
+						"Attributes": {
+							"VampiricPercentage": 30
+						},
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										825000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Relentless Terralynx",
+	"DisplayDescription": "Relentless Terralynx mauls their target, dealing <AttackPhysicalDamage>825</> (<OmegaPowerPercentage></>) Physical Damage and healing for <Omnivamp>30%</> of the damage dealt.\r\n\r\nDamage: <AttackPhysicalDamage>825</> (<OmegaPowerPercentage></>)",
+	"Intro": "The steepest climbs in Shardbluff Labyrinth are an undertaking that requires the utmost care and patience to navigate. There are many unreliable intersections that lead to dead ends. Rock pillars may move with the shifting of Tentifung, a vast, sprawling orange plant which holds up many structures within the region. The Relentless Terralynx however, throws caution to the wind and leaps quickly from one pillar to another, testing fate and alarming others along the path.",
+	"Summary": "The Relentless Terralynx fearlessly navigates Shardbluff Labyrinth's treacherous climbs, disregarding caution as it leaps between shifting rock pillars. Known for its heavy yet agile build, it boasts thick rock armor around its eyes and limbs, complemented by a glowing pink orb on its forehead. This Illuvial is a skilled climber with swift reflexes and heightened senses, using its intimidating size and speed to ambush prey.",
+	"Biology": {
+		"Physiology": "The Relentless Terralynx is heavy but swift-footed, with thick slabs of rock around its eyes and the fur hanging from its face. Its fierce eyes glow pink, just like the orb on its forehead that radiates with power. An extremely talented climber, the Relentless Terralynx is capable of moving and changing directions very quickly. It lunges on all fours, with sharp reflexes and keen senses due to its long ears and whiskers. The rock armour on its limbs and surrounding its tail gives it an extra edge in battle when it lashes out with its shining claws.",
+		"Behaviour": "The Relentless Terralynx intimidates other Illuvials because of its immense mass and speed, which is a deadly combination. It can charge into enemies before they know a fight is coming and carve into them with luminous claws. One of the most aggressive Lynxes, the Relentless Terralynx is known to prowl its territory, searching for prey. It uses its massive weight to overwhelm its prey and prevent them from escaping."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3FighterEarth/LynxStage3FighterEarth_default_default_webp.3840x2160/LynxStage3FighterEarth_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3FighterEarth/LynxStage3FighterEarth_default_default_hls.m3u8/LynxStage3FighterEarth_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Relentless Terralynx has been observed taunting other Illuvials, faking pounces and scaring them before unleashing its actual attack.",
+			"The Relentless Terralynx can sense prey hiding behind rock and crystals using its superior sense of hearing.",
+			"The Relentless Terralynx's limbs are extremely limber, capable of fitting through narrow openings and climbing up or down smooth walls."
+		],
+		"Buckley": [
+			"The Relentless Terralynx has a robust metabolism that allows it to expend energy quickly and move relatively fast despite its heavy weight.",
+			"The Relentless Terralynx is covered in a regenerative crust which is capable of regrowing after sustaining major damage in battle.",
+			"The Relentless Terralynx has highly radioactive claws that emit pulsing waves of energy.",
+			"The Relentless Terralynx has specialised cones in each of its eyes that detect different types of light waves. Its left eye can detect infrared light and its right eye can detect interdimensional rifts, allowing it to respond to heat signatures and movement from other dimensions.",
+			"The Relentless Terralynx's nervous system is directly connected to the luminous orb upon its forehead, which can light up in varying degrees of illumination corresponding to its mental activity, particularly those involving ambushing prey."
+		]
+	},
+	"TraitOrderLegacy": [
+		2,
+		1,
+		4,
+		6,
+		3,
+		5
+	],
+	"Description": {
+		"Format": "Relentless Terralynx mauls their target, dealing <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Physical Damage and healing for <Omnivamp>{Vampiric}%</> of the damage dealt.\r\n\r\nDamage: <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"Vampiric": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Attributes.VampiricPercentage"
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Relentless Terralynx mauls their target, dealing 825 () Physical Damage and healing for 30% of the damage dealt.\r\n\r\nDamage: 825 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 2,
+			"AttackSpeed": 1,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 3,
+			"Resistance": 5
+		}
+	}
+}

@@ -1,0 +1,55 @@
+{
+	"Name": "Bulwark",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "SynergyBonus",
+	"CombatClasses": {
+		"Bulwark": 1
+	},
+	"Abilities": [
+		{
+			"Name": "Bulwark Imprint Stats",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Bulwark Imprint Stat List",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "PhysicalResist",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 10
+							},
+							{
+								"Type": "Buff",
+								"Stat": "EnergyResist",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 10
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Bulwark Imprint",
+	"DisplayDescription": "The holder gains the Bulwark Class and 10 <Resistance>Resistances</>.",
+	"Description": {
+		"Format": "The holder gains the Bulwark Class and 10 <Resistance>Resistances</>.",
+		"Parameters": {}
+	},
+	"DisplayDescriptionNormalized": "The holder gains the Bulwark Class and 10 Resistances."
+}

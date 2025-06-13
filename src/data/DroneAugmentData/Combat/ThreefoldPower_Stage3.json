@@ -1,0 +1,81 @@
+{
+	"Name": "ThreefoldPower",
+	"Stage": 3,
+	"Type": "Simulation",
+	"Abilities": [
+		{
+			"Name": "ThreefoldPower 3 - Ability",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "ThreefoldPower 3 - Skill",
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						]
+					},
+					"Targeting": {
+						"Type": "Tier",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						],
+						"Group": "Ally",
+						"Tier": 3,
+						"Num": 3
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "MaxHealth",
+								"DurationMs": -1,
+								"Expression": 500000
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackSpeed",
+								"DurationMs": -1,
+								"FrequencyMs": 1000,
+								"Expression": {
+									"Percentage": 50,
+									"Stat": "AttackSpeed",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "ThreefoldPower III",
+	"DisplayDescription": "3 random Tier 3 Units gain 500 Health and 50% Attack Speed.",
+	"Description": {
+		"Format": "{UnitNum} random Tier 3 Units gain {HPVal} Health and {ASVal}% Attack Speed.",
+		"Parameters": {
+			"UnitNum": {
+				"ParameterPath": "Abilities[0].Skills[0].Targeting.Num"
+			},
+			"HPVal": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].Expression",
+				"ValueMultiplier": 0.001
+			},
+			"ASVal": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[1].Expression.Percentage"
+			}
+		}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [],
+		"GrantedCredits": 0
+	}
+}

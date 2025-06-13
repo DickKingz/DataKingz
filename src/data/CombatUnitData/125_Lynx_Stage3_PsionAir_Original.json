@@ -1,0 +1,209 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Lynx",
+	"Stage": 3,
+	"Path": "PsionAir",
+	"Variation": "Original",
+	"Tier": 2,
+	"CombatAffinity": "Air",
+	"CombatClass": "Psion",
+	"DominantCombatAffinity": "Air",
+	"DominantCombatClass": "Psion",
+	"SizeUnits": 7,
+	"Stats": {
+		"MaxHealth": 1900000,
+		"StartingEnergy": 60000,
+		"EnergyCost": 120000,
+		"PhysicalResist": 40,
+		"EnergyResist": 40,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 180000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 60,
+		"MoveSpeedSubUnits": 2500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 5,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 50,
+		"OmegaRangeUnits": 50,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Psion Air Lynx Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 60
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 10000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Mistral Sling",
+			"TotalDurationMs": 2500,
+			"Skills": [
+				{
+					"Name": "Wave",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 75
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 10,
+						"DurationMs": 3000,
+						"FrequencyMs": 100,
+						"MovementSpeedSubUnits": 8000,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 90,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										1000000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Arcane Zephyrlynx",
+	"DisplayDescription": "Arcane Zephyrlynx sends out a wave towards its target, dealing <AttackEnergyDamage>1,000</> (<OmegaPowerPercentage></>) Energy Damage to all enemies hit.\r\n\r\nDamage: <AttackEnergyDamage>1,000</> (<OmegaPowerPercentage></>)",
+	"Intro": "At the centre of Halcyon Sea, there is a remarkable structure known as Takifugu's Dome. It is the lowest point in the region, where countless streams and waterfalls meet at the centre. The waves are carried over by a constant breeze, which ruffles the Arcane Zephyrlynx's cloud-tipped ears and billowing white mane. The Arcane Zephyrlynx is the most powerful by the windy shores, where it stalks water Illuvials from a distance, blasting them for sport and then swiftly disappearing behind rock and coral.",
+	"Summary": "In the center of Halcyon Sea, Takifugu's Dome hosts the powerful Arcane Zephyrlynx. This Illuvial, with its thick coat and ethereal mist, uses its sharp vision and wind manipulation to strike from afar. Equipped with a complex timing device and an internal turbine, it can slow time, aim precisely, and summon natural disasters by manipulating air. Its advanced sensory systems enable it to detect minute environmental changes.",
+	"Biology": {
+		"Physiology": "The Arcane Zephyrlynx has a slim, almost delicate build, which allows it to leap exceptionally high with its four, light-footed legs. It appears bigger due to its thick coat and the pillowy clouds that surround its neck. Upon its long ears are visible wisps of wind with an ethereal, frosted orb floating between them. They stand in stark contrast to the angular fur hanging down from both sides of its face. Dark teal tendrils form elaborate stripe patterns along its coat, painting vivid patterns upon its body and giving its calm, white eyes a masked appearance. A misty wind is always present upon the Arcane Zephyrlynx, leaving a crisp white trail from its ears, mane, and tail.",
+		"Behaviour": "The Arcane Zephyrlynx preys on water Illuvials and uses a long-range hunting strategy to strike from afar.   During a hunt, the Arcane Zephyrlynx positions itself in places other Illuvials may find difficult to reach, using its agile legs to climb up and attack from a distance. The Illuvials it preys on may be formidable opponents face-to-face, but using its long-range strategy gives it a significant advantage. With extremely sharp eyes and a far scope of vision, the Arcane Zephyrlynx is capable of discerning a moving target from a vast distance. It also uses its ability to manipulate small bursts of wind to aid its hunt, improving the accuracy of its strikes."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3PsionAir/LynxStage3PsionAir_default_default_webp.3840x2160/LynxStage3PsionAir_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3PsionAir/LynxStage3PsionAir_default_default_hls.m3u8/LynxStage3PsionAir_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"During a hunt, the Arcane Zephyrlynx positions itself in places other Illuvials may find difficult to reach, using its agile legs to climb up and attack from a distance.",
+			"The Arcane Zephyrlynx can manipulate small bursts of wind with its movements to aid its hunt.",
+			"The Arcane Zephyrlynx has extremely sharp eyes and a far scope of vision, capable of discerning a moving target from a vast distance."
+		],
+		"Buckley": [
+			"The Arcane Zephyrlynx has a complex timing device in its nervous system that is capable of slowing and speeding up its perception of time, allowing it to aim precisely in nanoseconds and hold a position in stillness for prolonged periods.",
+			"The Arcane Zephyrlynx has an internal turbine that uses wind energy to buffet air. It is capable of manipulating both hot and cold air to summon natural disasters.",
+			"The Arcane Zephyrlynx's eyes have large lenses that are specially adapted to enable them to hone in on targets across vast distances. Its dual foveas and its retinas, which are densely packed with cones, allow it to focus on its peripheral vision.",
+			"The Arcane Zephyrlynx has an aerorespiratory system that enables it to direct scents in the air towards its nose and sounds towards its ears, allowing it to differentiate minute changes in its environment that are undetectable to most Illuvials.",
+			"The Arcane Zephyrlynx's long ears are capable of directing the flow of energy in the sphere upon its head, enabling it to respond quickly to target sounds in its environment."
+		]
+	},
+	"TraitOrderLegacy": [
+		3,
+		2,
+		4,
+		6,
+		1,
+		5
+	],
+	"Description": {
+		"Format": "Arcane Zephyrlynx sends out a wave towards its target, dealing <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Energy Damage to all enemies hit.\r\n\r\nDamage: <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Arcane Zephyrlynx sends out a wave towards its target, dealing 1,000 () Energy Damage to all enemies hit.\r\n\r\nDamage: 1,000 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 3,
+			"AttackSpeed": 2,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 5
+		}
+	}
+}

@@ -1,0 +1,89 @@
+{
+	"Name": "Shock",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "SynergyBonus",
+	"CombatAffinities": {
+		"Shock": 1
+	},
+	"Abilities": [
+		{
+			"Name": "Shock Imprint Stats",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Shock Imprint Stat List",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "AttackSpeed",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackSpeed",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackPhysicalDamage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackEnergyDamage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackPureDamage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackPureDamage",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Shock Imprint",
+	"DisplayDescription": "The holder gains the Shock Composite Affinity, 10% <AttackSpeed>Attack Speed</> and 10% <AttackDamage>Attack Damage</>.",
+	"Description": {
+		"Format": "The holder gains the Shock Composite Affinity, 10% <AttackSpeed>Attack Speed</> and 10% <AttackDamage>Attack Damage</>.",
+		"Parameters": {}
+	},
+	"DisplayDescriptionNormalized": "The holder gains the Shock Composite Affinity, 10% Attack Speed and 10% Attack Damage."
+}

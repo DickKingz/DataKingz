@@ -1,0 +1,311 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Lynx",
+	"Stage": 3,
+	"Path": "EmpathWater",
+	"Variation": "Original",
+	"Tier": 2,
+	"CombatAffinity": "Water",
+	"CombatClass": "Empath",
+	"DominantCombatAffinity": "Water",
+	"DominantCombatClass": "Empath",
+	"SizeUnits": 7,
+	"Stats": {
+		"MaxHealth": 2050000,
+		"StartingEnergy": 80000,
+		"EnergyCost": 160000,
+		"PhysicalResist": 50,
+		"EnergyResist": 55,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 150000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 65,
+		"MoveSpeedSubUnits": 2500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 40,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Empath Water Lynx Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 55
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 10000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Rippling Swoon",
+			"TotalDurationMs": 1000,
+			"Skills": [
+				{
+					"Name": "Zone Area Healing",
+					"Targeting": {
+						"Type": "Self",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 0
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 28,
+						"DurationMs": 4000,
+						"FrequencyMs": 1000,
+						"GrowthRateSubUnits": 0,
+						"ApplyOnce": false
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantHeal",
+								"HealType": "Normal",
+								"Expression": {
+									"Operation": "%",
+									"Operands": [
+										{
+											"Operation": "*",
+											"Operands": [
+												4,
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												}
+											]
+										},
+										{
+											"Operation": "-",
+											"Operands": [
+												{
+													"Stat": "MaxHealth",
+													"StatSource": "Receiver"
+												},
+												{
+													"Stat": "CurrentHealth",
+													"StatSource": "Receiver"
+												}
+											]
+										}
+									]
+								}
+							},
+							{
+								"Type": "InstantHeal",
+								"HealType": "Normal",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										60000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "%",
+									"Operands": [
+										{
+											"Operation": "*",
+											"Operands": [
+												4,
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												}
+											]
+										},
+										{
+											"Operation": "-",
+											"Operands": [
+												{
+													"Stat": "MaxHealth",
+													"StatSource": "Receiver"
+												},
+												{
+													"Stat": "CurrentHealth",
+													"StatSource": "Receiver"
+												}
+											]
+										}
+									]
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										60000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Virtuous Hydrolynx",
+	"DisplayDescription": "Virtuous Hydrolynx creates a 28-hexes zone for 4 seconds, healing allies for <MaxHealth>60</> (<OmegaPowerPercentage></>) Health + <MaxHealth>4%</> (<OmegaPowerPercentage></>) of their missing Health per second.\r\n\r\nEnemies within the zone take <AttackEnergyDamage>60</> (<OmegaPowerPercentage></>) + <AttackEnergyDamage>4%</> (<OmegaPowerPercentage></>) of their missing Health as Energy Damage per second.\r\n\r\nHeal: <MaxHealth>60</> (<OmegaPowerPercentage></>) + <MaxHealth>4%</> (<MaxHealth></><OmegaPowerPercentage></>)\r\n\r\nDamage: <AttackEnergyDamage>60</> (<OmegaPowerPercentage></>) + <AttackEnergyDamage>4%</> (<MaxHealth></><OmegaPowerPercentage></>)",
+	"Intro": "Among the lush greenery of Brightland Steppes, freshwater channels stream across mossy rocks and forest canopies. These waterways are as abundant as the rolling clouds above the grassy fields. A flowing network across the region, the gentle sound of rushing water is always near. Clean enough to drink, they may even have slight traces of healing properties left behind by the Virtuous Hydrolynx.",
+	"Summary": "The Virtuous Hydrolynx possesses a serene aura with luminous blue markings and a glowing sphere above its head. It seamlessly blends into water bodies, leaving a trail of dampness on land. Docile and sociable, it exudes calming energy through purring but can turn hostile when its allies are threatened. Capable of inducing sleep with its soothing purrs, it hides in water and surprises foes with its sudden appearances.",
+	"Biology": {
+		"Physiology": "The Virtuous Hydrolynx holds a sublime power above its head that courses through its body in luminous blue, from its thick mane to its tail. Its lengthy, slender ears tilt forward under the suspended weight of a small but mighty glowing sphere, embedded with life-giving abilities. Those who meet its soothing eyes experience a sense of peace and fulfilment that gives clarity to the soul. In the same luminous blue, there are soothing drop-shaped markings along the layers of fur hanging from the sides of its face. Its front legs are clawed with a similar shifting pattern of reflective streaks, like sunlight on water. A wispy mist exudes from its soft mane, drifting above its coat of white and loopy blue markings.",
+		"Behaviour": "The Virtuous Hydrolynx can seemingly disappear in pools of water, which makes it quite difficult to find. On land, it drips a watery pool around its feet, leaving a trail of wetness wherever it goes. The most docile of the Lynx family, the Virtuous Hydrolynx stays close to its companions, purring frequently to keep itself and others calm. Generally amiable, it emits pacifying energy with the sound of its rumbling. If it encounters an enemy that threatens its allies, its temperament changes to one of hostility."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3EmpathWater/LynxStage3EmpathWater_default_default_webp.3840x2160/LynxStage3EmpathWater_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3EmpathWater/LynxStage3EmpathWater_default_default_hls.m3u8/LynxStage3EmpathWater_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Virtuous Hydrolynx can be found slipping into streams and moving fluidly with the water.",
+			"The Virtuous Hydrolynx is never far from its companions, even if it hides behind waterfalls or submerges into ponds. It can take aggressors by surprise by seemingly appearing out of nowhere.",
+			"When the Virtuous Hydrolynx is content, it can induce a sense of peace with its purring that is so strong, that those nearby fall asleep."
+		],
+		"Buckley": [
+			"The Virtuous Hydrolynx has a unique genotype that allows its hair follicle pigments to be responsive to water, meaning its fur coat can emulate the colour of any body of water it touches and conceal its physical form.",
+			"The Virtuous Hydrolynx's luminous orb is capable of communicating with others of its kind by sending a wave of energy that triggers biochemical changes and stimulates emotions.",
+			"The Virtuous Hydrolynx secretes nutrients from its paws among various pools, where it may be absorbed by local flora and fauna.",
+			"The Virtuous Hydrolynx's ears and nose have specialised receptors that are hyper-attuned to biological changes, including heartbeats, hormonal shifts, illness, and injury.",
+			"The Virtuous Hydrolynx has a unique, dual-layered fur coat that functions in symbiosis with microbes which are capable of absorbing nutrients from its environment."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		2,
+		3,
+		6,
+		1,
+		4
+	],
+	"Description": {
+		"Format": "Virtuous Hydrolynx creates a {OmegaRadius}-hexes zone for {OmegaDuration} seconds, healing allies for <MaxHealth>{HealFlatValue}</> (<OmegaPowerPercentage></>) Health + <MaxHealth>{HealValue}%</> (<OmegaPowerPercentage></>) of their missing Health per second.\r\n\r\nEnemies within the zone take <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) + <AttackEnergyDamage>{HealValue}%</> (<OmegaPowerPercentage></>) of their missing Health as Energy Damage per second.\r\n\r\nHeal: <MaxHealth>{HealFlatValue}</> (<OmegaPowerPercentage></>) + <MaxHealth>{HealValue}%</> (<MaxHealth></><OmegaPowerPercentage></>)\r\n\r\nDamage: <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) + <AttackEnergyDamage>{HealValue}%</> (<MaxHealth></><OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Zone.RadiusUnits"
+			},
+			"OmegaDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Zone.DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"HealFlatValue": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"HealValue": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0].Operands[0]"
+			},
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[3].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Virtuous Hydrolynx creates a 28-hexes zone for 4 seconds, healing allies for 60 () Health + 4% () of their missing Health per second.\r\n\r\nEnemies within the zone take 60 () + 4% () of their missing Health as Energy Damage per second.\r\n\r\nHeal: 60 () + 4% ()\r\n\r\nDamage: 60 () + 4% ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 2,
+			"Health": 3,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 4
+		}
+	}
+}

@@ -1,0 +1,271 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "PoodleMoth",
+	"Stage": 3,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 3,
+	"CombatAffinity": "Inferno",
+	"CombatClass": "Phantom",
+	"DominantCombatAffinity": "Fire",
+	"DominantCombatClass": "Psion",
+	"SizeUnits": 6,
+	"Stats": {
+		"MaxHealth": 1850000,
+		"StartingEnergy": 100000,
+		"EnergyCost": 180000,
+		"PhysicalResist": 40,
+		"EnergyResist": 45,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 150000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 80,
+		"MoveSpeedSubUnits": 1950,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 60,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "PoodleMoth Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 40
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"SpeedSubUnits": 10000,
+						"IsHoming": true,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Pyrofield III",
+			"TotalDurationMs": 3000,
+			"Skills": [
+				{
+					"Name": "Jumps into air",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 10,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "PlaneChange",
+								"PlaneChange": "Airborne",
+								"DurationMs": 3000
+							}
+						]
+					}
+				},
+				{
+					"Name": "Zone Damage",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 20,
+						"DurationMs": 5000,
+						"FrequencyMs": 500,
+						"Attach": true,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 0,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "DOT",
+								"DamageType": "Energy",
+								"DurationMs": 5000,
+								"FrequencyMs": 500,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										750000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "PyrofieldDash",
+					"Targeting": {
+						"Type": "DistanceCheck",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"Group": "Enemy",
+						"Lowest": false,
+						"Num": 1
+					},
+					"Deployment": {
+						"Type": "Dash",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 5
+					},
+					"PercentageOfAbilityDuration": 80,
+					"Dash": {
+						"ApplyToAll": true,
+						"IsPassthrough": true,
+						"LandBehind": true
+					},
+					"EffectPackage": {
+						"Attributes": {
+							"RotateToTarget": true
+						},
+						"Effects": []
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Monarch",
+	"DisplayDescription": "Monarch becomes Airborne and flies to the furthest enemy, leaving a 20-hexes trail of fire, dealing <AttackEnergyDamage>750</> (<OmegaPowerPercentage></>) Energy Damage over 5 seconds.\r\n\r\nDamage: <AttackEnergyDamage>750</> (<OmegaPowerPercentage></>)",
+	"Intro": "Getting lost in the maze-like tunnels beneath Crimson Waste's surface is easy. They sprawl in every direction, forming high-walled ridges that link the underground with the land above. These areas are mostly covered with falling sand swept in by the wind, but some cracks lead to the other side. Once in a while, a golden skull emerges from the darkness below, an artful pattern on the Monarch's exquisite wings.",
+	"Summary": "The Monarch navigates the labyrinthine tunnels beneath the Crimson Waste with elegance, its black coat adorned with molten gold accents and antlered horns tipped with flames. Its wings bear a striking pattern resembling a shining face, leaving luminous imprints wherever it flies. This Illuvial blends into its surroundings using luminous yellow plants, camouflaging itself while utilizing its antennae to hone in on targets for its fiery attacks.",
+	"Biology": {
+		"Physiology": "The elegant Monarch wears a sleek black coat, eyes like sunbeams and tendrils tipped in molten gold. The striking pattern on its wings mimics an ominous shining face. Its broad, antlered horns are dark like the rest, but they hold flames on their ends. Dressed like a queen, the Monarch's lavish mane has two parts, a glistening front crest with a white streak and a lavishly fluffy back with a gradient of grey. Its six legs are always perfectly poised, black as cinder, and accented with white.",
+		"Behaviour": "The Monarch's wings leave an imprint of light, and when it flies every night, it creates extraordinarily intricate luminous patterns. Its wings can shine brighter at will, and its glowing tendrils are extremely flexible, which allows it to make minute differences in its choreography. Although its dark coat blends in with the darkness, its golden markings attract Aces to follow its glow. It shows the young admirers following it around its flight pattern in order to prepare them for their own displays. The Monarch is well camouflaged and hides in patches of luminous yellow plants, using its yellow patterns as a disguise."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/PoodleMothStage3/PoodleMothStage3_default_default_webp.3840x2160/PoodleMothStage3_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/PoodleMothStage3/PoodleMothStage3_default_default_hls.m3u8/PoodleMothStage3_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Monarch's wings leave an imprint of light everywhere it flies, warning creatures who trespass its territory to stay away.",
+			"The Monarch hides in patches of luminous yellow plants when it wishes not to be seen. This is typically done as a friendly game with the Ace.",
+			"The Monarch migrates all over Crimson Waste's surface and underground, occupying different territories at different times of the year."
+		],
+		"Buckley": [
+			"The Monarch's antennae function as a honing beacon which coordinates the distance its flame must travel to hit its target.",
+			"The Monarch's nervous system is directly connected to the golden markings on the Monarch's wings, giving it enhanced perception and control over its flames.",
+			"The Monarch's wings have a specialised internal structure that allows it to store fuel for its flame, allowing it to release large torrents of fire at once.",
+			"The Monarch's six segmented legs secrete a flame-resistant solution which enables it to land on various plants without setting them on fire.",
+			"The Monarch has advanced mimicry features in its wings, with eyespots and markings that resemble a Valain skull."
+		]
+	},
+	"TraitOrderLegacy": [
+		3,
+		2,
+		4,
+		6,
+		1,
+		5
+	],
+	"Description": {
+		"Format": "Monarch becomes Airborne and flies to the furthest enemy, leaving a {OmegaRadius}-hexes trail of fire, dealing <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Energy Damage over {OmegaDuration} seconds.\r\n\r\nDamage: <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].Zone.RadiusUnits"
+			},
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"OmegaDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Monarch becomes Airborne and flies to the furthest enemy, leaving a 20-hexes trail of fire, dealing 750 () Energy Damage over 5 seconds.\r\n\r\nDamage: 750 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 3,
+			"AttackSpeed": 2,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 5
+		}
+	}
+}

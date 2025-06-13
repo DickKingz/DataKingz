@@ -1,0 +1,133 @@
+{
+	"Name": "EvasiveVeiling",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "GreaterPower",
+	"Abilities": [
+		{
+			"Name": "EvasiveVeiling_Ability1",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "EvasiveVeiling_Stats",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "PhysicalVampPercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 20
+							},
+							{
+								"Type": "Buff",
+								"Stat": "EnergyVampPercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 20
+							},
+							{
+								"Type": "Buff",
+								"Stat": "PureVampPercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 20
+							},
+							{
+								"Type": "Buff",
+								"Stat": "OmegaPowerPercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 20
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"Name": "EvasiveVeiling_Ability2",
+			"ActivationTrigger": {
+				"TriggerType": "HealthInRange",
+				"HealthLowerLimitPercentage": 25,
+				"MaxActivations": 1
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Evasive Veiling - Positive States and Attack Speed",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "PositiveState",
+								"PositiveState": "Invulnerable",
+								"DurationMs": 4000
+							},
+							{
+								"Type": "PositiveState",
+								"PositiveState": "Untargetable",
+								"DurationMs": 4000
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackSpeed",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 40,
+									"Stat": "AttackSpeed",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Evasive Veiling",
+	"DisplayDescription": "Gain <Omnivamp>20%</> <Omnivamp>Omnivamp</> and <OmegaPowerPercentage>20</> <OmegaPowerPercentage>Omega Power</>.\r\n\r\nOnce per combat, at <MaxHealth>25% Health</>, become Untargetable and Invulnerable for 4 seconds and gain <AttackSpeed>40%</> <AttackSpeed>Attack Speed</>.\r\n\r\n<Italic>Invulnerable: Cannot receive damage</>\r\n\r\n<Italic>Untargetable: Cannot be targeted by enemies</>",
+	"Description": {
+		"Format": "Gain <Omnivamp>{VampVal}%</> <Omnivamp>Omnivamp</> and <OmegaPowerPercentage>{OPVal}</> <OmegaPowerPercentage>Omega Power</>.\r\n\r\nOnce per combat, at <MaxHealth>{HealthTrigger}% Health</>, become Untargetable and Invulnerable for {Duration} seconds and gain <AttackSpeed>{ASVal}%</> <AttackSpeed>Attack Speed</>.\r\n\r\n<Italic>Invulnerable: Cannot receive damage</>\r\n\r\n<Italic>Untargetable: Cannot be targeted by enemies</>",
+		"Parameters": {
+			"HealthTrigger": {
+				"ParameterPath": "Abilities[1].ActivationTrigger.HealthLowerLimitPercentage",
+				"ValueMultiplier": 1.0
+			},
+			"Duration": {
+				"ParameterPath": "Abilities[1].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"ASVal": {
+				"ParameterPath": "Abilities[1].Skills[0].EffectPackage.Effects[2].Expression.Percentage",
+				"ValueMultiplier": 1.0
+			},
+			"OPVal": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[3].Expression",
+				"ValueMultiplier": 1.0
+			},
+			"VampVal": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[2].Expression",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Gain 20% Omnivamp and 20 Omega Power.\r\n\r\nOnce per combat, at 25% Health, become Untargetable and Invulnerable for 4 seconds and gain 40% Attack Speed.\r\n\r\nInvulnerable: Cannot receive damage\r\n\r\nUntargetable: Cannot be targeted by enemies"
+}

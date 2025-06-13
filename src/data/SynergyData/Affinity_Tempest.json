@@ -1,0 +1,231 @@
+{
+	"CombatAffinity": "Tempest",
+	"CombatAffinityComponents": [
+		"Air",
+		"Air"
+	],
+	"SynergyThresholds": [
+		2,
+		3,
+		4
+	],
+	"SynergyThresholdsAbilities": {
+		"Variables": [
+			{
+				"Name": "Tempest_EnemyEnergyCost",
+				"Values": [
+					12,
+					16,
+					20
+				]
+			},
+			{
+				"Name": "Tempest_EnergyGain",
+				"Values": [
+					6000,
+					8000,
+					12000
+				]
+			},
+			{
+				"Name": "Tempest_OmegaPowerGain",
+				"Values": [
+					3,
+					4,
+					6
+				]
+			},
+			{
+				"Name": "Tempest_RefundEnergy",
+				"Values": [
+					0,
+					0,
+					50
+				]
+			}
+		],
+		"TeamAbilities": [
+			{
+				"Name": "TempestSynergy_Ability1",
+				"ActivationTrigger": {
+					"TriggerType": "OnBattleStart"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Tempest - Enemy Cost",
+						"Deployment": {
+							"Type": "Direct",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							]
+						},
+						"Targeting": {
+							"Type": "Allegiance",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							],
+							"Group": "Enemy"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Debuff",
+									"Stat": "EnergyCost",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Tempest_EnemyEnergyCost}",
+										"Stat": "EnergyCost",
+										"StatSource": "Receiver"
+									}
+								}
+							]
+						}
+					}
+				]
+			}
+		],
+		"UnitAbilities": [
+			{
+				"Name": "TempestSYnergy_Ability2",
+				"ActivationTrigger": {
+					"TriggerType": "OnDodge",
+					"Allegiance": "Self"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Tempest - Energy on Dodge",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "Self"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "InstantEnergyGain",
+									"Expression": "{Tempest_EnergyGain}"
+								},
+								{
+									"Type": "Buff",
+									"Stat": "OmegaPowerPercentage",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": "{Tempest_OmegaPowerGain}"
+								}
+							]
+						}
+					}
+				]
+			},
+			{
+				"Name": "TempestSynergy_Ability3",
+				"ActivationTrigger": {
+					"TriggerType": "OnAssist"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Tempest - Refund Energy",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "Self"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "InstantEnergyGain",
+									"Expression": {
+										"Operation": "%",
+										"Operands": [
+											"{Tempest_RefundEnergy}",
+											{
+												"Stat": "EnergyCost",
+												"StatSource": "Receiver"
+											}
+										]
+									}
+								}
+							]
+						}
+					}
+				]
+			}
+		]
+	},
+	"IntrinsicAbilities": [],
+	"DisplayName": "Tempest",
+	"DisplayDescription": "\r\nEnemies have their <EnergyCost>Energy Cost</> increased. On Dodge, Tempest units gain <EnergyCost>Energy</> and <OmegaPowerPercentage>Omega Power</>.\r\n\r\n(4) Takedowns refund <EnergyCost>50%</> of <EnergyCost>Energy</>.\r\n",
+	"DisplayDescriptionThresholds": [
+		"Cost increased by <EnergyCost>12%</>. Gain <EnergyCost>6</><EnergyCost></> and <OmegaPowerPercentage>3</><OmegaPowerPercentage></>",
+		"Cost increased by <EnergyCost>16%</>. Gain <EnergyCost>8</><EnergyCost></> and <OmegaPowerPercentage>4</><OmegaPowerPercentage></>",
+		"Cost increased by <EnergyCost>20%</>. Gain <EnergyCost>12</><EnergyCost></> and <OmegaPowerPercentage>6</><OmegaPowerPercentage></>"
+	],
+	"Description": {
+		"Format": "\r\nEnemies have their <EnergyCost>Energy Cost</> increased. On Dodge, Tempest units gain <EnergyCost>Energy</> and <OmegaPowerPercentage>Omega Power</>.\r\n\r\n(4) Takedowns refund <EnergyCost>{Tempest_RefundEnergy}%</> of <EnergyCost>Energy</>.\r\n",
+		"Parameters": {
+			"Tempest_RefundEnergy": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[3].Values[2]",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DescriptionThresholds": {
+		"Format": "Cost increased by <EnergyCost>{Tempest_EnemyEnergyCost}%</>. Gain <EnergyCost>{Tempest_EnergyGain}</><EnergyCost></> and <OmegaPowerPercentage>{Tempest_OmegaPowerGain}</><OmegaPowerPercentage></>",
+		"Parameters": [
+			{
+				"Tempest_EnemyEnergyCost": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[0]"
+				},
+				"Tempest_EnergyGain": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[0]",
+					"ValueMultiplier": 0.001
+				},
+				"Tempest_OmegaPowerGain": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[2].Values[0]",
+					"ValueMultiplier": 1.0
+				}
+			},
+			{
+				"Tempest_EnemyEnergyCost": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[1]"
+				},
+				"Tempest_EnergyGain": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[1]",
+					"ValueMultiplier": 0.001
+				},
+				"Tempest_OmegaPowerGain": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[2].Values[1]",
+					"ValueMultiplier": 1.0
+				}
+			},
+			{
+				"Tempest_EnemyEnergyCost": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[2]"
+				},
+				"Tempest_EnergyGain": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[2]",
+					"ValueMultiplier": 0.001
+				},
+				"Tempest_OmegaPowerGain": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[2].Values[2]",
+					"ValueMultiplier": 1.0
+				}
+			}
+		]
+	},
+	"DisplayDescriptionNormalized": "Enemies have their Energy Cost increased. On Dodge, Tempest units gain Energy and Omega Power.\r\n\r\n(4) Takedowns refund 50% of Energy.",
+	"DisplayDescriptionThresholdsNormalized": [
+		"Cost increased by 12%. Gain 6 and 3",
+		"Cost increased by 16%. Gain 8 and 4",
+		"Cost increased by 20%. Gain 12 and 6"
+	]
+}

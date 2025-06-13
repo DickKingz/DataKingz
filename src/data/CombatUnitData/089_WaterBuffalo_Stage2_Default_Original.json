@@ -1,0 +1,245 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "WaterBuffalo",
+	"Stage": 2,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 1,
+	"CombatAffinity": "Toxic",
+	"CombatClass": "Bulwark",
+	"DominantCombatAffinity": "Water",
+	"DominantCombatClass": "Bulwark",
+	"SizeUnits": 5,
+	"Stats": {
+		"MaxHealth": 1900000,
+		"StartingEnergy": 20000,
+		"EnergyCost": 120000,
+		"PhysicalResist": 50,
+		"EnergyResist": 55,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 100000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 60,
+		"MoveSpeedSubUnits": 1600,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 5,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Water Buffalo Basic Attack II",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 58
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Sharpened Taunt II",
+			"TotalDurationMs": 2000,
+			"Skills": [
+				{
+					"Name": "Thorns and Health",
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"PercentageOfAbilityDuration": 0,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "Thorns",
+								"DurationMs": 4000,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										25000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Receiver"
+										}
+									]
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "MaxHealth",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										150000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Receiver"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Roar",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 40
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 22,
+						"DurationMs": 500,
+						"FrequencyMs": 500,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Taunted",
+								"DurationMs": 2500
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Caradulo",
+	"DisplayDescription": "Caradulo's horns extend, Taunting enemies in 22-hexes for 2.5 seconds, gaining <Thorns>25</> (<OmegaPowerPercentage></>) Thorns for 4 seconds and <MaxHealth>150</> (<OmegaPowerPercentage></>) Health.\r\n\r\nThorns: <Thorns>25</> (<OmegaPowerPercentage></>)\r\nHealth: <MaxHealth>150</> (<OmegaPowerPercentage></>)",
+	"Intro": "Abyssal Basin is home to an unforgiving swamp that leaves its mark on all who pass through. The ground is covered in thick mud, with wet swamp grass that clings to those who step in. Upon the topsoil, faintly lit flowers illuminate the fog. A silhouette of broad horns emerges from the hazy horizon. It's the Caradulo, who stops to sniff the blossoms before resuming its trudge through the mossy sludge.",
+	"Summary": "In the harsh swamp of Abyssal Basin, the formidable Caradulo dominates with its toxic presence, adorned with crescent horns and poison-dribbling barbs along its armored body. It carefully controls its toxins to avoid spoiling its own food. The Caradulo shapes its environment by promoting the growth of beneficial plants and decaying others, ensuring its mobility to prevent overpopulating any single area. With venomous abilities tuned to its surroundings, it uses its spear-like tail and powerful kicks to defend against threats.",
+	"Biology": {
+		"Physiology": "The Caradulo is a tough, hooved Illuvial with toxins leaking from its plated armour and the large crescent horns atop its head. Its jarring yellow eyes appear to be dripping green tears, but they are actually toxins crisscrossing in thin lines down its face. Its long ears are tipped with the same green, just like the spear point of its spiky, whip-like tail. There are poisonous barbs all along its thick hide, dribbling toxins down its sturdy legs. A single kick from the Caradulo is strong enough to unroot a tree and poison a forest.",
+		"Behaviour": "The Caradulo whips its long, spear-like tail to hunt Morphopods, and cut up plants for it to feed upon. Despite the toxins it exudes, the Caradulo has careful control over where it leaves its poison so it does not spoil its own food. It frequently stoops down to take in the little patches of growth near its hooves, taking care to avoid touching them with the green poison on the edge of its ears and tail. Sometimes herds of Caradulo lead clusters of Carablu to grazing areas, forming a protective circle around them."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/WaterBuffaloStage2/WaterBuffaloStage2_default_default_webp.3840x2160/WaterBuffaloStage2_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/WaterBuffaloStage2/WaterBuffaloStage2_default_default_hls.m3u8/WaterBuffaloStage2_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Caradulo is nature's scythe, and its poison keeps the marshes from overpopulating with any single type of plant. It helps the plants that it feeds on grow, and removes those that hinder its digestion from its feeding grounds.",
+			"If the Caradulo stays in any area for too long, it can hasten the decay of the dead and visibly age the living things around it. This is why it is always moving, slowly but steadily.",
+			"When the Caradulo wishes harm on another, it taunts its opponent so that they come within striking distance of its remarkable horns and toxin-tipped tail."
+		],
+		"Buckley": [
+			"The Caradulo's venom is composed of a mix of proteins, polypeptides, and alkaloids that it can rearrange to work selectively against targets in its environment or integrate with the biology of other life forms. Its toxins can be detected in the spiny barbs of mushrooms in its territory.",
+			"The Caradulo's ears have an extra canal that allows it to detect vibrations when submerged in the water. Its specialised nerves can also hone in on minute changes in the bloodstream of other Illuvials.",
+			"The Caradulo's barbs are made up of a complex network of curved spines that can puncture skin and deliver venom directly into the bloodstream.",
+			"The Caradulo's stomach is lined with clay which enables it to digest toxic plants safely. Its digestive tract has traces of over 42 species of plants with varying toxicity.",
+			"The Caradulo produces pheromone markers that contain antidotes for its poison, enabling it to mark other Caradulo and Carablus in its herd so they are not negatively affected by its toxicity."
+		]
+	},
+	"TraitOrderLegacy": [
+		4,
+		3,
+		1,
+		5,
+		6,
+		2
+	],
+	"Description": {
+		"Format": "Caradulo's horns extend, Taunting enemies in {TauntRadius}-hexes for {TauntDuration} seconds, gaining <Thorns>{ThornsValue}</> (<OmegaPowerPercentage></>) Thorns for {ThornsDuration} seconds and <MaxHealth>{MaxHealthBuff}</> (<OmegaPowerPercentage></>) Health.\r\n\r\nThorns: <Thorns>{ThornsValue}</> (<OmegaPowerPercentage></>)\r\nHealth: <MaxHealth>{MaxHealthBuff}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"TauntRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].Zone.RadiusUnits"
+			},
+			"TauntDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"ThornsValue": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"MaxHealthBuff": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"ThornsDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Caradulo's horns extend, Taunting enemies in 22-hexes for 2.5 seconds, gaining 25 () Thorns for 4 seconds and 150 () Health.\r\n\r\nThorns: 25 ()\r\nHealth: 150 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 4,
+			"AttackSpeed": 3,
+			"Health": 1,
+			"MovementSpeed": 5,
+			"OmegaPower": 6,
+			"Resistance": 2
+		}
+	}
+}

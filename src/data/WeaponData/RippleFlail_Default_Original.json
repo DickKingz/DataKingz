@@ -1,0 +1,156 @@
+{
+	"Name": "RippleFlail",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Normal",
+	"CombatAffinity": "Water",
+	"CombatClass": "Bulwark",
+	"DominantCombatAffinity": "Water",
+	"DominantCombatClass": "Bulwark",
+	"Stats": {
+		"MaxHealth": 900000,
+		"StartingEnergy": 30000,
+		"EnergyCost": 160000,
+		"PhysicalResist": 50,
+		"EnergyResist": 70,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 120000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 70,
+		"MoveSpeedSubUnits": 0,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 3,
+		"OmegaRangeUnits": 3,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Flail Attack I",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 50
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Overdrive Swings",
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Empower next 5 attacks with Energy Damage",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"PercentageOfAbilityDuration": 50,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Empower",
+								"IsConsumable": true,
+								"ActivationsUntilExpiry": 4,
+								"ActivatedBy": "Attack",
+								"AttachedEffects": [
+									{
+										"ID": "WaveAmplification",
+										"Type": "InstantDamage",
+										"DamageType": "Energy",
+										"Expression": {
+											"Operation": "*",
+											"Operands": [
+												250000,
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												}
+											]
+										}
+									}
+								]
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Ripple Flail",
+	"DisplayDescription": "The Ranger overcharges the flail, empowering the next 4 to deal an additional <AttackEnergyDamage>250</> (<OmegaPowerPercentage></>) Energy Damage.",
+	"Description": {
+		"Format": "The Ranger overcharges the flail, empowering the next {AttackNum} to deal an additional <AttackEnergyDamage>{Damage}</> (<OmegaPowerPercentage></>) Energy Damage.",
+		"Parameters": {
+			"AttackNum": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].ActivationsUntilExpiry",
+				"ValueMultiplier": 1.0
+			},
+			"Damage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].AttachedEffects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "The Ranger overcharges the flail, empowering the next 4 to deal an additional 250 () Energy Damage."
+}

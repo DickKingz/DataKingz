@@ -1,0 +1,21 @@
+{
+	"Name": "Bulwark",
+	"Stage": 1,
+	"Type": "Game",
+	"DisplayName": "Bulwark Module",
+	"DisplayDescription": "Gain a Bulwark Imprint.",
+	"Description": {
+		"Format": "Gain a Bulwark Imprint.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Bulwark",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

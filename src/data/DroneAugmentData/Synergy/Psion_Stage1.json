@@ -1,0 +1,21 @@
+{
+	"Name": "Psion",
+	"Stage": 1,
+	"Type": "Game",
+	"DisplayName": "Psion Module",
+	"DisplayDescription": "Gain a Psion Imprint.",
+	"Description": {
+		"Format": "Gain a Psion Imprint.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Psion",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

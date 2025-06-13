@@ -1,0 +1,105 @@
+{
+	"Name": "SproutGuardReflectiveBarrier",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Amplifier",
+	"AmplifierForWeapon": {
+		"Name": "SproutGuard",
+		"Stage": 0,
+		"Variation": "Original",
+		"CombatAffinity": "Earth"
+	},
+	"Stats": {
+		"MaxHealth": 400000,
+		"StartingEnergy": 0,
+		"EnergyCost": 0,
+		"PhysicalResist": 0,
+		"EnergyResist": 0,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 0,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 0,
+		"MoveSpeedSubUnits": 0,
+		"HitChancePercentage": 0,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 0,
+		"CritAmplificationPercentage": 0,
+		"OmegaPowerPercentage": 0,
+		"AttackRangeUnits": 0,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 0,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 0,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 0,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [],
+	"InnateAbilities": [
+		{
+			"Name": "Reflective Barrier",
+			"ActivationTrigger": {
+				"TriggerType": "OnShieldHit",
+				"SenderAllegiance": "Enemy",
+				"ReceiverAllegiance": "Self",
+				"AbilityTypes": [
+					"Attack",
+					"Omega"
+				]
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "ReflectiveBarrier_Ability1",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Activator"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": 25000
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Reflective Barrier",
+	"DisplayDescription": "+<MaxHealth>400</> Health.\r\nWhen any of your Shields are hit, deal 25 Pure damage back to the Attacker.",
+	"Description": {
+		"Format": "+<MaxHealth>{Health}</> Health.\r\nWhen any of your Shields are hit, deal {Damage} Pure damage back to the Attacker.",
+		"Parameters": {
+			"Health": {
+				"ParameterPath": "Stats.MaxHealth",
+				"ValueMultiplier": 0.001
+			},
+			"Damage": {
+				"ParameterPath": "InnateAbilities[0].Skills[0].EffectPackage.Effects[0].Expression",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "+400 Health.\r\nWhen any of your Shields are hit, deal 25 Pure damage back to the Attacker."
+}

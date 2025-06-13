@@ -1,0 +1,205 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Lynx",
+	"Stage": 3,
+	"Path": "BulwarkEarth",
+	"Variation": "Original",
+	"Tier": 2,
+	"CombatAffinity": "Earth",
+	"CombatClass": "Bulwark",
+	"DominantCombatAffinity": "Earth",
+	"DominantCombatClass": "Bulwark",
+	"SizeUnits": 7,
+	"Stats": {
+		"MaxHealth": 2800000,
+		"StartingEnergy": 100000,
+		"EnergyCost": 200000,
+		"PhysicalResist": 65,
+		"EnergyResist": 60,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 170000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 60,
+		"MoveSpeedSubUnits": 2500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 5,
+		"OmegaRangeUnits": 5,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Bulwark Earth Lynx Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 45
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Shockwave Boom",
+			"TotalDurationMs": 1500,
+			"Skills": [
+				{
+					"Name": "Roar",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 70
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 24,
+						"DurationMs": 500,
+						"FrequencyMs": 500,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										450000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Stun",
+								"DurationMs": 2000
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Stoic Terralynx",
+	"DisplayDescription": "Stoic Terralynx roars, dealing <AttackPhysicalDamage>450</> (<OmegaPowerPercentage></>) Physical Damage and Stunning all enemies in 24-hexes for 2 seconds.\r\n\r\nDamage: <AttackPhysicalDamage>450</> (<OmegaPowerPercentage></>)",
+	"Intro": "In the skies above Crystal Shores, there are lightning strikes absent of sound that forms crystal fragments in midair. These shards stay there, frozen for long moments before falling to the ground and shattering. Daring Illuvials do not avoid this area, despite the slathering of falling crystals that are sharp enough to slash and sting. The Stoic Terralynx in particular, walks at a leisurely pace, as though daring the celestial forces to strike upon it.",
+	"Summary": "The Stoic Terralynx is the largest and heaviest of Terralynxes, adorned with dark brown fur and angular black rocks that form protective plates across its body. Known for its resilient nature, the Stoic Terralynx boasts a strong immune system, enhanced by its dense fur and rock-plated armor. With unique pink-hued eyes adapted for low-light vision and a vibrating crystal orb on its head, this Illuvial thrives in caves and underground, preying on Morphopods with its powerful claws.",
+	"Biology": {
+		"Physiology": "The Stoic Terralynx is densely packed, with rock shard plates and heavy fur that weighs more than all the other Terralynxes. It has dark brown fur and angular black rocks on its face and body, forming a makeshift helmet and shard-like armour along its back and legs. The Stoic Terralynx has eerie pink eyes and an orb-like crystal upon its head, reverberating with energy. Its tall, curved ears are tipped with glowing pink horns, the same hue that emanates between its rock plates. The Stoic Terralynx's mane is large and layered with bushels of fur. It appears fluffy, but it feels coarse and it is full of jagged crystal fragments.",
+		"Behaviour": "The Stoic Terralynx has a strong immune system that allows it to fight off disease and infection, with a body capable of rejecting Morphopod parasites. The most resilient of the Terralynxes, the Stoic Terralynx can travel through perilous areas without caution. The reason for this strange behaviour is attributed to its rock-plated protection and lack of sensitivity towards pain. When the Stoic Terralynx recovers from the wear and tear of its hide, its rock plates and dense fur coat grow even stronger, adapting to the injuries it sustains. With unique eyes that allow it to see in low-light conditions, the Stoic Terralynx is at home within caves and underground areas, where it hunts for Morphopod prey."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3BulwarkEarth/LynxStage3BulwarkEarth_default_default_webp.3840x2160/LynxStage3BulwarkEarth_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3BulwarkEarth/LynxStage3BulwarkEarth_default_default_hls.m3u8/LynxStage3BulwarkEarth_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Stoic Terralynx may lead a subterranean or ground-dwelling lifestyle, with a keen sense of sight even in low-light conditions.",
+			"The Stoic Terralynx has a muscular build and a rocky hide, which is what gives it its heavy weight.",
+			"The Stoic Terralynx's stone fur vibrates when it purrs lowly. Although it typically purrs in an inaudible range, it may attempt to communicate with others using a higher vibration."
+		],
+		"Buckley": [
+			"The Stoic Terralynx's lithic protective coat contains traces of crystal shards and a Rhodivium-Osvium alloy which makes the fur heavy without increasing its rigidity.",
+			"The Stoic Terralynx's crystal orb is capable of emitting waves and forming a connection with other Terralynxes across vast distances.",
+			"The Stoic Terralynx's throat has uneven textures that allow it to vibrate extremely slowly, purring at a much lower frequency than the audible range of most other life forms.",
+			"The Stoic Terralynx has an enlarged adapted larynx that gives it the ability to produce pressure waves during intense vocalizations.",
+			"The Stoic Terralynx has mineral stores in its body, including iron-containing materials that support its sensitivity to magnetic fields."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		4,
+		1,
+		6,
+		3,
+		2
+	],
+	"Description": {
+		"Format": "Stoic Terralynx roars, dealing <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Physical Damage and Stunning all enemies in {StunRadius}-hexes for {StunDuration} seconds.\r\n\r\nDamage: <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"StunRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Zone.RadiusUnits"
+			},
+			"StunDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Stoic Terralynx roars, dealing 450 () Physical Damage and Stunning all enemies in 24-hexes for 2 seconds.\r\n\r\nDamage: 450 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 4,
+			"Health": 1,
+			"MovementSpeed": 6,
+			"OmegaPower": 3,
+			"Resistance": 2
+		}
+	}
+}

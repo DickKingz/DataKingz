@@ -1,0 +1,366 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Elk",
+	"Stage": 3,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 5,
+	"CombatAffinity": "Spore",
+	"CombatClass": "Mystic",
+	"DominantCombatAffinity": "Nature",
+	"DominantCombatClass": "Empath",
+	"SizeUnits": 5,
+	"Stats": {
+		"MaxHealth": 2450000,
+		"StartingEnergy": 60000,
+		"EnergyCost": 180000,
+		"PhysicalResist": 55,
+		"EnergyResist": 55,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 95000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 70,
+		"OmegaRangeUnits": 0,
+		"MoveSpeedSubUnits": 2750,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 5,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 70,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Elk Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 41
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 10000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Bright Flourish III",
+			"TotalDurationMs": 2000,
+			"Skills": [
+				{
+					"Name": "Damage three lowest health enemies",
+					"Targeting": {
+						"Type": "ExpressionCheck",
+						"Guidance": [
+							"Ground",
+							"Airborne",
+							"Underground"
+						],
+						"Group": "Enemy",
+						"Lowest": true,
+						"Num": 3,
+						"Expression": {
+							"Stat": "CurrentHealth%",
+							"StatSource": "Sender"
+						}
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground",
+							"Airborne",
+							"Underground"
+						],
+						"PreDeploymentDelayPercentage": 100
+					},
+					"PercentageOfAbilityDuration": 65,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "+",
+									"Operands": [
+										{
+											"Operation": "*",
+											"Operands": [
+												{
+													"Operation": "%",
+													"Operands": [
+														20,
+														{
+															"Operation": "-",
+															"Operands": [
+																{
+																	"Stat": "MaxHealth",
+																	"StatSource": "Receiver"
+																},
+																{
+																	"Stat": "CurrentHealth",
+																	"StatSource": "Receiver"
+																}
+															]
+														}
+													]
+												},
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												}
+											]
+										},
+										{
+											"Operation": "*",
+											"Operands": [
+												250000,
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												}
+											]
+										}
+									]
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "OmegaPowerPercentage",
+								"DurationMs": -1,
+								"OverlapProcessType": "Stacking",
+								"Expression": 10
+							},
+							{
+								"Type": "Buff",
+								"Stat": "OmegaPowerPercentage",
+								"DurationMs": -1,
+								"OverlapProcessType": "Stacking",
+								"Expression": 15
+							}
+						]
+					}
+				},
+				{
+					"Name": "Heal three lowest health allies",
+					"Targeting": {
+						"Type": "ExpressionCheck",
+						"Guidance": [
+							"Ground",
+							"Airborne",
+							"Underground"
+						],
+						"Group": "Ally",
+						"Lowest": true,
+						"Self": true,
+						"Num": 3,
+						"Expression": {
+							"Stat": "CurrentHealth%",
+							"StatSource": "Sender"
+						}
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground",
+							"Airborne",
+							"Underground"
+						],
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 35,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantHeal",
+								"HealType": "Normal",
+								"Expression": {
+									"Operation": "+",
+									"Operands": [
+										{
+											"Operation": "*",
+											"Operands": [
+												{
+													"Operation": "%",
+													"Operands": [
+														20,
+														{
+															"Operation": "-",
+															"Operands": [
+																{
+																	"Stat": "MaxHealth",
+																	"StatSource": "Receiver"
+																},
+																{
+																	"Stat": "CurrentHealth",
+																	"StatSource": "Receiver"
+																}
+															]
+														}
+													]
+												},
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												}
+											]
+										},
+										{
+											"Operation": "*",
+											"Operands": [
+												250000,
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												}
+											]
+										}
+									]
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "OmegaPowerPercentage",
+								"DurationMs": -1,
+								"OverlapProcessType": "Stacking",
+								"Expression": 10
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Adorius",
+	"DisplayDescription": "Adorius summons 3 spotlights, targeting the 3 lowest <MaxHealth>Health</> allies and enemies.\r\n\r\nAllies are healed <MaxHealth>20%</> (<OmegaPowerPercentage></>) of their missing Health + <MaxHealth>250</> (<OmegaPowerPercentage></>) Health and gain <OmegaPowerPercentage>10</> Omega Power.\r\n\r\nEnemies are dealt <AttackEnergyDamage>20%</> (<OmegaPowerPercentage></>) of their missing Health + <AttackEnergyDamage>250</> (<OmegaPowerPercentage></>) Energy Damage.\r\n\r\nHeal%: 20% (<MaxHealth></><OmegaPowerPercentage></>)\r\nFlat Heal: <MaxHealth>250</> (<OmegaPowerPercentage></>)\r\nDamage%: 20% (<MaxHealth></><OmegaPowerPercentage></>)\r\nFlat Damage: <AttackEnergyDamage>250</> (<OmegaPowerPercentage></>)",
+	"Intro": "Deep in Brightland Steppes, there is an area covered in thick fog, where Parachute Shrooms grow into towering monuments. Strange plants and fungi thrive here from the humidity, sprouting beside pointy roots that jut from the ground. The mushrooms illuminate everything with occasional clouds of green healing mist. The creatures of this land are protected by the majestic wisdom of the Adorius.",
+	"Summary": "The Adorius has dazzling crescent blades of light on its head, purple horns, spectre-like eyes, and a black coat with white swirls. Known for its high emotional intelligence, it can heal injured Illuvials with its luminous trail but often keeps its distance due to its strong empathic abilities. The Adorius' horns detect pain, its hooves leave glowing prints, and it hosts bioluminescent bacteria that aid in rapid cell regrowth and healing.",
+	"Biology": {
+		"Physiology": "The Adorius is dazzling, with two large crescent blades of light on its head that pulse with a trance-inducing pattern. These mesmerising beacons are curved along their large horns, which are purple and irregularly ringed. Between them are two shorter horns, one purple and one glowing white. The Adorius has spectre-like eyes and shiny markings on its head and hooves, which extend to the rest of its body as white swirls on its black coat. Its bushy tail is as long as its antlers, but not nearly as likely to get stuck in a branch.",
+		"Behaviour": "The Adorius is sage-like, showcasing high emotional intelligence. Just a touch of its luminous trail can invigorate Illuvials who are injured or sickly. The Adorius typically keeps a distance from others because its empathic abilities are so strong, but it occasionally enjoys close contact with Adors and Adoredos. It is a rare privilege for the Adorius to approach a visitor."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/ElkStage3/ElkStage3_default_default_webp.3840x2160/ElkStage3_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/ElkStage3/ElkStage3_default_default_hls.m3u8/ElkStage3_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Adorius' glowing hooves leave a trail of luminous prints that are visible in any terrain. Sometimes, these glowing markings may appear to move on their own, entering plants and amplifying their glow.",
+			"The Adorius can grow tendrils of plants from its antlers to intertwine with overhanging branches when it is at rest.",
+			"The Adorius is a silent guardian that watches over inhabitants of the forest and guides those who are lost or injured."
+		],
+		"Buckley": [
+			"The Adorius' horns have sensory receptacles that can detect pain in other Illuvials.",
+			"The Adorius is a hybrid species with genetic material from plant-like symbiotes capable of replicating the cells and enabling rapid regrowth.",
+			"The Adorius hosts large quantities of bioluminescent bacteria in its hooves and antlers."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		3,
+		2,
+		6,
+		1,
+		4
+	],
+	"Description": {
+		"Format": "Adorius summons {TargetNum} spotlights, targeting the {TargetNum} lowest <MaxHealth>Health</> allies and enemies.\r\n\r\nAllies are healed <MaxHealth>{HealPercent}%</> (<OmegaPowerPercentage></>) of their missing Health + <MaxHealth>{FlatHeal}</> (<OmegaPowerPercentage></>) Health and gain <OmegaPowerPercentage>{OmegaPowerBuff}</> Omega Power.\r\n\r\nEnemies are dealt <AttackEnergyDamage>{DamagePercent}%</> (<OmegaPowerPercentage></>) of their missing Health + <AttackEnergyDamage>{FlatDamage}</> (<OmegaPowerPercentage></>) Energy Damage.\r\n\r\nHeal%: {HealPercent}% (<MaxHealth></><OmegaPowerPercentage></>)\r\nFlat Heal: <MaxHealth>{FlatHeal}</> (<OmegaPowerPercentage></>)\r\nDamage%: {DamagePercent}% (<MaxHealth></><OmegaPowerPercentage></>)\r\nFlat Damage: <AttackEnergyDamage>{FlatDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"TargetNum": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].Targeting.Num"
+			},
+			"HealPercent": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].Expression.Operands[0].Operands[0].Operands[0]"
+			},
+			"FlatHeal": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].Expression.Operands[1].Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"OmegaPowerBuff": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[1].Expression"
+			},
+			"DamagePercent": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0].Operands[0].Operands[0]"
+			},
+			"FlatDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[1].Operands[0]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Adorius summons 3 spotlights, targeting the 3 lowest Health allies and enemies.\r\n\r\nAllies are healed 20% () of their missing Health + 250 () Health and gain 10 Omega Power.\r\n\r\nEnemies are dealt 20% () of their missing Health + 250 () Energy Damage.\r\n\r\nHeal%: 20% ()\r\nFlat Heal: 250 ()\r\nDamage%: 20% ()\r\nFlat Damage: 250 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 3,
+			"Health": 2,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 4
+		}
+	}
+}

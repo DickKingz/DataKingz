@@ -1,0 +1,21 @@
+{
+	"Name": "Harbinger",
+	"Stage": 3,
+	"Type": "Game",
+	"DisplayName": "Harbinger Matrix",
+	"DisplayDescription": "Gain a Harbinger Imprint.",
+	"Description": {
+		"Format": "Gain a Harbinger Imprint.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Harbinger",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

@@ -1,0 +1,134 @@
+{
+	"Name": "Aethersteal",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Normal",
+	"Abilities": [
+		{
+			"Name": "Aethersteal_Stats",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Aethersteal - List of Stats",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "OmegaPowerPercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 20
+							},
+							{
+								"Type": "Buff",
+								"Stat": "CritChancePercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 5
+							},
+							{
+								"Type": "Buff",
+								"Stat": "CritAmplificationPercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 5
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"Name": "Aethersteal_Ability1",
+			"ActivationTrigger": {
+				"TriggerType": "OnActivateXAbilities",
+				"AbilityTypes": [
+					"Omega"
+				],
+				"EveryX": true,
+				"NumberOfAbilitiesActivated": 1
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Aethersteal - Steal Omega Power",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "CombatStatCheck",
+						"Group": "Enemy",
+						"Stat": "OmegaPowerPercentage",
+						"Lowest": false,
+						"Num": 1
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Debuff",
+								"Stat": "OmegaPowerPercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 6
+							}
+						]
+					}
+				},
+				{
+					"Name": "Aethersteal - Self Buff",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "OmegaPowerPercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 6
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Aethersteal",
+	"DisplayDescription": "On Omega, steal <OmegaPowerPercentage>6</> <OmegaPowerPercentage>Omega Power</> from the highest <OmegaPowerPercentage>Omega Power</> enemy.\r\n\r\nStats:\r\n+20 <OmegaPowerPercentage>Omega Power</>\r\n+5% <CritChancePercentage>Crit Chance</>\r\n+5% <CritAmplificationPercentage>Crit Amp</>",
+	"Description": {
+		"Format": "On Omega, steal <OmegaPowerPercentage>{StealVal}</> <OmegaPowerPercentage>Omega Power</> from the highest <OmegaPowerPercentage>Omega Power</> enemy.\r\n\r\nStats:\r\n+{Stat_OP} <OmegaPowerPercentage>Omega Power</>\r\n+{Stat_CC}% <CritChancePercentage>Crit Chance</>\r\n+{Stat_CA}% <CritAmplificationPercentage>Crit Amp</>",
+		"Parameters": {
+			"StealVal": {
+				"ParameterPath": "Abilities[1].Skills[0].EffectPackage.Effects[0].Expression",
+				"ValueMultiplier": 1.0
+			},
+			"Stat_OP": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].Expression",
+				"ValueMultiplier": 1.0
+			},
+			"Stat_CC": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[1].Expression",
+				"ValueMultiplier": 1.0
+			},
+			"Stat_CA": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[2].Expression",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "On Omega, steal 6 Omega Power from the highest Omega Power enemy.\r\n\r\nStats:\r\n+20 Omega Power\r\n+5% Crit Chance\r\n+5% Crit Amp"
+}

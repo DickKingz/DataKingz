@@ -1,0 +1,209 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Lynx",
+	"Stage": 3,
+	"Path": "PsionFire",
+	"Variation": "Original",
+	"Tier": 2,
+	"CombatAffinity": "Fire",
+	"CombatClass": "Psion",
+	"DominantCombatAffinity": "Fire",
+	"DominantCombatClass": "Psion",
+	"SizeUnits": 7,
+	"Stats": {
+		"MaxHealth": 1900000,
+		"StartingEnergy": 60000,
+		"EnergyCost": 120000,
+		"PhysicalResist": 40,
+		"EnergyResist": 40,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 185000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 60,
+		"MoveSpeedSubUnits": 2500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 50,
+		"OmegaRangeUnits": 50,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Psion Fire Lynx Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 60
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 10000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Inflaming Sling",
+			"TotalDurationMs": 2500,
+			"Skills": [
+				{
+					"Name": "Wave",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 75
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 10,
+						"DurationMs": 3000,
+						"FrequencyMs": 100,
+						"MovementSpeedSubUnits": 8000,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 90,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										1025000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Arcane Emberlynx",
+	"DisplayDescription": "Arcane Emberlynx sends out a wave towards its target, dealing <AttackEnergyDamage>1,025</> (<OmegaPowerPercentage></>) Energy Damage to all enemies hit.\r\n\r\nDamage: <AttackEnergyDamage>1,025</> (<OmegaPowerPercentage></>)",
+	"Intro": "One of the most unforgiving areas in Abyssal Basin is a vast swamp with thick mud and sulfuric air. Enormous mushrooms upheave the soil, erupting from the surface to reach for the sky. Worst of all is the menace of the region, the Arcane Emberlynx who delights in burning nature Illuvials to the ground. Perched above the Titanicus Mushroom, the Arcane Emberlynx sends scorching blasts down whenever it sees a moving target.",
+	"Summary": "The Arcane Emberlynx dominates the harsh landscape of Abyssal Basin's sulfurous swamp with its fiery prowess. Its crimson and cinder-coated fur, complemented by flame-lit eyes, aids in blending into the fiery environment while wreaking havoc on nature Illuvials. Known for grooming on mossy rocks to maintain its fiery coat, this outcast Illuvial thrives by igniting small wildfires and hunting with deadly precision from a distance, leveraging its keen senses and specialized fire-based abilities.",
+	"Biology": {
+		"Physiology": "The Arcane Emberlynx walks on all fours, with its fiery orb held up high between its flame-tipped ears. There is a long line of fire from the back of its head to its tail, blazing as brightly as its eyes. Its fur is mainly crimson, but there are so many layers of cinder caked into its coat that it appears mostly black with zigzagging patterns of red. While its two front paws are red, its hind legs are mostly black. The Arcane Emberlynx has a mid-length mane and long hanging fur from its face, with a small curly black beard under its chin.",
+		"Behaviour": "The Arcane Emberlynx seeks territory among areas with fewer flame-resistant plants, using its fire affinity as an advantage in areas full of nature Illuvials. It attacks from afar, entering aerial chases with flying Illuvials and shooting after them. Muscling in on the territory of others, the Arcane Emberlynx rains fire showers upon small Illuvials. For unknown reasons, it appears outcast from other Emberlynxes, perhaps due to its slimmer build. The Arcane Emberlynx grooms itself by rolling upon mossy rocks. Its fiery fur needs fuel to continue burning, and it always searches for plants or driftwood. The Arcane Emberlynx's flame orb can habitually create small wildfires that eliminate forest debris."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3PsionFire/LynxStage3PsionFire_default_default_webp.3840x2160/LynxStage3PsionFire_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3PsionFire/LynxStage3PsionFire_default_default_hls.m3u8/LynxStage3PsionFire_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Arcane Emberlynx has vast and varied outposts across Abyssal Basin, which it uses to strike against other Illuvials. It gains power from searing through forests and local plant life. Fortunately, the abundance of life and empath Illuvials in the region make ecosystems quick to regrow.",
+			"The Arcane Emberlynx's orb of fire can habitually create small wildfires that eliminate forest debris.",
+			"The Arcane Emberlynx grooms itself by rolling upon mossy rocks. Its fiery fur needs fuel to continue burning, and it always searches for plants or driftwood."
+		],
+		"Buckley": [
+			"The Arcane Emberlynx's nose can sense the difference between hundreds of different types of cinder, allowing it to way find by scenting barren paths and scorching the land.",
+			"The Arcane Emberlynx's fire reacts strongly to movement and air, making its projectiles more powerful the longer it travels. Due to this, the Arcane Emberlynx is strongest from afar, capable of ambushing enemies from a distance with its fiery blasts.",
+			"The Arcane Emberlynx has extremely light fur that is coated in a cinder, giving it a dark appearance.",
+			"The Arcane Emberlynx has a complex timing device in its nervous system that is capable of slowing and speeding up its perception of time, allowing it to aim precisely in microseconds or hold a position in stillness for prolonged periods.",
+			"The Arcane Emberlynx's long ears are capable of directing the flow of energy in the enflamed sphere upon its head, enabling it to respond quickly to target sounds in its environment."
+		]
+	},
+	"TraitOrderLegacy": [
+		3,
+		2,
+		4,
+		6,
+		1,
+		5
+	],
+	"Description": {
+		"Format": "Arcane Emberlynx sends out a wave towards its target, dealing <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Energy Damage to all enemies hit.\r\n\r\nDamage: <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Arcane Emberlynx sends out a wave towards its target, dealing 1,025 () Energy Damage to all enemies hit.\r\n\r\nDamage: 1,025 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 3,
+			"AttackSpeed": 2,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 5
+		}
+	}
+}

@@ -1,0 +1,26 @@
+{
+	"Name": "Nature",
+	"Stage": 2,
+	"Type": "Game",
+	"DisplayName": "Nature Matrix",
+	"DisplayDescription": "Gain a Nature Imprint and Titan Boon.",
+	"Description": {
+		"Format": "Gain a Nature Imprint and Titan Boon.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Nature",
+				"Stage": 0,
+				"Variation": "Original"
+			},
+			{
+				"Name": "TitanBoon",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

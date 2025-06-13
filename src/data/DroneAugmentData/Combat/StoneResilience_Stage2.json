@@ -1,0 +1,104 @@
+{
+	"Name": "StoneResilience",
+	"Stage": 2,
+	"Type": "Simulation",
+	"Abilities": [
+		{
+			"Name": "StoneResilience2_Ability1",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "StoneResilience2 - Targeting",
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						]
+					},
+					"Targeting": {
+						"Type": "Allegiance",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						],
+						"Group": "Ally"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "SpawnMark",
+								"MarkType": "Beneficial",
+								"DurationMs": -1,
+								"AttachedAbilities": [
+									{
+										"Name": "StoneResilience2 - Sub Ability",
+										"ActivationTrigger": {
+											"TriggerType": "HealthInRange",
+											"HealthLowerLimitPercentage": 65,
+											"MaxActivations": 1
+										},
+										"TotalDurationMs": 0,
+										"Skills": [
+											{
+												"Name": "StoneResilience2 - Gain Mitigation",
+												"Targeting": {
+													"Type": "Self"
+												},
+												"Deployment": {
+													"Type": "Direct"
+												},
+												"EffectPackage": {
+													"Effects": [
+														{
+															"Type": "Buff",
+															"Stat": "Grit",
+															"OverlapProcessType": "Stacking",
+															"DurationMs": -1,
+															"Expression": 18000
+														},
+														{
+															"Type": "Buff",
+															"Stat": "Resolve",
+															"OverlapProcessType": "Stacking",
+															"DurationMs": -1,
+															"Expression": 18000
+														}
+													]
+												}
+											}
+										]
+									}
+								]
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Stone Resilience II",
+	"DisplayDescription": "Your units gain 18 Mitigation when they drop below 65% Health.",
+	"Description": {
+		"Format": "Your units gain {Mitigation} Mitigation when they drop below {HealthTrigger}% Health.",
+		"Parameters": {
+			"Mitigation": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].AttachedAbilities[0].Skills[0].EffectPackage.Effects[0].Expression",
+				"ValueMultiplier": 0.001
+			},
+			"HealthTrigger": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].AttachedAbilities[0].ActivationTrigger.HealthLowerLimitPercentage",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [],
+		"GrantedCredits": 0
+	}
+}

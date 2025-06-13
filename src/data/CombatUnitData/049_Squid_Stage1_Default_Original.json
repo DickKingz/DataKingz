@@ -1,0 +1,249 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Squid",
+	"Stage": 1,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 5,
+	"CombatAffinity": "Shock",
+	"CombatClass": "Psion",
+	"PreferredLineDominantCombatAffinity": "Air",
+	"PreferredLineDominantCombatClass": "Psion",
+	"DominantCombatAffinity": "Air",
+	"DominantCombatClass": "Psion",
+	"SizeUnits": 3,
+	"Stats": {
+		"MaxHealth": 1100000,
+		"StartingEnergy": 10000,
+		"EnergyCost": 120000,
+		"PhysicalResist": 20,
+		"EnergyResist": 40,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 75000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 85,
+		"MoveSpeedSubUnits": 1550,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 5,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 60,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Squid Basic Attack I",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 60
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 50000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Electrilink I",
+			"TotalDurationMs": 1500,
+			"Skills": [
+				{
+					"Name": "EnergyDamage",
+					"Targeting": {
+						"Type": "CombatStatCheck",
+						"Group": "Enemy",
+						"Stat": "CurrentHealth",
+						"Lowest": true,
+						"Num": 2
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 60
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										350000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"InnateAbilities": [
+		{
+			"Name": "Takedown Overcharge I",
+			"ActivationTrigger": {
+				"TriggerType": "OnVanquish",
+				"Allegiance": "Self",
+				"ContextRequirement": "DuringOmega",
+				"ActivationCooldownMs": 3000
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Grant full energy",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantEnergyGain",
+								"Expression": {
+									"Percentage": 100,
+									"Stat": "EnergyCost",
+									"StatSource": "Receiver"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Squizz",
+	"DisplayDescription": "Squizz raises a tentacle calling lightning to strike the 2 lowest Health enemies, dealing <AttackEnergyDamage>350</> (<OmegaPowerPercentage></>) Energy Damage. Squizz casts an additional time if the lightning strike eliminates an enemy. (3s cooldown)\r\n\r\nDamage: <AttackEnergyDamage>350</> (<OmegaPowerPercentage></>)",
+	"Intro": "The waters of Halcyon Sea are warm and crystal clear, a wonderful blue paradise. Along the sandbanks, colourful coral structures stretch their arms in the sky. Some have different shapes, round and close to the ground or towering pillars that rise far above, an overgrown mixture of fossil and coral. Waving its arms at them is the Squizz, using its tentacles to climb the rocks in the idyllic pools.",
+	"Summary": "The Squizz, a yellow, malleable Illuvial, navigates the coral structures of Halcyon Sea with its versatile tentacles. It avoids strangers and delivers an electric shock if pursued, utilizing its ability to manipulate electricity to stun prey like Morphopods. Squizz's body is adapted for flexibility and stealth, squeezing into narrow crevices while its multiple brains coordinate complex movements and electrical charges across its tentacles.",
+	"Biology": {
+		"Physiology": "The Squizz is a wriggly yellow creature with big round eyes that peer out from behind its tentacles. It has splotchy orange stripes on its eight arms and uses the six along its sides to crawl while the front two stay curled up. Its eyes are purple like its stripes, and its dorsal fin stands on its ballooning mantle head. A versatile creature, the Squizz is flexible on land and in water, able to climb any surface with the suckers on its tentacles.",
+		"Behaviour": "The Squizz can squeeze into narrow crevices with its boneless, malleable body, and it can be found slipping into openings in the coral structures of Halcyon Sea. It is a highly adept climber with suckers on its tentacles that can cling to surfaces at any angle. Although it can swim, climb, or crawl into various places, the Squizz is a shy Illuvial that hides and keeps to itself most of the time. It crawls away from strangers and delivers a jarring shock with its tentacle if it is followed. The Squizz keeps its front tentacles curled up in front of its face and rarely ever lowers them. Capable of manipulating electricity, the Squizz can stun swimming Morphopods to get a quick meal."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/SquidStage1/SquidStage1_default_default_webp.3840x2160/SquidStage1_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/SquidStage1/SquidStage1_default_default_hls.m3u8/SquidStage1_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Squizz avoids strangers and gives them a jarring shock if they follow it.",
+			"The Squizz keeps its front two tentacles curled up in front of its face out of caution. When the Squizz bonds with another, it may occasionally lower its front tentacles as a sign of trust.",
+			"The Squizz can be found on the tallest pillars and inside the narrowest crevices. Its malleable body can slip through any opening, and the suckers on its tentacles allow it to grasp a variety of surfaces."
+		],
+		"Buckley": [
+			"The Squizz has a propulsion organ in its body that allows it to expel psionic energy across vast distances.",
+			"The Squizz's body has adapted layers of fat that enable it to neutralize its charge and avoid surging with electricity.",
+			"The Squizz has a brain for each of its tentacles which allows it to coordinate complex movement. It is capable of giving its tentacles different electric charges, generating a current that shocks anything in between them.",
+			"The Squizz's diet consists of aquatic morphopods and plants, but it has a highly adaptable digestive system that can accommodate a wide variety of nutrient sources.",
+			"The Squizz has a boneless, malleable body which allows it to slip through various crevices. Its extreme flexibility enables it to hide in small openings without causing damage by compressing its organs."
+		]
+	},
+	"TraitOrderLegacy": [
+		3,
+		2,
+		4,
+		6,
+		1,
+		5
+	],
+	"Description": {
+		"Format": "Squizz raises a tentacle calling lightning to strike the {TargetNum} lowest Health enemies, dealing <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Energy Damage. Squizz casts an additional time if the lightning strike eliminates an enemy. ({Cooldown}s cooldown)\r\n\r\nDamage: <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"TargetNum": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Targeting.Num"
+			},
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"Cooldown": {
+				"ParameterPath": "InnateAbilities[0].ActivationTrigger.ActivationCooldownMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Squizz raises a tentacle calling lightning to strike the 2 lowest Health enemies, dealing 350 () Energy Damage. Squizz casts an additional time if the lightning strike eliminates an enemy. (3s cooldown)\r\n\r\nDamage: 350 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 3,
+			"AttackSpeed": 2,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 5
+		}
+	}
+}

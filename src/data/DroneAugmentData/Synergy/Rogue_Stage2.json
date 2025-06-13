@@ -1,0 +1,26 @@
+{
+	"Name": "Rogue",
+	"Stage": 2,
+	"Type": "Game",
+	"DisplayName": "Rogue Matrix",
+	"DisplayDescription": "Gain a Rogue Imprint and Riftstriker.",
+	"Description": {
+		"Format": "Gain a Rogue Imprint and Riftstriker.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Rogue",
+				"Stage": 0,
+				"Variation": "Original"
+			},
+			{
+				"Name": "Riftstriker",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

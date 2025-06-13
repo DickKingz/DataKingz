@@ -1,0 +1,254 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Snail",
+	"Stage": 2,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 1,
+	"CombatAffinity": "Granite",
+	"CombatClass": "Psion",
+	"DominantCombatAffinity": "Earth",
+	"DominantCombatClass": "Psion",
+	"SizeUnits": 6,
+	"Stats": {
+		"MaxHealth": 1250000,
+		"StartingEnergy": 0,
+		"EnergyCost": 100000,
+		"PhysicalResist": 55,
+		"EnergyResist": 25,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 70000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 55,
+		"MoveSpeedSubUnits": 2000,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 60,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Snail Basic Attack II",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 25
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 6000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Triple Burst II",
+			"TotalDurationMs": 3000,
+			"Skills": [
+				{
+					"Name": "Retracts into shell",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 0,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "VulnerabilityPercentage",
+								"OverlapProcessType": "Merge",
+								"DurationMs": 4000,
+								"Expression": 30
+							}
+						]
+					}
+				},
+				{
+					"Name": "Damage projectiles",
+					"PercentageOfAbilityDuration": 100,
+					"Targeting": {
+						"Type": "DistanceCheck",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"Group": "Enemy",
+						"Lowest": true,
+						"Num": 3
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 45
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 6000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Attributes": {
+							"SplitDamage": true
+						},
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										400000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Teeantee",
+	"DisplayDescription": "Teeantee retracts into its shell <DamageReduction>30%</> Damage Reduction for 4 seconds and launching projectiles at the 3 closest enemies, each dealing <AttackEnergyDamage>400</> (<OmegaPowerPercentage></>) Energy Damage.\r\n\r\nDamage: <AttackEnergyDamage>400</> (<OmegaPowerPercentage></>)",
+	"Intro": "Deep inside the shell-like caves of Halcyon Sea, the floor becomes soft and squishy. White slime covers the walls and a gigantic pupil-shaped hole moves around on the ground, making wet noises. On the other side, a small cave entrance opens up to dark tunnels filled with crystals. Pink prisms jut out from the walls, the same sheen as the light shining from the Teeantee's peculiar shell. ",
+	"Summary": "In the depths of Halcyon Sea's caverns, Teeantee, a limbless Illuvial, explores with curiosity, its peculiar shell emitting fuchsia light from embedded gemstones. It hunts rocks and living organisms on the seabed and beaches, hoarding them in its den to adjust its shell. Teeantee's psionic powers, necessary for defense and hunting, can overload and detonate its shell if not managed carefully, a risk it mitigates by wading in water. It defends itself with energy-waving tentacles and a hardened, magnetic shell.",
+	"Biology": {
+		"Physiology": "The Teeantee is a bizarre, limbless Illuvial that crawls on its belly, with a wry smile and two blue eyes on its upper tentacles. Its skin is white but there are rugged patches of rock on its sides and where the stems of its eyes meet. Its shell is dark grey and densely packed, made up of ringed coils with rows of holes along the sides. Fuchsia light beams out of them, shining in every direction. There are a few small gemstones on its shell, but it's easy to miss them with its four lower tentacles writhing.",
+		"Behaviour": "The Teeantee is extremely curious and spends much of its time investigating the materials found on the sea floor and along the Halcyon beaches. Some of these rocks are actually living organisms with a soft center that can be eaten. It hunts along the beach and underwater. Its tough shell can withstand the pressure of the deep sea, but prolonged exposure to water does weaken its psionic abilities. Strangely enough, this can actually be advantageous to developing Teeantees who do not have full control over their power, which can overload and detonate their shell. It is easier for them to manage lower levels of psionic energy and focus on gathering items for their hoard."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/SnailStage2/SnailStage2_default_default_webp.3840x2160/SnailStage2_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/SnailStage2/SnailStage2_default_default_hls.m3u8/SnailStage2_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Teeantee's psionic power can build up into an unstable state, overloading the Illuvial and detonating its shell. To maintain its composure, the Teeantee weakens its power by wading in water.",
+			"The Teeantee collects rocks, minerals, and meteorites and hoards them in its den. It combines new finds with old treasures to make adjustments to its shell.",
+			"The Teeantee retracts into its shell when it encounters others of its kind and waves its four lower tentacles in aggressive posturing."
+		],
+		"Buckley": [
+			"The Teeantee has four lower tentacles that emit specialised energy waves and help guide its projectiles toward their target.",
+			"The Teeantee's shell is treated with a complex layering matrix of proteins and calcium which makes it difficult to fracture.",
+			"The Teeantee has an extensive network of collagen fibres beneath its skin, capable of linking together and hardening its body as a defensive measure.",
+			"The Teeantee's shell is magnetic and capable of changing colour depending on the concentration of iron and other ions in its composition. With a calcium carbonate and vanavium base, the Teeantee has a unique assortment of minerals from its environment built atop its shell.",
+			"The Teeantee has thin wrinkles beneath its body that resembles rippling waves. It is capable of producing waves of mucus that allow it to walk upon the surface tension of water through the gradual deformation of mucus."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		4,
+		2,
+		6,
+		1,
+		3
+	],
+	"Description": {
+		"Format": "Teeantee retracts into its shell <DamageReduction>{ReductionValue}%</> Damage Reduction for {ReductionDuration} seconds and launching projectiles at the {TargetNum} closest enemies, each dealing <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Energy Damage.\r\n\r\nDamage: <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"ReductionValue": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression"
+			},
+			"ReductionDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"TargetNum": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].Targeting.Num"
+			},
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Teeantee retracts into its shell 30% Damage Reduction for 4 seconds and launching projectiles at the 3 closest enemies, each dealing 400 () Energy Damage.\r\n\r\nDamage: 400 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 4,
+			"Health": 2,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 3
+		}
+	}
+}

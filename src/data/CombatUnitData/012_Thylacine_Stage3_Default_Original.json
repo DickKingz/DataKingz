@@ -1,0 +1,244 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Thylacine",
+	"Stage": 3,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 4,
+	"CombatAffinity": "Steam",
+	"CombatClass": "Slayer",
+	"DominantCombatAffinity": "Water",
+	"DominantCombatClass": "Rogue",
+	"SizeUnits": 6,
+	"Stats": {
+		"MaxHealth": 2500000,
+		"StartingEnergy": 0,
+		"EnergyCost": 140000,
+		"PhysicalResist": 55,
+		"EnergyResist": 65,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 180000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 80,
+		"MoveSpeedSubUnits": 3500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 5,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Thylacine Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 53
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Wraithstrike III",
+			"TotalDurationMs": 1500,
+			"Skills": [
+				{
+					"Name": "Becomes untargetable",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 5,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "PositiveState",
+								"PositiveState": "Untargetable",
+								"DurationMs": 1500
+							}
+						]
+					}
+				},
+				{
+					"Name": "Ultimate Attack Chain",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 95,
+					"EffectPackage": {
+						"Attributes": {
+							"Propagation": {
+								"PropagationType": "Chain",
+								"TargetingGroup": "Enemy",
+								"ChainDelayMs": 50,
+								"ChainNumber": 3,
+								"PrioritizeNewTargets": true,
+								"OnlyNewTargets": false,
+								"IgnoreFirstPropagationReceiver": false,
+								"EffectPackage": {
+									"Effects": [
+										{
+											"Type": "InstantDamage",
+											"DamageType": "Physical",
+											"Expression": {
+												"Operation": "+",
+												"Operands": [
+													{
+														"Operation": "*",
+														"Operands": [
+															600000,
+															{
+																"Stat": "OmegaPowerPercentage",
+																"StatSource": "Sender"
+															}
+														]
+													},
+													{
+														"Stat": "AttackEnergyDamage",
+														"StatSource": "Sender"
+													},
+													{
+														"Stat": "AttackPhysicalDamage",
+														"StatSource": "Sender"
+													},
+													{
+														"Stat": "AttackPureDamage",
+														"StatSource": "Sender"
+													}
+												]
+											}
+										}
+									]
+								}
+							}
+						},
+						"Effects": []
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Umbre",
+	"DisplayDescription": "Umbre enters water form, becoming Untargetable and dealing <AttackPhysicalDamage>790</> (<OmegaPowerPercentage></><AttackDamage></>) Physical Damage to the 3 nearest Enemies.\r\n\r\nDamage: <AttackPhysicalDamage>790</> = <AttackPhysicalDamage>600</> (<OmegaPowerPercentage></>) + <AttackPhysicalDamage>180</> (<AttackDamage></>)",
+	"Intro": "Abyssal Basin forests are covered with an overwhelming abundance of life, from fungi as big as platforms to multicoloured Rainbow Trees. Hanging branches and massive growths cast shadows all around, making it difficult to see far ahead. Easily mistaken for a fallen Abyssal Pumpkin are three glowing purple antennae. Blending in with the shaded bark, the Umbre stares out with its spectre eyes, as though looking into another dimension.",
+	"Summary": "The Umbre, a shadowy figure of Abyssal Basin, navigates its surroundings with stealth and speed, aided by its vaporous form and dark, fossil-like armor. It possesses precognitive abilities and is drawn to those nearing death, offering them guidance through its telepathic antennae. A scavenger by nature, it stays hidden, blending with shadows until it emerges to tend to the deceased.",
+	"Biology": {
+		"Physiology": "An entity of vapour and shadow, the Umbre's form is bound together by a splintered outer shell and dry dark fur. Its dark, fossil-like armour completely covers its torso and face with sharp jagged ridges from its head to its long javelin tail. The long trinity of antennae is often the only clue of its presence, as its bright eyes can pass for bioluminescent plants. Its emotionless gaze seems to see beyond the material plane and into the afterlife, pawing the ground when death is near.",
+		"Behaviour": "The Umbre is stealthy and moves swiftly, like an apparition that's nearly impossible to track. Blending in with the shadows, the Umbre rarely allows itself to be seen. It has precognitive abilities and can sense death, approaching the dying a few days before its last breath. Sometimes it uses its antennae to grant them a mental image, a clue on how to avoid their misfortune. As a scavenger, it could be mistaken for the harbinger of death. Its three long antennae have multiple functions, capable of lashing out at threats and producing steam."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/ThylacineStage3/ThylacineStage3_default_default_webp.3840x2160/ThylacineStage3_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/ThylacineStage3/ThylacineStage3_default_default_hls.m3u8/ThylacineStage3_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Umbre moves phenomenally fast, using its stealth more often than intimidation even during battle. It travels through shadows and often appears briefly, only to vanish when it is seen.",
+			"The Umbre follows those who are fatally injured, staying with them for their last days until they die. It tends to their bodies after death, scavenging from it and then burying the remains to hide its trail.",
+			"The Umbre body stays unnaturally still when it is scanning its perimeter, only moving the tendrils of its antennae."
+		],
+		"Buckley": [
+			"The Umbre has a unique respiratory system that allows it to control the amount of steam it produces. Its enlarged lungs absorb oxygen quickly and efficiently, and the vents beneath its bone armour can expel enough mist to hide its entire body.",
+			"The Umbre has coarse, bristle-like fur and sharp, bony protrusions along its body that provide ample protection from threats in its environment.",
+			"The Umbre has specialised antennae that allow it to communicate telepathically with living creatures undergoing terminal lucidity. This ability is heightened by the hormones released near death.",
+			"The Umbre has a secondary metabolic process dedicated to harnessing specialised energy from Flintcap and Wallpoppers, granting it precognitive abilities.",
+			"The Umbre has a strong bone structure with claws and teeth that grow continuously as indicated by the excess calcium and keratin stores in its skeleton."
+		]
+	},
+	"TraitOrderLegacy": [
+		2,
+		1,
+		4,
+		6,
+		3,
+		5
+	],
+	"Description": {
+		"Format": "Umbre enters water form, becoming Untargetable and dealing <AttackPhysicalDamage>790</> (<OmegaPowerPercentage></><AttackDamage></>) Physical Damage to the {ChainAmount} nearest Enemies.\r\n\r\nDamage: <AttackPhysicalDamage>790</> = <AttackPhysicalDamage>{FlatDamage}</> (<OmegaPowerPercentage></>) + <AttackPhysicalDamage>{AtkDmg}</> (<AttackDamage></>)",
+		"Parameters": {
+			"ChainAmount": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Attributes.Propagation.ChainNumber"
+			},
+			"FlatDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Attributes.Propagation.EffectPackage.Effects[0].Expression.Operands[0].Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"AtkDmg": {
+				"ParameterPath": "Stats.AttackPhysicalDamage",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Umbre enters water form, becoming Untargetable and dealing 790 () Physical Damage to the 3 nearest Enemies.\r\n\r\nDamage: 790 = 600 () + 180 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 2,
+			"AttackSpeed": 1,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 3,
+			"Resistance": 5
+		}
+	}
+}

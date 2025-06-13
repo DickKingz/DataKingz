@@ -1,0 +1,271 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "PoodleMoth",
+	"Stage": 2,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 3,
+	"CombatAffinity": "Inferno",
+	"CombatClass": "Psion",
+	"DominantCombatAffinity": "Fire",
+	"DominantCombatClass": "Psion",
+	"SizeUnits": 5,
+	"Stats": {
+		"MaxHealth": 1400000,
+		"StartingEnergy": 100000,
+		"EnergyCost": 180000,
+		"PhysicalResist": 30,
+		"EnergyResist": 40,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 110000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 80,
+		"MoveSpeedSubUnits": 1850,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 60,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "PoodleMoth Basic Attack II",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 40
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"SpeedSubUnits": 10000,
+						"IsHoming": true,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Pyrofield II",
+			"TotalDurationMs": 3000,
+			"Skills": [
+				{
+					"Name": "Jumps into air",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 10,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "PlaneChange",
+								"PlaneChange": "Airborne",
+								"DurationMs": 3000
+							}
+						]
+					}
+				},
+				{
+					"Name": "Zone Damage",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 18,
+						"DurationMs": 5000,
+						"FrequencyMs": 500,
+						"Attach": true,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 0,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "DOT",
+								"DamageType": "Energy",
+								"DurationMs": 5000,
+								"FrequencyMs": 500,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										550000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "PyrofieldDash",
+					"Targeting": {
+						"Type": "DistanceCheck",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"Group": "Enemy",
+						"Lowest": false,
+						"Num": 1
+					},
+					"Deployment": {
+						"Type": "Dash",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 5
+					},
+					"PercentageOfAbilityDuration": 80,
+					"Dash": {
+						"ApplyToAll": true,
+						"IsPassthrough": true,
+						"LandBehind": true
+					},
+					"EffectPackage": {
+						"Attributes": {
+							"RotateToTarget": true
+						},
+						"Effects": []
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Artace",
+	"DisplayDescription": "Artace becomes Airborne and flies to the furthest enemy, leaving a 18-hexes trail of fire, dealing <AttackEnergyDamage>550</> (<OmegaPowerPercentage></>) Energy Damage over 5 seconds.\r\n\r\nDamage: <AttackEnergyDamage>550</> (<OmegaPowerPercentage></>)",
+	"Intro": "Sand pours from the surface of Crimson Waste into underground pathways full of peculiar plants. Yellow orb petals and blue polka-dot bushes illuminate these dark tunnels. Besides flowers, tiny mushrooms and rushing sandfalls follow the slopes into open areas teaming with life. At the centre of it, the Artace sits with its magnificent wings spread out, in a mesmerizing display of glowing reds, pinks and purples.",
+	"Summary": "The Artace's deceptive appearance mimics the eyes of leviathans, with silky white wings speckled in black, and crowned by flaming antennae. This Illuvial lures prey with intricate displays, mimicking flowers or menacing creatures as needed, before striking to absorb their energy. It sheds fur to manage its intense internal flames, which change color with its mood, from peaceful purple to warning pink.",
+	"Biology": {
+		"Physiology": "The Artace is a beautiful and tricky Illuvial, with scorching wings marked deceptively like the eyes of a leviathan. The back of its wings is silky white with black speckles, just like the puff around its neck and its twin tails. Above its oval eyes sits a crown of flaring red, adorned with two sets of antennae. One pair branches out like thick prongs, while the other appears to be delicate light strings holding flames at their ends. The Artace's splendid arrangement is as varied as its temperament, sharp like its clawed legs or enchanting like fire.",
+		"Behaviour": "The Artace can mimic different lifeforms by displaying itself in distinctive ways. It can curl its wings and lift its string-like antennae to resemble an incandescent, furry blossom. This predatory Illuvial often attracts others to its light only to strike and absorb their energy as a meal. Most of the time, it lures in prey with more attractive arrangements, but it can also make itself look more dangerous than it truly is. The Artace can extend its wings to imitate the eyes of a greater monster as a warning to those who come too close. When it is afraid, it flares up its flame and makes hissing sounds, burning so bright that it sheds more of its fur than usual. The colour of its fire changes with its moods, from peaceful purple to warning pink."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/PoodleMothStage2/PoodleMothStage2_default_default_webp.3840x2160/PoodleMothStage2_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/PoodleMothStage2/PoodleMothStage2_default_default_hls.m3u8/PoodleMothStage2_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Artace sheds large amounts of its velvety hair, which is sometimes used by other Illuvials as a fire repellant. It often leaves big clumps behind that other creatures use as soft bedding.",
+			"The Artace attracts Morphopod prey with its fascinating flight patterns, creating displays with light trails that remain suspended in the air.",
+			"The Artace keeps its wings open and does not fold them even when attempting to navigate tight spots, to keep its more vulnerable torso from burning in its flame."
+		],
+		"Buckley": [
+			"The Artace's internal combustion organ conducts chemical reactions to produce flames upon its wings. Its flame can change colours depending on the pheromones it emits.",
+			"The Artace's wings are composed of durable material, including a Pallvium-Lithvium compound, which is resilient against high temperatures and adaptable to the volatility of fire.",
+			"The Artace's legs contain special glands that secrete a fireproof coating to prevent its fur from catching fire and allow it to transfer excess heat outwards into its environment.",
+			"The Artace's large wingspan allows it to maintain its flame and harness the movement of flapping air as fuel.",
+			"The Artace has complex motor nerves within its wings which enable it to coordinate complex movements, allowing it to use its eyespots to mimic eyes or form other illusions."
+		]
+	},
+	"TraitOrderLegacy": [
+		3,
+		2,
+		4,
+		6,
+		1,
+		5
+	],
+	"Description": {
+		"Format": "Artace becomes Airborne and flies to the furthest enemy, leaving a {OmegaRadius}-hexes trail of fire, dealing <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Energy Damage over {OmegaDuration} seconds.\r\n\r\nDamage: <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].Zone.RadiusUnits"
+			},
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"OmegaDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Artace becomes Airborne and flies to the furthest enemy, leaving a 18-hexes trail of fire, dealing 550 () Energy Damage over 5 seconds.\r\n\r\nDamage: 550 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 3,
+			"AttackSpeed": 2,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 5
+		}
+	}
+}

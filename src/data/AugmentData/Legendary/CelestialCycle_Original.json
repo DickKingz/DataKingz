@@ -1,0 +1,104 @@
+{
+	"Name": "CelestialCycle",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "GreaterPower",
+	"Abilities": [
+		{
+			"Name": "CelestialCycle_Ability1",
+			"ActivationTrigger": {
+				"TriggerType": "OnActivateXAbilities",
+				"AbilityTypes": [
+					"Omega"
+				],
+				"EveryX": true,
+				"NumberOfAbilitiesActivated": 1
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "CelestialCycle - Energy Refund",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "OmegaPowerPercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 5
+							},
+							{
+								"Type": "Buff",
+								"Stat": "EnergyRegeneration",
+								"OverlapProcessType": "Sum",
+								"DurationMs": -1,
+								"Expression": 100
+							}
+						]
+					}
+				},
+				{
+					"Name": "CelestialCycle - Omega Power",
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground",
+							"Airborne",
+							"Underground"
+						]
+					},
+					"Targeting": {
+						"Type": "Allegiance",
+						"Group": "Ally",
+						"Guidance": [
+							"Ground",
+							"Airborne",
+							"Underground"
+						]
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "OmegaPowerPercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 5
+							},
+							{
+								"Type": "Buff",
+								"Stat": "EnergyRegeneration",
+								"OverlapProcessType": "Sum",
+								"DurationMs": -1,
+								"Expression": 100
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Celestial Cycle",
+	"DisplayDescription": "On Omega, the holder and all allies gain <OmegaPowerPercentage>5</> <OmegaPowerPercentage>Omega Power</> and <EnergyRegeneration>1</> <EnergyRegeneration>Energy Regen</>.",
+	"Description": {
+		"Format": "On Omega, the holder and all allies gain <OmegaPowerPercentage>{OPVal}</> <OmegaPowerPercentage>Omega Power</> and <EnergyRegeneration>{EnergyRegenVal}</> <EnergyRegeneration>Energy Regen</>.",
+		"Parameters": {
+			"EnergyRegenVal": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[1].Expression",
+				"ValueMultiplier": 0.01
+			},
+			"OPVal": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].Expression",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "On Omega, the holder and all allies gain 5 Omega Power and 1 Energy Regen."
+}

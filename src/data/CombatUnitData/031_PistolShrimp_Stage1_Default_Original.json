@@ -1,0 +1,255 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "PistolShrimp",
+	"Stage": 1,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 5,
+	"CombatAffinity": "Water",
+	"CombatClass": "Psion",
+	"DominantCombatAffinity": "Water",
+	"DominantCombatClass": "Psion",
+	"SizeUnits": 3,
+	"Stats": {
+		"MaxHealth": 1100000,
+		"StartingEnergy": 40000,
+		"EnergyCost": 140000,
+		"PhysicalResist": 25,
+		"EnergyResist": 35,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 80000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 75,
+		"MoveSpeedSubUnits": 1750,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 70,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "PistolShrimp Basic Attack I",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 25
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 10000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Devouring Stream I",
+			"TotalDurationMs": 5500,
+			"Skills": [
+				{
+					"Name": "Damage beam",
+					"Targeting": {
+						"Type": "DistanceCheck",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"Group": "Enemy",
+						"Lowest": false,
+						"Num": 1
+					},
+					"PercentageOfAbilityDuration": 100,
+					"ChannelTimeMs": 4000,
+					"Deployment": {
+						"Type": "Beam",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 10
+					},
+					"Beam": {
+						"WidthUnits": 12,
+						"FrequencyMs": 200,
+						"ApplyOnce": false,
+						"IsHoming": true,
+						"IsBlockable": false
+					},
+					"EffectPackage": {
+						"Attributes": {
+							"RotateToTarget": true
+						},
+						"Effects": [
+							{
+								"Type": "Debuff",
+								"Stat": "EnergyResist",
+								"OverlapProcessType": "Merge",
+								"DurationMs": 500,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										{
+											"Percentage": 10,
+											"Stat": "EnergyResist",
+											"StatSource": "Receiver"
+										},
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										45000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Alphie",
+	"DisplayDescription": "Alphie shoots a powerful water beam at the furthest enemy, dealing <AttackEnergyDamage>900</> (<OmegaPowerPercentage></>) Energy Damage over 4 seconds to all enemies in its path. While hit by the beam, enemies lose <EnergyResist>10%</> (<OmegaPowerPercentage></>) Energy Resistance.\r\n\r\nDamage: <AttackEnergyDamage>900</> = <AttackEnergyDamage>45</>/0.2s (<OmegaPowerPercentage></>)\r\nEnergy Resist: <EnergyResist>10%</> (<OmegaPowerPercentage></>)",
+	"Intro": "Ocean water flows into Halcyon Sea through wide waterfalls, pooling into rice-field-like terraces. Each reservoir has its own unique mix of coral and organisms, giving each of them its own special colour. Some pools are red, others yellow, purple, or green. In this watery wonderland, you may catch a glimpse of bubbles spouting from a little creature's claw. Although the Alphie is small, size is no measure for strength?or aggression.",
+	"Summary": "The Alphie of Halcyon Sea is a small yet formidable creature, with a coral orange shell and six purple legs. It wields a giant right claw capable of shooting high-speed water jets that can boil its surroundings. Normally peaceful, the Alphie defends its territory fiercely, disintegrating trespassers with its deadly claw if warnings are ignored. It has adaptations such as a heat-dissipating mechanism after using its claw and a fortified shell that withstands tidal forces.",
+	"Biology": {
+		"Physiology": "The adorable Alphie scurries around on six purple legs, its body enclosed in a coral orange, spiky shell. Its round eyes and twitching antennae make it appear cute and harmless, but nothing could be further from the truth. Its smaller left pincher is used to manoeuvre its environment, but its giant right claw is a devastating weapon. Armed with a large, bulbous blue arm, it can blast water at terrifying speeds, boiling the water around it. Bubbles and sparks can be found drifting out of its arm, the byproduct of the energy it produces.",
+		"Behaviour": "The Alphie is a neat and orderly pacifist that prefers not to use its giant death-dealing firearm of a claw to harm others. Typically mild-mannered, it keeps to itself. Unfortunately, other Illuvials may be curious about its vibrant colours and invade its territory. When its polite warning clicks are ignored, it resorts to violence and regretfully disintegrates trespassers who refuse to leave. It immediately makes quick work of the corpses left behind, clearing all debris by feeding on the dead."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/PistolShrimpStage1/PistolShrimpStage1_default_default_webp.3840x2160/PistolShrimpStage1_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/PistolShrimpStage1/PistolShrimpStage1_default_default_hls.m3u8/PistolShrimpStage1_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Alphie must rest deep underwater to cool down after engaging its claw in battle. Its temperature rises so intensely that the Alphie is in danger of cooking itself if it does not lower its temperature.",
+			"The Alphie disintegrates trespassers in its territory with a powerful blast from its claw.",
+			"The Alphie can withstand tidal waves with its crusty spiked shell, as though it is encased in an impenetrable fortress."
+		],
+		"Buckley": [
+			"The Alphie has an incredibly strong muscular system which can flex and pull with great strength and manoeuvrability. This allows it to blast water with lethal precision, even at great distances.",
+			"The Alphie's antennae are hypersensitive to vibrations and they have a direct connection to its right claw, allowing it to aim precisely at any movement in its environment.",
+			"The Alphie's body has an extra protective coating to prevent rapid degeneration from exposure to the superheated water it expels.",
+			"The Alphie's compound eyes are capable of detecting polarized light, allowing it to orient itself by gazing at the sky.",
+			"The Alphie's clawed arm has a latch and spring, with a sudden release mechanism which allows it to blast water at high speeds. This can form cavitation bubbles, which it may use to release friction in the water and move faster."
+		]
+	},
+	"TraitOrderLegacy": [
+		3,
+		2,
+		4,
+		6,
+		1,
+		5
+	],
+	"Description": {
+		"Format": "Alphie shoots a powerful water beam at the furthest enemy, dealing <AttackEnergyDamage>{OmegaDamageFull}</> (<OmegaPowerPercentage></>) Energy Damage over {OmegaDuration} seconds to all enemies in its path. While hit by the beam, enemies lose <EnergyResist>{DebuffValue}%</> (<OmegaPowerPercentage></>) Energy Resistance.\r\n\r\nDamage: <AttackEnergyDamage>{OmegaDamageFull}</> = <AttackEnergyDamage>{OmegaDamage}</>/0.2s (<OmegaPowerPercentage></>)\r\nEnergy Resist: <EnergyResist>{DebuffValue}%</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamageFull": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].Expression.Operands[0]",
+				"ValueMultiplier": 0.02
+			},
+			"OmegaDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].ChannelTimeMs",
+				"ValueMultiplier": 0.001
+			},
+			"DebuffValue": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0].Percentage",
+				"ValueMultiplier": 1.0
+			},
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Alphie shoots a powerful water beam at the furthest enemy, dealing 900 () Energy Damage over 4 seconds to all enemies in its path. While hit by the beam, enemies lose 10% () Energy Resistance.\r\n\r\nDamage: 900 = 45/0.2s ()\r\nEnergy Resist: 10% ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 3,
+			"AttackSpeed": 2,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 5
+		}
+	}
+}

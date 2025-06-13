@@ -1,0 +1,192 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Lynx",
+	"Stage": 2,
+	"Path": "FighterNone",
+	"Variation": "Original",
+	"Tier": 2,
+	"CombatAffinity": "None",
+	"CombatClass": "Fighter",
+	"DominantCombatAffinity": "None",
+	"DominantCombatClass": "Fighter",
+	"SizeUnits": 5,
+	"Stats": {
+		"MaxHealth": 1850000,
+		"StartingEnergy": 40000,
+		"EnergyCost": 80000,
+		"PhysicalResist": 45,
+		"EnergyResist": 45,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 135000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 80,
+		"MoveSpeedSubUnits": 2250,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 4,
+		"OmegaRangeUnits": 4,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Fighter Lynx Basic Attack II",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 38
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Mangled Maul",
+			"TotalDurationMs": 1500,
+			"Skills": [
+				{
+					"Name": "Maul",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 69
+					},
+					"PercentageOfAbilityDuration": 80,
+					"EffectPackage": {
+						"Attributes": {
+							"VampiricPercentage": 20
+						},
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										650000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Relentless Lynx",
+	"DisplayDescription": "Relentless Lynx mauls their target, dealing <AttackPhysicalDamage>650</> (<OmegaPowerPercentage></>) Physical Damage and healing for <Omnivamp>20%</> of the damage dealt.\r\n\r\nDamage: <AttackPhysicalDamage>650</> (<OmegaPowerPercentage></>)",
+	"Intro": "The pathways in Shardbluff Labyrinth appear and disappear with the aurora, giving access to underground tunnels and rocky peaks. The vast tendrils of Tentifung shift with the light, occasionally closing off the way up certain mountains. However, it also leaves behind deep holes in the ground which provide a perilous passage. All manner of Illuvials could be hiding in there, like a prowling Relentless Lynx.",
+	"Summary": "The Relentless Lynx thrives in the dynamic and treacherous Shardbluff Labyrinth, with its black-and-white fur and striking eyes that glow gold and purple. As a proficient hunter, it tracks prey across vast distances, leveraging its sharp vision and specialized muscles for powerful attacks. Equipped with sensitive ears and adaptive limbs, this Illuvial adapts quickly to its surroundings, employing tactics like kicking up debris to unsettle opponents during confrontations.",
+	"Biology": {
+		"Physiology": "The Relentless Lynx is a black-and-white force of nature, with bold eyes that shine gold and purple. Upon its forehead is an ethereal, light green orb that glows with power. Swift-footed and adept at climbing, the Relentless Lynx is capable of moving very quickly in any direction. It lunges on all fours, with sharp reflexes and keen senses due to its long ears and whiskers. The sharp spikes around its arms give it an extra edge when it lashes out with its claws.",
+		"Behaviour": "The Relentless Lynx has a keen sense of smell, and it is often tracking prey Illuvials across great distances. A proficient hunter, it surveys its environment from a high vantage point, using its sharp eyes to identify movement in its territory. The specialised muscles in its jaws and neckline allow it to deliver powerful bites to take down prey and rival Illuvials. When confronting an opponent, it kicks up dirt and rocks with its front paw."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage2Fighter/LynxStage2Fighter_default_default_webp.3840x2160/LynxStage2Fighter_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage2Fighter/LynxStage2Fighter_default_default_hls.m3u8/LynxStage2Fighter_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Relentless Lynx's luminous eyes can see in the dark.",
+			"The Relentless Lynx has sensitive ears that twitch at the slightest sounds. It appears to enjoy simulating its ears by scratching its claws into different materials and textures.",
+			"The Relentless Lynx's limbs are extremely limber, capable of fitting through narrow openings and climbing up or down smooth walls."
+		],
+		"Buckley": [
+			"The Relentless Lynx has specialised cones in each of its eyes that detect different types of light waves. Its golden eye can detect infrared light and its purple eye can detect interdimensional rifts, allowing it to respond to heat signatures and movement from other dimensions.",
+			"The Relentless Lynx has external glands beneath its long face fur that releases endorphins during high levels of physical activity.",
+			"The Relentless Lynx has a shorter tail than the average Lynx, allowing it to evade attacks more easily during battle.",
+			"The Relentless Lynx has longer and more powerful hindlimbs than forelimbs, enabling it to pounce quickly and stand up on its hind legs.",
+			"The Relentless Lynx's nervous system is directly connected to the luminous orb upon its forehead, which can light up in varying degrees of illumination corresponding to its mental activity, particularly those involving ambushing prey."
+		]
+	},
+	"TraitOrderLegacy": [
+		3,
+		1,
+		4,
+		6,
+		2,
+		5
+	],
+	"Description": {
+		"Format": "Relentless Lynx mauls their target, dealing <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Physical Damage and healing for <Omnivamp>{Vampiric}%</> of the damage dealt.\r\n\r\nDamage: <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"Vampiric": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Attributes.VampiricPercentage"
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Relentless Lynx mauls their target, dealing 650 () Physical Damage and healing for 20% of the damage dealt.\r\n\r\nDamage: 650 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 3,
+			"AttackSpeed": 1,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 2,
+			"Resistance": 5
+		}
+	}
+}

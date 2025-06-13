@@ -1,0 +1,26 @@
+{
+	"Name": "Fighter",
+	"Stage": 2,
+	"Type": "Game",
+	"DisplayName": "Fighter Matrix",
+	"DisplayDescription": "Gain a Fighter Imprint and Chronoflux.",
+	"Description": {
+		"Format": "Gain a Fighter Imprint and Chronoflux.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Fighter",
+				"Stage": 0,
+				"Variation": "Original"
+			},
+			{
+				"Name": "Chronoflux",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

@@ -1,0 +1,119 @@
+{
+	"Name": "VeteransMight",
+	"Stage": 3,
+	"Type": "Simulation",
+	"Abilities": [
+		{
+			"Name": "Veteran's Might 2 - Ability",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Veteran's Might 2 - Skill",
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						]
+					},
+					"Targeting": {
+						"Type": "Tier",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						],
+						"Group": "Ally",
+						"Tier": 4,
+						"Num": 2
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "AttackPhysicalDamage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 50,
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackEnergyDamage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 50,
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackPureDamage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 50,
+									"Stat": "AttackPureDamage",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "PhysicalVampPercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 12
+							},
+							{
+								"Type": "Buff",
+								"Stat": "EnergyVampPercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 12
+							},
+							{
+								"Type": "Buff",
+								"Stat": "PureVampPercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 12
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Veteran's Might III",
+	"DisplayDescription": "2 random Tier 4 Units gain 50% Attack Damage and 12% Omnivamp.",
+	"Description": {
+		"Format": "{UnitNum} random Tier 4 Units gain {ADVal}% Attack Damage and {VampVal}% Omnivamp.",
+		"Parameters": {
+			"UnitNum": {
+				"ParameterPath": "Abilities[0].Skills[0].Targeting.Num"
+			},
+			"ADVal": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].Expression.Percentage"
+			},
+			"VampVal": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[3].Expression"
+			}
+		}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [],
+		"GrantedCredits": 0
+	}
+}

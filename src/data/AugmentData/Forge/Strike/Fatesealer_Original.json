@@ -1,0 +1,170 @@
+{
+	"Name": "Fatesealer",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Normal",
+	"Abilities": [
+		{
+			"Name": "Fatesealer_Stats",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Fatesealer - List of Stats",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "AttackPhysicalDamage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 20,
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackEnergyDamage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 20,
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackPureDamage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 20,
+									"Stat": "AttackPureDamage",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackSpeed",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackSpeed",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"Name": "Fatesealer_Ability1",
+			"ActivationTrigger": {
+				"TriggerType": "OnHit",
+				"AbilityTypes": [
+					"Attack"
+				],
+				"SenderAllegiance": "Self",
+				"ReceiverAllegiance": "Enemy",
+				"EveryX": true
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Fatesealer - Clumsy",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Clumsy",
+								"DurationMs": 5000
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"Name": "Fatesealer_Ability2",
+			"ActivationTrigger": {
+				"TriggerType": "OnAssist"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Fatesealer - Gain Attack Speed",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "AttackSpeed",
+								"DurationMs": -1,
+								"OverlapProcessType": "Stacking",
+								"Expression": {
+									"Percentage": 8,
+									"Stat": "AttackSpeed",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Fatesealer",
+	"DisplayDescription": "Attacks inflict Clumsy on the target for 5 seconds.\r\n\r\nOn Takedown, gain <AttackSpeed>8%</> <AttackSpeed>Attack Speed</>.\r\n\r\nStats:\r\n+20% <AttackDamage>Attack Damage</>\r\n+10% <AttackSpeed>Attack Speed</>\r\n\r\n<Italic>Clumsy: Disables the ability to Dodge.</>",
+	"Description": {
+		"Format": "Attacks inflict Clumsy on the target for {ClumsyDuration} seconds.\r\n\r\nOn Takedown, gain <AttackSpeed>{ASValue}%</> <AttackSpeed>Attack Speed</>.\r\n\r\nStats:\r\n+{Stat_AD}% <AttackDamage>Attack Damage</>\r\n+{Stat_AS}% <AttackSpeed>Attack Speed</>\r\n\r\n<Italic>Clumsy: Disables the ability to Dodge.</>",
+		"Parameters": {
+			"ClumsyDuration": {
+				"ParameterPath": "Abilities[1].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"ASValue": {
+				"ParameterPath": "Abilities[2].Skills[0].EffectPackage.Effects[0].Expression.Percentage",
+				"ValueMultiplier": 1.0
+			},
+			"Stat_AD": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].Expression.Percentage",
+				"ValueMultiplier": 1.0
+			},
+			"Stat_AS": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[3].Expression.Percentage",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Attacks inflict Clumsy on the target for 5 seconds.\r\n\r\nOn Takedown, gain 8% Attack Speed.\r\n\r\nStats:\r\n+20% Attack Damage\r\n+10% Attack Speed\r\n\r\nClumsy: Disables the ability to Dodge."
+}

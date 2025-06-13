@@ -1,0 +1,268 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "FennecFox",
+	"Stage": 2,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 3,
+	"CombatAffinity": "Dust",
+	"CombatClass": "Empath",
+	"DominantCombatAffinity": "Air",
+	"DominantCombatClass": "Empath",
+	"SizeUnits": 3,
+	"Stats": {
+		"MaxHealth": 1400000,
+		"StartingEnergy": 100000,
+		"EnergyCost": 150000,
+		"PhysicalResist": 35,
+		"EnergyResist": 45,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 120000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 65,
+		"OmegaRangeUnits": 0,
+		"MoveSpeedSubUnits": 2500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 5,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 60,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Fennec Fox Basic Attack II",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 50
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 10000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Phantom Eyes II",
+			"TotalDurationMs": 1500,
+			"Skills": [
+				{
+					"Name": "Temp increased Phy and Enrg Resist",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 0,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "SpawnShield",
+								"DurationMs": 6000,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										250000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Damage and Stun",
+					"Targeting": {
+						"Type": "DistanceCheck",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"Group": "Enemy",
+						"Lowest": false,
+						"Num": 2
+					},
+					"PercentageOfAbilityDuration": 100,
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 47
+					},
+					"Projectile": {
+						"SizeUnits": 5,
+						"SpeedSubUnits": 10000,
+						"IsHoming": false,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Charm",
+								"DurationMs": 1000
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										250000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Quinx",
+	"DisplayDescription": "Quinx gains 250 (<OmegaPowerPercentage></>) Shield for 6 seconds, Charming the 2 furthest enemies for 1 seconds and dealing <AttackEnergyDamage>250</> (<OmegaPowerPercentage></>) <AttackEnergyDamage>Energy Damage</>.\r\n\r\nShield: <StartingShield>250</> (<OmegaPowerPercentage></>)\r\nDamage: <AttackEnergyDamage>250</> (<OmegaPowerPercentage></>)\r\n\r\nCharm: Forces the unit to move towards the source",
+	"Intro": "Abyssal Basin is home to massive fossilized bones, the remains of Leviathans from long ago. Covered with moss, spined backs and rib cages are now makeshift islands, a bridge for those who wish to cross the swamp. Purple lights glint ominously from below overgrown skeletons, the same as those beneath the jumbles of roots on land. Sitting inside a gigantic jaw, the Quinx peers out. Its many tails swish in intrigue.",
+	"Summary": "The Quinx has enormous ears resembling giant red eyes, a slender torso, and a long tail that can split into six. It moves stealthily, using its tail to shield from rain and debris, and communicates with other Illuvials through complex tail movements. The Quinx's advanced ears and voice box allow it to isolate sounds and mimic them, while its tails possess their own nervous system for intricate displays and manipulation of air and sonar waves.",
+	"Biology": {
+		"Physiology": "The Quinx's ears resemble the giant red eyes of a monster, at nearly three times the size of its head. Slinking on all fours, the Quinx's swirling tail is twice as long as its slender torso, with the ability to split into six separate tails. Its actual eyes are small but appear as brilliant as aquamarines, with the same shine as the jewelled lights on its tail. The Quinx's body is covered with sandy fur, and it has darker tendril-like patterns on its body that lead to brown paws.",
+		"Behaviour": "The Quinx moves like a seasoned thief, finding all the right grooves to climb. It uses its elegant tail to protect itself from rain and to keep debris from entering its large ears. A social Illuvial, the Quinx spends much of its time communicating with others of its line. It has been observed using simpler tail swishes when interacting with Winqs, and coordinating more complex flicks and curls in the presence of Ghazoteps. When the Quinx is threatened, it moves its ears towards the source of danger, the pink underside of its ears mimicking large eyes to face a predator."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/FennecFoxStage2/FennecFoxStage2_default_default_webp.3840x2160/FennecFoxStage2_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/FennecFoxStage2/FennecFoxStage2_default_default_hls.m3u8/FennecFoxStage2_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Quinx is doting and playful towards the Winqs, often teasing them with its tails. The Quinx will also show younger Winqs how to hunt.",
+			"The Quinx uses the movement of its six tails to communicate, in a language only Winqs, Quinxes and Ghazoteps can fully understand.",
+			"The Quinx holds its tails above its head to keep dry during storms."
+		],
+		"Buckley": [
+			"The Quinx's ears have a root-like pattern that can isolate and focus on specific sounds, giving it a complex understanding of every source of vibration in its environment.",
+			"The Quinx's voice box is capable of mimicking and interlacing sounds.",
+			"The Quinx's tails each have their own nervous system which makes them capable of highly coordinated movements, luminous displays, and manipulation of air and sonar waves.",
+			"The Quinx has adapted pores beneath its fur capable of suction and the release of air currents. It stores high quantities of dust and debris within its thick fur which can be released via a mass exhalation and an outburst of energy.",
+			"The Quinx's tails are twice as long as its torso and make up half its body weight."
+		]
+	},
+	"TraitOrderLegacy": [
+		3,
+		2,
+		4,
+		6,
+		1,
+		5
+	],
+	"Description": {
+		"Format": "Quinx gains {ShieldValue} (<OmegaPowerPercentage></>) Shield for {ShieldDuration} seconds, Charming the {TargetNum} furthest enemies for {CharmDuration} seconds and dealing <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) <AttackEnergyDamage>Energy Damage</>.\r\n\r\nShield: <StartingShield>{ShieldValue}</> (<OmegaPowerPercentage></>)\r\nDamage: <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)\r\n\r\nCharm: Forces the unit to move towards the source",
+		"Parameters": {
+			"ShieldValue": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"ShieldDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"TargetNum": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].Targeting.Num"
+			},
+			"CharmDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[1].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Quinx gains 250 () Shield for 6 seconds, Charming the 2 furthest enemies for 1 seconds and dealing 250 () Energy Damage.\r\n\r\nShield: 250 ()\r\nDamage: 250 ()\r\n\r\nCharm: Forces the unit to move towards the source",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 3,
+			"AttackSpeed": 2,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 5
+		}
+	}
+}

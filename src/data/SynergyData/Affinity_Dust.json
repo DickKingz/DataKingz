@@ -1,0 +1,237 @@
+{
+	"CombatAffinity": "Dust",
+	"CombatAffinityComponents": [
+		"Earth",
+		"Air"
+	],
+	"SynergyThresholds": [
+		2,
+		3,
+		4
+	],
+	"SynergyThresholdsAbilities": {
+		"Variables": [
+			{
+				"Name": "Dust_BlindDuration",
+				"Values": [
+					1500,
+					1750,
+					2000
+				]
+			},
+			{
+				"Name": "Dust_ResistanceDebuff",
+				"Values": [
+					10,
+					12,
+					15
+				]
+			},
+			{
+				"Name": "Dust_EnergyDamage",
+				"Values": [
+					100000,
+					200000,
+					300000
+				]
+			},
+			{
+				"Name": "Dust_AllyEmpower",
+				"Values": [
+					0,
+					0,
+					200000
+				]
+			}
+		],
+		"TeamAbilities": [],
+		"UnitAbilities": [
+			{
+				"Name": "DustSynergy_Ability1",
+				"ActivationTrigger": {
+					"TriggerType": "EveryXTime",
+					"ActivateEveryTimeMs": 6000
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Dust - Cloud",
+						"Targeting": {
+							"Type": "Self"
+						},
+						"Deployment": {
+							"Type": "Zone",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							]
+						},
+						"Zone": {
+							"Shape": "Hexagon",
+							"RadiusUnits": 25,
+							"DurationMs": 1000,
+							"FrequencyMs": 100,
+							"Attach": true,
+							"MovementSpeedSubUnits": 0,
+							"GrowthRateSubUnits": 0,
+							"ApplyOnce": true
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "NegativeState",
+									"NegativeState": "Blind",
+									"DurationMs": "{Dust_BlindDuration}"
+								},
+								{
+									"Type": "Debuff",
+									"Stat": "PhysicalResist",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": "{Dust_ResistanceDebuff}"
+								},
+								{
+									"Type": "Debuff",
+									"Stat": "EnergyResist",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": "{Dust_ResistanceDebuff}"
+								}
+							]
+						}
+					},
+					{
+						"Name": "Dust - Self Energy Damage",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "Self"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Empower",
+									"IsConsumable": true,
+									"ActivationsUntilExpiry": 1,
+									"ActivatedBy": "Attack",
+									"AttachedEffects": [
+										{
+											"Type": "InstantDamage",
+											"DamageType": "Energy",
+											"Expression": "{Dust_EnergyDamage}"
+										}
+									]
+								}
+							]
+						}
+					},
+					{
+						"Name": "Dust - Ally Energy Damage",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "InZone",
+							"Group": "Ally",
+							"Self": false,
+							"RadiusUnits": 25
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Empower",
+									"IsConsumable": true,
+									"ActivationsUntilExpiry": 1,
+									"ActivatedBy": "Attack",
+									"AttachedEffects": [
+										{
+											"Type": "InstantDamage",
+											"DamageType": "Energy",
+											"Expression": "{Dust_AllyEmpower}"
+										}
+									]
+								}
+							]
+						}
+					}
+				]
+			}
+		]
+	},
+	"IntrinsicAbilities": [],
+	"DisplayName": "Dust",
+	"DisplayDescription": "Every 6 seconds, Dust units create a Dust Cloud that Blinds all enemies within a 25-hexes for a duration and permanently reduce their <Resistance>Resistances</>.\r\n\r\nDust units' next attack after the Cloud deals bonus <AttackEnergyDamage>Energy Damage</>.\r\n\r\n(4) Allies within the radius also gain the empowered attack.\r\n",
+	"DisplayDescriptionThresholds": [
+		"Blind for 1.5s. Decrease <Resistance>10</><Resistance></>. Deal <AttackEnergyDamage>100</><AttackEnergyDamage></>",
+		"Blind for 1.75s. Decrease <Resistance>12</><Resistance></>. Deal <AttackEnergyDamage>200</><AttackEnergyDamage></>",
+		"Blind for 2s. Decrease <Resistance>15</><Resistance></>. Deal <AttackEnergyDamage>300</><AttackEnergyDamage></>"
+	],
+	"Description": {
+		"Format": "Every {TriggerTime} seconds, Dust units create a Dust Cloud that Blinds all enemies within a {Radius}-hexes for a duration and permanently reduce their <Resistance>Resistances</>.\r\n\r\nDust units' next attack after the Cloud deals bonus <AttackEnergyDamage>Energy Damage</>.\r\n\r\n(4) Allies within the radius also gain the empowered attack.\r\n",
+		"Parameters": {
+			"TriggerTime": {
+				"ParameterPath": "SynergyThresholdsAbilities.UnitAbilities[0].ActivationTrigger.ActivateEveryTimeMs",
+				"ValueMultiplier": 0.001
+			},
+			"Radius": {
+				"ParameterPath": "SynergyThresholdsAbilities.UnitAbilities[0].Skills[0].Zone.RadiusUnits",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DescriptionThresholds": {
+		"Format": "Blind for {Dust_BlindDuration}s. Decrease <Resistance>{Dust_ResistanceDebuff}</><Resistance></>. Deal <AttackEnergyDamage>{Dust_EnergyDamage}</><AttackEnergyDamage></>",
+		"Parameters": [
+			{
+				"Dust_BlindDuration": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[0]",
+					"ValueMultiplier": 0.001
+				},
+				"Dust_ResistanceDebuff": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[0]",
+					"ValueMultiplier": 1.0
+				},
+				"Dust_EnergyDamage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[2].Values[0]",
+					"ValueMultiplier": 0.001
+				}
+			},
+			{
+				"Dust_BlindDuration": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[1]",
+					"ValueMultiplier": 0.001
+				},
+				"Dust_ResistanceDebuff": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[1]",
+					"ValueMultiplier": 1.0
+				},
+				"Dust_EnergyDamage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[2].Values[1]",
+					"ValueMultiplier": 0.001
+				}
+			},
+			{
+				"Dust_BlindDuration": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[2]",
+					"ValueMultiplier": 0.001
+				},
+				"Dust_ResistanceDebuff": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[2]",
+					"ValueMultiplier": 1.0
+				},
+				"Dust_EnergyDamage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[2].Values[2]",
+					"ValueMultiplier": 0.001
+				}
+			}
+		]
+	},
+	"DisplayDescriptionNormalized": "Every 6 seconds, Dust units create a Dust Cloud that Blinds all enemies within a 25-hexes for a duration and permanently reduce their Resistances.\r\n\r\nDust units' next attack after the Cloud deals bonus Energy Damage.\r\n\r\n(4) Allies within the radius also gain the empowered attack.",
+	"DisplayDescriptionThresholdsNormalized": [
+		"Blind for 1.5s. Decrease 10. Deal 100",
+		"Blind for 1.75s. Decrease 12. Deal 200",
+		"Blind for 2s. Decrease 15. Deal 300"
+	]
+}

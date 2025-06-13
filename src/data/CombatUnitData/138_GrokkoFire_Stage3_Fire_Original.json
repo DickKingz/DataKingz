@@ -1,0 +1,206 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "GrokkoFire",
+	"Stage": 3,
+	"Path": "Fire",
+	"Variation": "Original",
+	"Tier": 0,
+	"CombatAffinity": "Fire",
+	"CombatClass": "Bulwark",
+	"DominantCombatAffinity": "Fire",
+	"DominantCombatClass": "Bulwark",
+	"SizeUnits": 7,
+	"Stats": {
+		"MaxHealth": 2250000,
+		"StartingEnergy": 80000,
+		"EnergyCost": 200000,
+		"PhysicalResist": 55,
+		"EnergyResist": 55,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 140000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 60,
+		"MoveSpeedSubUnits": 2000,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 6,
+		"OmegaRangeUnits": 6,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Firequake III",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 35
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Fire Ground Smash III",
+			"TotalDurationMs": 1800,
+			"Skills": [
+				{
+					"Name": "Ground smash",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 40
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 22,
+						"DurationMs": 100,
+						"FrequencyMs": 100,
+						"GrowthRateSubUnits": 0,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										400000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Stun",
+								"DurationMs": 1500
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Exalted Fire Grokko",
+	"DisplayDescription": "Exalted Fire Grokko smashes the ground, dealing <AttackPhysicalDamage>400</> (<OmegaPowerPercentage></>) Physical Damage to all enemies within 22-hexes and Stunning them for 1.5 seconds.\r\n\r\nDamage: <AttackPhysicalDamage>400</> (<OmegaPowerPercentage></>)",
+	"Intro": "The sandfalls in Crimson Waste may look serene from a distance, but the tumbling sand is rough to the touch. They fall so quickly that they can sweep away smaller Illuvials. Even bigger ones avoid them to keep their eyes and nose clear of dust. The Exalted Fire Grokko however, doesn't mind at all. It basks beneath the sandfall, enjoying the heavy current on its lava rock-crusted back like a massage.",
+	"Summary": "In the Crimson Waste, the Exalted Fire Grokko enjoys basking under sandfalls that other Illuvials avoid. This burly, rough, round creature with yellow orb-like eyes and a bulbous head has lava rock armor on its head, arms, and legs. Its stubborn nature and tenacity make it intimidating, as it stands its ground against all odds. The Exalted Fire Grokko's body has a combustion chamber for organs, burns away toxins, adapts its diet for defense, and possesses a weighty, rock-hard exterior.",
+	"Biology": {
+		"Physiology": "The Exalted Fire Grokko is burly, rough, and round, with yellow orb-like eyes and a bulbous head that makes up the entirety of its torso. Its big mouth opens up in the middle of its body, bottom fangs jutting out as it lumbers along on two feet. Lava rock covers its head, arms, and legs, giving it extra protection. The Exalted Fire Grokko has a flat nose and dull senses, but it burns slow and bright, able to withstand the most brutal attacks. With a thick tail that acts as a counterweight for its heavy body, it can stand on its hind legs in a bipedal stance.",
+		"Behaviour": "The Exalted Fire Grokko ambles along, headstrong with its feet planted firmly in the sand. It does not avoid the territory of other Illuvials and goes where it wishes. It stands its ground even when it is clearly outmatched, perhaps out of tenacity, or perhaps stupidity. This stubbornness makes it intimidating to other Illuvials, and even more powerful who begin to doubt their skills when the Exalted Fire Grokko refuses to back down. It does not appear to tire, bullheaded from the moment it awakens until death. Although it does not appear to sleep, it may curl up in a ball to roll down hills or to protect itself from intense storms. This enigmatic Illuvial has also been observed cooking its food using the flames within its mouth."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/GrokkoStage3Fire/GrokkoStage3Fire_default_default_webp.3840x2160/GrokkoStage3Fire_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/GrokkoStage3Fire/GrokkoStage3Fire_default_default_hls.m3u8/GrokkoStage3Fire_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Exalted Fire Grokko's bulbous flaming head and hands require sand as fuel in order to continue burning.",
+			"The Exalted Fire Grokko has been observed to put a variety of objects in its mouth, often crunching rocks, flowers, trees, and even the lithic textures on its skin only to regenerate them again. After absorbing nutrients from the materials, it spits them back out in molten forms.",
+			"The Exalted Fire Grokko is a patient but unskilled climber that scales cliffs at a rate of roughly 20 m/day. It has been observed to stumble and roll down every few weeks, knocking over other Illuvials, creating landslides, and then walking away unharmed."
+		],
+		"Buckley": [
+			"The Exalted Fire Grokko's fire is capable of burning away any toxins and infections within its internal systems.",
+			"The Exalted Fire Grokko's body has an internal cavity which functions as a combustion chamber. All of its organs are positioned in a ring formation around this internal cavity, separated by layers of fireproof, rubbery walls.",
+			"The Exalted Fire Grokko's skin is darkened by the fallen ashes of its flame.",
+			"The Exalted Fire Grokko's stomach is adaptable to different materials and its immune system develops defence mechanisms based on what it ingests.",
+			"The Exalted Fire Grokko has an immense weight of 2160 kg, with open flames upon his body that burns off excess growths."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		4,
+		1,
+		6,
+		3,
+		2
+	],
+	"Description": {
+		"Format": "Exalted Fire Grokko smashes the ground, dealing <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Physical Damage to all enemies within {OmegaRadius}-hexes and Stunning them for {StunDuration} seconds.\r\n\r\nDamage: <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"OmegaRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Zone.RadiusUnits"
+			},
+			"StunDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Exalted Fire Grokko smashes the ground, dealing 400 () Physical Damage to all enemies within 22-hexes and Stunning them for 1.5 seconds.\r\n\r\nDamage: 400 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 4,
+			"Health": 1,
+			"MovementSpeed": 6,
+			"OmegaPower": 3,
+			"Resistance": 2
+		}
+	}
+}

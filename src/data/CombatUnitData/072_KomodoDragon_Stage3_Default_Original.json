@@ -1,0 +1,304 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "KomodoDragon",
+	"Stage": 3,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 3,
+	"CombatAffinity": "Wildfire",
+	"CombatClass": "Aegis",
+	"DominantCombatAffinity": "Nature",
+	"DominantCombatClass": "Bulwark",
+	"SizeUnits": 7,
+	"Stats": {
+		"MaxHealth": 2950000,
+		"StartingEnergy": 90000,
+		"EnergyCost": 240000,
+		"PhysicalResist": 65,
+		"EnergyResist": 70,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 175000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 60,
+		"MoveSpeedSubUnits": 1200,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 6,
+		"OmegaRangeUnits": 6,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Komodo Dragon Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 45
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Misty Shield III",
+			"TotalDurationMs": 6800,
+			"Skills": [
+				{
+					"Name": "Cloud",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"Guidance": [
+							"Ground",
+							"Airborne",
+							"Underground"
+						],
+						"PreDeploymentDelayPercentage": 20
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 28,
+						"DurationMs": 4000,
+						"FrequencyMs": 100,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 25,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "SpawnMark",
+								"MarkType": "Beneficial",
+								"DurationMs": 4000,
+								"AttachedAbilities": [
+									{
+										"Name": "Blind and debuff enemy on hit",
+										"ActivationTrigger": {
+											"TriggerType": "OnHit",
+											"AbilityTypes": [
+												"Attack"
+											],
+											"SenderAllegiance": "Enemy",
+											"ReceiverAllegiance": "Self"
+										},
+										"TotalDurationMs": 0,
+										"Skills": [
+											{
+												"Name": "Attack speed debug and blind state",
+												"Deployment": {
+													"Type": "Direct"
+												},
+												"Targeting": {
+													"Type": "Activator"
+												},
+												"EffectPackage": {
+													"Effects": [
+														{
+															"Type": "NegativeState",
+															"NegativeState": "Blind",
+															"DurationMs": 1250
+														}
+													]
+												}
+											}
+										]
+									}
+								]
+							},
+							{
+								"Type": "SpawnMark",
+								"MarkType": "Beneficial",
+								"DurationMs": 4000,
+								"AttachedAbilities": [
+									{
+										"Name": "Damage Enemies in AOE",
+										"ActivationTrigger": {
+											"TriggerType": "EveryXTime",
+											"ActivateEveryTimeMs": 1000
+										},
+										"TotalDurationMs": 0,
+										"Skills": [
+											{
+												"Name": "Damage Enemies in AOE",
+												"Deployment": {
+													"Type": "Direct"
+												},
+												"Targeting": {
+													"Type": "InZone",
+													"Group": "Enemy",
+													"RadiusUnits": 28
+												},
+												"EffectPackage": {
+													"Effects": [
+														{
+															"Type": "InstantDamage",
+															"DamageType": "Energy",
+															"Expression": {
+																"Operation": "*",
+																"Operands": [
+																	100000,
+																	{
+																		"Stat": "OmegaPowerPercentage",
+																		"StatSource": "Sender"
+																	}
+																]
+															}
+														}
+													]
+												}
+											}
+										]
+									}
+								]
+							},
+							{
+								"Type": "Buff",
+								"Stat": "VulnerabilityPercentage",
+								"OverlapProcessType": "Highest",
+								"DurationMs": 4000,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										{
+											"Percentage": 15,
+											"Stat": "VulnerabilityPercentage",
+											"StatSource": "Receiver"
+										},
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Blotto",
+	"DisplayDescription": "Pollen billows around Blotto forming a 28-hexes cloud for 4 seconds, causing all enemies hitting Blotto to be Blinded for 1.25 seconds.\r\n\r\nAllies within the cloud gain <DamageReduction>15%</> (<OmegaPowerPercentage></>) Damage Reduction and enemies are dealt <AttackEnergyDamage>100</> (<OmegaPowerPercentage></>) Energy Damage per second.\r\n\r\nDMG Reduction: <DamageReduction>15%</> (<OmegaPowerPercentage></>)\r\nDamage: <AttackEnergyDamage>100</> (<OmegaPowerPercentage></>)",
+	"Intro": "Water cascades down the rock formations of Brightland Steppes, upheld by an intricate web of roots. These gentle waterfalls feed into lush, green pools, a favoured bathing spot for the smaller Illuvials. While the thunderous approach of giant footsteps sends some scurrying for cover, those familiar with the peaceful Blotto remain, soothed by its otherworldly, mind-altering mists.",
+	"Summary": "In the lush Brightland Steppes, the Blotto is a serene giant whose mind-altering mists soothe the smaller Illuvials. With a blazing core and smoke-emitting vents, it boasts an untamed mane, curved antlers, and a rocky-textured, glowing body. The Blotto's steam, infused with herbal scents and nutrients, has healing properties, turning pools into steamed baths and aiding the recovery of the land as a keystone species.",
+	"Biology": {
+		"Physiology": "The Blotto boasts an untamed mane crowning its head, paired with vast, curved antlers that unfurl over its formidable humped back. This creature harbours a core of blazing energy, its elongated form akin to a living furnace that encapsulates searing warmth. Plumes of smoke billow from the vents dotting its body, resembling natural chimneys crafted from hollowed tree stumps, layered with bark. Its tail, coated in an ashen hue, displays a rocky texture, emitting warmth from its edges, mirroring the fiery glow tracing its legs, back, and antlers. Though its yellow eyes are often mere slits, the Blotto's forked tongue is frequently seen, tasting the air around it.",
+		"Behaviour": "The Blotto carries a serene vibe, but its large size can still intimidate other Illuvials. It releases steam from its nostrils, creating a healing mist around it. The laid-back Blotto doesn't seem to mind or even notice when the more daring Illuvials climb onto its antlers or back, drawn by the desire to be closer to its fragrant smoke. However, not every small Illuvial that ventures into the vents on its back manages to come out. The Blotto enjoys spending time in the water, wandering the region to enjoy the tranquillity of various pools."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/KomodoDragonStage3/KomodoDragonStage3_default_default_webp.3840x2160/KomodoDragonStage3_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/KomodoDragonStage3/KomodoDragonStage3_default_default_hls.m3u8/KomodoDragonStage3_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Blotto emits steam with an herbal scent that can reduce stress levels and clear the airways of those that inhale it. Even when the Blotto has passed from an area for days, its scent lingers.",
+			"When the Blotto rests in a body of water, its heat turns the pool into a steamed bath that attracts many other Illuvials.",
+			"The Blotto is a keystone species that aids the recovery of land. It receives offerings from other Illuvials of plants to burn in the fiery pits on its body."
+		],
+		"Buckley": [
+			"The Blotto's steam vents are connected through an intricate, internal network of aerial tubes that receive various fruit nectars from its distillery sacs.",
+			"The Blotto's combustion chamber contains traces of various minerals and plants, which are liquified and processed through its distillery sacs, releasing nutrients and aromas in its steam.",
+			"The complexity of the ridges within the Blotto's body correlates to its age, resembling tree rings that form around its skeletal structure.",
+			"The surface of the Blotto's body contains plants and traces of other Illuvials' remains, indicating that it is frequently used as a platform for other life to grow upon and traverse across.",
+			"The Blotto's multi-branching antlers are cooling appendages that release excess heat and steam."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		4,
+		1,
+		6,
+		3,
+		2
+	],
+	"Description": {
+		"Format": "Pollen billows around Blotto forming a {OmegaRadius}-hexes cloud for {OmegaDuration} seconds, causing all enemies hitting Blotto to be Blinded for {BlindDuration} seconds.\r\n\r\nAllies within the cloud gain <DamageReduction>{DamageReduction}%</> (<OmegaPowerPercentage></>) Damage Reduction and enemies are dealt <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Energy Damage per second.\r\n\r\nDMG Reduction: <DamageReduction>{DamageReduction}%</> (<OmegaPowerPercentage></>)\r\nDamage: <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Zone.RadiusUnits"
+			},
+			"OmegaDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Zone.DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].AttachedAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"DamageReduction": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[2].Expression.Operands[0].Percentage",
+				"ValueMultiplier": 1.0
+			},
+			"BlindDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].AttachedAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Pollen billows around Blotto forming a 28-hexes cloud for 4 seconds, causing all enemies hitting Blotto to be Blinded for 1.25 seconds.\r\n\r\nAllies within the cloud gain 15% () Damage Reduction and enemies are dealt 100 () Energy Damage per second.\r\n\r\nDMG Reduction: 15% ()\r\nDamage: 100 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 4,
+			"Health": 1,
+			"MovementSpeed": 6,
+			"OmegaPower": 3,
+			"Resistance": 2
+		}
+	}
+}

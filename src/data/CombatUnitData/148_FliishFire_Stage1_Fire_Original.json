@@ -1,0 +1,232 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "FliishFire",
+	"Stage": 1,
+	"Path": "Fire",
+	"Variation": "Original",
+	"Tier": 0,
+	"CombatAffinity": "Fire",
+	"CombatClass": "Psion",
+	"DominantCombatAffinity": "Fire",
+	"DominantCombatClass": "Psion",
+	"SizeUnits": 3,
+	"Stats": {
+		"MaxHealth": 850000,
+		"StartingEnergy": 20000,
+		"EnergyCost": 120000,
+		"PhysicalResist": 20,
+		"EnergyResist": 20,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 65000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 70,
+		"MoveSpeedSubUnits": 1950,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 60,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Fire Fliish Basic Attack I",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 50
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 10000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Sparking Beam I",
+			"TotalDurationMs": 2000,
+			"Skills": [
+				{
+					"Name": "Damage beam",
+					"Targeting": {
+						"Type": "DistanceCheck",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"Group": "Enemy",
+						"Lowest": false,
+						"Num": 1
+					},
+					"PercentageOfAbilityDuration": 100,
+					"ChannelTimeMs": 2000,
+					"Deployment": {
+						"Type": "Beam",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 0
+					},
+					"Beam": {
+						"WidthUnits": 10,
+						"FrequencyMs": 200,
+						"ApplyOnce": false,
+						"IsHoming": true,
+						"IsBlockable": true,
+						"BlockAllegiance": "Enemy"
+					},
+					"EffectPackage": {
+						"Attributes": {
+							"RotateToTarget": true
+						},
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										52500,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Lesser Fire Fliish",
+	"DisplayDescription": "Lesser Fire Fliish fires a beam at the furthest enemy, dealing <AttackEnergyDamage>525</> (<OmegaPowerPercentage></>) Energy Damage to the first enemy hit over 2 seconds.\r\n\r\nDamage: <AttackEnergyDamage>525</> = <AttackEnergyDamage>52.5</>/0.2s (<OmegaPowerPercentage></>)",
+	"Intro": "Crimson Waste is more than just sand and noxious fumes, even if it doesn't seem that way at first sight. The only source of freshwater in the region is far underground, but one Illuvial has found a different kind of pool to wade in. As the only creature that can safely swim in acid, the Lesser Fire Fliish has developed a faint green colouration from prolonged exposure. When it's not taking a dip, it can be found hopping around the area, sneezing or hiccuping from sand falls.",
+	"Summary": "The Lesser Fire Fliish inhabits the Crimson Waste, where it uniquely swims in acid pools. This orange and pale green Illuvial with dark yellow eyes, a lava-like mouth, and a horned rock helmet, hops around the area, secreting toxins and cooking its prey with its internal heat. Known for its territorial behavior, it uses its bright tongue to attract allies and defend against larger threats. Its physiological features include independent eye movement, internal flame pipes, a 270-degree field of vision, and a vibrating tail for communication.",
+	"Biology": {
+		"Physiology": "The Lesser Fire Fliish is orange and pale green, with dark yellow eyes and a wide gaping mouth that glows like lava. Its long tongue dangling out from the side. It has round bumpy toes on its feet, and its hind legs are often bent in a crouch. Upon its head is a crown made of burned rock plates that form a crude helmet with devilish horns. Its tail is made up of the same dark brown material, with a wreath at its end that is sparking with embers.",
+		"Behaviour": "If there's an Illuvial that's touched every bone in the giant fossil graveyard of Crimson Waste, it's the Lesser Fire Fliish. Constantly hopping and drooling steaming saliva, the Lesser Fire Fliish is always looking for a better vantage point. It defends its territory with a throat warble to warn off other Fire Fliish. For threats of different species, it secretes toxins from its skin. Like other Fliish, it catches flying morphopods with its quick tongue. Unlike others, it can cook them alive with the heat within its mouth."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/FliishStage1Fire/FliishStage1Fire_default_default_webp.3840x2160/FliishStage1Fire_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/FliishStage1Fire/FliishStage1Fire_default_default_hls.m3u8/FliishStage1Fire_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Lesser Fire Fliish has large eyes that can roll independently of each other and observe opposing corners of its peripheral vision.",
+			"The Lesser Fire Fliish flicks its bright and shiny tongue to attract allies during times of need. While it is extremely territorial, the Lesser Fire Fliish band together with others of its kind when a bigger, more dangerous Illuvial threatens one of its kind.",
+			"The Lesser Fire Fliish challenges rivals of its species by using its rubbery limbs to attempt to pin its opponent on the ground. It refrains from dealing serious damage with its psionic abilities because it relies on cooperation with others to survive."
+		],
+		"Buckley": [
+			"The Lesser Fire Fliish has internal flame pipes that direct heat and energy to its tail.",
+			"The Lesser Fire Fliish's tongue has taste receptacles that detect the flavor of combustible sources just by sampling the air, allowing it to determine its next target.",
+			"The Lesser Fire Fliish has a field of vision of 270 degrees, allowing it to identify objects in motion in its periphery.",
+			"The Lesser Fire Fliish's horned head has scarring and scorch marks that are likely produced through tussling with its own kind.",
+			"The ringed tail of the Lesser Fire Fliish is capable of vibrating at varying frequencies, likely as complex signals that it uses to communicate with others of its kind."
+		]
+	},
+	"TraitOrderLegacy": [
+		3,
+		2,
+		4,
+		6,
+		1,
+		5
+	],
+	"Description": {
+		"Format": "Lesser Fire Fliish fires a beam at the furthest enemy, dealing <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Energy Damage to the first enemy hit over {BeamDuration} seconds.\r\n\r\nDamage: <AttackEnergyDamage>{OmegaDamage}</> = <AttackEnergyDamage>{SplitDamage}</>/0.2s (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.01
+			},
+			"BeamDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].ChannelTimeMs",
+				"ValueMultiplier": 0.001
+			},
+			"SplitDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Lesser Fire Fliish fires a beam at the furthest enemy, dealing 525 () Energy Damage to the first enemy hit over 2 seconds.\r\n\r\nDamage: 525 = 52.5/0.2s ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 3,
+			"AttackSpeed": 2,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 5
+		}
+	}
+}

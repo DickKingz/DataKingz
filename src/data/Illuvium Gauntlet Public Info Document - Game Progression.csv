@@ -1,0 +1,17 @@
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,Leveling,,,,,,,,
+,Level ,XP Required to Level Up,,Damage Dealt to Players in PVE Rounds =  2 * (number of units alive),,,,,
+,1,2,,,,,,,
+,2,2,,Damage Dealt to Players in PVP Rounds ,,,,,
+,3,6,,Rounds,Main Formula,,,Modifier,
+,4,10,,3-6,Winning Player Level + Number of surviving Illuvials on the Board,,,-2,"So if the winning player is level 5, and has 3 units alive at the end, it will deal 5+3-2 = 6 damage"
+,5,20,,8-11,Winning Player Level + Number of surviving Illuvials on the Board,,,-2,"So if the winning player is level 5, and has 3 units alive at the end, it will deal 5+3-2 = 6 damage"
+,6,30,,13-16,Winning Player Level + Number of surviving Illuvials on the Board,,,0,"So if the winning player is level 5, and has 3 units alive at the end, it will deal 5+3+0 = 8 damage"
+,7,40,,18-21,Winning Player Level + Number of surviving Illuvials on the Board,,, +3,"So if the winning player is level 5, and has 3 units alive at the end, it will deal 5+3+3 = 11 damage"
+,8,60,,23-26,Winning Player Level + Number of surviving Illuvials on the Board,,, +6,"So if the winning player is level 5, and has 3 units alive at the end, it will deal 5+3+6 = 14 damage"
+,9,80,,28-31,Winning Player Level + Number of surviving Illuvials on the Board,,, +10,"So if the winning player is level 5, and has 3 units alive at the end, it will deal 5+3+10 = 18 damage"
+,10,Max Level,,33-34,Winning Player Level + Number of surviving Illuvials on the Board,,, +20,"So if the winning player is level 5, and has 3 units alive at the end, it will deal 5+3+20 = 28 damage"
+,,,,35-36,Winning Player Level + Number of surviving Illuvials on the Board,,, +50,"So if the winning player is level 5, and has 3 units alive at the end, it will deal 5+3+50 = 58 damage"
+,,,,38+,Winning Player Level + Number of surviving Illuvials on the Board,,, +100,"So if the winning player is level 5, and has 3 units alive at the end, it will deal 5+3+100 = 108 damage"

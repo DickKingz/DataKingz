@@ -1,0 +1,127 @@
+{
+	"Name": "StrikeBoomerangDebilitatingReturn",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Amplifier",
+	"AmplifierForWeapon": {
+		"Name": "StrikeBoomerang",
+		"Stage": 0,
+		"Variation": "Original",
+		"CombatAffinity": "Fire"
+	},
+	"Stats": {
+		"MaxHealth": 400000,
+		"StartingEnergy": 0,
+		"EnergyCost": 0,
+		"PhysicalResist": 0,
+		"EnergyResist": 0,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 0,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 0,
+		"MoveSpeedSubUnits": 0,
+		"HitChancePercentage": 0,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 0,
+		"CritAmplificationPercentage": 0,
+		"OmegaPowerPercentage": 0,
+		"AttackRangeUnits": 0,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 0,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 0,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 0,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [],
+	"InnateAbilities": [
+		{
+			"Name": "DebilitatingReturn",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "DebilitatingReturn_Ability",
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"PercentageOfAbilityDuration": 0,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Empower",
+								"ActivatedBy": "Omega",
+								"DurationMs": -1,
+								"IsConsumable": true,
+								"ActivationsUntilExpiry": 1,
+								"AttachedEffects": [
+									{
+										"Type": "Debuff",
+										"Stat": "OmegaPowerPercentage",
+										"OverlapProcessType": "Merge",
+										"DurationMs": 3000,
+										"Expression": 35
+									},
+									{
+										"Type": "Debuff",
+										"Stat": "AttackSpeed",
+										"OverlapProcessType": "Merge",
+										"DurationMs": 3000,
+										"Expression": {
+											"Percentage": 35,
+											"Stat": "AttackSpeed",
+											"StatSource": "Receiver"
+										}
+									}
+								]
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Debilitating Return",
+	"DisplayDescription": "+<MaxHealth>400</> Health.\r\nOmega reduces target's Attack Speed and Omega Power by <OmegaPowerPercentage>35%</> for 3 seconds.",
+	"Description": {
+		"Format": "+<MaxHealth>{Health}</> Health.\r\nOmega reduces target's Attack Speed and Omega Power by <OmegaPowerPercentage>{Value}%</> for {Duration} seconds.",
+		"Parameters": {
+			"Health": {
+				"ParameterPath": "Stats.MaxHealth",
+				"ValueMultiplier": 0.001
+			},
+			"Value": {
+				"ParameterPath": "InnateAbilities[0].Skills[0].EffectPackage.Effects[0].AttachedEffects[0].Expression",
+				"ValueMultiplier": 1.0
+			},
+			"Duration": {
+				"ParameterPath": "InnateAbilities[0].Skills[0].EffectPackage.Effects[0].AttachedEffects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "+400 Health.\r\nOmega reduces target's Attack Speed and Omega Power by 35% for 3 seconds."
+}

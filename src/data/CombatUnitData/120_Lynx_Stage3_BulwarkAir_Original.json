@@ -1,0 +1,205 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Lynx",
+	"Stage": 3,
+	"Path": "BulwarkAir",
+	"Variation": "Original",
+	"Tier": 2,
+	"CombatAffinity": "Air",
+	"CombatClass": "Bulwark",
+	"DominantCombatAffinity": "Air",
+	"DominantCombatClass": "Bulwark",
+	"SizeUnits": 7,
+	"Stats": {
+		"MaxHealth": 2800000,
+		"StartingEnergy": 100000,
+		"EnergyCost": 200000,
+		"PhysicalResist": 60,
+		"EnergyResist": 60,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 170000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 60,
+		"MoveSpeedSubUnits": 2500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 5,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 5,
+		"OmegaRangeUnits": 5,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Bulwark Air Lynx Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 45
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Escaping Boom",
+			"TotalDurationMs": 1500,
+			"Skills": [
+				{
+					"Name": "Roar",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 70
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 24,
+						"DurationMs": 500,
+						"FrequencyMs": 500,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										450000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Stun",
+								"DurationMs": 2000
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Stoic Zephyrlynx",
+	"DisplayDescription": "Stoic Zephyrlynx roars, dealing <AttackPhysicalDamage>450</> (<OmegaPowerPercentage></>) Physical Damage and Stunning all enemies in 24-hexes for 2 seconds.\r\n\r\nDamage: <AttackPhysicalDamage>450</> (<OmegaPowerPercentage></>)",
+	"Intro": "The warmest area in Taiga Boreal is the flourishing forest of Transfere, located within a deep mountain ridge. It is full of gentle streams, vibrant plants, and the occasional nature Illuvial, known for sapping energy from the air. The majority of the Illuvials in this northern region have an affinity for air, which makes them wary of nature Illuvials. However, the Stoic Zephyrlynx does not fear, wading into the pools with any creature, protected by a nearly impenetrable coat of puffy clouds.",
+	"Summary": "This slow-moving Illuvial has cerulean and teal fur, icy eyes, and a white glowing orb on its forehead, with extra fur padding its paws to prevent slipping on ice. Known for hydrating its environment and supporting the ecosystem, the Stoic Zephyrlynx sleeps long hours without fear of predators. With a body that regulates air pressure and temperature, it can produce pressure waves with its vocalizations, and its roar can paralyze enemies.",
+	"Biology": {
+		"Physiology": "The Stoic Zephyrlynx has a smothering cloak of misted clouds and densely packed fur, with a cerulean base and teal swirls. Its wide, curved ears have elongated black tips, expelling air. Its icy eyes and the white orb upon its forehead are aglow with equanimity. With extra long fur hanging from its chin, the sides of its face, and everywhere else on its body, the Stoic Zephyrlynx is easily the heaviest of the Zephyrlynxes. Its paws are padded with extra fur so that it does not slip on ice and it is fluffy everywhere to the touch.",
+		"Behaviour": "The Stoic Zephyrlynx moves the slowest out of all the Zephyrlynxes, moving at a steady pace as it patrols its territory. With the thick mane of mist that follows it wherever it goes, the Stoic Zephyrlynx hydrates its environment and supports the health of its ecosystem. Asleep for long hours every day, the Stoic Zephyrlynx has no natural predators and can be found lying out in the open."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3BulwarkAir/LynxStage3BulwarkAir_default_default_webp.3840x2160/LynxStage3BulwarkAir_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3BulwarkAir/LynxStage3BulwarkAir_default_default_hls.m3u8/LynxStage3BulwarkAir_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Stoic Zephyrlynx has a thick coat that is so soft and durable, other Illuvials use clumps of its shedding in makeshift dens.",
+			"The Stoic Zephyrlynx may be the slowest Zephyrlynx, but it is the fastest Stoic Lynx. It is more playful and affectionate to allies, as well as more ruthless towards enemies than other Stoic Lynxes.",
+			"After a battle, the Stoic Zephyrlynx falls into a deep slumber and does not stir until fully rested."
+		],
+		"Buckley": [
+			"The Stoic Zephyrlynx has stores of pressurized air in its body which it uses to produce its vaporous mane.",
+			"The Stoic Zephyrlynx's paws have extremely dense layers of fur which offer ample protection but can also slow down its movements. To combat this, its paw pads have the ability to expel air and hasten its speed.",
+			"The Stoic Zephyrlynx has an internal valve system that regulates the flow of cold and hot air in its body. To conserve heat, the air within its torso is at a higher temperature than the air in its extremities, with countercurrent heat exchange to ensure it is a healthy temperature.",
+			"The Stoic Zephyrlynx has an advanced skeletal structure with dense and porous sections that allow it to maintain a relatively lightweight while withstanding great pressure.",
+			"The Stoic Zephyrlynx has an enlarged adapted larynx that gives it the ability to produce pressure waves during intense vocalizations."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		4,
+		1,
+		6,
+		3,
+		2
+	],
+	"Description": {
+		"Format": "Stoic Zephyrlynx roars, dealing <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Physical Damage and Stunning all enemies in {StunRadius}-hexes for {StunDuration} seconds.\r\n\r\nDamage: <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"StunRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Zone.RadiusUnits"
+			},
+			"StunDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Stoic Zephyrlynx roars, dealing 450 () Physical Damage and Stunning all enemies in 24-hexes for 2 seconds.\r\n\r\nDamage: 450 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 4,
+			"Health": 1,
+			"MovementSpeed": 6,
+			"OmegaPower": 3,
+			"Resistance": 2
+		}
+	}
+}

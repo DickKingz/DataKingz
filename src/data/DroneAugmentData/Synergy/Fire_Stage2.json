@@ -1,0 +1,26 @@
+{
+	"Name": "Fire",
+	"Stage": 2,
+	"Type": "Game",
+	"DisplayName": "Fire Matrix",
+	"DisplayDescription": "Gain a Fire Imprint and Furyheart.",
+	"Description": {
+		"Format": "Gain a Fire Imprint and Furyheart.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Fire",
+				"Stage": 0,
+				"Variation": "Original"
+			},
+			{
+				"Name": "Furyheart",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

@@ -1,0 +1,77 @@
+{
+	"Name": "Fire",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "SynergyBonus",
+	"CombatAffinities": {
+		"Fire": 1
+	},
+	"Abilities": [
+		{
+			"Name": "Fire Imprint Stats",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Fire Imprint Stat List",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "AttackPhysicalDamage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackEnergyDamage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackPureDamage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackPureDamage",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Fire Imprint",
+	"DisplayDescription": "The holder gains the Fire Affinity and 10% <AttackDamage>Attack Damage</>.",
+	"Description": {
+		"Format": "The holder gains the Fire Affinity and 10% <AttackDamage>Attack Damage</>.",
+		"Parameters": {}
+	},
+	"DisplayDescriptionNormalized": "The holder gains the Fire Affinity and 10% Attack Damage."
+}

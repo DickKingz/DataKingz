@@ -1,0 +1,21 @@
+{
+	"Name": "Rogue",
+	"Stage": 1,
+	"Type": "Game",
+	"DisplayName": "Rogue Module",
+	"DisplayDescription": "Gain a Rogue Imprint.",
+	"Description": {
+		"Format": "Gain a Rogue Imprint.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Rogue",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

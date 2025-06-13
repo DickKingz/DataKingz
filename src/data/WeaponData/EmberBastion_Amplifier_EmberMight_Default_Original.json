@@ -1,0 +1,108 @@
+{
+	"Name": "EmberBastionEmberMight",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Amplifier",
+	"AmplifierForWeapon": {
+		"Name": "EmberBastion",
+		"Stage": 0,
+		"Variation": "Original",
+		"CombatAffinity": "Earth"
+	},
+	"Stats": {
+		"MaxHealth": 600000,
+		"StartingEnergy": 0,
+		"EnergyCost": 0,
+		"PhysicalResist": 0,
+		"EnergyResist": 0,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 0,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 0,
+		"MoveSpeedSubUnits": 0,
+		"HitChancePercentage": 0,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 0,
+		"CritAmplificationPercentage": 0,
+		"OmegaPowerPercentage": 0,
+		"AttackRangeUnits": 0,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 0,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 0,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 0,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [],
+	"InnateAbilities": [
+		{
+			"Name": "Ember Might",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "EmberMight_Ability",
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"PercentageOfAbilityDuration": 0,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "AttackPhysicalDamage",
+								"OverlapProcessType": "Stacking",
+								"FrequencyMs": 1000,
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 3,
+									"Stat": "MaxHealth",
+									"StatSource": "Receiver"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Ember Might",
+	"DisplayDescription": "+<MaxHealth>600</> Health.\r\nGain <AttackPhysicalDamage>3%</> of Max Health as Attack Physical Damage.",
+	"Description": {
+		"Format": "+<MaxHealth>{Health}</> Health.\r\nGain <AttackPhysicalDamage>{Conversion}%</> of Max Health as Attack Physical Damage.",
+		"Parameters": {
+			"Health": {
+				"ParameterPath": "Stats.MaxHealth",
+				"ValueMultiplier": 0.001
+			},
+			"Conversion": {
+				"ParameterPath": "InnateAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Percentage",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "+600 Health.\r\nGain 3% of Max Health as Attack Physical Damage."
+}

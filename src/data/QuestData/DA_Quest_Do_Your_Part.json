@@ -1,0 +1,276 @@
+{
+	"ProductionId": "DA_Quest_Do_Your_Part",
+	"Name": "Do your part!",
+	"Description": "",
+	"Game": "Overworld",
+	"States": [
+		{
+			"StateId": "6C5B84054CE48A2CDF34CE90A4F731CB",
+			"Name": "Report to Second Officer Mikas",
+			"Description": "The new Ranger is sent to the RCT where they will learn how and where they need to help.",
+			"Optional": false,
+			"CompletionTags": [],
+			"Conditions": [],
+			"Objectives": [
+				{
+					"Type": "DialogObjective",
+					"Description": "Report to Second Officer Mikas",
+					"ObjectiveId": "1F862F5C4BDCDF9CF9688D82043413AC",
+					"ProviderTag": "Overworld.NPC.Mikas"
+				}
+			],
+			"Rewards": [],
+			"Children": [
+				"8E5AD4584CFAC982A861689221581894"
+			],
+			"Parents": []
+		},
+		{
+			"StateId": "8E5AD4584CFAC982A861689221581894",
+			"Name": "The Transducer",
+			"Description": "Awesome description",
+			"Optional": false,
+			"CompletionTags": [],
+			"Conditions": [],
+			"Objectives": [
+				{
+					"Type": "GatherResourceObjective",
+					"Description": "Gather Selenvium Ore",
+					"ObjectiveId": "49B91CB241E9D4AA8DD992AC2B5DF89D",
+					"QuantityMinimum": 5,
+					"QuantityMaximum": 5,
+					"QuantityStep": 5,
+					"ItemType": "OverworldOre",
+					"Name": "SelenviumOre"
+				},
+				{
+					"Type": "GatherResourceObjective",
+					"Description": "Gather Chrovium Ore",
+					"ObjectiveId": "9B507F2E47003E147B049EAFB7E9AE5F",
+					"QuantityMinimum": 5,
+					"QuantityMaximum": 5,
+					"QuantityStep": 5,
+					"ItemType": "OverworldOre",
+					"Name": "ChroviumOre"
+				}
+			],
+			"Rewards": [],
+			"Children": [
+				"D046281B43CE70F093EFA2A80FA6E1A0"
+			],
+			"Parents": [
+				"6C5B84054CE48A2CDF34CE90A4F731CB"
+			]
+		},
+		{
+			"StateId": "D046281B43CE70F093EFA2A80FA6E1A0",
+			"Name": "Report to Officer Mikas",
+			"Description": "Report to Officer Mikas",
+			"Optional": false,
+			"CompletionTags": [],
+			"Conditions": [],
+			"Objectives": [
+				{
+					"Type": "DialogObjective",
+					"Description": "Report to Mikas",
+					"ObjectiveId": "32555D9C4F8F65B7CE679698A8044123",
+					"ProviderTag": "Overworld.NPC.Mikas"
+				}
+			],
+			"Rewards": [
+				{
+					"Type": "ItemReward",
+					"ItemType": "CuredShard",
+					"ItemName": "CuredShardT0",
+					"QuantityMinimum": 1,
+					"QuantityMaximum": 1,
+					"QuantityStep": 1
+				}
+			],
+			"Children": [
+				"B850444C4E98D5A3D6BB02B9C83305B8"
+			],
+			"Parents": [
+				"8E5AD4584CFAC982A861689221581894"
+			]
+		},
+		{
+			"StateId": "B850444C4E98D5A3D6BB02B9C83305B8",
+			"Name": "Calibration Mesh",
+			"Description": "",
+			"Optional": false,
+			"CompletionTags": [],
+			"Conditions": [],
+			"Objectives": [
+				{
+					"Type": "ScanLocationObjective",
+					"Description": "Scan Location A",
+					"ObjectiveId": "9AE6B7554C22D0F7331B80AFAB258FCA",
+					"RegionId": "Region.BrightlandSteppes",
+					"Location": "X=-21200.753 Y=10798.188 Z=6322.537"
+				},
+				{
+					"Type": "ScanLocationObjective",
+					"Description": "Scan Location B",
+					"ObjectiveId": "280F4FB24643760974872B8D481224BE",
+					"RegionId": "Region.BrightlandSteppes",
+					"Location": "X=-32920.000 Y=9290.000 Z=7280.000"
+				},
+				{
+					"Type": "ScanLocationObjective",
+					"Description": "Scan Location C",
+					"ObjectiveId": "AD48C1C9474A7242C39FA480CF99445E",
+					"RegionId": "Region.BrightlandSteppes",
+					"Location": "X=-26988.991 Y=-7664.212 Z=4441.576"
+				}
+			],
+			"Rewards": [],
+			"Children": [
+				"330FC6A440D9FC7B1FAB72845B6CAC9C"
+			],
+			"Parents": [
+				"D046281B43CE70F093EFA2A80FA6E1A0"
+			]
+		},
+		{
+			"StateId": "330FC6A440D9FC7B1FAB72845B6CAC9C",
+			"Name": "Capture Illuvial",
+			"Description": "",
+			"Optional": false,
+			"CompletionTags": [],
+			"Conditions": [],
+			"Objectives": [
+				{
+					"Type": "CaptureIlluvialObjective",
+					"Description": "Capture Illuvial",
+					"ObjectiveId": "84B42DEC43EE57E52E506BB29783EEF4",
+					"QuantityMinimum": 1,
+					"QuantityMaximum": 1,
+					"QuantityStep": 1,
+					"Line": "Axolotl",
+					"Stage": 1
+				}
+			],
+			"Rewards": [],
+			"Children": [
+				"605DC0A741FDADFE57E688AD74227984"
+			],
+			"Parents": [
+				"B850444C4E98D5A3D6BB02B9C83305B8"
+			]
+		},
+		{
+			"StateId": "605DC0A741FDADFE57E688AD74227984",
+			"Name": "Report To Officer Mikas",
+			"Description": "Report To Officer Mikas",
+			"Optional": false,
+			"CompletionTags": [],
+			"Conditions": [],
+			"Objectives": [
+				{
+					"Type": "DialogObjective",
+					"Description": "Speak to Officer Mikas",
+					"ObjectiveId": "83D522904754405729C0C295BF8DE6BF",
+					"ProviderTag": "Overworld.NPC.Mikas"
+				}
+			],
+			"Rewards": [],
+			"Children": [
+				"F9CD52344DCEE14AFB8C4CAC9499D5D5"
+			],
+			"Parents": [
+				"330FC6A440D9FC7B1FAB72845B6CAC9C"
+			]
+		},
+		{
+			"StateId": "F9CD52344DCEE14AFB8C4CAC9499D5D5",
+			"Name": "Fight Officer Mikas",
+			"Description": "Fight Officer Mikas",
+			"Optional": false,
+			"CompletionTags": [],
+			"Conditions": [],
+			"Objectives": [
+				{
+					"Type": "TrainerBattleObjective",
+					"Description": "",
+					"ObjectiveId": "C6EBF1AE416420DB2C88C08BFE055492",
+					"ProviderTag": "Overworld.NPC.Mikas",
+					"EnemyUnits": [
+						{
+							"TypeId":
+							{
+								"UnitType": "Illuvial",
+								"Line": "PistolShrimp",
+								"Stage": 1,
+								"Path": "Default",
+								"Variation": "Original"
+							},
+							"Position":
+							{
+								"Q": -22,
+								"R": -10
+							},
+							"Level": 1,
+							"Finish": "Colour"
+						},
+						{
+							"TypeId":
+							{
+								"UnitType": "Illuvial",
+								"Line": "Axolotl",
+								"Stage": 1,
+								"Path": "Default",
+								"Variation": "Original"
+							},
+							"Position":
+							{
+								"Q": -2,
+								"R": -22
+							},
+							"Level": 1,
+							"Finish": "Colour"
+						}
+					],
+					"Mods": []
+				}
+			],
+			"Rewards": [],
+			"Children": [
+				"DF1A0F5048D7024EB0835A890D757E04"
+			],
+			"Parents": [
+				"605DC0A741FDADFE57E688AD74227984"
+			]
+		},
+		{
+			"StateId": "DF1A0F5048D7024EB0835A890D757E04",
+			"Name": "",
+			"Description": "",
+			"Optional": false,
+			"CompletionTags": [],
+			"Conditions": [],
+			"Objectives": [
+				{
+					"Type": "DialogObjective",
+					"Description": "Speak to Officer Mikas",
+					"ObjectiveId": "A65E7CDA49E90A64C3572AA41A9B6B7F",
+					"ProviderTag": "Overworld.NPC.Mikas"
+				}
+			],
+			"Rewards": [
+				{
+					"Type": "ItemReward",
+					"ItemType": "OverworldDroneEquipment",
+					"ItemName": "AtomicConjurant_Stage1",
+					"QuantityMinimum": 1,
+					"QuantityMaximum": 1,
+					"QuantityStep": 1
+				}
+			],
+			"Children": [],
+			"Parents": [
+				"F9CD52344DCEE14AFB8C4CAC9499D5D5"
+			]
+		}
+	]
+}

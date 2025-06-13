@@ -1,0 +1,245 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "WaterBuffalo",
+	"Stage": 3,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 1,
+	"CombatAffinity": "Toxic",
+	"CombatClass": "Colossus",
+	"DominantCombatAffinity": "Water",
+	"DominantCombatClass": "Bulwark",
+	"SizeUnits": 7,
+	"Stats": {
+		"MaxHealth": 2500000,
+		"StartingEnergy": 20000,
+		"EnergyCost": 120000,
+		"PhysicalResist": 65,
+		"EnergyResist": 70,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 125000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 60,
+		"MoveSpeedSubUnits": 1850,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 7,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Water Buffalo Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 58
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Sharpened Taunt III",
+			"TotalDurationMs": 2000,
+			"Skills": [
+				{
+					"Name": "Thorns and Health",
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"PercentageOfAbilityDuration": 0,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "Thorns",
+								"DurationMs": 4000,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										30000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Receiver"
+										}
+									]
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "MaxHealth",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										200000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Receiver"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Roar",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 40
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 24,
+						"DurationMs": 500,
+						"FrequencyMs": 500,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Taunted",
+								"DurationMs": 3000
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Cardulox",
+	"DisplayDescription": "Cardulox's horns extend, Taunting enemies in 24-hexes for 3 seconds, gaining <Thorns>30</> (<OmegaPowerPercentage></>) Thorns for 4 seconds and <MaxHealth>200</> (<OmegaPowerPercentage></>) Health.\r\n\r\nThorns: <Thorns>30</> (<OmegaPowerPercentage></>)\r\nHealth: <MaxHealth>200</> (<OmegaPowerPercentage></>)",
+	"Intro": "In Abyssal Basin's marsh boneyard, new life grows upon the remains of giants. Ferns and flowers sprout from fossilized skeletons, forming archipelagos that creatures use to traverse the deep waters. The gaps between ancient rib cages can be too wide for many, but the great Cardulox jumps from one to another without difficulty. It creates tremors when it lands, and when it huffs, its green breath wilts the moss around it.",
+	"Summary": "In the eerie marsh boneyard of Abyssal Basin, the Cardulox reigns supreme with its massive spiral horns, venomous tail, and imposing stature. Covered in green tendrils and glowing eyes, it traverses ancient skeletons effortlessly, creating tremors with each leap. Despite its intimidating presence, the Cardulox exhibits surprising care for new life, avoiding its own toxins near vulnerable sprouts. It feeds on aquatic plants while submerged, indifferent to other Illuvials.",
+	"Biology": {
+		"Physiology": "The Cardulox has massive, spiral horns coated in the same green as the twisting tendrils along its bulging back and the poison barb on its long tail. Ghoulish green lights drift from its eyes and hazy breath steams from its nostrils, infused with venom.  Its broad, steely body is plated with rock-like armour with a copper underbelly. The Cardulox can easily throw creatures to their demise or stomp them out with its strong hooves.",
+		"Behaviour": "The Cardulox strikes the strangest feeling in those it encounters, its heavy presence a reminder that death could always be around the corner. The harrowing effect of the Cardulox's presence is temporary unless it truly intends to end a life. It has been observed raising its tail in order to preserve the life of little sprouts near its hooves. The Caradulox mainly feeds on aquatic plants and grazes while submerged, with its head above the water. It may travel long distances through swamps and rivers while it eats, uncaring if it disturbs the territory of other Illuvials."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/WaterBuffaloStage3/WaterBuffaloStage3_default_default_webp.3840x2160/WaterBuffaloStage3_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/WaterBuffaloStage3/WaterBuffaloStage3_default_default_hls.m3u8/WaterBuffaloStage3_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"An encounter with the Cardulox may feel sombre or even nightmarish, but the aftereffect is a spiritual clarity accompanied by enhanced sensitivity to the physical world. Colours are extra vibrant, scents and sounds are richer; the entire world feels more alive.",
+			"The Cardulox is surprisingly nimble for one its size and stature. It takes care to avoid dipping its tail too close to new life, lest its poison has a more permanent effect.",
+			"The Cardulox's breath is a misty green glow which attracts other poisonous creatures. However, even other toxic Illuvials are not immune to the effects of the Cardulox's toxins."
+		],
+		"Buckley": [
+			"The Cardulox is a herbivore with a specialised organ in its digestive system that creates antidotes for the biotoxins it consumes. It also has internal clay linings which protect it from contact with toxins.",
+			"The Cardulox's plated hide is composed of 71.3% Pallavium and 28.7% Irivium, making it highly resistant to heat while allowing internal acidic toxins to pass through without taking damage.",
+			"The Caradulox's horns hold the purest, most potent poison in its body. When its toxin stores are low, the poison in the barbs is transported to its horns through a robust secondary circulatory system.",
+			"The Caradulox relies on the leafy growths upon its large body to keep itself cool on land. There are traces of mud along its armoured hide, suggesting that it may also wallow in swamps to acquire a cooling coat of mud.",
+			"The Caradulox's largest stomach compartment is an incubator and breeding ground for digestive microbes that specialize in breaking down plants. They work in symbiosis with cellulose-eating morphopods in their other chambers, optimizing the Caradulox's digestion."
+		]
+	},
+	"TraitOrderLegacy": [
+		4,
+		3,
+		1,
+		5,
+		6,
+		2
+	],
+	"Description": {
+		"Format": "Cardulox's horns extend, Taunting enemies in {TauntRadius}-hexes for {TauntDuration} seconds, gaining <Thorns>{ThornsValue}</> (<OmegaPowerPercentage></>) Thorns for {ThornsDuration} seconds and <MaxHealth>{MaxHealthBuff}</> (<OmegaPowerPercentage></>) Health.\r\n\r\nThorns: <Thorns>{ThornsValue}</> (<OmegaPowerPercentage></>)\r\nHealth: <MaxHealth>{MaxHealthBuff}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"TauntRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].Zone.RadiusUnits"
+			},
+			"TauntDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"ThornsValue": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"MaxHealthBuff": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"ThornsDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Cardulox's horns extend, Taunting enemies in 24-hexes for 3 seconds, gaining 30 () Thorns for 4 seconds and 200 () Health.\r\n\r\nThorns: 30 ()\r\nHealth: 200 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 4,
+			"AttackSpeed": 3,
+			"Health": 1,
+			"MovementSpeed": 5,
+			"OmegaPower": 6,
+			"Resistance": 2
+		}
+	}
+}

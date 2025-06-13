@@ -1,0 +1,271 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "PoodleMoth",
+	"Stage": 1,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 3,
+	"CombatAffinity": "Fire",
+	"CombatClass": "Psion",
+	"DominantCombatAffinity": "Fire",
+	"DominantCombatClass": "Psion",
+	"SizeUnits": 3,
+	"Stats": {
+		"MaxHealth": 1100000,
+		"StartingEnergy": 100000,
+		"EnergyCost": 180000,
+		"PhysicalResist": 25,
+		"EnergyResist": 35,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 80000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 80,
+		"MoveSpeedSubUnits": 1750,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 60,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "PoodleMoth Basic Attack I",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 40
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"SpeedSubUnits": 10000,
+						"IsHoming": true,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Pyrofield I",
+			"TotalDurationMs": 3000,
+			"Skills": [
+				{
+					"Name": "Jumps into air",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 10,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "PlaneChange",
+								"PlaneChange": "Airborne",
+								"DurationMs": 3000
+							}
+						]
+					}
+				},
+				{
+					"Name": "Zone Damage",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 16,
+						"DurationMs": 5000,
+						"FrequencyMs": 500,
+						"Attach": true,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 0,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "DOT",
+								"DamageType": "Energy",
+								"DurationMs": 5000,
+								"FrequencyMs": 500,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										400000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "PyrofieldDash",
+					"Targeting": {
+						"Type": "DistanceCheck",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"Group": "Enemy",
+						"Lowest": false,
+						"Num": 1
+					},
+					"Deployment": {
+						"Type": "Dash",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 5
+					},
+					"PercentageOfAbilityDuration": 80,
+					"Dash": {
+						"ApplyToAll": true,
+						"IsPassthrough": true,
+						"LandBehind": true
+					},
+					"EffectPackage": {
+						"Attributes": {
+							"RotateToTarget": true
+						},
+						"Effects": []
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Ace",
+	"DisplayDescription": "Ace becomes Airborne and flies to the furthest enemy, leaving a 16-hexes trail of fire, dealing <AttackEnergyDamage>400</> (<OmegaPowerPercentage></>) Energy Damage over 5 seconds.\r\n\r\nDamage: <AttackEnergyDamage>400</> (<OmegaPowerPercentage></>)",
+	"Intro": "There is much more to Crimson Waste than the red dunes and sandstorms of the surface. Secret passageways and crystal tunnels lead to the graveyards of giants, which are full of eerie bone caves. Among the sand and rock, deep pools of acid release plumes of toxins into the atmosphere, bright green in contrast to the dark, smokey skies. Indifferent to the perils nearby, the Ace rests upon the skeletons of the dead, its fluffy wings folded neatly over its body.",
+	"Summary": "The Ace thrives in the Crimson Waste, navigating its perilous terrain with grace. Adorned in fiery antennae and vibrant red wings, it filters toxic plumes with its fuzzy fur and burns pollutants away with its antennae flames. The Ace engages in intricate displays near acid pools, drawn to others of its kind, while avoiding interactions with different Illuvials. Its physiology includes an exoskeleton covered in fluff for toxin filtration and resistance to intense heat.",
+	"Biology": {
+		"Physiology": "The Ace's red and white wings are almost as captivating as the flaming antennae upon its head. Tendrils of fire wave from their many bristles, drawing eager eyes closer. The Ace stares back with its huge compound eyes, made of tiny hexagonal lenses. Covered in soft fuzz, it crawls around on six fluffy segmented legs. Its forewings are white with red accents like the rest of its body, but the flaring pattern on its hindwings is dark brown and orange, a grim match for the fiery, smog-filled skies.",
+		"Behaviour": "The Ace can often be found fluttering above the acid pools of Crimson Waste, its red wings and fiery antennae flickering in stark contrast against the green liquid. Its fuzzy fur filters through the toxic plumes wafting from the pools, and its antennae burn away any pollutants before they reach its large eyes.  These acid pools are where the Ace can find others of its kind, and engage in displays where it flaps its antennae and flares out its flames. The Ace avoids any Illuvials outside their species, seeking only to bond with others of its kind."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/PoodleMothStage1/PoodleMothStage1_default_default_webp.3840x2160/PoodleMothStage1_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/PoodleMothStage1/PoodleMothStage1_default_default_hls.m3u8/PoodleMothStage1_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Ace is attracted to glowing acid pools and it has a designated spot to which it returns from time to time.",
+			"The Ace has been observed drinking the nectar of Red Hopium Flowers, which rely on the Ace's specialised flames to trigger enzymes that allow it to reach maturity.",
+			"The fire on the Ace's antennae grows bigger when they are in close contact with another Ace."
+		],
+		"Buckley": [
+			"The Ace's exoskeleton is covered by fluff, which filters the toxins in the atmosphere.",
+			"The Ace's flame is synchronized with its wing movements, allowing it to burn brighter when it flies.",
+			"The Ace's antennae can pick up on pheromones and decipher the intentions of other Illuvials.",
+			"The Ace's body is highly resistant to heat and it can maintain its structural integrity despite the intensity of its flame.",
+			"The Ace carries traces of Red Hopium Flower pollen in its antennae. It is highly likely that the steam from its flame is capable of dispersing the pollen."
+		]
+	},
+	"TraitOrderLegacy": [
+		3,
+		2,
+		4,
+		6,
+		1,
+		5
+	],
+	"Description": {
+		"Format": "Ace becomes Airborne and flies to the furthest enemy, leaving a {OmegaRadius}-hexes trail of fire, dealing <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Energy Damage over {OmegaDuration} seconds.\r\n\r\nDamage: <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].Zone.RadiusUnits"
+			},
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"OmegaDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Ace becomes Airborne and flies to the furthest enemy, leaving a 16-hexes trail of fire, dealing 400 () Energy Damage over 5 seconds.\r\n\r\nDamage: 400 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 3,
+			"AttackSpeed": 2,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 5
+		}
+	}
+}

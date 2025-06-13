@@ -1,0 +1,195 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "VolanteFire",
+	"Stage": 3,
+	"Path": "Fire",
+	"Variation": "Original",
+	"Tier": 0,
+	"CombatAffinity": "Fire",
+	"CombatClass": "Rogue",
+	"DominantCombatAffinity": "Fire",
+	"DominantCombatClass": "Rogue",
+	"SizeUnits": 6,
+	"Stats": {
+		"MaxHealth": 1800000,
+		"StartingEnergy": 40000,
+		"EnergyCost": 120000,
+		"PhysicalResist": 40,
+		"EnergyResist": 40,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 160000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 65,
+		"MoveSpeedSubUnits": 2500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 4,
+		"OmegaRangeUnits": 4,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Fire Volante Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 40
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Hushing Pyre III",
+			"TotalDurationMs": 1200,
+			"Skills": [
+				{
+					"Name": "Claw slash",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 90
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										950000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Silenced",
+								"DurationMs": 2000
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Exalted Fire Volante",
+	"DisplayDescription": "Exalted Fire Volante rakes its claws at the target, dealing <AttackPhysicalDamage>950</> (<OmegaPowerPercentage></>) Physical Damage and Silencing it for 2 second.\r\n\r\nDamage: <AttackPhysicalDamage>950</> (<OmegaPowerPercentage></>)",
+	"Intro": "All who wander Shardbluff Labyrinth end up lost at some point, no matter how sharp their senses may be. The steep climb from Nuls Point diverges into many crossroads, some leading to dead ends, and others to magma vents and rock pillars covered in Bloodmoss. Leaping up the sharp incline, the Exalted Fire Volante makes its way across the pathways by seemingly blinking in and out of existence from one cliffside to another.",
+	"Summary": "The Exalted Fire Volante leaps across the cliffs of Shardbluff Labyrinth by blinking in and out of existence. This slender red Illuvial, with yellow eyes and a rock-encrusted body, uses its webbed membranes to glide and flames to lift itself. It evades predators and strikes from behind, using bursts of flame to cook its prey. It secretes methanol for quick ignition, has gills to expel heated air, and possesses striped membranes that create a hypnotic effect at high speeds.",
+	"Biology": {
+		"Physiology": "The Exalted Fire Volante has beady yellow eyes, a flat head, and a slender red body with webbed membranes between its thin, stick-like limbs. Sizzling sparks fly up from its rock-encrusted head and back. Its slim tail curls up behind it, holding a long wisp of flame surrounded by dots of fire. With big, chunky claws on its feet, the Exalted Fire Volante can spring across far distances on its nimble legs. Its striped membranes help it glide in the air as it moves.",
+		"Behaviour": "The movements of the Exalted Fire Volante can be hard to predict, as it can disappear in a burst of light and reappear somewhere else. This method of movement cannot be used across smaller distances and it has a pattern of appearing at the very edge of pathways or cliffs. The Exalted Fire Volante can appear quite aloof, evading aggressors by disappearing, only to strike them from behind. It uses its fire to heat up the air beneath its wings, lifting itself higher in the air. Sometimes, it releases bursts of flame to cook Morphopod prey passing by. It does not approach problems in its environment head-on, always looking for a more advantageous position."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/VolanteStage3Fire/VolanteStage3Fire_default_default_webp.3840x2160/VolanteStage3Fire_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/VolanteStage3Fire/VolanteStage3Fire_default_default_hls.m3u8/VolanteStage3Fire_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Exalted Fire Volante erupts into flame from its spine to its tail whenever it senses danger.",
+			"The Exalted Fire Volante gathers oil from Tentifung onto its tail to maintain its flame.",
+			"The Exalted Fire Volante can float in the air by gliding with the webbed membranes along its body."
+		],
+		"Buckley": [
+			"The Exalted Fire Volante secretes methanol, which allows it to ignite extremely quickly. It has an excess layer of fire along its mane in the form of methanol flame, which is invisible to the eye.",
+			"The Exalted Fire Volante has gills that are specially adapted to expel heated air to aid its propulsion and maintain a stable temperature.",
+			"The Exalted Fire Volante has a cavity inside its body that is capable of inflating in extremely heated environments, improving its buoyancy when travelling.",
+			"The Exalted Fire Volante's striped membranes are specially adapted to create a hypnotic effect when it is moving at high speeds, confusing other organic life forms while it accelerates to its destination.",
+			"The Exalted Fire Volante has elongated ribs, evidence of a previous adaption for highly vascularized and foldable wings."
+		]
+	},
+	"TraitOrderLegacy": [
+		2,
+		1,
+		3,
+		6,
+		4,
+		5
+	],
+	"Description": {
+		"Format": "Exalted Fire Volante rakes its claws at the target, dealing <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Physical Damage and Silencing it for {EffectDuration} second.\r\n\r\nDamage: <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"EffectDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Exalted Fire Volante rakes its claws at the target, dealing 950 () Physical Damage and Silencing it for 2 second.\r\n\r\nDamage: 950 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 2,
+			"AttackSpeed": 1,
+			"Health": 3,
+			"MovementSpeed": 6,
+			"OmegaPower": 4,
+			"Resistance": 5
+		}
+	}
+}

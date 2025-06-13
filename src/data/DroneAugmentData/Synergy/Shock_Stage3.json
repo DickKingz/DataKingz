@@ -1,0 +1,21 @@
+{
+	"Name": "Shock",
+	"Stage": 3,
+	"Type": "Game",
+	"DisplayName": "Shock Matrix",
+	"DisplayDescription": "Gain a Shock Imprint.",
+	"Description": {
+		"Format": "Gain a Shock Imprint.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Shock",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

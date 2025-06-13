@@ -1,0 +1,126 @@
+{
+	"Name": "Voidcleaver",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "GreaterPower",
+	"Abilities": [
+		{
+			"Name": "Voidcleaver_Ability1",
+			"ActivationTrigger": {
+				"TriggerType": "OnHit",
+				"AbilityTypes": [
+					"Attack"
+				],
+				"SenderAllegiance": "Self",
+				"ReceiverAllegiance": "Enemy",
+				"EveryX": true
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Voidcleaver - Chain Damage",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"EffectPackage": {
+						"Attributes": {
+							"Propagation": {
+								"PropagationType": "Chain",
+								"ChainNumber": 3,
+								"ChainDelayMs": 10,
+								"OnlyNewTargets": true,
+								"IgnoreFirstPropagationReceiver": true,
+								"TargetingGroup": "Enemy",
+								"EffectPackage": {
+									"Effects": [
+										{
+											"Type": "InstantDamage",
+											"DamageType": "Physical",
+											"Expression": {
+												"Operation": "/",
+												"Operands": [
+													{
+														"Operation": "*",
+														"Operands": [
+															{
+																"Stat": "AttackPhysicalDamage",
+																"StatSource": "Sender"
+															},
+															60
+														]
+													},
+													100
+												]
+											}
+										},
+										{
+											"Type": "InstantDamage",
+											"DamageType": "Energy",
+											"Expression": {
+												"Operation": "/",
+												"Operands": [
+													{
+														"Operation": "*",
+														"Operands": [
+															{
+																"Stat": "AttackEnergyDamage",
+																"StatSource": "Sender"
+															},
+															60
+														]
+													},
+													100
+												]
+											}
+										},
+										{
+											"Type": "InstantDamage",
+											"DamageType": "Pure",
+											"Expression": {
+												"Operation": "/",
+												"Operands": [
+													{
+														"Operation": "*",
+														"Operands": [
+															{
+																"Stat": "AttackPureDamage",
+																"StatSource": "Sender"
+															},
+															60
+														]
+													},
+													100
+												]
+											}
+										}
+									]
+								}
+							}
+						},
+						"Effects": []
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Voidcleaver",
+	"DisplayDescription": "Attacks chain to 3 nearby enemies, dealing <DamageAmplification>40%</> less damage.",
+	"Description": {
+		"Format": "Attacks chain to {Chain} nearby enemies, dealing <DamageAmplification>{RedDamage}%</> less damage.",
+		"Parameters": {
+			"Chain": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Attributes.Propagation.ChainNumber",
+				"ValueMultiplier": 1.0
+			},
+			"RedDamage": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Attributes.Propagation.EffectPackage.Effects[0].Expression.Operands[0].Operands[1]",
+				"ValueMultiplier": 0.66667
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Attacks chain to 3 nearby enemies, dealing 40% less damage."
+}

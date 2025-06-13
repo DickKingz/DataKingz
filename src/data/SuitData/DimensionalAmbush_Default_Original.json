@@ -1,0 +1,170 @@
+{
+	"Name": "DimensionalAmbush",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Amplifier",
+	"Stats": {
+		"PhysicalResist": 0,
+		"EnergyResist": 0,
+		"MaxHealth": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 0,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 0,
+		"AttackDodgeChancePercentage": 0,
+		"MoveSpeedSubUnits": 0,
+		"OmegaPowerPercentage": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"StartingEnergy": 0,
+		"StartingShield": 0,
+		"CritChancePercentage": 0,
+		"CritAmplificationPercentage": 0,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0
+	},
+	"Abilities": [
+		{
+			"Name": "Dimensional Ambush",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 680,
+			"Skills": [
+				{
+					"Name": "Warframe - Initial Blink and Buffs",
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Blink",
+								"BlinkTarget": "Across",
+								"BlinkDelayMs": 500,
+								"DurationMs": 680
+							},
+							{
+								"Type": "PositiveState",
+								"PositiveState": "Untargetable",
+								"DurationMs": 6000
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackSpeed",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": 6000,
+								"Expression": {
+									"Percentage": 100,
+									"Stat": "AttackSpeed",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"Name": "Dimensional Ambush_2",
+			"ActivationTrigger": {
+				"TriggerType": "EveryXTime",
+				"ActivateEveryTimeMs": 6000,
+				"MaxActivations": 1
+			},
+			"TotalDurationMs": 680,
+			"Skills": [
+				{
+					"Name": "Warframe - Second Blink and Buffs",
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"PercentageOfAbilityDuration": 0,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Blink",
+								"BlinkTarget": "Across",
+								"BlinkDelayMs": 500,
+								"DurationMs": 680
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackPhysicalDamage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 50,
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackEnergyDamage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 50,
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackPureDamage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 50,
+									"Stat": "AttackPureDamage",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Dimensional Ambush",
+	"DisplayDescription": "On Combat Start, the Ranger blinks to the opposite side of the board, becomes Untargetable and gains <AttackSpeed>100%</> Attack Speed for 6 seconds.\r\n\r\nAfter 6 seconds, blink back and gain <AttackDamage>50%</> Attack Damage.",
+	"Description": {
+		"Format": "On Combat Start, the Ranger blinks to the opposite side of the board, becomes Untargetable and gains <AttackSpeed>{AttackSpeedVal}%</> Attack Speed for {Duration} seconds.\r\n\r\nAfter {RetriggerBlink} seconds, blink back and gain <AttackDamage>{ADVal}%</> Attack Damage.",
+		"Parameters": {
+			"AttackSpeedVal": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[2].Expression.Percentage"
+			},
+			"Duration": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[2].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"RetriggerBlink": {
+				"ParameterPath": "Abilities[1].ActivationTrigger.ActivateEveryTimeMs",
+				"ValueMultiplier": 0.001
+			},
+			"ADVal": {
+				"ParameterPath": "Abilities[1].Skills[0].EffectPackage.Effects[1].Expression.Percentage",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "On Combat Start, the Ranger blinks to the opposite side of the board, becomes Untargetable and gains 100% Attack Speed for 6 seconds.\r\n\r\nAfter 6 seconds, blink back and gain 50% Attack Damage."
+}

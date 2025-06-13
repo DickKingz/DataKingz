@@ -1,0 +1,202 @@
+{
+	"CombatAffinity": "Verdant",
+	"CombatAffinityComponents": [
+		"Nature",
+		"Nature"
+	],
+	"SynergyThresholds": [
+		2,
+		3,
+		4
+	],
+	"SynergyThresholdsAbilities": {
+		"Variables": [
+			{
+				"Name": "Verdant_Heal",
+				"Values": [
+					30,
+					40,
+					50
+				]
+			},
+			{
+				"Name": "Verdant_ZoneHeal",
+				"Values": [
+					15000,
+					20000,
+					0
+				]
+			},
+			{
+				"Name": "Verdant_SpecialHeal",
+				"Values": [
+					0,
+					0,
+					20
+				]
+			}
+		],
+		"TeamAbilities": [],
+		"UnitAbilities": [
+			{
+				"Name": "VerdantSynergy_Ability1",
+				"ActivationTrigger": {
+					"TriggerType": "HealthInRange",
+					"HealthLowerLimitPercentage": 50,
+					"MaxActivations": 1
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Verdant_HealingZone",
+						"Deployment": {
+							"Type": "Zone",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							]
+						},
+						"Zone": {
+							"Shape": "Hexagon",
+							"RadiusUnits": 25,
+							"DurationMs": -1,
+							"FrequencyMs": 1000,
+							"Attach": true,
+							"MovementSpeedSubUnits": 0,
+							"GrowthRateSubUnits": 0,
+							"ApplyOnce": false
+						},
+						"Targeting": {
+							"Type": "Self",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							]
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "InstantHeal",
+									"HealType": "Normal",
+									"Expression": "{Verdant_ZoneHeal}"
+								},
+								{
+									"Type": "InstantHeal",
+									"HealType": "Normal",
+									"Expression": {
+										"Operation": "/",
+										"Operands": [
+											{
+												"Percentage": "{Verdant_SpecialHeal}",
+												"Stat": "MaxHealth",
+												"StatSource": "Receiver"
+											},
+											10
+										]
+									}
+								}
+							]
+						}
+					},
+					{
+						"Name": "Verdant - Heal over Time",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "Self"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "HOT",
+									"HealType": "Normal",
+									"DurationMs": 4000,
+									"Expression": {
+										"Operation": "*",
+										"Operands": [
+											{
+												"Percentage": "{Verdant_Heal}",
+												"Stat": "MaxHealth",
+												"StatSource": "Receiver"
+											}
+										]
+									}
+								}
+							]
+						}
+					}
+				]
+			}
+		]
+	},
+	"IntrinsicAbilities": [],
+	"DisplayName": "Verdant",
+	"DisplayDescription": "\r\nOnce per combat, at <MaxHealth>50%</> Health, Verdant units Heal a percentage of their <MaxHealth>Max Health</> over 4 seconds and create an attached 25-hexes Healing zone.\r\n\r\n(4) Instead, the zone heals for <MaxHealth>2%</> Max Health.",
+	"DisplayDescriptionThresholds": [
+		"Heal <MaxHealth>30%</><MaxHealth></>. Zone heals for <HealthRegeneration>15</><HealthRegeneration></> per second",
+		"Heal <MaxHealth>40%</><MaxHealth></>. Zone heals for <HealthRegeneration>20</><HealthRegeneration></> per second",
+		"Heal <MaxHealth>50%</><MaxHealth></>. Zone heals for <HealthRegeneration>0</><HealthRegeneration></> per second"
+	],
+	"Description": {
+		"Format": "\r\nOnce per combat, at <MaxHealth>{VerdantThreshold}%</> Health, Verdant units Heal a percentage of their <MaxHealth>Max Health</> over {HOTDuration} seconds and create an attached {HealRadius}-hexes Healing zone.\r\n\r\n(4) Instead, the zone heals for <MaxHealth>{Verdant_SpecialHeal}%</> Max Health.",
+		"Parameters": {
+			"VerdantThreshold": {
+				"ParameterPath": "SynergyThresholdsAbilities.UnitAbilities[0].ActivationTrigger.HealthLowerLimitPercentage",
+				"ValueMultiplier": 1.0
+			},
+			"HOTDuration": {
+				"ParameterPath": "SynergyThresholdsAbilities.UnitAbilities[0].Skills[1].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"HealRadius": {
+				"ParameterPath": "SynergyThresholdsAbilities.UnitAbilities[0].Skills[0].Zone.RadiusUnits",
+				"ValueMultiplier": 1.0
+			},
+			"Verdant_SpecialHeal": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[2].Values[2]",
+				"ValueMultiplier": 0.1
+			}
+		}
+	},
+	"DescriptionThresholds": {
+		"Format": "Heal <MaxHealth>{Verdant_Heal}%</><MaxHealth></>. Zone heals for <HealthRegeneration>{Verdant_ZoneHeal}</><HealthRegeneration></> per second",
+		"Parameters": [
+			{
+				"Verdant_Heal": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[0]"
+				},
+				"Verdant_ZoneHeal": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[0]",
+					"ValueMultiplier": 0.001
+				}
+			},
+			{
+				"Verdant_Heal": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[1]"
+				},
+				"Verdant_ZoneHeal": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[1]",
+					"ValueMultiplier": 0.001
+				}
+			},
+			{
+				"Verdant_Heal": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[2]"
+				},
+				"Verdant_ZoneHeal": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[2]",
+					"ValueMultiplier": 0.001
+				}
+			}
+		]
+	},
+	"DisplayDescriptionNormalized": "Once per combat, at 50% Health, Verdant units Heal a percentage of their Max Health over 4 seconds and create an attached 25-hexes Healing zone.\r\n\r\n(4) Instead, the zone heals for 2% Max Health.",
+	"DisplayDescriptionThresholdsNormalized": [
+		"Heal 30%. Zone heals for 15 per second",
+		"Heal 40%. Zone heals for 20 per second",
+		"Heal 50%. Zone heals for 0 per second"
+	]
+}

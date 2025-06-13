@@ -1,0 +1,254 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Snail",
+	"Stage": 3,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 1,
+	"CombatAffinity": "Granite",
+	"CombatClass": "Invoker",
+	"DominantCombatAffinity": "Earth",
+	"DominantCombatClass": "Psion",
+	"SizeUnits": 6,
+	"Stats": {
+		"MaxHealth": 1550000,
+		"StartingEnergy": 0,
+		"EnergyCost": 100000,
+		"PhysicalResist": 80,
+		"EnergyResist": 30,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 85000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 55,
+		"MoveSpeedSubUnits": 2250,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 60,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Snail Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 25
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 6000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Triple Burst III",
+			"TotalDurationMs": 3000,
+			"Skills": [
+				{
+					"Name": "Retracts into shell",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 0,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "VulnerabilityPercentage",
+								"OverlapProcessType": "Merge",
+								"DurationMs": 4000,
+								"Expression": 35
+							}
+						]
+					}
+				},
+				{
+					"Name": "Damage projectiles",
+					"PercentageOfAbilityDuration": 100,
+					"Targeting": {
+						"Type": "DistanceCheck",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"Group": "Enemy",
+						"Lowest": true,
+						"Num": 3
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 60
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 6000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Attributes": {
+							"SplitDamage": true
+						},
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										525000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Seeforus",
+	"DisplayDescription": "Seeforus retracts into its shell <DamageReduction>35%</> Damage Reduction for 4 seconds and launching projectiles at the 3 closest enemies, each dealing <AttackEnergyDamage>525</> (<OmegaPowerPercentage></>) Energy Damage.\r\n\r\nDamage: <AttackEnergyDamage>525</> (<OmegaPowerPercentage></>)",
+	"Intro": "Mist rises from the tropical bluewater of Halcyon Sea. Up above, coral ears jut out from tall cliffs, breaking up the constant stream of water gushing down. Below, glowing fish zip around among the rocks, among colourful coral and vibrant plants. In the warm waters, a dangerous creature lies in wait. Seeforus' uneven eyes blink and its tall spiral shell begins to turn.",
+	"Summary": "In the vibrant waters of Halcyon Sea, Seeforus lurks with its spiraled shell emitting a pulsing pink light, ready to unleash precise psionic blasts. It possesses an intelligent demeanor with blue eyes and agile tentacles, adept at using tools and crafting its shell meticulously. Seeforus mines minerals using its psionic abilities, ensuring its shell's balance and strength by refining modular shell pieces.",
+	"Biology": {
+		"Physiology": "Menacing Seeforus can be distinguished by the high spire of its sharply pointed shell. Its dark shell rotates layer by layer, and pink light pulses from within, ready to blast projectiles out of the openings. With intelligent blue eyes and a cynical smile, the Seeforus moves in interesting ways. Its face and body are connected in a single white mass, but its six lower tentacles are fast and flexible. Inside the Seeforus' mouth are rows of pointed teeth, made up of the same material as the protrusions on its chin and tail.",
+		"Behaviour": "The Seeforus is resourceful and intelligent, capable of grasping objects with its tentacles and using them as tools. It can often be found clutching rocks and sharpening them against each other. Once it is satisfied, it uses them to sharpen the spikes on its shells. The Seeforus has impeccable control over its psionic blasts, manipulating its size and strength to mine materials out of ore deposits. It has been observed holding large chunks of rocks with its tentacles and aiming precise beams of energy to harvest the elements within. With high attention to detail, the Seeforus constructs each layer of its shell as modular pieces that can be taken out and further refined."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/SnailStage3/SnailStage3_default_default_webp.3840x2160/SnailStage3_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/SnailStage3/SnailStage3_default_default_hls.m3u8/SnailStage3_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Seeforus must continuously fine-tune its extraordinary shells, maintaining balance to its weight to ensure a smooth rotation and a strong attack.",
+			"The Seeforus occasionally forms packs to raid a single Seeforus with a particularly splendid shell. After a successful attack, Seeforus will fight amongst themselves for the parts.",
+			"The Seeforus channels its psionic power with its four tentacles. Its two shorter tentacles are used to facilitate shell rotation during an attack and the longer ones enable them to strike further distances."
+		],
+		"Buckley": [
+			"The Seeforus' tentacles have tiny rotating hooks that are essential for mining iron, carbon, and other elements from its environment to absorb into its horned shell.",
+			"The two horns near the bottom of the Seeforus' mouth are reserve minerals for rebuilding its shell in case of emergencies.",
+			"The Seeforus' shell appears helical in shape, but it consists of separate layers of shell laid on top of one another.",
+			"The Seeforus has siphons within its shell that allow it to dig into its environment and maintain an extremely stable formation.",
+			"The Seeforus secretes mucus which contains information on its health and shell composition, allowing it to communicate with others of its kind."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		4,
+		2,
+		6,
+		1,
+		3
+	],
+	"Description": {
+		"Format": "Seeforus retracts into its shell <DamageReduction>{ReductionValue}%</> Damage Reduction for {ReductionDuration} seconds and launching projectiles at the {TargetNum} closest enemies, each dealing <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Energy Damage.\r\n\r\nDamage: <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"ReductionValue": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression"
+			},
+			"ReductionDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"TargetNum": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].Targeting.Num"
+			},
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Seeforus retracts into its shell 35% Damage Reduction for 4 seconds and launching projectiles at the 3 closest enemies, each dealing 525 () Energy Damage.\r\n\r\nDamage: 525 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 4,
+			"Health": 2,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 3
+		}
+	}
+}

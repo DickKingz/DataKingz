@@ -1,0 +1,115 @@
+{
+	"Name": "AdaptiveCarapace",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Normal",
+	"Abilities": [
+		{
+			"Name": "AdaptiveCarapace_Stats",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "AdaptiveCarapace - List of Stats",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "MaxHealth",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 200000
+							},
+							{
+								"Type": "Buff",
+								"Stat": "PhysicalResist",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 10
+							},
+							{
+								"Type": "Buff",
+								"Stat": "EnergyResist",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 10
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"Name": "AdaptiveCarapace_Ability1",
+			"ActivationTrigger": {
+				"TriggerType": "OnHit",
+				"AbilityTypes": [
+					"Attack"
+				],
+				"SenderAllegiance": "Enemy",
+				"ReceiverAllegiance": "Self"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "AdaptiveCarapace - Gain Resistances per Attacker",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "PhysicalResist",
+								"MaxStacks": 11,
+								"OverlapProcessType": "Sum",
+								"DurationMs": 1000,
+								"Expression": 10
+							},
+							{
+								"Type": "Buff",
+								"Stat": "EnergyResist",
+								"MaxStacks": 11,
+								"OverlapProcessType": "Sum",
+								"DurationMs": 1000,
+								"Expression": 10
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Adaptive Carapace",
+	"DisplayDescription": "Gain <Resistance>10</> <Resistance>Resistances</> for each enemy targeting the holder.\r\n\r\nStats:\r\n+200 <MaxHealth>Health</>\r\n+10 <Resistance>Resistances</>",
+	"Description": {
+		"Format": "Gain <Resistance>{ResistValue}</> <Resistance>Resistances</> for each enemy targeting the holder.\r\n\r\nStats:\r\n+{Stat_Health} <MaxHealth>Health</>\r\n+{Stat_Resist} <Resistance>Resistances</>",
+		"Parameters": {
+			"ResistValue": {
+				"ParameterPath": "Abilities[1].Skills[0].EffectPackage.Effects[0].Expression",
+				"ValueMultiplier": 1.0
+			},
+			"Stat_Health": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].Expression",
+				"ValueMultiplier": 0.001
+			},
+			"Stat_Resist": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[1].Expression",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Gain 10 Resistances for each enemy targeting the holder.\r\n\r\nStats:\r\n+200 Health\r\n+10 Resistances"
+}

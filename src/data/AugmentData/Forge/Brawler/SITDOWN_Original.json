@@ -1,0 +1,187 @@
+{
+	"Name": "SITDOWN",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Normal",
+	"Abilities": [
+		{
+			"Name": "SITDOWN_Stats",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "SITDOWN - List of Stats",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "MaxHealth",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 200000
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackPhysicalDamage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackEnergyDamage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackPureDamage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackPureDamage",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "OmegaPowerPercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 10
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"Name": "SITDOWN_Ability1",
+			"ActivationTrigger": {
+				"TriggerType": "EveryXTime",
+				"ActivateEveryTimeMs": 500
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "SITDOWN - Self Buff",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "PhysicalResist",
+								"OverlapProcessType": "Sum",
+								"DurationMs": 500,
+								"Expression": {
+									"Percentage": 30,
+									"Stat": "PhysicalResist",
+									"StatSource": "SenderFocus"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "EnergyResist",
+								"OverlapProcessType": "Sum",
+								"DurationMs": 500,
+								"Expression": {
+									"Percentage": 30,
+									"Stat": "EnergyResist",
+									"StatSource": "SenderFocus"
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "SITDOWN - Enemy Debuff",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "DistanceCheck",
+						"Group": "Enemy",
+						"Lowest": true,
+						"Num": 1
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Debuff",
+								"Stat": "PhysicalResist",
+								"OverlapProcessType": "Sum",
+								"DurationMs": 490,
+								"Expression": {
+									"Percentage": 30,
+									"Stat": "PhysicalResist",
+									"StatSource": "Receiver"
+								}
+							},
+							{
+								"Type": "Debuff",
+								"Stat": "EnergyResist",
+								"OverlapProcessType": "Sum",
+								"DurationMs": 490,
+								"Expression": {
+									"Percentage": 30,
+									"Stat": "EnergyResist",
+									"StatSource": "Receiver"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "S.I.T.D.O.W.N",
+	"DisplayDescription": "Steal <Resistance>30%</> <Resistance>Resistances</> from the closest enemy.\r\n\r\nStats:\r\n+10% <AttackDamage>Attack Damage</>\r\n+200 <MaxHealth>Health</>\r\n+10 <OmegaPowerPercentage>Omega Power</>",
+	"Description": {
+		"Format": "Steal <Resistance>{StealValue}%</> <Resistance>Resistances</> from the closest enemy.\r\n\r\nStats:\r\n+{Stat_AD}% <AttackDamage>Attack Damage</>\r\n+{Stat_Health} <MaxHealth>Health</>\r\n+{Stat_OP} <OmegaPowerPercentage>Omega Power</>",
+		"Parameters": {
+			"StealValue": {
+				"ParameterPath": "Abilities[1].Skills[0].EffectPackage.Effects[0].Expression.Percentage",
+				"ValueMultiplier": 1.0
+			},
+			"Stat_AD": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[1].Expression.Percentage"
+			},
+			"Stat_Health": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].Expression",
+				"ValueMultiplier": 0.001
+			},
+			"Stat_OP": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[4].Expression",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Steal 30% Resistances from the closest enemy.\r\n\r\nStats:\r\n+10% Attack Damage\r\n+200 Health\r\n+10 Omega Power"
+}

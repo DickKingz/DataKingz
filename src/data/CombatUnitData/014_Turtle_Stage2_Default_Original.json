@@ -1,0 +1,250 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Turtle",
+	"Stage": 2,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 1,
+	"CombatAffinity": "Nature",
+	"CombatClass": "Aegis",
+	"DominantCombatAffinity": "Nature",
+	"DominantCombatClass": "Empath",
+	"SizeUnits": 5,
+	"Stats": {
+		"MaxHealth": 1800000,
+		"StartingEnergy": 80000,
+		"EnergyCost": 150000,
+		"PhysicalResist": 45,
+		"EnergyResist": 30,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 100000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 60,
+		"MoveSpeedSubUnits": 2250,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 40,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Turtle Basic Attack II",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 40
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 8000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Rejuvenasis II",
+			"TotalDurationMs": 3000,
+			"Skills": [
+				{
+					"Name": "Turtle zone",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 30
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 10,
+						"DurationMs": 2900,
+						"FrequencyMs": 1000,
+						"GrowthRateSubUnits": 3000,
+						"MaxRadiusUnits": 30,
+						"ApplyOnce": false
+					},
+					"PercentageOfAbilityDuration": 100,
+					"ChannelTimeMs": 3000,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantHeal",
+								"HealType": "Normal",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										75000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										75000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Root",
+								"ActivationsUntilExpiry": 1,
+								"DurationMs": 3000
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Archos",
+	"DisplayDescription": "Archos slams its flippers into the ground, creating a thicket that grows to 30-hexes over 3 seconds.\r\n\r\nAllies within the radius are Healed for <MaxHealth>75</> (<OmegaPowerPercentage></>) Health per second, while enemies are Rooted and take <AttackEnergyDamage>75</> (<OmegaPowerPercentage></>) Energy Damage per second.\r\n\r\nHeal: <MaxHealth>225</> = <MaxHealth>75</>/s (<OmegaPowerPercentage></>)\r\nDamage: <AttackEnergyDamage>225</> = <AttackEnergyDamage>75</>/s (<OmegaPowerPercentage></>)\r\n\r\n<Italic>Root: Cannot move while affected.</>",
+	"Intro": "There is a forest in Brightland Steppes, made not of trees but purple roots that lift plateaus of land off the ground. These structures mimic a forest canopy, elevating grassy fields and mossy rocks into a tightly packed roof. Below them, small rivers and waterfalls flow. If one catches a glimpse of green radiance among the streams, it's likely to be the Archos' glow. The light fills the area with an aura of tranquillity, and the plant life around flushes with richer vibrancy.",
+	"Summary": "The Archos has luminous green eyes and adorned shell, topped with a large mushroom and pink petal fins, embody its connection to nature's secrets. It diligently tends to its territory, absorbing and redistributing energy to enhance plant and Morphopod growth. It has symbiotic relationships with its surroundings through hyphae exchanges and its ability to enter hibernation to conserve energy, revealing its deep integration into the ecosystem it protects.",
+	"Biology": {
+		"Physiology": "The Archos' watchful eyes shine green, with yellow specks that shimmer with the secrets of nature within. Dots of light flutter from the mossy bed of red spotted fungal caps on its shell. At the very top is its biggest mushroom, crowned by a ring of pink petal fins. More petals flourish around the sides of its shell, and it pads along on sturdy trunk-like legs. The horns on its head and rocky protrusions on its body are the colour of lush soil.",
+		"Behaviour": "The Archos embodies the regenerative abundance of nature itself, and it cares for the land like an extension of its own body. It makes ample time to learn the needs of every living thing in its territory, giving special care to plants that sprout in areas the sun does not reach. Like a gardener, it tends to its territory to enable the healthiest plants to grow, so it may gather its nutrients. The Archos absorbs energy from its environment and then selflessly gives it back, making rounds to distribute nutrients fairly and enhance the growth of plants and Morphopods alike."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/TurtleStage2/TurtleStage2_default_default_webp.3840x2160/TurtleStage2_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/TurtleStage2/TurtleStage2_default_default_hls.m3u8/TurtleStage2_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Archos walks in the direction of sunlight and opens up its petals to absorb the sun's energy. It stores the luminous energy it collects in its shell and uses it to heal those in need.",
+			"The Archos falls asleep and enters a plant-like hibernation when it is completely depleted of energy, losing colour in its leaves and petals.",
+			"The Archos exchanges fungal hyphae with others of its kind, forming a lifelong bond of companionship."
+		],
+		"Buckley": [
+			"The Archos' legs are composed of the same material as the tree trunks in its environment, and they are capable of embedding roots into the ground and drawing nutrients from deep within the soil.",
+			"The specks of light around Archos contain the same information as its brain, indicating that they may be an extension of its consciousness.",
+			"The mushroom on the Archos' back is connected with an expansive mycelial network capable of communicating information from the ecosystem and gathering energy from decaying matter.",
+			"The Archos has multiple strains of hyphae embedded in its brain, with the majority of the hyphae from its own fungal growth and the rest from other Archos.",
+			"The mushroom on the Archos has enough hyphae connected with its musculoskeletal system to respond to environmental threats."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		4,
+		2,
+		6,
+		1,
+		3
+	],
+	"Description": {
+		"Format": "Archos slams its flippers into the ground, creating a thicket that grows to {GrowthRadius}-hexes over {GrowthDuration} seconds.\r\n\r\nAllies within the radius are Healed for <MaxHealth>{HealAmount}</> (<OmegaPowerPercentage></>) Health per second, while enemies are Rooted and take <AttackEnergyDamage>{DamageAmount}</> (<OmegaPowerPercentage></>) Energy Damage per second.\r\n\r\nHeal: <MaxHealth>{HealAmountFull}</> = <MaxHealth>{HealAmount}</>/s (<OmegaPowerPercentage></>)\r\nDamage: <AttackEnergyDamage>{DamageAmountFull}</> = <AttackEnergyDamage>{DamageAmount}</>/s (<OmegaPowerPercentage></>)\r\n\r\n<Italic>Root: Cannot move while affected.</>",
+		"Parameters": {
+			"GrowthRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Zone.MaxRadiusUnits"
+			},
+			"GrowthDuration": {
+				"ParameterPath": "OmegaAbilities[0].TotalDurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"HealAmount": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"DamageAmount": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"HealAmountFull": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.003
+			},
+			"DamageAmountFull": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].Expression.Operands[0]",
+				"ValueMultiplier": 0.003
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Archos slams its flippers into the ground, creating a thicket that grows to 30-hexes over 3 seconds.\r\n\r\nAllies within the radius are Healed for 75 () Health per second, while enemies are Rooted and take 75 () Energy Damage per second.\r\n\r\nHeal: 225 = 75/s ()\r\nDamage: 225 = 75/s ()\r\n\r\nRoot: Cannot move while affected.",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 4,
+			"Health": 2,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 3
+		}
+	}
+}

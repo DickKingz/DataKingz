@@ -1,0 +1,205 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Lynx",
+	"Stage": 2,
+	"Path": "BulwarkNone",
+	"Variation": "Original",
+	"Tier": 2,
+	"CombatAffinity": "None",
+	"CombatClass": "Bulwark",
+	"DominantCombatAffinity": "None",
+	"DominantCombatClass": "Bulwark",
+	"SizeUnits": 6,
+	"Stats": {
+		"MaxHealth": 2100000,
+		"StartingEnergy": 100000,
+		"EnergyCost": 200000,
+		"PhysicalResist": 55,
+		"EnergyResist": 55,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 135000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 60,
+		"MoveSpeedSubUnits": 2250,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 4,
+		"OmegaRangeUnits": 4,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Bulwark Lynx Basic Attack II",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 38
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Tremorous Boom",
+			"TotalDurationMs": 1500,
+			"Skills": [
+				{
+					"Name": "Roar",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 70
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 22,
+						"DurationMs": 500,
+						"FrequencyMs": 500,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										350000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Stun",
+								"DurationMs": 1500
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Stoic Lynx",
+	"DisplayDescription": "Stoic Lynx roars, dealing <AttackPhysicalDamage>350</> (<OmegaPowerPercentage></>) Physical Damage and Stunning all enemies in 22-hexes for 1.5 seconds.\r\n\r\nDamage: <AttackPhysicalDamage>350</> (<OmegaPowerPercentage></>)",
+	"Intro": "The sands of Crystal Shores are often hiding sharp fragments within its dunes. Those who traverse this region must step carefully to avoid a splinter. Some of the crystalline plants have wickedly sharp petals and jagged leaves that can slice through flesh and fur. However, the Stoic Lynx walks unbothered, crunching prism shards beneath its paw. Its tough hide protects its body, and it carries with it an aura of calmness.",
+	"Summary": "The Stoic Lynx traverses the sharp, crystalline terrain of Crystal Shores unbothered, protected by its tough hide and an aura of calmness. This largest of Lynxes boasts densely packed fur in shades of black, grey, and white, striking purple and yellow eyes, and a glowing green light on its forehead. With a highly developed respiratory system, large brain for deep cognition, and the ability to produce intense vocalizations, the Stoic Lynx also possesses mineral stores that allow it to identify magnetic fields.",
+	"Biology": {
+		"Physiology": "The Stoic Lynx is the biggest and heaviest of all the Lynxes, with densely packed fur of black, grey, and white. Its arresting purple and yellow eyes and a glowing green light upon its forehead radiates with tranquillity. With tall, curved ears on its head and long hanging fur on the sides of its chin, the Stoic Lynx has a unique pattern of swirls mixed with diamond-shaped markings on its face. Its back is layered with bushels of black fur upon layers of grey, and it has a shaggy white underbelly. The Stoic Lynx has clawed feet like all the other Lynxes, but a bushier, darker tail than the rest.",
+		"Behaviour": "The Stoic Lynx is a patient Illuvial which gives unwavering attention to the hunt. It is always on guard and moves at a constant, reliable pace. Those who threaten the livelihood of its fellow Lynxes must bear great caution when it strikes. It charges head-on with the full might of its body, completely committed to defending others of its line. The Stoic Lynx does not hide or sneak or exhibit any fear during a confrontation, using its heavy weight to its advantage. It hunts by jumping from a great height and pummeling its prey."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage2Bulwark/LynxStage2Bulwark_default_default_webp.3840x2160/LynxStage2Bulwark_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage2Bulwark/LynxStage2Bulwark_default_default_hls.m3u8/LynxStage2Bulwark_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Stoic Lynx can be found rolling around and burying itself in pink sand, untroubled by sharp crystal shards. This practice removes parasites and cools down its body.",
+			"The Stoic Lynx rarely makes time to play with Lynxes despite their goading. Even when they jump upon it, the Stoic Lynx stays cool and merely shakes them off. It cares for them in other ways, mostly by protecting them and occasionally helping them groom.",
+			"After a battle, the Stoic Lynx falls into a deep slumber and does not stir until it is fully rested. Oftentimes, other Lynxes use the Stoic Lynx as a makeshift pillow because its thick fur is so soft."
+		],
+		"Buckley": [
+			"The Stoic Lynx has a highly developed respiratory system, with lungs that are adapted to allow for increased oxygen intake during physical activity.",
+			"The Stoic Lynx has a large brain which allows for deeper cognition and awareness of its environment than most Illuvials.",
+			"The Stoic Lynx has an enlarged adapted larynx that gives it the ability to produce pressure waves during intense vocalizations.",
+			"The Stoic Lynx has mineral stores in its body, including iron-containing materials that allow it to identify magnetic fields.",
+			"The Stoic Lynx's nervous system is directly connected to the luminous orb upon its forehead, which can light up in varying degrees of illumination corresponding to its mental activity, particularly those involving territorial defence and protection of companions."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		4,
+		1,
+		6,
+		3,
+		2
+	],
+	"Description": {
+		"Format": "Stoic Lynx roars, dealing <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Physical Damage and Stunning all enemies in {StunRadius}-hexes for {StunDuration} seconds.\r\n\r\nDamage: <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"StunRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Zone.RadiusUnits"
+			},
+			"StunDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Stoic Lynx roars, dealing 350 () Physical Damage and Stunning all enemies in 22-hexes for 1.5 seconds.\r\n\r\nDamage: 350 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 4,
+			"Health": 1,
+			"MovementSpeed": 6,
+			"OmegaPower": 3,
+			"Resistance": 2
+		}
+	}
+}

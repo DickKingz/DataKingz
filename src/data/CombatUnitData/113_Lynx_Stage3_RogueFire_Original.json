@@ -1,0 +1,306 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Lynx",
+	"Stage": 3,
+	"Path": "RogueFire",
+	"Variation": "Original",
+	"Tier": 2,
+	"CombatAffinity": "Fire",
+	"CombatClass": "Rogue",
+	"DominantCombatAffinity": "Fire",
+	"DominantCombatClass": "Rogue",
+	"SizeUnits": 7,
+	"Stats": {
+		"MaxHealth": 2150000,
+		"StartingEnergy": 40000,
+		"EnergyCost": 100000,
+		"PhysicalResist": 45,
+		"EnergyResist": 45,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 180000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 70,
+		"MoveSpeedSubUnits": 2500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 5,
+		"OmegaRangeUnits": 5,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Rogue Fire Lynx Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 45
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Infernnial Scything",
+			"TotalDurationMs": 1200,
+			"Skills": [
+				{
+					"Name": "Slash",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 40
+					},
+					"PercentageOfAbilityDuration": 20,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										255000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Slash",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 20
+					},
+					"PercentageOfAbilityDuration": 20,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										255000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Slash",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 20
+					},
+					"PercentageOfAbilityDuration": 20,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										255000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Slash",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 20
+					},
+					"PercentageOfAbilityDuration": 20,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										255000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Slash",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 40
+					},
+					"PercentageOfAbilityDuration": 20,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										255000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Nimble Emberlynx",
+	"DisplayDescription": "Nimble Emberlynx slashes the target 5 times, dealing <AttackPhysicalDamage>255</> (<OmegaPowerPercentage></>) Physical Damage per slash.\r\n\r\nDamage: <AttackPhysicalDamage>1,275</> = <AttackPhysicalDamage>255</> x5 (<OmegaPowerPercentage></>)",
+	"Intro": "The boneyard of Crimson Waste is full of caves made of fossilised remains, with the main archway being a petrified thorax. There are remains scattered everywhere, and many of them are partially dissolved in the deep acid pool. Any Illuvials in the area must beware of the green bubbling basin, as tremors below the surface release plumes of toxic gas. The Nimble Emberlynx however, can blink to the other side without any fuss.",
+	"Summary": "The Nimble Emberlynx inhabits the Crimson Waste, a region characterised by fossilised caves and dangerous acid pools. This solitary predator possesses a burgundy coat with red streaks, burning flames across its body, and a fiery orb on its forehead that connects directly to its advanced nervous system. Its specialised adaptations include flame manipulation, heat energy storage through insulated fur, enhanced visual processing that allows it to perceive its environment in apparent slow motion, and the ability to teleport. While capable of dimming its flames to avoid detection, the species maintains strong territorial behavior and employs ambush tactics, though it becomes vulnerable in heavy rain. The Nimble Emberlynx can interact with other members of its species to create amplified fire effects, and releases smoke signals that attract other fire-based lifeforms, while its normally aggressive nature is reflected in its reluctance to expose its cooler, vulnerable underbelly to others.",
+	"Biology": {
+		"Physiology": "The Nimble Emberlynx is a destructive Illuvial that moves quickly on all fours, shining with flames all over its body. It has scorching eyes and long ears that hold twin flames above its head, burning as brilliantly as the fiery orb on its forehead. The Nimble Emberlynx has red-hot streaks upon its burgundy coat of fur and red curls on its face. There is a formidable swash of fire from its back to its tail, and its claws are ignited with the same erupting glow. Its most vulnerable spot is its underbelly, which is soft to the touch and the coolest part of its body.",
+		"Behaviour": "The elusive Nimble Emberlynx dims its flame to avoid detection from others, though it may occasionally burn through less flame-resistant plants. Fortunately, many manners of lifeforms on Illuvium appear to have developed various countermeasures to the Nimble Emberlynx's fire, ensuring the ecosystem's continued success no matter where it goes. A frequent wanderer, the Nimble Emberlynx is known to pass through other Illuvial's territory. When it seeks to confront another, it disappears and ambushes its target before engaging. Distrusting others, it is a rare sign of vulnerability for the Nimble Emberlynx to show its belly to another."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3RogueFire/LynxStage3RogueFire_default_default_webp.3840x2160/LynxStage3RogueFire_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3RogueFire/LynxStage3RogueFire_default_default_hls.m3u8/LynxStage3RogueFire_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Nimble Emberlynx maintains its distance away from others. If another Illuvial approaches, it emits a low growl, pawing the ground as a warning. Should the trespasser not heed its warning, the Nimble Emberlynx ambushes them and erupts into flame, slashing and biting viciously.",
+			"The Nimble Emberlynx can be weakened by intense rain showers, and it must find shelter to avoid extinguishing its flame completely.",
+			"When the Nimble Emberlynx gathers with other Emberlynxes, they can amplify each other's fires to the point of creating small wildfires."
+		],
+		"Buckley": [
+			"The Nimble Emberlynx's internal combustion system allows it to harness energy from external flames to amplify its own.",
+			"The Nimble Emberlynx releases a scent signature in its smoke that attracts fire-based life forms in its vicinity.",
+			"The Nimble Emberlynx's fur is specially insulated to allow it to absorb and store heat energy. This energy is harnessed and released through teleportation and fire manipulation.",
+			"The Nimble Emberlynx's eyes can process a much higher visual processing rate than the average Valain, enabling it to observe minute changes in its environment and respond almost instantaneously. To the Nimble Emberlynx, many life forms move in slow motion.",
+			"The Nimble Emberlynx's nervous system is directly connected to the luminous orb upon its forehead, which can light up in varying degrees of illumination corresponding to its mental activity, particularly those involving environmental assessment and teleportation."
+		]
+	},
+	"TraitOrderLegacy": [
+		3,
+		1,
+		4,
+		6,
+		2,
+		5
+	],
+	"Description": {
+		"Format": "Nimble Emberlynx slashes the target 5 times, dealing <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Physical Damage per slash.\r\n\r\nDamage: <AttackPhysicalDamage>{OmegaDamageFull}</> = <AttackPhysicalDamage>{OmegaDamage}</> x5 (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"OmegaDamageFull": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.005
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Nimble Emberlynx slashes the target 5 times, dealing 255 () Physical Damage per slash.\r\n\r\nDamage: 1,275 = 255 x5 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 3,
+			"AttackSpeed": 1,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 2,
+			"Resistance": 5
+		}
+	}
+}

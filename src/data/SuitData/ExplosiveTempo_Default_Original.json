@@ -1,0 +1,151 @@
+{
+	"Name": "ExplosiveTempo",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Amplifier",
+	"Stats": {
+		"PhysicalResist": 0,
+		"EnergyResist": 0,
+		"MaxHealth": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 0,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 0,
+		"AttackDodgeChancePercentage": 0,
+		"MoveSpeedSubUnits": 0,
+		"OmegaPowerPercentage": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"StartingEnergy": 0,
+		"StartingShield": 0,
+		"CritChancePercentage": 0,
+		"CritAmplificationPercentage": 0,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0
+	},
+	"Abilities": [
+		{
+			"Name": "Explosive Tempo",
+			"ActivationTrigger": {
+				"TriggerType": "OnActivateXAbilities",
+				"AbilityTypes": [
+					"Attack"
+				],
+				"EveryX": true,
+				"NumberOfAbilitiesActivated": 1
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Mantle - Gain Attack Speed",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "AttackSpeed",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 2,
+									"Stat": "AttackSpeed",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"Name": "Explosive Tempo_1",
+			"ActivationTrigger": {
+				"TriggerType": "OnActivateXAbilities",
+				"AbilityTypes": [
+					"Attack"
+				],
+				"EveryX": true,
+				"NumberOfAbilitiesActivated": 5
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Chronoflux - AOE Damage",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Empower",
+								"IsConsumable": true,
+								"ActivationsUntilExpiry": 1,
+								"ActivatedBy": "Attack",
+								"AttachedEffectPackageAttributes": {
+									"Propagation": {
+										"PropagationType": "Splash",
+										"IgnoreFirstPropagationReceiver": true,
+										"SplashRadiusUnits": 20,
+										"EffectPackage": {
+											"Effects": [
+												{
+													"Type": "InstantDamage",
+													"DamageType": "Physical",
+													"Expression": {
+														"Operation": "*",
+														"Operands": [
+															{
+																"Percentage": 250,
+																"Stat": "AttackSpeed",
+																"StatSource": "Sender"
+															},
+															1000
+														]
+													}
+												}
+											]
+										}
+									}
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Explosive Tempo",
+	"DisplayDescription": "Attacks grant <AttackSpeed>2%</> stacking Attack Speed. Every 5th attack explodes in a 20-radius, dealing <AttackPhysicalDamage>250%</> of your Attack Speed as Physical Damage.",
+	"Description": {
+		"Format": "Attacks grant <AttackSpeed>{ASVal}%</> stacking Attack Speed. Every {AttackNum}th attack explodes in a {Radius}-radius, dealing <AttackPhysicalDamage>{DamageVal}%</> of your Attack Speed as Physical Damage.",
+		"Parameters": {
+			"ASVal": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].Expression.Percentage"
+			},
+			"AttackNum": {
+				"ParameterPath": "Abilities[1].ActivationTrigger.NumberOfAbilitiesActivated"
+			},
+			"Radius": {
+				"ParameterPath": "Abilities[1].Skills[0].EffectPackage.Effects[0].AttachedEffectPackageAttributes.Propagation.SplashRadiusUnits",
+				"ValueMultiplier": 1.0
+			},
+			"DamageVal": {
+				"ParameterPath": "Abilities[1].Skills[0].EffectPackage.Effects[0].AttachedEffectPackageAttributes.Propagation.EffectPackage.Effects[0].Expression.Operands[0].Percentage"
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Attacks grant 2% stacking Attack Speed. Every 5th attack explodes in a 20-radius, dealing 250% of your Attack Speed as Physical Damage."
+}

@@ -1,0 +1,21 @@
+{
+	"Name": "Mud",
+	"Stage": 3,
+	"Type": "Game",
+	"DisplayName": "Mud Matrix",
+	"DisplayDescription": "Gain a Mud Imprint.",
+	"Description": {
+		"Format": "Gain a Mud Imprint.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Mud",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

@@ -1,0 +1,212 @@
+{
+	"CombatAffinity": "Bloom",
+	"CombatAffinityComponents": [
+		"Nature",
+		"Earth"
+	],
+	"SynergyThresholds": [
+		2,
+		3,
+		4
+	],
+	"SynergyThresholdsAbilities": {
+		"Variables": [
+			{
+				"Name": "Bloom_MaxHealth",
+				"Values": [
+					100000,
+					200000,
+					300000
+				]
+			},
+			{
+				"Name": "Bloom_OmegaPower",
+				"Values": [
+					10,
+					15,
+					20
+				]
+			},
+			{
+				"Name": "Bloom_HealthRegeneration",
+				"Values": [
+					500,
+					700,
+					1000
+				]
+			},
+			{
+				"Name": "Bloom_SpecialTrigger",
+				"Values": [
+					999999,
+					999999,
+					1000
+				]
+			},
+			{
+				"Name": "Bloom_RegenDamage",
+				"Values": [
+					0,
+					0,
+					5000
+				]
+			}
+		],
+		"UnitAbilities": [
+			{
+				"Name": "BloomSynergy_Ability1",
+				"ActivationTrigger": {
+					"TriggerType": "EveryXTime",
+					"ActivateEveryTimeMs": 8000
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Bloom - Buffs",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "Self"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Buff",
+									"Stat": "MaxHealth",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": "{Bloom_MaxHealth}"
+								},
+								{
+									"Type": "Buff",
+									"Stat": "OmegaPowerPercentage",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": "{Bloom_OmegaPower}"
+								},
+								{
+									"Type": "Buff",
+									"Stat": "HealthRegeneration",
+									"OverlapProcessType": "Sum",
+									"DurationMs": -1,
+									"Expression": "{Bloom_HealthRegeneration}"
+								}
+							]
+						}
+					}
+				]
+			},
+			{
+				"Name": "BloomSynergy_SpecialAbility",
+				"ActivationTrigger": {
+					"TriggerType": "EveryXTime",
+					"ActivateEveryTimeMs": "{Bloom_SpecialTrigger}"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Bloom - AOE Damage",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "InZone",
+							"Group": "Enemy",
+							"RadiusUnits": 25
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "InstantDamage",
+									"DamageType": "Energy",
+									"Expression": {
+										"Percentage": "{Bloom_RegenDamage}",
+										"Stat": "HealthRegeneration",
+										"StatSource": "Sender"
+									}
+								}
+							]
+						}
+					}
+				]
+			}
+		],
+		"TeamAbilities": []
+	},
+	"IntrinsicAbilities": [],
+	"DisplayName": "Bloom",
+	"DisplayDescription": "\r\nBloom units blossom every 8 seconds, gaining <MaxHealth>Max Health</>, <HealthRegeneration>Health Regen</> and <OmegaPowerPercentage>Omega Power</>.\r\n\r\n(4) Bloom units deal <AttackEnergyDamage>500%</> of <HealthRegeneration>Health Regen</> as <AttackEnergyDamage>Energy Damage</> to enemies within 25-hexes every second.\r\n",
+	"DisplayDescriptionThresholds": [
+		"Gain <MaxHealth>100</><MaxHealth></>, <HealthRegeneration>5</><HealthRegeneration></> and <OmegaPowerPercentage>10</><OmegaPowerPercentage></>",
+		"Gain <MaxHealth>200</><MaxHealth></>, <HealthRegeneration>7</><HealthRegeneration></> and <OmegaPowerPercentage>15</><OmegaPowerPercentage></>",
+		"Gain <MaxHealth>300</><MaxHealth></>, <HealthRegeneration>10</><HealthRegeneration></> and <OmegaPowerPercentage>20</><OmegaPowerPercentage></>"
+	],
+	"Description": {
+		"Format": "\r\nBloom units blossom every {BloomTrigger} seconds, gaining <MaxHealth>Max Health</>, <HealthRegeneration>Health Regen</> and <OmegaPowerPercentage>Omega Power</>.\r\n\r\n(4) Bloom units deal <AttackEnergyDamage>{Bloom_RegenDamage}%</> of <HealthRegeneration>Health Regen</> as <AttackEnergyDamage>Energy Damage</> to enemies within {Radius}-hexes every second.\r\n",
+		"Parameters": {
+			"BloomTrigger": {
+				"ParameterPath": "SynergyThresholdsAbilities.UnitAbilities[0].ActivationTrigger.ActivateEveryTimeMs",
+				"ValueMultiplier": 0.001
+			},
+			"Bloom_RegenDamage": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[4].Values[2]",
+				"ValueMultiplier": 0.1
+			},
+			"Radius": {
+				"ParameterPath": "SynergyThresholdsAbilities.UnitAbilities[1].Skills[0].Targeting.RadiusUnits",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DescriptionThresholds": {
+		"Format": "Gain <MaxHealth>{Bloom_MaxHealth}</><MaxHealth></>, <HealthRegeneration>{Bloom_HealthRegeneration}</><HealthRegeneration></> and <OmegaPowerPercentage>{Bloom_OmegaPower}</><OmegaPowerPercentage></>",
+		"Parameters": [
+			{
+				"Bloom_MaxHealth": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[0]",
+					"ValueMultiplier": 0.001
+				},
+				"Bloom_OmegaPower": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[0]"
+				},
+				"Bloom_HealthRegeneration": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[2].Values[0]",
+					"ValueMultiplier": 0.01
+				}
+			},
+			{
+				"Bloom_MaxHealth": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[1]",
+					"ValueMultiplier": 0.001
+				},
+				"Bloom_OmegaPower": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[1]"
+				},
+				"Bloom_HealthRegeneration": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[2].Values[1]",
+					"ValueMultiplier": 0.01
+				}
+			},
+			{
+				"Bloom_MaxHealth": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[2]",
+					"ValueMultiplier": 0.001
+				},
+				"Bloom_OmegaPower": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[2]"
+				},
+				"Bloom_HealthRegeneration": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[2].Values[2]",
+					"ValueMultiplier": 0.01
+				}
+			}
+		]
+	},
+	"DisplayDescriptionNormalized": "Bloom units blossom every 8 seconds, gaining Max Health, Health Regen and Omega Power.\r\n\r\n(4) Bloom units deal 500% of Health Regen as Energy Damage to enemies within 25-hexes every second.",
+	"DisplayDescriptionThresholdsNormalized": [
+		"Gain 100, 5 and 10",
+		"Gain 200, 7 and 15",
+		"Gain 300, 10 and 20"
+	]
+}

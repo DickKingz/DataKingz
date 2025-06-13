@@ -1,0 +1,63 @@
+{
+	"CombatAffinityCounter": {
+		"CombatAffinityTypes": [
+			"Water",
+			"Earth",
+			"Fire",
+			"Nature",
+			"Air"
+		],
+		"CombatAffinities": [
+			{
+				"Name": "Water",
+				"Effectiveness": {
+					"Water": 0,
+					"Earth": 2,
+					"Fire": 1,
+					"Nature": -1,
+					"Air": -2
+				}
+			},
+			{
+				"Name": "Earth",
+				"Effectiveness": {
+					"Water": -2,
+					"Earth": 0,
+					"Fire": 2,
+					"Nature": 1,
+					"Air": -1
+				}
+			},
+			{
+				"Name": "Fire",
+				"Effectiveness": {
+					"Water": -1,
+					"Earth": -2,
+					"Fire": 0,
+					"Nature": 2,
+					"Air": 1
+				}
+			},
+			{
+				"Name": "Nature",
+				"Effectiveness": {
+					"Water": 1,
+					"Earth": -1,
+					"Fire": -2,
+					"Nature": 0,
+					"Air": 2
+				}
+			},
+			{
+				"Name": "Air",
+				"Effectiveness": {
+					"Water": 2,
+					"Earth": 1,
+					"Fire": -1,
+					"Nature": -2,
+					"Air": 0
+				}
+			}
+		]
+	}
+}

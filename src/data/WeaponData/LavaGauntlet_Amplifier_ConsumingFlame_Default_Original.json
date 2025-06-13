@@ -1,0 +1,132 @@
+{
+	"Name": "LavaGauntletConsumingFlames",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Amplifier",
+	"AmplifierForWeapon": {
+		"Name": "LavaGauntlet",
+		"Stage": 0,
+		"Variation": "Original",
+		"CombatAffinity": "Fire"
+	},
+	"Stats": {
+		"MaxHealth": 200000,
+		"StartingEnergy": 0,
+		"EnergyCost": 0,
+		"PhysicalResist": 0,
+		"EnergyResist": 0,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 0,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 0,
+		"MoveSpeedSubUnits": 0,
+		"HitChancePercentage": 0,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 0,
+		"CritAmplificationPercentage": 0,
+		"OmegaPowerPercentage": 0,
+		"AttackRangeUnits": 0,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 0,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 0,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 0,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [],
+	"InnateAbilities": [
+		{
+			"Name": "ConsumingFlames",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "ConsumingFlames - Empowered",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Empower",
+								"ActivatedBy": "Omega",
+								"DurationMs": -1,
+								"IsConsumable": false,
+								"ActivationsUntilExpiry": 1,
+								"AttachedEffectPackageAttributes": {
+									"Propagation": {
+										"PropagationType": "Splash",
+										"IgnoreFirstPropagationReceiver": false,
+										"SplashRadiusUnits": 30,
+										"EffectPackage": {
+											"Effects": [
+												{
+													"Type": "DOT",
+													"DamageType": "Pure",
+													"OverlapProcessType": "Merge",
+													"DurationMs": 5000,
+													"FrequencyMs": 1000,
+													"Expression": {
+														"Percentage": 8,
+														"Stat": "MaxHealth",
+														"StatSource": "Receiver"
+													}
+												}
+											]
+										}
+									}
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Consuming Flames",
+	"DisplayDescription": "+<MaxHealth>200</> Health.\r\nOmega deals an additional <MaxHealth>8%</> Max Health over 5 to all enemies within 30-radius.",
+	"Description": {
+		"Format": "+<MaxHealth>{Health}</> Health.\r\nOmega deals an additional <MaxHealth>{Percent}%</> Max Health over {Duration} to all enemies within {Radius}-radius.",
+		"Parameters": {
+			"Health": {
+				"ParameterPath": "Stats.MaxHealth",
+				"ValueMultiplier": 0.001
+			},
+			"Percent": {
+				"ParameterPath": "InnateAbilities[0].Skills[0].EffectPackage.Effects[0].AttachedEffectPackageAttributes.Propagation.EffectPackage.Effects[0].Expression.Percentage",
+				"ValueMultiplier": 1.0
+			},
+			"Duration": {
+				"ParameterPath": "InnateAbilities[0].Skills[0].EffectPackage.Effects[0].AttachedEffectPackageAttributes.Propagation.EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"Radius": {
+				"ParameterPath": "InnateAbilities[0].Skills[0].EffectPackage.Effects[0].AttachedEffectPackageAttributes.Propagation.SplashRadiusUnits",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "+200 Health.\r\nOmega deals an additional 8% Max Health over 5 to all enemies within 30-radius."
+}

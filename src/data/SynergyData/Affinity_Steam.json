@@ -1,0 +1,282 @@
+{
+	"CombatAffinity": "Steam",
+	"CombatAffinityComponents": [
+		"Water",
+		"Fire"
+	],
+	"SynergyThresholds": [
+		2,
+		3,
+		4
+	],
+	"SynergyThresholdsAbilities": {
+		"Variables": [
+			{
+				"Name": "Steam_DamageAmp",
+				"Values": [
+					8,
+					12,
+					15
+				]
+			},
+			{
+				"Name": "Steam_EnergyRegen",
+				"Values": [
+					800,
+					1200,
+					1500
+				]
+			},
+			{
+				"Name": "Steam_Trigger",
+				"Values": [
+					8000,
+					8000,
+					6000
+				]
+			},
+			{
+				"Name": "Steam_Duration",
+				"Values": [
+					3000,
+					3000,
+					3000
+				]
+			}
+		],
+		"TeamAbilities": [],
+		"UnitAbilities": [
+			{
+				"Name": "SteamSynergy_Ability1",
+				"ActivationTrigger": {
+					"TriggerType": "OnBattleStart"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Steam - Start Trigger",
+						"Deployment": {
+							"Type": "Direct",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							]
+						},
+						"Targeting": {
+							"Type": "Self",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							]
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Buff",
+									"Stat": "AttackPhysicalDamage",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Steam_DamageAmp}",
+										"Stat": "AttackPhysicalDamage",
+										"StatSource": "Receiver"
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "AttackEnergyDamage",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Steam_DamageAmp}",
+										"Stat": "AttackEnergyDamage",
+										"StatSource": "Receiver"
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "AttackPureDamage",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Steam_DamageAmp}",
+										"Stat": "AttackPureDamage",
+										"StatSource": "Receiver"
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "OmegaDamagePercentage",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Steam_DamageAmp}",
+										"Stat": "OmegaDamagePercentage",
+										"StatSource": "Receiver"
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "EnergyRegeneration",
+									"DurationMs": "{Steam_Duration}",
+									"Expression": "{Steam_EnergyRegen}"
+								}
+							]
+						}
+					}
+				]
+			},
+			{
+				"Name": "SteamSynergy_Ability2",
+				"ActivationTrigger": {
+					"TriggerType": "EveryXTime",
+					"ActivateEveryTimeMs": "{Steam_Trigger}"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Steam - Periodic Trigger",
+						"Deployment": {
+							"Type": "Direct",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							]
+						},
+						"Targeting": {
+							"Type": "Self",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							]
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Buff",
+									"Stat": "AttackPhysicalDamage",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Steam_DamageAmp}",
+										"Stat": "AttackPhysicalDamage",
+										"StatSource": "Receiver"
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "AttackEnergyDamage",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Steam_DamageAmp}",
+										"Stat": "AttackEnergyDamage",
+										"StatSource": "Receiver"
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "AttackPureDamage",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Steam_DamageAmp}",
+										"Stat": "AttackPureDamage",
+										"StatSource": "Receiver"
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "OmegaDamagePercentage",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Steam_DamageAmp}",
+										"Stat": "OmegaDamagePercentage",
+										"StatSource": "Receiver"
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "EnergyRegeneration",
+									"DurationMs": "{Steam_Duration}",
+									"Expression": "{Steam_EnergyRegen}"
+								}
+							]
+						}
+					}
+				]
+			}
+		]
+	},
+	"IntrinsicAbilities": [],
+	"DisplayName": "Steam",
+	"DisplayDescription": "\r\nCombat Start and every 8 seconds: Steam units engulf in Steam for 3 seconds, gaining <EnergyRegeneration>Energy</> per second and permanent <DamageAmplification>Damage Amp</>.\r\n\r\n(4) Steam triggers every 6 seconds.\r\n",
+	"DisplayDescriptionThresholds": [
+		"Gain <AttackDamage>8%</><AttackDamage></> and <EnergyRegeneration>8</><EnergyRegeneration></>",
+		"Gain <AttackDamage>12%</><AttackDamage></> and <EnergyRegeneration>12</><EnergyRegeneration></>",
+		"Gain <AttackDamage>15%</><AttackDamage></> and <EnergyRegeneration>15</><EnergyRegeneration></>"
+	],
+	"Description": {
+		"Format": "\r\nCombat Start and every {Steam_Trigger} seconds: Steam units engulf in Steam for {Steam_Duration} seconds, gaining <EnergyRegeneration>Energy</> per second and permanent <DamageAmplification>Damage Amp</>.\r\n\r\n(4) Steam triggers every {Steam_Trigger2} seconds.\r\n",
+		"Parameters": {
+			"Steam_Trigger": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[2].Values[0]",
+				"ValueMultiplier": 0.001
+			},
+			"Steam_Duration": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[3].Values[0]",
+				"ValueMultiplier": 0.001
+			},
+			"Steam_Trigger2": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[2].Values[2]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DescriptionThresholds": {
+		"Format": "Gain <AttackDamage>{Steam_DamageAmp}%</><AttackDamage></> and <EnergyRegeneration>{Steam_EnergyRegen}</><EnergyRegeneration></>",
+		"Parameters": [
+			{
+				"Steam_DamageAmp": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[0]",
+					"ValueMultiplier": 1.0
+				},
+				"Steam_EnergyRegen": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[0]",
+					"ValueMultiplier": 0.01
+				}
+			},
+			{
+				"Steam_DamageAmp": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[1]",
+					"ValueMultiplier": 1.0
+				},
+				"Steam_EnergyRegen": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[1]",
+					"ValueMultiplier": 0.01
+				}
+			},
+			{
+				"Steam_DamageAmp": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[2]",
+					"ValueMultiplier": 1.0
+				},
+				"Steam_EnergyRegen": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[2]",
+					"ValueMultiplier": 0.01
+				}
+			}
+		]
+	},
+	"DisplayDescriptionNormalized": "Combat Start and every 8 seconds: Steam units engulf in Steam for 3 seconds, gaining Energy per second and permanent Damage Amp.\r\n\r\n(4) Steam triggers every 6 seconds.",
+	"DisplayDescriptionThresholdsNormalized": [
+		"Gain 8% and 8",
+		"Gain 12% and 12",
+		"Gain 15% and 15"
+	]
+}

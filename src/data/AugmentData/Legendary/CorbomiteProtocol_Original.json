@@ -1,0 +1,77 @@
+{
+	"Name": "CorbomiteProtocol",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "GreaterPower",
+	"Abilities": [
+		{
+			"Name": "CorbomiteProtocol_Ability1",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "CorbomiteProtocol - Invulnerable and Mitigation",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "PositiveState",
+								"PositiveState": "Invulnerable",
+								"DurationMs": 6000
+							},
+							{
+								"Type": "Buff",
+								"Stat": "Resolve",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 30000
+							},
+							{
+								"Type": "Buff",
+								"Stat": "Grit",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 30000
+							},
+							{
+								"Type": "Buff",
+								"Stat": "Thorns",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 20000
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Corbomite Protocol",
+	"DisplayDescription": "Combat Start: Become Invulnerable for 6 seconds, gaining <Grit>30</> <Grit>Mitigation</> and <Thorns>20</> <Thorns>Thorns</> for the rest of the combat.\r\n\r\n<Italic>Invulnerable: Cannot receive damage.</>\r\n\r\n<Italic>Mitigation: Reduces incoming damage by a flat value.</>",
+	"Description": {
+		"Format": "Combat Start: Become Invulnerable for {Duration} seconds, gaining <Grit>{MitigationVal}</> <Grit>Mitigation</> and <Thorns>{ThornsVal}</> <Thorns>Thorns</> for the rest of the combat.\r\n\r\n<Italic>Invulnerable: Cannot receive damage.</>\r\n\r\n<Italic>Mitigation: Reduces incoming damage by a flat value.</>",
+		"Parameters": {
+			"Duration": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"MitigationVal": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[1].Expression",
+				"ValueMultiplier": 0.001
+			},
+			"ThornsVal": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[3].Expression",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Combat Start: Become Invulnerable for 6 seconds, gaining 30 Mitigation and 20 Thorns for the rest of the combat.\r\n\r\nInvulnerable: Cannot receive damage.\r\n\r\nMitigation: Reduces incoming damage by a flat value."
+}

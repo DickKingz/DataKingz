@@ -1,0 +1,189 @@
+{
+	"IsDisabled": true,
+	"UnitType": "Illuvial",
+	"Line": "DummyRanged",
+	"Stage": 1,
+	"Path": "",
+	"Variation": "",
+	"Tier": 4,
+	"CombatAffinity": "Fire",
+	"CombatClass": "Psion",
+	"DominantCombatAffinity": "Fire",
+	"DominantCombatClass": "Psion",
+	"SizeUnits": 3,
+	"Stats": {
+		"MaxHealth": 1000000000,
+		"StartingEnergy": 60000,
+		"EnergyCost": 130000,
+		"PhysicalResist": 20,
+		"EnergyResist": 20,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 0,
+		"AttackEnergyDamage": 88000,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 100,
+		"MoveSpeedSubUnits": 1750,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 60,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Basic Attack",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 40
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 10000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Unnamed Omega I",
+			"TotalDurationMs": 500,
+			"Skills": [
+				{
+					"Name": "Increase EnergyDamage",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 100
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "AttackEnergyDamage",
+								"DurationMs": 5000,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										{
+											"Value": 20000,
+											"IsUsedAsPercentage": false
+										},
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Receiver"
+										}
+									]
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackSpeed",
+								"DurationMs": 5000,
+								"Expression": {
+									"Percentage": 30,
+									"Stat": "AttackSpeed",
+									"StatSource": "Receiver"
+								}
+							},
+							{
+								"Type": "Empower",
+								"ActivatedBy": "Attack",
+								"DurationMs": 5000,
+								"AttachedEffectPackageAttributes": {
+									"Propagation": {
+										"PropagationType": "Splash",
+										"IgnoreFirstPropagationReceiver": true,
+										"SplashRadiusUnits": 20,
+										"EffectPackage": {
+											"Effects": [
+												{
+													"Type": "InstantDamage",
+													"DamageType": "Energy",
+													"Expression": {
+														"Stat": "AttackEnergyDamage",
+														"StatSource": "Sender"
+													}
+												}
+											]
+										}
+									}
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Dummy Ranged"
+}

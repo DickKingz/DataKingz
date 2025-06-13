@@ -1,0 +1,80 @@
+{
+	"Name": "EmberBastionStoneheart",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Amplifier",
+	"AmplifierForWeapon": {
+		"Name": "EmberBastion",
+		"Stage": 0,
+		"Variation": "Original",
+		"CombatAffinity": "Earth"
+	},
+	"Stats": {
+		"MaxHealth": 500000,
+		"StartingEnergy": 0,
+		"EnergyCost": 0,
+		"PhysicalResist": 0,
+		"EnergyResist": 0,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 0,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 0,
+		"MoveSpeedSubUnits": 0,
+		"HitChancePercentage": 0,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 0,
+		"CritAmplificationPercentage": 0,
+		"OmegaPowerPercentage": 0,
+		"AttackRangeUnits": 0,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 0,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 0,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 0,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [],
+	"InnateAbilities": [],
+	"EffectsReplacements": [
+		{
+			"ID": "Stoneheart",
+			"Type": "Buff",
+			"Stat": "VulnerabilityPercentage",
+			"DurationMs": 4000,
+			"Expression": 40
+		}
+	],
+	"DisplayName": "Stoneheart",
+	"DisplayDescription": "+<MaxHealth>500</> Health.\r\nDamage Reduction is increased from 20% to <DamageReduction>40%</>",
+	"Description": {
+		"Format": "+<MaxHealth>{Health}</> Health.\r\nDamage Reduction is increased from 20% to <DamageReduction>{Reduction}%</>",
+		"Parameters": {
+			"Health": {
+				"ParameterPath": "Stats.MaxHealth",
+				"ValueMultiplier": 0.001
+			},
+			"Reduction": {
+				"ParameterPath": "EffectsReplacements[0].Expression",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "+500 Health.\r\nDamage Reduction is increased from 20% to 40%"
+}

@@ -1,0 +1,21 @@
+{
+	"Name": "Air",
+	"Stage": 1,
+	"Type": "Game",
+	"DisplayName": "Air Module",
+	"DisplayDescription": "Gain a Air Imprint.",
+	"Description": {
+		"Format": "Gain a Air Imprint.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Air",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

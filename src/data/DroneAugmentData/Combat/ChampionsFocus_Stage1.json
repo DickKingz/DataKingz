@@ -1,0 +1,78 @@
+{
+	"Name": "ChampionsFocus",
+	"Stage": 1,
+	"Type": "Simulation",
+	"Abilities": [
+		{
+			"Name": "Champion's Focus 1 - Ability",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Champion's Focus 1 - Skill",
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						]
+					},
+					"Targeting": {
+						"Type": "Tier",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						],
+						"Group": "Ally",
+						"Tier": 5,
+						"Num": 1
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "AttackSpeed",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 25,
+									"Stat": "AttackSpeed",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "OmegaPowerPercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 25
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Champion's Focus I",
+	"DisplayDescription": "A random Tier 5 Unit gains 25% Attack Speed and 25 Omega Power",
+	"Description": {
+		"Format": "A random Tier 5 Unit gains {ASVal}% Attack Speed and {OPVal} Omega Power",
+		"Parameters": {
+			"ASVal": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].Expression.Percentage"
+			},
+			"OPVal": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[1].Expression"
+			}
+		}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [],
+		"GrantedCredits": 0
+	}
+}

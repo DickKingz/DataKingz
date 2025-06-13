@@ -1,0 +1,247 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Squid",
+	"Stage": 3,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 5,
+	"CombatAffinity": "Shock",
+	"CombatClass": "Invoker",
+	"DominantCombatAffinity": "Air",
+	"DominantCombatClass": "Psion",
+	"SizeUnits": 6,
+	"Stats": {
+		"MaxHealth": 1950000,
+		"StartingEnergy": 10000,
+		"EnergyCost": 120000,
+		"PhysicalResist": 40,
+		"EnergyResist": 55,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 115000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 85,
+		"MoveSpeedSubUnits": 1750,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 5,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 60,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Squid Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 45
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 80000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Electrilink III",
+			"TotalDurationMs": 1800,
+			"Skills": [
+				{
+					"Name": "EnergyDamage",
+					"Targeting": {
+						"Type": "CombatStatCheck",
+						"Group": "Enemy",
+						"Stat": "CurrentHealth",
+						"Lowest": true,
+						"Num": 2
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 80
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										900000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"InnateAbilities": [
+		{
+			"Name": "Takedown Overcharge III",
+			"ActivationTrigger": {
+				"TriggerType": "OnVanquish",
+				"Allegiance": "Self",
+				"ContextRequirement": "DuringOmega",
+				"ActivationCooldownMs": 3000
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Grant full energy",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantEnergyGain",
+								"Expression": {
+									"Percentage": 100,
+									"Stat": "EnergyCost",
+									"StatSource": "Receiver"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Ophisto",
+	"DisplayDescription": "Ophisto raises a tentacle calling lightning to strike the 2 lowest Health enemies, dealing <AttackEnergyDamage>900</> (<OmegaPowerPercentage></>) Energy Damage. Squizz casts an additional time if the lightning strike eliminates an enemy. (3s cooldown)\r\n\r\nDamage: <AttackEnergyDamage>900</> (<OmegaPowerPercentage></>)",
+	"Intro": "When night falls in Halcyon Sea, glow-in-the-dark plants and bacteria light up the waters in vivid neon. Among the coral and vegetation are sponges and rocks of various shapes and sizes. Dark tendrils float about, lightly touching every one of them until they wrap themselves around the perfect boulder. The Ophisto has found a new favourite spot.",
+	"Summary": "Ophisto harnesses precise electrical control for communication and defense, gathering in groups to unleash powerful shocks that reshape the environment. Its social nature extends to collaborative den-building from debris, fostering complex interactions among its kind. It utilizes its unique physiology, including muscle fibres for electricity transfer and bacterial colonies for bioluminescence, alongside a water-expelling mechanism enabling agile movements both in and out of water.",
+	"Biology": {
+		"Physiology": "The Ophisto is a strangely shaped creature with glowing pink eyes and a mysterious aura floating on long tentacles. Most unnerving is its trident axe head, which spans over its narrow face. A purple pattern zigzags over its blue mantle, and it is purple everywhere except for the blue webbed skin between its tentacles. The Ophisto rolls its front tentacles into thick, spiral fists while the other six drift below, holding immense forces within its enigmatic form.",
+		"Behaviour": "The Ophisto has masterful control over electricity, and it communicates by generating small currents through skin-to-skin contact. A social Illuvial, the Ophisto gathers in groups to create massive electric discharges which blast apart shells, coral structures, and even other Illuvials. Afterwards, they gather the materials from the debris they created to build complex dens. The Ophisto may build individual dens or collaborate for more intricate constructions. Once satisfied, it may spend years lounging in the same den where it hosts other Ophisto visitors."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/SquidStage3/SquidStage3_default_default_webp.3840x2160/SquidStage3_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/SquidStage3/SquidStage3_default_default_hls.m3u8/SquidStage3_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Ophisto can synchronize its movements with others of its kind as it swims and propels itself out of water.",
+			"The Ophisto spends lots of time gathering shells and rocks to build its den. It sometimes fights with other Ophisto over materials or occasionally trades items with each other.",
+			"The Ophisto gathers in groups to create large electric shocks that blast apart smaller coral structures and shells. They use the materials from the debris to build their dens."
+		],
+		"Buckley": [
+			"The Ophisto's tentacles have muscle fibres with unique contractile properties that allow it to transfer electricity with high precision.",
+			"There are tiny specialised sacs of pigment embedded in the Ophisto's skin called chromatophores. By filling and emptying these sacs, it is capable of changing colours as camouflage. It is also capable of creating patterns that pulse along its body to communicate with others of its line.",
+			"The Ophisto's internal organs have a rubbery coating that prevents electrical damage.",
+			"The Ophisto has bacteria colonies inside its body which allow it to generate light. It has a specialised internal system for expelling excess bacteria and maintaining a stable amount of growth within its body.",
+			"The Ophisto inhales water with a special cavity within its body which it is capable of expelling via a high-pressure jet. This water jet enables it to leap out of the water and fly."
+		]
+	},
+	"TraitOrderLegacy": [
+		3,
+		2,
+		4,
+		6,
+		1,
+		5
+	],
+	"Description": {
+		"Format": "Ophisto raises a tentacle calling lightning to strike the {TargetNum} lowest Health enemies, dealing <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Energy Damage. Squizz casts an additional time if the lightning strike eliminates an enemy. ({Cooldown}s cooldown)\r\n\r\nDamage: <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"TargetNum": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Targeting.Num"
+			},
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"Cooldown": {
+				"ParameterPath": "InnateAbilities[0].ActivationTrigger.ActivationCooldownMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Ophisto raises a tentacle calling lightning to strike the 2 lowest Health enemies, dealing 900 () Energy Damage. Squizz casts an additional time if the lightning strike eliminates an enemy. (3s cooldown)\r\n\r\nDamage: 900 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 3,
+			"AttackSpeed": 2,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 5
+		}
+	}
+}

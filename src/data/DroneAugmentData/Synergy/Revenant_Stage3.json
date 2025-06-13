@@ -1,0 +1,21 @@
+{
+	"Name": "Revenant",
+	"Stage": 3,
+	"Type": "Game",
+	"DisplayName": "Revenant Matrix",
+	"DisplayDescription": "Gain a Revenant Imprint.",
+	"Description": {
+		"Format": "Gain a Revenant Imprint.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Revenant",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

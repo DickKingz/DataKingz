@@ -1,0 +1,205 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Lynx",
+	"Stage": 3,
+	"Path": "BulwarkNature",
+	"Variation": "Original",
+	"Tier": 2,
+	"CombatAffinity": "Nature",
+	"CombatClass": "Bulwark",
+	"DominantCombatAffinity": "Nature",
+	"DominantCombatClass": "Bulwark",
+	"SizeUnits": 7,
+	"Stats": {
+		"MaxHealth": 2900000,
+		"StartingEnergy": 100000,
+		"EnergyCost": 200000,
+		"PhysicalResist": 60,
+		"EnergyResist": 60,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 170000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 60,
+		"MoveSpeedSubUnits": 2500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 5,
+		"OmegaRangeUnits": 5,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Bulwark Nature Lynx Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 45
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Warding Boom",
+			"TotalDurationMs": 1500,
+			"Skills": [
+				{
+					"Name": "Roar",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 70
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 24,
+						"DurationMs": 500,
+						"FrequencyMs": 500,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										450000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Stun",
+								"DurationMs": 2000
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Stoic Floralynx",
+	"DisplayDescription": "Stoic Floralynx roars, dealing <AttackPhysicalDamage>450</> (<OmegaPowerPercentage></>) Physical Damage and Stunning all enemies in 24-hexes for 2 seconds.\r\n\r\nDamage: <AttackPhysicalDamage>450</> (<OmegaPowerPercentage></>)",
+	"Intro": "Pillars of rocks overgrown with moss and roots  make up the floating maze formations of Brightland Steppes. Natural waterways wind down the steep slopes, with sidden waterfalls and intercepting roots block many of the pathways. Going the wrong way may mean dropping to certain death. For the Stoic Floralynx, its keen sense of balance helps it flip over as it falls, landing on all fours with feet rooted firmly on the ground.",
+	"Summary": "Camouflaged with green fur and root-like armoured growths, the Stoic Floralynx moves silently through grasslands and jungle thickets. This solitary Illuvial marks its territory by dipping its glowing mane into cascading water at night, a spectacle synchronized with bioluminescent organisms in the area. Shedding its fur annually to enrich the land, the Stoic Floralynx possesses luminous eyes for night vision and ears finely tuned to detect distant calls.",
+	"Biology": {
+		"Physiology": "Camouflaged among grasslands and jungle thickets, the Stoic Floralynx has hefty green tufts of fur on its long ears and along the sides of its face. Its extremely dense mane covers its neck, chest, and spine, all the way to its tail. The root-like growths wrap around its torso like armoured scaffolding, and the ones upon its claws are sharp enough to impale. Distinct magenta marks its face and legs, curved and spiny, with circles and grooves that seem to resemble glyphs. Full of mysteries, the Stoic Floralynx's eyes glow green, just like the orb on its forehead and the dots of light along its mane.",
+		"Behaviour": "The Stoic Floralynx pads along quietly, with furry paws that cushion its steps over sharp roots and rocks. It sheds its coat often, blanketing the land with an extra layer of life. At night, the Stoic Floralynx dips its mane into the cascading water, allowing its dots of light to flow down. This specular sight is a way of marking its territory. As a solitary Illuvial, the Stoic Floralynx keeps away from others, hunting on its own. However, it may listen for and respond to the sounds of another Lynx's call from a distance."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3BulwarkNature/LynxStage3BulwarkNature_default_default_webp.3840x2160/LynxStage3BulwarkNature_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3BulwarkNature/LynxStage3BulwarkNature_default_default_hls.m3u8/LynxStage3BulwarkNature_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Stoic Floralynx sheds its coat every spring, blanketing the land with an extra layer of life. By summer, its fur grows back even thicker than before.",
+			"When the Stoic Floralynx awakens from its daily slumber, it emits light from its mane in a burst of flashes. Astonishingly, the bioluminescence of mushrooms and other Illuvials throughout the area begins to synchronize with it.",
+			"At night, the Stoic Floralynx dips its mane into the cascading water, allowing its dots of light to flow down. This specular sight is a way of marking its territory."
+		],
+		"Buckley": [
+			"The Stoic Floralynx's thick hide is capable of absorbing energy from local plant life, enabling it to grow even thicker.",
+			"The Stoic Floralynx's luminous green eyes have specialised night vision that gives it an advantage in the dark.",
+			"The Stoic Floralynx's ears can swivel in any direction, aimed precisely at a sound with 120 degrees range of motion. It can pinpoint the calls of other Lynxes and identify the distinct calls of allies.",
+			"The Stoic Floralynx has an enlarged adapted larynx that gives it the ability to produce pressure waves during intense vocalizations.",
+			"The Stoic Floralynx has a symbiotic relationship with the bioluminescent bacteria which creates a gentle glow from its mane and undergoes photosynthesis."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		4,
+		1,
+		6,
+		3,
+		2
+	],
+	"Description": {
+		"Format": "Stoic Floralynx roars, dealing <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Physical Damage and Stunning all enemies in {StunRadius}-hexes for {StunDuration} seconds.\r\n\r\nDamage: <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"StunRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Zone.RadiusUnits"
+			},
+			"StunDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Stoic Floralynx roars, dealing 450 () Physical Damage and Stunning all enemies in 24-hexes for 2 seconds.\r\n\r\nDamage: 450 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 4,
+			"Health": 1,
+			"MovementSpeed": 6,
+			"OmegaPower": 3,
+			"Resistance": 2
+		}
+	}
+}

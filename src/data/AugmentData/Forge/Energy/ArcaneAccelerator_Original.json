@@ -1,0 +1,113 @@
+{
+	"Name": "ArcaneAccelerator",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Normal",
+	"Abilities": [
+		{
+			"Name": "ArcaneAccelerator_Stats",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "ArcaneAccelerator - List of Stats",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "OmegaPowerPercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 20
+							},
+							{
+								"Type": "Buff",
+								"Stat": "EnergyVampPercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 5
+							},
+							{
+								"Type": "Buff",
+								"Stat": "PhysicalVampPercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 5
+							},
+							{
+								"Type": "Buff",
+								"Stat": "PureVampPercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 5
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"Name": "ArcaneAccelerator_Ability1",
+			"ActivationTrigger": {
+				"TriggerType": "EveryXTime",
+				"ActivateEveryTimeMs": 5000
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "ArcaneAccelerator - Gain Omega Power",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "OmegaPowerPercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 10
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Arcane Accelerator",
+	"DisplayDescription": "Gain <OmegaPowerPercentage>10</> <OmegaPowerPercentage>Omega Power</> every 5 seconds.\r\n\r\nStats:\r\n+20 <OmegaPowerPercentage>Omega Power</>\r\n+5% <Omnivamp>Omnivamp</>",
+	"Description": {
+		"Format": "Gain <OmegaPowerPercentage>{OPVal}</> <OmegaPowerPercentage>Omega Power</> every {TriggerTime} seconds.\r\n\r\nStats:\r\n+{Stat_OP} <OmegaPowerPercentage>Omega Power</>\r\n+{Stat_Vamp}% <Omnivamp>Omnivamp</>",
+		"Parameters": {
+			"OPVal": {
+				"ParameterPath": "Abilities[1].Skills[0].EffectPackage.Effects[0].Expression",
+				"ValueMultiplier": 1.0
+			},
+			"TriggerTime": {
+				"ParameterPath": "Abilities[1].ActivationTrigger.ActivateEveryTimeMs",
+				"ValueMultiplier": 0.001
+			},
+			"Stat_OP": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].Expression",
+				"ValueMultiplier": 1.0
+			},
+			"Stat_Vamp": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[1].Expression",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Gain 10 Omega Power every 5 seconds.\r\n\r\nStats:\r\n+20 Omega Power\r\n+5% Omnivamp"
+}

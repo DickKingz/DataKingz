@@ -1,0 +1,91 @@
+{
+	"Name": "Magma",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "SynergyBonus",
+	"CombatAffinities": {
+		"Magma": 1
+	},
+	"Abilities": [
+		{
+			"Name": "Magma Imprint Stats",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Magma Imprint Stat List",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "PhysicalResist",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 10
+							},
+							{
+								"Type": "Buff",
+								"Stat": "EnergyResist",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 10
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackPhysicalDamage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackEnergyDamage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackPureDamage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackPureDamage",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Magma Imprint",
+	"DisplayDescription": "The holder gains the Magma Composite Affinity, 10% <AttackDamage>Attack Damage</> and 10 <Resistance>Resistances</>.",
+	"Description": {
+		"Format": "The holder gains the Magma Composite Affinity, 10% <AttackDamage>Attack Damage</> and 10 <Resistance>Resistances</>.",
+		"Parameters": {}
+	},
+	"DisplayDescriptionNormalized": "The holder gains the Magma Composite Affinity, 10% Attack Damage and 10 Resistances."
+}

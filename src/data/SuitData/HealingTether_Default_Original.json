@@ -1,0 +1,122 @@
+{
+	"Name": "HealingTether",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Amplifier",
+	"Stats": {
+		"PhysicalResist": 0,
+		"EnergyResist": 0,
+		"MaxHealth": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 0,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 0,
+		"AttackDodgeChancePercentage": 0,
+		"MoveSpeedSubUnits": 0,
+		"OmegaPowerPercentage": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"StartingEnergy": 0,
+		"StartingShield": 0,
+		"CritChancePercentage": 0,
+		"CritAmplificationPercentage": 0,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0
+	},
+	"Abilities": [
+		{
+			"Name": "Healing Tether",
+			"ActivationTrigger": {
+				"TriggerType": "EveryXTime",
+				"ActivateEveryTimeMs": 3000
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Bioarmor - Restore Health",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantHeal",
+								"HealType": "Normal",
+								"Expression": {
+									"Percentage": 3,
+									"Stat": "MaxHealth",
+									"StatSource": "Receiver"
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Bioarmor - Ally Restore Health",
+					"Targeting": {
+						"Type": "ExpressionCheck",
+						"Guidance": [
+							"Ground",
+							"Airborne",
+							"Underground"
+						],
+						"Group": "Ally",
+						"Lowest": true,
+						"Self": false,
+						"Num": 2,
+						"Expression": {
+							"Stat": "CurrentHealth%",
+							"StatSource": "Sender"
+						}
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground",
+							"Airborne",
+							"Underground"
+						]
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantHeal",
+								"HealType": "Normal",
+								"Expression": {
+									"Percentage": 3,
+									"Stat": "MaxHealth",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Healing Tether",
+	"DisplayDescription": "Every 3 seconds, the Ranger and the 2 lowest Health allies heal for <MaxHealth>3%</> of their Max Health.",
+	"Description": {
+		"Format": "Every {TriggerTime} seconds, the Ranger and the {AllyNum} lowest Health allies heal for <MaxHealth>{HealVal}%</> of their Max Health.",
+		"Parameters": {
+			"TriggerTime": {
+				"ParameterPath": "Abilities[0].ActivationTrigger.ActivateEveryTimeMs",
+				"ValueMultiplier": 0.001
+			},
+			"AllyNum": {
+				"ParameterPath": "Abilities[0].Skills[1].Targeting.Num"
+			},
+			"HealVal": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].Expression.Percentage"
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Every 3 seconds, the Ranger and the 2 lowest Health allies heal for 3% of their Max Health."
+}

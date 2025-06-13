@@ -1,0 +1,306 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Lynx",
+	"Stage": 3,
+	"Path": "RogueNature",
+	"Variation": "Original",
+	"Tier": 2,
+	"CombatAffinity": "Nature",
+	"CombatClass": "Rogue",
+	"DominantCombatAffinity": "Nature",
+	"DominantCombatClass": "Rogue",
+	"SizeUnits": 7,
+	"Stats": {
+		"MaxHealth": 2250000,
+		"StartingEnergy": 40000,
+		"EnergyCost": 100000,
+		"PhysicalResist": 45,
+		"EnergyResist": 45,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 175000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 70,
+		"MoveSpeedSubUnits": 2500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 5,
+		"OmegaRangeUnits": 5,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Rogue Nature Lynx Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 45
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Exfomerous Scything",
+			"TotalDurationMs": 1200,
+			"Skills": [
+				{
+					"Name": "Slash",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 40
+					},
+					"PercentageOfAbilityDuration": 20,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										250000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Slash",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 20
+					},
+					"PercentageOfAbilityDuration": 20,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										250000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Slash",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 20
+					},
+					"PercentageOfAbilityDuration": 20,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										250000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Slash",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 20
+					},
+					"PercentageOfAbilityDuration": 20,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										250000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Slash",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 40
+					},
+					"PercentageOfAbilityDuration": 20,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										250000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Nimble Floralynx",
+	"DisplayDescription": "Nimble Floralynx slashes the target 5 times, dealing <AttackPhysicalDamage>250</> (<OmegaPowerPercentage></>) Physical Damage per slash.\r\n\r\nDamage: <AttackPhysicalDamage>1,250</> = <AttackPhysicalDamage>250</> x5 (<OmegaPowerPercentage></>)",
+	"Intro": "The messy haven of Abyssal Basin boasts the full spectrum of life in its marshes. This region has an eclectic collection of flora and fauna, and it is constantly expanding with new crossbreeds of mushrooms. No visitor is unwelcome, and the mud clings on to everyone who enters its domain, making it difficult for them to leave. Those who die here make great nourishment for the treasure trove of life around, especially the massive trees. The Nimble Floralynx watches from a low-hanging branch, eager to take in the decomposing stench of the dead.",
+	"Summary": "The Nimble Floralynx, an arboreal creature of Abyssal Basin, thrives amidst the region's rich biodiversity. With a moss-colored coat adorned by a dark green fern mane and pink tendrils, it watches from low-hanging branches. Its luminous eyes and forehead orb emit a gentle glow matching the mist around it. The Floralynx is a scavenger, using its root-like growths to absorb nutrients from dead bodies, promoting regeneration and observing the decay process with fascination.",
+	"Biology": {
+		"Physiology": "The Nimble Floralynx is teeming with life, from the root-like branches emerging from its ears to the flowing mane of dark green fern, which sprouts long pink tendrils. Its coat is the colour of moss, with darker green from its mane to its pink-tipped tail. Thicker roots spread across its body, growing over the magenta markings on its fur. These dark pink patterns appear on its face as well, resembling a written language, with dots, angular strokes, and circles. The Nimble Floralynx has vivid, bright green eyes and a luminous orb on its forehead to match. Its entire body emanates a soft glowing mist that incites a gentle peace, but its sharp root claws can slash like a creature at war.",
+		"Behaviour": "The Nimble Floralynx is an arboreal Illuvial that spends most of its life lazing on branches. It is the idlest Nimble Lynx, content to relax and take in fascinating scents from above the swamp floor. Most of the time, it keeps to itself, hanging from branches with its paws and manoeuvring its flexible body to leap from one side of the marsh to the other. A connoisseur of death, the Nimble Floralynx observes the lifecycle of various fungi and the process of decaying life with rapt interest. It has the incredible ability to bring dead plants back to life and strengthen the stamina of injured creatures, only to devour them afterwards."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3RogueNature/LynxStage3RogueNature_default_default_webp.3840x2160/LynxStage3RogueNature_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3RogueNature/LynxStage3RogueNature_default_default_hls.m3u8/LynxStage3RogueNature_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Nimble Floralynx is a scavenger that absorbs nutrients from dead bodies. It does not hunt or kill but it will travel great distances to find the dead. Once it takes in energy from the corpses, it can remain idle for months.",
+			"The Nimble Floralynx's root-like growths will keep growing in suffocating abundance unless it claws off excess growths.",
+			"The Nimble Floralynx is typically a solitary creature, but it joins others of its kind during times of great catastrophes, leading a mass exodus of Illuvials to safety."
+		],
+		"Buckley": [
+			"The Nimble Floralynx has spring-loaded legs that allow it to pounce long distances.",
+			"The Nimble Floralynx has receptors in its fur that link with the mycelium network in its environment, allowing it to detect the vitality of plant life across the region.",
+			"The Nimble Floralynx's root-like growths are capable of regrowing separately, sharing resources between the Nimble Floralynx and external sources.",
+			"The Nimble Floralynx's eyes can process a much higher visual processing rate than the average Valain, enabling it to observe minute changes in its environment and respond almost instantaneously. To the Nimble Floralynx, many life forms move in slow motion.",
+			"The Nimble Floralynx's nervous system is directly connected to the luminous orb upon its forehead, which can light up in varying degrees of illumination corresponding to its mental activity, particularly those involving environmental assessment and teleportation."
+		]
+	},
+	"TraitOrderLegacy": [
+		3,
+		1,
+		4,
+		6,
+		2,
+		5
+	],
+	"Description": {
+		"Format": "Nimble Floralynx slashes the target 5 times, dealing <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Physical Damage per slash.\r\n\r\nDamage: <AttackPhysicalDamage>{OmegaDamageFull}</> = <AttackPhysicalDamage>{OmegaDamage}</> x5 (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"OmegaDamageFull": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.005
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Nimble Floralynx slashes the target 5 times, dealing 250 () Physical Damage per slash.\r\n\r\nDamage: 1,250 = 250 x5 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 3,
+			"AttackSpeed": 1,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 2,
+			"Resistance": 5
+		}
+	}
+}

@@ -1,0 +1,233 @@
+{
+	"CombatClass": "Predator",
+	"CombatClassComponents": [
+		"Rogue",
+		"Rogue"
+	],
+	"SynergyThresholds": [
+		2,
+		3,
+		4
+	],
+	"SynergyThresholdsAbilities": {
+		"Variables": [
+			{
+				"Name": "Predator_ExecutePercentage",
+				"Values": [
+					10,
+					12,
+					15
+				]
+			},
+			{
+				"Name": "Predator_EmpowerDamage",
+				"Values": [
+					125,
+					200,
+					300
+				]
+			},
+			{
+				"Name": "Predator_CritAmp",
+				"Values": [
+					0,
+					0,
+					50
+				]
+			}
+		],
+		"TeamAbilities": [],
+		"UnitAbilities": [
+			{
+				"Name": "PredatorSynergy_Ability1",
+				"ActivationTrigger": {
+					"TriggerType": "OnBattleStart"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Predator - Execute and Crit Amp",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "Self"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Buff",
+									"Stat": "CritAmplificationPercentage",
+									"DurationMs": -1,
+									"FrequencyMs": 100,
+									"Expression": {
+										"Percentage": "{Predator_CritAmp}",
+										"Stat": "CritChancePercentage",
+										"StatSource": "Receiver"
+									}
+								},
+								{
+									"Type": "Execute",
+									"DurationMs": -1,
+									"Expression": "{Predator_ExecutePercentage}",
+									"AbilityTypes": [
+										"Attack",
+										"Omega"
+									]
+								}
+							]
+						}
+					}
+				]
+			},
+			{
+				"Name": "PredatorSynergy_Ability2",
+				"ActivationTrigger": {
+					"TriggerType": "OnActivateXAbilities",
+					"AbilityTypes": [
+						"Omega"
+					],
+					"EveryX": true,
+					"NumberOfAbilitiesActivated": 1
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Predator - Empowered Attack",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "Self"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Empower",
+									"ActivatedBy": "Attack",
+									"IsConsumable": true,
+									"ActivationsUntilExpiry": 1,
+									"AttachedEffects": [
+										{
+											"Type": "InstantDamage",
+											"DamageType": "Physical",
+											"Expression": {
+												"Percentage": "{Predator_EmpowerDamage}",
+												"Stat": "AttackPhysicalDamage",
+												"StatSource": "Sender"
+											}
+										},
+										{
+											"Type": "InstantDamage",
+											"DamageType": "Energy",
+											"Expression": {
+												"Percentage": "{Predator_EmpowerDamage}",
+												"Stat": "AttackEnergyDamage",
+												"StatSource": "Sender"
+											}
+										},
+										{
+											"Type": "InstantDamage",
+											"DamageType": "Pure",
+											"Expression": {
+												"Percentage": "{Predator_EmpowerDamage}",
+												"Stat": "AttackPureDamage",
+												"StatSource": "Sender"
+											}
+										}
+									],
+									"AttachedEffectPackageAttributes": {
+										"AlwaysCrit": true
+									}
+								}
+							]
+						}
+					}
+				]
+			}
+		]
+	},
+	"IntrinsicAbilities": [
+		{
+			"Name": "PredatorSynergy_Blink",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 680,
+			"Skills": [
+				{
+					"Name": "Jumps across",
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Blink",
+								"BlinkTarget": "Across",
+								"BlinkDelayMs": 500,
+								"DurationMs": 680
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Predator",
+	"DisplayDescription": "\r\nPredators gain Health% Execution. Their first attack after Omega becomes empowered, guaranteeing a Crititical Hit and dealing bonus damage.\r\n\r\n(4) Gain <CritAmplificationPercentage>50%</> of <CritChancePercentage>Crit Chance</> as <CritAmplificationPercentage>Crit Amp</>.\r\n\r\n<Italic>Innate: Blink to the opposite side of the board.</>\r\n",
+	"DisplayDescriptionThresholds": [
+		"Execute below <MaxHealth>10%</><MaxHealth></>. Deal <AttackDamage>125%</><AttackDamage></> extra damage",
+		"Execute below <MaxHealth>12%</><MaxHealth></>. Deal <AttackDamage>200%</><AttackDamage></> extra damage",
+		"Execute below <MaxHealth>15%</><MaxHealth></>. Deal <AttackDamage>300%</><AttackDamage></> extra damage"
+	],
+	"Description": {
+		"Format": "\r\nPredators gain Health% Execution. Their first attack after Omega becomes empowered, guaranteeing a Crititical Hit and dealing bonus damage.\r\n\r\n(4) Gain <CritAmplificationPercentage>{Predator_CritAmp}%</> of <CritChancePercentage>Crit Chance</> as <CritAmplificationPercentage>Crit Amp</>.\r\n\r\n<Italic>Innate: Blink to the opposite side of the board.</>\r\n",
+		"Parameters": {
+			"Predator_CritAmp": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[2].Values[2]",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DescriptionThresholds": {
+		"Format": "Execute below <MaxHealth>{Predator_ExecutePercentage}%</><MaxHealth></>. Deal <AttackDamage>{Predator_EmpowerDamage}%</><AttackDamage></> extra damage",
+		"Parameters": [
+			{
+				"Predator_ExecutePercentage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[0]"
+				},
+				"Predator_EmpowerDamage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[0]"
+				}
+			},
+			{
+				"Predator_ExecutePercentage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[1]"
+				},
+				"Predator_EmpowerDamage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[1]"
+				}
+			},
+			{
+				"Predator_ExecutePercentage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[2]"
+				},
+				"Predator_EmpowerDamage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[2]"
+				}
+			}
+		]
+	},
+	"DisplayDescriptionNormalized": "Predators gain Health% Execution. Their first attack after Omega becomes empowered, guaranteeing a Crititical Hit and dealing bonus damage.\r\n\r\n(4) Gain 50% of Crit Chance as Crit Amp.\r\n\r\nInnate: Blink to the opposite side of the board.",
+	"DisplayDescriptionThresholdsNormalized": [
+		"Execute below 10%. Deal 125% extra damage",
+		"Execute below 12%. Deal 200% extra damage",
+		"Execute below 15%. Deal 300% extra damage"
+	]
+}

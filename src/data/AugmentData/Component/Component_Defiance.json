@@ -1,0 +1,45 @@
+{
+	"Name": "Defiance",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Component",
+	"Abilities": [
+		{
+			"Name": "DefianceComponent_Stats",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "DefianceComponent - Health",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "MaxHealth",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 100000
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Defiance Component",
+	"DisplayDescription": "Gain <MaxHealth>100</> <MaxHealth>Health</>. Can be combined with other components to select out of 3 Forge Augments.",
+	"Description": {
+		"Format": "Gain <MaxHealth>100</> <MaxHealth>Health</>. Can be combined with other components to select out of 3 Forge Augments.",
+		"Parameters": {}
+	},
+	"DisplayDescriptionNormalized": "Gain 100 Health. Can be combined with other components to select out of 3 Forge Augments."
+}

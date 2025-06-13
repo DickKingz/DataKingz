@@ -1,0 +1,218 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "TerrorBird",
+	"Stage": 3,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 5,
+	"CombatAffinity": "Bloom",
+	"CombatClass": "Arcanite",
+	"DominantCombatAffinity": "Nature",
+	"DominantCombatClass": "Fighter",
+	"SizeUnits": 5,
+	"Stats": {
+		"MaxHealth": 3000000,
+		"StartingEnergy": 0,
+		"EnergyCost": 60000,
+		"PhysicalResist": 70,
+		"EnergyResist": 65,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 220000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 90,
+		"MoveSpeedSubUnits": 3500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 10,
+		"OmegaRangeUnits": 10,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Terror Bird Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 55
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Ghosting Scream III",
+			"TotalDurationMs": 200,
+			"Skills": [
+				{
+					"Name": "Ghostly Beak",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 47
+					},
+					"Projectile": {
+						"SizeUnits": 5,
+						"SpeedSubUnits": 10000,
+						"IsHoming": false,
+						"IsBlockable": false,
+						"ApplyToAll": true,
+						"ContinueAfterTarget": true
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Attributes": {
+							"RotateToTarget": true
+						},
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "+",
+									"Operands": [
+										{
+											"Operation": "*",
+											"Operands": [
+												325000,
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												}
+											]
+										},
+										{
+											"Stat": "AttackDamage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Phosphorus",
+	"DisplayDescription": "Phosphorus fires a ghostly beak through its target, dealing dealing <AttackPhysicalDamage>545</> (<OmegaPowerPercentage></><AttackDamage></>) Physical Damage to all enemies hit.\r\n\r\nDamage: <AttackPhysicalDamage>545</> = <AttackPhysicalDamage>325</> (<OmegaPowerPercentage></>) + <AttackPhysicalDamage>220</> (<AttackDamage></>)",
+	"Intro": "A towering wall juts out from the sandy floors of Crystal Shores, full of rugged edges along its face. There's a large fracture in the middle, and the two sides cast enormous shadows, hiding various illuvial around the corner. Behind a jagged curve is the Phosphorus, stalking silently towards an oblivious visitor before the ambush.",
+	"Summary": "The Phosphorus, a formidable predator of Crystal Shores, stalks with precision and cunning, using its giant hooked beak and scimitar-like talons to tear apart prey much larger than itself. It moves stealthily despite its large size, often alerting others with a haunting scream before striking. Known for its complex hunting strategies and ability to create phantom images of itself, the Phosphorus exhibits remarkable agility and endurance in pursuit of its victims.",
+	"Biology": {
+		"Physiology": "The terrifying Phosphorus tears enemies apart with clinical precision, using its giant hooked beak and scimitar-like talons. An eerie red glow and the uneven cracks along its beak emanate from its eyes.  Standing on two powerful legs, it is quite a chromatic spectacle with a kaleidoscopic collection of patterns. Upon its head is a large diadem spread of black feathers tipped in yellow, while its face is an arrangement of blue, white, and a subtle line of green. Underneath is its yellow ridged neck and a snaggy white torso with bands of yellow on its back. Its wings are shades of light and dark greens with black stripes at the end. To top it all off, the Phosphorus' tail is a flaring range of indigo and magnificent orange.",
+		"Behaviour": "The Phosphorus is an analytical stalker, observing patterns in the behaviour of other Illuvials in order to predict their movements. A focused predator, it often pursues victims much larger than its own size. It corners its prey after exhausting them with persistent stalking. The Phosphorus' large bipedal legs are capable of great endurance and it slowly weakens its prey. Sometimes, the Phosphorus can appear to be at different places at once, and an apparition of its previous form can be seen from afar."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/TerrorBirdStage3/TerrorBirdStage3_default_default_webp.3840x2160/TerrorBirdStage3_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/TerrorBirdStage3/TerrorBirdStage3_default_default_hls.m3u8/TerrorBirdStage3_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Phosphorus is capable of moving stealthily despite its rather large form. However, it chooses to alert others of its presence with a haunting scream.",
+			"The Phosphorus is a focused hunter that pursues victims much larger than its own size. An intelligent killer, the Phosphorus observes the movements of its victims before it strikes. It is extremely persistent in hunts and often cooperates with others of its kind to lure prey together.",
+			"The Phosphorus can move so fast that all spectators see is a flash of light and the phantom shadow of its previous form."
+		],
+		"Buckley": [
+			"The Phosphorus' digestive tract has a muscular wall lined with small stones that help it grind up its food, allowing it to swallow prey whole.",
+			"The Phosphorus' long legs help it run fast and its long talons are adapted for grasping and killing.",
+			"The Phosphorus has a distinct beak made up of two parts?a bulbous base and a hollow conduit. This structure enables the Phosphorus to rapidly direct a phantom beak towards its target.",
+			"The Phosphorus has a colourful display of bright feathers and an elaborate crest on its head that appears to serve no purpose and is likely to attract the attention of rival predators.",
+			"The Phosphorus' beak is highly reinforced, allowing it to withstand the forces generated by its phantom beak."
+		]
+	},
+	"TraitOrderLegacy": [
+		2,
+		1,
+		4,
+		6,
+		3,
+		5
+	],
+	"Description": {
+		"Format": "Phosphorus fires a ghostly beak through its target, dealing dealing <AttackPhysicalDamage>545</> (<OmegaPowerPercentage></><AttackDamage></>) Physical Damage to all enemies hit.\r\n\r\nDamage: <AttackPhysicalDamage>545</> = <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) + <AttackPhysicalDamage>{AtkDamage}</> (<AttackDamage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0].Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"AtkDamage": {
+				"ParameterPath": "Stats.AttackPhysicalDamage",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Phosphorus fires a ghostly beak through its target, dealing dealing 545 () Physical Damage to all enemies hit.\r\n\r\nDamage: 545 = 325 () + 220 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 2,
+			"AttackSpeed": 1,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 3,
+			"Resistance": 5
+		}
+	}
+}

@@ -1,0 +1,201 @@
+{
+	"CombatAffinity": "Toxic",
+	"CombatAffinityComponents": [
+		"Water",
+		"Nature"
+	],
+	"SynergyThresholds": [
+		2,
+		3,
+		4
+	],
+	"SynergyThresholdsAbilities": {
+		"Variables": [
+			{
+				"Name": "Toxic_Poison",
+				"Values": [
+					5,
+					5,
+					10
+				]
+			},
+			{
+				"Name": "Toxic_AOEDamage",
+				"Values": [
+					10,
+					15,
+					20
+				]
+			},
+			{
+				"Name": "Toxic_TakedownHeal",
+				"Values": [
+					0,
+					0,
+					250000
+				]
+			}
+		],
+		"TeamAbilities": [],
+		"UnitAbilities": [
+			{
+				"Name": "ToxicSynergy_Ability1",
+				"ActivationTrigger": {
+					"TriggerType": "OnBattleStart"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Toxic - Poison",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "Self"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Empower",
+									"IsConsumable": false,
+									"DurationMs": -1,
+									"ActivatedBy": "Attack",
+									"AttachedEffects": [
+										{
+											"Type": "DOT",
+											"DamageType": "Pure",
+											"OverlapProcessType": "Merge",
+											"DurationMs": 5000,
+											"FrequencyMs": 1000,
+											"Expression": {
+												"Percentage": "{Toxic_Poison}",
+												"Stat": "MaxHealth",
+												"StatSource": "Receiver"
+											}
+										}
+									]
+								}
+							]
+						}
+					}
+				]
+			},
+			{
+				"Name": "ToxicSynergy_Ability2",
+				"ActivationTrigger": {
+					"TriggerType": "OnAssist",
+					"Allegiance": "Self"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Toxic - AOE Damage",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "InZone",
+							"Group": "Enemy",
+							"RadiusUnits": 25
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "InstantDamage",
+									"DamageType": "Pure",
+									"Expression": {
+										"Percentage": "{Toxic_AOEDamage}",
+										"Stat": "MaxHealth",
+										"StatSource": "SenderFocus"
+									}
+								}
+							]
+						}
+					}
+				]
+			},
+			{
+				"Name": "ToxicSynergy_SpecialAbility",
+				"ActivationTrigger": {
+					"TriggerType": "OnAssist"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Toxic - Heal on Takedown",
+						"Targeting": {
+							"Type": "Self"
+						},
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "InstantHeal",
+									"HealType": "Normal",
+									"Expression": "{Toxic_TakedownHeal}"
+								}
+							]
+						}
+					}
+				]
+			}
+		]
+	},
+	"IntrinsicAbilities": [],
+	"DisplayName": "Toxic",
+	"DisplayDescription": "\r\nToxic attacks inflict Poison for 5 seconds. Vanquished enemies explode, dealing a percentage of their <MaxHealth>Max Health</> as Pure Damage in 25-hexes.\r\n\r\n(4) The effectiveness of Poison is increased to 2% and Toxic units heal <MaxHealth>250</> Health on Takedown.\r\n\r\n<Italic>Poison: Deals 1% of target's Max Health as Pure Damage per second.</>\r\n",
+	"DisplayDescriptionThresholds": [
+		"Deal <MaxHealth>10%</><MaxHealth></> as Pure Damage",
+		"Deal <MaxHealth>15%</><MaxHealth></> as Pure Damage",
+		"Deal <MaxHealth>20%</><MaxHealth></> as Pure Damage"
+	],
+	"Description": {
+		"Format": "\r\nToxic attacks inflict Poison for {PoisonDuration} seconds. Vanquished enemies explode, dealing a percentage of their <MaxHealth>Max Health</> as Pure Damage in {ExplosionRadius}-hexes.\r\n\r\n(4) The effectiveness of Poison is increased to {Toxic_Poison}% and Toxic units heal <MaxHealth>{Toxic_TakedownHeal}</> Health on Takedown.\r\n\r\n<Italic>Poison: Deals 1% of target's Max Health as Pure Damage per second.</>\r\n",
+		"Parameters": {
+			"PoisonDuration": {
+				"ParameterPath": "SynergyThresholdsAbilities.UnitAbilities[0].Skills[0].EffectPackage.Effects[0].AttachedEffects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"ExplosionRadius": {
+				"ParameterPath": "SynergyThresholdsAbilities.UnitAbilities[1].Skills[0].Targeting.RadiusUnits",
+				"ValueMultiplier": 1.0
+			},
+			"Toxic_Poison": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[2]",
+				"ValueMultiplier": 0.2
+			},
+			"Toxic_TakedownHeal": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[2].Values[2]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DescriptionThresholds": {
+		"Format": "Deal <MaxHealth>{Toxic_AOEDamage}%</><MaxHealth></> as Pure Damage",
+		"Parameters": [
+			{
+				"Toxic_AOEDamage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[0]"
+				}
+			},
+			{
+				"Toxic_AOEDamage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[1]"
+				}
+			},
+			{
+				"Toxic_AOEDamage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[2]"
+				}
+			}
+		]
+	},
+	"DisplayDescriptionNormalized": "Toxic attacks inflict Poison for 5 seconds. Vanquished enemies explode, dealing a percentage of their Max Health as Pure Damage in 25-hexes.\r\n\r\n(4) The effectiveness of Poison is increased to 2% and Toxic units heal 250 Health on Takedown.\r\n\r\nPoison: Deals 1% of target's Max Health as Pure Damage per second.",
+	"DisplayDescriptionThresholdsNormalized": [
+		"Deal 10% as Pure Damage",
+		"Deal 15% as Pure Damage",
+		"Deal 20% as Pure Damage"
+	]
+}

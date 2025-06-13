@@ -1,0 +1,81 @@
+{
+	"Name": "JaggedEnd",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "GreaterPower",
+	"Abilities": [
+		{
+			"Name": "JaggedEnd_Ability",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "JaggedEnd - Buffs",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "AttackSpeed",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 30,
+									"Stat": "AttackSpeed",
+									"StatSource": "Receiver"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "CritAmplificationPercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"FrequencyMs": 500,
+								"Expression": {
+									"Percentage": 30,
+									"Stat": "AttackSpeed",
+									"StatSource": "Receiver"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackRangeUnits",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 15
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Jagged End",
+	"DisplayDescription": "Gain <AttackSpeed>30%</> <AttackSpeed>Attack Speed</> and <AttackRangeUnits>15</> <AttackRangeUnits>Attack Range</>.\r\n\r\n<CritAmplificationPercentage>30%</> of holder's <AttackSpeed>Attack Speed</> is received as <CritAmplificationPercentage>Crit Amp</>.",
+	"Description": {
+		"Format": "Gain <AttackSpeed>{ASVal}%</> <AttackSpeed>Attack Speed</> and <AttackRangeUnits>{AttackRange}</> <AttackRangeUnits>Attack Range</>.\r\n\r\n<CritAmplificationPercentage>{ASConvert}%</> of holder's <AttackSpeed>Attack Speed</> is received as <CritAmplificationPercentage>Crit Amp</>.",
+		"Parameters": {
+			"ASVal": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].Expression.Percentage",
+				"ValueMultiplier": 1.0
+			},
+			"AttackRange": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[2].Expression",
+				"ValueMultiplier": 1.0
+			},
+			"ASConvert": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[1].Expression.Percentage",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Gain 30% Attack Speed and 15 Attack Range.\r\n\r\n30% of holder's Attack Speed is received as Crit Amp."
+}

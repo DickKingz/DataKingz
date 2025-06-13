@@ -1,0 +1,21 @@
+{
+	"Name": "Arcanite",
+	"Stage": 3,
+	"Type": "Game",
+	"DisplayName": "Arcanite Matrix",
+	"DisplayDescription": "Gain a Arcanite Imprint.",
+	"Description": {
+		"Format": "Gain a Arcanite Imprint.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Arcanite",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

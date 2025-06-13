@@ -1,0 +1,175 @@
+{
+	"Name": "VineboundCleaver",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Normal",
+	"CombatAffinity": "Nature",
+	"CombatClass": "Rogue",
+	"DominantCombatAffinity": "Nature",
+	"DominantCombatClass": "Rogue",
+	"Stats": {
+		"MaxHealth": 850000,
+		"StartingEnergy": 0,
+		"EnergyCost": 0,
+		"PhysicalResist": 40,
+		"EnergyResist": 40,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 110000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 90,
+		"MoveSpeedSubUnits": 0,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 2,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 15,
+		"EnergyVampPercentage": 15,
+		"PureVampPercentage": 15,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Cleaver Attack I",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 50
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [],
+	"InnateAbilities": [
+		{
+			"Name": "Rooted Rage",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "VineboundCleaver Attack Speed",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"ID": "DesperationSurge",
+								"Type": "Buff",
+								"Stat": "AttackSpeed",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"FrequencyMs": 500,
+								"Expression": {
+									"Operation": "/",
+									"Operands": [
+										{
+											"Operation": "*",
+											"Operands": [
+												60,
+												{
+													"Operation": "-",
+													"Operands": [
+														1,
+														{
+															"Operation": "/",
+															"Operands": [
+																{
+																	"Stat": "CurrentHealth",
+																	"StatSource": "Receiver"
+																},
+																{
+																	"Stat": "MaxHealth",
+																	"StatSource": "Receiver"
+																}
+															]
+														}
+													]
+												},
+												{
+													"Stat": "AttackSpeed",
+													"StatSource": "Receiver"
+												}
+											]
+										},
+										1
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Vinebound Cleaver",
+	"DisplayDescription": "The Ranger gains <AttackSpeed>3%</> Attack Speed for every <MaxHealth>5%</> Missing Health.\r\nAdditionally, the Ranger gains <Omnivamp>15%</> Omnivamp.",
+	"Description": {
+		"Format": "The Ranger gains <AttackSpeed>3%</> Attack Speed for every <MaxHealth>5%</> Missing Health.\r\nAdditionally, the Ranger gains <Omnivamp>{Omnivamp}%</> Omnivamp.",
+		"Parameters": {
+			"Omnivamp": {
+				"ParameterPath": "Stats.PhysicalVampPercentage",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "The Ranger gains 3% Attack Speed for every 5% Missing Health.\r\nAdditionally, the Ranger gains 15% Omnivamp."
+}

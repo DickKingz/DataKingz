@@ -1,0 +1,21 @@
+{
+	"Name": "Wildfire",
+	"Stage": 3,
+	"Type": "Game",
+	"DisplayName": "Wildfire Matrix",
+	"DisplayDescription": "Gain a Wildfire Imprint.",
+	"Description": {
+		"Format": "Gain a Wildfire Imprint.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Wildfire",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

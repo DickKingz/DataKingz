@@ -1,0 +1,129 @@
+{
+	"Name": "EmpyreanCore",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Normal",
+	"Abilities": [
+		{
+			"Name": "EmpyreanCore_Stats",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "EmpyreanCore - List of Stats",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "MaxHealth",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 100000
+							},
+							{
+								"Type": "Buff",
+								"Stat": "OmegaPowerPercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 10
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"Name": "EmpyreanCore_Ability1",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "EmpyreanCore - Buffs",
+					"Targeting": {
+						"Type": "DistanceCheck",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						],
+						"Group": "Ally",
+						"Lowest": true,
+						"Num": 3,
+						"Self": false
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						]
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "OmegaPowerPercentage",
+								"DurationMs": -1,
+								"OverlapProcessType": "Stacking",
+								"Expression": 5
+							},
+							{
+								"Type": "InstantEnergyGain",
+								"Expression": 20000
+							},
+							{
+								"Type": "SpawnShield",
+								"DurationMs": -1,
+								"Expression": 100000
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Empyrean Core",
+	"DisplayDescription": "Combat Start: The holder's 3 closest allies gain <OmegaPowerPercentage>5</> <OmegaPowerPercentage>Omega Power</>, <StartingEnergy>20</> <StartingEnergy>Energy</> and 100 Shield.\r\n\r\nStats:\r\n+100 <MaxHealth>Health</>\r\n+10 <OmegaPowerPercentage>Omega Power</>",
+	"Description": {
+		"Format": "Combat Start: The holder's {AllyNum} closest allies gain <OmegaPowerPercentage>{OPVal}</> <OmegaPowerPercentage>Omega Power</>, <StartingEnergy>{EnergyVal}</> <StartingEnergy>Energy</> and {ShieldVal} Shield.\r\n\r\nStats:\r\n+{Stat_Health} <MaxHealth>Health</>\r\n+{Stat_OP} <OmegaPowerPercentage>Omega Power</>",
+		"Parameters": {
+			"OPVal": {
+				"ParameterPath": "Abilities[1].Skills[0].EffectPackage.Effects[0].Expression",
+				"ValueMultiplier": 1.0
+			},
+			"EnergyVal": {
+				"ParameterPath": "Abilities[1].Skills[0].EffectPackage.Effects[1].Expression",
+				"ValueMultiplier": 0.001
+			},
+			"ShieldVal": {
+				"ParameterPath": "Abilities[1].Skills[0].EffectPackage.Effects[2].Expression",
+				"ValueMultiplier": 0.001
+			},
+			"AllyNum": {
+				"ParameterPath": "Abilities[1].Skills[0].Targeting.Num",
+				"ValueMultiplier": 1.0
+			},
+			"Stat_Health": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].Expression",
+				"ValueMultiplier": 0.001
+			},
+			"Stat_OP": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[1].Expression",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Combat Start: The holder's 3 closest allies gain 5 Omega Power, 20 Energy and 100 Shield.\r\n\r\nStats:\r\n+100 Health\r\n+10 Omega Power"
+}

@@ -1,0 +1,21 @@
+{
+	"Name": "Aegis",
+	"Stage": 3,
+	"Type": "Game",
+	"DisplayName": "Aegis Matrix",
+	"DisplayDescription": "Gain a Aegis Imprint.",
+	"Description": {
+		"Format": "Gain a Aegis Imprint.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Aegis",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

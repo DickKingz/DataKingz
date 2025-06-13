@@ -1,0 +1,47 @@
+{
+	"Name": "Mystic",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "SynergyBonus",
+	"CombatClasses": {
+		"Mystic": 1
+	},
+	"Abilities": [
+		{
+			"Name": "Mystic Imprint Stats",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Mystic Imprint Stat List",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "MaxHealth",
+								"DurationMs": -1,
+								"Expression": 200000
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Mystic Imprint",
+	"DisplayDescription": "The holder gains the Mystic Composite Class and 200 <MaxHealth>Max Health</>.",
+	"Description": {
+		"Format": "The holder gains the Mystic Composite Class and 200 <MaxHealth>Max Health</>.",
+		"Parameters": {}
+	},
+	"DisplayDescriptionNormalized": "The holder gains the Mystic Composite Class and 200 Max Health."
+}

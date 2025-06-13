@@ -1,0 +1,62 @@
+{
+	"Name": "Bloom",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "SynergyBonus",
+	"CombatAffinities": {
+		"Bloom": 1
+	},
+	"Abilities": [
+		{
+			"Name": "Bloom Imprint Stats",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Bloom Imprint Stat List",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "PhysicalResist",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 10
+							},
+							{
+								"Type": "Buff",
+								"Stat": "EnergyResist",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 10
+							},
+							{
+								"Type": "Buff",
+								"Stat": "MaxHealth",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 100000
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Bloom Imprint",
+	"DisplayDescription": "The holder gains the Bloom Composite Affinity, 100 <MaxHealth>Max Health</> and 10 <Resistance>Resistances</>.",
+	"Description": {
+		"Format": "The holder gains the Bloom Composite Affinity, 100 <MaxHealth>Max Health</> and 10 <Resistance>Resistances</>.",
+		"Parameters": {}
+	},
+	"DisplayDescriptionNormalized": "The holder gains the Bloom Composite Affinity, 100 Max Health and 10 Resistances."
+}

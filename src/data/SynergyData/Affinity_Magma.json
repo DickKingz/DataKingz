@@ -1,0 +1,245 @@
+{
+	"CombatAffinity": "Magma",
+	"CombatAffinityComponents": [
+		"Earth",
+		"Fire"
+	],
+	"SynergyThresholds": [
+		2,
+		3,
+		4
+	],
+	"SynergyThresholdsAbilities": {
+		"Variables": [
+			{
+				"Name": "Magma_Damage",
+				"Values": [
+					40000,
+					70000,
+					100000
+				]
+			},
+			{
+				"Name": "Magma_Mitigation",
+				"Values": [
+					8000,
+					10000,
+					12000
+				]
+			},
+			{
+				"Name": "Magma_DamageAmp",
+				"Values": [
+					0,
+					0,
+					4
+				]
+			},
+			{
+				"Name": "Magma_ExpansionRate",
+				"Values": [
+					100,
+					100,
+					120
+				]
+			}
+		],
+		"TeamAbilities": [],
+		"UnitAbilities": [
+			{
+				"Name": "MagmaSynergy_Ability1",
+				"ActivationTrigger": {
+					"TriggerType": "OnBattleStart"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "MagmaSynergy_Buff",
+						"Deployment": {
+							"Type": "Zone",
+							"Guidance": [
+								"Ground",
+								"Underground"
+							]
+						},
+						"Zone": {
+							"Shape": "Hexagon",
+							"RadiusUnits": 15,
+							"DurationMs": -1,
+							"FrequencyMs": 1000,
+							"Attach": false,
+							"MovementSpeedSubUnits": 0,
+							"GrowthRateSubUnits": "{Magma_ExpansionRate}",
+							"ApplyOnce": false
+						},
+						"Targeting": {
+							"Type": "Self",
+							"Guidance": [
+								"Ground",
+								"Underground"
+							],
+							"Self": true
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Buff",
+									"Stat": "Grit",
+									"DurationMs": 990,
+									"OverlapProcessType": "Sum",
+									"Expression": "{Magma_Mitigation}"
+								},
+								{
+									"Type": "Buff",
+									"Stat": "Resolve",
+									"OverlapProcessType": "Sum",
+									"DurationMs": 990,
+									"Expression": "{Magma_Mitigation}"
+								},
+								{
+									"Type": "Buff",
+									"Stat": "AttackPhysicalDamage",
+									"OverlapProcessType": "Sum",
+									"DurationMs": 990,
+									"Expression": {
+										"Percentage": "{Magma_DamageAmp}",
+										"Stat": "AttackPhysicalDamage",
+										"StatSource": "Receiver"
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "AttackEnergyDamage",
+									"OverlapProcessType": "Sum",
+									"DurationMs": 990,
+									"Expression": {
+										"Percentage": "{Magma_DamageAmp}",
+										"Stat": "AttackEnergyDamage",
+										"StatSource": "Receiver"
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "AttackPureDamage",
+									"OverlapProcessType": "Sum",
+									"DurationMs": 990,
+									"Expression": {
+										"Percentage": "{Magma_DamageAmp}",
+										"Stat": "AttackPureDamage",
+										"StatSource": "Receiver"
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "OmegaDamagePercentage",
+									"OverlapProcessType": "Sum",
+									"DurationMs": 990,
+									"Expression": {
+										"Percentage": "{Magma_DamageAmp}",
+										"Stat": "OmegaDamagePercentage",
+										"StatSource": "Receiver"
+									}
+								}
+							]
+						}
+					},
+					{
+						"Name": "MagmaSynergy_Ignite",
+						"Deployment": {
+							"Type": "Zone",
+							"Guidance": [
+								"Ground",
+								"Underground"
+							]
+						},
+						"Zone": {
+							"Shape": "Hexagon",
+							"RadiusUnits": 15,
+							"DurationMs": -1,
+							"FrequencyMs": 1000,
+							"Attach": false,
+							"MovementSpeedSubUnits": 0,
+							"GrowthRateSubUnits": "{Magma_ExpansionRate}",
+							"ApplyOnce": false
+						},
+						"Targeting": {
+							"Type": "Self",
+							"Guidance": [
+								"Ground",
+								"Underground"
+							],
+							"Self": false
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "InstantDamage",
+									"DamageType": "Energy",
+									"Expression": "{Magma_Damage}"
+								}
+							]
+						}
+					}
+				]
+			}
+		]
+	},
+	"IntrinsicAbilities": [],
+	"DisplayName": "Magma",
+	"DisplayDescription": "\r\nCombat Start: Magma units create an expanding Molten Ground, dealing <AttackEnergyDamage>Energy Damage</> to enemies every second and granting <Grit>Mitigation</> to allies standing on it.\r\n\r\n(4) Molten Ground expands 20% faster and grants <DamageAmplification>4%</> <DamageAmplification>Damage Amp</>.\r\n",
+	"DisplayDescriptionThresholds": [
+		"Deal <AttackEnergyDamage>40</><AttackEnergyDamage></>. Gain <Grit>8</><Grit></>",
+		"Deal <AttackEnergyDamage>70</><AttackEnergyDamage></>. Gain <Grit>10</><Grit></>",
+		"Deal <AttackEnergyDamage>100</><AttackEnergyDamage></>. Gain <Grit>12</><Grit></>"
+	],
+	"Description": {
+		"Format": "\r\nCombat Start: Magma units create an expanding Molten Ground, dealing <AttackEnergyDamage>Energy Damage</> to enemies every second and granting <Grit>Mitigation</> to allies standing on it.\r\n\r\n(4) Molten Ground expands 20% faster and grants <DamageAmplification>{Magma_DamageAmp}%</> <DamageAmplification>Damage Amp</>.\r\n",
+		"Parameters": {
+			"Magma_DamageAmp": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[2].Values[2]",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DescriptionThresholds": {
+		"Format": "Deal <AttackEnergyDamage>{Magma_Damage}</><AttackEnergyDamage></>. Gain <Grit>{Magma_Mitigation}</><Grit></>",
+		"Parameters": [
+			{
+				"Magma_Damage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[0]",
+					"ValueMultiplier": 0.001
+				},
+				"Magma_Mitigation": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[0]",
+					"ValueMultiplier": 0.001
+				}
+			},
+			{
+				"Magma_Damage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[1]",
+					"ValueMultiplier": 0.001
+				},
+				"Magma_Mitigation": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[1]",
+					"ValueMultiplier": 0.001
+				}
+			},
+			{
+				"Magma_Damage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[2]",
+					"ValueMultiplier": 0.001
+				},
+				"Magma_Mitigation": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[2]",
+					"ValueMultiplier": 0.001
+				}
+			}
+		]
+	},
+	"DisplayDescriptionNormalized": "Combat Start: Magma units create an expanding Molten Ground, dealing Energy Damage to enemies every second and granting Mitigation to allies standing on it.\r\n\r\n(4) Molten Ground expands 20% faster and grants 4% Damage Amp.",
+	"DisplayDescriptionThresholdsNormalized": [
+		"Deal 40. Gain 8",
+		"Deal 70. Gain 10",
+		"Deal 100. Gain 12"
+	]
+}

@@ -1,0 +1,21 @@
+{
+	"Name": "Nature",
+	"Stage": 1,
+	"Type": "Game",
+	"DisplayName": "Nature Module",
+	"DisplayDescription": "Gain a Nature Imprint.",
+	"Description": {
+		"Format": "Gain a Nature Imprint.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Nature",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

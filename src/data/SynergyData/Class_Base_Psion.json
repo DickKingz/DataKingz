@@ -1,0 +1,383 @@
+{
+	"CombatClass": "Psion",
+	"CombatClassComponents": [],
+	"SynergyThresholds": [
+		2,
+		4,
+		6
+	],
+	"SynergyThresholdsAbilities": {
+		"Variables": [
+			{
+				"Name": "Psion_AllyOmegaPower",
+				"Values": [
+					8,
+					16,
+					20
+				]
+			},
+			{
+				"Name": "Psion_PsionOmegaPower",
+				"Values": [
+					16,
+					32,
+					40
+				]
+			},
+			{
+				"Name": "Psion_LastThreshold",
+				"Values": [
+					0,
+					0,
+					2000
+				]
+			}
+		],
+		"UnitAbilities": [
+			{
+				"Name": "PsionClass_SpecialAbility",
+				"ActivationTrigger": {
+					"TriggerType": "OnActivateXAbilities",
+					"AbilityTypes": [
+						"Omega"
+					],
+					"EveryX": true,
+					"NumberOfAbilitiesActivated": 1
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Psion - Omega Shield",
+						"Targeting": {
+							"Type": "Self"
+						},
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "PositiveState",
+									"PositiveState": "Immune",
+									"DurationMs": "{Psion_LastThreshold}"
+								}
+							]
+						}
+					}
+				]
+			}
+		],
+		"TeamAbilities": [
+			{
+				"Name": "PsionClass_SelfAbility",
+				"ActivationTrigger": {
+					"TriggerType": "OnBattleStart"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Psion - Psion Omega Power",
+						"Deployment": {
+							"Type": "Direct",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							]
+						},
+						"Targeting": {
+							"Type": "Synergy",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							],
+							"Group": "Ally",
+							"CombatClass": "Psion"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Buff",
+									"Stat": "OmegaPowerPercentage",
+									"DurationMs": -1,
+									"Expression": "{Psion_PsionOmegaPower}"
+								}
+							]
+						}
+					}
+				]
+			},
+			{
+				"Name": "PsionClass_AllyAbility",
+				"ActivationTrigger": {
+					"TriggerType": "OnBattleStart"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Psion - Ally Omega Power",
+						"Deployment": {
+							"Type": "Direct",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							]
+						},
+						"Targeting": {
+							"Type": "Synergy",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							],
+							"Group": "Ally",
+							"NotCombatClass": "Psion"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Buff",
+									"Stat": "OmegaPowerPercentage",
+									"DurationMs": -1,
+									"Expression": "{Psion_AllyOmegaPower}"
+								}
+							]
+						}
+					}
+				]
+			}
+		]
+	},
+	"IntrinsicAbilities": [],
+	"HyperAbilities": [
+		{
+			"Name": "PsionHyperProgressAbility",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart",
+				"MaxActivations": 1
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "PsionHyperProgressSkill",
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						]
+					},
+					"Targeting": {
+						"Type": "Self",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						],
+						"Group": "Ally"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "AttackSpeed",
+								"OverlapProcessType": "Stacking",
+								"FrequencyMs": 100,
+								"DurationMs": -1,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										{
+											"Operation": "/",
+											"Operands": [
+												{
+													"Stat": "CurrentSubHyper",
+													"StatSource": "Receiver"
+												},
+												1000
+											]
+										},
+										{
+											"Operation": "%%",
+											"Operands": [
+												{
+													"Stat": "AttackSpeed",
+													"StatSource": "Receiver",
+													"StatEvaluationType": "Base"
+												},
+												50
+											]
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"Name": "PsionHyperActiveAbility",
+			"ActivationTrigger": {
+				"TriggerType": "OnHyperactive",
+				"MaxActivations": 1
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "PsionHyperActiveSkill",
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						]
+					},
+					"Targeting": {
+						"Type": "Self",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						],
+						"Group": "Ally"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "VulnerabilityPercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 10
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackPhysicalDamage",
+								"OverlapProcessType": "Merge",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Receiver"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackEnergyDamage",
+								"OverlapProcessType": "Merge",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Receiver"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackPureDamage",
+								"OverlapProcessType": "Merge",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackPureDamage",
+									"StatSource": "Receiver"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "OmegaDamagePercentage",
+								"OverlapProcessType": "Merge",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "OmegaDamagePercentage",
+									"StatSource": "Receiver"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Psion",
+	"DisplayDescription": "\r\nYour team gains <OmegaPowerPercentage>Omega Power</>. Psion units receive double the amount.\r\n\r\n(6) On Omega, Psions become Immune for 2 seconds.\r\n\r\n<Italic>Immune: Cannot be affected by negative effects.</>\r\n",
+	"DisplayDescriptionThresholds": [
+		"Gain <OmegaPowerPercentage>8</><OmegaPowerPercentage></>",
+		"Gain <OmegaPowerPercentage>16</><OmegaPowerPercentage></>",
+		"Gain <OmegaPowerPercentage>20</><OmegaPowerPercentage></>"
+	],
+	"Description": {
+		"Format": "\r\nYour team gains <OmegaPowerPercentage>Omega Power</>. Psion units receive double the amount.\r\n\r\n({LastThreshold}) On Omega, Psions become Immune for {Psion_LastThreshold} seconds.\r\n\r\n<Italic>Immune: Cannot be affected by negative effects.</>\r\n",
+		"Parameters": {
+			"LastThreshold": {
+				"ParameterPath": "SynergyThresholds[2]",
+				"ValueMultiplier": 1.0
+			},
+			"Psion_LastThreshold": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[2].Values[2]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DescriptionThresholds": {
+		"Format": "Gain <OmegaPowerPercentage>{Psion_AllyOmegaPower}</><OmegaPowerPercentage></>",
+		"Parameters": [
+			{
+				"Psion_AllyOmegaPower": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[0]",
+					"ValueMultiplier": 1.0
+				}
+			},
+			{
+				"Psion_AllyOmegaPower": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[1]",
+					"ValueMultiplier": 1.0
+				}
+			},
+			{
+				"Psion_AllyOmegaPower": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[2]",
+					"ValueMultiplier": 1.0
+				}
+			}
+		]
+	},
+	"HyperDisplayDescription": "Hyper Bonus (scaling): <AttackSpeed>0.5%</> <AttackSpeed>Attack Speed</>, up to 50%.\r\n\r\nHyper Bonus (full): 10% <DamageAmplification>Damage Amp</> and <DamageReduction>Damage Reduction</>.\r\n\r\n",
+	"HyperDescription": {
+		"Format": "Hyper Bonus (scaling): <AttackSpeed>0.5%</> <AttackSpeed>Attack Speed</>, up to 50%.\r\n\r\nHyper Bonus (full): 10% <DamageAmplification>Damage Amp</> and <DamageReduction>Damage Reduction</>.\r\n\r\n",
+		"Parameters": {}
+	},
+	"HyperDescriptionParts": [
+		{
+			"StatType": "AttackSpeed",
+			"DisplayDescription": "<AttackSpeed>0.5%</> per Hyper Point, up to 50%.\r\n\r\n",
+			"Description": {
+				"Format": "<AttackSpeed>0.5%</> per Hyper Point, up to 50%.\r\n\r\n",
+				"Parameters": {}
+			},
+			"DisplayDescriptionNormalized": "0.5% per Hyper Point, up to 50%."
+		},
+		{
+			"StatType": "VulnerabilityPercentage",
+			"DisplayDescription": "+10% <DamageAmplification></><DamageReduction></> at Full Hyper.\r\n\r\n",
+			"Description": {
+				"Format": "+10% <DamageAmplification></><DamageReduction></> at Full Hyper.\r\n\r\n",
+				"Parameters": {}
+			},
+			"DisplayDescriptionNormalized": "+10% at Full Hyper."
+		}
+	],
+	"DisplayDescriptionNormalized": "Your team gains Omega Power. Psion units receive double the amount.\r\n\r\n(6) On Omega, Psions become Immune for 2 seconds.\r\n\r\nImmune: Cannot be affected by negative effects.",
+	"DisplayDescriptionThresholdsNormalized": [
+		"Gain 8",
+		"Gain 16",
+		"Gain 20"
+	],
+	"HyperDisplayDescriptionNormalized": "Hyper Bonus (scaling): 0.5% Attack Speed, up to 50%.\r\n\r\nHyper Bonus (full): 10% Damage Amp and Damage Reduction."
+}

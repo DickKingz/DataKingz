@@ -1,0 +1,209 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Lynx",
+	"Stage": 2,
+	"Path": "PsionNone",
+	"Variation": "Original",
+	"Tier": 2,
+	"CombatAffinity": "None",
+	"CombatClass": "Psion",
+	"DominantCombatAffinity": "None",
+	"DominantCombatClass": "Psion",
+	"SizeUnits": 4,
+	"Stats": {
+		"MaxHealth": 1450000,
+		"StartingEnergy": 60000,
+		"EnergyCost": 120000,
+		"PhysicalResist": 35,
+		"EnergyResist": 35,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 135000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 60,
+		"MoveSpeedSubUnits": 2250,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 50,
+		"OmegaRangeUnits": 50,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Psion Lynx Basic Attack II",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 50
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 10000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Telestic Sling",
+			"TotalDurationMs": 2500,
+			"Skills": [
+				{
+					"Name": "Wave",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 75
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 10,
+						"DurationMs": 3000,
+						"FrequencyMs": 100,
+						"MovementSpeedSubUnits": 10000,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 90,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										700000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Arcane Lynx",
+	"DisplayDescription": "Arcane Lynx sends out a wave towards its target, dealing <AttackEnergyDamage>700</> (<OmegaPowerPercentage></>) Energy Damage to all enemies hit.\r\n\r\nDamage: <AttackEnergyDamage>700</> (<OmegaPowerPercentage></>)",
+	"Intro": "In the flourishing fields of Brightland Steppes, there are many ponds and boulders scattered throughout its sloping valley. Water streams its way down and one must climb the roots and rock formations to get out to the surrounding areas. Sometimes, a wave of energy pulses towards the valley from above. The Arcane Lynx peers out atop towering root stairways, searching for a new target to aim at.",
+	"Summary": "The Arcane Lynx stands out with its thick white coat accented by striking grey and green hues. Its keen senses, including sharp golden eyes and responsive ears, allow it to detect prey from afar and launch precise energy attacks from the luminous sphere above its head. Known for its meticulous grooming and strategic positioning, the Arcane Lynx thrives on observing its surroundings from multiple vantage points to ensure optimal accuracy in its attacks and interactions.",
+	"Biology": {
+		"Physiology": "The Arcane Lynx has a thick white coat marked in a striking grey, with green highlights, vivid as its golden eyes. A lithe, fanged creature with slits for pupils, the Arcane Lynx can pick out a target from a great distance and then blast out energy waves with the shining emerald sphere floating above its head. It has long ears sticking up on its head, tipped in black just like the lengthy fur hanging from the sides of its face. The Arcane Lynx prowls on all fours with many layers of fur bristling around its neck, its tail swishing in anticipation of its next hit.",
+		"Behaviour": "The Arcane Lynx raises its ears when something catches its attention, which happens often. It is just as curious as it is cautious, preferring to keep its distance while maintaining careful watch with its sharp eyes. Although it avoids other types of Illuvials, it occasionally forms gatherings with other Lynxes. It meets new Lynxes with a wary crouch and greets the Lynxes it knows well by rubbing its face against theirs. Sometimes it is mischievous and shoots a ball of energy at its companions, only to run when they give chase."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage2Psion/LynxStage2Psion_default_default_webp.3840x2160/LynxStage2Psion_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage2Psion/LynxStage2Psion_default_default_hls.m3u8/LynxStage2Psion_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Arcane Lynx is a perfectionist in battle and grooming, spending hours every day pawing its ears and face to ensure not a single fur will stand in its way.",
+			"The Arcane Lynx is picky about where it stands, judging the location by its obscurity and vantage point. Sometimes it makes multiple rounds around a spot to observe it from different perspectives.",
+			"The Arcane Lynx has extremely sharp eyes capable of discerning a moving target from a vast distance."
+		],
+		"Buckley": [
+			"The Arcane Lynx's eyes have large lenses that are specially adapted to enable them to hone in on targets across vast distances. Its dual foveas and its retinas, which are densely packed with cones, allow it to focus on its peripheral vision.",
+			"The luminous sphere on the Arcane Lynx's head has more mass to it than the Lynx's, allowing it to blast energy from extremely long ranges.",
+			"The Arcane Lynx has a complex timing device in its nervous system that is capable of slowing and speeding up its perception of time, allowing it to aim precisely in nanoseconds or hold a position in stillness for prolonged periods.",
+			"The Arcane Lynx's long ears are capable of directing the flow of energy in the sphere upon its head, enabling it to respond quickly to target sounds in its environment.",
+			"The Arcane Lynx has scent receptors that can differentiate between prey down to different individuals within the same species, along with information about their health and recent habits."
+		]
+	},
+	"TraitOrderLegacy": [
+		3,
+		2,
+		4,
+		6,
+		1,
+		5
+	],
+	"Description": {
+		"Format": "Arcane Lynx sends out a wave towards its target, dealing <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Energy Damage to all enemies hit.\r\n\r\nDamage: <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Arcane Lynx sends out a wave towards its target, dealing 700 () Energy Damage to all enemies hit.\r\n\r\nDamage: 700 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 3,
+			"AttackSpeed": 2,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 5
+		}
+	}
+}

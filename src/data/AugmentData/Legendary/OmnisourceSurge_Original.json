@@ -1,0 +1,99 @@
+{
+	"Name": "OmnisourceSurge",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "GreaterPower",
+	"Abilities": [
+		{
+			"Name": "OmnisourceSurge_Ability1",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "OmnisourceSurge - Start Buff",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "OmegaPowerPercentage",
+								"DurationMs": -1,
+								"OverlapProcessType": "Stacking",
+								"Expression": 20
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"Name": "OmnisourceSurge_Ability2",
+			"ActivationTrigger": {
+				"TriggerType": "EveryXTime",
+				"ActivateEveryTimeMs": 5000
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "OmnisourceSurge - Omega Buff",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "OmegaPowerPercentage",
+								"DurationMs": -1,
+								"OverlapProcessType": "Stacking",
+								"Expression": 10
+							},
+							{
+								"Type": "Buff",
+								"Stat": "EnergyPiercingPercentage",
+								"DurationMs": -1,
+								"OverlapProcessType": "Stacking",
+								"Expression": 10
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Omnisource Surge",
+	"DisplayDescription": "Gain <OmegaPowerPercentage>20</> <OmegaPowerPercentage>Omega Power</>. Every 5 seconds, gain an additional <OmegaPowerPercentage>10</>  <OmegaPowerPercentage>Omega Power</> and <EnergyPiercingPercentage>10%</> <EnergyPiercingPercentage>Energy Resist Piercing</>.",
+	"Description": {
+		"Format": "Gain <OmegaPowerPercentage>{InitialOP}</> <OmegaPowerPercentage>Omega Power</>. Every {TriggerTime} seconds, gain an additional <OmegaPowerPercentage>{StackOP}</>  <OmegaPowerPercentage>Omega Power</> and <EnergyPiercingPercentage>{EngPierce}%</> <EnergyPiercingPercentage>Energy Resist Piercing</>.",
+		"Parameters": {
+			"InitialOP": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].Expression",
+				"ValueMultiplier": 1.0
+			},
+			"TriggerTime": {
+				"ParameterPath": "Abilities[1].ActivationTrigger.ActivateEveryTimeMs",
+				"ValueMultiplier": 0.001
+			},
+			"StackOP": {
+				"ParameterPath": "Abilities[1].Skills[0].EffectPackage.Effects[0].Expression",
+				"ValueMultiplier": 1.0
+			},
+			"EngPierce": {
+				"ParameterPath": "Abilities[1].Skills[0].EffectPackage.Effects[1].Expression",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Gain 20 Omega Power. Every 5 seconds, gain an additional 10 Omega Power and 10% Energy Resist Piercing."
+}

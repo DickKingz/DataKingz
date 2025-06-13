@@ -1,0 +1,61 @@
+{
+	"Name": "RetributionsCall",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "GreaterPower",
+	"Abilities": [
+		{
+			"Name": "RetributionsCall_Ability1",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "RetributionsCall - Max Health",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "MaxHealth",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 1000000
+							},
+							{
+								"Type": "Buff",
+								"Stat": "Thorns",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 15000
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Retribution's Call",
+	"DisplayDescription": "Gain <MaxHealth>1,000</> <MaxHealth>Max Health</> and <Thorns>15</> <Thorns>Thorns</>.",
+	"Description": {
+		"Format": "Gain <MaxHealth>{HealthVal}</> <MaxHealth>Max Health</> and <Thorns>{Thorns}</> <Thorns>Thorns</>.",
+		"Parameters": {
+			"HealthVal": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].Expression",
+				"ValueMultiplier": 0.001
+			},
+			"Thorns": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[1].Expression",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Gain 1,000 Max Health and 15 Thorns."
+}

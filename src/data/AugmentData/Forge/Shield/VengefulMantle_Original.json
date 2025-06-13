@@ -1,0 +1,108 @@
+{
+	"Name": "VengefulMantle",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Normal",
+	"Abilities": [
+		{
+			"Name": "VengefulMantle_Stats",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "VengefulMantle - List of Stats",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "MaxHealth",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 200000
+							},
+							{
+								"Type": "Buff",
+								"Stat": "PhysicalResist",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 10
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"Name": "VengefulMantle_Ability",
+			"ActivationTrigger": {
+				"TriggerType": "OnHit",
+				"AbilityTypes": [
+					"Attack"
+				],
+				"SenderAllegiance": "Enemy",
+				"ReceiverAllegiance": "Self",
+				"ActivationCooldownMs": 1000
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "VengefulMantle - Deal Damage in AOE",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "InZone",
+						"Group": "Enemy",
+						"RadiusUnits": 20
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": 100000
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Vengeful Mantle",
+	"DisplayDescription": "When struck by an attack, deal <AttackPhysicalDamage>100</> <AttackPhysicalDamage>Physical Damage</> to enemies within 20-hexes (1s cooldown).\r\n\r\nStats:\r\n+200 <MaxHealth>Health</>\r\n+10 <PhysicalResist>Physical Resistance</>",
+	"Description": {
+		"Format": "When struck by an attack, deal <AttackPhysicalDamage>{Damage}</> <AttackPhysicalDamage>Physical Damage</> to enemies within {Radius}-hexes ({Cooldown}s cooldown).\r\n\r\nStats:\r\n+{Stat_Health} <MaxHealth>Health</>\r\n+{Stat_PhyResist} <PhysicalResist>Physical Resistance</>",
+		"Parameters": {
+			"Damage": {
+				"ParameterPath": "Abilities[1].Skills[0].EffectPackage.Effects[0].Expression",
+				"ValueMultiplier": 0.001
+			},
+			"Radius": {
+				"ParameterPath": "Abilities[1].Skills[0].Targeting.RadiusUnits",
+				"ValueMultiplier": 1.0
+			},
+			"Cooldown": {
+				"ParameterPath": "Abilities[1].ActivationTrigger.ActivationCooldownMs",
+				"ValueMultiplier": 0.001
+			},
+			"Stat_Health": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].Expression",
+				"ValueMultiplier": 0.001
+			},
+			"Stat_PhyResist": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[1].Expression",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "When struck by an attack, deal 100 Physical Damage to enemies within 20-hexes (1s cooldown).\r\n\r\nStats:\r\n+200 Health\r\n+10 Physical Resistance"
+}

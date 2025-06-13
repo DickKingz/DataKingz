@@ -1,0 +1,202 @@
+{
+	"Name": "ShadowMaul",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Normal",
+	"CombatAffinity": "Earth",
+	"CombatClass": "Empath",
+	"DominantCombatAffinity": "Earth",
+	"DominantCombatClass": "Empath",
+	"Stats": {
+		"MaxHealth": 900000,
+		"StartingEnergy": 100000,
+		"EnergyCost": 300000,
+		"PhysicalResist": 70,
+		"EnergyResist": 40,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 140000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 70,
+		"MoveSpeedSubUnits": 0,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 3,
+		"OmegaRangeUnits": 3,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Maul Attack I",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 50
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Umbral Smash",
+			"TotalDurationMs": 1500,
+			"Skills": [
+				{
+					"Name": "LIFT THE MAUL",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 75
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Stun",
+								"DurationMs": 2000
+							}
+						]
+					}
+				},
+				{
+					"Name": "AOE",
+					"Targeting": {
+						"Type": "InZone",
+						"Group": "Enemy",
+						"RadiusUnits": 20
+					},
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"PercentageOfAbilityDuration": 0,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"ID": "EnhancedTremor",
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										400000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"ID": "ConcussiveDarkness",
+								"Type": "NegativeState",
+								"NegativeState": "Stun",
+								"DurationMs": 0
+							},
+							{
+								"ID": "RepultionWave",
+								"Type": "Debuff",
+								"Stat": "EnergyResist",
+								"DurationMs": 5000,
+								"Expression": {
+									"Percentage": 0,
+									"Stat": "EnergyResist",
+									"StatSource": "Receiver"
+								}
+							},
+							{
+								"ID": "RepultionWave1",
+								"Type": "Debuff",
+								"Stat": "PhysicalResist",
+								"DurationMs": 5000,
+								"Expression": {
+									"Percentage": 0,
+									"Stat": "PhysicalResist",
+									"StatSource": "Receiver"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Shadow Maul",
+	"DisplayDescription": "The Ranger channels dark energy into their maul, delivering a crushing blow that Stuns the target for 2 seconds. The impact creates a shockwave, dealing <AttackPhysicalDamage>400</> (<OmegaPowerPercentage></>) Physical Damage to all enemies within a 20-radius.",
+	"Description": {
+		"Format": "The Ranger channels dark energy into their maul, delivering a crushing blow that Stuns the target for {Duration} seconds. The impact creates a shockwave, dealing <AttackPhysicalDamage>{Damage}</> (<OmegaPowerPercentage></>) Physical Damage to all enemies within a {Radius}-radius.",
+		"Parameters": {
+			"Duration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"Damage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"Radius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].Targeting.RadiusUnits",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "The Ranger channels dark energy into their maul, delivering a crushing blow that Stuns the target for 2 seconds. The impact creates a shockwave, dealing 400 () Physical Damage to all enemies within a 20-radius."
+}

@@ -1,0 +1,306 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Lynx",
+	"Stage": 3,
+	"Path": "RogueAir",
+	"Variation": "Original",
+	"Tier": 2,
+	"CombatAffinity": "Air",
+	"CombatClass": "Rogue",
+	"DominantCombatAffinity": "Air",
+	"DominantCombatClass": "Rogue",
+	"SizeUnits": 7,
+	"Stats": {
+		"MaxHealth": 2150000,
+		"StartingEnergy": 40000,
+		"EnergyCost": 100000,
+		"PhysicalResist": 45,
+		"EnergyResist": 45,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 175000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 70,
+		"MoveSpeedSubUnits": 2500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 5,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 5,
+		"OmegaRangeUnits": 5,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Rogue Air Lynx Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 45
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Aeroquin Scything",
+			"TotalDurationMs": 1200,
+			"Skills": [
+				{
+					"Name": "Slash",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 40
+					},
+					"PercentageOfAbilityDuration": 20,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										250000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Slash",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 20
+					},
+					"PercentageOfAbilityDuration": 20,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										250000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Slash",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 20
+					},
+					"PercentageOfAbilityDuration": 20,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										250000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Slash",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 20
+					},
+					"PercentageOfAbilityDuration": 20,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										250000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Slash",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 40
+					},
+					"PercentageOfAbilityDuration": 20,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										250000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Nimble Zephyrlynx",
+	"DisplayDescription": "Nimble Zephyrlynx slashes the target 5 times, dealing <AttackPhysicalDamage>250</> (<OmegaPowerPercentage></>) Physical Damage per slash.\r\n\r\nDamage: <AttackPhysicalDamage>1,250</> = <AttackPhysicalDamage>250</> x5 (<OmegaPowerPercentage></>)",
+	"Intro": "Taiga Boreal is the northern pole of Illuvium, where the magnetic field of the planet pulls flashes from charged particles entering the atmosphere. This results in a mesmerizing light show that engulfs the Three Brothers, a trinity of mountain peaks, during winter sunsets. These mountains are covered in black rock and ice, giving them an opaline shimmer. Slippery and difficult to climb, only the Nimble Zephyrlynx can reach the top in a blink of an eye.",
+	"Summary": "This elusive Illuvial, with pale blue fur, teal streaks, and a voluminous cloud mane, moves as one with snowstorms, leaving luminous marks with its white claws. Known for its swift, deadly movements and ability to disappear and reappear in puffs of clouds, it remains hidden and difficult to observe. Equipped with a complex air current network, an internal radar, and a luminous blue orb for enhanced vision in storms, the Nimble Zephyrlynx can process environmental changes almost instantaneously.",
+	"Biology": {
+		"Physiology": "The Nimble Zephyrlynx is the phantom of Taiga, with pale blue fur and teal streaks that are often hidden by its voluminous cloud mane and fluffy tail. It has stark swirling patterns upon its face and along the thick fur that hangs down from both sides of its cheeks. There are vaporous puffs that wisp out from its long ears, like smoke from chimneys. Wherever the Nimble Zephyrlynx goes, a mist trail follows, easily mistaken for snow in the wind. Though it moves as one with the snowstorms, it can be identified by its clear, frosted eyes and the shining blue sphere upon its forehead that brightens when it strikes. Its white claws leave luminous marks and its muscular legs are extremely agile.",
+		"Behaviour": "The Nimble Zephyrlynx is rarely seen but sometimes felt by the whooshing wind of its quick movements and the echoing tremours of its haunting screams through the mountain range. If it feels eyes on it, the Nimble Zephyrlynx disappears in a puff of clouds. Occasionally, it reappears behind a potential aggressor and ambushes them in an attack. Its movements are fast and deadly, like the whipping wind. It is difficult to observe the Nimble Zephyrlynx for extended periods of time, and there is much unknown about this Illuvial."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3RogueAir/LynxStage3RogueAir_default_default_webp.3840x2160/LynxStage3RogueAir_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3RogueAir/LynxStage3RogueAir_default_default_hls.m3u8/LynxStage3RogueAir_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Nimble Zephyrlynx remains hidden while it runs by crouching low in the snow and keeping to secluded areas in ice caves and mountains.",
+			"The Nimble Zephyrlynx may run during storms, appearing to enjoy the high winds.",
+			"The Nimble Zephyrlynx is capable of disappearing in a puff of clouds and reappearing elsewhere."
+		],
+		"Buckley": [
+			"The Nimble Zephyrlynx's thick mane contains a complex network of air currents, enabling it to expand and shroud its whole body or dissipate outwards.",
+			"The Nimble Zephyrlynx has an internal radar that is attracted to large movements of wind and snow, helping it find and absorb energy from the powerful air currents.",
+			"The Nimble Zephyrlynx has a luminous blue orb on its head that is capable of creating a stable air current, allowing the Nimble Zephyrlynx to see further in heavy storms.",
+			"The Nimble Zephyrlynx's eyes can process a much higher visual processing rate than the average Valain, enabling it to observe minute changes in its environment and respond almost instantaneously. To the Nimble Zephyrlynx, many life forms move in slow motion.",
+			"The Nimble Zephyrlynx has light blue fur and many dark teal stripes which can create an optical illusion and confuse prey when it is moving quickly."
+		]
+	},
+	"TraitOrderLegacy": [
+		3,
+		1,
+		4,
+		6,
+		2,
+		5
+	],
+	"Description": {
+		"Format": "Nimble Zephyrlynx slashes the target 5 times, dealing <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Physical Damage per slash.\r\n\r\nDamage: <AttackPhysicalDamage>{OmegaDamageFull}</> = <AttackPhysicalDamage>{OmegaDamage}</> x5 (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"OmegaDamageFull": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.005
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Nimble Zephyrlynx slashes the target 5 times, dealing 250 () Physical Damage per slash.\r\n\r\nDamage: 1,250 = 250 x5 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 3,
+			"AttackSpeed": 1,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 2,
+			"Resistance": 5
+		}
+	}
+}

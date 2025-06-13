@@ -1,0 +1,232 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "FliishWater",
+	"Stage": 2,
+	"Path": "Water",
+	"Variation": "Original",
+	"Tier": 0,
+	"CombatAffinity": "Water",
+	"CombatClass": "Psion",
+	"DominantCombatAffinity": "Water",
+	"DominantCombatClass": "Psion",
+	"SizeUnits": 5,
+	"Stats": {
+		"MaxHealth": 1100000,
+		"StartingEnergy": 20000,
+		"EnergyCost": 120000,
+		"PhysicalResist": 25,
+		"EnergyResist": 30,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 90000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 70,
+		"MoveSpeedSubUnits": 2150,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 60,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Water Fliish Basic Attack II",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 50
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 10000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Refreshing Beam II",
+			"TotalDurationMs": 2000,
+			"Skills": [
+				{
+					"Name": "Damage beam",
+					"Targeting": {
+						"Type": "DistanceCheck",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"Group": "Enemy",
+						"Lowest": false,
+						"Num": 1
+					},
+					"PercentageOfAbilityDuration": 100,
+					"ChannelTimeMs": 2000,
+					"Deployment": {
+						"Type": "Beam",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 0
+					},
+					"Beam": {
+						"WidthUnits": 10,
+						"FrequencyMs": 200,
+						"ApplyOnce": false,
+						"IsHoming": true,
+						"IsBlockable": true,
+						"BlockAllegiance": "Enemy"
+					},
+					"EffectPackage": {
+						"Attributes": {
+							"RotateToTarget": true
+						},
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										80000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Greater Water Fliish",
+	"DisplayDescription": "Greater Water Fliish fires a beam at the furthest enemy, dealing <AttackEnergyDamage>800</> (<OmegaPowerPercentage></>) Energy Damage to the first enemy hit over 2 seconds.\r\n\r\nDamage: <AttackEnergyDamage>800</> = <AttackEnergyDamage>80</>/0.2s (<OmegaPowerPercentage></>)",
+	"Intro": "Along the coasts of Halcyon Sea, there are gentle waves that overlap as they reach for the shore. They come at regular intervals, ushering in a fresh ocean breeze and the feeling of calm. One strange Illuvial gathers water in its remarkable, round-shelled tail, which can open and close at its will. The Greater Water Fliish collects a giant blob of liquid from the waves to keep close by when it hops on land.",
+	"Summary": "The Greater Water Fliish inhabits the coasts of Halcyon Sea, characterized by its indigo and violet hues, horned head, and bowl-shaped tail that collects water. It uses specialized oils secreted through stretching routines to enhance its underwater propulsion and catch aquatic Morphopods. This Illuvial exhibits translucent coloration underwater and marks its territory by licking coral structures, employing a tongue with acidic secretion for both marking and health indicators.",
+	"Biology": {
+		"Physiology": "The Greater Water Fliish is indigo and violet, with teal eyes and a wide gaping mouth, its long, translucent tongue dangling out from the side. It has round bumpy toes on its feet, and its hind legs are often bent in a crouch. Upon its head, lining the upper side of its big eyes, are black horn growths. Its tail is made up of the same material, with an open, bowl-shaped shell that holds water within. Tiny barnacles protrude from its tail and parts of its head.",
+		"Behaviour": "The Greater Water Fliish can be found limbering up on land, stretching its legs with high hops and tilting its head in a strange swaying bounce. These movements are a crucial routine that allows it to secrete a specialised oil which aids its movements in the water. This supports its tail propulsion underwater and allows it to catch aquatic Morphopods while diving. The Greater Water Fliish can better defend itself against other Illuvials from a distance, which is why it is important that it can make a quick getaway for a more advantageous position."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/FliishStage2Water/FliishStage2Water_default_default_webp.3840x2160/FliishStage2Water_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/FliishStage2Water/FliishStage2Water_default_default_hls.m3u8/FliishStage2Water_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Greater Water Fliish uses its round, concave tail to throw water into the air and then catches it again in a splashing display.",
+			"The Greater Water Fliish becomes translucent when submerged in water for prolonged periods of time. It may return to color in irregular splotches of indigo and violet.",
+			"The Greater Water Fliish can be found licking coral structures and sea cave walls to mark its territory."
+		],
+		"Buckley": [
+			"The Greater Water Fliish's tongue has a specially adapted acidic secretion which corrodes rocky surfaces. They function as health indicators that signal its suitability for fusion with other Fliish.",
+			"The Greater Water Fliish has a field of vision of 270 degrees, allowing it to identify objects in motion in its periphery.",
+			"The Greater Earth Fliish's horned head has scarring and marks that are likely produced through tussling with its own kind.",
+			"The ringed tail of the Greater Earth Fliish is capable of vibrating at varying frequencies, likely as complex signals that it uses to communicate with others of its kind.",
+			"The Greater Earth Fliish has mineral-rich armour that enables it to regulate its temperature."
+		]
+	},
+	"TraitOrderLegacy": [
+		3,
+		2,
+		4,
+		6,
+		1,
+		5
+	],
+	"Description": {
+		"Format": "Greater Water Fliish fires a beam at the furthest enemy, dealing <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Energy Damage to the first enemy hit over {BeamDuration} seconds.\r\n\r\nDamage: <AttackEnergyDamage>{OmegaDamage}</> = <AttackEnergyDamage>{SplitDamage}</>/0.2s (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.01
+			},
+			"BeamDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].ChannelTimeMs",
+				"ValueMultiplier": 0.001
+			},
+			"SplitDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Greater Water Fliish fires a beam at the furthest enemy, dealing 800 () Energy Damage to the first enemy hit over 2 seconds.\r\n\r\nDamage: 800 = 80/0.2s ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 3,
+			"AttackSpeed": 2,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 5
+		}
+	}
+}

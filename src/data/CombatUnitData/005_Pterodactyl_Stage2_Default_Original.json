@@ -1,0 +1,234 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Pterodactyl",
+	"Stage": 2,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 5,
+	"CombatAffinity": "Fire",
+	"CombatClass": "Phantom",
+	"DominantCombatAffinity": "Fire",
+	"DominantCombatClass": "Rogue",
+	"SizeUnits": 5,
+	"Stats": {
+		"MaxHealth": 2100000,
+		"StartingEnergy": 40000,
+		"EnergyCost": 180000,
+		"PhysicalResist": 55,
+		"EnergyResist": 45,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 150000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 75,
+		"MoveSpeedSubUnits": 3000,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 6,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Wing Cleave II",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 45
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Infernal Skyfall II",
+			"TotalDurationMs": 2800,
+			"Skills": [
+				{
+					"Name": "Jumps into air",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 85,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "PlaneChange",
+								"PlaneChange": "Airborne",
+								"DurationMs": 2800
+							}
+						]
+					}
+				},
+				{
+					"Name": "AOE Damage",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 70
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 33,
+						"DurationMs": 500,
+						"FrequencyMs": 500,
+						"GrowthRateSubUnits": 0,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 10,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										900000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "Debuff",
+								"Stat": "HealthGainEfficiencyPercentage",
+								"DurationMs": 4000,
+								"Expression": 30
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Rhamphite",
+	"DisplayDescription": "Rhamphite takes to the skies, becoming Airborne for 2.8 seconds. As it descends, it summons a cloud of burning embers within 33-hexes, dealing <AttackEnergyDamage>900</> (<OmegaPowerPercentage></>) Energy Damage and decreasing their Healing effectiveness by <HealthGainEfficiencyPercentage>30%</> for 4 seconds.\r\n\r\nDamage: <AttackEnergyDamage>900</> (<OmegaPowerPercentage></>)",
+	"Intro": "The largest living organism in Illuvium resides in Shardbluff Labyrinth, thriving in the thick, dark atmosphere. Tentifung tendrils stretch out across the region, clutching boulders and tunnelling through pure rock, hastening their decay. The Rhamphite enjoys feeding them stones and watching them hold on. It spends many hours following Tentifung as they expand and retreat, avoiding the aurora lights.",
+	"Summary": "The Rhamphite, residing in Shardbluff Labyrinth, is a formidable airborne predator with a crimson shell and luminous trails. It feeds Tentifung stones, navigating the dark terrain while avoiding aurora lights. Easily provoked, it unleashes roaring displays but has developed curiosity for new prey. It hunts adeptly with fiery dives and agile maneuvers, scattering Tentifung and collapsing pillars with its light.",
+	"Biology": {
+		"Physiology": "The Rhamphite is a fearsome flying beast with a dark red and crimson shell, surrounded by fiery light trails streaming from its head, tail, and wings. Golden spines line its back and a pair of shining rings circle its tail. The Rhamphite is powered by an internal flame which leaks light from between the plates of its neck and stomach. Its beak-like snout has large, sharp teeth that can be seen whenever it screams in delight.",
+		"Behaviour": "The Rhamphite is easy to provoke, and it's not rare to see it open its glowing wings to deliver a bellowing roar. However, its instinct to wreak carnage is subdued by a growing curiosity for other forms of prey. When it is excited, it spins in the air, setting those below it ablaze as it hunts. The Rhamphite is a versatile predator that stalks and glides above in its hunt. It can surprise Illuvial and Morphopod prey with its fast dives and use of fire, changing directions effortlessly in air or land."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/PterodactylStage2/PterodactylStage2_default_default_webp.3840x2160/PterodactylStage2_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/PterodactylStage2/PterodactylStage2_default_default_hls.m3u8/PterodactylStage2_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Rhamphite's light can scatter Tentifung, which thrive in the dark, and collapse stone pillars. It has been observed covering itself in ash in order to limit its disturbance to the landscape as to not alert land-based prey.",
+			"The Rhamphite has a different strategy for hunting flying Morphopods and Illuvials. It uses its bright flame to flush flying Illuvials together before going in for the kill.",
+			"The Rhamphite often dives near lava pits from great heights, spinning and splashing magma all around. This is a show of power and a warning to trespassers of its kind."
+		],
+		"Buckley": [
+			"The Rhamphite's tail rings can detect a broad range of heat signatures in its environment.",
+			"The Rhamphite's vents are adapted to open when it takes flight, allowing it to intake more oxygen to fuel its flame.",
+			"The Rhamphite's eyes have specialised cells that are hypersensitive to fluctuations in infrared light, allowing it to detect new heat signatures in its environment.",
+			"The Rhamphite's head crest has an excessive size as a display feature with no other function than to signal its power and high energy levels.",
+			"The Rhamphite has stores of aerogel in its wings, which is a lightweight solution that is highly resistant to heat."
+		]
+	},
+	"TraitOrderLegacy": [
+		4,
+		3,
+		2,
+		6,
+		1,
+		5
+	],
+	"Description": {
+		"Format": "Rhamphite takes to the skies, becoming Airborne for {AirborneDuration} seconds. As it descends, it summons a cloud of burning embers within {OmegaRadius}-hexes, dealing <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Energy Damage and decreasing their Healing effectiveness by <HealthGainEfficiencyPercentage>{HealingValue}%</> for {HealingDuration} seconds.\r\n\r\nDamage: <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"AirborneDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"OmegaRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].Zone.RadiusUnits"
+			},
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"HealingValue": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[1].Expression"
+			},
+			"HealingDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[1].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Rhamphite takes to the skies, becoming Airborne for 2.8 seconds. As it descends, it summons a cloud of burning embers within 33-hexes, dealing 900 () Energy Damage and decreasing their Healing effectiveness by 30% for 4 seconds.\r\n\r\nDamage: 900 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 4,
+			"AttackSpeed": 3,
+			"Health": 2,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 5
+		}
+	}
+}

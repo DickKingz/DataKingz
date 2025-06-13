@@ -1,0 +1,220 @@
+{
+	"CombatClass": "Berserker",
+	"CombatClassComponents": [
+		"Fighter",
+		"Fighter"
+	],
+	"SynergyThresholds": [
+		2,
+		3,
+		4
+	],
+	"SynergyThresholdsAbilities": {
+		"Variables": [
+			{
+				"Name": "Berserker_AdditionalDamage",
+				"Values": [
+					105,
+					180,
+					240
+				]
+			},
+			{
+				"Name": "Berserker_Vampiric",
+				"Values": [
+					10,
+					20,
+					25
+				]
+			},
+			{
+				"Name": "Berserker_AttackSpeed",
+				"Values": [
+					0,
+					0,
+					100
+				]
+			},
+			{
+				"Name": "Berserker_FrenzyDuration",
+				"Values": [
+					0,
+					0,
+					2000
+				]
+			}
+		],
+		"TeamAbilities": [],
+		"UnitAbilities": [
+			{
+				"Name": "BerserkerSynergy_Ability1",
+				"ActivationTrigger": {
+					"TriggerType": "OnActivateXAbilities",
+					"AbilityTypes": [
+						"Attack"
+					],
+					"EveryX": true,
+					"NumberOfAbilitiesActivated": 3
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Berserker - Empowered Attack",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "Self"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Empower",
+									"IsConsumable": true,
+									"ActivationsUntilExpiry": 1,
+									"ActivatedBy": "Attack",
+									"AttachedEffectPackageAttributes": {
+										"VampiricPercentage": "{Berserker_Vampiric}"
+									},
+									"AttachedEffects": [
+										{
+											"Type": "InstantDamage",
+											"DamageType": "Physical",
+											"Expression": {
+												"Percentage": "{Berserker_AdditionalDamage}",
+												"Stat": "AttackPhysicalDamage",
+												"StatSource": "Sender"
+											}
+										},
+										{
+											"Type": "InstantDamage",
+											"DamageType": "Energy",
+											"Expression": {
+												"Percentage": "{Berserker_AdditionalDamage}",
+												"Stat": "AttackEnergyDamage",
+												"StatSource": "Sender"
+											}
+										},
+										{
+											"Type": "InstantDamage",
+											"DamageType": "Pure",
+											"Expression": {
+												"Percentage": "{Berserker_AdditionalDamage}",
+												"Stat": "AttackPureDamage",
+												"StatSource": "Sender"
+											}
+										}
+									]
+								}
+							]
+						}
+					}
+				]
+			},
+			{
+				"Name": "BerserkerSynergy_Ability2",
+				"ActivationTrigger": {
+					"TriggerType": "HealthInRange",
+					"HealthLowerLimitPercentage": 5,
+					"MaxActivations": 1
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Berserker - Frenzy",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "Self"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "PositiveState",
+									"PositiveState": "Indomitable",
+									"DurationMs": "{Berserker_FrenzyDuration}"
+								},
+								{
+									"Type": "Buff",
+									"Stat": "AttackSpeed",
+									"DurationMs": "{Berserker_FrenzyDuration}",
+									"Expression": {
+										"Percentage": "{Berserker_AttackSpeed}",
+										"Stat": "AttackSpeed",
+										"StatSource": "Receiver",
+										"StatEvaluationType": "Base"
+									}
+								}
+							]
+						}
+					}
+				]
+			}
+		]
+	},
+	"IntrinsicAbilities": [],
+	"DisplayName": "Berserker",
+	"DisplayDescription": "\r\nEvery 3 attacks, Berserkers deal additional <AttackDamage>Damage</> and heal for a percentage of the damage dealt.\r\n\r\n(4) Once per combat, at <MaxHealth>5%</> Health, become Indomitable and gain <AttackSpeed>100%</> <AttackSpeed>Attack Speed</> for 2 seconds.\r\n\r\n<Italic>Indomitable: Cannot drop below 1 Health.</>\r\n",
+	"DisplayDescriptionThresholds": [
+		"Deal <AttackDamage>105%</><AttackDamage></> with <Omnivamp>10%</><Omnivamp></>",
+		"Deal <AttackDamage>180%</><AttackDamage></> with <Omnivamp>20%</><Omnivamp></>",
+		"Deal <AttackDamage>240%</><AttackDamage></> with <Omnivamp>25%</><Omnivamp></>"
+	],
+	"Description": {
+		"Format": "\r\nEvery {AttackNum} attacks, Berserkers deal additional <AttackDamage>Damage</> and heal for a percentage of the damage dealt.\r\n\r\n(4) Once per combat, at <MaxHealth>{HealthThreshold}%</> Health, become Indomitable and gain <AttackSpeed>{Berserker_AttackSpeed}%</> <AttackSpeed>Attack Speed</> for {Berserker_FrenzyDuration} seconds.\r\n\r\n<Italic>Indomitable: Cannot drop below 1 Health.</>\r\n",
+		"Parameters": {
+			"AttackNum": {
+				"ParameterPath": "SynergyThresholdsAbilities.UnitAbilities[0].ActivationTrigger.NumberOfAbilitiesActivated",
+				"ValueMultiplier": 1.0
+			},
+			"HealthThreshold": {
+				"ParameterPath": "SynergyThresholdsAbilities.UnitAbilities[1].ActivationTrigger.HealthLowerLimitPercentage",
+				"ValueMultiplier": 1.0
+			},
+			"Berserker_AttackSpeed": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[2].Values[2]",
+				"ValueMultiplier": 1.0
+			},
+			"Berserker_FrenzyDuration": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[3].Values[2]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DescriptionThresholds": {
+		"Format": "Deal <AttackDamage>{Berserker_AdditionalDamage}%</><AttackDamage></> with <Omnivamp>{Berserker_Vampiric}%</><Omnivamp></>",
+		"Parameters": [
+			{
+				"Berserker_AdditionalDamage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[0]"
+				},
+				"Berserker_Vampiric": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[0]"
+				}
+			},
+			{
+				"Berserker_AdditionalDamage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[1]"
+				},
+				"Berserker_Vampiric": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[1]"
+				}
+			},
+			{
+				"Berserker_AdditionalDamage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[2]"
+				},
+				"Berserker_Vampiric": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[2]"
+				}
+			}
+		]
+	},
+	"DisplayDescriptionNormalized": "Every 3 attacks, Berserkers deal additional Damage and heal for a percentage of the damage dealt.\r\n\r\n(4) Once per combat, at 5% Health, become Indomitable and gain 100% Attack Speed for 2 seconds.\r\n\r\nIndomitable: Cannot drop below 1 Health.",
+	"DisplayDescriptionThresholdsNormalized": [
+		"Deal 105% with 10%",
+		"Deal 180% with 20%",
+		"Deal 240% with 25%"
+	]
+}

@@ -1,0 +1,275 @@
+{
+	"Name": "GuardiansGrid",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Normal",
+	"Abilities": [
+		{
+			"Name": "GuardiansGrid_Stats",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "GuardiansGrid - List of Stats",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "MaxHealth",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 200000
+							},
+							{
+								"Type": "Buff",
+								"Stat": "PhysicalResist",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 10
+							},
+							{
+								"Type": "Buff",
+								"Stat": "EnergyResist",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 10
+							},
+							{
+								"Type": "Buff",
+								"Stat": "CritReductionPercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 10
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"Name": "GuardiansGrid_Ability1",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart",
+				"NotBeforeMs": 100
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "GuardiansGrid - Initial Shield",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "SpawnShield",
+								"DurationMs": -1,
+								"FrequencyMs": 100,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										100,
+										{
+											"Operation": "+",
+											"Operands": [
+												{
+													"Stat": "PhysicalResist",
+													"StatSource": "Sender"
+												},
+												{
+													"Stat": "EnergyResist",
+													"StatSource": "Sender"
+												}
+											]
+										},
+										10
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "GuardiansGrid - Initial Shield",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "ExpressionCheck",
+						"Group": "Ally",
+						"Lowest": true,
+						"Num": 1,
+						"Self": false,
+						"Expression": {
+							"Stat": "CurrentHealth%",
+							"StatSource": "Sender"
+						}
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "SpawnShield",
+								"DurationMs": -1,
+								"FrequencyMs": 100,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										100,
+										{
+											"Operation": "+",
+											"Operands": [
+												{
+													"Stat": "PhysicalResist",
+													"StatSource": "Sender"
+												},
+												{
+													"Stat": "EnergyResist",
+													"StatSource": "Sender"
+												}
+											]
+										},
+										10
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"Name": "GuardiansGrid_Ability2",
+			"ActivationTrigger": {
+				"TriggerType": "EveryXTime",
+				"ActivateEveryTimeMs": 8000
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "GuardiansGrid - Periodic Shield",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "ExpressionCheck",
+						"Group": "Ally",
+						"Lowest": true,
+						"Num": 1,
+						"Self": false,
+						"Expression": {
+							"Stat": "CurrentHealth%",
+							"StatSource": "Sender"
+						}
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "SpawnShield",
+								"DurationMs": -1,
+								"FrequencyMs": 100,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										100,
+										{
+											"Operation": "+",
+											"Operands": [
+												{
+													"Stat": "PhysicalResist",
+													"StatSource": "Sender"
+												},
+												{
+													"Stat": "EnergyResist",
+													"StatSource": "Sender"
+												}
+											]
+										},
+										10
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "GuardiansGrid - Initial Shield",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "SpawnShield",
+								"DurationMs": -1,
+								"FrequencyMs": 100,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										100,
+										{
+											"Operation": "+",
+											"Operands": [
+												{
+													"Stat": "PhysicalResist",
+													"StatSource": "Sender"
+												},
+												{
+													"Stat": "EnergyResist",
+													"StatSource": "Sender"
+												}
+											]
+										},
+										10
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Guardian's Grid",
+	"DisplayDescription": "Combat Start and every 8 seconds, apply a Shield to the holder and the lowest percent Health ally for <Resistance>100%</> of holder's combined <Resistance>Resistances</>.\r\n\r\nStats:\r\n+200 <MaxHealth>Health</>\r\n+10 <Resistance>Resistances</>\r\n+10% <CritReductionPercentage>Crit Damage Reduction</>",
+	"Description": {
+		"Format": "Combat Start and every {TriggerTime} seconds, apply a Shield to the holder and the lowest percent Health ally for <Resistance>{ShieldVal}%</> of holder's combined <Resistance>Resistances</>.\r\n\r\nStats:\r\n+{Stat_Health} <MaxHealth>Health</>\r\n+{Stat_Resist} <Resistance>Resistances</>\r\n+{Stat_CritRed}% <CritReductionPercentage>Crit Damage Reduction</>",
+		"Parameters": {
+			"TriggerTime": {
+				"ParameterPath": "Abilities[2].ActivationTrigger.ActivateEveryTimeMs",
+				"ValueMultiplier": 0.001
+			},
+			"ShieldVal": {
+				"ParameterPath": "Abilities[2].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 1.0
+			},
+			"Stat_Health": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].Expression",
+				"ValueMultiplier": 0.001
+			},
+			"Stat_Resist": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[1].Expression",
+				"ValueMultiplier": 1.0
+			},
+			"Stat_CritRed": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[3].Expression",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Combat Start and every 8 seconds, apply a Shield to the holder and the lowest percent Health ally for 100% of holder's combined Resistances.\r\n\r\nStats:\r\n+200 Health\r\n+10 Resistances\r\n+10% Crit Damage Reduction"
+}

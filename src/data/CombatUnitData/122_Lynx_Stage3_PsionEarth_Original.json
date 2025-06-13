@@ -1,0 +1,209 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Lynx",
+	"Stage": 3,
+	"Path": "PsionEarth",
+	"Variation": "Original",
+	"Tier": 2,
+	"CombatAffinity": "Earth",
+	"CombatClass": "Psion",
+	"DominantCombatAffinity": "Earth",
+	"DominantCombatClass": "Psion",
+	"SizeUnits": 7,
+	"Stats": {
+		"MaxHealth": 1900000,
+		"StartingEnergy": 60000,
+		"EnergyCost": 120000,
+		"PhysicalResist": 45,
+		"EnergyResist": 40,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 180000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 60,
+		"MoveSpeedSubUnits": 2500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 50,
+		"OmegaRangeUnits": 50,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Psion Earth Lynx Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 60
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 10000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Rugged Sling",
+			"TotalDurationMs": 2500,
+			"Skills": [
+				{
+					"Name": "Wave",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 75
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 10,
+						"DurationMs": 3000,
+						"FrequencyMs": 100,
+						"MovementSpeedSubUnits": 8000,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 90,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										1000000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Arcane Terralynx",
+	"DisplayDescription": "Arcane Terralynx sends out a wave towards its target, dealing <AttackEnergyDamage>1,000</> (<OmegaPowerPercentage></>) Energy Damage to all enemies hit.\r\n\r\nDamage: <AttackEnergyDamage>1,000</> (<OmegaPowerPercentage></>)",
+	"Intro": "Shardbluff Labyrinth is a region filled with intense shadows. These long stretches of darkness are formed by jagged pillars jutting out from the ground. The landscape is mostly a gloomy grey, but it is brightened by the presence of orange Tentifung which thrive in the shade. They shrink away from moonlight and proximity to the vivid glowing orb atop the Arcane Terralynx's head. Casting away shadows and the Tentifung along with it, this Illuvial may accidentally cause rock structures to collapse without the orange plant's support.",
+	"Summary": "Adorned with spikey rock plates and a vibrant pink orb, the Arcane Terralynx navigates the labyrinth's treacherous climbs effortlessly, often causing collapses of Tentifung-covered structures. This Illuvial excels at spotting prey from afar in darkness, using its energy-charged attacks to pierce targets with precision. It sustains minor impacts with its resilient back plates and possesses a complex nervous system that enhances its agility and reaction times.",
+	"Biology": {
+		"Physiology": "The Arcane Terralynx has a sharp and angular build, with long ears and even longer fur hanging from the sides of its face. It has a thick, dark purple coat and layers of spikey slabbed rock on its back like a shell. Its eyes are vivid pink, just like the great luminous orb upon its head and the light glowing from beneath the plates of rock on its back. A lithe, fanged creature with extremely keen eyesight, the Arcane Terralynx can pick out a target from afar even in the dark and pierce them with a blast of energy. It prowls on all fours and it can climb up the most treacherous routes to the highest point in Shardbluff Labyrinth.",
+		"Behaviour": "The Arcane Terralynx has extremely sharp eyes and a far scope of vision, capable of discerning a moving target from a vast distance in the darkness. It is typically found in high altitudes, a strong climber perpetually seeking a higher vantage point. As a scavenger, it may opportunistically feed on carcasses left behind by other predators. The Arcane Terralynx is a strong climber with sharp reflexes for dodging rock fragments plummeting from above. Despite its slim build, the Arcane Terralynx is quite sturdy and capable of withstanding a great amount of force on its body."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3PsionEarth/LynxStage3PsionEarth_default_default_webp.3840x2160/LynxStage3PsionEarth_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3PsionEarth/LynxStage3PsionEarth_default_default_hls.m3u8/LynxStage3PsionEarth_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Arcane Terralynx's plated back is so resilient that it can withstand the impact of minor rockslides without injury.",
+			"The Arcane Terralynx can absorb the impact of falls with its tough paws.",
+			"The Arcane Terralynx has extremely sharp eyes and a far scope of vision, capable of discerning a moving target from a vast distance in the darkness."
+		],
+		"Buckley": [
+			"The Arcane Terralynx has thick, durable plates on its back that are regenerative, and capable of growing more layers the more trauma it experiences.",
+			"The Arcane Terralynx's luminous orb is capable of transferring energy into a physical barrier around its body, granting it extra resilience. It is capable of gathering energy in different parts of the body, such as its paws as a buffer when landing from immense heights.",
+			"The Arcane Terralynx's eyes have large lenses that are specially adapted to enable them to hone in on targets across vast distances. Its dual foveas and its retinas, which are densely packed with cones, allow it to focus on its peripheral vision.",
+			"The Arcane Terralynx's long ears are capable of directing the flow of energy in the sphere upon its head, enabling it to respond quickly to target sounds in its environment.",
+			"The Arcane Terralynx has a complex timing device in its nervous system that is capable of slowing and speeding up its perception of time, allowing it to aim precisely in microseconds or hold a position in stillness for prolonged periods."
+		]
+	},
+	"TraitOrderLegacy": [
+		3,
+		2,
+		4,
+		6,
+		1,
+		5
+	],
+	"Description": {
+		"Format": "Arcane Terralynx sends out a wave towards its target, dealing <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Energy Damage to all enemies hit.\r\n\r\nDamage: <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Arcane Terralynx sends out a wave towards its target, dealing 1,000 () Energy Damage to all enemies hit.\r\n\r\nDamage: 1,000 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 3,
+			"AttackSpeed": 2,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 5
+		}
+	}
+}

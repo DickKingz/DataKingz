@@ -1,0 +1,21 @@
+{
+	"Name": "Magma",
+	"Stage": 3,
+	"Type": "Game",
+	"DisplayName": "Magma Matrix",
+	"DisplayDescription": "Gain a Magma Imprint.",
+	"Description": {
+		"Format": "Gain a Magma Imprint.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Magma",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

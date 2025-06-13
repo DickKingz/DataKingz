@@ -1,0 +1,21 @@
+{
+	"Name": "Bloom",
+	"Stage": 3,
+	"Type": "Game",
+	"DisplayName": "Bloom Matrix",
+	"DisplayDescription": "Gain a Bloom Imprint.",
+	"Description": {
+		"Format": "Gain a Bloom Imprint.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Bloom",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

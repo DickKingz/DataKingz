@@ -1,0 +1,268 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Axolotl",
+	"Stage": 1,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 1,
+	"CombatAffinity": "Water",
+	"CombatClass": "Bulwark",
+	"DominantCombatAffinity": "Water",
+	"DominantCombatClass": "Bulwark",
+	"SizeUnits": 3,
+	"Stats": {
+		"MaxHealth": 1300000,
+		"StartingEnergy": 120000,
+		"EnergyCost": 200000,
+		"PhysicalResist": 40,
+		"EnergyResist": 55,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 75000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 65,
+		"MoveSpeedSubUnits": 2100,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 2,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Axolotl Basic Attack I",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 40
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Vapour Barrier I",
+			"TotalDurationMs": 1500,
+			"Skills": [
+				{
+					"Name": "Shield",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 10
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "SpawnShield",
+								"DurationMs": 4000,
+								"Expression": {
+									"Operation": "+",
+									"Operands": [
+										{
+											"Operation": "*",
+											"Operands": [
+												{
+													"Percentage": 10,
+													"Stat": "MaxHealth",
+													"StatSource": "Sender"
+												}
+											]
+										},
+										{
+											"Operation": "*",
+											"Operands": [
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												},
+												200000
+											]
+										}
+									]
+								},
+								"OnDestroy": {
+									"Name": "AoE Damage",
+									"Targeting": {
+										"Type": "Self"
+									},
+									"Deployment": {
+										"Type": "Zone"
+									},
+									"Zone": {
+										"Shape": "Hexagon",
+										"RadiusUnits": 20,
+										"DurationMs": 100,
+										"FrequencyMs": 100,
+										"ApplyOnce": true
+									},
+									"EffectPackage": {
+										"Effects": [
+											{
+												"Type": "InstantDamage",
+												"DamageType": "Energy",
+												"Expression": {
+													"Operation": "+",
+													"Operands": [
+														{
+															"Operation": "*",
+															"Operands": [
+																{
+																	"Percentage": 5,
+																	"Stat": "MaxHealth",
+																	"StatSource": "Sender"
+																}
+															]
+														},
+														{
+															"Operation": "*",
+															"Operands": [
+																{
+																	"Stat": "OmegaPowerPercentage",
+																	"StatSource": "Sender"
+																},
+																100000
+															]
+														}
+													]
+												}
+											}
+										]
+									}
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Atlas",
+	"DisplayDescription": "Atlas shakes its head, summoning a vapour barrier, gaining a 320 (<MaxHealth></><OmegaPowerPercentage></>) Shield for 4 seconds.\r\n\r\nWhen the Shield ends, it deals <AttackEnergyDamage>160</> (<MaxHealth></><OmegaPowerPercentage></>) Energy Damage within 20-hexes.\r\n\r\nShield: 320 = 10% max <MaxHealth></> + 200 (<OmegaPowerPercentage></>)\r\nDamage: <AttackEnergyDamage>160</> = 5% max <MaxHealth></> + 100 (<OmegaPowerPercentage></>)",
+	"Intro": "The colourful reef of the Halcyon Sea is a stunning sight, with crystal clear pools and vibrant growths of aquatic organisms. Coral reefs of every size fill this region, giving the area a magical splendour. Peculiar structures loom above and sprout from down below. Splashing around them is the friendliest creature around: the Atlas.",
+	"Summary": "The Atlas thrives in the colourful reefs of the Halcyon Sea, where its colour-absorbing skin provides excellent camouflage. This friendly Illuvial has a trapezoid head with large eyes and external gills for efficient oxygen extraction. It loves to bury itself in knee-deep pools, surprising passersby with cheerful greetings. The Atlas's sturdy body and regenerative abilities make it far more resilient than it first appears.",
+	"Biology": {
+		"Physiology": "The Atlas' big eyes sit atop its trapezoid head, which is thick and wide enough to function as a counterweight for its heavy body. Its large skull offers protection to the four purple external gills at the back of its head. Despite its small brain, the Atlas relies on its head in a different way, using it as a hydrofoil when it moves in the water which gives it better lift and maneuverability. Its stout legs are short at the back and longer at the front, both thick with muscle. The Atlas' skin is a mix of aqua blue and cream, and it has a vivid red fin accentuating its tail.",
+		"Behaviour": "The Atlas is a joyful blue bundle, often panting squeakily with its tongue flapping from its large mouth. It runs on all fours clumsily, bobbing its head. The Atlas likes to bury itself in the knee-deep pools of the Halcyon Sea until it is almost impossible to notice. When another Illuvial comes close enough, the Atlas emerges from its hiding spot in a friendly greeting. The Atlas often befriends larger Illuvials, able to keep up with their roughhousing. It does not mind getting pushed around, and its sturdy body can withstand significant strain."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/AxolotlStage1/AxolotlStage1_default_default_webp.3840x2160/AxolotlStage1_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/AxolotlStage1/AxolotlStage1_default_default_hls.m3u8/AxolotlStage1_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Atlas is a highly social creature that will often greet other Illuvials with a friendly squeak and a wag of its bright red tongue.",
+			"The Atlas absorbs colour from the coral in its environment, which brightens its complexion, and makes it difficult to spot.",
+			"The Atlas eats by vacuuming morphopods into its large mouth and swallowing them whole."
+		],
+		"Buckley": [
+			"The Atlas's bright red tongue is coated in a thin layer of a special enzyme that allows it to identify naturally occurring poison within the coral reefs where it feeds.",
+			"The Atlas's external gills are lined with a network of tiny blood vessels, which allow the creature to extract oxygen from the water.",
+			"The Atlas has high regenerative abilities, and its skin can knit back together without a trace of injury. However, damage to its skeleton has left intensive scarring, and scans reveal deep scars on the skull.",
+			"The Atlas's trapezoid-shaped head functions as both a counterweight for its heavy body mass and a hydrofoil when it moves in the water, giving it better lift and manoeuvrability.",
+			"The Atlas has a shell-like organ beneath its skin that surrounds its inner skeletal structure, giving it extra protection."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		4,
+		1,
+		6,
+		3,
+		2
+	],
+	"Description": {
+		"Format": "Atlas shakes its head, summoning a vapour barrier, gaining a 320 (<MaxHealth></><OmegaPowerPercentage></>) Shield for {ShieldDuration} seconds.\r\n\r\nWhen the Shield ends, it deals <AttackEnergyDamage>160</> (<MaxHealth></><OmegaPowerPercentage></>) Energy Damage within {ShieldDamageRadius}-hexes.\r\n\r\nShield: 320 = {ShieldValue}% max <MaxHealth></> + {OmegaFlatValue} (<OmegaPowerPercentage></>)\r\nDamage: <AttackEnergyDamage>160</> = {ShieldValueDmg}% max <MaxHealth></> + {OmegaFlatValueDmg} (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"ShieldDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"ShieldDamageRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].OnDestroy.Zone.RadiusUnits"
+			},
+			"ShieldValue": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0].Operands[0].Percentage"
+			},
+			"OmegaFlatValue": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[1].Operands[1]",
+				"ValueMultiplier": 0.001
+			},
+			"ShieldValueDmg": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].OnDestroy.EffectPackage.Effects[0].Expression.Operands[0].Operands[0].Percentage",
+				"ValueMultiplier": 1.0
+			},
+			"OmegaFlatValueDmg": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].OnDestroy.EffectPackage.Effects[0].Expression.Operands[1].Operands[1]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Atlas shakes its head, summoning a vapour barrier, gaining a 320 () Shield for 4 seconds.\r\n\r\nWhen the Shield ends, it deals 160 () Energy Damage within 20-hexes.\r\n\r\nShield: 320 = 10% max + 200 ()\r\nDamage: 160 = 5% max + 100 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 4,
+			"Health": 1,
+			"MovementSpeed": 6,
+			"OmegaPower": 3,
+			"Resistance": 2
+		}
+	}
+}

@@ -1,0 +1,218 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "TerrorBird",
+	"Stage": 1,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 5,
+	"CombatAffinity": "Nature",
+	"CombatClass": "Fighter",
+	"DominantCombatAffinity": "Nature",
+	"DominantCombatClass": "Fighter",
+	"SizeUnits": 2,
+	"Stats": {
+		"MaxHealth": 1400000,
+		"StartingEnergy": 0,
+		"EnergyCost": 80000,
+		"PhysicalResist": 45,
+		"EnergyResist": 45,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 110000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 90,
+		"MoveSpeedSubUnits": 3300,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 4,
+		"OmegaRangeUnits": 4,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Terror Bird Basic Attack I",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 55
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Ghosting Scream I",
+			"TotalDurationMs": 200,
+			"Skills": [
+				{
+					"Name": "Ghostly Beak",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 47
+					},
+					"Projectile": {
+						"SizeUnits": 5,
+						"SpeedSubUnits": 10000,
+						"IsHoming": false,
+						"IsBlockable": false,
+						"ApplyToAll": true,
+						"ContinueAfterTarget": true
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Attributes": {
+							"RotateToTarget": true
+						},
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "+",
+									"Operands": [
+										{
+											"Operation": "*",
+											"Operands": [
+												200000,
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												}
+											]
+										},
+										{
+											"Stat": "AttackDamage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Pho",
+	"DisplayDescription": "Pho fires a ghostly beak through its target, dealing <AttackPhysicalDamage>310</> (<OmegaPowerPercentage></><AttackDamage></>) Physical Damage to all enemies hit.\r\n\r\nDamage: <AttackPhysicalDamage>310</> = <AttackPhysicalDamage>200</> (<OmegaPowerPercentage></>) + <AttackPhysicalDamage>110</> (<AttackDamage></>)",
+	"Intro": "The massive crater in Crystal Shores opens up to rings of shards that rumble as they rotate in opposite directions. There are small passageways between the grinding rings of a thousand crystal spires where it is safe to traverse. Energy radiates from within, growing stronger and closer to the centre. Sparks of electricity jump between the pink and purple crystal prisms. Despite having no wings to fly, the Pho makes its way in and out on its own two feet.",
+	"Summary": "The Pho, a formidable ground-dwelling Illuvial of Crystal Shores, navigates the treacherous terrain with agility and aggression. Despite its flightless nature, it uses its sharp talons and hooked beak to carve through crystal walls and assert dominance over rivals with its piercing screech. The Pho hunts carrion and Morphopods while sharpening its talons against cave walls to produce resonant echoes that amplify its presence throughout the region.",
+	"Biology": {
+		"Physiology": "The Pho may be flightless, but it is mean and green, using its sharp talons to kick and claw its way around. Its head resembles a succulent, with thick round feathers that end in purple tips, the same colour as the three long feathers of its tail. It gawks about with its iridescent eyes, and its bright orange hooked beak is always ready to peck. A patch of leaves spouts from its back, and its short, bony arms stick out from under them. The Pho's body is mostly a downy green, but its ridged chest and limbs and as white as reflected light on crystals.",
+		"Behaviour": "The Pho is quick to pivot its neck and fix its gawking pink eyes at anything that moves. Eager to chase, the Pho has an extremely flexible skeletal structure that allows it to kick itself forward across varied terrain. With sharp talons, the Pho can carve holes through crystal walls and create its own secret entrances into caves. Its featherless chest and neck help it vocalize, and its screeching cry is so shrill that it echoes throughout the cave networks across the region. The Pho has been observed asserting its dominance against others of its kind by drowning out its rival's screams with its own. The resonance of the caves amplifies its screech, which it uses to its full advantage."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/TerrorBirdStage1/TerrorBirdStage1_default_default_webp.3840x2160/TerrorBirdStage1_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/TerrorBirdStage1/TerrorBirdStage1_default_default_hls.m3u8/TerrorBirdStage1_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Pho is often running and chasing anything that moves, pecking and kicking at its target.",
+			"The Pho has been observed sharpening its talons against sharp crystal cave walls. When it is finished, it pecks the crystal shards and creates a resounding chime that echoes through the caves.",
+			"The Pho asserts its dominance against others of its kind by drowning the screeches of its rivals with that of its own."
+		],
+		"Buckley": [
+			"The Pho has an extremely flexible skeletal structure that allows it to kick with great agility.",
+			"The Pho's talons are sharp and hooked with a cutting edge, helping it tear through tough hides and carve through hard surfaces.",
+			"The Pho's featherless chest and neck help it vocalize and produce a screeching cry that resonates throughout an entire region. It has a chamber inside its skull that helps to amplify the sound.",
+			"According to a scan of the Pho's digestive tract, its diet consists of carrion, morphopods, and Lesser Fliish.",
+			"The Pho has a large skull with a bony crest that provides extra protection for its head. It is capable of absorbing the impact of powerful blows when it uses its sharp, hooked beak."
+		]
+	},
+	"TraitOrderLegacy": [
+		2,
+		1,
+		4,
+		6,
+		3,
+		5
+	],
+	"Description": {
+		"Format": "Pho fires a ghostly beak through its target, dealing <AttackPhysicalDamage>310</> (<OmegaPowerPercentage></><AttackDamage></>) Physical Damage to all enemies hit.\r\n\r\nDamage: <AttackPhysicalDamage>310</> = <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) + <AttackPhysicalDamage>{AtkDamage}</> (<AttackDamage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0].Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"AtkDamage": {
+				"ParameterPath": "Stats.AttackPhysicalDamage",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Pho fires a ghostly beak through its target, dealing 310 () Physical Damage to all enemies hit.\r\n\r\nDamage: 310 = 200 () + 110 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 2,
+			"AttackSpeed": 1,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 3,
+			"Resistance": 5
+		}
+	}
+}

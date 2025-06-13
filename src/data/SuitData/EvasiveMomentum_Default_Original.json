@@ -1,0 +1,135 @@
+{
+	"Name": "EvasiveMomentum",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Amplifier",
+	"Stats": {
+		"PhysicalResist": 0,
+		"EnergyResist": 0,
+		"MaxHealth": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 0,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 0,
+		"AttackDodgeChancePercentage": 0,
+		"MoveSpeedSubUnits": 0,
+		"OmegaPowerPercentage": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"StartingEnergy": 0,
+		"StartingShield": 0,
+		"CritChancePercentage": 0,
+		"CritAmplificationPercentage": 0,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0
+	},
+	"Abilities": [
+		{
+			"Name": "Evasive Momentum",
+			"ActivationTrigger": {
+				"TriggerType": "EveryXTime",
+				"ActivateEveryTimeMs": 4000
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Aerocloack - Temporary Dodge",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "AttackDodgeChancePercentage",
+								"OverlapProcessType": "Merge",
+								"DurationMs": 1000,
+								"Expression": 100
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"Name": "Evasive Momentum 2",
+			"ActivationTrigger": {
+				"TriggerType": "OnDodge",
+				"Allegiance": "Self"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Aerocloack - Buffs",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "AttackSpeed",
+								"OverlapProcessType": "Merge",
+								"DurationMs": 2000,
+								"Expression": {
+									"Percentage": 40,
+									"Stat": "AttackSpeed",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "MoveSpeedSubUnits",
+								"OverlapProcessType": "Merge",
+								"DurationMs": 2000,
+								"Expression": {
+									"Percentage": 40,
+									"Stat": "MoveSpeedSubUnits",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Evasive Momentum",
+	"DisplayDescription": "Every 4 seconds, gain <AttackDodgeChancePercentage>100%</> Dodge Chance for 1 second. After dodging an attack, the Ranger gains <AttackSpeed>40%</> Attack Speed and Movement Speed for 2 seconds.",
+	"Description": {
+		"Format": "Every {Trigger} seconds, gain <AttackDodgeChancePercentage>{Dodge}%</> Dodge Chance for {Duration} second. After dodging an attack, the Ranger gains <AttackSpeed>{ASVal}%</> Attack Speed and Movement Speed for {Duration2} seconds.",
+		"Parameters": {
+			"Trigger": {
+				"ParameterPath": "Abilities[0].ActivationTrigger.ActivateEveryTimeMs",
+				"ValueMultiplier": 0.001
+			},
+			"Dodge": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].Expression"
+			},
+			"Duration": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"ASVal": {
+				"ParameterPath": "Abilities[1].Skills[0].EffectPackage.Effects[0].Expression.Percentage"
+			},
+			"Duration2": {
+				"ParameterPath": "Abilities[1].Skills[0].EffectPackage.Effects[1].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Every 4 seconds, gain 100% Dodge Chance for 1 second. After dodging an attack, the Ranger gains 40% Attack Speed and Movement Speed for 2 seconds."
+}

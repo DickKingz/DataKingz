@@ -1,0 +1,214 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Penguin",
+	"Stage": 2,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 3,
+	"CombatAffinity": "Water",
+	"CombatClass": "Vanguard",
+	"DominantCombatAffinity": "Water",
+	"DominantCombatClass": "Rogue",
+	"SizeUnits": 3,
+	"Stats": {
+		"MaxHealth": 1800000,
+		"StartingEnergy": 20000,
+		"EnergyCost": 130000,
+		"PhysicalResist": 45,
+		"EnergyResist": 50,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 125000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 80,
+		"MoveSpeedSubUnits": 2100,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 4,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 3,
+		"OmegaRangeUnits": 3,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Penguin Basic Attack II",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 45
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Supersurger II",
+			"TotalDurationMs": 500,
+			"Skills": [
+				{
+					"Name": "Increase EnergyDamage",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 100
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "AttackPhysicalDamage",
+								"OverlapProcessType": "Merge",
+								"DurationMs": 5000,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										90000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Receiver"
+										}
+									]
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackSpeed",
+								"DurationMs": 5000,
+								"Expression": {
+									"Percentage": 35,
+									"Stat": "AttackSpeed",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackRangeUnits",
+								"DurationMs": 5000,
+								"Expression": 15
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Stabbin",
+	"DisplayDescription": "Stabbin harnesses its cold fury, gaining <AttackSpeed>35%</> Attack Speed, <AttackRangeUnits>15</> Attack Range and <AttackPhysicalDamage>90</> (<OmegaPowerPercentage></>) Physical Attack Damage for 5 seconds.\r\n\r\nPhysical AD: <AttackPhysicalDamage>90</> (<OmegaPowerPercentage></>)",
+	"Intro": "The glacier caves of Taiga Boreal hide mesmerizing wonders, formed by melting ice and flowing water. Under a skylight, a giant geyser mists the air and keeps the cavernous room crystal clean. Going deeper underground, one can find millions of glistening bubbles trapped inside the cave walls. Icicles line the ceilings and smooth curved walls, catching the eye of the Stabbin. With a quick swipe of its arm, the icicle cracks.",
+	"Summary": "The glacier caves of Taiga Boreal house the Stabbin, distinguished by its elegant black coat, long yellow beak, and ice-glazed arms. It collects and displays large icicles as status symbols and performs elaborate snow-melting displays during blizzards to attract mates. It has a flexible body and specialized adaptations such as a salt-expelling gland and a circulatory system to regulate body temperature in icy waters.",
+	"Biology": {
+		"Physiology": "The Stabbin has an elegant black coat, a long yellow beak and even longer arms glazed in streaming ice. Above its glinting yellow eyes, its head is capped with a whirl of frost. A single water tendril cascades down from its head, joined by others along the bands of his muscular shoulders and back. They merge together in a frozen swash that encases its tail. At the centre of its chest is a triangular patch of yellow fur, right above its white underbelly. Standing on two ridged yellow feet, the Stabbin has water droplets that leap from all the frosted areas of its body.",
+		"Behaviour": "The Stabbin's beak is shaped in such away that it appears to always have a smirk on its face, even when facing the challenges of the icy landscape. It likes to run and jump, often collecting big icicles as a status display to others of its kind. During blizzards, the Stabbin gathers the snow falling around it and melts it, creating an extravagant show of spiraling water to attract fusion mates. At the end of its performance, its black coat becomes completely frosted over and it will stay that way until the next time it takes a swim."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/PenguinStage2/PenguinStage2_default_default_webp.3840x2160/PenguinStage2_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/PenguinStage2/PenguinStage2_default_default_hls.m3u8/PenguinStage2_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Stabbin drills into the snow with its beak to hunt aquatic Morphopods. Its ability to melt snow is also used to locate Morphopods which hide in burrows beneath the snow.",
+			"The Stabbin's body is extremely flexible, capable of stiffening or becoming more malleable when it swims to allow for adaptability in various water conditions.",
+			"The Stabbin has a ritual of collecting icicles with others of its kind. It has been observed climbing mountain peaks to find large icicles to throw in the air and slice with their arms. Stabbins will fight over the sharpest icicle as a show of status, sometimes destroying it in the process."
+		],
+		"Buckley": [
+			"The Stabbin has six chambers in its heart, with a parallel system that has a specialised ventricle and atria for the gathering and release of water. The Stabbin has an adapted circulatory system that uses heated arteries inside its flippers to heat up cold blood, limiting heat loss from its extremities.",
+			"The Stabbin has a gland for expelling salt at the top of its nose, effectively allowing it to distil and drink salt water.",
+			"The Stabbin's skin is coated with a chemical property that activates in large bodies of water, allowing it to form a mental connection with other Stabbins and transfer information.",
+			"The Stabbin holds different compositions of mineral water on the surface of its body. The higher concentrations of Osvium at its arms allow for lighter movements and the higher concentration of Tellvium at its tail grants the frozen edges a more reflective sheen."
+		]
+	},
+	"TraitOrderLegacy": [
+		2,
+		1,
+		3,
+		5,
+		6,
+		4
+	],
+	"Description": {
+		"Format": "Stabbin harnesses its cold fury, gaining <AttackSpeed>{AttackSpeedBuff}%</> Attack Speed, <AttackRangeUnits>{AttackRangeBuff}</> Attack Range and <AttackPhysicalDamage>{AttackDamageBuff}</> (<OmegaPowerPercentage></>) Physical Attack Damage for {OmegaDuration} seconds.\r\n\r\nPhysical AD: <AttackPhysicalDamage>{AttackDamageBuff}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"AttackSpeedBuff": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].Expression.Percentage"
+			},
+			"AttackRangeBuff": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[2].Expression"
+			},
+			"AttackDamageBuff": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"OmegaDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Stabbin harnesses its cold fury, gaining 35% Attack Speed, 15 Attack Range and 90 () Physical Attack Damage for 5 seconds.\r\n\r\nPhysical AD: 90 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 2,
+			"AttackSpeed": 1,
+			"Health": 3,
+			"MovementSpeed": 5,
+			"OmegaPower": 6,
+			"Resistance": 4
+		}
+	}
+}

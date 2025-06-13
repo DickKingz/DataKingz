@@ -1,0 +1,219 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "DokaWater",
+	"Stage": 3,
+	"Path": "Water",
+	"Variation": "Original",
+	"Tier": 0,
+	"CombatAffinity": "Water",
+	"CombatClass": "Fighter",
+	"DominantCombatAffinity": "Water",
+	"DominantCombatClass": "Fighter",
+	"SizeUnits": 4,
+	"Stats": {
+		"MaxHealth": 1950000,
+		"StartingEnergy": 0,
+		"EnergyCost": 80000,
+		"PhysicalResist": 45,
+		"EnergyResist": 50,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 150000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 70,
+		"MoveSpeedSubUnits": 2500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 5,
+		"OmegaRangeUnits": 5,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Water Doka Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 37
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Reservoir Rush III",
+			"TotalDurationMs": 1500,
+			"Skills": [
+				{
+					"Name": "Fist slam",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 53
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										600000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "It then gains 15% Attack Speed for 4 seconds and the next 4 Attacks give 4 additional Energy.",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 20
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "AttackSpeed",
+								"DurationMs": 3000,
+								"Expression": {
+									"Percentage": 50,
+									"Stat": "AttackSpeed",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Exalted Water Doka",
+	"DisplayDescription": "Exalted Water Doka slams fists into the target, dealing <AttackPhysicalDamage>600</> (<OmegaPowerPercentage></>) Physical Damage, gaining <AttackSpeed>50%</> Attack Speed for 3 seconds.\r\n\r\nDamage: <AttackPhysicalDamage>600</> (<OmegaPowerPercentage></>)",
+	"Intro": "The Greater Water Doka can absorb moisture from its atmosphere and gather it in thick globules upon its head and hands. It has internal reserves of water to keep itself hydrated in dry environments as it travels across regions. The Greater Water Doka is the most migratory Doka, trekking vast distances from northern Taiga Boreal towards Abyssal Basin. The journey south marks the beginning of the cold season when the tundras plunge into even more frigid temperatures. It is the Greater Water Doka's imperative to travel to the Doka meeting grounds along the borders of Abyssal Basin, where the first to arrive have superior social standing.",
+	"Summary": "This stocky Illuvial has dark blue fur, violet facial markings, and watery tendrils, capable of absorbing and storing water for hydration. Migratory by nature, the Exalted Water Doka travels vast distances and relies on its adaptability, using mechanoreceptors to navigate and internal water reserves to stay hydrated. Its physiology includes a hydro-compression mechanism for powerful punches, a water-releasing tail for redirection, and sticky feet for climbing.",
+	"Biology": {
+		"Physiology": "The Exalted Water Doka is a stocky Illuvial with a flat head, sturdy fists, and two feet planted firmly on the ground. It has dark blue fur with a white underbelly, and its face is illuminated by stark violet markings above and under its yellow eyes. Growing from its head are thick tendrils of hair, with large globules of water streaming up and out around it. They leave the same watery trail as the Exalted Water Doka's claws when it strikes. Wide-set and packed with muscles, this fighter Illuvial has a slight belly and a thick tail to match.",
+		"Behaviour": "The Exalted Water Doka can absorb moisture from its atmosphere and gather it in thick globules upon its head and hands. It has internal reserves of water to keep itself hydrated in dry environments as it travels across regions. The Exalted Water Doka is the most migratory Doka, trekking vast distances from northern Taiga Boreal towards Abyssal Basin. The journey south marks the beginning of the cold season when the tundras plunge into even more frigid temperatures. It is the Exalted Water Doka's imperative to travel to the Doka meeting grounds along the borders of Abyssal Basin, where the first to arrive have superior social standing."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/DokaStage3Water/DokaStage3Water_default_default_webp.3840x2160/DokaStage3Water_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/DokaStage3Water/DokaStage3Water_default_default_hls.m3u8/DokaStage3Water_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Exalted Water Doka is extremely adaptable to changing terrain and capable of absorbing moisture from anywhere.",
+			"The Exalted Water Doka uses the mechanoreceptors on the side of its body to sense the movement of water underground and find its way through any environment.",
+			"The Exalted Water Doka has large globules of water streaming up and out around its thick tendrils of hair."
+		],
+		"Buckley": [
+			"The Exalted Water Doka's abdomen has internal reserves of water which is what gives its belly its slight swell. It also maintains a sizable amount of water within its palm and upon its head.",
+			"The Exalted Water Doka has a hydro-compression mechanism in its bicep which allows it to lock its arm in and release for maximum impact. It is connected to the openings in its knuckles that release water, enabling a powerful punch.",
+			"The Exalted Water Doka's tail is capable of unleashing torrents of water in any direction, allowing it to draw attention away from its target and redirect threats.",
+			"The Exalted Water Doka has microscopic hair on its feet that helps it stick to surfaces, allowing it to climb easily.",
+			"The Exalted Water Doka has a specialised olfactory system that enables it to detect the pheromones of other Illuvials."
+		]
+	},
+	"TraitOrderLegacy": [
+		2,
+		1,
+		3,
+		6,
+		5,
+		4
+	],
+	"Description": {
+		"Format": "Exalted Water Doka slams fists into the target, dealing <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Physical Damage, gaining <AttackSpeed>{AttackSpeedBuff}%</> Attack Speed for {BuffDuration} seconds.\r\n\r\nDamage: <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"AttackSpeedBuff": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].Expression.Percentage"
+			},
+			"BuffDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Exalted Water Doka slams fists into the target, dealing 600 () Physical Damage, gaining 50% Attack Speed for 3 seconds.\r\n\r\nDamage: 600 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 2,
+			"AttackSpeed": 1,
+			"Health": 3,
+			"MovementSpeed": 6,
+			"OmegaPower": 5,
+			"Resistance": 4
+		}
+	}
+}

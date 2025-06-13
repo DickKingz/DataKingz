@@ -1,0 +1,206 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "GrokkoNature",
+	"Stage": 2,
+	"Path": "Nature",
+	"Variation": "Original",
+	"Tier": 0,
+	"CombatAffinity": "Nature",
+	"CombatClass": "Bulwark",
+	"DominantCombatAffinity": "Nature",
+	"DominantCombatClass": "Bulwark",
+	"SizeUnits": 5,
+	"Stats": {
+		"MaxHealth": 1800000,
+		"StartingEnergy": 80000,
+		"EnergyCost": 200000,
+		"PhysicalResist": 45,
+		"EnergyResist": 45,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 100000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 60,
+		"MoveSpeedSubUnits": 1750,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 4,
+		"OmegaRangeUnits": 4,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Nature Grokko Basic Attack II",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 35
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Invigorquake II",
+			"TotalDurationMs": 1800,
+			"Skills": [
+				{
+					"Name": "Ground smash",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 40
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 20,
+						"DurationMs": 100,
+						"FrequencyMs": 100,
+						"GrowthRateSubUnits": 0,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										275000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Stun",
+								"DurationMs": 1250
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Greater Nature Grokko",
+	"DisplayDescription": "Greater Nature Grokko smashes the ground, dealing <AttackPhysicalDamage>275</> (<OmegaPowerPercentage></>) Physical Damage to all enemies within 20-hexes and Stunning them for 1.25 seconds.\r\n\r\nDamage: <AttackPhysicalDamage>275</> (<OmegaPowerPercentage></>)",
+	"Intro": "In Abyssal Basin, there is a misty blue tunnel shaped by the arches of giant root-like branches. The ground is filled with water and moss, with luminous mushrooms and rocks along the sides. With so many boulders and greenery, one can easily mistake a sleeping Greater Nature Grokko for another piece of the landscape. It stands relatively still, not minding if its head is used as a stepping stone by others.",
+	"Summary": "The Greater Nature Grokko blends seamlessly into the landscape of a misty blue tunnels of the Abyssal Basin. This burly creature with green orb-like eyes has a bulbous head, leaf-covered limbs, and bark-like grooves on its hands and legs. Its body supports various plant growths, has an internal chamber for microbial organisms aiding digestion and regeneration, and it possesses seed stores for continuous plant growth.",
+	"Biology": {
+		"Physiology": "The Greater Nature Grokko is burly, rough, and round, with green orb-like eyes and a bulbous head that makes up the entirety of its torso. Its big mouth opens up in the middle of its body, bottom fangs jutting out as it lumbers along on two feet. Layers of leaves cover the top of its head and arms, with a couple of small pink flowers among the green. There are bark-like grooves on its hands and legs and a pink marking on its left chest. The Greater Nature Grokko has a flat nose and dull senses, but the luminous yellow-green gems on its knuckles can wear down opponents as it withstands the most brutal attacks. With a thick tail that acts as a counterweight for its heavy body, it can stand on its hind legs in a bipedal stance.",
+		"Behaviour": "The Greater Nature Grokko ambles along, headstrong with its feet planted firmly in swamp water. It does not avoid the territory of other Illuvials and goes where it wishes. It stands its ground even when it is clearly outmatched, perhaps out of tenacity, or perhaps stupidity. This stubbornness makes it intimidating to other Illuvials, and even those more powerful begin to doubt their skills when the Greater Nature Grokko refuses to back down. It does not appear to tire, bullheaded from the moment it awakens until death. Although it does not appear to sleep, it may curl up in a ball to roll down hills or to protect itself from intense storms. This enigmatic Illuvial has a symbiotic relationship with Morphopods, which fly into its mouth and pick up food stuck in its teeth, improving its dental health."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/GrokkoStage2Nature/GrokkoStage2Nature_default_default_webp.3840x2160/GrokkoStage2Nature_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/GrokkoStage2Nature/GrokkoStage2Nature_default_default_hls.m3u8/GrokkoStage2Nature_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Greater Nature Grokko grows a fresh layer of leaves every day, leaving a trail of wilted leaves behind it as it sheds off its old layers.",
+			"The Greater Nature Grokko has been observed to put a variety of objects in its mouth, including trees, seeds, and stones. It allows Morphopods to fly into its open mouth and pick away at food stuck in its teeth.",
+			"The Greater Nature Grokko is a patient but unskilled climber that scales cliffs at a rate of roughly 20 m/day. It has been observed to stumble and roll down every few weeks, knocking over other Illuvials, creating landslides, and then walking away unharmed."
+		],
+		"Buckley": [
+			"The Greater Nature Grokko's skin is capable of sustaining different plant growths upon its body.",
+			"The Greater Nature Grokko has an internal chamber that protects the microbial organisms which inhabit its body, supporting digestion and regeneration functions. They feed upon the plant roots within the Greater Nature Grokko.",
+			"The Greater Nature Grokko has seed stores embedded within its head and arms, ensuring that it can continuously grow plants upon its body.",
+			"The Greater Nature Grokko's stomach is adaptable to different materials and its immune system develops defence mechanisms based on what it ingests.",
+			"The Greater Nature Grokko has an immense weight of 1680 kg, with symbiotic plant growths that add substantial mass to its body."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		4,
+		1,
+		6,
+		3,
+		2
+	],
+	"Description": {
+		"Format": "Greater Nature Grokko smashes the ground, dealing <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Physical Damage to all enemies within {OmegaRadius}-hexes and Stunning them for {StunDuration} seconds.\r\n\r\nDamage: <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"OmegaRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Zone.RadiusUnits"
+			},
+			"StunDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Greater Nature Grokko smashes the ground, dealing 275 () Physical Damage to all enemies within 20-hexes and Stunning them for 1.25 seconds.\r\n\r\nDamage: 275 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 4,
+			"Health": 1,
+			"MovementSpeed": 6,
+			"OmegaPower": 3,
+			"Resistance": 2
+		}
+	}
+}

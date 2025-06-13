@@ -1,0 +1,245 @@
+{
+	"CombatClass": "Harbinger",
+	"CombatClassComponents": [
+		"Bulwark",
+		"Psion"
+	],
+	"SynergyThresholds": [
+		2,
+		3,
+		4
+	],
+	"SynergyThresholdsAbilities": {
+		"Variables": [
+			{
+				"Name": "Harbinger_OmegaPower",
+				"Values": [
+					100,
+					150,
+					200
+				]
+			},
+			{
+				"Name": "Harbinger_Resistance",
+				"Values": [
+					25,
+					40,
+					50
+				]
+			},
+			{
+				"Name": "Harbinger_AOEDamage",
+				"Values": [
+					0,
+					0,
+					5
+				]
+			}
+		],
+		"TeamAbilities": [],
+		"UnitAbilities": [
+			{
+				"Name": "HarbingerSynergy_Ability1",
+				"ActivationTrigger": {
+					"TriggerType": "OnBattleStart"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Harbinger - Omega Power and Resistance",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "Self"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Buff",
+									"Stat": "OmegaPowerPercentage",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"FrequencyMs": 500,
+									"Expression": {
+										"Operation": "/",
+										"Operands": [
+											{
+												"Operation": "*",
+												"Operands": [
+													"{Harbinger_OmegaPower}",
+													{
+														"Operation": "-",
+														"Operands": [
+															1,
+															{
+																"Operation": "/",
+																"Operands": [
+																	{
+																		"Stat": "CurrentHealth",
+																		"StatSource": "Receiver"
+																	},
+																	{
+																		"Stat": "MaxHealth",
+																		"StatSource": "Receiver"
+																	}
+																]
+															}
+														]
+													},
+													{
+														"Stat": "OmegaPowerPercentage",
+														"StatSource": "Receiver"
+													}
+												]
+											},
+											1
+										]
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "PhysicalResist",
+									"DurationMs": -1,
+									"FrequencyMs": 100,
+									"Expression": {
+										"Percentage": "{Harbinger_Resistance}",
+										"Stat": "OmegaPowerPercentage",
+										"StatSource": "Receiver"
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "EnergyResist",
+									"DurationMs": -1,
+									"FrequencyMs": 100,
+									"Expression": {
+										"Percentage": "{Harbinger_Resistance}",
+										"Stat": "OmegaPowerPercentage",
+										"StatSource": "Receiver"
+									}
+								}
+							]
+						}
+					}
+				]
+			},
+			{
+				"Name": "HarbingerSynergy_Ability2",
+				"ActivationTrigger": {
+					"TriggerType": "EveryXTime",
+					"ActivateEveryTimeMs": 1000
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Harbinger - AOE Damage",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "InZone",
+							"Group": "Enemy",
+							"RadiusUnits": 28
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "InstantDamage",
+									"DamageType": "Energy",
+									"Expression": {
+										"Operation": "*",
+										"Operands": [
+											"{Harbinger_AOEDamage}",
+											{
+												"Operation": "+",
+												"Operands": [
+													{
+														"Stat": "PhysicalResist",
+														"StatSource": "Sender"
+													},
+													{
+														"Stat": "EnergyResist",
+														"StatSource": "Sender"
+													},
+													{
+														"Stat": "OmegaPowerPercentage",
+														"StatSource": "Sender"
+													}
+												]
+											},
+											10
+										]
+									}
+								}
+							]
+						}
+					}
+				]
+			}
+		]
+	},
+	"IntrinsicAbilities": [],
+	"DisplayName": "Harbinger",
+	"DisplayDescription": "\r\nHarbingers gain <Resistance>Resistances</> equal to a percentage of their <OmegaPowerPercentage>Omega Power</> and <OmegaPowerPercentage>Omega Power</> for every <MaxHealth>1%</> missing Health.\r\n\r\n(4) Every 1 second, deal <AttackEnergyDamage>5%</> of their combined <OmegaPowerPercentage>Omega Power</> and <Resistance>Resistances</> as <AttackEnergyDamage>Energy Damage</> in 28-hexes.\r\n",
+	"DisplayDescriptionThresholds": [
+		"Gain <OmegaPowerPercentage>25%</><OmegaPowerPercentage></> as <Resistance></> and <OmegaPowerPercentage>1%</><OmegaPowerPercentage></> per <HealthRegeneration>1% Missing Health</>",
+		"Gain <OmegaPowerPercentage>40%</><OmegaPowerPercentage></> as <Resistance></> and <OmegaPowerPercentage>1.5%</><OmegaPowerPercentage></> per <HealthRegeneration>1% Missing Health</>",
+		"Gain <OmegaPowerPercentage>50%</><OmegaPowerPercentage></> as <Resistance></> and <OmegaPowerPercentage>2%</><OmegaPowerPercentage></> per <HealthRegeneration>1% Missing Health</>"
+	],
+	"Description": {
+		"Format": "\r\nHarbingers gain <Resistance>Resistances</> equal to a percentage of their <OmegaPowerPercentage>Omega Power</> and <OmegaPowerPercentage>Omega Power</> for every <MaxHealth>1%</> missing Health.\r\n\r\n(4) Every {DamageTime} second, deal <AttackEnergyDamage>{Harbinger_AOEDamage}%</> of their combined <OmegaPowerPercentage>Omega Power</> and <Resistance>Resistances</> as <AttackEnergyDamage>Energy Damage</> in {Radius}-hexes.\r\n",
+		"Parameters": {
+			"DamageTime": {
+				"ParameterPath": "SynergyThresholdsAbilities.UnitAbilities[1].ActivationTrigger.ActivateEveryTimeMs",
+				"ValueMultiplier": 0.001
+			},
+			"Harbinger_AOEDamage": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[2].Values[2]",
+				"ValueMultiplier": 1.0
+			},
+			"Radius": {
+				"ParameterPath": "SynergyThresholdsAbilities.UnitAbilities[1].Skills[0].Targeting.RadiusUnits",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DescriptionThresholds": {
+		"Format": "Gain <OmegaPowerPercentage>{Harbinger_Resistance}%</><OmegaPowerPercentage></> as <Resistance></> and <OmegaPowerPercentage>{Harbinger_OmegaPower}%</><OmegaPowerPercentage></> per <HealthRegeneration>1% Missing Health</>",
+		"Parameters": [
+			{
+				"Harbinger_Resistance": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[0]"
+				},
+				"Harbinger_OmegaPower": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[0]",
+					"ValueMultiplier": 0.01
+				}
+			},
+			{
+				"Harbinger_Resistance": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[1]"
+				},
+				"Harbinger_OmegaPower": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[1]",
+					"ValueMultiplier": 0.01
+				}
+			},
+			{
+				"Harbinger_Resistance": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[2]"
+				},
+				"Harbinger_OmegaPower": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[2]",
+					"ValueMultiplier": 0.01
+				}
+			}
+		]
+	},
+	"DisplayDescriptionNormalized": "Harbingers gain Resistances equal to a percentage of their Omega Power and Omega Power for every 1% missing Health.\r\n\r\n(4) Every 1 second, deal 5% of their combined Omega Power and Resistances as Energy Damage in 28-hexes.",
+	"DisplayDescriptionThresholdsNormalized": [
+		"Gain 25% as and 1% per 1% Missing Health",
+		"Gain 40% as and 1.5% per 1% Missing Health",
+		"Gain 50% as and 2% per 1% Missing Health"
+	]
+}

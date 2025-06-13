@@ -1,0 +1,106 @@
+{
+	"Name": "EmberlingRodCauterizingPollination",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Amplifier",
+	"AmplifierForWeapon": {
+		"Name": "EmberlingRod",
+		"Stage": 0,
+		"Variation": "Original",
+		"CombatAffinity": "Nature"
+	},
+	"Stats": {
+		"MaxHealth": 400000,
+		"StartingEnergy": 0,
+		"EnergyCost": 0,
+		"PhysicalResist": 0,
+		"EnergyResist": 0,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 0,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 0,
+		"MoveSpeedSubUnits": 0,
+		"HitChancePercentage": 0,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 0,
+		"CritAmplificationPercentage": 0,
+		"OmegaPowerPercentage": 0,
+		"AttackRangeUnits": 0,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 0,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 0,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 0,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [],
+	"InnateAbilities": [],
+	"EffectsReplacements": [
+		{
+			"ID": "CauterizingPollination",
+			"Type": "Debuff",
+			"Stat": "HealthGainEfficiencyPercentage",
+			"OverlapProcessType": "Merge",
+			"DurationMs": 5000,
+			"Expression": 25
+		},
+		{
+			"ID": "CauterizingPollination1",
+			"Type": "DOT",
+			"DamageType": "Energy",
+			"DurationMs": 3000,
+			"FrequencyMs": 1000,
+			"Expression": {
+				"Operation": "*",
+				"Operands": [
+					100000,
+					{
+						"Stat": "OmegaPowerPercentage",
+						"StatSource": "Sender"
+					}
+				]
+			}
+		}
+	],
+	"DisplayName": "Cauterizing Pollination",
+	"DisplayDescription": "+<MaxHealth>400</> Health.\r\nOmega reduces target's Healing by <HealthGainEfficiencyPercentage>25%</> and deals <AttackEnergyDamage>300</> over 3 seconds.",
+	"Description": {
+		"Format": "+<MaxHealth>{Health}</> Health.\r\nOmega reduces target's Healing by <HealthGainEfficiencyPercentage>{Burn}%</> and deals <AttackEnergyDamage>{Damage}</> over {Duration} seconds.",
+		"Parameters": {
+			"Health": {
+				"ParameterPath": "Stats.MaxHealth",
+				"ValueMultiplier": 0.001
+			},
+			"Burn": {
+				"ParameterPath": "EffectsReplacements[0].Expression",
+				"ValueMultiplier": 1.0
+			},
+			"Damage": {
+				"ParameterPath": "EffectsReplacements[1].Expression.Operands[0]",
+				"ValueMultiplier": 0.003
+			},
+			"Duration": {
+				"ParameterPath": "EffectsReplacements[1].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "+400 Health.\r\nOmega reduces target's Healing by 25% and deals 300 over 3 seconds."
+}

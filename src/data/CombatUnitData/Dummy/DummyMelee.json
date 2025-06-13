@@ -1,0 +1,196 @@
+{
+	"IsDisabled": true,
+	"UnitType": "Illuvial",
+	"Line": "DummyMelee",
+	"Stage": 1,
+	"Path": "",
+	"Variation": "",
+	"Tier": 1,
+	"CombatAffinity": "Water",
+	"CombatClass": "Bulwark",
+	"DominantCombatAffinity": "Water",
+	"DominantCombatClass": "Bulwark",
+	"SizeUnits": 3,
+	"Stats": {
+		"MaxHealth": 1000000000,
+		"StartingEnergy": 120000,
+		"EnergyCost": 200000,
+		"PhysicalResist": 45,
+		"EnergyResist": 45,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 25000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 120,
+		"MoveSpeedSubUnits": 2000,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 2,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Attack",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 40
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Vapour Barrier I",
+			"TotalDurationMs": 1500,
+			"Skills": [
+				{
+					"Name": "Shield",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 10
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "SpawnShield",
+								"DurationMs": 5000,
+								"Expression": {
+									"Operation": "+",
+									"Operands": [
+										{
+											"Operation": "*",
+											"Operands": [
+												{
+													"Percentage": 20,
+													"Stat": "MaxHealth",
+													"StatSource": "Receiver"
+												},
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												}
+											]
+										},
+										{
+											"Operation": "*",
+											"Operands": [
+												{
+													"Value": 200000,
+													"IsUsedAsPercentage": false
+												},
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												}
+											]
+										}
+									]
+								},
+								"OnExpire": {
+									"Name": "AoE Damage",
+									"Targeting": {
+										"Type": "Self"
+									},
+									"Deployment": {
+										"Type": "Zone"
+									},
+									"Zone": {
+										"Shape": "Hexagon",
+										"RadiusUnits": 20,
+										"DurationMs": 100,
+										"FrequencyMs": 100,
+										"ApplyOnce": true
+									},
+									"EffectPackage": {
+										"Effects": [
+											{
+												"Type": "InstantDamage",
+												"DamageType": "Energy",
+												"Expression": {
+													"Operation": "*",
+													"Operands": [
+														{
+															"Percentage": 10,
+															"Stat": "MaxHealth",
+															"StatSource": "Sender"
+														},
+														{
+															"Stat": "OmegaPowerPercentage",
+															"StatSource": "Sender"
+														}
+													]
+												}
+											}
+										]
+									}
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Dummy Melee"
+}

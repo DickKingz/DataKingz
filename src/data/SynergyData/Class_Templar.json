@@ -1,0 +1,473 @@
+{
+	"CombatClass": "Templar",
+	"CombatClassComponents": [
+		"Fighter",
+		"Empath"
+	],
+	"SynergyThresholds": [
+		2,
+		3,
+		4
+	],
+	"SynergyThresholdsAbilities": {
+		"Variables": [
+			{
+				"Name": "Templar_AttackDamage",
+				"Values": [
+					3000,
+					4000,
+					5000
+				]
+			},
+			{
+				"Name": "Templar_Resistance",
+				"Values": [
+					3,
+					4,
+					5
+				]
+			},
+			{
+				"Name": "Templar_Special_AttackDamage",
+				"Values": [
+					0,
+					0,
+					5000
+				]
+			},
+			{
+				"Name": "Templar_Special_Resistance",
+				"Values": [
+					0,
+					0,
+					5
+				]
+			}
+		],
+		"TeamAbilities": [],
+		"UnitAbilities": [
+			{
+				"Name": "TemplarSynergy_Ability1",
+				"ActivationTrigger": {
+					"TriggerType": "OnActivateXAbilities",
+					"AbilityTypes": [
+						"Attack"
+					],
+					"EveryX": true,
+					"NumberOfAbilitiesActivated": 3
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Templar - Target Debuff",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "CurrentFocus"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Debuff",
+									"Stat": "AttackPhysicalDamage",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": "{Templar_AttackDamage}"
+								},
+								{
+									"Type": "Debuff",
+									"Stat": "AttackEnergyDamage",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": "{Templar_AttackDamage}"
+								},
+								{
+									"Type": "Debuff",
+									"Stat": "AttackPureDamage",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": "{Templar_AttackDamage}"
+								},
+								{
+									"Type": "Debuff",
+									"Stat": "PhysicalResist",
+									"DurationMs": -1,
+									"OverlapProcessType": "Stacking",
+									"Expression": "{Templar_Resistance}"
+								},
+								{
+									"Type": "Debuff",
+									"Stat": "EnergyResist",
+									"DurationMs": -1,
+									"OverlapProcessType": "Stacking",
+									"Expression": "{Templar_Resistance}"
+								}
+							]
+						}
+					},
+					{
+						"Name": "Templar - Self Buff",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "Self"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Buff",
+									"Stat": "AttackPhysicalDamage",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": {
+										"Operation": "Min",
+										"Operands": [
+											{
+												"Stat": "AttackPhysicalDamage",
+												"StatSource": "SenderFocus"
+											},
+											"{Templar_AttackDamage}"
+										]
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "AttackEnergyDamage",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": {
+										"Operation": "Min",
+										"Operands": [
+											{
+												"Stat": "AttackEnergyDamage",
+												"StatSource": "SenderFocus"
+											},
+											"{Templar_AttackDamage}"
+										]
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "AttackPureDamage",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": {
+										"Operation": "Min",
+										"Operands": [
+											{
+												"Stat": "AttackPureDamage",
+												"StatSource": "SenderFocus"
+											},
+											"{Templar_AttackDamage}"
+										]
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "PhysicalResist",
+									"DurationMs": -1,
+									"OverlapProcessType": "Stacking",
+									"Expression": {
+										"Operation": "Min",
+										"Operands": [
+											{
+												"Stat": "PhysicalResist",
+												"StatSource": "SenderFocus"
+											},
+											"{Templar_Resistance}"
+										]
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "EnergyResist",
+									"DurationMs": -1,
+									"OverlapProcessType": "Stacking",
+									"Expression": {
+										"Operation": "Min",
+										"Operands": [
+											{
+												"Stat": "EnergyResist",
+												"StatSource": "SenderFocus"
+											},
+											"{Templar_Resistance}"
+										]
+									}
+								}
+							]
+						}
+					},
+					{
+						"Name": "Templar - Buff Lowest Attack Damage",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "CombatStatCheck",
+							"Group": "Ally",
+							"Self": false,
+							"Stat": "AttackDamage",
+							"Lowest": true,
+							"Num": 1
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Buff",
+									"Stat": "AttackPhysicalDamage",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": {
+										"Operation": "Min",
+										"Operands": [
+											{
+												"Stat": "AttackPhysicalDamage",
+												"StatSource": "SenderFocus"
+											},
+											"{Templar_AttackDamage}"
+										]
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "AttackEnergyDamage",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": {
+										"Operation": "Min",
+										"Operands": [
+											{
+												"Stat": "AttackEnergyDamage",
+												"StatSource": "SenderFocus"
+											},
+											"{Templar_AttackDamage}"
+										]
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "AttackPureDamage",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": {
+										"Operation": "Min",
+										"Operands": [
+											{
+												"Stat": "AttackPureDamage",
+												"StatSource": "SenderFocus"
+											},
+											"{Templar_AttackDamage}"
+										]
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "PhysicalResist",
+									"DurationMs": -1,
+									"OverlapProcessType": "Stacking",
+									"Expression": {
+										"Operation": "Min",
+										"Operands": [
+											{
+												"Stat": "PhysicalResist",
+												"StatSource": "SenderFocus"
+											},
+											"{Templar_Special_Resistance}"
+										]
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "EnergyResist",
+									"DurationMs": -1,
+									"OverlapProcessType": "Stacking",
+									"Expression": {
+										"Operation": "Min",
+										"Operands": [
+											{
+												"Stat": "EnergyResist",
+												"StatSource": "SenderFocus"
+											},
+											"{Templar_Special_Resistance}"
+										]
+									}
+								}
+							]
+						}
+					},
+					{
+						"Name": "Templar - Buff Lowest Resistance",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "ExpressionCheck",
+							"Guidance": [
+								"Ground",
+								"Airborne",
+								"Underground"
+							],
+							"Group": "Ally",
+							"Lowest": true,
+							"Num": 1,
+							"Expression": {
+								"Operation": "+",
+								"Operands": [
+									{
+										"Stat": "PhysicalResist",
+										"StatSource": "Sender"
+									},
+									{
+										"Stat": "EnergyResist",
+										"StatSource": "Sender"
+									}
+								]
+							}
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Buff",
+									"Stat": "PhysicalResist",
+									"DurationMs": -1,
+									"OverlapProcessType": "Stacking",
+									"Expression": {
+										"Operation": "Min",
+										"Operands": [
+											{
+												"Stat": "PhysicalResist",
+												"StatSource": "SenderFocus"
+											},
+											"{Templar_Resistance}"
+										]
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "EnergyResist",
+									"DurationMs": -1,
+									"OverlapProcessType": "Stacking",
+									"Expression": {
+										"Operation": "Min",
+										"Operands": [
+											{
+												"Stat": "EnergyResist",
+												"StatSource": "SenderFocus"
+											},
+											"{Templar_Resistance}"
+										]
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "AttackPhysicalDamage",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": {
+										"Operation": "Min",
+										"Operands": [
+											{
+												"Stat": "AttackPhysicalDamage",
+												"StatSource": "SenderFocus"
+											},
+											"{Templar_Special_AttackDamage}"
+										]
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "AttackEnergyDamage",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": {
+										"Operation": "Min",
+										"Operands": [
+											{
+												"Stat": "AttackEnergyDamage",
+												"StatSource": "SenderFocus"
+											},
+											"{Templar_Special_AttackDamage}"
+										]
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "AttackPureDamage",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": {
+										"Operation": "Min",
+										"Operands": [
+											{
+												"Stat": "AttackPureDamage",
+												"StatSource": "SenderFocus"
+											},
+											"{Templar_Special_AttackDamage}"
+										]
+									}
+								}
+							]
+						}
+					}
+				]
+			}
+		]
+	},
+	"IntrinsicAbilities": [],
+	"DisplayName": "Templar",
+	"DisplayDescription": "\r\nEvery 3 attacks, Templars steal <AttackDamage>Attack Damage</> and <Resistance>Resistances</> from their target, sharing them with the lowest <AttackDamage>Attack Damage</> and <Resistance>Resistances</> allies.\r\n\r\n(4) Share the stats with both allies.\r\n",
+	"DisplayDescriptionThresholds": [
+		"Steal <AttackDamage>3</><AttackDamage></> and <Resistance>3</><Resistance></>",
+		"Steal <AttackDamage>4</><AttackDamage></> and <Resistance>4</><Resistance></>",
+		"Steal <AttackDamage>5</><AttackDamage></> and <Resistance>5</><Resistance></>"
+	],
+	"Description": {
+		"Format": "\r\nEvery {AttackNum} attacks, Templars steal <AttackDamage>Attack Damage</> and <Resistance>Resistances</> from their target, sharing them with the lowest <AttackDamage>Attack Damage</> and <Resistance>Resistances</> allies.\r\n\r\n(4) Share the stats with both allies.\r\n",
+		"Parameters": {
+			"AttackNum": {
+				"ParameterPath": "SynergyThresholdsAbilities.UnitAbilities[0].ActivationTrigger.NumberOfAbilitiesActivated",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DescriptionThresholds": {
+		"Format": "Steal <AttackDamage>{Templar_AttackDamage}</><AttackDamage></> and <Resistance>{Templar_Resistance}</><Resistance></>",
+		"Parameters": [
+			{
+				"Templar_AttackDamage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[0]",
+					"ValueMultiplier": 0.001
+				},
+				"Templar_Resistance": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[0]"
+				}
+			},
+			{
+				"Templar_AttackDamage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[1]",
+					"ValueMultiplier": 0.001
+				},
+				"Templar_Resistance": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[1]"
+				}
+			},
+			{
+				"Templar_AttackDamage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[2]",
+					"ValueMultiplier": 0.001
+				},
+				"Templar_Resistance": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[2]"
+				}
+			}
+		]
+	},
+	"DisplayDescriptionNormalized": "Every 3 attacks, Templars steal Attack Damage and Resistances from their target, sharing them with the lowest Attack Damage and Resistances allies.\r\n\r\n(4) Share the stats with both allies.",
+	"DisplayDescriptionThresholdsNormalized": [
+		"Steal 3 and 3",
+		"Steal 4 and 4",
+		"Steal 5 and 5"
+	]
+}

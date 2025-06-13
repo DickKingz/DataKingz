@@ -1,0 +1,224 @@
+{
+	"CombatClass": "Vanguard",
+	"CombatClassComponents": [
+		"Rogue",
+		"Bulwark"
+	],
+	"SynergyThresholds": [
+		2,
+		3,
+		4
+	],
+	"SynergyThresholdsAbilities": {
+		"Variables": [
+			{
+				"Name": "Vanguard_CritAmp",
+				"Values": [
+					40,
+					60,
+					80
+				]
+			},
+			{
+				"Name": "Vanguard_ExtraDamage",
+				"Values": [
+					5,
+					7,
+					10
+				]
+			},
+			{
+				"Name": "Vanguard_Vampiric",
+				"Values": [
+					0,
+					0,
+					15
+				]
+			}
+		],
+		"TeamAbilities": [],
+		"UnitAbilities": [
+			{
+				"Name": "VanguardSynergy_Ability1",
+				"ActivationTrigger": {
+					"TriggerType": "OnBattleStart"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Vanguard - Crit Amp",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "Self"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Buff",
+									"Stat": "CritAmplificationPercentage",
+									"OverlapProcessType": "Stacking",
+									"FrequencyMs": 100,
+									"DurationMs": -1,
+									"Expression": {
+										"Operation": "%",
+										"Operands": [
+											"{Vanguard_CritAmp}",
+											{
+												"Operation": "+",
+												"Operands": [
+													{
+														"Stat": "PhysicalResist",
+														"StatSource": "Receiver"
+													},
+													{
+														"Stat": "EnergyResist",
+														"StatSource": "Receiver"
+													}
+												]
+											}
+										]
+									}
+								}
+							]
+						}
+					}
+				]
+			},
+			{
+				"Name": "Vanguard_Ability2",
+				"ActivationTrigger": {
+					"TriggerType": "OnDealCrit"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Techno Leecher - Energy Gain",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "Self"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Empower",
+									"IsConsumable": true,
+									"ActivationsUntilExpiry": 1,
+									"ActivatedBy": "Attack",
+									"AttachedEffects": [
+										{
+											"Type": "InstantDamage",
+											"DamageType": "Physical",
+											"Expression": {
+												"Operation": "*",
+												"Operands": [
+													{
+														"Percentage": "{Vanguard_ExtraDamage}",
+														"Stat": "MaxHealth",
+														"StatSource": "Receiver"
+													}
+												]
+											}
+										}
+									],
+									"AttachedEffectPackageAttributes": {
+										"VampiricPercentage": "{Vanguard_Vampiric}"
+									}
+								}
+							]
+						}
+					}
+				]
+			}
+		]
+	},
+	"IntrinsicAbilities": [
+		{
+			"Name": "VanguardSynergy_Blink",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 680,
+			"Skills": [
+				{
+					"Name": "Jumps across",
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Blink",
+								"BlinkTarget": "Across",
+								"BlinkDelayMs": 500,
+								"DurationMs": 680
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Vanguard",
+	"DisplayDescription": "\r\nVanguard units gain <CritAmplificationPercentage>Crit Amp</> equal to a percentage of their <Resistance>Resistances</>. The next attack after a Critical Hit deals bonus <AttackPhysicalDamage>Physical Damage</> based on the target's <MaxHealth>Max Health</>.\r\n\r\n(4) Empowered attack heals for <MaxHealth>15%</> of the damage dealt.\r\n",
+	"DisplayDescriptionThresholds": [
+		"Gain <Resistance>40%</><Resistance></> as <CritAmplificationPercentage>Crit Amp</><CritAmplificationPercentage></>. Deal <MaxHealth>5%</><MaxHealth></> as <AttackPhysicalDamage></>",
+		"Gain <Resistance>60%</><Resistance></> as <CritAmplificationPercentage>Crit Amp</><CritAmplificationPercentage></>. Deal <MaxHealth>7%</><MaxHealth></> as <AttackPhysicalDamage></>",
+		"Gain <Resistance>80%</><Resistance></> as <CritAmplificationPercentage>Crit Amp</><CritAmplificationPercentage></>. Deal <MaxHealth>10%</><MaxHealth></> as <AttackPhysicalDamage></>"
+	],
+	"Description": {
+		"Format": "\r\nVanguard units gain <CritAmplificationPercentage>Crit Amp</> equal to a percentage of their <Resistance>Resistances</>. The next attack after a Critical Hit deals bonus <AttackPhysicalDamage>Physical Damage</> based on the target's <MaxHealth>Max Health</>.\r\n\r\n(4) Empowered attack heals for <MaxHealth>{Vanguard_Vampiric}%</> of the damage dealt.\r\n",
+		"Parameters": {
+			"Vanguard_Vampiric": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[2].Values[2]",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DescriptionThresholds": {
+		"Format": "Gain <Resistance>{Vanguard_CritAmp}%</><Resistance></> as <CritAmplificationPercentage>Crit Amp</><CritAmplificationPercentage></>. Deal <MaxHealth>{Vanguard_ExtraDamage}%</><MaxHealth></> as <AttackPhysicalDamage></>",
+		"Parameters": [
+			{
+				"Vanguard_CritAmp": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[0]",
+					"ValueMultiplier": 1.0
+				},
+				"Vanguard_ExtraDamage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[0]"
+				}
+			},
+			{
+				"Vanguard_CritAmp": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[1]",
+					"ValueMultiplier": 1.0
+				},
+				"Vanguard_ExtraDamage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[1]"
+				}
+			},
+			{
+				"Vanguard_CritAmp": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[2]",
+					"ValueMultiplier": 1.0
+				},
+				"Vanguard_ExtraDamage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[2]"
+				}
+			}
+		]
+	},
+	"DisplayDescriptionNormalized": "Vanguard units gain Crit Amp equal to a percentage of their Resistances. The next attack after a Critical Hit deals bonus Physical Damage based on the target's Max Health.\r\n\r\n(4) Empowered attack heals for 15% of the damage dealt.",
+	"DisplayDescriptionThresholdsNormalized": [
+		"Gain 40% as Crit Amp. Deal 5% as",
+		"Gain 60% as Crit Amp. Deal 7% as",
+		"Gain 80% as Crit Amp. Deal 10% as"
+	]
+}

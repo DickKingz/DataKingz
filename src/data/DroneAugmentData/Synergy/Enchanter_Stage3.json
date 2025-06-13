@@ -1,0 +1,21 @@
+{
+	"Name": "Enchanter",
+	"Stage": 3,
+	"Type": "Game",
+	"DisplayName": "Enchanter Matrix",
+	"DisplayDescription": "Gain a Enchanter Imprint.",
+	"Description": {
+		"Format": "Gain a Enchanter Imprint.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Enchanter",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

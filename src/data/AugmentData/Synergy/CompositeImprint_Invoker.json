@@ -1,0 +1,48 @@
+{
+	"Name": "Invoker",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "SynergyBonus",
+	"CombatClasses": {
+		"Invoker": 1
+	},
+	"Abilities": [
+		{
+			"Name": "Invoker Imprint Stats",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Invoker Imprint Stat List",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "OmegaPowerPercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 20
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Invoker Imprint",
+	"DisplayDescription": "The holder gains the Invoker Composite Class and 20 <OmegaPowerPercentage>Omega Power</>.",
+	"Description": {
+		"Format": "The holder gains the Invoker Composite Class and 20 <OmegaPowerPercentage>Omega Power</>.",
+		"Parameters": {}
+	},
+	"DisplayDescriptionNormalized": "The holder gains the Invoker Composite Class and 20 Omega Power."
+}

@@ -1,0 +1,128 @@
+{
+	"Name": "StaggeringStrike",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Amplifier",
+	"Stats": {
+		"PhysicalResist": 0,
+		"EnergyResist": 0,
+		"MaxHealth": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 0,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 0,
+		"AttackDodgeChancePercentage": 0,
+		"MoveSpeedSubUnits": 0,
+		"OmegaPowerPercentage": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"StartingEnergy": 0,
+		"StartingShield": 0,
+		"CritChancePercentage": 0,
+		"CritAmplificationPercentage": 0,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0
+	},
+	"Abilities": [
+		{
+			"Name": "Staggering Strike",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Starmail - Self Debuff",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "AttackSpeed",
+								"OverlapProcessType": "Highest",
+								"FrequencyMs": 100,
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": -60,
+									"Stat": "AttackSpeed",
+									"StatSource": "Receiver"
+								}
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"Name": "Staggering Strike_1",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Aethersteal - Stun and Damage",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Empower",
+								"IsConsumable": false,
+								"DurationMs": -1,
+								"ActivatedBy": "Attack",
+								"AttachedEffects": [
+									{
+										"Type": "InstantDamage",
+										"DamageType": "Pure",
+										"Expression": {
+											"Percentage": 10,
+											"Stat": "MaxHealth",
+											"StatSource": "Receiver"
+										}
+									},
+									{
+										"Type": "NegativeState",
+										"NegativeState": "Stun",
+										"DurationMs": 500
+									}
+								]
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Staggering Strike",
+	"DisplayDescription": "The Ranger's Attack Speed is reduced by <AttackSpeed>-60%</>, but all attacks deal <MaxHealth>10%</> of the target's Max Health as Pure Damage and Stuns them for 0.5 seconds.",
+	"Description": {
+		"Format": "The Ranger's Attack Speed is reduced by <AttackSpeed>{ASDebuff}%</>, but all attacks deal <MaxHealth>{Damage}%</> of the target's Max Health as Pure Damage and Stuns them for {StunDuration} seconds.",
+		"Parameters": {
+			"ASDebuff": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].Expression.Percentage"
+			},
+			"Damage": {
+				"ParameterPath": "Abilities[1].Skills[0].EffectPackage.Effects[0].AttachedEffects[0].Expression.Percentage"
+			},
+			"StunDuration": {
+				"ParameterPath": "Abilities[1].Skills[0].EffectPackage.Effects[0].AttachedEffects[1].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "The Ranger's Attack Speed is reduced by -60%, but all attacks deal 10% of the target's Max Health as Pure Damage and Stuns them for 0.5 seconds."
+}

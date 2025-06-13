@@ -1,0 +1,74 @@
+{
+	"Name": "Fury",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Component",
+	"Abilities": [
+		{
+			"Name": "FuryComponent_Stats",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "FuryComponent - AttackDamage",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "AttackPhysicalDamage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackEnergyDamage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackPureDamage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackPureDamage",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Fury Component",
+	"DisplayDescription": "Gain <AttackDamage>10%</> <AttackDamage>Attack Damage</>. Can be combined with other components to select out of 3 Forge Augments.",
+	"Description": {
+		"Format": "Gain <AttackDamage>10%</> <AttackDamage>Attack Damage</>. Can be combined with other components to select out of 3 Forge Augments.",
+		"Parameters": {}
+	},
+	"DisplayDescriptionNormalized": "Gain 10% Attack Damage. Can be combined with other components to select out of 3 Forge Augments."
+}

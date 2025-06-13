@@ -1,0 +1,368 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Elk",
+	"Stage": 2,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 5,
+	"CombatAffinity": "Spore",
+	"CombatClass": "Empath",
+	"DominantCombatAffinity": "Nature",
+	"DominantCombatClass": "Empath",
+	"SizeUnits": 4,
+	"Stats": {
+		"MaxHealth": 1850000,
+		"StartingEnergy": 60000,
+		"EnergyCost": 180000,
+		"PhysicalResist": 45,
+		"EnergyResist": 45,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 60000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 70,
+		"OmegaRangeUnits": 0,
+		"MoveSpeedSubUnits": 2500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 5,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 70,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Elk Basic Attack II",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 41
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 10000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Bright Flourish II",
+			"TotalDurationMs": 2000,
+			"Skills": [
+				{
+					"Name": "Damage three lowest health enemies",
+					"Targeting": {
+						"Type": "ExpressionCheck",
+						"Guidance": [
+							"Ground",
+							"Airborne",
+							"Underground"
+						],
+						"Group": "Enemy",
+						"Lowest": true,
+						"Num": 3,
+						"Expression": {
+							"Stat": "CurrentHealth%",
+							"StatSource": "Sender"
+						}
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground",
+							"Airborne",
+							"Underground"
+						],
+						"PreDeploymentDelayPercentage": 100
+					},
+					"PercentageOfAbilityDuration": 65,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "+",
+									"Operands": [
+										{
+											"Operation": "*",
+											"Operands": [
+												{
+													"Operation": "%",
+													"Operands": [
+														12,
+														{
+															"Operation": "-",
+															"Operands": [
+																{
+																	"Stat": "MaxHealth",
+																	"StatSource": "Receiver"
+																},
+																{
+																	"Stat": "CurrentHealth",
+																	"StatSource": "Receiver"
+																}
+															]
+														}
+													]
+												},
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												}
+											]
+										},
+										{
+											"Operation": "*",
+											"Operands": [
+												150000,
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												}
+											]
+										}
+									]
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "OmegaPowerPercentage",
+								"DurationMs": -1,
+								"OverlapProcessType": "Stacking",
+								"Expression": 7
+							},
+							{
+								"Type": "Buff",
+								"Stat": "OmegaPowerPercentage",
+								"DurationMs": -1,
+								"OverlapProcessType": "Stacking",
+								"Expression": 10
+							}
+						]
+					}
+				},
+				{
+					"Name": "Heal three lowest health allies",
+					"Targeting": {
+						"Type": "ExpressionCheck",
+						"Guidance": [
+							"Ground",
+							"Airborne",
+							"Underground"
+						],
+						"Group": "Ally",
+						"Lowest": true,
+						"Self": true,
+						"Num": 3,
+						"Expression": {
+							"Stat": "CurrentHealth%",
+							"StatSource": "Sender"
+						}
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground",
+							"Airborne",
+							"Underground"
+						],
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 35,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantHeal",
+								"HealType": "Normal",
+								"Expression": {
+									"Operation": "+",
+									"Operands": [
+										{
+											"Operation": "*",
+											"Operands": [
+												{
+													"Operation": "%",
+													"Operands": [
+														12,
+														{
+															"Operation": "-",
+															"Operands": [
+																{
+																	"Stat": "MaxHealth",
+																	"StatSource": "Receiver"
+																},
+																{
+																	"Stat": "CurrentHealth",
+																	"StatSource": "Receiver"
+																}
+															]
+														}
+													]
+												},
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												}
+											]
+										},
+										{
+											"Operation": "*",
+											"Operands": [
+												150000,
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												}
+											]
+										}
+									]
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "OmegaPowerPercentage",
+								"DurationMs": -1,
+								"OverlapProcessType": "Stacking",
+								"Expression": 7
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Adoredo",
+	"DisplayDescription": "Adoredo summons 3 spotlights, targeting the 3 lowest <MaxHealth>Health</> allies and enemies.\r\n\r\nAllies are healed <MaxHealth>12%</> (<OmegaPowerPercentage></>) of their missing Health + <MaxHealth>150</> (<OmegaPowerPercentage></>) Health and gain <OmegaPowerPercentage>7</> Omega Power.\r\n\r\nEnemies are dealt <AttackEnergyDamage>12%</> (<OmegaPowerPercentage></>) of their missing Health + <AttackEnergyDamage>150</> (<OmegaPowerPercentage></>) Energy Damage.\r\n\r\nHeal%: 12% (<MaxHealth></><OmegaPowerPercentage></>)\r\nFlat Heal: <MaxHealth>150</> (<OmegaPowerPercentage></>)\r\nDamage%: 12% (<MaxHealth></><OmegaPowerPercentage></>)\r\nFlat Damage: <AttackEnergyDamage>150</> (<OmegaPowerPercentage></>)",
+	"Intro": "The darker areas of Brightland Steppes exist in underground passageways full of twisted purple roots. Formed from a giant ribcage, the cavern entrance to Lorem Ipsum hides all sorts of creatures from the sun. Below overhanging formations and behind intertwined trees, a strange pink flower glows. No, wait? it is the Adoredo looking out from the shadows.",
+	"Summary": "In the underground passageways of Brightland Steppes, the Adoredo, a slender and strong creature with deep purple fur and glowing pink eyes, hides from the sun. Its physiology includes large, dark antlers and petal-like appendages that aid in climbing and galloping over varied terrain. The Adoredo's antlers produce enzymes capable of regenerating living cells, forming permanent connections with healed Illuvials, and emitting calming pheromones.",
+	"Biology": {
+		"Physiology": "The Adoredo is strong but slender, with big antlers and an elegant body coated in deep purple fur, accented by white. It has arresting pink eyes and it is often surrounded by a cloud of mist. The tall, petal-like appendages on its head are dark purple on the outside and glowing pink on the inside. They surround a fin-like bone that is as dark as its long, ridged antlers. With a firm stance and powerful, nimble legs, the Adoredo can easily climb roots and gallop over boulders in varied terrain.",
+		"Behaviour": "The Adoredo's dark antlers are a source of pride, and it spends as much time preening as it does galloping across fields, seeking other Illuvials in its territory. The Adoredo's antlers produce high amounts of specialised enzymes that can regenerate the living cells of other species. Once an Adoredo has healed an Illuvial, it forms a permanent connection allowing it to recognise the Illuvial even after years of separation. The Adoredo traversed great distances to find nutrients for the symbiotic plant appendages upon its head."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/ElkStage2/ElkStage2_default_default_webp.3840x2160/ElkStage2_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/ElkStage2/ElkStage2_default_default_hls.m3u8/ElkStage2_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Adoredo bows its head in greeting, releasing a calming energy that puts smaller Illuvials at ease.",
+			"The Adoredo grooms itself by wading into the water and growing bristle-like tendrils from its antlers that brush dirt and debris off its body.",
+			"The Adoredo may appear graceful and refined alone, but it becomes rowdier in herds, stampeding through fields and regenerating any plants it damages in the process."
+		],
+		"Buckley": [
+			"The plant-like appendages on the Adoredo's head are a separate entity that is in a symbiotic relationship with the Adoredo. It appears capable of expelling toxins when provoked.",
+			"The Adoredo's antlers secrete a special enzyme that can regenerate the cells of living things. In high quantities, it can regrow missing limbs.",
+			"The Adoredo has empathic nodes in its nervous system which can release calming pheromones powerful enough to counteract the stress hormones within another life form.",
+			"The Adoredo's immune and digestive system depends on its symbiotic relationship with various gut bacteria, which can adapt to changes in diet and pathogens in its environment.",
+			"The Adoredo has a thick coat of fur that protects it from persistent winds and winter temperatures."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		3,
+		2,
+		6,
+		1,
+		4
+	],
+	"Description": {
+		"Format": "Adoredo summons {TargetNum} spotlights, targeting the {TargetNum} lowest <MaxHealth>Health</> allies and enemies.\r\n\r\nAllies are healed <MaxHealth>{HealPercent}%</> (<OmegaPowerPercentage></>) of their missing Health + <MaxHealth>{FlatHeal}</> (<OmegaPowerPercentage></>) Health and gain <OmegaPowerPercentage>{OmegaPowerBuff}</> Omega Power.\r\n\r\nEnemies are dealt <AttackEnergyDamage>{DamagePercent}%</> (<OmegaPowerPercentage></>) of their missing Health + <AttackEnergyDamage>{FlatDamage}</> (<OmegaPowerPercentage></>) Energy Damage.\r\n\r\nHeal%: {HealPercent}% (<MaxHealth></><OmegaPowerPercentage></>)\r\nFlat Heal: <MaxHealth>{FlatHeal}</> (<OmegaPowerPercentage></>)\r\nDamage%: {DamagePercent}% (<MaxHealth></><OmegaPowerPercentage></>)\r\nFlat Damage: <AttackEnergyDamage>{FlatDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"TargetNum": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].Targeting.Num"
+			},
+			"HealPercent": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].Expression.Operands[0].Operands[0].Operands[0]"
+			},
+			"FlatHeal": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].Expression.Operands[1].Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"OmegaPowerBuff": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[1].Expression"
+			},
+			"DamagePercent": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0].Operands[0].Operands[0]"
+			},
+			"FlatDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[1].Operands[0]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Adoredo summons 3 spotlights, targeting the 3 lowest Health allies and enemies.\r\n\r\nAllies are healed 12% () of their missing Health + 150 () Health and gain 7 Omega Power.\r\n\r\nEnemies are dealt 12% () of their missing Health + 150 () Energy Damage.\r\n\r\nHeal%: 12% ()\r\nFlat Heal: 150 ()\r\nDamage%: 12% ()\r\nFlat Damage: 150 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 3,
+			"Health": 2,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 4
+		}
+	}
+}

@@ -1,0 +1,204 @@
+{
+	"CombatAffinity": "Air",
+	"CombatAffinityComponents": [],
+	"SynergyThresholds": [
+		2,
+		4,
+		6
+	],
+	"SynergyThresholdsAbilities": {
+		"Variables": [
+			{
+				"Name": "Air_AllyDodge",
+				"Values": [
+					7,
+					14,
+					21
+				]
+			},
+			{
+				"Name": "Air_AirDodge",
+				"Values": [
+					14,
+					28,
+					42
+				]
+			},
+			{
+				"Name": "Air_LastThreshold",
+				"Values": [
+					0,
+					0,
+					150
+				]
+			}
+		],
+		"UnitAbilities": [
+			{
+				"Name": "AirAffinity_SpecialAbility",
+				"ActivationTrigger": {
+					"TriggerType": "OnDodge",
+					"Allegiance": "Self"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Air - Zap the Target",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "Activator"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "InstantDamage",
+									"DamageType": "Energy",
+									"Expression": {
+										"Operation": "*",
+										"Operands": [
+											1000,
+											{
+												"Percentage": "{Air_LastThreshold}",
+												"Stat": "AttackDodgeChancePercentage",
+												"StatSource": "Sender"
+											}
+										]
+									}
+								}
+							]
+						}
+					}
+				]
+			}
+		],
+		"TeamAbilities": [
+			{
+				"Name": "AirAffinity_SelfAbility",
+				"ActivationTrigger": {
+					"TriggerType": "OnBattleStart"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Air - Dodge Chance ",
+						"Deployment": {
+							"Type": "Direct",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							]
+						},
+						"Targeting": {
+							"Type": "Synergy",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							],
+							"Group": "Ally",
+							"CombatAffinity": "Air"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Buff",
+									"Stat": "AttackDodgeChancePercentage",
+									"Expression": "{Air_AirDodge}",
+									"DurationMs": -1
+								}
+							]
+						}
+					}
+				]
+			},
+			{
+				"Name": "AirAffinity_AllyAbility",
+				"ActivationTrigger": {
+					"TriggerType": "OnBattleStart"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Ally - Dodge Chance",
+						"Deployment": {
+							"Type": "Direct",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							]
+						},
+						"Targeting": {
+							"Type": "Synergy",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							],
+							"Group": "Ally",
+							"NotCombatAffinity": "Air"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Buff",
+									"Stat": "AttackDodgeChancePercentage",
+									"Expression": "{Air_AllyDodge}",
+									"DurationMs": -1
+								}
+							]
+						}
+					}
+				]
+			}
+		]
+	},
+	"IntrinsicAbilities": [],
+	"DisplayName": "Air",
+	"DisplayDescription": "\r\nYour team gains <AttackDodgeChancePercentage>Dodge Chance</>. Air units receive double the amount.\r\n\r\n(6) On Dodge, Air units deal <AttackEnergyDamage>150%</> of their <AttackDodgeChancePercentage>Dodge Chance</> as <AttackEnergyDamage>Energy Damage</> back to the attacker.\r\n",
+	"DisplayDescriptionThresholds": [
+		"Gain <AttackDodgeChancePercentage>7</><AttackDodgeChancePercentage></>",
+		"Gain <AttackDodgeChancePercentage>14</><AttackDodgeChancePercentage></>",
+		"Gain <AttackDodgeChancePercentage>21</><AttackDodgeChancePercentage></>"
+	],
+	"Description": {
+		"Format": "\r\nYour team gains <AttackDodgeChancePercentage>Dodge Chance</>. Air units receive double the amount.\r\n\r\n({LastThreshold}) On Dodge, Air units deal <AttackEnergyDamage>{Air_LastThreshold}%</> of their <AttackDodgeChancePercentage>Dodge Chance</> as <AttackEnergyDamage>Energy Damage</> back to the attacker.\r\n",
+		"Parameters": {
+			"LastThreshold": {
+				"ParameterPath": "SynergyThresholds[2]"
+			},
+			"Air_LastThreshold": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[2].Values[2]"
+			}
+		}
+	},
+	"DescriptionThresholds": {
+		"Format": "Gain <AttackDodgeChancePercentage>{Air_AllyDodge}</><AttackDodgeChancePercentage></>",
+		"Parameters": [
+			{
+				"Air_AllyDodge": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[0]"
+				}
+			},
+			{
+				"Air_AllyDodge": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[1]"
+				}
+			},
+			{
+				"Air_AllyDodge": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[2]"
+				}
+			}
+		]
+	},
+	"DisplayDescriptionNormalized": "Your team gains Dodge Chance. Air units receive double the amount.\r\n\r\n(6) On Dodge, Air units deal 150% of their Dodge Chance as Energy Damage back to the attacker.",
+	"DisplayDescriptionThresholdsNormalized": [
+		"Gain 7",
+		"Gain 14",
+		"Gain 21"
+	]
+}

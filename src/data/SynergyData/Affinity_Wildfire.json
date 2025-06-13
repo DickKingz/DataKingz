@@ -1,0 +1,225 @@
+{
+	"CombatAffinity": "Wildfire",
+	"CombatAffinityComponents": [
+		"Fire",
+		"Nature"
+	],
+	"SynergyThresholds": [
+		2,
+		3,
+		4
+	],
+	"SynergyThresholdsAbilities": {
+		"Variables": [
+			{
+				"Name": "Wildfire_BlazeDamage",
+				"Values": [
+					240,
+					270,
+					300
+				]
+			},
+			{
+				"Name": "Wildfire_BlazeVamp",
+				"Values": [
+					15,
+					20,
+					25
+				]
+			},
+			{
+				"Name": "Wildfire_SpreadDelay",
+				"Values": [
+					2000,
+					2000,
+					100
+				]
+			},
+			{
+				"Name": "Wildfire_ResistanceDebuff",
+				"Values": [
+					0,
+					0,
+					3
+				]
+			}
+		],
+		"TeamAbilities": [],
+		"UnitAbilities": [
+			{
+				"Name": "WildfireSynergy_Ability1",
+				"ActivationTrigger": {
+					"TriggerType": "OnActivateXAbilities",
+					"AbilityTypes": [
+						"Omega"
+					],
+					"EveryX": true,
+					"NumberOfAbilitiesActivated": 1
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Wildfire - Empowered Attack",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "Self"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Empower",
+									"ActivatedBy": "Attack",
+									"IsConsumable": true,
+									"ActivationsUntilExpiry": 1,
+									"AttachedEffectPackageAttributes": {
+										"Propagation": {
+											"PropagationType": "Chain",
+											"TargetingGroup": "Enemy",
+											"ChainDelayMs": "{Wildfire_SpreadDelay}",
+											"ChainNumber": 3,
+											"PrioritizeNewTargets": false,
+											"OnlyNewTargets": true,
+											"IgnoreFirstPropagationReceiver": false,
+											"TargetingGuidance": [
+												"Ground",
+												"Airborne",
+												"Underground"
+											],
+											"DeploymentGuidance": [
+												"Ground",
+												"Airborne",
+												"Underground"
+											],
+											"EffectPackage": {
+												"Attributes": {
+													"VampiricPercentage": "{Wildfire_BlazeVamp}"
+												},
+												"Effects": [
+													{
+														"Type": "DOT",
+														"DamageType": "Energy",
+														"DurationMs": 5000,
+														"FrequencyMs": 1000,
+														"Expression": {
+															"Percentage": "{Wildfire_BlazeDamage}",
+															"Stat": "EnergyCost",
+															"StatSource": "Sender"
+														}
+													},
+													{
+														"Type": "SpawnMark",
+														"MarkType": "Detrimental",
+														"DurationMs": -1,
+														"AttachedAbilities": [
+															{
+																"Name": "Wildfire - Sub Ability",
+																"ActivationTrigger": {
+																	"TriggerType": "EveryXTime",
+																	"ActivateEveryTimeMs": 1000,
+																	"MaxActivations": 5
+																},
+																"TotalDurationMs": 0,
+																"Skills": [
+																	{
+																		"Name": "Wildfire - Debuff Resistance",
+																		"Deployment": {
+																			"Type": "Direct"
+																		},
+																		"Targeting": {
+																			"Type": "Self"
+																		},
+																		"EffectPackage": {
+																			"Effects": [
+																				{
+																					"Type": "Debuff",
+																					"Stat": "EnergyResist",
+																					"OverlapProcessType": "Stacking",
+																					"DurationMs": -1,
+																					"Expression": "{Wildfire_ResistanceDebuff}"
+																				}
+																			]
+																		}
+																	}
+																]
+															}
+														]
+													}
+												]
+											}
+										}
+									}
+								}
+							]
+						}
+					}
+				]
+			}
+		]
+	},
+	"IntrinsicAbilities": [],
+	"DisplayName": "Wildfire",
+	"DisplayDescription": "\r\nThe first attack after Omega marks the target with a Blazing Fire for 5 seconds, dealing a percentage of <EnergyCost>Energy Cost</> as <AttackEnergyDamage>Energy Damage</> with <Omnivamp>Omnivamp</>. After 2 seconds, the fire spreads to the 3 closest enemies.\r\n\r\n(4) Blaze spreads instantly and reduces the <EnergyResist>Energy Resist</> by <EnergyResist>3</> per tick.\r\n",
+	"DisplayDescriptionThresholds": [
+		"Deal <EnergyCost>240%</><EnergyCost></> as <AttackEnergyDamage></> with <Omnivamp>15%</><Omnivamp></>",
+		"Deal <EnergyCost>270%</><EnergyCost></> as <AttackEnergyDamage></> with <Omnivamp>20%</><Omnivamp></>",
+		"Deal <EnergyCost>300%</><EnergyCost></> as <AttackEnergyDamage></> with <Omnivamp>25%</><Omnivamp></>"
+	],
+	"Description": {
+		"Format": "\r\nThe first attack after Omega marks the target with a Blazing Fire for {BlazeDuration} seconds, dealing a percentage of <EnergyCost>Energy Cost</> as <AttackEnergyDamage>Energy Damage</> with <Omnivamp>Omnivamp</>. After {Wildfire_SpreadDelay} seconds, the fire spreads to the {ChainNum} closest enemies.\r\n\r\n(4) Blaze spreads instantly and reduces the <EnergyResist>Energy Resist</> by <EnergyResist>{Wildfire_ResistanceDebuff}</> per tick.\r\n",
+		"Parameters": {
+			"BlazeDuration": {
+				"ParameterPath": "SynergyThresholdsAbilities.UnitAbilities[0].Skills[0].EffectPackage.Effects[0].AttachedEffectPackageAttributes.Propagation.EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"Wildfire_SpreadDelay": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[2].Values[0]",
+				"ValueMultiplier": 0.001
+			},
+			"ChainNum": {
+				"ParameterPath": "SynergyThresholdsAbilities.UnitAbilities[0].Skills[0].EffectPackage.Effects[0].AttachedEffectPackageAttributes.Propagation.ChainNumber",
+				"ValueMultiplier": 1.0
+			},
+			"Wildfire_ResistanceDebuff": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[3].Values[2]",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DescriptionThresholds": {
+		"Format": "Deal <EnergyCost>{Wildfire_BlazeDamage}%</><EnergyCost></> as <AttackEnergyDamage></> with <Omnivamp>{Wildfire_BlazeVamp}%</><Omnivamp></>",
+		"Parameters": [
+			{
+				"Wildfire_BlazeDamage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[0]"
+				},
+				"Wildfire_BlazeVamp": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[0]"
+				}
+			},
+			{
+				"Wildfire_BlazeDamage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[1]"
+				},
+				"Wildfire_BlazeVamp": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[1]"
+				}
+			},
+			{
+				"Wildfire_BlazeDamage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[2]"
+				},
+				"Wildfire_BlazeVamp": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[2]"
+				}
+			}
+		]
+	},
+	"DisplayDescriptionNormalized": "The first attack after Omega marks the target with a Blazing Fire for 5 seconds, dealing a percentage of Energy Cost as Energy Damage with Omnivamp. After 2 seconds, the fire spreads to the 3 closest enemies.\r\n\r\n(4) Blaze spreads instantly and reduces the Energy Resist by 3 per tick.",
+	"DisplayDescriptionThresholdsNormalized": [
+		"Deal 240% as with 15%",
+		"Deal 270% as with 20%",
+		"Deal 300% as with 25%"
+	]
+}

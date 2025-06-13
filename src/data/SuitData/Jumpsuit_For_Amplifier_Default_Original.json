@@ -1,0 +1,38 @@
+{
+	"Name": "Jumpsuit",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Normal",
+	"Stats": {
+		"PhysicalResist": 0,
+		"EnergyResist": 0,
+		"MaxHealth": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 0,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 0,
+		"AttackDodgeChancePercentage": 0,
+		"MoveSpeedSubUnits": 0,
+		"OmegaPowerPercentage": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"StartingEnergy": 0,
+		"StartingShield": 0,
+		"CritChancePercentage": 0,
+		"CritAmplificationPercentage": 0,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0
+	},
+	"Abilities": [],
+	"DisplayName": "Jumpsuit",
+	"DisplayDescription": "<Italic>The Jumpsuit can be enhanced during the Suit Amplifier Round.</>",
+	"Description": {
+		"Format": "<Italic>The Jumpsuit can be enhanced during the Suit Amplifier Round.</>",
+		"Parameters": {}
+	},
+	"DisplayDescriptionNormalized": "The Jumpsuit can be enhanced during the Suit Amplifier Round."
+}

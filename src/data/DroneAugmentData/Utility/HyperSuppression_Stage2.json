@@ -1,0 +1,56 @@
+{
+	"Name": "HyperSuppression",
+	"Stage": 2,
+	"Type": "Simulation",
+	"Abilities": [
+		{
+			"Name": "HyperSuppression 1 - Ability",
+			"ActivationTrigger": {
+				"TriggerType": "EveryXTime",
+				"ActivateEveryTimeMs": 100,
+				"MaxActivations": 180
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "HyperSuppression 1 - Heal",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Allegiance",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						],
+						"Group": "Enemy"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantHyperBurn",
+								"Expression": 2000000
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Hyper Suppression II",
+	"DisplayDescription": "Enemies cannot generate Hyper for the first 18 seconds of the battle.",
+	"Description": {
+		"Format": "Enemies cannot generate Hyper for the first {Duration} seconds of the battle.",
+		"Parameters": {
+			"Duration": {
+				"ParameterPath": "Abilities[0].ActivationTrigger.MaxActivations",
+				"ValueMultiplier": 0.1
+			}
+		}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [],
+		"GrantedCredits": 0
+	}
+}

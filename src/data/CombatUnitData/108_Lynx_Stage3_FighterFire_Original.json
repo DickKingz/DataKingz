@@ -1,0 +1,192 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Lynx",
+	"Stage": 3,
+	"Path": "FighterFire",
+	"Variation": "Original",
+	"Tier": 2,
+	"CombatAffinity": "Fire",
+	"CombatClass": "Fighter",
+	"DominantCombatAffinity": "Fire",
+	"DominantCombatClass": "Fighter",
+	"SizeUnits": 7,
+	"Stats": {
+		"MaxHealth": 2300000,
+		"StartingEnergy": 40000,
+		"EnergyCost": 80000,
+		"PhysicalResist": 55,
+		"EnergyResist": 55,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 175000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 80,
+		"MoveSpeedSubUnits": 2500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 5,
+		"OmegaRangeUnits": 5,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Fighter Fire Lynx Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 38
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Insurgent Maul",
+			"TotalDurationMs": 1500,
+			"Skills": [
+				{
+					"Name": "Maul",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 69
+					},
+					"PercentageOfAbilityDuration": 80,
+					"EffectPackage": {
+						"Attributes": {
+							"VampiricPercentage": 30
+						},
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										850000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Relentless Emberlynx",
+	"DisplayDescription": "Relentless Emberlynx mauls their target, dealing <AttackPhysicalDamage>850</> (<OmegaPowerPercentage></>) Physical Damage and healing for <Omnivamp>30%</> of the damage dealt.\r\n\r\nDamage: <AttackPhysicalDamage>850</> (<OmegaPowerPercentage></>)",
+	"Intro": "The jagged fortress of Shardbluff Labyrinth towers far above the sea, barely piercing the thick grey clouds overhead. This region is consumed with darkness, battered shores and howling winds. Those looking for light cannot rely on the sky, but the magma vents sputtering below are always bright. Drawn to the shining heat, the Relentless Emberlynx wades through the lava, gliding through bubbling streams.",
+	"Summary": "The Relentless Emberlynx thrives amidst the volcanic landscape of Shardbluff Labyrinth, utilizing magma vents for warmth and recuperation. With its formidable appearance and fiery prowess, it navigates the darkness with ease. This Illuvial adapts its flame intensity to environmental temperatures, showcasing both curiosity towards visitors and a cautious approach to maintaining its territory. Equipped with specialized vision and a robust combustion system, it exemplifies strategic prowess in both survival and defense.",
+	"Biology": {
+		"Physiology": "The Relentless Emberlynx is a frightening sight to behold, with blazing fur and thick muscles covered in black and red fur. Its striking eyes are yellow, ignited with fire just like the orb on its forehead and the flames on its ears, claws, back and tail. Radiating with power, the Relentless Emberlynx is calculating in its movements, striking swiftly and only when necessary. There is scorching heat emanating from its body, especially its front. The furling red and hanging fur on its face gives it a severe appearance, even though it is rarely hostile.",
+		"Behaviour": "The Relentless Emberlynx spends long hours relaxing near lava streams. It can recover its strength using the thermal energy from the magma pools. The most peaceful Emberlynx of them all, the Relentless Emberlynx would rather explore underground than fight over territory. Sometimes, it travels near active volcanoes, able to withstand its heat. It is more than capable of defending itself with its quick movements, and make swift work of inexperienced challengers."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3FighterFire/LynxStage3FighterFire_default_default_webp.3840x2160/LynxStage3FighterFire_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3FighterFire/LynxStage3FighterFire_default_default_hls.m3u8/LynxStage3FighterFire_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Relentless Emberlynx has an inquisitive nature and it is quick to approach visitors in its region. Despite its fierce appearance, it is not overly aggressive. However, it can unintentionally burn those in its proximity with its quick movements.",
+			"The Relentless Emberlynx's flame varies in intensity depending on the temperature of its environment.",
+			"The Relentless Emberlynx rests near lava to restore its heat."
+		],
+		"Buckley": [
+			"The Relentless Emberlynx has an adaptive flame that it uses to maintain a high internal temperature. It burns with greater intensity when its environment siphons heat from its body, and lower intensity when its environment provides excess heat.",
+			"The Relentless Emberlynx requires copious amounts of oxygen to maintain its flames, but it does not require oxygen to breathe. It is capable of reducing sulfates and absorbing energy from gases considered noxious to Valains.",
+			"The Relentless Emberlynx has a combustion system in its body that connect the open flames along its back, its claws, and the tips of its ears.",
+			"The Relentless Emberlynx has specialised cones in each of its eyes that detect different types of light waves. Its left eye can detect infrared light and its right eye can detect interdimensional rifts, allowing it to respond to heat signatures and movement from other dimensions.",
+			"The Relentless Emberlynx's nervous system is directly connected to the luminous orb upon its forehead, which can light up in varying degrees of illumination corresponding to its mental activity, particularly those involving ambushing prey."
+		]
+	},
+	"TraitOrderLegacy": [
+		2,
+		1,
+		4,
+		6,
+		3,
+		5
+	],
+	"Description": {
+		"Format": "Relentless Emberlynx mauls their target, dealing <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Physical Damage and healing for <Omnivamp>{Vampiric}%</> of the damage dealt.\r\n\r\nDamage: <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"Vampiric": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Attributes.VampiricPercentage"
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Relentless Emberlynx mauls their target, dealing 850 () Physical Damage and healing for 30% of the damage dealt.\r\n\r\nDamage: 850 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 2,
+			"AttackSpeed": 1,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 3,
+			"Resistance": 5
+		}
+	}
+}

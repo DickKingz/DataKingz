@@ -1,0 +1,200 @@
+{
+	"Name": "TempestLance",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Normal",
+	"CombatAffinity": "Air",
+	"CombatClass": "Bulwark",
+	"DominantCombatAffinity": "Air",
+	"DominantCombatClass": "Bulwark",
+	"Stats": {
+		"MaxHealth": 1000000,
+		"StartingEnergy": 40000,
+		"EnergyCost": 140000,
+		"PhysicalResist": 60,
+		"EnergyResist": 60,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 120000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 75,
+		"MoveSpeedSubUnits": 0,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 4,
+		"OmegaRangeUnits": 4,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Lance Attack I",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 50
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Stormthrust",
+			"TotalDurationMs": 1500,
+			"Skills": [
+				{
+					"Name": "ConeAttack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 40
+					},
+					"Zone": {
+						"Shape": "Triangle",
+						"RadiusUnits": 21,
+						"DirectionDegrees": 0,
+						"DurationMs": 200,
+						"FrequencyMs": 200,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"ID": "AmplifiedDischarge",
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										200000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"ID": "DisruptionStrike",
+								"Type": "NegativeState",
+								"NegativeState": "Disarm",
+								"DurationMs": 0
+							}
+						]
+					}
+				},
+				{
+					"Name": "Shield",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"PercentageOfAbilityDuration": 0,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"ID": "ReinforcedCapacitor",
+								"Type": "SpawnShield",
+								"DurationMs": 4000,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										200000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Tempest Lance",
+	"DisplayDescription": "The Ranger thrusts the lance in the target's direction, creating a gust of wind that deals <AttackPhysicalDamage>200</> (<OmegaPowerPercentage></>) Physical Damage to enemies in a 21-radius cone.\r\nThe Ranger is then enveloped in a shimmering 200 (<OmegaPowerPercentage></>) Shield for 4 seconds.",
+	"Description": {
+		"Format": "The Ranger thrusts the lance in the target's direction, creating a gust of wind that deals <AttackPhysicalDamage>{Damage}</> (<OmegaPowerPercentage></>) Physical Damage to enemies in a {Radius}-radius cone.\r\nThe Ranger is then enveloped in a shimmering {ShieldVal} (<OmegaPowerPercentage></>) Shield for {Duration} seconds.",
+		"Parameters": {
+			"Damage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"Radius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Zone.RadiusUnits",
+				"ValueMultiplier": 1.0
+			},
+			"ShieldVal": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"Duration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "The Ranger thrusts the lance in the target's direction, creating a gust of wind that deals 200 () Physical Damage to enemies in a 21-radius cone.\r\nThe Ranger is then enveloped in a shimmering 200 () Shield for 4 seconds."
+}

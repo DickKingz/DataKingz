@@ -1,0 +1,181 @@
+{
+	"CombatClass": "Arcanite",
+	"CombatClassComponents": [
+		"Psion",
+		"Fighter"
+	],
+	"SynergyThresholds": [
+		2,
+		3,
+		4
+	],
+	"SynergyThresholdsAbilities": {
+		"Variables": [
+			{
+				"Name": "Arcanite_OmegaPower",
+				"Values": [
+					40,
+					50,
+					70
+				]
+			},
+			{
+				"Name": "Arcanite_AttackDamage",
+				"Values": [
+					50,
+					70,
+					100
+				]
+			},
+			{
+				"Name": "Arcanite_Piercing",
+				"Values": [
+					0,
+					0,
+					40
+				]
+			}
+		],
+		"TeamAbilities": [],
+		"UnitAbilities": [
+			{
+				"Name": "ArcaniteSynergy_Ability1",
+				"ActivationTrigger": {
+					"TriggerType": "OnBattleStart"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Arcanite - Omega Power and Piercing",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "Self"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Buff",
+									"Stat": "OmegaPowerPercentage",
+									"DurationMs": -1,
+									"FrequencyMs": 1000,
+									"Expression": {
+										"Percentage": "{Arcanite_OmegaPower}",
+										"Stat": "AttackSpeed",
+										"StatSource": "Receiver"
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "EnergyPiercingPercentage",
+									"DurationMs": -1,
+									"Expression": "{Arcanite_Piercing}"
+								},
+								{
+									"Type": "Buff",
+									"Stat": "PhysicalPiercingPercentage",
+									"DurationMs": -1,
+									"Expression": "{Arcanite_Piercing}"
+								}
+							]
+						}
+					}
+				]
+			},
+			{
+				"Name": "ArcaniteSynergy_Ability2",
+				"ActivationTrigger": {
+					"TriggerType": "OnActivateXAbilities",
+					"AbilityTypes": [
+						"Omega"
+					],
+					"EveryX": true,
+					"NumberOfAbilitiesActivated": 1
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Arcanite - Attack Damage",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "Self"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Buff",
+									"Stat": "AttackEnergyDamage",
+									"DurationMs": 5000,
+									"Expression": {
+										"Percentage": "{Arcanite_AttackDamage}",
+										"Stat": "EnergyCost",
+										"StatSource": "Receiver"
+									}
+								}
+							]
+						}
+					}
+				]
+			}
+		]
+	},
+	"IntrinsicAbilities": [],
+	"DisplayName": "Arcanite",
+	"DisplayDescription": "\r\nArcanites gain a percentage of their <AttackSpeed>Attack Speed</> as <OmegaPowerPercentage>Omega Power</>. On Omega, receive a percentage of <EnergyCost>Energy Cost</> as <AttackEnergyDamage>Attack Damage</> for 5 seconds.\r\n\r\n(4) Gain <Piercing>40%</> <Piercing>Resistance Piercing</>.\r\n",
+	"DisplayDescriptionThresholds": [
+		"Gain <AttackSpeed>40%</><AttackSpeed></> as <OmegaPowerPercentage></> and <EnergyCost>50%</><EnergyCost></> as <AttackDamage></>",
+		"Gain <AttackSpeed>50%</><AttackSpeed></> as <OmegaPowerPercentage></> and <EnergyCost>70%</><EnergyCost></> as <AttackDamage></>",
+		"Gain <AttackSpeed>70%</><AttackSpeed></> as <OmegaPowerPercentage></> and <EnergyCost>100%</><EnergyCost></> as <AttackDamage></>"
+	],
+	"Description": {
+		"Format": "\r\nArcanites gain a percentage of their <AttackSpeed>Attack Speed</> as <OmegaPowerPercentage>Omega Power</>. On Omega, receive a percentage of <EnergyCost>Energy Cost</> as <AttackEnergyDamage>Attack Damage</> for {BuffDuration} seconds.\r\n\r\n(4) Gain <Piercing>{Arcanite_Piercing}%</> <Piercing>Resistance Piercing</>.\r\n",
+		"Parameters": {
+			"BuffDuration": {
+				"ParameterPath": "SynergyThresholdsAbilities.UnitAbilities[1].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"Arcanite_Piercing": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[2].Values[2]",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DescriptionThresholds": {
+		"Format": "Gain <AttackSpeed>{Arcanite_OmegaPower}%</><AttackSpeed></> as <OmegaPowerPercentage></> and <EnergyCost>{Arcanite_AttackDamage}%</><EnergyCost></> as <AttackDamage></>",
+		"Parameters": [
+			{
+				"Arcanite_OmegaPower": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[0]"
+				},
+				"Arcanite_AttackDamage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[0]"
+				}
+			},
+			{
+				"Arcanite_OmegaPower": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[1]"
+				},
+				"Arcanite_AttackDamage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[1]"
+				}
+			},
+			{
+				"Arcanite_OmegaPower": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[2]"
+				},
+				"Arcanite_AttackDamage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[2]"
+				}
+			}
+		]
+	},
+	"DisplayDescriptionNormalized": "Arcanites gain a percentage of their Attack Speed as Omega Power. On Omega, receive a percentage of Energy Cost as Attack Damage for 5 seconds.\r\n\r\n(4) Gain 40% Resistance Piercing.",
+	"DisplayDescriptionThresholdsNormalized": [
+		"Gain 40% as and 50% as",
+		"Gain 50% as and 70% as",
+		"Gain 70% as and 100% as"
+	]
+}

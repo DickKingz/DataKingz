@@ -1,0 +1,170 @@
+{
+	"CombatClass": "Phantom",
+	"CombatClassComponents": [
+		"Rogue",
+		"Psion"
+	],
+	"SynergyThresholds": [
+		2,
+		3,
+		4
+	],
+	"SynergyThresholdsAbilities": {
+		"Variables": [
+			{
+				"Name": "Phantom_OmegaPower",
+				"Values": [
+					2,
+					4,
+					6
+				]
+			},
+			{
+				"Name": "Phantom_Vampiric",
+				"Values": [
+					0,
+					0,
+					8
+				]
+			}
+		],
+		"TeamAbilities": [],
+		"UnitAbilities": [
+			{
+				"Name": "PhantomSynergy_Ability1",
+				"ActivationTrigger": {
+					"TriggerType": "OnBattleStart"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Phantom - Can Crit & Vampiric",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "Self"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Empower",
+									"ActivatedBy": "Omega",
+									"DurationMs": -1,
+									"AttachedEffects": [],
+									"AttachedEffectPackageAttributes": {
+										"CanCrit": true,
+										"VampiricPercentage": "{Phantom_Vampiric}"
+									}
+								}
+							]
+						}
+					}
+				]
+			},
+			{
+				"Name": "PhantomSynergy_Ability2",
+				"ActivationTrigger": {
+					"TriggerType": "OnDealCrit"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Phantom - Omega Power on Crit",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "Self"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Buff",
+									"Stat": "OmegaPowerPercentage",
+									"DurationMs": -1,
+									"OverlapProcessType": "Stacking",
+									"Expression": "{Phantom_OmegaPower}"
+								}
+							]
+						}
+					}
+				]
+			}
+		]
+	},
+	"IntrinsicAbilities": [
+		{
+			"Name": "PhantomSynergy_Blink",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 680,
+			"Skills": [
+				{
+					"Name": "Jumps across",
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Blink",
+								"BlinkTarget": "Across",
+								"BlinkDelayMs": 500,
+								"DurationMs": 680
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Phantom",
+	"DisplayDescription": "\r\nOmega can Critically Strike. Phantom units gain <OmegaPowerPercentage>Omega Power</> when they deal a Critical Hit.\r\n\r\n(4) Phantom units heal for <MaxHealth>8%</> of the damage dealt by their Omega.\r\n\r\n<Italic>Innate: Blink to the opposite side of the board.</>\r\n",
+	"DisplayDescriptionThresholds": [
+		"Gain <OmegaPowerPercentage>2</><OmegaPowerPercentage></>",
+		"Gain <OmegaPowerPercentage>4</><OmegaPowerPercentage></>",
+		"Gain <OmegaPowerPercentage>6</><OmegaPowerPercentage></>"
+	],
+	"Description": {
+		"Format": "\r\nOmega can Critically Strike. Phantom units gain <OmegaPowerPercentage>Omega Power</> when they deal a Critical Hit.\r\n\r\n(4) Phantom units heal for <MaxHealth>{Phantom_Vampiric}%</> of the damage dealt by their Omega.\r\n\r\n<Italic>Innate: Blink to the opposite side of the board.</>\r\n",
+		"Parameters": {
+			"Phantom_Vampiric": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[2]",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DescriptionThresholds": {
+		"Format": "Gain <OmegaPowerPercentage>{Phantom_OmegaPower}</><OmegaPowerPercentage></>",
+		"Parameters": [
+			{
+				"Phantom_OmegaPower": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[0]"
+				}
+			},
+			{
+				"Phantom_OmegaPower": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[1]"
+				}
+			},
+			{
+				"Phantom_OmegaPower": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[2]"
+				}
+			}
+		]
+	},
+	"DisplayDescriptionNormalized": "Omega can Critically Strike. Phantom units gain Omega Power when they deal a Critical Hit.\r\n\r\n(4) Phantom units heal for 8% of the damage dealt by their Omega.\r\n\r\nInnate: Blink to the opposite side of the board.",
+	"DisplayDescriptionThresholdsNormalized": [
+		"Gain 2",
+		"Gain 4",
+		"Gain 6"
+	]
+}

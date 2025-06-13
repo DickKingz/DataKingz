@@ -1,0 +1,299 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "AtippoNature",
+	"Stage": 2,
+	"Path": "Nature",
+	"Variation": "Original",
+	"Tier": 0,
+	"CombatAffinity": "Nature",
+	"CombatClass": "Empath",
+	"DominantCombatAffinity": "Nature",
+	"DominantCombatClass": "Empath",
+	"SizeUnits": 4,
+	"Stats": {
+		"MaxHealth": 1500000,
+		"StartingEnergy": 40000,
+		"EnergyCost": 140000,
+		"PhysicalResist": 30,
+		"EnergyResist": 30,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 100000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 60,
+		"MoveSpeedSubUnits": 1750,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 40,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Nature Atippo Basic Attack II",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 50
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 8000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Vigour II",
+			"TotalDurationMs": 2000,
+			"Skills": [
+				{
+					"Name": "Orb pulse",
+					"Targeting": {
+						"Type": "Self",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 60
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 24,
+						"DurationMs": 4000,
+						"FrequencyMs": 1000,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 100,
+					"ChannelTimeMs": 2000,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Debuff",
+								"Stat": "AttackSpeed",
+								"DurationMs": 2500,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										{
+											"Percentage": 15,
+											"Stat": "AttackSpeed",
+											"StatSource": "Receiver"
+										},
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										150000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Shield Allies",
+					"PercentageOfAbilityDuration": 0,
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 0
+					},
+					"Targeting": {
+						"Type": "InZone",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						],
+						"Group": "Ally",
+						"RadiusUnits": 24,
+						"Self": true
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "SpawnShield",
+								"DurationMs": 4000,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										150000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Greater Nature Atippo",
+	"DisplayDescription": "Greater Nature Atippo throws its orb into the air, granting all allies within 24-hexes a <StartingShield>150</> (<OmegaPowerPercentage></>) Shield for 4 seconds. Enemies hit by the orb take <AttackEnergyDamage>150</> (<OmegaPowerPercentage></>) Energy Damage and reducing their Attack Speed by <AttackSpeed>15</> (<OmegaPowerPercentage></>) for 2.5 seconds.\r\n\r\nShield: <StartingShield>150</> (<OmegaPowerPercentage></>)\r\nDamage: <AttackEnergyDamage>150</> (<OmegaPowerPercentage></>)\r\nAttack Speed: <AttackSpeed>15%</> (<OmegaPowerPercentage></>)",
+	"Intro": "Abyssal Basin is home to sprawling forests and thriving plant life, but the most vibrant green in the entire region can only be seen at night. The fluorescing soil in Greenwood illuminates both land and the pooling waters, attracting leafy Illuvials with their amplified hue in the reflections. The Greater Nature Atippo dips its head in and collects luminous water in its single, massive curved horn.",
+	"Summary": "At night, the fluorescing soil of Abyssal Basin's Greenwood illuminates the land and water, attracting the Greater Nature Atippo. This nature Illuvial features a green orb, leaf-covered body, and light brown tendrils, using its horn to collect rainwater and playfully shoot water blasts. Its leaf-like scales enable photosynthesis for underwater breathing, and its tail petals emit stress-lowering fragrances, while it relies on sunlight to maintain its vibrant appearance.",
+	"Biology": {
+		"Physiology": "The Greater Nature Atippo's crowning glory is a large, scoop-shaped horn on its head that's roughly the same size as the rest of its body. It balloons out like a collapsed mushroom, brown in colour with a knobbed bark texture that's covered with moss at the top. Floating above the horn's inverted curve is a gentle green orb, pulsing with light just like the luminous dots drifting from the pink petals on its vine-like tail. The rest of its body is covered with layers of leaves, with light brown tendrils along its spine. Standing on four stout legs with small black claws, the Greater Nature Atippo looks up with its red eyes, twitching its thin leaf ears.",
+		"Behaviour": "The Greater Nature Atippo collects rainwater with its giant horn and uses it to water the leaves upon its back. It sometimes offers this water to other Atippos, bathing one another as a form of bonding. The Greater Nature Atippo often plays by shooting water out of its horn with energy blasts from its orb. It is capable of controlling the strength of its blasts, from playful taps to rough warnings. When the Greater Nature Atippo is overcome with adrenaline, it sends out bursts of vitality to other Illuvials in its vicinity."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/AtippoStage2Nature/AtippoStage2Nature_default_default_webp.3840x2160/AtippoStage2Nature_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/AtippoStage2Nature/AtippoStage2Nature_default_default_hls.m3u8/AtippoStage2Nature_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Greater Nature Atippo collects raindrops and anything that washes down with the rain on its horn, from fallen leaves to petals and seeds. During spring, small buds grow upon its horn but they fall away by summer.",
+			"The Greater Nature Atippo gathers in groups and wades in pools together, shooting blasts of water out in a patterned formation like a living fountain. This ritual allows them to gather energy and share it in abundance with each other, their light orbs glowing in unison.",
+			"The Greater Nature Atippo spends most of its time wading in the swamps, camouflaged with the green growths on its body and bark-like horn."
+		],
+		"Buckley": [
+			"The Greater Nature Atippo's leaf-like scales are actually living plants that have merged with its skin. These plants can photosynthesize to produce higher amounts of oxygen than any other found in nature, allowing the Lesser Nature Atippo to breathe underwater and in low-oxygen environments for short periods of time.",
+			"The Greater Nature Atippo's luminous orb can emit a layer of sound that is a higher frequency than the hearing range of most organic life forms, allowing it to communicate discreetly with others of its kind.",
+			"The Greater Nature Atippo's horn processes vibratory sensations and acts as a tuning fork for detecting the electromagnetic impulse of life around it. The closer it is to the ground, the stronger the vibrations and the richer the natural sound it detects.",
+			"The petals on the Greater Nature Atippo's tail can release fragrances that lower the stress hormones of those around it.",
+			"The Greater Nature Atippo's body requires regular sunlight in order to maintain the vibrancy of its green leaves and purple petals."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		2,
+		3,
+		6,
+		1,
+		4
+	],
+	"Description": {
+		"Format": "Greater Nature Atippo throws its orb into the air, granting all allies within {OmegaRadius}-hexes a <StartingShield>{ShieldValue}</> (<OmegaPowerPercentage></>) Shield for {ShieldDuration} seconds. Enemies hit by the orb take <AttackEnergyDamage>{OrbDamage}</> (<OmegaPowerPercentage></>) Energy Damage and reducing their Attack Speed by <AttackSpeed>{ASVal}</> (<OmegaPowerPercentage></>) for {EffectDuration} seconds.\r\n\r\nShield: <StartingShield>{ShieldValue}</> (<OmegaPowerPercentage></>)\r\nDamage: <AttackEnergyDamage>{OrbDamage}</> (<OmegaPowerPercentage></>)\r\nAttack Speed: <AttackSpeed>{ASVal}%</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Zone.RadiusUnits"
+			},
+			"ShieldValue": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"ShieldDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Zone.DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"OrbDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"ASVal": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0].Percentage",
+				"ValueMultiplier": 1.0
+			},
+			"EffectDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Greater Nature Atippo throws its orb into the air, granting all allies within 24-hexes a 150 () Shield for 4 seconds. Enemies hit by the orb take 150 () Energy Damage and reducing their Attack Speed by 15 () for 2.5 seconds.\r\n\r\nShield: 150 ()\r\nDamage: 150 ()\r\nAttack Speed: 15% ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 2,
+			"Health": 3,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 4
+		}
+	}
+}

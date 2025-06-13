@@ -1,0 +1,21 @@
+{
+	"Name": "Fighter",
+	"Stage": 1,
+	"Type": "Game",
+	"DisplayName": "Fighter Module",
+	"DisplayDescription": "Gain a Fighter Imprint.",
+	"Description": {
+		"Format": "Gain a Fighter Imprint.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Fighter",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

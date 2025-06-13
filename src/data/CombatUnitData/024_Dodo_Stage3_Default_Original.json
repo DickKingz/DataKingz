@@ -1,0 +1,253 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Dodo",
+	"Stage": 3,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 1,
+	"CombatAffinity": "Tempest",
+	"CombatClass": "Enchanter",
+	"DominantCombatAffinity": "Air",
+	"DominantCombatClass": "Empath",
+	"SizeUnits": 6,
+	"Stats": {
+		"MaxHealth": 2000000,
+		"StartingEnergy": 20000,
+		"EnergyCost": 160000,
+		"PhysicalResist": 35,
+		"EnergyResist": 40,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 135000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 85,
+		"MoveSpeedSubUnits": 3250,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 10,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 20,
+		"OmegaRangeUnits": 20,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Dodo Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 36
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Whirlwind III",
+			"TotalDurationMs": 800,
+			"Skills": [
+				{
+					"Name": "Tornado knock-up and stun with EnergyDamage",
+					"Targeting": {
+						"Type": "DistanceCheck",
+						"Guidance": [
+							"Ground",
+							"Underground"
+						],
+						"Group": "Enemy",
+						"Lowest": true,
+						"Num": 1
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground",
+							"Underground"
+						],
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 0,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Stun",
+								"DurationMs": 3500
+							},
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Focused",
+								"DurationMs": 3500
+							},
+							{
+								"Type": "Debuff",
+								"Stat": "VulnerabilityPercentage",
+								"OverlapProcessType": "Merge",
+								"DurationMs": 3500,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										{
+											"Percentage": 20,
+											"Stat": "VulnerabilityPercentage",
+											"StatSource": "Receiver"
+										},
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Shield",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "SpawnShield",
+								"DurationMs": 4000,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										250000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Kukkaraph",
+	"DisplayDescription": "Kukkaraph gains a 250 (<OmegaPowerPercentage></>) Shield for 4 seconds and suspends the closest enemy in the air.\r\n\r\nThe suspended enemy takes <DamageAmplification>20%</> (<OmegaPowerPercentage></>) extra damage, becoming Stunned and Focused for 3.5 seconds.\r\n\r\nShield: 250 (<OmegaPowerPercentage></>)\r\nExtra Damage: <DamageAmplification>20%</> (<OmegaPowerPercentage></>)\r\n\r\n<Italic>Focused: Causes all allies within range to attack the Focused unit.</>",
+	"Intro": "In the untamed expanse of Taiga Boreal, the ice, shaped by fierce storms, assumes a myriad of enchanting forms. The towering and peculiar formations that expand into vast plateaus, occasionally giving rise to thrones or stages, bear witness to nature's might. Amidst these magnificent icy winds and snow flurries, a creature stands tall with pride and dignity?the Kukkaraph. Its vibrant red feathers ruffling in the breeze, this Illuvial struts about, undeterred by the elemental forces that surround it.",
+	"Summary": "The Kukkaraph stands out among the enchanting ice formations of Taiga Boreal, with its vibrant red feathers, strutting proudly. Adorned with large red and white feathers and a blue face framed by red triangles, the Kukkaraph features a crown of ribbon-like tendrils and large hooked feet. It stoically scans for threats, using air manipulation to navigate and create temporary shelters in the snow, though it cannot truly fly. The Kukkaraph's multi-layered feathers and robust respiratory system aid in insulation and vocal resonance.",
+	"Biology": {
+		"Physiology": "The Kukkaraph is a truly striking creature, adorned with large red and white feathers that fan out behind it and a sweeping pair of even longer plumes that trail like a billowing cloak. Its crown of red and white feathers boasts pairs of ribbon-like tendrils sprouting from the back of its head and shoulders. The Kukkaraph's face, an arresting blue akin to a festive mask, features red triangles framing its eyes and a prominent black beak. It possesses two large hooked feet and fluffy wings, which can appear majestic or comical, depending on the wind's whims.",
+		"Behaviour": "The Kukkaraph's gaze often remains stoically fixed in the distance, scanning for threats and predators. During fierce storms, it digs trenches in the snow to create temporary shelter, leaving only the top of its head and its large tail feathers exposed. While the Kukkaraph may employ its wings and air manipulation abilities to navigate the snow, it cannot achieve true flight."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/DodoStage2/DodoStage2_default_default_webp.3840x2160/DodoStage2_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/DodoStage2/DodoStage2_default_default_hls.m3u8/DodoStage2_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Kukkaraph's eyes often gaze far into the distance, searching for potential prey and predators. During this time, it remains motionless, except for its tail which vibrates rapidly to pull up thick gusts of snow and hide its body.",
+			"The Kukkaraph's ribbon-like tendrils twist and turn before it summons a mighty whirlwind.",
+			"The Kukkaraph manipulates air to groom and manoeuvre its feathers. It can also use this ability to groom others until they are suitably fluffy."
+		],
+		"Buckley": [
+			"The Kukkaraph stores multiple layers of feathers within its body that are ready to grow whenever it sheds an outer layer.",
+			"The Kukkaraph exhales through multiple air sacs beneath its plumes, designed to form a consistent air gap that aids insulation. These air sacs also act as a pouch that resonates when it cries, allowing its voice to carry over long distances.",
+			"The Kukkaraph's hooked feet are padded with spiny gripping studs upon its toes for maintaining its stance on various terrain.",
+			"The Kukkaraph has a robust respiratory system which is connected to airways through its nose and mouth, as well as the air sacs beneath its plumes.",
+			"The Kukkaraph's red eyes have multiple inner eyelids that filter its view."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		4,
+		2,
+		6,
+		1,
+		3
+	],
+	"Description": {
+		"Format": "Kukkaraph gains a {ShieldValue} (<OmegaPowerPercentage></>) Shield for {ShieldDuration} seconds and suspends the closest enemy in the air.\r\n\r\nThe suspended enemy takes <DamageAmplification>{ExtraDamage}%</> (<OmegaPowerPercentage></>) extra damage, becoming Stunned and Focused for {StunDuration} seconds.\r\n\r\nShield: {ShieldValue} (<OmegaPowerPercentage></>)\r\nExtra Damage: <DamageAmplification>{ExtraDamage}%</> (<OmegaPowerPercentage></>)\r\n\r\n<Italic>Focused: Causes all allies within range to attack the Focused unit.</>",
+		"Parameters": {
+			"ShieldValue": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"ShieldDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"StunDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"ExtraDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[2].Expression.Operands[0].Percentage"
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Kukkaraph gains a 250 () Shield for 4 seconds and suspends the closest enemy in the air.\r\n\r\nThe suspended enemy takes 20% () extra damage, becoming Stunned and Focused for 3.5 seconds.\r\n\r\nShield: 250 ()\r\nExtra Damage: 20% ()\r\n\r\nFocused: Causes all allies within range to attack the Focused unit.",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 4,
+			"Health": 2,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 3
+		}
+	}
+}

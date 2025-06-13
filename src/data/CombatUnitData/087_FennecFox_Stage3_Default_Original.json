@@ -1,0 +1,268 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "FennecFox",
+	"Stage": 3,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 3,
+	"CombatAffinity": "Dust",
+	"CombatClass": "Enchanter",
+	"DominantCombatAffinity": "Air",
+	"DominantCombatClass": "Empath",
+	"SizeUnits": 4,
+	"Stats": {
+		"MaxHealth": 1900000,
+		"StartingEnergy": 100000,
+		"EnergyCost": 150000,
+		"PhysicalResist": 40,
+		"EnergyResist": 50,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 165000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 65,
+		"OmegaRangeUnits": 0,
+		"MoveSpeedSubUnits": 2500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 5,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 60,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Fennec Fox Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 50
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 10000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Phantom Eyes III",
+			"TotalDurationMs": 1500,
+			"Skills": [
+				{
+					"Name": "Temp increased Phy and Enrg Resist",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 0,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "SpawnShield",
+								"DurationMs": 6000,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										350000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Damage and Stun",
+					"Targeting": {
+						"Type": "DistanceCheck",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"Group": "Enemy",
+						"Lowest": false,
+						"Num": 2
+					},
+					"PercentageOfAbilityDuration": 100,
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 47
+					},
+					"Projectile": {
+						"SizeUnits": 5,
+						"SpeedSubUnits": 10000,
+						"IsHoming": false,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Charm",
+								"DurationMs": 1500
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										450000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Ghazotep",
+	"DisplayDescription": "Ghazotep gains 350 (<OmegaPowerPercentage></>) Shield for 6 seconds, Charming the 2 furthest enemies for 1.5 seconds and dealing <AttackEnergyDamage>450</> (<OmegaPowerPercentage></>) <AttackEnergyDamage>Energy Damage</>.\r\n\r\nShield: <StartingShield>350</> (<OmegaPowerPercentage></>)\r\nDamage: <AttackEnergyDamage>450</> (<OmegaPowerPercentage></>)\r\n\r\nCharm: Forces the unit to move towards the source",
+	"Intro": "The mangrove forests of Abyssal Basin are full of overhanging branches and intertwined roots. This complex network of interlocking trees creates platforms for other life to grow. However, because the forest canopy is so tangled, it blocks the sun. As a result, all the plant life in the area creates its own light for others to absorb. Sometimes they even grow from the illuminated spots on the Ghazotep's throng of tails.",
+	"Summary": "The Ghazotep has nine tremendous tails adorned with bioluminescent markings and large, spiral-curved ears with lighted tips. It uses its gentle light to attract Morphopods and protect Winqs, fanning out its tails to display eye-like patterns when threatened. The Ghazotep's ears amplify sound frequencies and detect neural activity, allowing it to create hypnotic light displays that can manipulate and trance other Illuvials.",
+	"Biology": {
+		"Physiology": "The Ghazotep's tremendous tails are exquisite and monstrous, like a horde of dark brown tentacles adorned with white light and spirals. These ornate markings continue to up its back, upon dark brown fur that forms streaks on its tawny coat. Ending in a spiral curve, the Ghazotep's exceptionally large ears have a dot of light dangling from its tips. Even more radiant are its eyes, and the triangular mark on the centre of its chest.",
+		"Behaviour": "Sitting elegantly among the twisted roots, the Ghazotep has many Morphopod admirers. It knows how enchanting its gentle light is, and it uses the bright dots hanging from its ears to attract its prey. It often gathers large swarms of Morphopods with its light to feed other Winqs under its care. When threatened, the Ghazotep fans out its tails, baring the luminous eye-shaped pattern on each of its tails at a potential aggressor. The Ghazotep's nine tails are capable of coordinating complex movements and disrupting an opponent's line of sight."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/FennecFoxStage3/FennecFoxStage3_default_default_webp.3840x2160/FennecFoxStage3_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/FennecFoxStage3/FennecFoxStage3_default_default_hls.m3u8/FennecFoxStage3_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"If the Ghazotep loses a tail, another one will grow back in its place.",
+			"The bioluminescent markings on the Ghazotep's tails have a hypnotic effect on other Illuvials that amplifies when joined together.",
+			"Ghazotepa often guard groups of Winqs who follow it around, attempting to copy its movements."
+		],
+		"Buckley": [
+			"The Ghazotep's ears have multiple internal cavities that amplify different frequencies of the ambient sound. By moving its ears, it can select which frequencies it wants to focus on.",
+			"The Ghazotep's nine tails contain large traces of Selenvium which amplifies the luminosity of its bioluminescent cells.",
+			"The Ghazotep's ears have a secondary function of detecting the neural activity of other Illuvials. These frequencies inform the Ghazotep on the specific light displays that it can use to manipulate the nervous system of others, putting them in a trance-like state.",
+			"The Ghazotep has a wood-like scent and luminous spots hanging from its large ears which are highly attractive to morphopod prey.",
+			"The Ghazotep has stores of smaller, undeveloped tails within the base of its tail which enables it to rapidly grow back lost tails."
+		]
+	},
+	"TraitOrderLegacy": [
+		3,
+		2,
+		4,
+		6,
+		1,
+		5
+	],
+	"Description": {
+		"Format": "Ghazotep gains {ShieldValue} (<OmegaPowerPercentage></>) Shield for {ShieldDuration} seconds, Charming the {TargetNum} furthest enemies for {CharmDuration} seconds and dealing <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) <AttackEnergyDamage>Energy Damage</>.\r\n\r\nShield: <StartingShield>{ShieldValue}</> (<OmegaPowerPercentage></>)\r\nDamage: <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)\r\n\r\nCharm: Forces the unit to move towards the source",
+		"Parameters": {
+			"ShieldValue": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"ShieldDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"TargetNum": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].Targeting.Num"
+			},
+			"CharmDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[1].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Ghazotep gains 350 () Shield for 6 seconds, Charming the 2 furthest enemies for 1.5 seconds and dealing 450 () Energy Damage.\r\n\r\nShield: 350 ()\r\nDamage: 450 ()\r\n\r\nCharm: Forces the unit to move towards the source",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 3,
+			"AttackSpeed": 2,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 5
+		}
+	}
+}

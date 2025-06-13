@@ -1,0 +1,139 @@
+{
+	"CombatAffinity": "Shock",
+	"CombatAffinityComponents": [
+		"Fire",
+		"Air"
+	],
+	"SynergyThresholds": [
+		2,
+		3,
+		4
+	],
+	"SynergyThresholdsAbilities": {
+		"Variables": [
+			{
+				"Name": "Shock_Damage",
+				"Values": [
+					225000,
+					275000,
+					325000
+				]
+			},
+			{
+				"Name": "Shock_Trigger",
+				"Values": [
+					5000,
+					5000,
+					5000
+				]
+			},
+			{
+				"Name": "Shock_Enemies",
+				"Values": [
+					2,
+					2,
+					3
+				]
+			}
+		],
+		"TeamAbilities": [],
+		"UnitAbilities": [
+			{
+				"Name": "ShockSynergy_Ability1",
+				"ActivationTrigger": {
+					"TriggerType": "EveryXTime",
+					"ActivateEveryTimeMs": "{Shock_Trigger}"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Lightning that damages and reduces energy resist.",
+						"Targeting": {
+							"Type": "CombatStatCheck",
+							"Group": "Enemy",
+							"Stat": "EnergyResist",
+							"Lowest": true,
+							"Num": "{Shock_Enemies}",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							]
+						},
+						"Deployment": {
+							"Type": "Direct",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							]
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "InstantDamage",
+									"DamageType": "Energy",
+									"Expression": "{Shock_Damage}"
+								}
+							]
+						}
+					}
+				]
+			}
+		]
+	},
+	"IntrinsicAbilities": [],
+	"DisplayName": "Shock",
+	"DisplayDescription": "\r\nEvery 5 seconds, Shock units summon lightning strikes at the 2 lowest <EnergyResist>Energy Resist</> enemies, dealing <AttackEnergyDamage>Energy Damage</>.\r\n\r\n(4) The amount of enemies is increased to 3.\r\n",
+	"DisplayDescriptionThresholds": [
+		"Deal <AttackEnergyDamage>225</><AttackEnergyDamage></>",
+		"Deal <AttackEnergyDamage>275</><AttackEnergyDamage></>",
+		"Deal <AttackEnergyDamage>325</><AttackEnergyDamage></>"
+	],
+	"Description": {
+		"Format": "\r\nEvery {Shock_Trigger} seconds, Shock units summon lightning strikes at the {Shock_Enemies} lowest <EnergyResist>Energy Resist</> enemies, dealing <AttackEnergyDamage>Energy Damage</>.\r\n\r\n(4) The amount of enemies is increased to {Shock_Enemies2}.\r\n",
+		"Parameters": {
+			"Shock_Trigger": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[0]",
+				"ValueMultiplier": 0.001
+			},
+			"Shock_Enemies": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[2].Values[0]",
+				"ValueMultiplier": 1.0
+			},
+			"Shock_Enemies2": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[2].Values[2]",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DescriptionThresholds": {
+		"Format": "Deal <AttackEnergyDamage>{Shock_Damage}</><AttackEnergyDamage></>",
+		"Parameters": [
+			{
+				"Shock_Damage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[0]",
+					"ValueMultiplier": 0.001
+				}
+			},
+			{
+				"Shock_Damage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[1]",
+					"ValueMultiplier": 0.001
+				}
+			},
+			{
+				"Shock_Damage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[2]",
+					"ValueMultiplier": 0.001
+				}
+			}
+		]
+	},
+	"DisplayDescriptionNormalized": "Every 5 seconds, Shock units summon lightning strikes at the 2 lowest Energy Resist enemies, dealing Energy Damage.\r\n\r\n(4) The amount of enemies is increased to 3.",
+	"DisplayDescriptionThresholdsNormalized": [
+		"Deal 225",
+		"Deal 275",
+		"Deal 325"
+	]
+}

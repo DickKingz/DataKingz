@@ -1,0 +1,249 @@
+{
+	"CombatAffinity": "Earth",
+	"CombatAffinityComponents": [],
+	"SynergyThresholds": [
+		1,
+		3,
+		5,
+		7
+	],
+	"SynergyThresholdsAbilities": {
+		"Variables": [
+			{
+				"Name": "Earth_AllyMitigation",
+				"Values": [
+					4000,
+					10000,
+					15000,
+					20000
+				]
+			},
+			{
+				"Name": "Earth_EarthMitigation",
+				"Values": [
+					8000,
+					20000,
+					30000,
+					40000
+				]
+			},
+			{
+				"Name": "Earth_LastThreshold",
+				"Values": [
+					0,
+					0,
+					0,
+					100
+				]
+			}
+		],
+		"UnitAbilities": [
+			{
+				"Name": "EarthAffinity_SpecialAbility",
+				"ActivationTrigger": {
+					"TriggerType": "OnHit",
+					"AbilityTypes": [
+						"Attack"
+					],
+					"SenderAllegiance": "Enemy",
+					"ReceiverAllegiance": "Self",
+					"EveryX": true,
+					"ActivationCooldownMs": 500
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Earth - Mitigation Damage",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "Activator"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "InstantDamage",
+									"DamageType": "Physical",
+									"Expression": {
+										"Operation": "%",
+										"Operands": [
+											"{Earth_LastThreshold}",
+											{
+												"Operation": "+",
+												"Operands": [
+													{
+														"Stat": "Grit",
+														"StatSource": "Sender"
+													},
+													{
+														"Stat": "Resolve",
+														"StatSource": "Sender"
+													}
+												]
+											}
+										]
+									}
+								}
+							]
+						}
+					}
+				]
+			}
+		],
+		"TeamAbilities": [
+			{
+				"Name": "EarthAffinity_SelfAbility",
+				"ActivationTrigger": {
+					"TriggerType": "OnBattleStart"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Earth - Earth Mitigation",
+						"Deployment": {
+							"Type": "Direct",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							]
+						},
+						"Targeting": {
+							"Type": "Synergy",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							],
+							"Group": "Ally",
+							"CombatAffinity": "Earth"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Buff",
+									"Stat": "Grit",
+									"Expression": "{Earth_EarthMitigation}",
+									"DurationMs": -1
+								},
+								{
+									"Type": "Buff",
+									"Stat": "Resolve",
+									"Expression": "{Earth_EarthMitigation}",
+									"DurationMs": -1
+								}
+							]
+						}
+					}
+				]
+			},
+			{
+				"Name": "EarthAffinity_AllyAbility",
+				"ActivationTrigger": {
+					"TriggerType": "OnBattleStart"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Earth - Ally Dodge Chance",
+						"Deployment": {
+							"Type": "Direct",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							]
+						},
+						"Targeting": {
+							"Type": "Synergy",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							],
+							"Group": "Ally",
+							"NotCombatAffinity": "Earth"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Buff",
+									"Stat": "Grit",
+									"Expression": "{Earth_AllyMitigation}",
+									"DurationMs": -1
+								},
+								{
+									"Type": "Buff",
+									"Stat": "Resolve",
+									"Expression": "{Earth_AllyMitigation}",
+									"DurationMs": -1
+								}
+							]
+						}
+					}
+				]
+			}
+		]
+	},
+	"IntrinsicAbilities": [],
+	"DisplayName": "Earth",
+	"DisplayDescription": "\r\nYour team gains <Grit>Mitigation</>. Earth units receive double the amount.\r\n\r\n(7) Earth units reflect <AttackPhysicalDamage>100%</> of their <Grit>Mitigation</> as <AttackPhysicalDamage>Physical Damage</> when hit. (0.5s cooldown)\r\n\r\n<Italic>Mitigation: Reduce incoming damage by a flat value.</>\r\n",
+	"DisplayDescriptionThresholds": [
+		"Gain <Grit>4</><Grit></>",
+		"Gain <Grit>10</><Grit></>",
+		"Gain <Grit>15</><Grit></>",
+		"Gain <Grit>20</><Grit></>"
+	],
+	"Description": {
+		"Format": "\r\nYour team gains <Grit>Mitigation</>. Earth units receive double the amount.\r\n\r\n({LastThreshold}) Earth units reflect <AttackPhysicalDamage>{Earth_LastThreshold}%</> of their <Grit>Mitigation</> as <AttackPhysicalDamage>Physical Damage</> when hit. ({Cooldown}s cooldown)\r\n\r\n<Italic>Mitigation: Reduce incoming damage by a flat value.</>\r\n",
+		"Parameters": {
+			"LastThreshold": {
+				"ParameterPath": "SynergyThresholds[3]"
+			},
+			"Earth_LastThreshold": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[2].Values[3]"
+			},
+			"Cooldown": {
+				"ParameterPath": "SynergyThresholdsAbilities.UnitAbilities[0].ActivationTrigger.ActivationCooldownMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DescriptionThresholds": {
+		"Format": "Gain <Grit>{Earth_AllyMitigation}</><Grit></>",
+		"Parameters": [
+			{
+				"Earth_AllyMitigation": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[0]",
+					"ValueMultiplier": 0.001
+				}
+			},
+			{
+				"Earth_AllyMitigation": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[1]",
+					"ValueMultiplier": 0.001
+				}
+			},
+			{
+				"Earth_AllyMitigation": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[2]",
+					"ValueMultiplier": 0.001
+				}
+			},
+			{
+				"Earth_AllyMitigation": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[3]",
+					"ValueMultiplier": 0.001
+				}
+			}
+		]
+	},
+	"DisplayDescriptionNormalized": "Your team gains Mitigation. Earth units receive double the amount.\r\n\r\n(7) Earth units reflect 100% of their Mitigation as Physical Damage when hit. (0.5s cooldown)\r\n\r\nMitigation: Reduce incoming damage by a flat value.",
+	"DisplayDescriptionThresholdsNormalized": [
+		"Gain 4",
+		"Gain 10",
+		"Gain 15",
+		"Gain 20"
+	]
+}

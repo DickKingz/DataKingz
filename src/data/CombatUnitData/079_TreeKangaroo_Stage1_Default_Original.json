@@ -1,0 +1,467 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "TreeKangaroo",
+	"Stage": 1,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 1,
+	"CombatAffinity": "Fire",
+	"CombatClass": "Rogue",
+	"DominantCombatAffinity": "Fire",
+	"DominantCombatClass": "Rogue",
+	"SizeUnits": 3,
+	"Stats": {
+		"MaxHealth": 1100000,
+		"StartingEnergy": 0,
+		"EnergyCost": 0,
+		"PhysicalResist": 25,
+		"EnergyResist": 25,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 90000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 75,
+		"MoveSpeedSubUnits": 2500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 2,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "TreeKangaroo Basic Attack I",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 50
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [],
+	"InnateAbilities": [
+		{
+			"Name": "Kindred Fury I",
+			"ActivationTrigger": {
+				"TriggerType": "OnAssist",
+				"Allegiance": "Self"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "little one does slightly stronger attacks for 4 seconds",
+					"PercentageOfAbilityDuration": 100,
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "AttackPhysicalDamage",
+								"OverlapProcessType": "Sum",
+								"DurationMs": 5000,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										10000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"Name": "Small but Strong I",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Spawn Pet Skill",
+					"PercentageOfAbilityDuration": 50,
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": []
+					},
+					"Deployment": {
+						"Type": "SpawnedCombatUnit",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"SpawnCombatUnit": {
+						"OnReservedPosition": false,
+						"CombatUnit": {
+							"Path": "Default",
+							"Variation": "Original",
+							"Line": "TreeKangarooPet",
+							"Stage": 1,
+							"UnitType": "Pet",
+							"CombatAffinity": "None",
+							"CombatClass": "None",
+							"Tier": 1,
+							"SizeUnits": 2,
+							"Stats": {
+								"MaxHealth": 300000,
+								"StartingEnergy": 20000,
+								"EnergyCost": 100000,
+								"PhysicalResist": 15,
+								"EnergyResist": 15,
+								"TenacityPercentage": 0,
+								"WillpowerPercentage": 0,
+								"Grit": 0,
+								"Resolve": 0,
+								"AttackPhysicalDamage": 40000,
+								"AttackEnergyDamage": 0,
+								"AttackPureDamage": 0,
+								"AttackSpeed": 75,
+								"MoveSpeedSubUnits": 2000,
+								"HitChancePercentage": 100,
+								"AttackDodgeChancePercentage": 0,
+								"CritChancePercentage": 25,
+								"CritAmplificationPercentage": 150,
+								"OmegaPowerPercentage": 100,
+								"AttackRangeUnits": 50,
+								"OmegaRangeUnits": 0,
+								"HealthRegeneration": 0,
+								"EnergyRegeneration": 0,
+								"EnergyGainEfficiencyPercentage": 100,
+								"OnActivationEnergy": 0,
+								"VulnerabilityPercentage": 100,
+								"EnergyPiercingPercentage": 0,
+								"PhysicalPiercingPercentage": 0,
+								"HealthGainEfficiencyPercentage": 100,
+								"PhysicalVampPercentage": 0,
+								"EnergyVampPercentage": 0,
+								"PureVampPercentage": 0,
+								"Thorns": 0,
+								"StartingShield": 0,
+								"CritReductionPercentage": 0
+							},
+							"AttackAbilitiesSelection": "Cycle",
+							"AttackAbilities": [
+								{
+									"Name": "Basic Attack",
+									"Skills": [
+										{
+											"Name": "Attack",
+											"Targeting": {
+												"Type": "CurrentFocus",
+												"Guidance": [
+													"Ground",
+													"Airborne"
+												]
+											},
+											"Deployment": {
+												"Type": "Projectile",
+												"Guidance": [
+													"Ground",
+													"Airborne"
+												],
+												"PreDeploymentDelayPercentage": 58
+											},
+											"Projectile": {
+												"SizeUnits": 0,
+												"IsHoming": true,
+												"SpeedSubUnits": 10000,
+												"IsBlockable": false,
+												"ApplyToAll": false
+											},
+											"EffectPackage": {
+												"Effects": [
+													{
+														"Type": "InstantDamage",
+														"DamageType": "Physical",
+														"Expression": {
+															"Stat": "AttackPhysicalDamage",
+															"StatSource": "Sender"
+														}
+													},
+													{
+														"Type": "InstantDamage",
+														"DamageType": "Energy",
+														"Expression": {
+															"Stat": "AttackEnergyDamage",
+															"StatSource": "Sender"
+														}
+													},
+													{
+														"Type": "InstantDamage",
+														"DamageType": "Pure",
+														"Expression": {
+															"Stat": "AttackPureDamage",
+															"StatSource": "Sender"
+														}
+													}
+												]
+											}
+										}
+									]
+								}
+							],
+							"OmegaAbilitiesSelection": "Cycle",
+							"OmegaAbilities": [
+								{
+									"Name": "Little One Omega",
+									"TotalDurationMs": 0,
+									"Skills": [
+										{
+											"Name": "Buff Attack Speed and give energy",
+											"Deployment": {
+												"Type": "Direct",
+												"Guidance": [
+													"Ground",
+													"Underground",
+													"Airborne"
+												],
+												"PreDeploymentDelayPercentage": 0
+											},
+											"PercentageOfAbilityDuration": 100,
+											"Targeting": {
+												"Type": "InZone",
+												"Guidance": [
+													"Ground",
+													"Underground",
+													"Airborne"
+												],
+												"Group": "Ally",
+												"RadiusUnits": 25,
+												"Self": true
+											},
+											"EffectPackage": {
+												"Effects": [
+													{
+														"Type": "Buff",
+														"Stat": "AttackSpeed",
+														"DurationMs": 5000,
+														"Expression": {
+															"Percentage": 15,
+															"Stat": "AttackSpeed",
+															"StatSource": "Receiver",
+															"StatEvaluationType": "Base"
+														}
+													},
+													{
+														"Type": "InstantEnergyGain",
+														"Expression": 10000
+													}
+												]
+											}
+										}
+									]
+								}
+							],
+							"InnateAbilities": [
+								{
+									"Name": "Gain Energy Attack Damage if TreeKangaroo gets a Takedown",
+									"ActivationTrigger": {
+										"TriggerType": "OnAssist",
+										"Allegiance": "Ally",
+										"OnlyFromParent": true
+									},
+									"TotalDurationMs": 0,
+									"Skills": [
+										{
+											"Name": "little one does slightly stronger attacks for 4 seconds",
+											"PercentageOfAbilityDuration": 100,
+											"Targeting": {
+												"Type": "Self"
+											},
+											"Deployment": {
+												"Type": "Direct"
+											},
+											"EffectPackage": {
+												"Effects": [
+													{
+														"Type": "Buff",
+														"Stat": "AttackEnergyDamage",
+														"OverlapProcessType": "Sum",
+														"DurationMs": 5000,
+														"Expression": {
+															"Operation": "*",
+															"Operands": [
+																5000,
+																{
+																	"Stat": "OmegaPowerPercentage",
+																	"StatSource": "Sender"
+																}
+															]
+														}
+													}
+												]
+											}
+										}
+									]
+								}
+							]
+						}
+					}
+				},
+				{
+					"Name": "Untargetable",
+					"Targeting": {
+						"Type": "Pets",
+						"Group": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "PositiveState",
+								"PositiveState": "Untargetable",
+								"DurationMs": 15000
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Ti'Ru",
+	"DisplayDescription": "Ti'Ru leaves the Little One on the nearest tile, granting Untargetable for 15 seconds. On Takedown, Ti'ru gains <AttackPhysicalDamage>10</> (<OmegaPowerPercentage></>) Physical Attack Damage for 5 seconds and grants <AttackEnergyDamage>5</> (<OmegaPowerPercentage></>) Energy Attack Damage to the Little One for the same duration.\r\n\r\nLittle One: Grants allies in 25-hexes <EnergyCost>10</> Energy and <AttackSpeed>15%</> Attack Speed for 5 seconds.\r\n\r\nPhysical AD: <AttackPhysicalDamage>10</> (<OmegaPowerPercentage></>)\r\nEnergy AD: <AttackEnergyDamage>5</> (<OmegaPowerPercentage></>)",
+	"Intro": "Amid the scorching dunes of Crimson Waste, the air is thick with the fumes of ash and heated by scorching winds. Yet, even in these harsh and barren lands, life persists. In the distance, twin lights can be seen flickering, bound for their home beneath the surface. With their dark red fur, flaming head and tail, they are barely visible against the reddish dunes.",
+	"Summary": "Ti'Ru, denizens of the harsh Crimson Waste, blend in with their red fur and fiery features against the backdrop of scorching dunes. Ti, the smaller and timid sister, coordinates with Ru, using its flame to communicate and guide their actions. Ru, larger and more aggressive, protects Ti with blazing claws and leaping prowess, relying on Ti's environmental awareness. Together, they navigate their perilous habitat, utilizing their unique adaptations such as flame communication, toxin-filtering noses, and agile movements to survive and thrive.",
+	"Biology": {
+		"Physiology": "Ti: Timid and adorable, Ti's round ears and big eyes give it a soft appearance. Its fiery tuft of fur on its head flares up brightly when it is alarmed. Its body is mostly dark red, with some purple patches caused by the ash and cinder of the environment. The Ti is slower and shyer than its sister, the Ru, and moves on all fours while the Ru bounds ahead on its hind legs. Both have large, flat noses that filter out toxic fumes in the atmosphere.\n\nRu: With sabretooth fangs, blazing claws, and a flaming tail, the Ru appears much more menacing than its sister. Its rocky texture serves as both armour and a weapon. Its hide is more spotted than the Ti's, with dark blotches that resemble volcanic rock. Standing on two powerful hind legs, it can leap eight times the length of its body. Its pointed ears are finely attuned to changes in the Ti's flame. Despite being twice the size of the Ti, the Ru relies on its connection to the Ti to survive.",
+		"Behaviour": "Ti: The Ti always crouches behind its sister, the Ru, gazing up with innocent eyes. Though it may seem weak, the Ti is actually the mastermind of their coordination. It is highly intuitive and sensitive to changes in the environment that are imperceptible to others. The Ti is observant and uses its flame to communicate threats and opportunities to the Ru, especially the location of prey. When the Ti is tired, it rides on the back of the Ru.\n\nRu: The hot-headed Ru is the fierce protector of the Ti, always leaping ahead to confront any danger. Its fiery claws are gentle with the Ti but ready to strike at any creature that poses a threat. However, when in action, the Ru can become focused on the task at hand and lose sight of the larger situation. To stay aware of any changes that the Ti might notice, the Ru synchronises its flame with that of the other. The Ru often digs in the sand or goes deep underground as a form of thermoregulation."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/TreeKangarooStage1/TreeKangarooStage1_default_default_webp.3840x2160/TreeKangarooStage1_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/TreeKangarooStage1/TreeKangarooStage1_default_default_hls.m3u8/TreeKangarooStage1_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Ti communicates complex changes in the environment to the Ru via its flame, alerting it of prey and remembering their movement patterns. The Ru without a Ti appears to lose much of its hunting memory.",
+			"When the Ru is agitated, it thumps its tail on the ground, setting plants ablaze. However, in the rare cases of the Ti becoming agitated, it climbs on the Ru and sets fire to entire areas.",
+			"The Ti'Ru typically avoids others of their kind. However, if the Ru permanently loses its Ti, it will attempt to steal one from another Ru by way of force."
+		],
+		"Buckley": [
+			"The Ru's claws are infused with a chemical that reacts with the air to produce a flame. This chemical also helps to make the claws stronger and more durable, allowing the Ru to use them as weapons.",
+			"The nose of a Ti'Ru contains a complex network of tiny hair-like structures capable of filtering toxic fumes and other harmful substances from the air. These structures neutralize the toxins that are trapped by the hairs.",
+			"The Ti's ears contain a system of tiny bones and muscles able to amplify and filter sound waves, allowing them to sense minute changes in their environment.",
+			"The Ti'Ru has a sponge-like pad on their paws and the soles of their feet which enables them to maintain a stronger grip on various terrain.",
+			"The Ti'Ru's long tail is adapted for enhanced balance and flame maintenance. They secrete oils at the end of their tails to enable constant combustion."
+		]
+	},
+	"TraitOrderLegacy": [
+		2,
+		1,
+		3,
+		6,
+		5,
+		4
+	],
+	"Description": {
+		"Format": "Ti'Ru leaves the Little One on the nearest tile, granting Untargetable for {UntargetableDuration} seconds. On Takedown, Ti'ru gains <AttackPhysicalDamage>{TiRuDamage}</> (<OmegaPowerPercentage></>) Physical Attack Damage for {DamageDuration} seconds and grants <AttackEnergyDamage>{LittleDamage}</> (<OmegaPowerPercentage></>) Energy Attack Damage to the Little One for the same duration.\r\n\r\nLittle One: Grants allies in {LittleRadius}-hexes <EnergyCost>{LittleEnergy}</> Energy and <AttackSpeed>{LittleAttackSpeed}%</> Attack Speed for {LittleDuration} seconds.\r\n\r\nPhysical AD: <AttackPhysicalDamage>{TiRuDamage}</> (<OmegaPowerPercentage></>)\r\nEnergy AD: <AttackEnergyDamage>{LittleDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"UntargetableDuration": {
+				"ParameterPath": "InnateAbilities[1].Skills[1].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"TiRuDamage": {
+				"ParameterPath": "InnateAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"DamageDuration": {
+				"ParameterPath": "InnateAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"LittleDamage": {
+				"ParameterPath": "InnateAbilities[1].Skills[0].SpawnCombatUnit.CombatUnit.InnateAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"LittleRadius": {
+				"ParameterPath": "InnateAbilities[1].Skills[0].SpawnCombatUnit.CombatUnit.OmegaAbilities[0].Skills[0].Targeting.RadiusUnits"
+			},
+			"LittleEnergy": {
+				"ParameterPath": "InnateAbilities[1].Skills[0].SpawnCombatUnit.CombatUnit.OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].Expression",
+				"ValueMultiplier": 0.001
+			},
+			"LittleAttackSpeed": {
+				"ParameterPath": "InnateAbilities[1].Skills[0].SpawnCombatUnit.CombatUnit.OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Percentage"
+			},
+			"LittleDuration": {
+				"ParameterPath": "InnateAbilities[1].Skills[0].SpawnCombatUnit.CombatUnit.OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Ti'Ru leaves the Little One on the nearest tile, granting Untargetable for 15 seconds. On Takedown, Ti'ru gains 10 () Physical Attack Damage for 5 seconds and grants 5 () Energy Attack Damage to the Little One for the same duration.\r\n\r\nLittle One: Grants allies in 25-hexes 10 Energy and 15% Attack Speed for 5 seconds.\r\n\r\nPhysical AD: 10 ()\r\nEnergy AD: 5 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 2,
+			"AttackSpeed": 1,
+			"Health": 3,
+			"MovementSpeed": 6,
+			"OmegaPower": 5,
+			"Resistance": 4
+		}
+	}
+}

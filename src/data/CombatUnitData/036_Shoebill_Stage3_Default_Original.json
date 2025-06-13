@@ -1,0 +1,275 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Shoebill",
+	"Stage": 3,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 4,
+	"CombatAffinity": "Wildfire",
+	"CombatClass": "Templar",
+	"DominantCombatAffinity": "Nature",
+	"DominantCombatClass": "Empath",
+	"SizeUnits": 4,
+	"Stats": {
+		"MaxHealth": 2100000,
+		"StartingEnergy": 40000,
+		"EnergyCost": 200000,
+		"PhysicalResist": 40,
+		"EnergyResist": 55,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 160000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 75,
+		"MoveSpeedSubUnits": 2750,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 60,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Shoebill Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 35
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 9000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Twistwing III",
+			"TotalDurationMs": 1200,
+			"Skills": [
+				{
+					"Name": "Enervating Surge",
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 50
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 10,
+						"DurationMs": 2000,
+						"FrequencyMs": 100,
+						"MovementSpeedSubUnits": 4000,
+						"GrowthRateSubUnits": 0,
+						"ApplyOnce": true
+					},
+					"Targeting": {
+						"Type": "DistanceCheck",
+						"Group": "Enemy",
+						"Lowest": false,
+						"Num": 1
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										525000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "Debuff",
+								"Stat": "AttackSpeed",
+								"DurationMs": 6000,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										{
+											"Percentage": 25,
+											"Stat": "AttackSpeed",
+											"StatSource": "Receiver"
+										},
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "Displacement",
+								"DisplacementType": "KnockUp",
+								"DurationMs": 1100
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackSpeed",
+								"DurationMs": 6000,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										{
+											"Percentage": 25,
+											"Stat": "AttackSpeed",
+											"StatSource": "Receiver",
+											"StatEvaluationType": "Base"
+										},
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Blazenite",
+	"DisplayDescription": "Blazenite sends a tornado at the furtherst enemy, dealing <AttackEnergyDamage>525</> (<OmegaPowerPercentage></>) Energy Damage and Stunning them for 1.1.\r\n\r\nAllies hit by the tornado gain <AttackSpeed>25%</> (<OmegaPowerPercentage></>) Attack Speed for 6 seconds. Enemies hit lose <AttackSpeed>25%</> (<OmegaPowerPercentage></>) Attack Speed reduced for 6 seconds.\r\n\r\nDamage: <AttackEnergyDamage>525</> (<OmegaPowerPercentage></>)\r\nAttack Speed: <AttackSpeed>25%</> (<OmegaPowerPercentage></>)",
+	"Intro": "Crimson Waste's red and sandy landscape is covered in black smog, making it hard to see far ahead. Sometimes one can make out the bright glow of common fires, created by hot air, toxic gas, and lighting. A column of spinning fire, however, is something else entirely. Dangerous Blazenite has been provoked into a state of rage and is ready to rain destruction upon the land.",
+	"Summary": "With charred red plumage and prehensile tails, the Blazenite's burning wings create swirling infernos and blazing trails when in flight. Though it prefers solitude and contemplation, its eruptions of flame can devastate the land if disturbed, and it fiercely protects its kin by alerting them to danger. The Blazenite's physiology includes flame-producing glands and fire-resistant features, allowing it to control and absorb fires, sometimes restoring the habitat after wildfires",
+	"Biology": {
+		"Physiology": "The Blazenite's blackened wings crackle as they burn, and its feathered tail lifts in a fearsome display when it spreads them to their full span. Its red eyes are lit from within, surrounded by dark green vines that enclose its head and body. The Blazenite?s vine-like armour resembles a sprawling crest, an emblem centred on its chest that snakes around its dark torso and stops at its pale green legs. Like a constantly aflame torch, much of its red plumage is charred from its thighs up, but its tail and the two streaming feathered appendages by its legs remain bright crimson.",
+		"Behaviour": "The Blazenite spreads its wings to warn those who transgress its solitude. It spends its days in silent contemplation, burning slowly until it erupts in flame, sending an infernal heat that can be felt across vast distances of Crimson Waste. The longer it remains quiet, the greater its rampage when disturbed. When the Blazenite takes flight, it can leave behind fire trails in blazing twists and spiralling patterns. Loyal but independent, the Blazenite keeps guard over its flock from afar, alerting Fernites and Ferns to danger when it approaches. If any of its kin are killed in battle, it lets out a haunting screech and rains fire upon the land."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/ShoebillStage3/ShoebillStage3_default_default_webp.3840x2160/ShoebillStage3_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/ShoebillStage3/ShoebillStage3_default_default_hls.m3u8/ShoebillStage3_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"When the Blazenite flaps its vast burning wings, it summons more fire in the form of swirling tongues that grow into whirling infernos.",
+			"Whenever a wildfire breaks out, the Blazenite lets out a wailing screech and covers the flame with its feathers, absorbing vast amounts of oxygen to limit fuel to the fire. It then uses its restorative energy to return some of the plant life to its previous state, preventing complete habitat loss.",
+			"The Blazenite can be reserved at times, often observing flocks of Fernites and Ferns from a distance."
+		],
+		"Buckley": [
+			"The Blazenite has glands in its wings that produce a highly combustible chemical solution, amplifying its flames.",
+			"The Blazenite's tails are prehensile, allowing it to use them as a tool for manipulating its flame in complex formations.",
+			"The Blazenite has an organ located near its heart that produces a powerful flame which is distributed across its body via fire-resistant arteries.",
+			"The Blazenite has adapted vents within its feathers which allows it to take in large amounts of oxygen for combustion.",
+			"The Blazenite's feathers have a waxy material which gives it extra protection from acidic fumes and allows it to maintain a sustained fire, even among pollutants or underwater."
+		]
+	},
+	"TraitOrderLegacy": [
+		2,
+		1,
+		4,
+		6,
+		3,
+		5
+	],
+	"Description": {
+		"Format": "Blazenite sends a tornado at the furtherst enemy, dealing <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Energy Damage and Stunning them for {StunDuration}.\r\n\r\nAllies hit by the tornado gain <AttackSpeed>{AllyBuff}%</> (<OmegaPowerPercentage></>) Attack Speed for {AllyBuffDuration} seconds. Enemies hit lose <AttackSpeed>{EnemyDebuff}%</> (<OmegaPowerPercentage></>) Attack Speed reduced for {EnemyDebuffDuration} seconds.\r\n\r\nDamage: <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)\r\nAttack Speed: <AttackSpeed>{AllyBuff}%</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"AllyBuff": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].Expression.Operands[0].Percentage"
+			},
+			"AllyBuffDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"StunDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[2].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"EnemyDebuff": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[3].Expression.Operands[0].Percentage"
+			},
+			"EnemyDebuffDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[3].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Blazenite sends a tornado at the furtherst enemy, dealing 525 () Energy Damage and Stunning them for 1.1.\r\n\r\nAllies hit by the tornado gain 25% () Attack Speed for 6 seconds. Enemies hit lose 25% () Attack Speed reduced for 6 seconds.\r\n\r\nDamage: 525 ()\r\nAttack Speed: 25% ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 2,
+			"AttackSpeed": 1,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 3,
+			"Resistance": 5
+		}
+	}
+}

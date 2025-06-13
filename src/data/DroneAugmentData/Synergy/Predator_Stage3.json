@@ -1,0 +1,21 @@
+{
+	"Name": "Predator",
+	"Stage": 3,
+	"Type": "Game",
+	"DisplayName": "Predator Matrix",
+	"DisplayDescription": "Gain a Predator Imprint.",
+	"Description": {
+		"Format": "Gain a Predator Imprint.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Predator",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

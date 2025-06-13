@@ -1,0 +1,305 @@
+{
+	"CombatAffinity": "Mud",
+	"CombatAffinityComponents": [
+		"Water",
+		"Earth"
+	],
+	"SynergyThresholds": [
+		2,
+		3,
+		4
+	],
+	"SynergyThresholdsAbilities": {
+		"Variables": [
+			{
+				"Name": "Mud_Steal",
+				"Values": [
+					25,
+					35,
+					45
+				]
+			},
+			{
+				"Name": "Mud_Vanquish",
+				"Values": [
+					0,
+					0,
+					25
+				]
+			}
+		],
+		"TeamAbilities": [],
+		"UnitAbilities": [
+			{
+				"Name": "MudSynergy_Ability1",
+				"ActivationTrigger": {
+					"TriggerType": "OnHit",
+					"AbilityTypes": [
+						"Attack"
+					],
+					"SenderAllegiance": "Self",
+					"ReceiverAllegiance": "Enemy",
+					"EveryX": true
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Mud - Self Buff",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "Self"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Buff",
+									"Stat": "AttackPhysicalDamage",
+									"OverlapProcessType": "Merge",
+									"DurationMs": 2000,
+									"Expression": {
+										"Operation": "*",
+										"Operands": [
+											{
+												"Percentage": "{Mud_Steal}",
+												"Stat": "AttackPhysicalDamage",
+												"StatSource": "SenderFocus"
+											}
+										]
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "AttackEnergyDamage",
+									"OverlapProcessType": "Merge",
+									"DurationMs": 2000,
+									"Expression": {
+										"Operation": "*",
+										"Operands": [
+											{
+												"Percentage": "{Mud_Steal}",
+												"Stat": "AttackEnergyDamage",
+												"StatSource": "SenderFocus"
+											}
+										]
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "AttackPureDamage",
+									"OverlapProcessType": "Merge",
+									"DurationMs": 2000,
+									"Expression": {
+										"Operation": "*",
+										"Operands": [
+											{
+												"Percentage": "{Mud_Steal}",
+												"Stat": "AttackPureDamage",
+												"StatSource": "SenderFocus"
+											}
+										]
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "OmegaPowerPercentage",
+									"OverlapProcessType": "Merge",
+									"DurationMs": 2000,
+									"Expression": {
+										"Operation": "*",
+										"Operands": [
+											{
+												"Percentage": "{Mud_Steal}",
+												"Stat": "OmegaPowerPercentage",
+												"StatSource": "SenderFocus"
+											}
+										]
+									}
+								}
+							]
+						}
+					},
+					{
+						"Name": "Mud - Enemy Debuff",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "CurrentFocus"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Debuff",
+									"Stat": "AttackPhysicalDamage",
+									"OverlapProcessType": "Merge",
+									"DurationMs": 2000,
+									"Expression": {
+										"Percentage": "{Mud_Steal}",
+										"Stat": "AttackPhysicalDamage",
+										"StatSource": "Receiver"
+									}
+								},
+								{
+									"Type": "Debuff",
+									"Stat": "AttackEnergyDamage",
+									"OverlapProcessType": "Merge",
+									"DurationMs": 2000,
+									"Expression": {
+										"Percentage": "{Mud_Steal}",
+										"Stat": "AttackEnergyDamage",
+										"StatSource": "Receiver"
+									}
+								},
+								{
+									"Type": "Debuff",
+									"Stat": "AttackPureDamage",
+									"OverlapProcessType": "Merge",
+									"DurationMs": 2000,
+									"Expression": {
+										"Percentage": "{Mud_Steal}",
+										"Stat": "AttackPureDamage",
+										"StatSource": "Receiver"
+									}
+								},
+								{
+									"Type": "Debuff",
+									"Stat": "OmegaPowerPercentage",
+									"OverlapProcessType": "Merge",
+									"DurationMs": 2000,
+									"Expression": {
+										"Percentage": "{Mud_Steal}",
+										"Stat": "OmegaPowerPercentage",
+										"StatSource": "Receiver"
+									}
+								}
+							]
+						}
+					}
+				]
+			},
+			{
+				"Name": "MudSynergy_SpecialAbility",
+				"ActivationTrigger": {
+					"TriggerType": "OnFaint",
+					"Allegiance": "Self"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Mud - Transfer Stats",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "DistanceCheck",
+							"Group": "Ally",
+							"Lowest": true,
+							"Num": 2
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Buff",
+									"Stat": "AttackPhysicalDamage",
+									"OverlapProcessType": "Sum",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Mud_Vanquish}",
+										"Stat": "AttackPhysicalDamage",
+										"StatSource": "Sender"
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "AttackEnergyDamage",
+									"OverlapProcessType": "Sum",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Mud_Vanquish}",
+										"Stat": "AttackEnergyDamage",
+										"StatSource": "Sender"
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "AttackPureDamage",
+									"OverlapProcessType": "Sum",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Mud_Vanquish}",
+										"Stat": "AttackPureDamage",
+										"StatSource": "Sender"
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "OmegaPowerPercentage",
+									"OverlapProcessType": "Sum",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Mud_Vanquish}",
+										"Stat": "OmegaPowerPercentage",
+										"StatSource": "Sender"
+									}
+								}
+							]
+						}
+					}
+				]
+			}
+		]
+	},
+	"IntrinsicAbilities": [],
+	"DisplayName": "Mud",
+	"DisplayDescription": "\r\nMud units steal <AttackDamage>Attack Damage</> and <OmegaPowerPercentage>Omega Power</> from their target for 2 seconds.\r\n\r\n(4) Upon being Vanquished, Mud units grant 25% of their <AttackDamage>Attack Damage</> and <OmegaPowerPercentage>Omega Power</> to the 2 closest allies.\r\n",
+	"DisplayDescriptionThresholds": [
+		"Steal 25% <AttackDamage></> and <OmegaPowerPercentage></>",
+		"Steal 35% <AttackDamage></> and <OmegaPowerPercentage></>",
+		"Steal 45% <AttackDamage></> and <OmegaPowerPercentage></>"
+	],
+	"Description": {
+		"Format": "\r\nMud units steal <AttackDamage>Attack Damage</> and <OmegaPowerPercentage>Omega Power</> from their target for {StealDuration} seconds.\r\n\r\n(4) Upon being Vanquished, Mud units grant {Mud_Vanquish}% of their <AttackDamage>Attack Damage</> and <OmegaPowerPercentage>Omega Power</> to the {AllyNum} closest allies.\r\n",
+		"Parameters": {
+			"StealDuration": {
+				"ParameterPath": "SynergyThresholdsAbilities.UnitAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"Mud_Vanquish": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[2]",
+				"ValueMultiplier": 1.0
+			},
+			"AllyNum": {
+				"ParameterPath": "SynergyThresholdsAbilities.UnitAbilities[1].Skills[0].Targeting.Num",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DescriptionThresholds": {
+		"Format": "Steal {Mud_Steal}% <AttackDamage></> and <OmegaPowerPercentage></>",
+		"Parameters": [
+			{
+				"Mud_Steal": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[0]"
+				}
+			},
+			{
+				"Mud_Steal": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[1]"
+				}
+			},
+			{
+				"Mud_Steal": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[2]"
+				}
+			}
+		]
+	},
+	"DisplayDescriptionNormalized": "Mud units steal Attack Damage and Omega Power from their target for 2 seconds.\r\n\r\n(4) Upon being Vanquished, Mud units grant 25% of their Attack Damage and Omega Power to the 2 closest allies.",
+	"DisplayDescriptionThresholdsNormalized": [
+		"Steal 25% and",
+		"Steal 35% and",
+		"Steal 45% and"
+	]
+}

@@ -1,0 +1,264 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Tenrec",
+	"Stage": 3,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 1,
+	"CombatAffinity": "Dust",
+	"CombatClass": "Slayer",
+	"DominantCombatAffinity": "Air",
+	"DominantCombatClass": "Rogue",
+	"SizeUnits": 5,
+	"Stats": {
+		"MaxHealth": 1650000,
+		"StartingEnergy": 60000,
+		"EnergyCost": 140000,
+		"PhysicalResist": 50,
+		"EnergyResist": 45,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 115000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 85,
+		"MoveSpeedSubUnits": 2150,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 5,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 60,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Tenrec Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 47
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 10000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Whirlpedo III",
+			"TotalDurationMs": 1500,
+			"Skills": [
+				{
+					"Name": "dashing to its furthest enemy",
+					"Targeting": {
+						"Type": "DistanceCheck",
+						"Guidance": [
+							"Ground"
+						],
+						"Group": "Enemy",
+						"Lowest": false,
+						"Num": 1
+					},
+					"Deployment": {
+						"Type": "Dash",
+						"Guidance": [
+							"Ground"
+						],
+						"PreDeploymentDelayPercentage": 5
+					},
+					"Dash": {
+						"ApplyToAll": true,
+						"IsPassthrough": true
+					},
+					"PercentageOfAbilityDuration": 80,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										140000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Physical Damage",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "InZone",
+						"Group": "Enemy",
+						"RadiusUnits": 35
+					},
+					"PercentageOfAbilityDuration": 5,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "+",
+									"Operands": [
+										{
+											"Operation": "*",
+											"Operands": [
+												200000,
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												}
+											]
+										},
+										{
+											"Stat": "AttackDamage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Gyro",
+	"DisplayDescription": "Gyro dashes to the furthest enemy, dealing <AttackPhysicalDamage>140</> (<OmegaPowerPercentage></>) Physical Damage to enemies in its path. At the end of the dash, spikes explode out of its body, dealing <AttackPhysicalDamage>335</> (<OmegaPowerPercentage></><AttackDamage></>) Physical Damage 35-hexes.\r\n\r\nDash Damage: <AttackPhysicalDamage>140</> (<OmegaPowerPercentage></>)\r\nSpike Damage: <AttackPhysicalDamage>335</> = <AttackPhysicalDamage>200</> (<OmegaPowerPercentage></>) + <AttackPhysicalDamage>115</> (<AttackDamage></>)",
+	"Intro": "The pillars and rocks in Shardbluff Labyrinth are held together by Tentifung, an organism that craves darkness and shies away from light. Their ever-reaching tendrils are so widespread that the entire region might collapse if they disappeared completely. Like a living maze, the terrain changes with Tentifung's movements, which respond to the shine of celestial lights. This adds an extra challenge for the Gyro, who enjoys racing up and down the cliffs.",
+	"Summary": "The Gyro, a dark-scaled Illuvial native to Shardbluff Labyrinth, navigates its environment with agility and speed. Its body is adorned with orange spines resembling Tentifung, which it sheds while in motion, leaving a hazardous trail. Capable of compressing its body to maneuver through narrow passages and accelerating to break through obstacles, the Gyro is constantly moving, rarely resting.",
+	"Biology": {
+		"Physiology": "The Gyro's scaly skin is as dark as the cliffs of Shardbluff, but the long spines along its back and claws are the colour of orange Tentifung. With glowing yellow eyes and cork-like stubs on its shoulders, the Gyro always has sand swirling at its feet. When it isn't spinning like a vortex, the Gyro stands on two feet, hunched over with a back full of spikes. The Gyro's head is protected with rough scales, but its two round ears are soft and particularly sensitive.",
+		"Behaviour": "The agile Gyro compresses its full body in rotation to take narrower passageways around Shardbluff Labyrinth. It can angle its spin to avoid obstacles and build momentum to jump across cliffs easily. When presented with a dead end, the Gyro can accelerate and bore its way through rocks or dig its own underground path. Often in motion, the Gyro rarely stops or slows for long. It remains hidden while resting, keeping its body curled tightly in the appearance of a spikey rock. When it is standing, the Gyro frequently glances over its shoulders, ready to blast off at any second. It leaves a trail of spines in its wake, shedding as it runs."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/TenrecStage3/TenrecStage3_default_default_webp.3840x2160/TenrecStage3_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/TenrecStage3/TenrecStage3_default_default_hls.m3u8/TenrecStage3_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Gyro constantly sheds its spines when it runs, which presents a danger to other Illuvials.",
+			"The Gyro runs so fast, it is capable of darting even over water. In large groups, it is capable of creating small sandstorms. Fortunately, they tend to disperse quickly.",
+			"The Gyro can create pathways through large rock obstructions spinning in place until it bores its way through."
+		],
+		"Buckley": [
+			"The Gyro's spines are made of flexible material that can wrap around its body to allow smoother rotations when it rolls. It is capable of changing its rotational speed by adjusting the radius of the disc it is forming and adapting its spines accordingly.",
+			"The Gyro's respiratory system is adapted so it can breathe in sand and dust without damaging its lungs. It has a robust filtration system which enables it to use its strong lungs to inhale large amounts of air.",
+			"The Gyro has a hyper-fast metabolism that allows it to be in motion for extended periods of time.",
+			"The Gyro has a specialised digestive system that allows it to extract nutrients and conserve water to varying degrees depending on the scarcity in its environment.",
+			"The Gyro's claws have an elongated sheath that is strong and durable enough to dig complex burrows."
+		]
+	},
+	"TraitOrderLegacy": [
+		2,
+		1,
+		4,
+		6,
+		3,
+		5
+	],
+	"Description": {
+		"Format": "Gyro dashes to the furthest enemy, dealing <AttackPhysicalDamage>{TravelDamage}</> (<OmegaPowerPercentage></>) Physical Damage to enemies in its path. At the end of the dash, spikes explode out of its body, dealing <AttackPhysicalDamage>335</> (<OmegaPowerPercentage></><AttackDamage></>) Physical Damage {AOERadius}-hexes.\r\n\r\nDash Damage: <AttackPhysicalDamage>{TravelDamage}</> (<OmegaPowerPercentage></>)\r\nSpike Damage: <AttackPhysicalDamage>335</> = <AttackPhysicalDamage>{AOEDamage}</> (<OmegaPowerPercentage></>) + <AttackPhysicalDamage>{AtkDamage}</> (<AttackDamage></>)",
+		"Parameters": {
+			"TravelDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"AOEDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].Expression.Operands[0].Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"AOERadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].Targeting.RadiusUnits"
+			},
+			"AtkDamage": {
+				"ParameterPath": "Stats.AttackPhysicalDamage",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Gyro dashes to the furthest enemy, dealing 140 () Physical Damage to enemies in its path. At the end of the dash, spikes explode out of its body, dealing 335 () Physical Damage 35-hexes.\r\n\r\nDash Damage: 140 ()\r\nSpike Damage: 335 = 200 () + 115 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 2,
+			"AttackSpeed": 1,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 3,
+			"Resistance": 5
+		}
+	}
+}

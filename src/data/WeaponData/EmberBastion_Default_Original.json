@@ -1,0 +1,216 @@
+{
+	"Name": "EmberBastion",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Normal",
+	"CombatAffinity": "Earth",
+	"CombatClass": "Bulwark",
+	"DominantCombatAffinity": "Earth",
+	"DominantCombatClass": "Bulwark",
+	"Stats": {
+		"MaxHealth": 1200000,
+		"StartingEnergy": 60000,
+		"EnergyCost": 180000,
+		"PhysicalResist": 70,
+		"EnergyResist": 50,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 110000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 60,
+		"MoveSpeedSubUnits": 0,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 2,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Bastion Attack I",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 50
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Ashguard",
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Beneficial Mark",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 0,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"ID": "Stoneheart",
+								"Type": "Buff",
+								"Stat": "VulnerabilityPercentage",
+								"DurationMs": 4000,
+								"Expression": 20
+							},
+							{
+								"Type": "SpawnMark",
+								"MarkType": "Beneficial",
+								"DurationMs": 4000,
+								"AttachedAbilities": [
+									{
+										"Name": "Damage on Hit",
+										"ActivationTrigger": {
+											"TriggerType": "OnHit",
+											"AbilityTypes": [
+												"Attack",
+												"Omega"
+											],
+											"SenderAllegiance": "Enemy",
+											"ReceiverAllegiance": "Self"
+										},
+										"TotalDurationMs": 0,
+										"Skills": [
+											{
+												"Name": "Damage on Hit",
+												"Deployment": {
+													"Type": "Direct"
+												},
+												"Targeting": {
+													"Type": "Activator"
+												},
+												"EffectPackage": {
+													"Effects": [
+														{
+															"ID": "ScorchingReflection",
+															"Type": "InstantDamage",
+															"DamageType": "Energy",
+															"Expression": {
+																"Operation": "*",
+																"Operands": [
+																	75000,
+																	{
+																		"Stat": "OmegaPowerPercentage",
+																		"StatSource": "Sender"
+																	}
+																]
+															}
+														}
+													]
+												}
+											},
+											{
+												"Name": "Omega Power on Hit",
+												"Deployment": {
+													"Type": "Direct"
+												},
+												"Targeting": {
+													"Type": "Self"
+												},
+												"EffectPackage": {
+													"Effects": [
+														{
+															"ID": "HeatConversion",
+															"Type": "Buff",
+															"Stat": "OmegaPowerPercentage",
+															"OverlapProcessType": "Stacking",
+															"DurationMs": -1,
+															"Expression": 0
+														}
+													]
+												}
+											}
+										]
+									}
+								]
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Ember Bastion",
+	"DisplayDescription": "The Ranger activates the shield for 4 seconds, forming a shell of volcanic rock around it, gaining <DamageReduction>20%</> Damage Reduction and reflecting <AttackEnergyDamage>75</> (<OmegaPowerPercentage></>) Energy Damage to the attackers.",
+	"Description": {
+		"Format": "The Ranger activates the shield for {Duration} seconds, forming a shell of volcanic rock around it, gaining <DamageReduction>{Reduction}%</> Damage Reduction and reflecting <AttackEnergyDamage>{Damage}</> (<OmegaPowerPercentage></>) Energy Damage to the attackers.",
+		"Parameters": {
+			"Duration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"Reduction": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression",
+				"ValueMultiplier": 1.0
+			},
+			"Damage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].AttachedAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "The Ranger activates the shield for 4 seconds, forming a shell of volcanic rock around it, gaining 20% Damage Reduction and reflecting 75 () Energy Damage to the attackers."
+}

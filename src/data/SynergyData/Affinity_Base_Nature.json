@@ -1,0 +1,296 @@
+{
+	"Name": "Nature",
+	"CombatAffinity": "Nature",
+	"CombatAffinityComponents": [],
+	"SynergyThresholds": [
+		2,
+		4,
+		6,
+		9
+	],
+	"SynergyThresholdsAbilities": {
+		"Variables": [
+			{
+				"Name": "Nature_AllyHealing",
+				"Values": [
+					100,
+					150,
+					250,
+					350
+				]
+			},
+			{
+				"Name": "Nature_NatureHealing",
+				"Values": [
+					200,
+					300,
+					500,
+					700
+				]
+			},
+			{
+				"Name": "Nature_LastThreshold",
+				"Values": [
+					0,
+					0,
+					0,
+					800
+				]
+			}
+		],
+		"UnitAbilities": [
+			{
+				"Name": "NatureAffinity_SpecialAbility",
+				"ActivationTrigger": {
+					"TriggerType": "EveryXTime",
+					"ActivateEveryTimeMs": 1000
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Nature - Damage equal to Heal",
+						"Targeting": {
+							"Type": "DistanceCheck",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							],
+							"Group": "Enemy",
+							"Lowest": true,
+							"Num": 1
+						},
+						"Deployment": {
+							"Type": "Direct",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							]
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "InstantDamage",
+									"DamageType": "Energy",
+									"Expression": {
+										"Operation": "/",
+										"Operands": [
+											{
+												"Operation": "%",
+												"Operands": [
+													"{Nature_LastThreshold}",
+													{
+														"Operation": "-",
+														"Operands": [
+															{
+																"Stat": "MaxHealth",
+																"StatSource": "Sender"
+															},
+															{
+																"Stat": "CurrentHealth",
+																"StatSource": "Sender"
+															}
+														]
+													}
+												]
+											},
+											100
+										]
+									}
+								}
+							]
+						}
+					}
+				]
+			}
+		],
+		"TeamAbilities": [
+			{
+				"Name": "NatureAffinity_SelfAbility",
+				"ActivationTrigger": {
+					"TriggerType": "EveryXTime",
+					"ActivateEveryTimeMs": 1000
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Nature - Heal Nature",
+						"Deployment": {
+							"Type": "Direct",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							]
+						},
+						"Targeting": {
+							"Type": "Synergy",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							],
+							"Group": "Ally",
+							"CombatAffinity": "Nature"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "InstantHeal",
+									"HealType": "Normal",
+									"Expression": {
+										"Operation": "/",
+										"Operands": [
+											{
+												"Operation": "%",
+												"Operands": [
+													"{Nature_NatureHealing}",
+													{
+														"Operation": "-",
+														"Operands": [
+															{
+																"Stat": "MaxHealth",
+																"StatSource": "Receiver"
+															},
+															{
+																"Stat": "CurrentHealth",
+																"StatSource": "Receiver"
+															}
+														]
+													}
+												]
+											},
+											100
+										]
+									}
+								}
+							]
+						}
+					}
+				]
+			},
+			{
+				"Name": "NatureAffinity_AllyAbility",
+				"ActivationTrigger": {
+					"TriggerType": "EveryXTime",
+					"ActivateEveryTimeMs": 1000
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Nature - Heal Allies",
+						"Deployment": {
+							"Type": "Direct",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							]
+						},
+						"Targeting": {
+							"Type": "Synergy",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							],
+							"Group": "Ally",
+							"NotCombatAffinity": "Nature"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "InstantHeal",
+									"HealType": "Normal",
+									"Expression": {
+										"Operation": "/",
+										"Operands": [
+											{
+												"Operation": "%",
+												"Operands": [
+													"{Nature_AllyHealing}",
+													{
+														"Operation": "-",
+														"Operands": [
+															{
+																"Stat": "MaxHealth",
+																"StatSource": "Receiver"
+															},
+															{
+																"Stat": "CurrentHealth",
+																"StatSource": "Receiver"
+															}
+														]
+													}
+												]
+											},
+											100
+										]
+									}
+								}
+							]
+						}
+					}
+				]
+			}
+		]
+	},
+	"IntrinsicAbilities": [],
+	"DisplayName": "Nature",
+	"DisplayDescription": "\r\nYour team Heals a percentage of their missing Health every second. Nature units Heal double the amount.\r\n\r\n(9) Nature units deal <AttackEnergyDamage>8%</> of their missing Health as <AttackEnergyDamage>Energy Damage</> to the closest enemy.\r\n",
+	"DisplayDescriptionThresholds": [
+		"Heal <MaxHealth>1%</><MaxHealth></>",
+		"Heal <MaxHealth>1.5%</><MaxHealth></>",
+		"Heal <MaxHealth>2.5%</><MaxHealth></>",
+		"Heal <MaxHealth>3.5%</><MaxHealth></>"
+	],
+	"Description": {
+		"Format": "\r\nYour team Heals a percentage of their missing Health every second. Nature units Heal double the amount.\r\n\r\n({LastThreshold}) Nature units deal <AttackEnergyDamage>{Nature_LastThreshold}%</> of their missing Health as <AttackEnergyDamage>Energy Damage</> to the closest enemy.\r\n",
+		"Parameters": {
+			"LastThreshold": {
+				"ParameterPath": "SynergyThresholds[3]"
+			},
+			"Nature_LastThreshold": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[2].Values[3]",
+				"ValueMultiplier": 0.01
+			}
+		}
+	},
+	"DescriptionThresholds": {
+		"Format": "Heal <MaxHealth>{Nature_AllyHealing}%</><MaxHealth></>",
+		"Parameters": [
+			{
+				"Nature_AllyHealing": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[0]",
+					"ValueMultiplier": 0.01
+				}
+			},
+			{
+				"Nature_AllyHealing": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[1]",
+					"ValueMultiplier": 0.01
+				}
+			},
+			{
+				"Nature_AllyHealing": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[2]",
+					"ValueMultiplier": 0.01
+				}
+			},
+			{
+				"Nature_AllyHealing": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[3]",
+					"ValueMultiplier": 0.01
+				}
+			}
+		]
+	},
+	"DisplayDescriptionNormalized": "Your team Heals a percentage of their missing Health every second. Nature units Heal double the amount.\r\n\r\n(9) Nature units deal 8% of their missing Health as Energy Damage to the closest enemy.",
+	"DisplayDescriptionThresholdsNormalized": [
+		"Heal 1%",
+		"Heal 1.5%",
+		"Heal 2.5%",
+		"Heal 3.5%"
+	]
+}

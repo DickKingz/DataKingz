@@ -1,0 +1,247 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Taipan",
+	"Stage": 3,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 4,
+	"CombatAffinity": "Magma",
+	"CombatClass": "Arcanite",
+	"DominantCombatAffinity": "Fire",
+	"DominantCombatClass": "Psion",
+	"SizeUnits": 5,
+	"Stats": {
+		"MaxHealth": 2000000,
+		"StartingEnergy": 20000,
+		"EnergyCost": 130000,
+		"PhysicalResist": 60,
+		"EnergyResist": 40,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 180000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 75,
+		"MoveSpeedSubUnits": 2500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 60,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Taipan Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 40
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 10000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Molten Spew III",
+			"TotalDurationMs": 500,
+			"Skills": [
+				{
+					"Name": "Increase EnergyDamage and AttackSpeed",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 100
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "AttackEnergyDamage",
+								"DurationMs": 6000,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										100000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Receiver"
+										}
+									]
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackSpeed",
+								"DurationMs": 6000,
+								"Expression": {
+									"Percentage": 40,
+									"Stat": "AttackSpeed",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							},
+							{
+								"Type": "Empower",
+								"ActivatedBy": "Attack",
+								"DurationMs": 6000,
+								"AttachedEffectPackageAttributes": {
+									"Propagation": {
+										"PropagationType": "Splash",
+										"IgnoreFirstPropagationReceiver": true,
+										"SplashRadiusUnits": 20,
+										"EffectPackage": {
+											"Effects": [
+												{
+													"Type": "InstantDamage",
+													"DamageType": "Energy",
+													"Expression": {
+														"Stat": "AttackEnergyDamage",
+														"StatSource": "Sender"
+													}
+												}
+											]
+										}
+									}
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Scoriox",
+	"DisplayDescription": "Scoriox activates its molten core, gaining <AttackEnergyDamage>100</> (<OmegaPowerPercentage></>) Energy Attack Damage and <AttackSpeed>40%</> Attack Speed for 6 seconds and causing all attacks to explode in 20-hexes.\r\n\r\nEnergy Attack Damage: <AttackEnergyDamage>100</> (<OmegaPowerPercentage></>)",
+	"Intro": "Beneath the surface of Crimson Waste are a series of vast underground tunnels untouched by the chaos above. These cavernous pathways are nearly pitch-black, with tiny luminescent plants that dot the walls. Some release colourful acid capable of melting flesh and bone. But that's not the only thing visitors should be cautious of. Slumbering Scoriox is coiled up in the shadows, and any who disturb its rest will feel its burning wrath.",
+	"Summary": "With a crown of golden flakes and a body patterned like a shell, Scoriox is a limbless predator equipped with a sharp horn and knife-like barbs on its tail. It unleashes bursts of heat from its mouth and launches magma projectiles with its coiled body, making it a deadly ambush predator. Its heat-resistant scales disperse excess energy, and its acidic stomach aids in digesting prey, showcasing Scoriox's adaptability and ferocity in its habitat.",
+	"Biology": {
+		"Physiology": "The Scoriox is as red as its flame, with a golden-flaked crown fit for a king. Its skull is pitted at the top to allow its blazing fire to stream through. Above its nose begins its centre horn, long and sharp like a spear, and it has golden-tipped scales along its sides, arranged like spreading wings. Layers of wing-like scales fan out from its neck and upper back. It has two bronze eyes and many copper plates along its lengthy stomach that hold within it a fiery glow. Patterned like a shell from its lower back downwards, it is limbless with six knife-like barbs adorning its tail.",
+		"Behaviour": "The Scoriox is ruthless and unpredictable, unleashing its fury upon unsuspecting trespassers. Its disposition is as changeable as fire, flaring up suddenly and without warning. It is most pleased when left alone. If one does not keep their distance, the Scoriox will smite them with fire. An ambush predator, the Scoriox roasts Morphopods and other Illuvials with its flame melting them under its immense heat. To manage its high temperature, the Scoriox often cools down in the secret underground beneath Crimson Waste."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/TaipanStage3/TaipanStage3_default_default_webp.3840x2160/TaipanStage3_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/TaipanStage3/TaipanStage3_default_default_hls.m3u8/TaipanStage3_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Scoriox's hypnotic sway puts other Illuvials in a trance so they do not move away from the flaming projectile that it hurls at them.",
+			"The Scoriox spends most of its time underground because it prefers darkness to a bright surface.",
+			"The Scoriox does not always behave aggressively, but it has a vicious temper when it is disturbed. It can sometimes approach others amicably, but its mood is as changeable as lava."
+		],
+		"Buckley": [
+			"The Scoriox has a powerful set of lungs that allow it to generate and expel bursts of heat from its mouth. Its lower body can build up pressure and coil up like a spring, helping it launch magma projectiles out of its mouth across vast distances.",
+			"The Scoriox's skin is extremely heat-resistant and covered in scales that can disperse heat energy into its environment.",
+			"The Scoriox has a specialised organ called a xiphoid located at the base of its spine, which produces and stores flammable substances in conjunction with three internal gas chambers along its body.",
+			"The Scoriox's digestive system can break down tough material due to the highly acidic enzymes produced in its stomach. Based on a scan of its digestive tract, the Scoriox preys on a variety of Morphopods and Illuvials, including other predators such as Emberlynxes.",
+			"The Scoriox's blood is made up of a unique compound that allows it to flow at extremely high temperatures."
+		]
+	},
+	"TraitOrderLegacy": [
+		2,
+		1,
+		5,
+		6,
+		3,
+		4
+	],
+	"Description": {
+		"Format": "Scoriox activates its molten core, gaining <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Energy Attack Damage and <AttackSpeed>{AttackSpeedBuff}%</> Attack Speed for {BuffDuration} seconds and causing all attacks to explode in {SplashRadius}-hexes.\r\n\r\nEnergy Attack Damage: <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"AttackSpeedBuff": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].Expression.Percentage"
+			},
+			"BuffDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[2].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"SplashRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[2].AttachedEffectPackageAttributes.Propagation.SplashRadiusUnits"
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Scoriox activates its molten core, gaining 100 () Energy Attack Damage and 40% Attack Speed for 6 seconds and causing all attacks to explode in 20-hexes.\r\n\r\nEnergy Attack Damage: 100 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 2,
+			"AttackSpeed": 1,
+			"Health": 5,
+			"MovementSpeed": 6,
+			"OmegaPower": 3,
+			"Resistance": 4
+		}
+	}
+}

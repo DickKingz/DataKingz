@@ -1,0 +1,299 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "AtippoAir",
+	"Stage": 3,
+	"Path": "Air",
+	"Variation": "Original",
+	"Tier": 0,
+	"CombatAffinity": "Air",
+	"CombatClass": "Empath",
+	"DominantCombatAffinity": "Air",
+	"DominantCombatClass": "Empath",
+	"SizeUnits": 5,
+	"Stats": {
+		"MaxHealth": 1850000,
+		"StartingEnergy": 40000,
+		"EnergyCost": 140000,
+		"PhysicalResist": 40,
+		"EnergyResist": 40,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 135000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 60,
+		"MoveSpeedSubUnits": 2000,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 5,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 40,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Air Atippo Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 45
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 8000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Gust III",
+			"TotalDurationMs": 2000,
+			"Skills": [
+				{
+					"Name": "Orb pulse",
+					"Targeting": {
+						"Type": "Self",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 60
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 24,
+						"DurationMs": 4000,
+						"FrequencyMs": 1000,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 100,
+					"ChannelTimeMs": 2000,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Debuff",
+								"Stat": "AttackSpeed",
+								"DurationMs": 2500,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										{
+											"Percentage": 20,
+											"Stat": "AttackSpeed",
+											"StatSource": "Receiver"
+										},
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										200000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Shield Allies",
+					"PercentageOfAbilityDuration": 0,
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 0
+					},
+					"Targeting": {
+						"Type": "InZone",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						],
+						"Group": "Ally",
+						"RadiusUnits": 24,
+						"Self": true
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "SpawnShield",
+								"DurationMs": 4000,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										200000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Exalted Air Atippo",
+	"DisplayDescription": "Exalted Air Atippo throws its orb into the air, granting all allies within 24-hexes a <StartingShield>200</> (<OmegaPowerPercentage></>) Shield for 4 seconds. Enemies hit by the orb take <AttackEnergyDamage>200</> (<OmegaPowerPercentage></>) Energy Damage and reducing their Attack Speed by <AttackSpeed>20</> (<OmegaPowerPercentage></>) for 2.5 seconds.\r\n\r\nShield: <StartingShield>200</> (<OmegaPowerPercentage></>)\r\nDamage: <AttackEnergyDamage>200</> (<OmegaPowerPercentage></>)\r\nAttack Speed: <AttackSpeed>20%</> (<OmegaPowerPercentage></>)",
+	"Intro": "On the northern tip of the west island, Taiga Boreal's icy mountain ranges rise to formidable heights. With thin air and piercing winds, brutal conditions in the area make it difficult for visitors to traverse the snowy land. Everclouds blanket the entire region, and in some places, they are so thick that one cannot see far in front of them. This presents great danger, but occasionally one is surprised by a wave of healing warmth radiating from the Lesser Air Atippo, who is kind enough to grant a passerby temporary respite from the cold.",
+	"Summary": "Taiga Boreal's icy mountains are difficult to traverse, but the Exalted Air Atippo provides occasional warmth to passersby. This air Illuvial features a large teal scoop-shaped horn, a glowing white orb, and dark blue wave-like markings on its body. It memorizes the tunnel networks, grazes on lichens near geysers, and inhales hot air to stay warm, using its air affinity to protect against flooding in ice caves.",
+	"Biology": {
+		"Physiology": "The Exalted Air Atippo's crowning glory is a large, scoop-shaped horn on its head that's roughly the same size as the rest of its body. It balloons out like a collapsed mushroom, teal in colour with a knobbed grooved texture, often billowing wisps of air from the notches around its curve. Floating above the horn is a glowing white orb, pulsing with light just like the luminous dots drifting from its light turquoise tail. The rest of its body is covered with dark blue markings that swirl lives ocean waves. Standing on four stout legs with small dark blue claws, the Exalted Air Atippo looks up with its amethyst eyes, twitching its thin ears.",
+		"Behaviour": "The Exalted Air Atippo has a remarkable memory, and it knows its way around the extensive tunnel network beneath the surface of Taiga Boreal intimately. Every day, it visits active geysers to graze on lichens growing near these pockets of heat. It is capable of inhaling and exhaling with the notches upon its horn, collecting large quantities of hot air to help it keep warm.  The Exalted Air Atippo is resilient against the force of water which may flood an ice cave, using its affinity for air to buffet an air bubble around it. With excess energy, it travels throughout the region and distributes its healing warmth to any in need."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/AtippoStage3Air/AtippoStage3Air_default_default_webp.3840x2160/AtippoStage3Air_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/AtippoStage3Air/AtippoStage3Air_default_default_hls.m3u8/AtippoStage3Air_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Exalted Air Atippo can inhale and exhale air through the notches upon its horn.",
+			"The Exalted Air Atippo gathers in groups and travels through tunnel networks together, awaiting the eruption of a geyser. This ritual allows them to gather hot air into its horn as their light orbs glow in unison.",
+			"The Exalted Air Atippo spends most of its time grazing, using its horn as camouflage among the mountains. It may blow flurries of snow up into a white cloud around its body, concealing its form."
+		],
+		"Buckley": [
+			"The Exalted Atippo has a unique filtration system that allows it to extract nutrients directly from the air with its porous skin and adapted digestive system which can break down airborne particles.",
+			"The Exalted Air Atippo's luminous orb can emit a layer of sound that is a higher frequency than the hearing range of most organic life forms, allowing it to communicate discreetly with others of its kind.",
+			"The Exalted Air Atippo's scoop-shaped horn processes vibratory sensations and acts as a tuning fork for detecting the electromagnetic impulse of life around it. The closer it is to the ground, the stronger the vibrations and the richer the natural sound it detects.",
+			"The Exalted Air Atippo has a complex internal system of air pockets and channels that allow it to control the flow and density of the air around it.",
+			"The Exalted Air Atippo's respiratory system functions by taking in high-temperature air through its horn, then using an internal pressure valve to produce and then release its own healing energy into the air."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		2,
+		3,
+		6,
+		1,
+		4
+	],
+	"Description": {
+		"Format": "Exalted Air Atippo throws its orb into the air, granting all allies within {OmegaRadius}-hexes a <StartingShield>{ShieldValue}</> (<OmegaPowerPercentage></>) Shield for {ShieldDuration} seconds. Enemies hit by the orb take <AttackEnergyDamage>{OrbDamage}</> (<OmegaPowerPercentage></>) Energy Damage and reducing their Attack Speed by <AttackSpeed>{ASVal}</> (<OmegaPowerPercentage></>) for {EffectDuration} seconds.\r\n\r\nShield: <StartingShield>{ShieldValue}</> (<OmegaPowerPercentage></>)\r\nDamage: <AttackEnergyDamage>{OrbDamage}</> (<OmegaPowerPercentage></>)\r\nAttack Speed: <AttackSpeed>{ASVal}%</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Zone.RadiusUnits"
+			},
+			"ShieldValue": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"ShieldDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Zone.DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"OrbDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"ASVal": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0].Percentage",
+				"ValueMultiplier": 1.0
+			},
+			"EffectDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Exalted Air Atippo throws its orb into the air, granting all allies within 24-hexes a 200 () Shield for 4 seconds. Enemies hit by the orb take 200 () Energy Damage and reducing their Attack Speed by 20 () for 2.5 seconds.\r\n\r\nShield: 200 ()\r\nDamage: 200 ()\r\nAttack Speed: 20% ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 2,
+			"Health": 3,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 4
+		}
+	}
+}

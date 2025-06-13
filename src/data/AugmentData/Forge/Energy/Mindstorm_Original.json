@@ -1,0 +1,138 @@
+{
+	"Name": "Mindstorm",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Normal",
+	"Abilities": [
+		{
+			"Name": "Mindstorm_Stats",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Mindstorm - List of Stats",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "OmegaPowerPercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 20
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackSpeed",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackSpeed",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"Name": "Mindstorm_Ability1",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Mindstorm - Gain Energy",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "EnergyRegeneration",
+								"OverlapProcessType": "Sum",
+								"DurationMs": 5000,
+								"Expression": 500
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"Name": "Mindstorm_Ability2",
+			"ActivationTrigger": {
+				"TriggerType": "EveryXTime",
+				"ActivateEveryTimeMs": 5000,
+				"MaxActivations": 1
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Mindstorm - Gain Omega Power",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "OmegaPowerPercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 15
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Mindstorm",
+	"DisplayDescription": "Combat Start: Gain <EnergyRegeneration>5</> <EnergyRegeneration>Energy Regen</> for 5 seconds. Afterwards, gain <OmegaPowerPercentage>15</> <OmegaPowerPercentage>Omega Power</>.\r\n\r\nStats:\r\n+20 <OmegaPowerPercentage>Omega Power</>\r\n+10% <AttackSpeed>Attack Speed</>",
+	"Description": {
+		"Format": "Combat Start: Gain <EnergyRegeneration>{EnergyVal}</> <EnergyRegeneration>Energy Regen</> for {Duration} seconds. Afterwards, gain <OmegaPowerPercentage>{OPVal}</> <OmegaPowerPercentage>Omega Power</>.\r\n\r\nStats:\r\n+{Stat_OP} <OmegaPowerPercentage>Omega Power</>\r\n+{Stat_AS}% <AttackSpeed>Attack Speed</>",
+		"Parameters": {
+			"EnergyVal": {
+				"ParameterPath": "Abilities[1].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"Duration": {
+				"ParameterPath": "Abilities[1].Skills[0].EffectPackage.Effects[0].Expression",
+				"ValueMultiplier": 0.01
+			},
+			"OPVal": {
+				"ParameterPath": "Abilities[2].Skills[0].EffectPackage.Effects[0].Expression",
+				"ValueMultiplier": 1.0
+			},
+			"Stat_OP": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].Expression",
+				"ValueMultiplier": 1.0
+			},
+			"Stat_AS": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[1].Expression.Percentage",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Combat Start: Gain 5 Energy Regen for 5 seconds. Afterwards, gain 15 Omega Power.\r\n\r\nStats:\r\n+20 Omega Power\r\n+10% Attack Speed"
+}

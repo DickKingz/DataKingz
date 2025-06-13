@@ -1,0 +1,222 @@
+{
+	"Name": "QuakeMaulers",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Normal",
+	"CombatAffinity": "Earth",
+	"CombatClass": "Rogue",
+	"DominantCombatAffinity": "Earth",
+	"DominantCombatClass": "Rogue",
+	"Stats": {
+		"MaxHealth": 800000,
+		"StartingEnergy": 20000,
+		"EnergyCost": 120000,
+		"PhysicalResist": 60,
+		"EnergyResist": 40,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 90000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 110,
+		"MoveSpeedSubUnits": 0,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 2,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Maulers Attack I",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 50
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Earthbind Guard",
+			"TotalDurationMs": 1000,
+			"Skills": [
+				{
+					"Name": "Shield",
+					"PercentageOfAbilityDuration": 80,
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 80
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"ID": "TectonicRupture",
+								"Type": "SpawnShield",
+								"DurationMs": 4000,
+								"FrequencyMs": 1500,
+								"Expression": {
+									"Operation": "+",
+									"Operands": [
+										{
+											"Operation": "*",
+											"Operands": [
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												},
+												350000
+											]
+										},
+										{
+											"Operation": "*",
+											"Operands": [
+												{
+													"Percentage": 5,
+													"Stat": "MaxHealth",
+													"StatSource": "Sender"
+												}
+											]
+										}
+									]
+								},
+								"OnDestroy": {
+									"Name": "AoE Damage",
+									"Targeting": {
+										"Type": "Self"
+									},
+									"Deployment": {
+										"Type": "Zone"
+									},
+									"Zone": {
+										"Shape": "Hexagon",
+										"RadiusUnits": 20,
+										"DurationMs": 100,
+										"FrequencyMs": 100,
+										"ApplyOnce": true
+									},
+									"EffectPackage": {
+										"Effects": [
+											{
+												"Type": "InstantDamage",
+												"DamageType": "Energy",
+												"Expression": {
+													"Operation": "*",
+													"Operands": [
+														0,
+														{
+															"Stat": "OmegaPowerPercentage",
+															"StatSource": "Sender"
+														}
+													]
+												}
+											}
+										]
+									}
+								}
+							},
+							{
+								"Type": "Empower",
+								"DurationMs": 4000,
+								"IsConsumable": false,
+								"ActivatedBy": "Attack",
+								"AttachedEffects": [
+									{
+										"Type": "Debuff",
+										"Stat": "PhysicalResist",
+										"OverlapProcessType": "Stacking",
+										"DurationMs": -1,
+										"Expression": 5
+									}
+								]
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Quake Maulers",
+	"DisplayDescription": "The Ranger jumps up and shocks the ground, charging the stored energy from the gloves into a <MaxHealth>350</> (<OmegaPowerPercentage></>) + <MaxHealth>5%</> Max Health Shield for 4 seconds.\r\nWhile the Shield is active, the Ranger's attacks reduce the target's Phyisical Resistance by <PhysicalResist>5</> per hit.",
+	"Description": {
+		"Format": "The Ranger jumps up and shocks the ground, charging the stored energy from the gloves into a <MaxHealth>{Shield}</> (<OmegaPowerPercentage></>) + <MaxHealth>{Percent}%</> Max Health Shield for {Duration} seconds.\r\nWhile the Shield is active, the Ranger's attacks reduce the target's Phyisical Resistance by <PhysicalResist>{Vlaue}</> per hit.",
+		"Parameters": {
+			"Shield": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0].Operands[1]",
+				"ValueMultiplier": 0.001
+			},
+			"Percent": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[1].Operands[0].Percentage",
+				"ValueMultiplier": 1.0
+			},
+			"Duration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"Vlaue": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].AttachedEffects[0].Expression",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "The Ranger jumps up and shocks the ground, charging the stored energy from the gloves into a 350 () + 5% Max Health Shield for 4 seconds.\r\nWhile the Shield is active, the Ranger's attacks reduce the target's Phyisical Resistance by 5 per hit."
+}

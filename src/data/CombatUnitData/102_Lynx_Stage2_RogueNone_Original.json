@@ -1,0 +1,306 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Lynx",
+	"Stage": 2,
+	"Path": "RogueNone",
+	"Variation": "Original",
+	"Tier": 2,
+	"CombatAffinity": "None",
+	"CombatClass": "Rogue",
+	"DominantCombatAffinity": "None",
+	"DominantCombatClass": "Rogue",
+	"SizeUnits": 4,
+	"Stats": {
+		"MaxHealth": 1650000,
+		"StartingEnergy": 40000,
+		"EnergyCost": 100000,
+		"PhysicalResist": 40,
+		"EnergyResist": 40,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 150000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 70,
+		"MoveSpeedSubUnits": 2250,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 4,
+		"OmegaRangeUnits": 4,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Rogue Lynx Basic Attack II",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 38
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Pentacle Scything",
+			"TotalDurationMs": 1200,
+			"Skills": [
+				{
+					"Name": "Slash",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 40
+					},
+					"PercentageOfAbilityDuration": 20,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										200000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Slash",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 20
+					},
+					"PercentageOfAbilityDuration": 20,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										200000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Slash",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 20
+					},
+					"PercentageOfAbilityDuration": 20,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										200000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Slash",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 20
+					},
+					"PercentageOfAbilityDuration": 20,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										200000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Slash",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 40
+					},
+					"PercentageOfAbilityDuration": 20,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										200000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Nimble Lynx",
+	"DisplayDescription": "Nimble Lynx slashes the target 5 times, dealing <AttackPhysicalDamage>200</> (<OmegaPowerPercentage></>) Physical Damage per slash.\r\n\r\nDamage: <AttackPhysicalDamage>1,000</> = <AttackPhysicalDamage>200</> x5 (<OmegaPowerPercentage></>)",
+	"Intro": "Abyssal Basin is full of dense, mangrove-like forests with an impenetrable forest canopy blocking the sun. Thick swamp water and overhanging branches are an endless obstacle course, aided by the vast, sprawling root systems that grapple with the land above. Even the swiftest Illuvials are dragged down by mud and shrubbery, but the Nimble Lynx crawls silently through the thickets.",
+	"Summary": "The Nimble Lynx moves stealthily with dark fur and white streaks, highlighted by a glowing green sphere on its forehead. It navigates silently on agile legs and retractable claws, capable of climbing and swiftly attacking prey. With a mind as sharp as its body, the Nimble Lynx assesses its surroundings strategically, ensuring it stays ahead in the relentless pursuit of survival.",
+	"Biology": {
+		"Physiology": "The Nimble Lynx has dark fur and white streaks along its coat and creeps soundlessly on all fours like a phantom of shadows. It has different coloured eyes, one blue, one yellow, and a shining green sphere upon its forehead that brightens when it strikes. With long pointy ears and fur hanging from its face, the Nimble Lynx has a spikey mane that flares up around its head and neck. A strong magenta glow follows its claws, flashing quickly when it runs and strikes down an opponent. Its muscular legs are extremely agile, and it can climb up and down as swiftly as it runs.",
+		"Behaviour": "The Nimble Lynx's mind is as quick as its body, and it is always appraising its surroundings for the most strategic route. It is a social Illuvial that hunts in packs, but it is also capable of hunting smaller prey on its own. The Nimble Lynx can run across a variety of terrain easily, and it frequently uses trunks and root arches as a sidestep to keep from splashing in swamp water and alerting prey of its presence. Few things slow the Nimble Lynx down, but bright lights often divert its attention. The movement of other Illuvials often draws the Nimble Lynx into giving chase, seeking a meal. With retractable claws, it can climb to great heights to capture prey."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage2Rogue/LynxStage2Rogue_default_default_webp.3840x2160/LynxStage2Rogue_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage2Rogue/LynxStage2Rogue_default_default_hls.m3u8/LynxStage2Rogue_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Nimble Lynx's padded paws soften its steps so that they are nearly undetectable. It moves silently through the territory of other Illuvials, taking them by surprise when their guard is down.",
+			"The Nimble Lynx occasionally hunts in packs, working together to surround stronger Illuvials and taking them down together.",
+			"The Nimble Lynx shows dominance over others of its kind through individual hunts over smaller prey. However, this social competition is put aside during large hunts, where they exhibit cooperative behaviour."
+		],
+		"Buckley": [
+			"The Nimble Lynx has retractable claws that allow it to climb and capture prey with ease.",
+			"The Nimble Lynx has a luminous orb that is capable of creating a light beam, allowing it to see further ahead in low-light conditions.",
+			"The Nimble Lynx's eyes can process a much higher visual processing rate than the average Valain, enabling it to observe minute changes in its environment and respond almost instantaneously.",
+			"The Nimble Lynx has dark grey fur and many white stripes which can create an optical illusion and confuse prey when it is moving quickly.",
+			"The Nimble Lynx's nervous system is directly connected to the luminous orb upon its forehead, which can light up in varying degrees of illumination corresponding to its mental activity, particularly those involving environmental assessment and teleportation."
+		]
+	},
+	"TraitOrderLegacy": [
+		3,
+		1,
+		4,
+		6,
+		2,
+		5
+	],
+	"Description": {
+		"Format": "Nimble Lynx slashes the target 5 times, dealing <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Physical Damage per slash.\r\n\r\nDamage: <AttackPhysicalDamage>{OmegaDamageFull}</> = <AttackPhysicalDamage>{OmegaDamage}</> x5 (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"OmegaDamageFull": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.005
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Nimble Lynx slashes the target 5 times, dealing 200 () Physical Damage per slash.\r\n\r\nDamage: 1,000 = 200 x5 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 3,
+			"AttackSpeed": 1,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 2,
+			"Resistance": 5
+		}
+	}
+}

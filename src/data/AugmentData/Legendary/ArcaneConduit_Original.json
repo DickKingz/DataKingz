@@ -1,0 +1,96 @@
+{
+	"Name": "ArcaneConduit",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "GreaterPower",
+	"Abilities": [
+		{
+			"Name": "ArcaneConduit_Ability1",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "ArcaneConduit - Gain Omega Power",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "OmegaPowerPercentage",
+								"OverlapProcessType": "Sum",
+								"DurationMs": -1,
+								"FrequencyMs": 100,
+								"Expression": {
+									"Operation": "/",
+									"Operands": [
+										{
+											"Percentage": 35,
+											"Stat": "AttackDamage",
+											"StatSource": "Receiver"
+										},
+										1000
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"Name": "ArcaneConduit_Ability2",
+			"ActivationTrigger": {
+				"TriggerType": "OnActivateXAbilities",
+				"AbilityTypes": [
+					"Attack"
+				],
+				"EveryX": true,
+				"NumberOfAbilitiesActivated": 1
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "ArcaneConduit - Gain Energy on Hit",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantEnergyGain",
+								"Expression": 10000
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Arcane Conduit",
+	"DisplayDescription": "The holder gains <AttackDamage>35%</> of <AttackDamage>Attack Damage</> as <OmegaPowerPercentage>Omega Power</>.\r\n\r\nAttacks grant <StartingEnergy>10</> additional <StartingEnergy>Energy</>.",
+	"Description": {
+		"Format": "The holder gains <AttackDamage>{ConvertVal}%</> of <AttackDamage>Attack Damage</> as <OmegaPowerPercentage>Omega Power</>.\r\n\r\nAttacks grant <StartingEnergy>{Energy}</> additional <StartingEnergy>Energy</>.",
+		"Parameters": {
+			"ConvertVal": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0].Percentage",
+				"ValueMultiplier": 1.0
+			},
+			"Energy": {
+				"ParameterPath": "Abilities[1].Skills[0].EffectPackage.Effects[0].Expression",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "The holder gains 35% of Attack Damage as Omega Power.\r\n\r\nAttacks grant 10 additional Energy."
+}

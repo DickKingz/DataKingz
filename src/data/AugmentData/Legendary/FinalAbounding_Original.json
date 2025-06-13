@@ -1,0 +1,70 @@
+{
+	"Name": "FinalAbounding",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "GreaterPower",
+	"Abilities": [
+		{
+			"Name": "FinalAbounding_Ability1",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "FinalAbounding - Can Crit and Stats",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Empower",
+								"ActivatedBy": "Omega",
+								"DurationMs": -1,
+								"AttachedEffects": [],
+								"AttachedEffectPackageAttributes": {
+									"CanCrit": true
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "CritChancePercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 25
+							},
+							{
+								"Type": "Buff",
+								"Stat": "OmegaPowerPercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 25
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Final Abounding",
+	"DisplayDescription": "Holder's Omega can Critically Strike. Gain <CritChancePercentage>25%</> <CritChancePercentage>Crit Chance</> and <OmegaPowerPercentage>25</> <OmegaPowerPercentage>Omega Power</>.",
+	"Description": {
+		"Format": "Holder's Omega can Critically Strike. Gain <CritChancePercentage>{CCVal}%</> <CritChancePercentage>Crit Chance</> and <OmegaPowerPercentage>{OPVal}</> <OmegaPowerPercentage>Omega Power</>.",
+		"Parameters": {
+			"CCVal": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[1].Expression",
+				"ValueMultiplier": 1.0
+			},
+			"OPVal": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[2].Expression",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Holder's Omega can Critically Strike. Gain 25% Crit Chance and 25 Omega Power."
+}

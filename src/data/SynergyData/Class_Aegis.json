@@ -1,0 +1,349 @@
+{
+	"CombatClass": "Aegis",
+	"CombatClassComponents": [
+		"Empath",
+		"Bulwark"
+	],
+	"SynergyThresholds": [
+		2,
+		3,
+		4
+	],
+	"SynergyThresholdsAbilities": {
+		"Variables": [
+			{
+				"Name": "Aegis_GrantStats",
+				"Values": [
+					13,
+					14,
+					15
+				]
+			},
+			{
+				"Name": "Aegis_GainStats",
+				"Values": [
+					13,
+					14,
+					15
+				]
+			},
+			{
+				"Name": "Aegis_HealthShare",
+				"Values": [
+					0,
+					0,
+					15
+				]
+			}
+		],
+		"TeamAbilities": [],
+		"UnitAbilities": [
+			{
+				"Name": "AegisSynergy_Ability1",
+				"ActivationTrigger": {
+					"TriggerType": "OnBattleStart"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Aegis - Target Closest Ally",
+						"Targeting": {
+							"Type": "DistanceCheck",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							],
+							"Group": "Ally",
+							"Lowest": true,
+							"Num": 1
+						},
+						"Deployment": {
+							"Type": "Direct",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							]
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Buff",
+									"Stat": "AttackPhysicalDamage",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Aegis_GrantStats}",
+										"Stat": "AttackPhysicalDamage",
+										"StatSource": "Sender"
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "AttackEnergyDamage",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Aegis_GrantStats}",
+										"Stat": "AttackEnergyDamage",
+										"StatSource": "Sender"
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "AttackPureDamage",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Aegis_GrantStats}",
+										"Stat": "AttackPureDamage",
+										"StatSource": "Sender"
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "AttackSpeed",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Aegis_GrantStats}",
+										"Stat": "AttackSpeed",
+										"StatSource": "Sender"
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "PhysicalResist",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Aegis_GrantStats}",
+										"Stat": "PhysicalResist",
+										"StatSource": "Sender"
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "EnergyResist",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Aegis_GrantStats}",
+										"Stat": "EnergyResist",
+										"StatSource": "Sender"
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "MaxHealth",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Aegis_HealthShare}",
+										"Stat": "MaxHealth",
+										"StatSource": "Sender"
+									}
+								}
+							]
+						}
+					}
+				]
+			},
+			{
+				"Name": "AegisSynergy_Ability2",
+				"ActivationTrigger": {
+					"TriggerType": "OnBattleStart"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Aegis - Mark Closest Ally",
+						"Targeting": {
+							"Type": "DistanceCheck",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							],
+							"Group": "Ally",
+							"Lowest": true,
+							"Self": false,
+							"Num": 1
+						},
+						"Deployment": {
+							"Type": "Direct",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							]
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "SpawnMark",
+									"MarkType": "Beneficial",
+									"DurationMs": -1,
+									"AttachedAbilities": [
+										{
+											"Name": "Aegis_SubAbility",
+											"ActivationTrigger": {
+												"TriggerType": "EveryXTime",
+												"ActivateEveryTimeMs": 100,
+												"MaxActivations": 1
+											},
+											"TotalDurationMs": 0,
+											"Skills": [
+												{
+													"Name": "Aegis - Target Aegis",
+													"Targeting": {
+														"Type": "Synergy",
+														"Guidance": [
+															"Ground",
+															"Underground",
+															"Airborne"
+														],
+														"Group": "Ally",
+														"CombatClass": "Aegis"
+													},
+													"Deployment": {
+														"Type": "Direct",
+														"Guidance": [
+															"Ground",
+															"Underground",
+															"Airborne"
+														]
+													},
+													"EffectPackage": {
+														"Effects": [
+															{
+																"Type": "Buff",
+																"Stat": "AttackPhysicalDamage",
+																"OverlapProcessType": "Highest",
+																"DurationMs": -1,
+																"Expression": {
+																	"Percentage": "{Aegis_GainStats}",
+																	"Stat": "AttackPhysicalDamage",
+																	"StatSource": "Sender"
+																}
+															},
+															{
+																"Type": "Buff",
+																"Stat": "AttackEnergyDamage",
+																"OverlapProcessType": "Highest",
+																"DurationMs": -1,
+																"Expression": {
+																	"Percentage": "{Aegis_GainStats}",
+																	"Stat": "AttackEnergyDamage",
+																	"StatSource": "Sender"
+																}
+															},
+															{
+																"Type": "Buff",
+																"Stat": "AttackPureDamage",
+																"OverlapProcessType": "Highest",
+																"DurationMs": -1,
+																"Expression": {
+																	"Percentage": "{Aegis_GainStats}",
+																	"Stat": "AttackPureDamage",
+																	"StatSource": "Sender"
+																}
+															},
+															{
+																"Type": "Buff",
+																"Stat": "AttackSpeed",
+																"OverlapProcessType": "Highest",
+																"DurationMs": -1,
+																"Expression": {
+																	"Percentage": "{Aegis_GainStats}",
+																	"Stat": "AttackSpeed",
+																	"StatSource": "Sender"
+																}
+															},
+															{
+																"Type": "Buff",
+																"Stat": "PhysicalResist",
+																"OverlapProcessType": "Highest",
+																"DurationMs": -1,
+																"Expression": {
+																	"Percentage": "{Aegis_GainStats}",
+																	"Stat": "PhysicalResist",
+																	"StatSource": "Sender"
+																}
+															},
+															{
+																"Type": "Buff",
+																"Stat": "EnergyResist",
+																"OverlapProcessType": "Highest",
+																"DurationMs": -1,
+																"Expression": {
+																	"Percentage": "{Aegis_GainStats}",
+																	"Stat": "EnergyResist",
+																	"StatSource": "Sender"
+																}
+															},
+															{
+																"Type": "Buff",
+																"Stat": "MaxHealth",
+																"OverlapProcessType": "Highest",
+																"DurationMs": -1,
+																"Expression": {
+																	"Percentage": "{Aegis_HealthShare}",
+																	"Stat": "MaxHealth",
+																	"StatSource": "Sender"
+																}
+															}
+														]
+													}
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					}
+				]
+			}
+		]
+	},
+	"IntrinsicAbilities": [],
+	"DisplayName": "Aegis",
+	"DisplayDescription": "\r\nCombat Start: Aegis units grant a percentage of their <AttackDamage>Attack Damage</>, <AttackSpeed>Attack Speed</>, and <Resistance>Resistances</> to their closest ally. In return, they gain the highest percentage value of each stat from any ally.\r\n\r\n(4) Also share and gain <MaxHealth>Max Health</>.\r\n",
+	"DisplayDescriptionThresholds": [
+		"Share and gain 13% <AttackDamage></><AttackSpeed></><Resistance></>",
+		"Share and gain 14% <AttackDamage></><AttackSpeed></><Resistance></>",
+		"Share and gain 15% <AttackDamage></><AttackSpeed></><Resistance></>"
+	],
+	"Description": {
+		"Format": "\r\nCombat Start: Aegis units grant a percentage of their <AttackDamage>Attack Damage</>, <AttackSpeed>Attack Speed</>, and <Resistance>Resistances</> to their closest ally. In return, they gain the highest percentage value of each stat from any ally.\r\n\r\n(4) Also share and gain <MaxHealth>Max Health</>.\r\n",
+		"Parameters": {}
+	},
+	"DescriptionThresholds": {
+		"Format": "Share and gain {Aegis_GrantStats}% <AttackDamage></><AttackSpeed></><Resistance></>",
+		"Parameters": [
+			{
+				"Aegis_GrantStats": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[0]"
+				}
+			},
+			{
+				"Aegis_GrantStats": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[1]"
+				}
+			},
+			{
+				"Aegis_GrantStats": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[2]"
+				}
+			}
+		]
+	},
+	"DisplayDescriptionNormalized": "Combat Start: Aegis units grant a percentage of their Attack Damage, Attack Speed, and Resistances to their closest ally. In return, they gain the highest percentage value of each stat from any ally.\r\n\r\n(4) Also share and gain Max Health.",
+	"DisplayDescriptionThresholdsNormalized": [
+		"Share and gain 13%",
+		"Share and gain 14%",
+		"Share and gain 15%"
+	]
+}

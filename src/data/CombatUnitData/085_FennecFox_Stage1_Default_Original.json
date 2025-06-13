@@ -1,0 +1,268 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "FennecFox",
+	"Stage": 1,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 3,
+	"CombatAffinity": "Air",
+	"CombatClass": "Empath",
+	"DominantCombatAffinity": "Air",
+	"DominantCombatClass": "Empath",
+	"SizeUnits": 2,
+	"Stats": {
+		"MaxHealth": 1100000,
+		"StartingEnergy": 100000,
+		"EnergyCost": 150000,
+		"PhysicalResist": 30,
+		"EnergyResist": 40,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 95000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 65,
+		"OmegaRangeUnits": 0,
+		"MoveSpeedSubUnits": 2500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 5,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 60,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Fennec Fox Basic Attack I",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 50
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 10000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Phantom Eyes I",
+			"TotalDurationMs": 1500,
+			"Skills": [
+				{
+					"Name": "Temp increased Phy and Enrg Resist",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 0,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "SpawnShield",
+								"DurationMs": 6000,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										150000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Damage and Stun",
+					"Targeting": {
+						"Type": "DistanceCheck",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"Group": "Enemy",
+						"Lowest": false,
+						"Num": 2
+					},
+					"PercentageOfAbilityDuration": 100,
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 47
+					},
+					"Projectile": {
+						"SizeUnits": 5,
+						"SpeedSubUnits": 10000,
+						"IsHoming": false,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Charm",
+								"DurationMs": 500
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										150000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Winq",
+	"DisplayDescription": "Winq gains 150 (<OmegaPowerPercentage></>) Shield for 6 seconds, Charming the 2 furthest enemies for 0.5 seconds and dealing <AttackEnergyDamage>150</> (<OmegaPowerPercentage></>) <AttackEnergyDamage>Energy Damage</>.\r\n\r\nShield: <StartingShield>150</> (<OmegaPowerPercentage></>)\r\nDamage: <AttackEnergyDamage>150</> (<OmegaPowerPercentage></>)\r\n\r\nCharm: Forces the unit to move towards the source",
+	"Intro": "Abyssal Basin can be messy and chaotic, full of enormous mushrooms erupting from the ground, upheaving soil, rocks, and flowers. Sulfuric gas bubbles in rapids filled with moss, but there are also places of serenity. Behind gentle waterfalls, under the shade of a massive Bluewood tree, the jewelled tails of the Winq swish about.",
+	"Summary": "The Winq dwells behind waterfalls and under massive Bluewood trees, showcasing its jewelled tails. The Winq is notable for its small face, large floppy ears, and three bushy white tails. Its ears are highly flexible, allowing it to detect and respond to sounds quickly, while its tails can emit a strong flash to stun prey. Known for its mimicry and curiosity, the Winq often follows other Illuvials to form connections.",
+	"Biology": {
+		"Physiology": "The Winq's small face and body are dwarfed by its humongous ears and tails. Long and curvy, its three bushy white tails swirl behind it like turquoise-tipped flames, bedazzled with what appears to be sparkling aquamarines along its thick fur. Its floppy ears are so big that they can generate lift when it runs. Soft and velvety, its ears are cartilaginous, with enough muscle to maintain their stance. Despite these sizeable additions to its body, it is light on its feet and moves as though walking on air.",
+		"Behaviour": "The Winq's big ears are always listening, quick to respond to unexpected sounds. When it hears the presence of Morphopods, it reacts quickly by lifting its tails and emitting a strong flash. This stuns the Morphopods, making it easier for the Winq to catch them. The curious Winq is a quiet observer who sometimes becomes so fascinated by an Illuvial that it follows them around for weeks. In an attempt to form a connection, Winq will imitate the movements of others to show that they are alike. If that doesn't work, it will light up its tail and dazzle a potential companion with a show."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/FennecFoxStage1/FennecFoxStage1_default_default_webp.3840x2160/FennecFoxStage1_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/FennecFoxStage1/FennecFoxStage1_default_default_hls.m3u8/FennecFoxStage1_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"When a Winq rests, it sleeps upon its fluffy middle tail and blankets itself in the other two.",
+			"The Winq often watches other Illuvials for hours at a time, following their every move.",
+			"The Winq typically walks with its three tails intertwined as one, jewels unlit. When it activates its tails, they separate into three and light up."
+		],
+		"Buckley": [
+			"The Winq's ears are extremely flexible, capable of curving towards any sound in the air.",
+			"The Winq has an enlarged brain with a high capacity for mimicry.",
+			"The Winq has a specialised section of its brain dedicated to coordinating the glowing patterns of its gemstones and the direction of light flow around its tail.",
+			"The Winq's body is so lightweight it is capable of lifting into the air by spreading its ears and running.",
+			"The Winq's tails contain fibrous tendrils in their fur that allow them to attach and move in unison. It is capable of detaching its tails into three separate sections and rejoining them at will."
+		]
+	},
+	"TraitOrderLegacy": [
+		3,
+		2,
+		4,
+		6,
+		1,
+		5
+	],
+	"Description": {
+		"Format": "Winq gains {ShieldValue} (<OmegaPowerPercentage></>) Shield for {ShieldDuration} seconds, Charming the {TargetNum} furthest enemies for {CharmDuration} seconds and dealing <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) <AttackEnergyDamage>Energy Damage</>.\r\n\r\nShield: <StartingShield>{ShieldValue}</> (<OmegaPowerPercentage></>)\r\nDamage: <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)\r\n\r\nCharm: Forces the unit to move towards the source",
+		"Parameters": {
+			"ShieldValue": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"ShieldDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"TargetNum": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].Targeting.Num"
+			},
+			"CharmDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[1].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Winq gains 150 () Shield for 6 seconds, Charming the 2 furthest enemies for 0.5 seconds and dealing 150 () Energy Damage.\r\n\r\nShield: 150 ()\r\nDamage: 150 ()\r\n\r\nCharm: Forces the unit to move towards the source",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 3,
+			"AttackSpeed": 2,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 5
+		}
+	}
+}

@@ -1,0 +1,299 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "AtippoWater",
+	"Stage": 1,
+	"Path": "Water",
+	"Variation": "Original",
+	"Tier": 0,
+	"CombatAffinity": "Water",
+	"CombatClass": "Empath",
+	"DominantCombatAffinity": "Water",
+	"DominantCombatClass": "Empath",
+	"SizeUnits": 3,
+	"Stats": {
+		"MaxHealth": 1050000,
+		"StartingEnergy": 40000,
+		"EnergyCost": 140000,
+		"PhysicalResist": 25,
+		"EnergyResist": 30,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 65000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 60,
+		"MoveSpeedSubUnits": 1500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 40,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Water Atippo Basic Attack I",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 55
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 8000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Surge I",
+			"TotalDurationMs": 2000,
+			"Skills": [
+				{
+					"Name": "Orb pulse",
+					"Targeting": {
+						"Type": "Self",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 60
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 24,
+						"DurationMs": 4000,
+						"FrequencyMs": 1000,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 100,
+					"ChannelTimeMs": 2000,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Debuff",
+								"Stat": "AttackSpeed",
+								"DurationMs": 2500,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										{
+											"Percentage": 10,
+											"Stat": "AttackSpeed",
+											"StatSource": "Receiver"
+										},
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										125000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Shield Allies",
+					"PercentageOfAbilityDuration": 0,
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 0
+					},
+					"Targeting": {
+						"Type": "InZone",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						],
+						"Group": "Ally",
+						"RadiusUnits": 24,
+						"Self": true
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "SpawnShield",
+								"DurationMs": 4000,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										125000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Lesser Water Atippo",
+	"DisplayDescription": "Lesser Water Atippo throws its orb into the air, granting all allies within 24-hexes a <StartingShield>125</> (<OmegaPowerPercentage></>) Shield for 4 seconds. Enemies hit by the orb take <AttackEnergyDamage>125</> (<OmegaPowerPercentage></>) Energy Damage and reducing their Attack Speed by <AttackSpeed>10</> (<OmegaPowerPercentage></>) for 2.5 seconds.\r\n\r\nShield: <StartingShield>125</> (<OmegaPowerPercentage></>)\r\nDamage: <AttackEnergyDamage>125</> (<OmegaPowerPercentage></>)\r\nAttack Speed: <AttackSpeed>10%</> (<OmegaPowerPercentage></>)",
+	"Intro": "The waterfalls of Halcyon Sea flow down to rice-field like terraces, where the water gathers into colourful pools populated by coral and shell-like material. The chroma of each pool is dependent on the dominant organism in each section. The playful Lesser Water Atippo can be found scooping up water into its horn and pouring it into other pools, mixing hues and creating its own multicoloured waterfall.",
+	"Summary": "The waterfalls of Halcyon Sea flow into terraced, colorful pools where the playful Lesser Water Atippo. This water Illuvial features a bright blue orb, dark blue markings, and uses its horn for collecting and mixing nutrient-rich water, often sharing it with others as a bonding ritual. The Atippo's horn filters water for recovery hormones, detects life vibrations, and its tail, resembling liquid water, aids in sensory coordination.",
+	"Biology": {
+		"Physiology": "The Lesser Water Atippo's crowning glory is a large, scoop-shaped horn on its head that's roughly the same size as the rest of its body. It balloons out like a collapsed mushroom, navy in colour with a knobbed grooved texture, often holding water at the top. Floating above the horn's inverted curve is a bright blue orb, pulsing with light just like the luminous dots drifting from its light blue tail. The rest of its body is covered with dark blue markings that swirl lives ocean waves. Standing on four stout legs with small dark blue claws, the Lesser Water Atippo looks up with its blue eyes, twitching its thin ears.",
+		"Behaviour": "The Lesser Water Atippo collects ocean water with its giant horn and uses it to mix pools of nutrients until it's found the perfect balance. It sometimes offers this blend of water to other Atippos, bathing one another as a form of bonding. The Lesser Water Atippo often plays by shooting water out of its horn with energy blasts from its orb. It is capable of controlling the strength of its blasts, from playful taps to rough warnings. When the Lesser Water Atippo is overcome with adrenaline, it sends out bursts of vitality to other Illuvials in its vicinity."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/AtippoStage1Water/AtippoStage1Water_default_default_webp.3840x2160/AtippoStage1Water_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/AtippoStage1Water/AtippoStage1Water_default_default_hls.m3u8/AtippoStage1Water_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Lesser Water Atippo is particular about the water it collects, taking time to find pools with the particular type of nutrients it is looking for. There are various recipes of multicoloured water it creates by mixing water from the colourful pools of Halcyon Falls.",
+			"The Lesser Water Atippo gathers in groups and wades in pools together, shooting blasts of water out in a patterned formation like a living fountain. This ritual allows them to gather energy and share it in abundance with each other, their light orbs glowing in unison.",
+			"The Lesser Water Atippo spends most of its time swimming, using its scoop-shaped horn as a floater. It grazes underwater upon seagrass and various aquatic plants."
+		],
+		"Buckley": [
+			"The Lesser Water Atippo's respiratory system functions by taking in water through its horn and using internal filtration and immune responses to release fluids full of recovery hormones.",
+			"The Lesser Water Atippo's luminous orb can emit a layer of sound that is a higher frequency than the hearing range of most organic life forms, allowing it to communicate discreetly with others of its kind.",
+			"The Lesser Water Atippo's horn processes vibratory sensations and acts as a tuning fork for detecting the electromagnetic impulse of life around it. The closer it is to the ground, the stronger the vibrations and the richer the natural sound it detects.",
+			"The Lesser Water Atippo has mineral deposits in its horn that are found in deep ocean trenches.",
+			"The end of the Lesser Water Atippo's tail resembles liquid water, with specialized nerves embedded in it that allow for complex coordination and sensory processes."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		2,
+		3,
+		6,
+		1,
+		4
+	],
+	"Description": {
+		"Format": "Lesser Water Atippo throws its orb into the air, granting all allies within {OmegaRadius}-hexes a <StartingShield>{ShieldValue}</> (<OmegaPowerPercentage></>) Shield for {ShieldDuration} seconds. Enemies hit by the orb take <AttackEnergyDamage>{OrbDamage}</> (<OmegaPowerPercentage></>) Energy Damage and reducing their Attack Speed by <AttackSpeed>{ASVal}</> (<OmegaPowerPercentage></>) for {EffectDuration} seconds.\r\n\r\nShield: <StartingShield>{ShieldValue}</> (<OmegaPowerPercentage></>)\r\nDamage: <AttackEnergyDamage>{OrbDamage}</> (<OmegaPowerPercentage></>)\r\nAttack Speed: <AttackSpeed>{ASVal}%</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Zone.RadiusUnits"
+			},
+			"ShieldValue": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"ShieldDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Zone.DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"OrbDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"ASVal": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0].Percentage",
+				"ValueMultiplier": 1.0
+			},
+			"EffectDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Lesser Water Atippo throws its orb into the air, granting all allies within 24-hexes a 125 () Shield for 4 seconds. Enemies hit by the orb take 125 () Energy Damage and reducing their Attack Speed by 10 () for 2.5 seconds.\r\n\r\nShield: 125 ()\r\nDamage: 125 ()\r\nAttack Speed: 10% ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 2,
+			"Health": 3,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 4
+		}
+	}
+}

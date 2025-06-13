@@ -1,0 +1,311 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Lynx",
+	"Stage": 3,
+	"Path": "EmpathAir",
+	"Variation": "Original",
+	"Tier": 2,
+	"CombatAffinity": "Air",
+	"CombatClass": "Empath",
+	"DominantCombatAffinity": "Air",
+	"DominantCombatClass": "Empath",
+	"SizeUnits": 7,
+	"Stats": {
+		"MaxHealth": 2050000,
+		"StartingEnergy": 80000,
+		"EnergyCost": 160000,
+		"PhysicalResist": 50,
+		"EnergyResist": 50,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 150000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 65,
+		"MoveSpeedSubUnits": 2500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 5,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 40,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Empath Air Lynx Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 55
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 10000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Twisting Swoon",
+			"TotalDurationMs": 1000,
+			"Skills": [
+				{
+					"Name": "Zone Area Healing",
+					"Targeting": {
+						"Type": "Self",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 0
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 28,
+						"DurationMs": 4000,
+						"FrequencyMs": 1000,
+						"GrowthRateSubUnits": 0,
+						"ApplyOnce": false
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantHeal",
+								"HealType": "Normal",
+								"Expression": {
+									"Operation": "%",
+									"Operands": [
+										{
+											"Operation": "*",
+											"Operands": [
+												4,
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												}
+											]
+										},
+										{
+											"Operation": "-",
+											"Operands": [
+												{
+													"Stat": "MaxHealth",
+													"StatSource": "Receiver"
+												},
+												{
+													"Stat": "CurrentHealth",
+													"StatSource": "Receiver"
+												}
+											]
+										}
+									]
+								}
+							},
+							{
+								"Type": "InstantHeal",
+								"HealType": "Normal",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										60000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "%",
+									"Operands": [
+										{
+											"Operation": "*",
+											"Operands": [
+												4,
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												}
+											]
+										},
+										{
+											"Operation": "-",
+											"Operands": [
+												{
+													"Stat": "MaxHealth",
+													"StatSource": "Receiver"
+												},
+												{
+													"Stat": "CurrentHealth",
+													"StatSource": "Receiver"
+												}
+											]
+										}
+									]
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										60000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Virtuous Zephyrlynx",
+	"DisplayDescription": "Virtuous Zephyrlynx creates a 28-hexes zone for 4 seconds, healing allies for <MaxHealth>60</> (<OmegaPowerPercentage></>) Health + <MaxHealth>4%</> (<OmegaPowerPercentage></>) of their missing Health per second.\r\n\r\nEnemies within the zone take <AttackEnergyDamage>60</> (<OmegaPowerPercentage></>) + <AttackEnergyDamage>4%</> (<OmegaPowerPercentage></>) of their missing Health as Energy Damage per second.\r\n\r\nHeal: <MaxHealth>60</> (<OmegaPowerPercentage></>) + <MaxHealth>4%</> (<MaxHealth></><OmegaPowerPercentage></>)\r\n\r\nDamage: <AttackEnergyDamage>60</> (<OmegaPowerPercentage></>) + <AttackEnergyDamage>4%</> (<MaxHealth></><OmegaPowerPercentage></>)",
+	"Intro": "There is a place in Taiga Boreal where the wind is non-existent, unlike the gusty snowscape of the surface. It is in the underground tunnel network, where only gentle snowflakes float down from above. There one can find rooms full of smooth walls carved by a flowing body of boiling liquid, creating thin arches, ridges, and spires. Sometimes, a powerful geyser will activate, scalding unlucky visitors and leaving them to die?unless they are graced by the treatment of the Virtuous Zephyrlynx.",
+	"Summary": "This Illuvial, with bright eyes, light blue fur, and dark teal stripes, emits mist from its mane and long ears, carrying an orb of life-giving energy that amplifies its weight. The Virtuous Zephyrlynx, though skittish around humans, tracks and heals injured Illuvials in its territory. Its unique physiology includes empathic antennas, cooling mist emissions, and the ability to communicate through energy waves.",
+	"Biology": {
+		"Physiology": "The Virtuous Zephyrlynx has bright eyes, with a buffet of mist from its copious mane and the tips of its extremely long ears. It has light blue fur and dark teal stripes, marking its face as slender streaks and curling into odd, round shapes across its body. Its ears lean forward and hold between them a glowing ball of energy that is often hidden in the cloud of mist that surrounds it. The Virtuous Zephyrlynx travels on four legs, but never uses its claws to attack. The orb between its ears contains life-giving abilities which amplify its weight every time its energy is whirled out.",
+		"Behaviour": "The Virtuous Zephyrlynx has been observed running gracefully around Taiga Boreal even during storms. It can identify an injured Illuvial in its territory and track it down with ease, occasionally offering its help with its healing abilities. However, the Virtuous Zephyrlynx does not extend the same courtesy to Valains. It is skittish around people and only heals those who have bonded with an Illuvial. Quick to attack trespassers, the Virtuous Zephyrlynx may be responsible for as many injuries as the ones it heals."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3EmpathAir/LynxStage3EmpathAir_default_default_webp.3840x2160/LynxStage3EmpathAir_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3EmpathAir/LynxStage3EmpathAir_default_default_hls.m3u8/LynxStage3EmpathAir_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Virtuous Zephyrlynx leaves traces of its healing light among various glaciers and caves in Taiga Boreal, where it is absorbed by locals that encounter the frozen ground and ice walls.",
+			"When the Virtuous Zephyrlynx encounters many Illuvials in need of help, it calls out to others of its kind with a unique cry to summon them. The Virtuous Zephyrlynxes amplify each other's healing abilities, creating wave after wave of restorative energy.",
+			"The Virtuous Zephyrlynx has been observed running gracefully around Taiga Boreal even during storms."
+		],
+		"Buckley": [
+			"The Virtuous Zephyrlynx's long ears function as an empathic antenna with unique receptors for distress signals from other life forms.",
+			"The Virtuous Zephyrlynx has openings in its body that emit a cooling mist which can numb pain and aid recovery from wounds.",
+			"The Virtuous Zephyrlynx has a luminous orb above its head which is capable of sending waves of unique energy signatures in order to communicate with others of its kind.",
+			"The Virtuous Zephyrlynx secretes healing energy from its paws and leaves traces of its power among various pools, where it may be absorbed by local flora and fauna.",
+			"The Virtuous Zephyrlynx has thick motor nerve neurons that are responsive to chemical imbalances in its environment, including the biochemical hormonal secretions of other Illuvials."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		2,
+		3,
+		6,
+		1,
+		4
+	],
+	"Description": {
+		"Format": "Virtuous Zephyrlynx creates a {OmegaRadius}-hexes zone for {OmegaDuration} seconds, healing allies for <MaxHealth>{HealFlatValue}</> (<OmegaPowerPercentage></>) Health + <MaxHealth>{HealValue}%</> (<OmegaPowerPercentage></>) of their missing Health per second.\r\n\r\nEnemies within the zone take <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) + <AttackEnergyDamage>{HealValue}%</> (<OmegaPowerPercentage></>) of their missing Health as Energy Damage per second.\r\n\r\nHeal: <MaxHealth>{HealFlatValue}</> (<OmegaPowerPercentage></>) + <MaxHealth>{HealValue}%</> (<MaxHealth></><OmegaPowerPercentage></>)\r\n\r\nDamage: <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) + <AttackEnergyDamage>{HealValue}%</> (<MaxHealth></><OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Zone.RadiusUnits"
+			},
+			"OmegaDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Zone.DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"HealFlatValue": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"HealValue": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0].Operands[0]"
+			},
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[3].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Virtuous Zephyrlynx creates a 28-hexes zone for 4 seconds, healing allies for 60 () Health + 4% () of their missing Health per second.\r\n\r\nEnemies within the zone take 60 () + 4% () of their missing Health as Energy Damage per second.\r\n\r\nHeal: 60 () + 4% ()\r\n\r\nDamage: 60 () + 4% ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 2,
+			"Health": 3,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 4
+		}
+	}
+}

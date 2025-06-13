@@ -1,0 +1,26 @@
+{
+	"Name": "Air",
+	"Stage": 2,
+	"Type": "Game",
+	"DisplayName": "Air Matrix",
+	"DisplayDescription": "Gain a Air Imprint and Immunity Prism.",
+	"Description": {
+		"Format": "Gain a Air Imprint and Immunity Prism.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Air",
+				"Stage": 0,
+				"Variation": "Original"
+			},
+			{
+				"Name": "ImmunityPrism",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

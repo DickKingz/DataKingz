@@ -1,0 +1,66 @@
+{
+	"Name": "BattleMomentum",
+	"Stage": 3,
+	"Type": "Simulation",
+	"Abilities": [
+		{
+			"Name": "Battle Momentum 3 - Ability",
+			"ActivationTrigger": {
+				"TriggerType": "EveryXTime",
+				"ActivateEveryTimeMs": 5000
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Battle Momentum 3 - Attack Speed",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Allegiance",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						],
+						"Group": "Ally"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "AttackSpeed",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackSpeed",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Battle Momentum III",
+	"DisplayDescription": "Every 5 seconds into the battle, your units gain 10% Attack Speed.",
+	"Description": {
+		"Format": "Every {TriggerTime} seconds into the battle, your units gain {BuffValue}% Attack Speed.",
+		"Parameters": {
+			"TriggerTime": {
+				"ParameterPath": "Abilities[0].ActivationTrigger.ActivateEveryTimeMs",
+				"ValueMultiplier": 0.001
+			},
+			"BuffValue": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].Expression.Percentage"
+			}
+		}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [],
+		"GrantedCredits": 0
+	}
+}

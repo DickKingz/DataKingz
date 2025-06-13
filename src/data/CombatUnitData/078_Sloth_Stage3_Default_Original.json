@@ -1,0 +1,249 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Sloth",
+	"Stage": 3,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 3,
+	"CombatAffinity": "Verdant",
+	"CombatClass": "Colossus",
+	"DominantCombatAffinity": "Nature",
+	"DominantCombatClass": "Bulwark",
+	"SizeUnits": 7,
+	"Stats": {
+		"MaxHealth": 3300000,
+		"StartingEnergy": 80000,
+		"EnergyCost": 180000,
+		"PhysicalResist": 80,
+		"EnergyResist": 70,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 185000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 50,
+		"MoveSpeedSubUnits": 1350,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 3,
+		"OmegaRangeUnits": 3,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Sloth Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 50
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Underoot III",
+			"TotalDurationMs": 3500,
+			"Skills": [
+				{
+					"Name": "Root and damage",
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground"
+						],
+						"PreDeploymentDelayPercentage": 80
+					},
+					"Targeting": {
+						"Type": "DistanceCheck",
+						"Guidance": [
+							"Ground"
+						],
+						"Group": "Enemy",
+						"Lowest": false,
+						"Num": 2
+					},
+					"PercentageOfAbilityDuration": 85,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Root",
+								"ActivationsUntilExpiry": 1,
+								"DurationMs": 3000
+							},
+							{
+								"Type": "DOT",
+								"DamageType": "Energy",
+								"DurationMs": 3000,
+								"FrequencyMs": 1000,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										375000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Knock up targets",
+					"Targeting": {
+						"Type": "PreviousTargetList"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 85
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 20,
+						"DurationMs": 100,
+						"FrequencyMs": 100,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 15,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Displacement",
+								"DisplacementType": "KnockUp",
+								"DurationMs": 1000,
+								"OverlapProcessType": "Merge"
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Gnarl",
+	"DisplayDescription": "Gnarl slams the ground, channeling roots to the 2 furthest enemies, Rooting them and dealing <AttackEnergyDamage>375</> (<OmegaPowerPercentage></>) Energy Damage over 3 seconds.\r\n\r\nAfter 3 seconds, the roots erupt Stunning enemies in 20-hexes for 1 seconds.\r\n\r\nDamage: <AttackEnergyDamage>375</> (<OmegaPowerPercentage></>)\r\n\r\nRoot: Cannot move while affected.",
+	"Intro": "The highest amount of biodiversity in the region also surrounds the highest point of Brightland Steppes. This area is granted cover from the destructive winds, and the humid air makes it an ideal growing site for plants and fungi. Giant ballooning mushrooms emerge from the ground and atop the tallest feature here. An island suspended in the air, held up by enormous roots; Barons Throne is the home of the Gnarl, who stays so still at the top that it becomes a part of the land, overgrown with local plant life.",
+	"Summary": "The Gnarl, a massive creature covered in leafy growths, blends into the environment of Brightland Steppes, often remaining still for extended periods and becoming overgrown with local flora. It has a symbiotic relationship with plants and algae on its body, using roots to gather nutrients and energy from the environment. The Gnarl prefers to resolve issues by sleeping, but it can absorb energy from other beings and paralyze those who disturb its rest.",
+	"Biology": {
+		"Physiology": "The hazy-eyed Gnarl is a great green goliath with a thick leafy mane and arms shaped like colossal clubs. Slightly hunched, it trudges along on two bent legs, carrying the weight of its greater upper half and massive arms. It has a sleepy expression, with a peaceful smile and glowing eyes under two dark ferns spouting from its head like horns. Its body is made of knobbed bark with dark moss along the ridges, crowded with various barbs and leaves. Bright green leaves grow upon its wide head and lengthy arms, while a few longer, pink leaves hang from its chin and lower neck. Surrounded by dots of bright green light, the Gnarl has a diamond-shaped cavity on its neck with the same shine. Its claws are dipped in a liquid glow, and the cracks in its bulging forearms have a similar sheen.",
+		"Behaviour": "The Gnarl is most content when it is asleep, sinking its roots into the ground to gather information about the local ecosystem. It seeks out places abundant with life to grow its leaves, drawing upon the life energy of its environments. The Gnarl resolves most of its problems by taking a nap and covering its eyes with its leafy, club-like arms. It can also reach remote resting places by creating a path made of roots that grow from its fists. Despite its tendency to avoid obstacles, the Gnarl is more powerful than it looks. It can absorb energy with its roots from not just plants but other Illuvials, and it can paralyse those who repeatedly interrupt its nap."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/SlothStage3/SlothStage3_default_default_webp.3840x2160/SlothStage3_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/SlothStage3/SlothStage3_default_default_hls.m3u8/SlothStage3_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"Most of the time, when things get difficult for the Gnarl, it prefers to nap.",
+			"The Gnarl cross-pollinates plants by sleeping for so long that new growths develop on its body.",
+			"The Gnarl's leafy mane seems to defy gravity, floating about with a certain airiness."
+		],
+		"Buckley": [
+			"This Gnarl's mane has highly active pollen sacs that constantly absorb and release bursts of pollen gathered from local plant life.",
+			"The Gnarl's roots have a complex internal structure that allows it to gather information about the local ecosystem and acquire nutrients from the soil.",
+			"The Gnarl has an extremely slow metabolism that allows it to live in a constant state of pseudo-hibernation.",
+			"65% of the Gnarl's biomass consists of plant-like growths and roots, and 10% of its biomass is specialised algae that grow from its body, which are high in biolipids and other nutrients.",
+			"The Gnarl has a three-way symbiotic relationship with the algae that grows upon its body and the winged morphopods which live in its leaves. The winged morphopod's presence and eventual decay trigger more algae growth, which supplements the Gnarl's diet as evidenced by a scan of its digestive system."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		4,
+		1,
+		6,
+		3,
+		2
+	],
+	"Description": {
+		"Format": "Gnarl slams the ground, channeling roots to the {TargetNum} furthest enemies, Rooting them and dealing <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Energy Damage over {DamageRootDuration} seconds.\r\n\r\nAfter {KnockupDelay} seconds, the roots erupt Stunning enemies in {RootRadius}-hexes for {KnockupDuration} seconds.\r\n\r\nDamage: <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)\r\n\r\nRoot: Cannot move while affected.",
+		"Parameters": {
+			"TargetNum": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Targeting.Num"
+			},
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"DamageRootDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"KnockupDelay": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"RootRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].Zone.RadiusUnits"
+			},
+			"KnockupDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Gnarl slams the ground, channeling roots to the 2 furthest enemies, Rooting them and dealing 375 () Energy Damage over 3 seconds.\r\n\r\nAfter 3 seconds, the roots erupt Stunning enemies in 20-hexes for 1 seconds.\r\n\r\nDamage: 375 ()\r\n\r\nRoot: Cannot move while affected.",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 4,
+			"Health": 1,
+			"MovementSpeed": 6,
+			"OmegaPower": 3,
+			"Resistance": 2
+		}
+	}
+}

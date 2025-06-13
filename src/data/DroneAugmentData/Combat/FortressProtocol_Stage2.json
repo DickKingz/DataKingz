@@ -1,0 +1,143 @@
+{
+	"Name": "FortressProtocol",
+	"Stage": 2,
+	"Type": "Simulation",
+	"Abilities": [
+		{
+			"Name": "FortressProtocol2_Ability1",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Fortress Protocol 2 - Targeting",
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground",
+							"Airborne",
+							"Underground"
+						]
+					},
+					"Targeting": {
+						"Type": "Allegiance",
+						"Group": "Ally",
+						"Guidance": [
+							"Ground",
+							"Airborne",
+							"Underground"
+						]
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "SpawnMark",
+								"MarkType": "Beneficial",
+								"DurationMs": -1,
+								"AttachedAbilities": [
+									{
+										"Name": "Fortress Protocol 2 - Ability 1",
+										"ActivationTrigger": {
+											"TriggerType": "HealthInRange",
+											"HealthLowerLimitPercentage": 70,
+											"MaxActivations": 1
+										},
+										"TotalDurationMs": 0,
+										"Skills": [
+											{
+												"Name": "Fortress Protocol 2 - Gain Resistance 1",
+												"Deployment": {
+													"Type": "Direct"
+												},
+												"Targeting": {
+													"Type": "Self"
+												},
+												"EffectPackage": {
+													"Effects": [
+														{
+															"Type": "Buff",
+															"Stat": "PhysicalResist",
+															"OverlapProcessType": "Stacking",
+															"DurationMs": -1,
+															"Expression": 18
+														},
+														{
+															"Type": "Buff",
+															"Stat": "EnergyResist",
+															"OverlapProcessType": "Stacking",
+															"DurationMs": -1,
+															"Expression": 18
+														}
+													]
+												}
+											}
+										]
+									},
+									{
+										"Name": "Fortress Protocol 2 - Ability 2",
+										"ActivationTrigger": {
+											"TriggerType": "HealthInRange",
+											"HealthLowerLimitPercentage": 30,
+											"MaxActivations": 1
+										},
+										"TotalDurationMs": 0,
+										"Skills": [
+											{
+												"Name": "Fortress Protocol 2 - Gain Resistance 2",
+												"Deployment": {
+													"Type": "Direct"
+												},
+												"Targeting": {
+													"Type": "Self"
+												},
+												"EffectPackage": {
+													"Effects": [
+														{
+															"Type": "Buff",
+															"Stat": "PhysicalResist",
+															"OverlapProcessType": "Stacking",
+															"DurationMs": -1,
+															"Expression": 18
+														},
+														{
+															"Type": "Buff",
+															"Stat": "EnergyResist",
+															"OverlapProcessType": "Stacking",
+															"DurationMs": -1,
+															"Expression": 18
+														}
+													]
+												}
+											}
+										]
+									}
+								]
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Fortress Protocol II",
+	"DisplayDescription": "Your units receive 18 Resistance at 70% Health, then again at 30% Health.",
+	"Description": {
+		"Format": "Your units receive {ResistanceBuff} Resistance at {HealthTrigger1}% Health, then again at {HealthTrigger2}% Health.",
+		"Parameters": {
+			"ResistanceBuff": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].AttachedAbilities[0].Skills[0].EffectPackage.Effects[0].Expression"
+			},
+			"HealthTrigger1": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].AttachedAbilities[0].ActivationTrigger.HealthLowerLimitPercentage"
+			},
+			"HealthTrigger2": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].AttachedAbilities[1].ActivationTrigger.HealthLowerLimitPercentage"
+			}
+		}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [],
+		"GrantedCredits": 0
+	}
+}

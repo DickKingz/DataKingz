@@ -1,0 +1,237 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "AntEater",
+	"Stage": 3,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 3,
+	"CombatAffinity": "Spore",
+	"CombatClass": "Revenant",
+	"DominantCombatAffinity": "Air",
+	"DominantCombatClass": "Empath",
+	"SizeUnits": 6,
+	"Stats": {
+		"MaxHealth": 2600000,
+		"StartingEnergy": 80000,
+		"EnergyCost": 160000,
+		"PhysicalResist": 55,
+		"EnergyResist": 55,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 180000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 65,
+		"MoveSpeedSubUnits": 2750,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 5,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 5,
+		"OmegaRangeUnits": 5,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "AntEater Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 38
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Squall III",
+			"TotalDurationMs": 2500,
+			"Skills": [
+				{
+					"Name": "Agility bonus",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 30,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "AttackDodgeChancePercentage",
+								"DurationMs": 5000,
+								"Expression": 10
+							}
+						]
+					}
+				},
+				{
+					"Name": "ConeAttack",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 80
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 30,
+						"DurationMs": 100,
+						"FrequencyMs": 100,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 60,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Debuff",
+								"Stat": "OmegaPowerPercentage",
+								"DurationMs": 5000,
+								"Expression": 50
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										725000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Vermilliare",
+	"DisplayDescription": "Vermilliare spins its tail, creating a gale of wind and gaining <AttackDodgeChancePercentage>10</> Dodge Chance for 5 seconds.\r\n\r\nVermilliare then thrashes its tail, dealing <AttackEnergyDamage>725</> (<OmegaPowerPercentage></>) Energy Damage to enemies within 30-hexes and reducing their Omega Power by <OmegaPowerPercentage>50</> for 5 seconds.\r\n\r\nDamage: <AttackEnergyDamage>725</> (<OmegaPowerPercentage></>)",
+	"Intro": "Navigating the daunting terrain of Taiga Boreal requires resilience in the face of the unforgiving cold. The icy landscape is treacherous, and those attempting to climb may slip countless times. The less fortunate may be caught off guard by a sudden gust of wind as the Vermilliare materialises, golden streaks gleaming in its black and white fur. With piercing red eyes scanning the horizon, the Vermilliare roams the rocky slopes, seeking its next meal.",
+	"Summary": "This large, radiant creature has a ridged back, stocky legs, and a long trunk, adorned with elegant patterns of white on dark brown fur. Known for its swift and territorial nature, the Vermilliare uses its tail and nose for combing snow and collecting plants, shedding glowing debris that creates a faint heat bubble. Its physiology includes rock-infused limbs for defense, a bioluminescent tail for marking territory, and an efficient respiratory system with four lungs.",
+	"Biology": {
+		"Physiology": "The Vermilliare is a radiant and lengthy giant, boasting a ridged back and a majestic swishing tail adorned with luminous lines of gold. As it ambles on its four stocky legs, it often creates whimsical patterns in the snow. Its large head extends into a long curling trunk, complimented by the swirling white on its dark brown fur. These markings adorn it like an elegant art piece, and despite its size, its presence gives those around it a sense of sublime wonder.",
+		"Behaviour": "The Vermilliare is known for its swift and agile movements across the rocky slopes of Taiga Boreal. Its sudden appearance catches other Illuvials off guard as it emerges from behind icy structures, surveying its territory for potential threats or food sources. The Vermilliare is known to be territorial and will defend its area fiercely."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/AntEaterStage3/AntEaterStage3_default_default_webp.3840x2160/AntEaterStage3_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/AntEaterStage3/AntEaterStage3_default_default_hls.m3u8/AntEaterStage3_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Vermilliare often sweeps the snow with its tail to comb anything of nutritional value, and then it nips at its tail with its snout.",
+			"The Vermilliare collects plants from its environment with its long nose, which is soft and flexible when feeding, but hardens when alert.",
+			"The Vermilliare sheds its skin and hair in clumps of glowing debris. Every time it sheds, it creates a faint bubble of heat around its body."
+		],
+		"Buckley": [
+			"The Vermilliare's large tail contains traces of many rare minerals and materials found throughout Illuvium.",
+			"The Vermilliare's long nose and legs are composed of rock infused with skin, muscle and skeleton, capable of increasing in density for defensive purposes.",
+			"The Vermilliare produces a bioluminescent residue with its tail that can be used as territorial markers.",
+			"The Vermilliare's nose has over 200 muscles, allowing it to move with great accuracy and speed.",
+			"The Vermilliare has four functioning lungs and a breathing tract that allows it to exchange oxygen efficiently."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		4,
+		2,
+		6,
+		1,
+		3
+	],
+	"Description": {
+		"Format": "Vermilliare spins its tail, creating a gale of wind and gaining <AttackDodgeChancePercentage>{DodgeChance}</> Dodge Chance for {DodgeDuration} seconds.\r\n\r\nVermilliare then thrashes its tail, dealing <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Energy Damage to enemies within {OmegaRadius}-hexes and reducing their Omega Power by <OmegaPowerPercentage>{OPDebuff}</> for {OPDebuffDuration} seconds.\r\n\r\nDamage: <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"DodgeChance": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression"
+			},
+			"DodgeDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[1].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"OmegaRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].Zone.RadiusUnits"
+			},
+			"OPDebuff": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].Expression"
+			},
+			"OPDebuffDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Vermilliare spins its tail, creating a gale of wind and gaining 10 Dodge Chance for 5 seconds.\r\n\r\nVermilliare then thrashes its tail, dealing 725 () Energy Damage to enemies within 30-hexes and reducing their Omega Power by 50 for 5 seconds.\r\n\r\nDamage: 725 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 4,
+			"Health": 2,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 3
+		}
+	}
+}

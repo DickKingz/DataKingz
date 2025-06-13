@@ -1,0 +1,223 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Monkier",
+	"Stage": 2,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 1,
+	"CombatAffinity": "Earth",
+	"CombatClass": "Berserker",
+	"DominantCombatAffinity": "Earth",
+	"DominantCombatClass": "Fighter",
+	"SizeUnits": 4,
+	"Stats": {
+		"MaxHealth": 1400000,
+		"StartingEnergy": 90000,
+		"EnergyCost": 130000,
+		"PhysicalResist": 45,
+		"EnergyResist": 40,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 145000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 75,
+		"MoveSpeedSubUnits": 2050,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 3,
+		"OmegaRangeUnits": 3,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Tiktaalik Basic Attack II",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 47
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"Name": "Superior Smash II",
+			"Skills": [
+				{
+					"Name": "Powerfull Attack",
+					"Targeting": {
+						"Type": "Self",
+						"Guidance": [
+							"Ground",
+							"Underground"
+						]
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"Guidance": [
+							"Ground",
+							"Underground"
+						],
+						"PreDeploymentDelayPercentage": 47
+					},
+					"Zone": {
+						"Shape": "Triangle",
+						"RadiusUnits": 23,
+						"DirectionDegrees": 0,
+						"DurationMs": 200,
+						"FrequencyMs": 200,
+						"ApplyOnce": true
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "+",
+									"Operands": [
+										{
+											"Operation": "*",
+											"Operands": [
+												40000,
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												}
+											]
+										},
+										{
+											"Stat": "AttackEnergyDamage",
+											"StatSource": "Sender"
+										},
+										{
+											"Stat": "AttackPhysicalDamage",
+											"StatSource": "Sender"
+										},
+										{
+											"Stat": "AttackPureDamage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [],
+	"DisplayName": "Greater Monkier",
+	"DisplayDescription": "Passive: Each secondary attack causes Monkier's powerful arm to cleave, dealing <AttackPhysicalDamage>185</> (<OmegaPowerPercentage></>) Physical Damage in 23-hexes behind the target.\r\n\r\nDamage: <AttackPhysicalDamage>185</> = <AttackPhysicalDamage>40</> (<OmegaPowerPercentage></>) + <AttackPhysicalDamage>145</> (<AttackDamage></>)",
+	"Intro": "In the depths of Abyssal Basin, where Bluewood's fluorescent waters meet the thick mud of Slough, an ominous presence lurks. The ground trembles, trees crack, and smaller creatures scatter as a Monkier emerges. From agile hunters to towering titans, these formidable beings command respect and fear in equal measure, their very existence a powerful expression of the raw energy that courses through this treacherous landscape.",
+	"Summary": "The Monkier appears in three distinct forms, each a marvel of might. The smallest type is nimble and aggressive, while the largest is an awe-inspiring colossus. Each form is characterised by increasing size, strength, and the development of its signature weapon: a colossal, boulder-like fist. The Monkier's fur varies from vibrant orange to rich yellow, while its body becomes increasingly adorned with cragged grey rock and glowing pink fissures as its size increases. These imposing creatures are not brutes; they possess a complex social hierarchy and display surprising adaptability to their challenging environment.",
+	"Biology": {
+		"Physiology": "The Monkier's physiology showcases nature's raw power. The smallest Monkiers boast orange fur and a right fist noticeably larger than their left, composed of boulder fragments. The mid-sized variety is dramatically larger, with rich yellow fur. Their right arm is encased in rugged stone, forming a titanic fist capable of creating small craters. The largest Monkiers are true colossi. Their entire right arm is a mass of living rock and mud, crowned with jagged horns that leak ethereal pink light. This light also emanates from armoured shards on their shoulders and robust, rocky tails. A large Monkier's back features an intriguing symmetrical pattern of stone shards, with lines of pink light shining between them, converging on a central, glowing circle. All Monkiers possess piercing eyes that glow with the same pink energy as their fissures, hinting at the immense power contained within their bodies.",
+		"Behaviour": "The Monkier's behavior varies with its size, showcasing different levels of control and strategy. The smallest Monkiers are known for their aggressive and impulsive nature, often charging headlong into obstacles and conflicts. They use their enhanced fist to pummel trees and cave structures, dislodging Morphopods for food. Mid-sized Monkiers display more restraint, recognising the destructive potential of their strength. They develop habits like bathing under waterfalls to cleanse accumulated debris from their rocky exterior. These Monkiers engage in territorial disputes with others of their size, often competing for prime bathing spots. The largest Monkiers exhibit the most complex behavior. These behemoths have adapted to conserve their immense energy, often entering long periods of dormancy. During these rests, they become one with their environment, their rocky exterior overgrown with plants as they sink into the mud. Remarkably, they possess an uncanny instinct for predicting forest, swamp, and weather patterns, allowing them to time their periods of activity for optimal advantage. Despite their imposing presence, Monkiers of all sizes display a sophisticated social structure. They engage in mock battles and challenges to establish hierarchy, with smaller Monkiers often banding together to follow the larger ones."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/MonkierStage2/MonkierStage2_default_default_webp.3840x2160/MonkierStage2_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/MonkierStage2/MonkierStage2_default_default_hls.m3u8/MonkierStage2_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Greater Monkier can only climb extremely large trees because its asymmetrical body is too heavy to balance upon smaller branches. Occasionally it misplaces its weight and falls.",
+			"The Greater Monkier has been found bathing under waterfalls, where it washes off the foliage it accumulates on its rocky body. It may fight other Greater Monkiers for the best spot.",
+			"The Greater Monkier can create cracks in the ground with the force of its fist and sometimes leaves behind a trail of debris after battling in forest areas."
+		],
+		"Buckley": [
+			"The Greater Monkier's rock-encased fist has a specialised capillary network that can release controlled bursts of energy at varying degrees of force.",
+			"The Greater Monkier has extremely dense fur that can absorb energy blasts that recoil from its fist.",
+			"The Greater Monkier's forearms take up 30% of the muscle mass in the Greater Monkier's entire body.",
+			"The Greater Monkier's stomach has stones inside that allow it to break apart food with greater ease.",
+			"The Greater Monkier's slab-like body and specialised fur are highly resistant to heat."
+		]
+	},
+	"TraitOrderLegacy": [
+		2,
+		1,
+		3,
+		5,
+		6,
+		4
+	],
+	"Description": {
+		"Format": "Passive: Each secondary attack causes Monkier's powerful arm to cleave, dealing <AttackPhysicalDamage>185</> (<OmegaPowerPercentage></>) Physical Damage in {CleaveRadius}-hexes behind the target.\r\n\r\nDamage: <AttackPhysicalDamage>185</> = <AttackPhysicalDamage>{CleaveDamage}</> (<OmegaPowerPercentage></>) + <AttackPhysicalDamage>{AtkDamage}</> (<AttackDamage></>)",
+		"Parameters": {
+			"CleaveRadius": {
+				"ParameterPath": "AttackAbilities[1].Skills[0].Zone.RadiusUnits"
+			},
+			"CleaveDamage": {
+				"ParameterPath": "AttackAbilities[1].Skills[0].EffectPackage.Effects[0].Expression.Operands[0].Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"AtkDamage": {
+				"ParameterPath": "Stats.AttackPhysicalDamage",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Passive: Each secondary attack causes Monkier's powerful arm to cleave, dealing 185 () Physical Damage in 23-hexes behind the target.\r\n\r\nDamage: 185 = 40 () + 145 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 2,
+			"AttackSpeed": 1,
+			"Health": 3,
+			"MovementSpeed": 5,
+			"OmegaPower": 6,
+			"Resistance": 4
+		}
+	}
+}

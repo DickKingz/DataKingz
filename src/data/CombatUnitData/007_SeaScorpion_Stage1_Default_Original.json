@@ -1,0 +1,208 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "SeaScorpion",
+	"Stage": 1,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 3,
+	"CombatAffinity": "Water",
+	"CombatClass": "Fighter",
+	"DominantCombatAffinity": "Water",
+	"DominantCombatClass": "Fighter",
+	"SizeUnits": 3,
+	"Stats": {
+		"MaxHealth": 1250000,
+		"StartingEnergy": 0,
+		"EnergyCost": 80000,
+		"PhysicalResist": 45,
+		"EnergyResist": 50,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 85000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 80,
+		"MoveSpeedSubUnits": 2000,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 2,
+		"OmegaRangeUnits": 2,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Sea Scorpion Basic Attack I",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 43
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Toxic Skewer I",
+			"TotalDurationMs": 700,
+			"Skills": [
+				{
+					"Name": "Damage Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 60
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "+",
+									"Operands": [
+										{
+											"Operation": "*",
+											"Operands": [
+												{
+													"Percentage": 10,
+													"Stat": "MaxHealth",
+													"StatSource": "Receiver"
+												},
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												}
+											]
+										},
+										{
+											"Operation": "*",
+											"Operands": [
+												250000,
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												}
+											]
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Rypter",
+	"DisplayDescription": "Rypter strikes its target with its stinger, dealing <MaxHealth>10%</> (<OmegaPowerPercentage></>) of target's Max Health + <AttackPhysicalDamage>250</> (<OmegaPowerPercentage></>) as Physical Damage.\r\n\r\nDamage: <MaxHealth>10%</> max <MaxHealth></> (<OmegaPowerPercentage></>) + <AttackPhysicalDamage>250</> (<OmegaPowerPercentage></>)",
+	"Intro": "Among the shimmering pools of plantlife in Halcyon Sea, there is a forest of giant coral towering into the sky. These structures cast complex shadows in the water, with unique patterns of light that shine through their branches. Clumps of salt crystals gather at the base of the coral, constantly crumbling. This makes it hard to hear the scuttling of the Rypter approaching until it fixes its blood-red eye upon you.",
+	"Summary": "In the Halcyon Sea's coral forests, salt-crusted landscapes host the Rypter, blending seamlessly with its beige shell and dark green spots, crowned by a blood-red eye. Agile on eight segmented legs, it wields venomous barbs that emit a nauseating glow and mimics combat techniques from neighboring Illuvials. Rypter uses its keen single-eyed vision to warn intruders with menacing displays.",
+	"Biology": {
+		"Physiology": "The Rypter can be hard to distinguish from the coral arches, with its beige shell and speckled dark green spots. It has a single red eye and two burgundy fangs jutting from its lower jaw. When it clicks its two long claws, it is demanding a fight. Waving its arched tail in the air, its stinging barbs glisten in the light. When the stinging barb opens, the venom inside leaks out - glowing bright green, and giving off an unpleasant, nauseating vapour and scent. Nimble and quick, the Rypter dashes along on eight segmented legs always prepared for anything that might engage with it.",
+		"Behaviour": "The Rypter lives in colonies and hunts for Morphopods in groups. When the Rypter is not hunting, it is often found observing fights between Rypterus and the Ryplance, learning techniques through imitation. Not knowing its own strength, the Rypter is hesitant to engage in battle with other species of Illuvials unless they trespass into its territory. It rattles its claws menacingly at anything that crosses into its land, a warning that it will attack if necessary. The Rypter sometimes practices fighting in neutral territory with others of its kind and gains markings from the poison of other Rypters dripping on its shell."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/SeaScorpionStage1/SeaScorpionStage1_default_default_webp.3840x2160/SeaScorpionStage1_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/SeaScorpionStage1/SeaScorpionStage1_default_default_hls.m3u8/SeaScorpionStage1_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Rypter leaks acidic poison from its tail onto its shell, forming a unique pattern.",
+			"The Rypter has a keen sense of sight and notices small movements in its periphery. This is remarkable considering that it only has a single red eye.",
+			"The Rypter forms large colonies with others in its line for ritualized combat. Small groups of Rypters may prepare for battles together, sharpening their various appendages on rocks in unison."
+		],
+		"Buckley": [
+			"The Rypter's stinger is filled with highly acidic venom that is capable of corroding the weaker, damaged parts of its exoskeleton.",
+			"The Rypter's red eye has a bifocal lens, allowing it to focus on both far and near objects.",
+			"The Rypter's fangs store a neurotoxic venom which is made up of different chemical compounds than the poison in its tail.",
+			"The Rypter's shell is sensitive to vibrations in its environment, allowing it to sense movement in any direction.",
+			"The Rypter's body produces a fluorescent compound which protects it from parasites and enables it to glow in certain conditions."
+		]
+	},
+	"TraitOrderLegacy": [
+		2,
+		1,
+		3,
+		5,
+		6,
+		4
+	],
+	"Description": {
+		"Format": "Rypter strikes its target with its stinger, dealing <MaxHealth>{MaxHealthDamage}%</> (<OmegaPowerPercentage></>) of target's Max Health + <AttackPhysicalDamage>{FlatDamage}</> (<OmegaPowerPercentage></>) as Physical Damage.\r\n\r\nDamage: <MaxHealth>{MaxHealthDamage}%</> max <MaxHealth></> (<OmegaPowerPercentage></>) + <AttackPhysicalDamage>{FlatDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"MaxHealthDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0].Operands[0].Percentage"
+			},
+			"FlatDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[1].Operands[0]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Rypter strikes its target with its stinger, dealing 10% () of target's Max Health + 250 () as Physical Damage.\r\n\r\nDamage: 10% max () + 250 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 2,
+			"AttackSpeed": 1,
+			"Health": 3,
+			"MovementSpeed": 5,
+			"OmegaPower": 6,
+			"Resistance": 4
+		}
+	}
+}

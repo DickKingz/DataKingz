@@ -1,0 +1,244 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Thylacine",
+	"Stage": 1,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 4,
+	"CombatAffinity": "Water",
+	"CombatClass": "Rogue",
+	"DominantCombatAffinity": "Water",
+	"DominantCombatClass": "Rogue",
+	"SizeUnits": 3,
+	"Stats": {
+		"MaxHealth": 1350000,
+		"StartingEnergy": 0,
+		"EnergyCost": 140000,
+		"PhysicalResist": 45,
+		"EnergyResist": 50,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 100000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 80,
+		"MoveSpeedSubUnits": 2750,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 2,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Thylacine Basic Attack I",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 55
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Wraithstrike I",
+			"TotalDurationMs": 1500,
+			"Skills": [
+				{
+					"Name": "Becomes untargetable",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 10,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "PositiveState",
+								"PositiveState": "Untargetable",
+								"DurationMs": 1500
+							}
+						]
+					}
+				},
+				{
+					"Name": "Ultimate Attack Chain",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 95,
+					"EffectPackage": {
+						"Attributes": {
+							"Propagation": {
+								"PropagationType": "Chain",
+								"ChainDelayMs": 50,
+								"ChainNumber": 3,
+								"PrioritizeNewTargets": true,
+								"OnlyNewTargets": false,
+								"IgnoreFirstPropagationReceiver": false,
+								"TargetingGroup": "Enemy",
+								"EffectPackage": {
+									"Effects": [
+										{
+											"Type": "InstantDamage",
+											"DamageType": "Physical",
+											"Expression": {
+												"Operation": "+",
+												"Operands": [
+													{
+														"Operation": "*",
+														"Operands": [
+															175000,
+															{
+																"Stat": "OmegaPowerPercentage",
+																"StatSource": "Sender"
+															}
+														]
+													},
+													{
+														"Stat": "AttackEnergyDamage",
+														"StatSource": "Sender"
+													},
+													{
+														"Stat": "AttackPhysicalDamage",
+														"StatSource": "Sender"
+													},
+													{
+														"Stat": "AttackPureDamage",
+														"StatSource": "Sender"
+													}
+												]
+											}
+										}
+									]
+								}
+							}
+						},
+						"Effects": []
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Dash",
+	"DisplayDescription": "Dash enters water form, becoming Untargetable and dealing <AttackPhysicalDamage>275</> (<OmegaPowerPercentage></><AttackDamage></>) Physical Damage to the 3 nearest Enemies.\r\n\r\nDamage: <AttackPhysicalDamage>275</> = <AttackPhysicalDamage>175</> (<OmegaPowerPercentage></>) + <AttackPhysicalDamage>100</> (<AttackDamage></>)",
+	"Intro": "The snowcapped mountains of Taiga Boreal are shrouded with clouds, making it difficult to see far ahead. Only those who reach the peaks have a view beyond the feathery cloaks of white. There are colourful lights that dance at the summit, but few witness them. This is because the journey is long and treacherous, with thin air and piercing winds. Some may delight to see flashes of blue along the way, only to realize with amazement it is just the lustrous whip on the Dash's head.",
+	"Summary": "The Dash boasts a distinctive auburn coat and radiant blue-violet antennae that aid in detecting scents and manipulating vapor in the air. Known for its attentive and protective nature, the Dash communicates with its kind through howls and appears mysteriously to defend allies in need. It possesses a unique hydronic system and ultra-sensitive olfactory abilities, allowing it to maneuver through water and detect subtle scent movements with precision.",
+	"Biology": {
+		"Physiology": "The Dash runs on all fours, speedy and sure-footed, with an auburn coat that stands out in the snow. It has a long, radiant antenna upon its head and tail that catch any new scents the wind may carry. These extraordinary appendages are a brilliant blue at the ends and violet at the base. With spectre-like eyes, it has a black padded nose and large drop-shaped ears that express its various emotions. In the middle of the Dash's forehead is a purple hexagonal plate, like a mark of honour bestowed upon the worthy.  There is an assortment of beige enamel cuffs and purple root-like tendrils wrapped around its back and limbs.",
+		"Behaviour": "The Dash is an energetic Illuvial that often runs across Taiga Boreal, seeking new scents and patrolling its territory. It fixes its glowing eyes upon strangers and greets them with its padded nose, sniffing for signs of health and their general history. Its nostrils can wriggle independently, helping it locate the source of the smells. It can hear and smell activity under the snow, often jumping head-first into the den of Morphopods. The bright blue appendages upon its head and tail can store high amounts of water and infuse low-humidity air with vapour. Using its antennae, it can visibly manipulate the flow of this vapour, aiding the aerodynamic reach of its nose. Its large ears perk up when it is friendly and flatten when hostile."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/ThylacineStage1/ThylacineStage1_default_default_webp.3840x2160/ThylacineStage1_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/ThylacineStage1/ThylacineStage1_default_default_hls.m3u8/ThylacineStage1_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Dash is extremely attentive to changes in the landscape. It protects the land and its inhabitants but also extends its aid to strangers in need.",
+			"The Dash howls to call upon others of its kind when it is in need of help. In high storm seasons, the Dash runs in packs to keep warm and protect each other from the harsh climate.",
+			"The Dash is a mysterious Illuvial that often appears out of thin air, behaving like a phantom guardian that defends allies in danger."
+		],
+		"Buckley": [
+			"The Dash's internal hydronic system is connected to its antennae and tail, which direct the flow of water vapour in the air around it. Its internal organs are arranged in such a way that allows for maximum efficiency of water transference.",
+			"The Dash has an ultra-sensitive olfactory system which it uses to detect the subtle movements of scent sources, especially liquids and pheromones. This allows it to detect the heartbeat of other Illuvials and deduce their level of aggression or fear.",
+			"The Dash has a specialised gland that enables it to absorb moisture from its environment and move quickly through water by taking in liquid in its path.",
+			"The Dash has water stores in its tail, protected by layers of fat and flexible, tube-like material that enables quick release of water.",
+			"The Dash's jaw can open up to 90 degrees wide, with enough muscular potential energy and resilient bones to break stone."
+		]
+	},
+	"TraitOrderLegacy": [
+		2,
+		1,
+		4,
+		6,
+		3,
+		5
+	],
+	"Description": {
+		"Format": "Dash enters water form, becoming Untargetable and dealing <AttackPhysicalDamage>275</> (<OmegaPowerPercentage></><AttackDamage></>) Physical Damage to the {ChainAmount} nearest Enemies.\r\n\r\nDamage: <AttackPhysicalDamage>275</> = <AttackPhysicalDamage>{FlatDamage}</> (<OmegaPowerPercentage></>) + <AttackPhysicalDamage>{AtkDmg}</> (<AttackDamage></>)",
+		"Parameters": {
+			"ChainAmount": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Attributes.Propagation.ChainNumber"
+			},
+			"FlatDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Attributes.Propagation.EffectPackage.Effects[0].Expression.Operands[0].Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"AtkDmg": {
+				"ParameterPath": "Stats.AttackPhysicalDamage",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Dash enters water form, becoming Untargetable and dealing 275 () Physical Damage to the 3 nearest Enemies.\r\n\r\nDamage: 275 = 175 () + 100 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 2,
+			"AttackSpeed": 1,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 3,
+			"Resistance": 5
+		}
+	}
+}

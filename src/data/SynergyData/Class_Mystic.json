@@ -1,0 +1,278 @@
+{
+	"CombatClass": "Mystic",
+	"CombatClassComponents": [
+		"Empath",
+		"Empath"
+	],
+	"SynergyThresholds": [
+		2,
+		3,
+		4
+	],
+	"SynergyThresholdsAbilities": {
+		"Variables": [
+			{
+				"Name": "Mystic_DamageAmpAndRed",
+				"Values": [
+					12,
+					24,
+					40
+				]
+			},
+			{
+				"Name": "Mystic_Faint",
+				"Values": [
+					0,
+					0,
+					8
+				]
+			}
+		],
+		"TeamAbilities": [
+			{
+				"Name": "MysticSynergy_Ability1",
+				"ActivationTrigger": {
+					"TriggerType": "OnFaint",
+					"Allegiance": "Ally"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Mystic - Heal and Attack Damage",
+						"Deployment": {
+							"Type": "Direct",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							]
+						},
+						"Targeting": {
+							"Type": "Allegiance",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							],
+							"Group": "Ally",
+							"Self": true
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "InstantHeal",
+									"HealType": "Normal",
+									"Expression": {
+										"Percentage": "{Mystic_Faint}",
+										"Stat": "MaxHealth",
+										"StatSource": "Receiver"
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "AttackPhysicalDamage",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Mystic_Faint}",
+										"Stat": "AttackPhysicalDamage",
+										"StatSource": "Receiver"
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "AttackEnergyDamage",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Mystic_Faint}",
+										"Stat": "AttackEnergyDamage",
+										"StatSource": "Receiver"
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "AttackPureDamage",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Mystic_Faint}",
+										"Stat": "AttackPureDamage",
+										"StatSource": "Receiver"
+									}
+								}
+							]
+						}
+					}
+				]
+			},
+			{
+				"Name": "MysticSynergy_Ability2",
+				"ActivationTrigger": {
+					"TriggerType": "OnBattleStart"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Mystic - Targeting",
+						"Deployment": {
+							"Type": "Direct",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							]
+						},
+						"Targeting": {
+							"Type": "Allegiance",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							],
+							"Group": "Ally",
+							"Self": true
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "SpawnMark",
+									"MarkType": "Beneficial",
+									"DurationMs": -1,
+									"AttachedAbilities": [
+										{
+											"Name": "Mystic - Sub Ability",
+											"ActivationTrigger": {
+												"TriggerType": "HealthInRange",
+												"HealthLowerLimitPercentage": 55,
+												"MaxActivations": 1
+											},
+											"TotalDurationMs": 0,
+											"Skills": [
+												{
+													"Name": "Mystic - Damage Amp and Reduction",
+													"Deployment": {
+														"Type": "Direct"
+													},
+													"Targeting": {
+														"Type": "Self"
+													},
+													"EffectPackage": {
+														"Effects": [
+															{
+																"Type": "Buff",
+																"Stat": "VulnerabilityPercentage",
+																"OverlapProcessType": "Stacking",
+																"DurationMs": -1,
+																"Expression": "{Mystic_DamageAmpAndRed}"
+															},
+															{
+																"Type": "Buff",
+																"Stat": "AttackPhysicalDamage",
+																"OverlapProcessType": "Stacking",
+																"DurationMs": -1,
+																"Expression": {
+																	"Percentage": "{Mystic_DamageAmpAndRed}",
+																	"Stat": "AttackPhysicalDamage",
+																	"StatSource": "Receiver"
+																}
+															},
+															{
+																"Type": "Buff",
+																"Stat": "AttackEnergyDamage",
+																"OverlapProcessType": "Stacking",
+																"DurationMs": -1,
+																"Expression": {
+																	"Percentage": "{Mystic_DamageAmpAndRed}",
+																	"Stat": "AttackEnergyDamage",
+																	"StatSource": "Receiver"
+																}
+															},
+															{
+																"Type": "Buff",
+																"Stat": "AttackPureDamage",
+																"OverlapProcessType": "Stacking",
+																"DurationMs": -1,
+																"Expression": {
+																	"Percentage": "{Mystic_DamageAmpAndRed}",
+																	"Stat": "AttackPureDamage",
+																	"StatSource": "Receiver"
+																}
+															},
+															{
+																"Type": "Buff",
+																"Stat": "OmegaDamagePercentage",
+																"OverlapProcessType": "Stacking",
+																"DurationMs": -1,
+																"Expression": {
+																	"Percentage": "{Mystic_DamageAmpAndRed}",
+																	"Stat": "OmegaDamagePercentage",
+																	"StatSource": "Receiver"
+																}
+															}
+														]
+													}
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					}
+				]
+			}
+		],
+		"UnitAbilities": []
+	},
+	"IntrinsicAbilities": [],
+	"DisplayName": "Mystic",
+	"DisplayDescription": "\r\nWhen an Ally drops below <MaxHealth>55%</> Health, they gain <DamageAmplification>Damage Amp</> and <DamageReduction>Damage Reduction</> for the rest of the combat.\r\n\r\n(4) When an ally is Vanquished, all allies are healed for <MaxHealth>8%</> of their Max Health.\r\n",
+	"DisplayDescriptionThresholds": [
+		"Gain 12% <DamageAmplification></><DamageReduction></>",
+		"Gain 24% <DamageAmplification></><DamageReduction></>",
+		"Gain 40% <DamageAmplification></><DamageReduction></>"
+	],
+	"Description": {
+		"Format": "\r\nWhen an Ally drops below <MaxHealth>{HealthTrigger}%</> Health, they gain <DamageAmplification>Damage Amp</> and <DamageReduction>Damage Reduction</> for the rest of the combat.\r\n\r\n(4) When an ally is Vanquished, all allies are healed for <MaxHealth>{Mystic_Faint}%</> of their Max Health.\r\n",
+		"Parameters": {
+			"HealthTrigger": {
+				"ParameterPath": "SynergyThresholdsAbilities.TeamAbilities[1].Skills[0].EffectPackage.Effects[0].AttachedAbilities[0].ActivationTrigger.HealthLowerLimitPercentage",
+				"ValueMultiplier": 1.0
+			},
+			"Mystic_Faint": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[2]",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DescriptionThresholds": {
+		"Format": "Gain {Mystic_DamageAmpAndRed}% <DamageAmplification></><DamageReduction></>",
+		"Parameters": [
+			{
+				"Mystic_DamageAmpAndRed": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[0]",
+					"ValueMultiplier": 1.0
+				}
+			},
+			{
+				"Mystic_DamageAmpAndRed": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[1]",
+					"ValueMultiplier": 1.0
+				}
+			},
+			{
+				"Mystic_DamageAmpAndRed": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[2]",
+					"ValueMultiplier": 1.0
+				}
+			}
+		]
+	},
+	"DisplayDescriptionNormalized": "When an Ally drops below 55% Health, they gain Damage Amp and Damage Reduction for the rest of the combat.\r\n\r\n(4) When an ally is Vanquished, all allies are healed for 8% of their Max Health.",
+	"DisplayDescriptionThresholdsNormalized": [
+		"Gain 12%",
+		"Gain 24%",
+		"Gain 40%"
+	]
+}

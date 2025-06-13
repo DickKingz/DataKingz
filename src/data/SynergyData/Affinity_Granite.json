@@ -1,0 +1,182 @@
+{
+	"CombatAffinity": "Granite",
+	"CombatAffinityComponents": [
+		"Earth",
+		"Earth"
+	],
+	"SynergyThresholds": [
+		2,
+		3,
+		4
+	],
+	"SynergyThresholdsAbilities": {
+		"Variables": [
+			{
+				"Name": "Granite_Invulnerable",
+				"Values": [
+					4000,
+					4500,
+					5000
+				]
+			},
+			{
+				"Name": "Granite_DamageReduction",
+				"Values": [
+					10,
+					20,
+					25
+				]
+			},
+			{
+				"Name": "Granite_InvulnerableRetrigger",
+				"Values": [
+					999999,
+					999999,
+					20000
+				]
+			},
+			{
+				"Name": "Granite_Thorns",
+				"Values": [
+					0,
+					0,
+					20000
+				]
+			}
+		],
+		"TeamAbilities": [],
+		"UnitAbilities": [
+			{
+				"Name": "GraniteSynergy_Ability1",
+				"ActivationTrigger": {
+					"TriggerType": "OnBattleStart"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Granite - Start Invulnerability",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "Self"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "PositiveState",
+									"PositiveState": "Invulnerable",
+									"DurationMs": "{Granite_Invulnerable}"
+								},
+								{
+									"Type": "Buff",
+									"Stat": "VulnerabilityPercentage",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": "{Granite_DamageReduction}"
+								}
+							]
+						}
+					}
+				]
+			},
+			{
+				"Name": "GraniteSynergy_SpecialAbility",
+				"ActivationTrigger": {
+					"TriggerType": "EveryXTime",
+					"ActivateEveryTimeMs": "{Granite_InvulnerableRetrigger}"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Granite - Periodic Invulnerability and Thorns",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "Self"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "PositiveState",
+									"PositiveState": "Invulnerable",
+									"DurationMs": "{Granite_Invulnerable}"
+								},
+								{
+									"Type": "Buff",
+									"Stat": "Thorns",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": "{Granite_Thorns}"
+								}
+							]
+						}
+					}
+				]
+			}
+		]
+	},
+	"IntrinsicAbilities": [],
+	"DisplayName": "Granite",
+	"DisplayDescription": "\r\nCombat Start: Gain permanent <DamageReduction>Damage Reduction</> and become Invulnerable for a duration.\r\n\r\n(4) Retrigger Invulnerable every 20 seconds and gain <Thorns>20</> permanent <Thorns>Thorns</>.\r\n\r\n<Italic>Invulnerable: Cannot receive damage.</>",
+	"DisplayDescriptionThresholds": [
+		"Gain <DamageReduction>10%</><DamageReduction></>. Invulnerable for 4 seconds",
+		"Gain <DamageReduction>20%</><DamageReduction></>. Invulnerable for 4.5 seconds",
+		"Gain <DamageReduction>25%</><DamageReduction></>. Invulnerable for 5 seconds"
+	],
+	"Description": {
+		"Format": "\r\nCombat Start: Gain permanent <DamageReduction>Damage Reduction</> and become Invulnerable for a duration.\r\n\r\n(4) Retrigger Invulnerable every {Granite_InvulnerableRetrigger} seconds and gain <Thorns>{Granite_Thorns}</> permanent <Thorns>Thorns</>.\r\n\r\n<Italic>Invulnerable: Cannot receive damage.</>",
+		"Parameters": {
+			"Granite_InvulnerableRetrigger": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[2].Values[2]",
+				"ValueMultiplier": 0.001
+			},
+			"Granite_Thorns": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[3].Values[2]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DescriptionThresholds": {
+		"Format": "Gain <DamageReduction>{Granite_DamageReduction}%</><DamageReduction></>. Invulnerable for {Granite_Invulnerable} seconds",
+		"Parameters": [
+			{
+				"Granite_Invulnerable": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[0]",
+					"ValueMultiplier": 0.001
+				},
+				"Granite_DamageReduction": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[0]",
+					"ValueMultiplier": 1.0
+				}
+			},
+			{
+				"Granite_Invulnerable": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[1]",
+					"ValueMultiplier": 0.001
+				},
+				"Granite_DamageReduction": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[1]",
+					"ValueMultiplier": 1.0
+				}
+			},
+			{
+				"Granite_Invulnerable": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[2]",
+					"ValueMultiplier": 0.001
+				},
+				"Granite_DamageReduction": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[2]",
+					"ValueMultiplier": 1.0
+				}
+			}
+		]
+	},
+	"DisplayDescriptionNormalized": "Combat Start: Gain permanent Damage Reduction and become Invulnerable for a duration.\r\n\r\n(4) Retrigger Invulnerable every 20 seconds and gain 20 permanent Thorns.\r\n\r\nInvulnerable: Cannot receive damage.",
+	"DisplayDescriptionThresholdsNormalized": [
+		"Gain 10%. Invulnerable for 4 seconds",
+		"Gain 20%. Invulnerable for 4.5 seconds",
+		"Gain 25%. Invulnerable for 5 seconds"
+	]
+}

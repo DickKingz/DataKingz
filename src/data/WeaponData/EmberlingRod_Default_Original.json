@@ -1,0 +1,273 @@
+{
+	"Name": "EmberlingRod",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Normal",
+	"CombatAffinity": "Nature",
+	"CombatClass": "Psion",
+	"DominantCombatAffinity": "Nature",
+	"DominantCombatClass": "Psion",
+	"Stats": {
+		"MaxHealth": 600000,
+		"StartingEnergy": 40000,
+		"EnergyCost": 180000,
+		"PhysicalResist": 30,
+		"EnergyResist": 20,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 70000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 80,
+		"MoveSpeedSubUnits": 0,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 70,
+		"OmegaRangeUnits": 70,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Rod Attack I",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"PreDeploymentDelayPercentage": 40
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 10000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Seedburst",
+			"TotalDurationMs": 1000,
+			"Skills": [
+				{
+					"Name": "Dummy Projectile",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 47
+					},
+					"Projectile": {
+						"SizeUnits": 5,
+						"SpeedSubUnits": 10000,
+						"IsHoming": false,
+						"IsBlockable": false,
+						"ApplyToAll": true,
+						"ContinueAfterTarget": true
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Attributes": {
+							"RotateToTarget": true
+						},
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": 0
+							}
+						]
+					}
+				},
+				{
+					"Name": "AoE Damage",
+					"PercentageOfAbilityDuration": 100,
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 90
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 12,
+						"DurationMs": 3100,
+						"FrequencyMs": 3000,
+						"ApplyOnce": true,
+						"SkipActivations": [
+							0
+						]
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										650000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"ID": "CauterizingPollination",
+								"Type": "Debuff",
+								"Stat": "HealthGainEfficiencyPercentage",
+								"OverlapProcessType": "Merge",
+								"DurationMs": 5000,
+								"Expression": 0
+							},
+							{
+								"ID": "CauterizingPollination1",
+								"Type": "DOT",
+								"DamageType": "Energy",
+								"DurationMs": 5000,
+								"FrequencyMs": 1000,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										0,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "AoE Damage",
+					"PercentageOfAbilityDuration": 100,
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 90
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 12,
+						"DurationMs": 1100,
+						"FrequencyMs": 1000,
+						"ApplyOnce": true,
+						"SkipActivations": [
+							0
+						]
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"ID": "DelayedBlossom",
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										0,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Emberling Rod",
+	"DisplayDescription": "The Ranger launches a seed that lands and embedds in the ground, under the target. After 3 seconds, the seed blooms, dealing  <AttackEnergyDamage>650</> (<OmegaPowerPercentage></>) Energy Damage to all enemies within a 12-radius.",
+	"Description": {
+		"Format": "The Ranger launches a seed that lands and embedds in the ground, under the target. After {Delay} seconds, the seed blooms, dealing  <AttackEnergyDamage>{Damage}</> (<OmegaPowerPercentage></>) Energy Damage to all enemies within a {Radius}-radius.",
+		"Parameters": {
+			"Delay": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].Zone.FrequencyMs",
+				"ValueMultiplier": 0.001
+			},
+			"Damage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"Radius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].Zone.RadiusUnits",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "The Ranger launches a seed that lands and embedds in the ground, under the target. After 3 seconds, the seed blooms, dealing 650 () Energy Damage to all enemies within a 12-radius."
+}

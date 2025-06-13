@@ -1,0 +1,247 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Taipan",
+	"Stage": 2,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 4,
+	"CombatAffinity": "Fire",
+	"CombatClass": "Arcanite",
+	"DominantCombatAffinity": "Fire",
+	"DominantCombatClass": "Psion",
+	"SizeUnits": 4,
+	"Stats": {
+		"MaxHealth": 1500000,
+		"StartingEnergy": 20000,
+		"EnergyCost": 130000,
+		"PhysicalResist": 55,
+		"EnergyResist": 35,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 130000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 75,
+		"MoveSpeedSubUnits": 2250,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 60,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Taipan Basic Attack II",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 40
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 10000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Molten Spew II",
+			"TotalDurationMs": 500,
+			"Skills": [
+				{
+					"Name": "Increase EnergyDamage and AttackSpeed",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 100
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "AttackEnergyDamage",
+								"DurationMs": 6000,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										70000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Receiver"
+										}
+									]
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackSpeed",
+								"DurationMs": 6000,
+								"Expression": {
+									"Percentage": 30,
+									"Stat": "AttackSpeed",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							},
+							{
+								"Type": "Empower",
+								"ActivatedBy": "Attack",
+								"DurationMs": 6000,
+								"AttachedEffectPackageAttributes": {
+									"Propagation": {
+										"PropagationType": "Splash",
+										"IgnoreFirstPropagationReceiver": true,
+										"SplashRadiusUnits": 17,
+										"EffectPackage": {
+											"Effects": [
+												{
+													"Type": "InstantDamage",
+													"DamageType": "Energy",
+													"Expression": {
+														"Stat": "AttackEnergyDamage",
+														"StatSource": "Sender"
+													}
+												}
+											]
+										}
+									}
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Phyriox",
+	"DisplayDescription": "Phyriox activates its molten core, gaining <AttackEnergyDamage>70</> (<OmegaPowerPercentage></>) Energy Attack Damage and <AttackSpeed>30%</> Attack Speed for 6 seconds and causing all attacks to explode in 17-hexes.\r\n\r\nEnergy Attack Damage: <AttackEnergyDamage>70</> (<OmegaPowerPercentage></>)",
+	"Intro": "The large rock pillars of Shardbluff Labyrinth are covered in deep orange Bloodmoss that drip red ooze. Tiny crystals hide within this sludge, becoming toxic gas when they come in contact with air. The Phyriox doesn't mind at all, sliding its forked tongue out to taste the poison. There are lava pools nearby where it can soak in and heal itself from any ailment with the heat.",
+	"Summary": "The Phyriox, a formidable predator of Shardbluff Labyrinth, thrives amidst toxic Bloodmoss and lava pools. Its burgundy scales and flaming neurotoxic tongue set it apart, making it capable of paralyzing prey with venomous fireballs. Known for its aggressive behavior, the Phyriox dominates its territory, exhibiting a preference for hyper-flammable plants and engaging in ritualistic displays of dominance over defeated foes.",
+	"Biology": {
+		"Physiology": "The Phyriox holds its head high, with a hood of horns flanking the sides of his neck, flaked with embers and burgundy like the rest of his scales. It has dark eyes and a bright red tongue, with a bright flame fueled by neurotoxins that can paralyze those in its proximity. The Phyriox's underbelly is yellow, but its entire body glows when it spews flames towards immobilized victims.",
+		"Behaviour": "The Phyriox is a dangerous Illuvial that slinks towards its prey without any attempt to conceal itself. Fast-moving and highly venomous, the Phyriox is one of the deadliest species on the planet. Baring its fangs, its dark eyes glint, reflecting its flames as it flickers its tongue. With a hypnotic gaze, the Phyriox spits fireballs which keep those in its sights from escaping."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/TaipanStage2/TaipanStage2_default_default_webp.3840x2160/TaipanStage2_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/TaipanStage2/TaipanStage2_default_default_hls.m3u8/TaipanStage2_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Phyriox may be hostile to other creatures but it is amenable to Phyri and Scoriox. It is open to having overlapping home ranges with them, taking care not to scare Phyri or disturb Scoriox's rest.",
+			"The Phyriox shows its superiority over those it defeated in battle in vicious ways, wrapping its body around them and roasting parts of its body over a pit of flame.",
+			"The Phyriox sheds its skin every few weeks by burning through the dead outer layer."
+		],
+		"Buckley": [
+			"The Phyriox has an adapted diet of hyper-flammable plants and nature Illuvials that allows it to produce oil-based saliva which aids combustion.",
+			"The Phyriox has an internal gas chamber that mixes the different combustible gases and transports them to its fire vent.",
+			"The Phyriox's tongue is flame resistant, with microscopic pores that absorb chemical signatures and gases from its environment.",
+			"The Phyriox's venom is adapted specially for nature Illuvials, capable of inducing the disintegration of muscle tissue, intense convulsions, and blood vomiting. Its anti-venom has been developed and all drone-captured Illuvials are vaccinated to increase life expectancy in battle.",
+			"The Phyriox's fangs are hollow, with hypodermic needles filled with venom. Its venom is triggered to release when new fireballs form in its mouth, allowing it to release deadly projectiles."
+		]
+	},
+	"TraitOrderLegacy": [
+		2,
+		1,
+		5,
+		6,
+		3,
+		4
+	],
+	"Description": {
+		"Format": "Phyriox activates its molten core, gaining <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Energy Attack Damage and <AttackSpeed>{AttackSpeedBuff}%</> Attack Speed for {BuffDuration} seconds and causing all attacks to explode in {SplashRadius}-hexes.\r\n\r\nEnergy Attack Damage: <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"AttackSpeedBuff": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].Expression.Percentage"
+			},
+			"BuffDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[2].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"SplashRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[2].AttachedEffectPackageAttributes.Propagation.SplashRadiusUnits"
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Phyriox activates its molten core, gaining 70 () Energy Attack Damage and 30% Attack Speed for 6 seconds and causing all attacks to explode in 17-hexes.\r\n\r\nEnergy Attack Damage: 70 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 2,
+			"AttackSpeed": 1,
+			"Health": 5,
+			"MovementSpeed": 6,
+			"OmegaPower": 3,
+			"Resistance": 4
+		}
+	}
+}

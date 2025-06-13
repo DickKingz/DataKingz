@@ -1,0 +1,264 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Tenrec",
+	"Stage": 2,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 1,
+	"CombatAffinity": "Dust",
+	"CombatClass": "Rogue",
+	"DominantCombatAffinity": "Air",
+	"DominantCombatClass": "Rogue",
+	"SizeUnits": 4,
+	"Stats": {
+		"MaxHealth": 1300000,
+		"StartingEnergy": 60000,
+		"EnergyCost": 140000,
+		"PhysicalResist": 40,
+		"EnergyResist": 35,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 90000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 85,
+		"MoveSpeedSubUnits": 2050,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 5,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 60,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Tenrec Basic Attack II",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 48
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 10000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Whirlpedo II",
+			"TotalDurationMs": 1500,
+			"Skills": [
+				{
+					"Name": "dashing to its furthest enemy",
+					"Targeting": {
+						"Type": "DistanceCheck",
+						"Guidance": [
+							"Ground"
+						],
+						"Group": "Enemy",
+						"Lowest": false,
+						"Num": 1
+					},
+					"Deployment": {
+						"Type": "Dash",
+						"Guidance": [
+							"Ground"
+						],
+						"PreDeploymentDelayPercentage": 5
+					},
+					"Dash": {
+						"ApplyToAll": true,
+						"IsPassthrough": true
+					},
+					"PercentageOfAbilityDuration": 80,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										100000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Physical Damage",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "InZone",
+						"Group": "Enemy",
+						"RadiusUnits": 32
+					},
+					"PercentageOfAbilityDuration": 5,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "+",
+									"Operands": [
+										{
+											"Operation": "*",
+											"Operands": [
+												140000,
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												}
+											]
+										},
+										{
+											"Stat": "AttackDamage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Revo",
+	"DisplayDescription": "Revo dashes to the furthest enemy, dealing <AttackPhysicalDamage>100</> (<OmegaPowerPercentage></>) Physical Damage to enemies in its path. At the end of the dash, spikes explode out of its body, dealing <AttackPhysicalDamage>230</> (<OmegaPowerPercentage></><AttackDamage></>) Physical Damage 32-hexes.\r\n\r\nDash Damage: <AttackPhysicalDamage>100</> (<OmegaPowerPercentage></>)\r\nSpike Damage: <AttackPhysicalDamage>230</> = <AttackPhysicalDamage>140</> (<OmegaPowerPercentage></>) + <AttackPhysicalDamage>90</> (<AttackDamage></>)",
+	"Intro": "Abyssal Basin ends at the seaside, where large puddles on the beach reflect arching roots from the last of the treeline. Lightning shoots across the horizon from afar, but the sky is clear and cloudless directly above. The waters are calm, and the beach is free from the clutter of the marshes, with just a few rocks and boulders around. A whirling ball of spines twists through the shores, leaving a trail of dust, and the Revo unrolls itself with a smirk.",
+	"Summary": "In the serene coastal edge of Abyssal Basin, the Revo, an enigmatic Illuvial, emerges with its peculiar features: a spiny back releasing dust, intricate textures from ringed snout to flaky scales, and a pulsing light along its body. It thrives on confusion, using sand expulsion to mesmerize and ambush unsuspecting prey. Capable of shedding and regenerating spines rapidly, its unique adaptations include aerodynamic tendrils, air manipulation systems, and a muscular network for coordinated movements and defense.",
+	"Biology": {
+		"Physiology": "The Revo is bizarre, with its back covered in spines of varying heights and round cavities above its legs where dust streams out. Its body is packed with different textures, from its ringed snout and soft ears to the flakey scales and cork-like embellishments along its side. The slightly curved spines are brown at the base, fading into amber in the middle and sandy beige at the tips. A light shines from the rim of its spines and claws, pulsing with the tempo of the air currents that leave its body. Its face is mostly pale pink, just like its lower limbs, except it darkens into brown towards its nose.",
+		"Behaviour": "The Revo relishes confusing others with its enigmatic form and its ability to expel sand from its body. When it catches the attention of other Illuvials, the Revo expels more sand from the cavities on its body, creating a mesmerizing display. When its target is enraptured, it curls up and shoots spikes at them, scattering sand in their eyes and spinning away. It gathers sand in its body by pulling with its internal air manipulation system."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/TenrecStage2/TenrecStage2_default_default_webp.3840x2160/TenrecStage2_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/TenrecStage2/TenrecStage2_default_default_hls.m3u8/TenrecStage2_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Revo grows new spines every day, and it is frequently shedding. It can shed all its old spines at once by spinning quickly and exploding them out of its body, allowing it to gain momentum and move even faster.",
+			"The Revo sometimes hides under mounds of sand, travelling beneath the surface to catch its prey off guard.",
+			"The Revo takes quick steps in place before it whirls away, spinning so fast it leaves a flurry of dust wherever it goes."
+		],
+		"Buckley": [
+			"The Revo has specialised epidermal cells that grow tendrils along its limbs to support the aerodynamics of its movements.",
+			"The Revo has air canals that constantly expel air and allow it to control the currents leaving its body.",
+			"The Revo has a strong internal suction system that can pull sand into its body to increase its weight or expel debris and excess spikes to increase its speed.",
+			"The Revo's spikes create sounds when they rub on nearby objects, enabling it to communicate with others of its kind and alert them of threats. Every spike is attached to a muscle network, enabling complex movements for communication and coordination to increase its speed.",
+			"The Revo has a highly efficient circulatory system that enables it to maintain a steady supply of oxygen throughout its body and air vents."
+		]
+	},
+	"TraitOrderLegacy": [
+		2,
+		1,
+		4,
+		6,
+		3,
+		5
+	],
+	"Description": {
+		"Format": "Revo dashes to the furthest enemy, dealing <AttackPhysicalDamage>{TravelDamage}</> (<OmegaPowerPercentage></>) Physical Damage to enemies in its path. At the end of the dash, spikes explode out of its body, dealing <AttackPhysicalDamage>230</> (<OmegaPowerPercentage></><AttackDamage></>) Physical Damage {AOERadius}-hexes.\r\n\r\nDash Damage: <AttackPhysicalDamage>{TravelDamage}</> (<OmegaPowerPercentage></>)\r\nSpike Damage: <AttackPhysicalDamage>230</> = <AttackPhysicalDamage>{AOEDamage}</> (<OmegaPowerPercentage></>) + <AttackPhysicalDamage>{AtkDamage}</> (<AttackDamage></>)",
+		"Parameters": {
+			"TravelDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"AOEDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].Expression.Operands[0].Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"AOERadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].Targeting.RadiusUnits"
+			},
+			"AtkDamage": {
+				"ParameterPath": "Stats.AttackPhysicalDamage",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Revo dashes to the furthest enemy, dealing 100 () Physical Damage to enemies in its path. At the end of the dash, spikes explode out of its body, dealing 230 () Physical Damage 32-hexes.\r\n\r\nDash Damage: 100 ()\r\nSpike Damage: 230 = 140 () + 90 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 2,
+			"AttackSpeed": 1,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 3,
+			"Resistance": 5
+		}
+	}
+}

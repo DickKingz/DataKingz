@@ -1,0 +1,142 @@
+{
+	"Name": "CombatRhythm",
+	"Stage": 3,
+	"Type": "Simulation",
+	"Abilities": [
+		{
+			"Name": "CombatRhythm3s_Ability1",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "CombatRhythm3 - Targeting",
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground",
+							"Airborne",
+							"Underground"
+						]
+					},
+					"Targeting": {
+						"Type": "Allegiance",
+						"Group": "Ally",
+						"Guidance": [
+							"Ground",
+							"Airborne",
+							"Underground"
+						]
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "SpawnMark",
+								"MarkType": "Beneficial",
+								"DurationMs": -1,
+								"AttachedAbilities": [
+									{
+										"Name": "Combat Rhythm 3 - Ability",
+										"ActivationTrigger": {
+											"TriggerType": "OnVanquish",
+											"Allegiance": "Self"
+										},
+										"TotalDurationMs": 0,
+										"Skills": [
+											{
+												"Name": "Combat Rhythm 3 - Buffs",
+												"Deployment": {
+													"Type": "Direct"
+												},
+												"Targeting": {
+													"Type": "Self"
+												},
+												"EffectPackage": {
+													"Effects": [
+														{
+															"Type": "Buff",
+															"Stat": "AttackPhysicalDamage",
+															"OverlapProcessType": "Stacking",
+															"DurationMs": -1,
+															"Expression": {
+																"Percentage": 20,
+																"Stat": "AttackPhysicalDamage",
+																"StatSource": "Receiver",
+																"StatEvaluationType": "Base"
+															}
+														},
+														{
+															"Type": "Buff",
+															"Stat": "AttackEnergyDamage",
+															"OverlapProcessType": "Stacking",
+															"DurationMs": -1,
+															"Expression": {
+																"Percentage": 20,
+																"Stat": "AttackEnergyDamage",
+																"StatSource": "Receiver",
+																"StatEvaluationType": "Base"
+															}
+														},
+														{
+															"Type": "Buff",
+															"Stat": "AttackPureDamage",
+															"OverlapProcessType": "Stacking",
+															"DurationMs": -1,
+															"Expression": {
+																"Percentage": 20,
+																"Stat": "AttackPureDamage",
+																"StatSource": "Receiver",
+																"StatEvaluationType": "Base"
+															}
+														},
+														{
+															"Type": "Buff",
+															"Stat": "PhysicalVampPercentage",
+															"OverlapProcessType": "Stacking",
+															"DurationMs": -1,
+															"Expression": 20
+														},
+														{
+															"Type": "Buff",
+															"Stat": "EnergyVampPercentage",
+															"OverlapProcessType": "Stacking",
+															"DurationMs": -1,
+															"Expression": 20
+														},
+														{
+															"Type": "Buff",
+															"Stat": "PureVampPercentage",
+															"OverlapProcessType": "Stacking",
+															"DurationMs": -1,
+															"Expression": 20
+														}
+													]
+												}
+											}
+										]
+									}
+								]
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Combat Rhythm III",
+	"DisplayDescription": "Your units gain 20% Omnivamp and Attack Damage when they eliminate an enemy.",
+	"Description": {
+		"Format": "Your units gain {Omnivamp}% Omnivamp and Attack Damage when they eliminate an enemy.",
+		"Parameters": {
+			"Omnivamp": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].AttachedAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Percentage",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [],
+		"GrantedCredits": 0
+	}
+}

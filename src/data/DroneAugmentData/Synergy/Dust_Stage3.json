@@ -1,0 +1,21 @@
+{
+	"Name": "Dust",
+	"Stage": 3,
+	"Type": "Game",
+	"DisplayName": "Dust Matrix",
+	"DisplayDescription": "Gain a Dust Imprint.",
+	"Description": {
+		"Format": "Gain a Dust Imprint.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Dust",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

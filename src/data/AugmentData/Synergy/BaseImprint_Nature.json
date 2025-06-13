@@ -1,0 +1,48 @@
+{
+	"Name": "Nature",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "SynergyBonus",
+	"CombatAffinities": {
+		"Nature": 1
+	},
+	"Abilities": [
+		{
+			"Name": "Nature Imprint Stats",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Nature Imprint Stat List",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "MaxHealth",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 100000
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Nature Imprint",
+	"DisplayDescription": "The holder gains the Nature Affinity and 100 <MaxHealth>Max Health</>.",
+	"Description": {
+		"Format": "The holder gains the Nature Affinity and 100 <MaxHealth>Max Health</>.",
+		"Parameters": {}
+	},
+	"DisplayDescriptionNormalized": "The holder gains the Nature Affinity and 100 Max Health."
+}

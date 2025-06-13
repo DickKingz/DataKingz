@@ -1,0 +1,66 @@
+{
+	"Name": "TimesRespite",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "GreaterPower",
+	"Abilities": [
+		{
+			"Name": "TimesRespite_Ability1",
+			"ActivationTrigger": {
+				"TriggerType": "OnActivateXAbilities",
+				"AbilityTypes": [
+					"Omega"
+				],
+				"EveryX": true,
+				"NumberOfAbilitiesActivated": 1
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "TimesRespite - Shield and Immune",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "SpawnShield",
+								"DurationMs": 5000,
+								"Expression": {
+									"Percentage": 500,
+									"Stat": "EnergyCost",
+									"StatSource": "Receiver"
+								}
+							},
+							{
+								"Type": "PositiveState",
+								"PositiveState": "Immune",
+								"DurationMs": 5000
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Times Respite",
+	"DisplayDescription": "On Omega, the holder gains a Shield equal to <EnergyCost>500%</> of <EnergyCost>Energy Cost</> and becomes Immune for 5 seconds.\r\n\r\n<Italic>Immune: Cannot be affected by negative effects.</>",
+	"Description": {
+		"Format": "On Omega, the holder gains a Shield equal to <EnergyCost>{ShieldVal}%</> of <EnergyCost>Energy Cost</> and becomes Immune for {Duration} seconds.\r\n\r\n<Italic>Immune: Cannot be affected by negative effects.</>",
+		"Parameters": {
+			"ShieldVal": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].Expression.Percentage",
+				"ValueMultiplier": 1.0
+			},
+			"Duration": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "On Omega, the holder gains a Shield equal to 500% of Energy Cost and becomes Immune for 5 seconds.\r\n\r\nImmune: Cannot be affected by negative effects."
+}

@@ -1,0 +1,195 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "VolanteAir",
+	"Stage": 2,
+	"Path": "Air",
+	"Variation": "Original",
+	"Tier": 0,
+	"CombatAffinity": "Air",
+	"CombatClass": "Rogue",
+	"DominantCombatAffinity": "Air",
+	"DominantCombatClass": "Rogue",
+	"SizeUnits": 5,
+	"Stats": {
+		"MaxHealth": 1300000,
+		"StartingEnergy": 40000,
+		"EnergyCost": 120000,
+		"PhysicalResist": 30,
+		"EnergyResist": 30,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 115000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 65,
+		"MoveSpeedSubUnits": 2250,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 5,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 3,
+		"OmegaRangeUnits": 3,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Air Volante Basic Attack II",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 40
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Stolen Sound II",
+			"TotalDurationMs": 1200,
+			"Skills": [
+				{
+					"Name": "Claw slash",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 90
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										625000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Silenced",
+								"DurationMs": 1500
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Greater Air Volante",
+	"DisplayDescription": "Greater Air Volante rakes its claws at the target, dealing <AttackPhysicalDamage>625</> (<OmegaPowerPercentage></>) Physical Damage and Silencing it for 1.5 second.\r\n\r\nDamage: <AttackPhysicalDamage>625</> (<OmegaPowerPercentage></>)",
+	"Intro": "Blue skies, green fields, and large rolling clouds are all hallmarks of Brightland Steppes. A gentle breeze rustles the grass and sends ripples through the ponds. Alongside drifting seeds and bubbles, the Greater Air Volante glides with the wind, using the thin membranes between its limbs to soar. With a flick of its tail, the Greater Air Volante gives itself an extra boost to fly towards its destination.",
+	"Summary": "This slender turquoise Illuvial with red eyes and webbed limbs uses wind blasts from its curled tail to boost its flight. The Greater Air Volante is an aerial hunter, adept at pursuing floating bubbles and Morphopods, and can manipulate wind to aid its movements and attacks. Notably, it can leap at high speeds, render itself invisible while accelerating, and use bristle-like structures on its feet for stabilization.",
+	"Biology": {
+		"Physiology": "The Greater Air Volante has beady red eyes, a flat head, and a slender turquoise body with webbed membranes between its thin, stick-like limbs. Spikey, white-tipped tendrils stick up from its teal-coloured head and back. Its slim tail curls up, capable of manipulating the blast of wind that it shoots out from behind. The Greater Air Volante has big, chunky claws on its feet and it can spring across far distances with its nimble legs. Its striped membranes help it glide in the air as it moves.",
+		"Behaviour": "The Greater Air Volante can often be found gliding above the fields of Brightland Steppes. Attracted to floating bubbles, it pursues them with determination, catching Morphopods and seeds that often get stuck within these lightweight orbs. As an aerial hunter, it can use change directions quickly to latch onto its target and uses blasts of air to flatten the grass and find Morphopods hiding inside. When the Greater Air Volante sends out a particularly powerful blast of air from its tail, it must replenish its supply by drawing in wind energy from its feet."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/VolanteStage2Air/VolanteStage2Air_default_default_webp.3840x2160/VolanteStage2Air_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/VolanteStage2Air/VolanteStage2Air_default_default_hls.m3u8/VolanteStage2Air_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Greater Air Volante is capable of leaping at high speeds and teleporting across vast distances.",
+			"The Greater Air Volante has tendrils on its back that tremble when wind speeds pick up.",
+			"The Greater Air Volante can manipulate wind by expelling air and directing it with the curl of its tail."
+		],
+		"Buckley": [
+			"The Greater Air Volante's scales contain a mysterious substance which is linked to its ability to render itself invisible while it accelerates to its destination.",
+			"The Greater Air Volante's spines have receptors adapted to determine wind speeds and direction, allowing it to better coordinate its jumps and glides.",
+			"The Greater Air Volante's feet have bristle-like structures that help it adhere to a surface when it lands. This is particularly important for stabilization because the Greater Air Volante expels gusts of air periodically.",
+			"The Greater Air Volante's digestive tract contains traces of various flying Morphopods, indicating that it is an aerial hunter.",
+			"The Greater Air Volante has a tube beneath its tail that is capable of expelling air at high speeds."
+		]
+	},
+	"TraitOrderLegacy": [
+		2,
+		1,
+		3,
+		6,
+		4,
+		5
+	],
+	"Description": {
+		"Format": "Greater Air Volante rakes its claws at the target, dealing <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Physical Damage and Silencing it for {EffectDuration} second.\r\n\r\nDamage: <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"EffectDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Greater Air Volante rakes its claws at the target, dealing 625 () Physical Damage and Silencing it for 1.5 second.\r\n\r\nDamage: 625 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 2,
+			"AttackSpeed": 1,
+			"Health": 3,
+			"MovementSpeed": 6,
+			"OmegaPower": 4,
+			"Resistance": 5
+		}
+	}
+}

@@ -1,0 +1,45 @@
+{
+	"Name": "Apex",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Component",
+	"Abilities": [
+		{
+			"Name": "ApexComponent_Stats",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "ApexComponent - OmegaPower",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "OmegaPowerPercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 10
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Apex Component",
+	"DisplayDescription": "Gain <OmegaPowerPercentage>10</> <OmegaPowerPercentage>Omega Power</>. Can be combined with other components to select out of 3 Forge Augments.",
+	"Description": {
+		"Format": "Gain <OmegaPowerPercentage>10</> <OmegaPowerPercentage>Omega Power</>. Can be combined with other components to select out of 3 Forge Augments.",
+		"Parameters": {}
+	},
+	"DisplayDescriptionNormalized": "Gain 10 Omega Power. Can be combined with other components to select out of 3 Forge Augments."
+}

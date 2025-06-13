@@ -1,0 +1,268 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Axolotl",
+	"Stage": 3,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 1,
+	"CombatAffinity": "Tsunami",
+	"CombatClass": "Harbinger",
+	"DominantCombatAffinity": "Water",
+	"DominantCombatClass": "Bulwark",
+	"SizeUnits": 6,
+	"Stats": {
+		"MaxHealth": 2400000,
+		"StartingEnergy": 120000,
+		"EnergyCost": 200000,
+		"PhysicalResist": 55,
+		"EnergyResist": 75,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 150000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 65,
+		"MoveSpeedSubUnits": 2450,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 5,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Attack",
+			"Skills": [
+				{
+					"Name": "Axolotl Basic Attack III",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 39
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Vapour Barrier III",
+			"TotalDurationMs": 1500,
+			"Skills": [
+				{
+					"Name": "Shield",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 20
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "SpawnShield",
+								"DurationMs": 4000,
+								"Expression": {
+									"Operation": "+",
+									"Operands": [
+										{
+											"Operation": "*",
+											"Operands": [
+												{
+													"Percentage": 10,
+													"Stat": "MaxHealth",
+													"StatSource": "Sender"
+												}
+											]
+										},
+										{
+											"Operation": "*",
+											"Operands": [
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												},
+												200000
+											]
+										}
+									]
+								},
+								"OnDestroy": {
+									"Name": "AoE Damage",
+									"Targeting": {
+										"Type": "Self"
+									},
+									"Deployment": {
+										"Type": "Zone"
+									},
+									"Zone": {
+										"Shape": "Hexagon",
+										"RadiusUnits": 20,
+										"DurationMs": 100,
+										"FrequencyMs": 100,
+										"ApplyOnce": true
+									},
+									"EffectPackage": {
+										"Effects": [
+											{
+												"Type": "InstantDamage",
+												"DamageType": "Energy",
+												"Expression": {
+													"Operation": "+",
+													"Operands": [
+														{
+															"Operation": "*",
+															"Operands": [
+																{
+																	"Percentage": 5,
+																	"Stat": "MaxHealth",
+																	"StatSource": "Sender"
+																}
+															]
+														},
+														{
+															"Operation": "*",
+															"Operands": [
+																{
+																	"Stat": "OmegaPowerPercentage",
+																	"StatSource": "Sender"
+																},
+																100000
+															]
+														}
+													]
+												}
+											}
+										]
+									}
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Axodon",
+	"DisplayDescription": "Axodon shakes its head, summoning a vapour barrier, gaining a 420 (<MaxHealth></><OmegaPowerPercentage></>) Shield for 4 seconds.\r\n\r\nWhen the Shield ends, it deals <AttackEnergyDamage>210</> (<MaxHealth></><OmegaPowerPercentage></>) Energy Damage within 20-hexes.\r\n\r\nShield: 420 = 10% max <MaxHealth></> + 200 (<OmegaPowerPercentage></>)\r\nDamage: <AttackEnergyDamage>210</> = 5% max <MaxHealth></> + 100 (<OmegaPowerPercentage></>)",
+	"Intro": "The Halcyon Sea, a watery wonderland of breathtaking beauty, awaits those who seek it. The crystal clear pools, cascading waterfalls, and vibrant coral structures leave a sense of peace and tranquillity. But do not be lulled into a false sense of security by the soothing sounds of splashing and trickling water; within this kingdom of colour lurks the fearsome Axodon, a reminder that even in the most idyllic of habitats, danger can lurk beneath the surface.",
+	"Summary": "The Axodon, a towering blue presence in the Halcyon Sea, serves as a reminder of the hidden dangers in this aquatic paradise. Its broad three-pronged forehead, glowing white eyes, and diadem of dark red horns create an intimidating visage. Despite its size, the Axodon's chromatophores allow it to blend seamlessly with its coral surroundings. This curious Illuvial isn't confined to water, roaming various environments with its powerful tail and webbed claws. The Axodon's ability to swim against strong currents and remain motionless for extended periods makes it a true master of its domain, both feared and fascinating.",
+	"Biology": {
+		"Physiology": "The Axodon is a towering blue presence, striking and intimidating, with its broad three-pronged forehead and glowing white eyes. Its head is adorned with a diadem of dark red horns speckled with purple, making its face appear almost masked. A vocal pouch sits beneath its chin, allowing it to create a variety of sounds. A trio of ink-blue lashes frames the Axodon's eyes. It walks on two hind legs, leading with long webbed claws and hunched over with a cream-coloured underbelly. Its back is adorned by a vast red fin that runs along its spine, while two more fins line its enormous, swirling tail.",
+		"Behaviour": "The Axodon is a true master of its domain, utilising its giant tail and claws to navigate and manipulate its environment. Despite its size, the Axodon is often challenging to spot, concealing itself using shifting hues from its chromatophores to maintain its camouflage among the coral and water. Despite its intimidating appearance, the Axodon is also a creature of curiosity, always exploring and adapting to new environments. It roams various regions and does not confine itself to aquatic environments."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/AxolotlStage3/AxolotlStage3_default_default_webp.3840x2160/AxolotlStage3_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/AxolotlStage3/AxolotlStage3_default_default_hls.m3u8/AxolotlStage3_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Axodon has a powerful swing that can break rock and coral. Its claw marks match grooves in the openings of many cave walls. Some older marks appear larger in scale, indicating that the Axodon (or a similar creature) may have once been a larger entity.",
+			"The Axodon can swim vertically against the current of waterfalls as easily as if it were navigating a calm pool.",
+			"The Axodon has the ability to remain completely still for extended periods, waiting until Morphopods gather around it to close its mouth."
+		],
+		"Buckley": [
+			"A secondary nervous system controls the Axodon's tail, allowing it to perform complex and coordinated movements.",
+			"The Axodon's body is primarily composed of water, and its external gills are highly sensitive to environmental changes.",
+			"The Axodon has a specialised cranial structure at the back of its skull that stores and releases water. It can be used for propulsion in aquatic environments and as a defence mechanism.",
+			"The Axodon has a large pouch on its neck that holds its vocal sac, allowing it to produce stronger vocalisations.",
+			"The Axodon has chromatophores embedded in its skin which allows it to camouflage by shifting hues."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		4,
+		1,
+		6,
+		3,
+		2
+	],
+	"Description": {
+		"Format": "Axodon shakes its head, summoning a vapour barrier, gaining a 420 (<MaxHealth></><OmegaPowerPercentage></>) Shield for {ShieldDuration} seconds.\r\n\r\nWhen the Shield ends, it deals <AttackEnergyDamage>210</> (<MaxHealth></><OmegaPowerPercentage></>) Energy Damage within {ShieldDamageRadius}-hexes.\r\n\r\nShield: 420 = {ShieldValue}% max <MaxHealth></> + {OmegaFlatValue} (<OmegaPowerPercentage></>)\r\nDamage: <AttackEnergyDamage>210</> = {ShieldValueDmg}% max <MaxHealth></> + {OmegaFlatValueDmg} (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"ShieldDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"ShieldDamageRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].OnDestroy.Zone.RadiusUnits"
+			},
+			"ShieldValue": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0].Operands[0].Percentage"
+			},
+			"OmegaFlatValue": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[1].Operands[1]",
+				"ValueMultiplier": 0.001
+			},
+			"ShieldValueDmg": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].OnDestroy.EffectPackage.Effects[0].Expression.Operands[0].Operands[0].Percentage",
+				"ValueMultiplier": 1.0
+			},
+			"OmegaFlatValueDmg": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].OnDestroy.EffectPackage.Effects[0].Expression.Operands[1].Operands[1]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Axodon shakes its head, summoning a vapour barrier, gaining a 420 () Shield for 4 seconds.\r\n\r\nWhen the Shield ends, it deals 210 () Energy Damage within 20-hexes.\r\n\r\nShield: 420 = 10% max + 200 ()\r\nDamage: 210 = 5% max + 100 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 4,
+			"Health": 1,
+			"MovementSpeed": 6,
+			"OmegaPower": 3,
+			"Resistance": 2
+		}
+	}
+}

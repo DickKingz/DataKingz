@@ -1,0 +1,135 @@
+{
+	"Name": "AdaptiveReflection",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "GreaterPower",
+	"Abilities": [
+		{
+			"Name": "AdaptiveReflection_Ability1",
+			"ActivationTrigger": {
+				"TriggerType": "OnDamage",
+				"SenderAllegiance": "Enemy",
+				"ReceiverAllegiance": "Self",
+				"AbilityTypes": [
+					"Attack",
+					"Omega"
+				]
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "AdaptiveReflection - Gain Resistances",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "PhysicalResist",
+								"DurationMs": -1,
+								"OverlapProcessType": "Stacking",
+								"MaxStacks": 50,
+								"Expression": 2
+							},
+							{
+								"Type": "Buff",
+								"Stat": "EnergyResist",
+								"DurationMs": -1,
+								"OverlapProcessType": "Stacking",
+								"MaxStacks": 50,
+								"Expression": 2
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"Name": "AdaptiveReflection_Ability2",
+			"ActivationTrigger": {
+				"TriggerType": "EveryXTime",
+				"ActivateEveryTimeMs": 2000,
+				"NotBeforeMs": 10000
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "AdaptiveReflection - AOE Damage",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "InZone",
+						"Group": "Enemy",
+						"RadiusUnits": 20
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										30,
+										{
+											"Operation": "+",
+											"Operands": [
+												{
+													"Stat": "PhysicalResist",
+													"StatSource": "Sender"
+												},
+												{
+													"Stat": "EnergyResist",
+													"StatSource": "Sender"
+												}
+											]
+										},
+										10
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Adaptive Reflection",
+	"DisplayDescription": "Gain <Resistance>2</> <Resistance>Resistances</> when taking damage, up to 50 stacks.\r\n\r\nAfter 10 seconds, deal <Resistance>30%</> of holder's combined <Resistance>Resistances</> as Pure Damage within 20-hexes every 2 seconds.",
+	"Description": {
+		"Format": "Gain <Resistance>{ResistVal}</> <Resistance>Resistances</> when taking damage, up to {Stacks} stacks.\r\n\r\nAfter {TriggerTime} seconds, deal <Resistance>{Damage}%</> of holder's combined <Resistance>Resistances</> as Pure Damage within {Radius}-hexes every {DamageTrigger} seconds.",
+		"Parameters": {
+			"ResistVal": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].Expression",
+				"ValueMultiplier": 1.0
+			},
+			"Stacks": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].MaxStacks",
+				"ValueMultiplier": 1.0
+			},
+			"TriggerTime": {
+				"ParameterPath": "Abilities[1].ActivationTrigger.NotBeforeMs",
+				"ValueMultiplier": 0.001
+			},
+			"Damage": {
+				"ParameterPath": "Abilities[1].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 1.0
+			},
+			"Radius": {
+				"ParameterPath": "Abilities[1].Skills[0].Targeting.RadiusUnits",
+				"ValueMultiplier": 1.0
+			},
+			"DamageTrigger": {
+				"ParameterPath": "Abilities[1].ActivationTrigger.ActivateEveryTimeMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Gain 2 Resistances when taking damage, up to 50 stacks.\r\n\r\nAfter 10 seconds, deal 30% of holder's combined Resistances as Pure Damage within 20-hexes every 2 seconds."
+}

@@ -1,0 +1,21 @@
+{
+	"Name": "Water",
+	"Stage": 1,
+	"Type": "Game",
+	"DisplayName": "Water Module",
+	"DisplayDescription": "Gain a Water Imprint.",
+	"Description": {
+		"Format": "Gain a Water Imprint.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Water",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

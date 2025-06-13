@@ -1,0 +1,215 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Penguin",
+	"Stage": 3,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 3,
+	"CombatAffinity": "Frost",
+	"CombatClass": "Vanguard",
+	"DominantCombatAffinity": "Water",
+	"DominantCombatClass": "Rogue",
+	"SizeUnits": 4,
+	"Stats": {
+		"MaxHealth": 2550000,
+		"StartingEnergy": 20000,
+		"EnergyCost": 130000,
+		"PhysicalResist": 55,
+		"EnergyResist": 65,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 180000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 80,
+		"MoveSpeedSubUnits": 2350,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 5,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 3,
+		"OmegaRangeUnits": 3,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Penguin Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 45
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Supersurger III",
+			"TotalDurationMs": 500,
+			"Skills": [
+				{
+					"Name": "Increase EnergyDamage",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 100
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "AttackPhysicalDamage",
+								"OverlapProcessType": "Merge",
+								"DurationMs": 5000,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										130000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Receiver"
+										}
+									]
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackSpeed",
+								"DurationMs": 5000,
+								"Expression": {
+									"Percentage": 45,
+									"Stat": "AttackSpeed",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackRangeUnits",
+								"DurationMs": 5000,
+								"Expression": 15
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Slashin",
+	"DisplayDescription": "Slashin harnesses its cold fury, gaining <AttackSpeed>45%</> Attack Speed, <AttackRangeUnits>15</> Attack Range and <AttackPhysicalDamage>130</> (<OmegaPowerPercentage></>) Physical Attack Damage for 5 seconds.\r\n\r\nPhysical AD: <AttackPhysicalDamage>130</> (<OmegaPowerPercentage></>)",
+	"Intro": "As the wind moves ice and snow through Taiga Boreal, light combines with the white and blue of the landscape to create a stunning sight. The rocky formations have an icy sheen, and snow-capped peaks meet clouds to form a unique spectacle. But the true magic of the region can be seen when one encounters the Slashin, coated in ice and shining with glory.",
+	"Summary": "The Slashin of Taiga Boreal is a majestic creature adorned in crystalline armor, exuding an icy aura with its sharp yellow beak and prism-like claws. It maintains vigilance from mountain peaks, monitoring its territory and intervening in disruptions caused by other creatures. The Slashin uses its ice blades and its mastery over water and air to maintain order. Its frozen armor is infused with Tellvium for reflective protection, and it possesses specialized adaptations like multiple gills.",
+	"Biology": {
+		"Physiology": "The Slashin is a creature of grandeur, with its black and white body shielded in crystalline armour. It has shard-like arms and a cloak of frost shrouding its back. Its sharp yellow beak is covered by an icy helmet with obelisk-shaped prongs sitting diagonally at the top. A chilling mist wafts from its luminous eyes and the glacial edges of its arms and tail. The Slashin is protected by rough frozen plates on its broad shoulders and chest, with sleeker ice segments on its back that drip water trails in the shape of a trident. Glistening water also streaks down its sides like gills. Even its claws are ice prisms protruding from its yellow feet.",
+		"Behaviour": "The Slashin is constantly scanning from mountain peaks, monitoring the air currents from above and searching for Morphopod prey. It also watches over the Slapins and Slashins in its territory, ready to step in when their dances and misadventures create disturbances worthy of interference. It is capable of pulling water and ice from their grasp to restore order, using their superior grasp of water and air affinity to maintain order. The Slashin often stands completely still with its back straight, dignified and refined."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/PenguinStage3/PenguinStage3_default_default_webp.3840x2160/PenguinStage3_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/PenguinStage3/PenguinStage3_default_default_hls.m3u8/PenguinStage3_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Slashin sharpens the ice blades on its arms upon its armour, taking care to groom itself regularly.",
+			"The Slashin keeps careful watch over its territory, standing guard above the icy peaks. It stares at the icescape below for hours on end without looking away.",
+			"The Slashin stops those who breach its territory by splattering them with water. The Slashin blasts a frosty shower as a warning and encases intruders in ice if they do not submit."
+		],
+		"Buckley": [
+			"The Slashin's frozen armour is infused with high quantities of Tellvium, a hyper-reflective mineral that creates a harsh glare against the sun, making it difficult for others to look directly at the Slashin.",
+			"The Slashin has four sets of gills along its sides and a triad of lungs that enables optimal oxygen intake in water and on land.",
+			"The Slashin has a specialised pressure valve organ that can manipulate air and water to change the Slashin's density, giving it the optimal weight for movement in various conditions.",
+			"The Slashin has a specialised blood circulation system which exchanges heat, using hot blood to increase the temperature of cold blood.",
+			"The Slashin has a hidden flap of skin that radiates heat, allowing it to keep Slappins warm in extremely cold conditions."
+		]
+	},
+	"TraitOrderLegacy": [
+		2,
+		1,
+		3,
+		5,
+		6,
+		4
+	],
+	"Description": {
+		"Format": "Slashin harnesses its cold fury, gaining <AttackSpeed>{AttackSpeedBuff}%</> Attack Speed, <AttackRangeUnits>{AttackRangeBuff}</> Attack Range and <AttackPhysicalDamage>{AttackDamageBuff}</> (<OmegaPowerPercentage></>) Physical Attack Damage for {OmegaDuration} seconds.\r\n\r\nPhysical AD: <AttackPhysicalDamage>{AttackDamageBuff}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"AttackSpeedBuff": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].Expression.Percentage"
+			},
+			"AttackRangeBuff": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[2].Expression"
+			},
+			"AttackDamageBuff": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"OmegaDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Slashin harnesses its cold fury, gaining 45% Attack Speed, 15 Attack Range and 130 () Physical Attack Damage for 5 seconds.\r\n\r\nPhysical AD: 130 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 2,
+			"AttackSpeed": 1,
+			"Health": 3,
+			"MovementSpeed": 5,
+			"OmegaPower": 6,
+			"Resistance": 4
+		}
+	}
+}

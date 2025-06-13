@@ -1,0 +1,250 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Turtle",
+	"Stage": 1,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 1,
+	"CombatAffinity": "Nature",
+	"CombatClass": "Empath",
+	"DominantCombatAffinity": "Nature",
+	"DominantCombatClass": "Empath",
+	"SizeUnits": 3,
+	"Stats": {
+		"MaxHealth": 1200000,
+		"StartingEnergy": 80000,
+		"EnergyCost": 150000,
+		"PhysicalResist": 40,
+		"EnergyResist": 25,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 80000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 60,
+		"MoveSpeedSubUnits": 1750,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 40,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Turtle Basic Attack I",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 40
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 8000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Rejuvenasis I",
+			"TotalDurationMs": 3000,
+			"Skills": [
+				{
+					"Name": "Turtle zone",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 30
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 5,
+						"DurationMs": 2900,
+						"FrequencyMs": 1000,
+						"GrowthRateSubUnits": 2500,
+						"MaxRadiusUnits": 25,
+						"ApplyOnce": false
+					},
+					"PercentageOfAbilityDuration": 100,
+					"ChannelTimeMs": 3000,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantHeal",
+								"HealType": "Normal",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										60000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										60000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Root",
+								"ActivationsUntilExpiry": 1,
+								"DurationMs": 3000
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Archie",
+	"DisplayDescription": "Archie slams its flippers into the ground, creating a thicket that grows to 25-hexes over 3 seconds.\r\n\r\nAllies within the radius are Healed for <MaxHealth>60</> (<OmegaPowerPercentage></>) Health per second, while enemies are Rooted and take <AttackEnergyDamage>60</> (<OmegaPowerPercentage></>) Energy Damage per second.\r\n\r\nHeal: <MaxHealth>180</> = <MaxHealth>60</>/s (<OmegaPowerPercentage></>)\r\nDamage: <AttackEnergyDamage>180</> = <AttackEnergyDamage>60</>/s (<OmegaPowerPercentage></>)\r\n\r\n<Italic>Root: Cannot move while affected.</>",
+	"Intro": "In the lush valley of Brightland Steppes, vibrant plants and mushrooms populate the land. Purple-pink trees stretch across rolling green hills, sprawling far and wide along rocky slopes that climb into the sky. As giant clouds drift by, waterfalls cascade from rock formations suspended by vines. With so much to see, it's easy to overlook a creature from down below. Even so, the Archie's gentle glow shines true, and those who notice are attracted to its light.",
+	"Summary": "In the vibrant landscape of Brightland Steppes, the Archie stands as a humble yet integral part of the ecosystem. With its mossy shell adorned by a red mushroom, the Archie nurtures life around it through its petal fins and glowing eyes that attract Morphopods. Despite its slow, aimless demeanor, the Archie adapts by rooting into the ground during storms to absorb nutrients and protect itself.",
+	"Biology": {
+		"Physiology": "Short and stocky, the Archie is nature's humblest nurturer. Its mossy shell is a vessel for life, with a bright red mushroom on top, spotted with white. When the petal fins lining its shell sway, plants around it follow. The Archie's trunk-like legs support all the life growing on its body, along with the many rocky protrusions. The underbelly of its shell has cracks where green light leaks through, but it's the Archie's eyes that truly illuminate. These enchanting orbs attract tiny winged Morphopods at night that spread its spores, heightening its sense of the environment.",
+		"Behaviour": "The Archie likes to take its time meandering and appears to move aimlessly, changing directions at random. Sometimes this puts it in a predicament, such as walking into a storm. Fortunately, it can plant its roots into the ground and hide in the soil to wait for the storm to pass. When the rain washes up subterranean Morphopods, the Archie uses its roots to absorb more nutrients from the loosened soil. With its strong connection to nature, the paths it takes are likely from hidden cues that are not apparent to a mere passersby."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/TurtleStage1/TurtleStage1_default_default_webp.3840x2160/TurtleStage1_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/TurtleStage1/TurtleStage1_default_default_hls.m3u8/TurtleStage1_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Archie rests by rooting deep into the ground, leaving only the mushroom on its back exposed.",
+			"The petal fins lining the Archie's shell are not just for show. They also feed the morphopods that the Archie attracts with its life, with the Archie's body functioning as a miniature ecosystem.",
+			"The Archie prefers resting in shady areas because its mushroom only grows in the dark. When the Archie retreats into its shell to sleep, the glow in its eyes and underbelly dims."
+		],
+		"Buckley": [
+			"The winged morphopods that flock to the Archie's glowing eyes are attracted by the creature's powerful aura, which is caused by the electromagnetic field that surrounds it.",
+			"The Archie's fungal cap is covered with a permeable material which releases a healing salve filled with tiny spores. It is extremely dangerous in large doses, causing confusion and dizziness in those in contact.",
+			"The green light emitted from the cracks in the Archie's underbelly is the result of a complex chemical reaction taking place within the creature's body.",
+			"The petal-like fins along the Archie's shell are highly sensitive to changes in the environment and help the Archie navigate its surroundings.",
+			"The Archie's brain is deeply connected with hyphae from its fungal cap, and it is highly possible that the fungal cap is capable of controlling its movements if needed for survival."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		4,
+		2,
+		6,
+		1,
+		3
+	],
+	"Description": {
+		"Format": "Archie slams its flippers into the ground, creating a thicket that grows to {GrowthRadius}-hexes over {GrowthDuration} seconds.\r\n\r\nAllies within the radius are Healed for <MaxHealth>{HealAmount}</> (<OmegaPowerPercentage></>) Health per second, while enemies are Rooted and take <AttackEnergyDamage>{DamageAmount}</> (<OmegaPowerPercentage></>) Energy Damage per second.\r\n\r\nHeal: <MaxHealth>{HealAmountFull}</> = <MaxHealth>{HealAmount}</>/s (<OmegaPowerPercentage></>)\r\nDamage: <AttackEnergyDamage>{DamageAmountFull}</> = <AttackEnergyDamage>{DamageAmount}</>/s (<OmegaPowerPercentage></>)\r\n\r\n<Italic>Root: Cannot move while affected.</>",
+		"Parameters": {
+			"GrowthRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Zone.MaxRadiusUnits"
+			},
+			"GrowthDuration": {
+				"ParameterPath": "OmegaAbilities[0].TotalDurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"HealAmount": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"DamageAmount": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"HealAmountFull": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.003
+			},
+			"DamageAmountFull": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].Expression.Operands[0]",
+				"ValueMultiplier": 0.003
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Archie slams its flippers into the ground, creating a thicket that grows to 25-hexes over 3 seconds.\r\n\r\nAllies within the radius are Healed for 60 () Health per second, while enemies are Rooted and take 60 () Energy Damage per second.\r\n\r\nHeal: 180 = 60/s ()\r\nDamage: 180 = 60/s ()\r\n\r\nRoot: Cannot move while affected.",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 4,
+			"Health": 2,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 3
+		}
+	}
+}

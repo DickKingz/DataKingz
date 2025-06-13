@@ -1,0 +1,138 @@
+{
+	"Name": "SylphidBladeFlashburst",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Amplifier",
+	"AmplifierForWeapon": {
+		"Name": "SylphidBlade",
+		"Stage": 0,
+		"Variation": "Original",
+		"CombatAffinity": "Water"
+	},
+	"Stats": {
+		"MaxHealth": 400000,
+		"StartingEnergy": 0,
+		"EnergyCost": 0,
+		"PhysicalResist": 0,
+		"EnergyResist": 0,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 0,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 0,
+		"MoveSpeedSubUnits": 0,
+		"HitChancePercentage": 0,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 0,
+		"CritAmplificationPercentage": 0,
+		"OmegaPowerPercentage": 0,
+		"AttackRangeUnits": 0,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 0,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 0,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 0,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [],
+	"InnateAbilities": [
+		{
+			"Name": "Flashburst",
+			"ActivationTrigger": {
+				"TriggerType": "OnActivateXAbilities",
+				"AbilityTypes": [
+					"Attack"
+				],
+				"EveryX": true,
+				"NumberOfAbilitiesActivated": 5
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Flashburst_Ability",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Empower",
+								"IsConsumable": true,
+								"ActivationsUntilExpiry": 1,
+								"ActivatedBy": "Attack",
+								"AttachedEffectPackageAttributes": {
+									"Propagation": {
+										"PropagationType": "Splash",
+										"IgnoreFirstPropagationReceiver": false,
+										"SplashRadiusUnits": 15,
+										"EffectPackage": {
+											"Effects": [
+												{
+													"Type": "InstantDamage",
+													"DamageType": "Physical",
+													"Expression": {
+														"Operation": "*",
+														"Operands": [
+															200000,
+															{
+																"Stat": "OmegaPowerPercentage",
+																"StatSource": "Sender"
+															}
+														]
+													}
+												}
+											]
+										}
+									}
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Flashburst",
+	"DisplayDescription": "+<MaxHealth>400</> Health.\r\nEvery 5th attack deals an additional <AttackPhysicalDamage>200</> Physical Damage within 15-radius.",
+	"Description": {
+		"Format": "+<MaxHealth>{Health}</> Health.\r\nEvery {AttackNum}th attack deals an additional <AttackPhysicalDamage>{Damage}</> Physical Damage within {Radius}-radius.",
+		"Parameters": {
+			"Health": {
+				"ParameterPath": "Stats.MaxHealth",
+				"ValueMultiplier": 0.001
+			},
+			"AttackNum": {
+				"ParameterPath": "InnateAbilities[0].ActivationTrigger.NumberOfAbilitiesActivated",
+				"ValueMultiplier": 1.0
+			},
+			"Damage": {
+				"ParameterPath": "InnateAbilities[0].Skills[0].EffectPackage.Effects[0].AttachedEffectPackageAttributes.Propagation.EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"Radius": {
+				"ParameterPath": "InnateAbilities[0].Skills[0].EffectPackage.Effects[0].AttachedEffectPackageAttributes.Propagation.SplashRadiusUnits",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "+400 Health.\r\nEvery 5th attack deals an additional 200 Physical Damage within 15-radius."
+}

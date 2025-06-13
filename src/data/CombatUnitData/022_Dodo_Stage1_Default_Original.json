@@ -1,0 +1,253 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Dodo",
+	"Stage": 1,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 1,
+	"CombatAffinity": "Air",
+	"CombatClass": "Empath",
+	"DominantCombatAffinity": "Air",
+	"DominantCombatClass": "Empath",
+	"SizeUnits": 3,
+	"Stats": {
+		"MaxHealth": 1000000,
+		"StartingEnergy": 20000,
+		"EnergyCost": 160000,
+		"PhysicalResist": 25,
+		"EnergyResist": 25,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 65000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 85,
+		"MoveSpeedSubUnits": 2500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 5,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 6,
+		"OmegaRangeUnits": 10,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Dodo Basic Attack I",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 30
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Whirlwind I",
+			"TotalDurationMs": 800,
+			"Skills": [
+				{
+					"Name": "Tornado knock-up and stun with EnergyDamage",
+					"Targeting": {
+						"Type": "DistanceCheck",
+						"Guidance": [
+							"Ground",
+							"Underground"
+						],
+						"Group": "Enemy",
+						"Lowest": true,
+						"Num": 1
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground",
+							"Underground"
+						],
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 0,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Stun",
+								"DurationMs": 2500
+							},
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Focused",
+								"DurationMs": 2500
+							},
+							{
+								"Type": "Debuff",
+								"Stat": "VulnerabilityPercentage",
+								"OverlapProcessType": "Merge",
+								"DurationMs": 2500,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										{
+											"Percentage": 10,
+											"Stat": "VulnerabilityPercentage",
+											"StatSource": "Receiver"
+										},
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Shield",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "SpawnShield",
+								"DurationMs": 4000,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										125000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Kukka",
+	"DisplayDescription": "Kukka gains a 125 (<OmegaPowerPercentage></>) Shield for 4 seconds and suspends the closest enemy in the air.\r\n\r\nThe suspended enemy takes <DamageAmplification>10%</> (<OmegaPowerPercentage></>) extra damage, becoming Stunned and Focused for 2.5 seconds.\r\n\r\nShield: 125 (<OmegaPowerPercentage></>)\r\nExtra Damage: <DamageAmplification>10%</> (<OmegaPowerPercentage></>)\r\n\r\n<Italic>Focused: Causes all allies within range to attack the Focused unit.</>",
+	"Intro": "The melted snow streams of Taiga Boreal form sloping waterfalls that run down a deep mountain ridge. At its base awaits a lush forest and an arching rainbow. Indigo wolfsbane sprouts from the meadows, towering over mossy boulders and violet plant patches. When wolfsbane releases its pollen, it can cause nausea and paralysis to some. For others, like the Kukka, the pollen is a relaxant that helps them loosen up and stretch their legs.",
+	"Summary": "In the lush forest at the base of Taiga Boreal's waterfalls, the Kukka thrives amidst indigo wolfsbane. The Kukka is notable for its large bulging eyes, vibrant feathers, and majestic tail, with a teal body and bright yellow face. Despite its inability to fly, it uses air currents to enhance its movements. Equipped with strong claws, a fur coat for warmth, and an eyespot for detecting warm-bodied creatures, the Kukka communicates through feather patterns and expels air currents to move swiftly and deter enemies.",
+	"Biology": {
+		"Physiology": "With its large, bulging eyes, feathery crown, and lush, overgrown tail, the Kukka is a sight to behold. Despite its small wings and plump, teal body, the long, red and yellow plumes on its tail give it an air of majesty. Its crown, adorned with two layers of red and blue feathers, towers above its head, and a black marking between its eyes gives the illusion of a third. The Kukka's face and underbelly are a bright yellow, while its short, pebbled legs are a dark green. Its small talons are a vibrant red, matching the feathers on its wings, head, and tail.",
+		"Behaviour": "Although the Kukka is unable to fly, it uses its affinity for air to bolster its movements. Naive and somewhat scatterbrained, the Kukka coos and clicks its beak at any other Illuvial it encounters. Its warm tail feathers have the ability to melt the snow, creating slippery paths that can trip up its aggressors."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/DodoStage1/DodoStage1_default_default_webp.3840x2160/DodoStage1_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/DodoStage1/DodoStage1_default_default_hls.m3u8/DodoStage1_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Kukka's distinctive feathery crown is more than just a decorative adornment - it is also used as a means of communication, with the different colours and patterns of the feathers signalling different moods and intentions.",
+			"The Kukka's claws are incredibly strong and slip-resistant, allowing it to stand on icy slopes and precarious ledges.",
+			"The Kukka is protected against the cold with a thick fur coat and colourful feathers."
+		],
+		"Buckley": [
+			"The Kukka's beak and claws are made up of a specially hardened keratin that is highly resistant to wear and tear, allowing it to be used for a wide range of tasks including foraging and terrain traversal.",
+			"Between the Kukka's two eyes, there is a black marking known as an eyespot, with tiny pitted infrared receptors that allows it to detect any warm-bodied creature. Essentially, its eyespot functions as a third eye.",
+			"The Kukka has openings beneath its feathers that are capable of expelling air currents, enabling it to move quicker and deter enemies with sudden frigid blasts.",
+			"The Kukka's tail feathers are powered by a network of small, precise muscles that allow them to move with incredible speed and accuracy.",
+			"The Kukka has a proportionally large area of its brain dedicated to communication through the complex coordination of its feathers."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		4,
+		2,
+		6,
+		1,
+		3
+	],
+	"Description": {
+		"Format": "Kukka gains a {ShieldValue} (<OmegaPowerPercentage></>) Shield for {ShieldDuration} seconds and suspends the closest enemy in the air.\r\n\r\nThe suspended enemy takes <DamageAmplification>{ExtraDamage}%</> (<OmegaPowerPercentage></>) extra damage, becoming Stunned and Focused for {StunDuration} seconds.\r\n\r\nShield: {ShieldValue} (<OmegaPowerPercentage></>)\r\nExtra Damage: <DamageAmplification>{ExtraDamage}%</> (<OmegaPowerPercentage></>)\r\n\r\n<Italic>Focused: Causes all allies within range to attack the Focused unit.</>",
+		"Parameters": {
+			"ShieldValue": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"ShieldDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"StunDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"ExtraDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[2].Expression.Operands[0].Percentage"
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Kukka gains a 125 () Shield for 4 seconds and suspends the closest enemy in the air.\r\n\r\nThe suspended enemy takes 10% () extra damage, becoming Stunned and Focused for 2.5 seconds.\r\n\r\nShield: 125 ()\r\nExtra Damage: 10% ()\r\n\r\nFocused: Causes all allies within range to attack the Focused unit.",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 4,
+			"Health": 2,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 3
+		}
+	}
+}

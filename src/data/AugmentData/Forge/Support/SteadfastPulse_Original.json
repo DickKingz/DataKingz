@@ -1,0 +1,113 @@
+{
+	"Name": "SteadfastPulse",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Normal",
+	"Abilities": [
+		{
+			"Name": "SteadfastPulse_Stats",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "SteadfastPulse - List of Stats",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "MaxHealth",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 100000
+							},
+							{
+								"Type": "Buff",
+								"Stat": "OmegaPowerPercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 10
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"Name": "SteadfastPulse_Ability1",
+			"ActivationTrigger": {
+				"TriggerType": "EveryXTime",
+				"ActivateEveryTimeMs": 4000
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "SteadfastPulse - Mitigation Buff",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "InZone",
+						"Group": "Ally",
+						"Self": true,
+						"RadiusUnits": 20
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "Grit",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 3000
+							},
+							{
+								"Type": "Buff",
+								"Stat": "Resolve",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 3000
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Steadfast Pulse",
+	"DisplayDescription": "Every 4 seconds, the holder and allies within 20-hexes gain <Grit>3</><Grit></> <Grit>Mitigation</>.\r\n\r\nStats:\r\n+100 <MaxHealth>Health</>\r\n+10 <OmegaPowerPercentage>Omega Power</>\r\n\r\n<Italic>Mitigation: Reduces incoming damage by a flat value.</>",
+	"Description": {
+		"Format": "Every {TriggerTime} seconds, the holder and allies within {Radius}-hexes gain <Grit>{MitigationVal}</><Grit></> <Grit>Mitigation</>.\r\n\r\nStats:\r\n+{Stat_Health} <MaxHealth>Health</>\r\n+{Stat_OP} <OmegaPowerPercentage>Omega Power</>\r\n\r\n<Italic>Mitigation: Reduces incoming damage by a flat value.</>",
+		"Parameters": {
+			"TriggerTime": {
+				"ParameterPath": "Abilities[1].ActivationTrigger.ActivateEveryTimeMs",
+				"ValueMultiplier": 0.001
+			},
+			"Radius": {
+				"ParameterPath": "Abilities[1].Skills[0].Targeting.RadiusUnits",
+				"ValueMultiplier": 1.0
+			},
+			"MitigationVal": {
+				"ParameterPath": "Abilities[1].Skills[0].EffectPackage.Effects[0].Expression",
+				"ValueMultiplier": 0.001
+			},
+			"Stat_Health": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].Expression",
+				"ValueMultiplier": 0.001
+			},
+			"Stat_OP": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[1].Expression",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Every 4 seconds, the holder and allies within 20-hexes gain 3 Mitigation.\r\n\r\nStats:\r\n+100 Health\r\n+10 Omega Power\r\n\r\nMitigation: Reduces incoming damage by a flat value."
+}

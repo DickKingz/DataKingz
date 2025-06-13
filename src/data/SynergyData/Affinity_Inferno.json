@@ -1,0 +1,178 @@
+{
+	"CombatAffinity": "Inferno",
+	"CombatAffinityComponents": [
+		"Fire",
+		"Fire"
+	],
+	"SynergyThresholds": [
+		2,
+		3,
+		4
+	],
+	"SynergyThresholdsAbilities": {
+		"Variables": [
+			{
+				"Name": "Inferno_Damage",
+				"Values": [
+					200,
+					250,
+					300
+				]
+			},
+			{
+				"Name": "Inferno_HealingReduction",
+				"Values": [
+					0,
+					0,
+					10
+				]
+			}
+		],
+		"UnitAbilities": [
+			{
+				"Name": "InfernoSynergy_Ability1",
+				"ActivationTrigger": {
+					"TriggerType": "OnActivateXAbilities",
+					"AbilityTypes": [
+						"Omega"
+					],
+					"MaxActivations": 1,
+					"NumberOfAbilitiesActivated": 1
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Inferno - Targeting",
+						"Deployment": {
+							"Type": "Direct",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							]
+						},
+						"Targeting": {
+							"Type": "Allegiance",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							],
+							"Group": "Enemy"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "SpawnMark",
+									"MarkType": "Detrimental",
+									"DurationMs": -1,
+									"ShouldDestroyAttachedEntityOnSenderDeath": true,
+									"AttachedAbilities": [
+										{
+											"Name": "Inferno - Sub Ability",
+											"ActivationTrigger": {
+												"TriggerType": "EveryXTime",
+												"ActivateEveryTimeMs": 1000
+											},
+											"TotalDurationMs": 0,
+											"Skills": [
+												{
+													"Name": "Inferno - Damage and Healing Reduction",
+													"Deployment": {
+														"Type": "Direct"
+													},
+													"Targeting": {
+														"Type": "Self"
+													},
+													"EffectPackage": {
+														"Effects": [
+															{
+																"Type": "InstantDamage",
+																"DamageType": "Pure",
+																"Expression": {
+																	"Operation": "/",
+																	"Operands": [
+																		{
+																			"Percentage": "{Inferno_Damage}",
+																			"Stat": "MaxHealth",
+																			"StatSource": "Receiver"
+																		},
+																		100
+																	]
+																}
+															},
+															{
+																"Type": "Debuff",
+																"Stat": "HealthGainEfficiencyPercentage",
+																"OverlapProcessType": "Sum",
+																"DurationMs": -1,
+																"Expression": {
+																	"Operation": "/",
+																	"Operands": [
+																		"{Inferno_HealingReduction}",
+																		10
+																	]
+																}
+															}
+														]
+													}
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					}
+				]
+			}
+		],
+		"TeamAbilities": []
+	},
+	"IntrinsicAbilities": [],
+	"DisplayName": "Inferno",
+	"DisplayDescription": "\r\nInferno units' first Omega superheats the air, dealing a percentage of the enemies' <MaxHealth>Max Health</> as Pure Damage every second for as long as they live.\r\n\r\n(4) Enemies also have their <HealthGainEfficiencyPercentage>Healing</> effectiveness reduced by <HealthGainEfficiencyPercentage>1%</> per second.\r\n",
+	"DisplayDescriptionThresholds": [
+		"Deal <MaxHealth>2%</><MaxHealth></> as Pure Damage",
+		"Deal <MaxHealth>2.5%</><MaxHealth></> as Pure Damage",
+		"Deal <MaxHealth>3%</><MaxHealth></> as Pure Damage"
+	],
+	"Description": {
+		"Format": "\r\nInferno units' first Omega superheats the air, dealing a percentage of the enemies' <MaxHealth>Max Health</> as Pure Damage every second for as long as they live.\r\n\r\n(4) Enemies also have their <HealthGainEfficiencyPercentage>Healing</> effectiveness reduced by <HealthGainEfficiencyPercentage>{Inferno_HealingReduction}%</> per second.\r\n",
+		"Parameters": {
+			"Inferno_HealingReduction": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[2]",
+				"ValueMultiplier": 0.1
+			}
+		}
+	},
+	"DescriptionThresholds": {
+		"Format": "Deal <MaxHealth>{Inferno_Damage}%</><MaxHealth></> as Pure Damage",
+		"Parameters": [
+			{
+				"Inferno_Damage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[0]",
+					"ValueMultiplier": 0.01
+				}
+			},
+			{
+				"Inferno_Damage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[1]",
+					"ValueMultiplier": 0.01
+				}
+			},
+			{
+				"Inferno_Damage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[2]",
+					"ValueMultiplier": 0.01
+				}
+			}
+		]
+	},
+	"DisplayDescriptionNormalized": "Inferno units' first Omega superheats the air, dealing a percentage of the enemies' Max Health as Pure Damage every second for as long as they live.\r\n\r\n(4) Enemies also have their Healing effectiveness reduced by 1% per second.",
+	"DisplayDescriptionThresholdsNormalized": [
+		"Deal 2% as Pure Damage",
+		"Deal 2.5% as Pure Damage",
+		"Deal 3% as Pure Damage"
+	]
+}

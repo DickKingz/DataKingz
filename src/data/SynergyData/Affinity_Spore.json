@@ -1,0 +1,187 @@
+{
+	"CombatAffinity": "Spore",
+	"CombatAffinityComponents": [
+		"Air",
+		"Nature"
+	],
+	"SynergyThresholds": [
+		2,
+		3,
+		4
+	],
+	"SynergyThresholdsAbilities": {
+		"Variables": [
+			{
+				"Name": "Spore_Heal",
+				"Values": [
+					6,
+					9,
+					12
+				]
+			},
+			{
+				"Name": "Spore_EnergyBurn",
+				"Values": [
+					6,
+					9,
+					12
+				]
+			},
+			{
+				"Name": "Spore_AllyHeal",
+				"Values": [
+					0,
+					0,
+					12
+				]
+			}
+		],
+		"TeamAbilities": [],
+		"UnitAbilities": [
+			{
+				"Name": "SporeSynergy_Ability1",
+				"ActivationTrigger": {
+					"TriggerType": "OnActivateXAbilities",
+					"AbilityTypes": [
+						"Omega"
+					],
+					"EveryX": true,
+					"NumberOfAbilitiesActivated": 1
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Spore - Energy Burn",
+						"Deployment": {
+							"Type": "Direct",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							]
+						},
+						"Targeting": {
+							"Type": "Allegiance",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							],
+							"Group": "Enemy"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "InstantEnergyBurn",
+									"Expression": {
+										"Percentage": "{Spore_EnergyBurn}",
+										"Stat": "EnergyCost",
+										"StatSource": "Sender"
+									}
+								}
+							]
+						}
+					},
+					{
+						"Name": "Spore - Spore Heal",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "Self"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "InstantHeal",
+									"HealType": "Normal",
+									"Expression": {
+										"Percentage": "{Spore_Heal}",
+										"Stat": "MaxHealth",
+										"StatSource": "Receiver"
+									}
+								}
+							]
+						}
+					},
+					{
+						"Name": "Spore - Ally Heal",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "ExpressionCheck",
+							"Group": "Ally",
+							"Expression": {
+								"Stat": "CurrentHealth%",
+								"StatSource": "Sender"
+							},
+							"Lowest": true,
+							"Num": 1
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "InstantHeal",
+									"HealType": "Normal",
+									"Expression": {
+										"Percentage": "{Spore_AllyHeal}",
+										"Stat": "MaxHealth",
+										"StatSource": "Sender"
+									}
+								}
+							]
+						}
+					}
+				]
+			}
+		]
+	},
+	"IntrinsicAbilities": [],
+	"DisplayName": "Spore",
+	"DisplayDescription": "\r\nOn Omega, Spore units heal a percentage of their <MaxHealth>Max Health</> and enemies lose <EnergyCost>Energy</> equal to a percentage of the caster's <EnergyCost>Energy Cost</>.\r\n\r\n(4) Additionally, Heal the lowest percent <MaxHealth>Health</> ally.\r\n",
+	"DisplayDescriptionThresholds": [
+		"Heal <MaxHealth>6%</><MaxHealth></>. Lose <EnergyCost>6%</><EnergyCost></>",
+		"Heal <MaxHealth>9%</><MaxHealth></>. Lose <EnergyCost>9%</><EnergyCost></>",
+		"Heal <MaxHealth>12%</><MaxHealth></>. Lose <EnergyCost>12%</><EnergyCost></>"
+	],
+	"Description": {
+		"Format": "\r\nOn Omega, Spore units heal a percentage of their <MaxHealth>Max Health</> and enemies lose <EnergyCost>Energy</> equal to a percentage of the caster's <EnergyCost>Energy Cost</>.\r\n\r\n(4) Additionally, Heal the lowest percent <MaxHealth>Health</> ally.\r\n",
+		"Parameters": {}
+	},
+	"DescriptionThresholds": {
+		"Format": "Heal <MaxHealth>{Spore_Heal}%</><MaxHealth></>. Lose <EnergyCost>{Spore_EnergyBurn}%</><EnergyCost></>",
+		"Parameters": [
+			{
+				"Spore_Heal": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[0]"
+				},
+				"Spore_EnergyBurn": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[0]"
+				}
+			},
+			{
+				"Spore_Heal": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[1]"
+				},
+				"Spore_EnergyBurn": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[1]"
+				}
+			},
+			{
+				"Spore_Heal": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[2]"
+				},
+				"Spore_EnergyBurn": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[2]"
+				}
+			}
+		]
+	},
+	"DisplayDescriptionNormalized": "On Omega, Spore units heal a percentage of their Max Health and enemies lose Energy equal to a percentage of the caster's Energy Cost.\r\n\r\n(4) Additionally, Heal the lowest percent Health ally.",
+	"DisplayDescriptionThresholdsNormalized": [
+		"Heal 6%. Lose 6%",
+		"Heal 9%. Lose 9%",
+		"Heal 12%. Lose 12%"
+	]
+}

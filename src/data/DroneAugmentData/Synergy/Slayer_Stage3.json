@@ -1,0 +1,21 @@
+{
+	"Name": "Slayer",
+	"Stage": 3,
+	"Type": "Game",
+	"DisplayName": "Slayer Matrix",
+	"DisplayDescription": "Gain a Slayer Imprint.",
+	"Description": {
+		"Format": "Gain a Slayer Imprint.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Slayer",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

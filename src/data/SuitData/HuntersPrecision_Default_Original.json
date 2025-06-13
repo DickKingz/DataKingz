@@ -1,0 +1,127 @@
+{
+	"Name": "HunterrsPrecision",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Amplifier",
+	"Stats": {
+		"PhysicalResist": 0,
+		"EnergyResist": 0,
+		"MaxHealth": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 0,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 0,
+		"AttackDodgeChancePercentage": 0,
+		"MoveSpeedSubUnits": 0,
+		"OmegaPowerPercentage": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"StartingEnergy": 0,
+		"StartingShield": 0,
+		"CritChancePercentage": 0,
+		"CritAmplificationPercentage": 0,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0
+	},
+	"Abilities": [
+		{
+			"Name": "HuntersPrecision_1",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Plasmaskin - Self True Sight and Attack Range",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "AttackRangeUnits",
+								"DurationMs": -1,
+								"Expression": 20
+							},
+							{
+								"Type": "PositiveState",
+								"PositiveState": "Truesight",
+								"DurationMs": -1
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"Name": "HuntersPrecision_2",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Plasmaskin - Ally True Sight and Attack Range",
+					"Targeting": {
+						"Type": "DistanceCheck",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						],
+						"Group": "Ally",
+						"Lowest": true,
+						"Num": 2
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						]
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "AttackRangeUnits",
+								"DurationMs": -1,
+								"Expression": 20
+							},
+							{
+								"Type": "PositiveState",
+								"PositiveState": "Truesight",
+								"DurationMs": -1
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Hunter's Precision",
+	"DisplayDescription": "On Combat Start, the Ranger and the 2 closest allies gain Truesight and <AttackRangeUnits>+20</> Attack Range.\r\n\r\n<Italic>Truesight: Attacks cannot be Dodged</>",
+	"Description": {
+		"Format": "On Combat Start, the Ranger and the {AllyNum} closest allies gain Truesight and <AttackRangeUnits>+{AttackRange}</> Attack Range.\r\n\r\n<Italic>Truesight: Attacks cannot be Dodged</>",
+		"Parameters": {
+			"AllyNum": {
+				"ParameterPath": "Abilities[1].Skills[0].Targeting.Num",
+				"ValueMultiplier": 1.0
+			},
+			"AttackRange": {
+				"ParameterPath": "Abilities[1].Skills[0].EffectPackage.Effects[0].Expression",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "On Combat Start, the Ranger and the 2 closest allies gain Truesight and +20 Attack Range.\r\n\r\nTruesight: Attacks cannot be Dodged"
+}

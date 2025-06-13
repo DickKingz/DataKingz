@@ -1,0 +1,21 @@
+{
+	"Name": "Spore",
+	"Stage": 3,
+	"Type": "Game",
+	"DisplayName": "Spore Matrix",
+	"DisplayDescription": "Gain a Spore Imprint.",
+	"Description": {
+		"Format": "Gain a Spore Imprint.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Spore",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

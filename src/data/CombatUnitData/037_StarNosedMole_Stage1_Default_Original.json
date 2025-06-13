@@ -1,0 +1,249 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "StarNosedMole",
+	"Stage": 1,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 3,
+	"CombatAffinity": "Earth",
+	"CombatClass": "Rogue",
+	"DominantCombatAffinity": "Earth",
+	"DominantCombatClass": "Rogue",
+	"SizeUnits": 3,
+	"Stats": {
+		"MaxHealth": 1350000,
+		"StartingEnergy": 60000,
+		"EnergyCost": 200000,
+		"PhysicalResist": 50,
+		"EnergyResist": 40,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 90000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 65,
+		"MoveSpeedSubUnits": 2500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 2,
+		"OmegaRangeUnits": 2,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "StarNosed Mole Basic Attack I",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 50
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Whirlwind Bloom I",
+			"TotalDurationMs": 2000,
+			"Skills": [
+				{
+					"Name": "Becomes untargetable",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 30,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "PositiveState",
+								"PositiveState": "Untargetable",
+								"DurationMs": 2000
+							}
+						]
+					}
+				},
+				{
+					"Name": "AOE Stun",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 40
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 21,
+						"DurationMs": 1000,
+						"FrequencyMs": 1000,
+						"GrowthRateSubUnits": 0,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 30,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Charm",
+								"DurationMs": 2000
+							}
+						]
+					}
+				},
+				{
+					"Name": "AoE Damage",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 30
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 21,
+						"DurationMs": 1000,
+						"FrequencyMs": 1000,
+						"GrowthRateSubUnits": 0,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 40,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										300000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Lura",
+	"DisplayDescription": "Lura burrows underground, becoming Untargetable for 2 seconds, exposing only its flower nose to Charm enemies within 21-hexes. After 2 seconds, Lura emerges and deals <AttackPhysicalDamage>300</> (<OmegaPowerPercentage></>) Physical Damage within 21-hexes.\r\n\r\nDamage: <AttackPhysicalDamage>300</> (<OmegaPowerPercentage></>)\r\n\r\nCharm: Forces the unit to move towards the source",
+	"Intro": "The wetlands of Abyssal Basin are home to a hodge podge of life, as colourful as they are poisonous. From Rainbow Trees to Titanicus mushrooms, life grows as large and vast as the canopies of the forest. While some climb their way up, others dive headfirst into swamps, sniffing their way around its murky depths. There is a creature that moves through water and soil alike, as though swimming through both. A flash of violet among the green, the Lura emerges from the green.",
+	"Summary": "Lura is driven by curiosity, following scent trails to collect treasures ranging from subterranean Morphopods to rare minerals. Lura's gemstones aid in navigating dark tunnels, and its ability to tolerate underground conditions contributes to ecosystem health by aerating deep soil. It engages defensively with thick-clawed feet and a resilient, fire-resistant alloy on its back, reflecting its adaptability in this vibrant yet perilous environment.",
+	"Biology": {
+		"Physiology": "The Lura's pink and purple snout is as captivating as a flower. Star-shaped and petal-like, it flares in and out to pull in scents from every direction. Its entire body is a conglomeration of different textures, with spotted bumps and a coil of ridges along its trunk, and a splattering of gemstones on its back, like little violet nebulas that shine in the dark. It's a shame that it can't fully appreciate its own light, as its blood-red eyes are colourblind. A curious creature, Lura's five-fingered claws can dig its way around roots and rivers, making secret tunnels only it knows.",
+		"Behaviour": "The Lura is highly curious, following its nose to discover where new scent trails may lead. It is eager to make its way around any obstacle to collect new treasure, from delicious subterranean Morphopods to rare minerals. The Lura adores everything it finds and sleeps in a nest of trinkets, plant petals, Morphopod shells, and colourful rocks. Many of the minerals it collects cannot be found on the surface of Illuvium, and it likely digs them up from deep beneath the earth. It mourns the loss of any item in its collection, whether it is stolen or accidentally destroyed from its own sleeping embrace. However, it is quick to perk up again when a new scent catches their attention."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/StarNosedMoleStage1/StarNosedMoleStage1_default_default_webp.3840x2160/StarNosedMoleStage1_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/StarNosedMoleStage1/StarNosedMoleStage1_default_default_hls.m3u8/StarNosedMoleStage1_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"A collector of treasures, the Lura has been observed scavenging and exploring every nook and cranny of an area. It is known to disturb the nests and dwellings of other creatures.",
+			"When Lura is intrigued by a scent, it will track it despite any dangers in its way, even into another region. Its single-mindedness and ability to manoeuvre both land and water often make it successful.",
+			"The luminous gemstones on the Lura's back help it navigate in dark tunnels."
+		],
+		"Buckley": [
+			"The Lura's star-shaped snout contains the majority of its nerves and it is capable of processing precise information on morphopods and mineral compositions in its environment.",
+			"The Lura's torso and limbs contain very few pain receptors, enabling it to dig through hazardous sites rich with mineral deposits until it sustains enough damage to trigger a slowdown.",
+			"The Lura has gemstones upon its back which are composed of a Lithvium-Pallavium alloy. They are capable of absorbing heat, rendering the Lura fire-resistant.",
+			"The Lura has thick-clawed feet which are adapted for digging, and it has traces of deep subterranean soil on its body. This is an indicator that the Lura provides deep soil aeration and contributes to the health of its ecosystem.",
+			"The Lura has specialised haemoglobin with a higher affinity to oxygen, allowing it to tolerate high levels of carbon dioxide and reuse exhaled air in underground burrows."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		3,
+		1,
+		6,
+		4,
+		2
+	],
+	"Description": {
+		"Format": "Lura burrows underground, becoming Untargetable for {OmegaDuration} seconds, exposing only its flower nose to Charm enemies within {OmegaRadius}-hexes. After {OmegaDuration} seconds, Lura emerges and deals <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Physical Damage within {OmegaRadius}-hexes.\r\n\r\nDamage: <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)\r\n\r\nCharm: Forces the unit to move towards the source",
+		"Parameters": {
+			"OmegaDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"OmegaRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].Zone.RadiusUnits"
+			},
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[2].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Lura burrows underground, becoming Untargetable for 2 seconds, exposing only its flower nose to Charm enemies within 21-hexes. After 2 seconds, Lura emerges and deals 300 () Physical Damage within 21-hexes.\r\n\r\nDamage: 300 ()\r\n\r\nCharm: Forces the unit to move towards the source",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 3,
+			"Health": 1,
+			"MovementSpeed": 6,
+			"OmegaPower": 4,
+			"Resistance": 2
+		}
+	}
+}

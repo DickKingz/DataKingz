@@ -1,0 +1,247 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Pangolin",
+	"Stage": 2,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 4,
+	"CombatAffinity": "Magma",
+	"CombatClass": "Bulwark",
+	"DominantCombatAffinity": "Fire",
+	"DominantCombatClass": "Bulwark",
+	"SizeUnits": 4,
+	"Stats": {
+		"MaxHealth": 2350000,
+		"StartingEnergy": 80000,
+		"EnergyCost": 180000,
+		"PhysicalResist": 70,
+		"EnergyResist": 50,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 150000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 65,
+		"MoveSpeedSubUnits": 2500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 3,
+		"OmegaRangeUnits": 3,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Pangolin Basic Attack II",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 38
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Spurnado II",
+			"TotalDurationMs": 4000,
+			"MovementLock": false,
+			"Skills": [
+				{
+					"Name": "Temp increased Phy and Enrg Resist",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 0,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "VulnerabilityPercentage",
+								"OverlapProcessType": "Merge",
+								"DurationMs": 4000,
+								"Expression": 15
+							}
+						]
+					}
+				},
+				{
+					"Name": "Zone Damage",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 23,
+						"DurationMs": 4000,
+						"FrequencyMs": 1100,
+						"Attach": true,
+						"ApplyOnce": false
+					},
+					"ChannelTimeMs": 4000,
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "+",
+									"Operands": [
+										{
+											"Operation": "*",
+											"Operands": [
+												80000,
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												}
+											]
+										},
+										{
+											"Operation": "/",
+											"Operands": [
+												{
+													"Stat": "AttackPhysicalDamage",
+													"StatSource": "Sender"
+												},
+												2
+											]
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Singe",
+	"DisplayDescription": "Singe spins for 4 seconds, gaining <DamageReduction>15%</> Damage Reduction and dealing <AttackPhysicalDamage>155</> (<OmegaPowerPercentage></><AttackPhysicalDamage></>) Physical Damage per second to all enemies within 23-hexes.\r\n\r\nDamage: <AttackPhysicalDamage>620</> = <AttackPhysicalDamage>80</>/s (<OmegaPowerPercentage></>) + <AttackPhysicalDamage>75</>/s (50%<AttackPhysicalDamage></>)",
+	"Intro": "Shardbluff Labyrinth has danger lurking around every corner. Many pillars crumble underfoot, and one wrong step can send you tumbling into the lava streams. The lava occasionally hisses as it claims another victim and burns them to the bone. These molten rivers flow around rocky islands, some big, some small, and some not islands at all. The jagged rock floating in the magma pools is none other than the Singe.",
+	"Summary": "Shardbluff Labyrinth is a perilous realm with lava streams and rocky islands, where the Singe prowls disguised among magma pools. Covered in dark-scale armor with oozing magma between its scales, the Singe camouflages itself to ambush unsuspecting prey. Capable of crawling on lava, it lures creatures with its deceptive appearance and strikes swiftly with its sharp claws and heavy tail.",
+	"Biology": {
+		"Physiology": "Oozing magma shines between the Singe's scales, running down the crevices of its hulking, boulder-like body. It is capable of absorbing heat with its smooth underbelly and its long, elaborately plated tail. Its ashy brown hide is covered in dark-scale armour and easily mistaken for a land mass. The Singe may be difficult to identify, its glowing eyes and sharp claws blending in with the magma.",
+		"Behaviour": "The Singe is capable of crawling on lava, and other Illuvials may mistake the Singe for a piece of land among the magma, not realizing they are walking upon a predator. The Singe doesn't mind if creatures step on it to get to their destination, and it takes the opportunity to swipe them with its heavy tail and clutch their next meal with sharp claws. Travellers must beware of the Singe's glowing eyes, which it keeps sharp for treasures stepping through."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/PangolinStage2/PangolinStage2_default_default_webp.3840x2160/PangolinStage2_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/PangolinStage2/PangolinStage2_default_default_hls.m3u8/PangolinStage2_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Singe camouflages with lava in order to hunt creatures passing by, but it is easily identifiable when it walks upon the land. Streaks of fallen lava trail behind the Singe and their path through the world is obvious to all.",
+			"The Singe meets with others of its kind to trade different minerals. If a Singe steals from another Singe, all the Singes will gang up against the offender.",
+			"The Singe occasionally spins in a ball across the land, leaving a deep, trench-like trail that it fills with lava."
+		],
+		"Buckley": [
+			"The Singe's plated armour can withstand the heat of the magma running upon its body and harness thermal energy for internal uses.",
+			"The Singe has cooled magma rocks in its stomach that it uses to aid digestion and crush various prey that it swallowed whole. There are traces of morphopods and other Illuvials in its digestive system.",
+			"The Singe's scales glow with the heat of magma, which allow it to camouflage with its surroundings.",
+			"The Singe has internal organs with specialised, heat-resistant insulation made from organic ceramics that protect it from penetrating radiation.",
+			"The Singe has an internal release mechanism that enables it to expel high amounts of heated material from its body."
+		]
+	},
+	"TraitOrderLegacy": [
+		3,
+		4,
+		1,
+		5,
+		6,
+		2
+	],
+	"Description": {
+		"Format": "Singe spins for {SpinDuration} seconds, gaining <DamageReduction>{DamageRed}%</> Damage Reduction and dealing <AttackPhysicalDamage>155</> (<OmegaPowerPercentage></><AttackPhysicalDamage></>) Physical Damage per second to all enemies within {OmegaRadius}-hexes.\r\n\r\nDamage: <AttackPhysicalDamage>620</> = <AttackPhysicalDamage>{OmegaDamage}</>/s (<OmegaPowerPercentage></>) + <AttackPhysicalDamage>{PhysicalDamage}</>/s (50%<AttackPhysicalDamage></>)",
+		"Parameters": {
+			"SpinDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].Zone.DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"OmegaRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].Zone.RadiusUnits"
+			},
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].Expression.Operands[0].Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"DamageRed": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression"
+			},
+			"PhysicalDamage": {
+				"ParameterPath": "Stats.AttackPhysicalDamage",
+				"ValueMultiplier": 0.0005
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Singe spins for 4 seconds, gaining 15% Damage Reduction and dealing 155 () Physical Damage per second to all enemies within 23-hexes.\r\n\r\nDamage: 620 = 80/s () + 75/s (50%)",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 3,
+			"AttackSpeed": 4,
+			"Health": 1,
+			"MovementSpeed": 5,
+			"OmegaPower": 6,
+			"Resistance": 2
+		}
+	}
+}

@@ -1,0 +1,307 @@
+{
+	"CombatAffinity": "Frost",
+	"CombatAffinityComponents": [
+		"Water",
+		"Air"
+	],
+	"SynergyThresholds": [
+		2,
+		3,
+		4
+	],
+	"SynergyThresholdsAbilities": {
+		"Variables": [
+			{
+				"Name": "Frost_Shield",
+				"Values": [
+					500000,
+					1000000,
+					1500000
+				]
+			},
+			{
+				"Name": "Frost_DamageAmp",
+				"Values": [
+					15,
+					20,
+					30
+				]
+			},
+			{
+				"Name": "Frost_ZoneTrigger",
+				"Values": [
+					999999,
+					999999,
+					7000
+				]
+			},
+			{
+				"Name": "Frost_Slow",
+				"Values": [
+					0,
+					0,
+					25
+				]
+			},
+			{
+				"Name": "Frost_Frozen",
+				"Values": [
+					0,
+					0,
+					1000
+				]
+			}
+		],
+		"TeamAbilities": [],
+		"UnitAbilities": [
+			{
+				"Name": "FrostSynergy_Ability1",
+				"ActivationTrigger": {
+					"TriggerType": "OnBattleStart"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Frost - Frost",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "Self"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Empower",
+									"IsConsumable": false,
+									"DurationMs": -1,
+									"ActivatedBy": "Attack",
+									"AttachedEffects": [
+										{
+											"Type": "Debuff",
+											"Stat": "AttackSpeed",
+											"OverlapProcessType": "Merge",
+											"DurationMs": 3000,
+											"Expression": {
+												"Percentage": 25,
+												"Stat": "AttackSpeed",
+												"StatSource": "Receiver"
+											}
+										}
+									]
+								}
+							]
+						}
+					}
+				]
+			},
+			{
+				"Name": "FrostSynergy_Ability2",
+				"ActivationTrigger": {
+					"TriggerType": "HealthInRange",
+					"HealthLowerLimitPercentage": 65,
+					"MaxActivations": 1
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Frost - Gain Shield and Attack Damage",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "Self"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "SpawnShield",
+									"DurationMs": -1,
+									"Expression": "{Frost_Shield}"
+								},
+								{
+									"Type": "Buff",
+									"Stat": "AttackPhysicalDamage",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Frost_DamageAmp}",
+										"Stat": "AttackPhysicalDamage",
+										"StatSource": "Receiver"
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "AttackEnergyDamage",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Frost_DamageAmp}",
+										"Stat": "AttackEnergyDamage",
+										"StatSource": "Receiver"
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "AttackPureDamage",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Frost_DamageAmp}",
+										"Stat": "AttackPureDamage",
+										"StatSource": "Receiver"
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "OmegaDamagePercentage",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Frost_DamageAmp}",
+										"Stat": "OmegaDamagePercentage",
+										"StatSource": "Receiver"
+									}
+								}
+							]
+						}
+					}
+				]
+			},
+			{
+				"Name": "FrostSynergy_SpecialAbility",
+				"ActivationTrigger": {
+					"TriggerType": "EveryXTime",
+					"ActivateEveryTimeMs": "{Frost_ZoneTrigger}"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Frost - Frozen Tundra",
+						"Targeting": {
+							"Type": "Self"
+						},
+						"Deployment": {
+							"Type": "Zone",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							]
+						},
+						"Zone": {
+							"Shape": "Hexagon",
+							"RadiusUnits": 25,
+							"DurationMs": 1000,
+							"FrequencyMs": 1000,
+							"Attach": false,
+							"MovementSpeedSubUnits": 0,
+							"GrowthRateSubUnits": 0,
+							"ApplyOnce": true
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "NegativeState",
+									"NegativeState": "Frozen",
+									"DurationMs": "{Frost_Frozen}"
+								},
+								{
+									"Type": "Debuff",
+									"Stat": "AttackSpeed",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Frost_Slow}",
+										"Stat": "AttackSpeed",
+										"StatSource": "Receiver"
+									}
+								},
+								{
+									"Type": "Debuff",
+									"Stat": "MoveSpeedSubUnits",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Frost_Slow}",
+										"Stat": "MoveSpeedSubUnits",
+										"StatSource": "Receiver"
+									}
+								}
+							]
+						}
+					}
+				]
+			}
+		]
+	},
+	"IntrinsicAbilities": [],
+	"DisplayName": "Frost",
+	"DisplayDescription": "\r\nAttacks apply Frost for 3 seconds. Once per combat, at <MaxHealth>65%</> Health, Frost units become crystallized, gaining a Shield and <DamageAmplification>Damage Amp</>.\r\n\r\n(4) Every 7 seconds, enemies within 25-hexes are Frozen for 1 second and permanenly lose 25% <AttackSpeed>Attack Speed</> and <MoveSpeedSubUnits>Movement Speed</>.\r\n\r\n<Italic>Frost: Reduces target's Attack Speed by 25%.</>\r\n\r\n<Italic>Frozen: Cannot move, attack, use abilities and gain Energy.</>",
+	"DisplayDescriptionThresholds": [
+		"Gain 500<StartingShield></> and <DamageAmplification>15%</><DamageAmplification></>",
+		"Gain 1,000<StartingShield></> and <DamageAmplification>20%</><DamageAmplification></>",
+		"Gain 1,500<StartingShield></> and <DamageAmplification>30%</><DamageAmplification></>"
+	],
+	"Description": {
+		"Format": "\r\nAttacks apply Frost for {FrostDuration} seconds. Once per combat, at <MaxHealth>{HealthTrigger}%</> Health, Frost units become crystallized, gaining a Shield and <DamageAmplification>Damage Amp</>.\r\n\r\n(4) Every {Frost_ZoneTrigger} seconds, enemies within {FrozenRadius}-hexes are Frozen for {FrozenDuration} second and permanenly lose {Frost_Slow}% <AttackSpeed>Attack Speed</> and <MoveSpeedSubUnits>Movement Speed</>.\r\n\r\n<Italic>Frost: Reduces target's Attack Speed by 25%.</>\r\n\r\n<Italic>Frozen: Cannot move, attack, use abilities and gain Energy.</>",
+		"Parameters": {
+			"Frost_Slow": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[3].Values[2]",
+				"ValueMultiplier": 1.0
+			},
+			"FrostDuration": {
+				"ParameterPath": "SynergyThresholdsAbilities.UnitAbilities[0].Skills[0].EffectPackage.Effects[0].AttachedEffects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"HealthTrigger": {
+				"ParameterPath": "SynergyThresholdsAbilities.UnitAbilities[1].ActivationTrigger.HealthLowerLimitPercentage",
+				"ValueMultiplier": 1.0
+			},
+			"Frost_ZoneTrigger": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[2].Values[2]",
+				"ValueMultiplier": 0.001
+			},
+			"FrozenRadius": {
+				"ParameterPath": "SynergyThresholdsAbilities.UnitAbilities[2].Skills[0].Zone.RadiusUnits",
+				"ValueMultiplier": 1.0
+			},
+			"FrozenDuration": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[4].Values[2]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DescriptionThresholds": {
+		"Format": "Gain {Frost_Shield}<StartingShield></> and <DamageAmplification>{Frost_DamageAmp}%</><DamageAmplification></>",
+		"Parameters": [
+			{
+				"Frost_Shield": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[0]",
+					"ValueMultiplier": 0.001
+				},
+				"Frost_DamageAmp": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[0]"
+				}
+			},
+			{
+				"Frost_Shield": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[1]",
+					"ValueMultiplier": 0.001
+				},
+				"Frost_DamageAmp": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[1]"
+				}
+			},
+			{
+				"Frost_Shield": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[2]",
+					"ValueMultiplier": 0.001
+				},
+				"Frost_DamageAmp": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[2]"
+				}
+			}
+		]
+	},
+	"DisplayDescriptionNormalized": "Attacks apply Frost for 3 seconds. Once per combat, at 65% Health, Frost units become crystallized, gaining a Shield and Damage Amp.\r\n\r\n(4) Every 7 seconds, enemies within 25-hexes are Frozen for 1 second and permanenly lose 25% Attack Speed and Movement Speed.\r\n\r\nFrost: Reduces target's Attack Speed by 25%.\r\n\r\nFrozen: Cannot move, attack, use abilities and gain Energy.",
+	"DisplayDescriptionThresholdsNormalized": [
+		"Gain 500 and 15%",
+		"Gain 1,000 and 20%",
+		"Gain 1,500 and 30%"
+	]
+}

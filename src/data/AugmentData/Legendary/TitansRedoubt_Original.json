@@ -1,0 +1,72 @@
+{
+	"Name": "TitansRedoubt",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "GreaterPower",
+	"Abilities": [
+		{
+			"Name": "TitansRedoubt_Ability1",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "TitansRedoubt - Health and Resistance",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "MaxHealth",
+								"DurationMs": -1,
+								"OverlapProcessType": "Stacking",
+								"Expression": {
+									"Percentage": 50,
+									"Stat": "MaxHealth",
+									"StatSource": "Receiver"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "PhysicalResist",
+								"DurationMs": -1,
+								"OverlapProcessType": "Stacking",
+								"Expression": 50
+							},
+							{
+								"Type": "Buff",
+								"Stat": "EnergyResist",
+								"DurationMs": -1,
+								"OverlapProcessType": "Stacking",
+								"Expression": 50
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Titan's Redoubt",
+	"DisplayDescription": "Gain <MaxHealth>50%</> <MaxHealth>Max Health</> and <Resistance>50</> <Resistance>Resistances</>.",
+	"Description": {
+		"Format": "Gain <MaxHealth>{HealthVa}%</> <MaxHealth>Max Health</> and <Resistance>{ResitVal}</> <Resistance>Resistances</>.",
+		"Parameters": {
+			"HealthVa": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].Expression.Percentage",
+				"ValueMultiplier": 1.0
+			},
+			"ResitVal": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[1].Expression",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Gain 50% Max Health and 50 Resistances."
+}

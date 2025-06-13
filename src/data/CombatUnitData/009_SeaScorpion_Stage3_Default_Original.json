@@ -1,0 +1,208 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "SeaScorpion",
+	"Stage": 3,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 3,
+	"CombatAffinity": "Toxic",
+	"CombatClass": "Berserker",
+	"DominantCombatAffinity": "Water",
+	"DominantCombatClass": "Fighter",
+	"SizeUnits": 6,
+	"Stats": {
+		"MaxHealth": 2700000,
+		"StartingEnergy": 0,
+		"EnergyCost": 80000,
+		"PhysicalResist": 60,
+		"EnergyResist": 70,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 190000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 80,
+		"MoveSpeedSubUnits": 2750,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 4,
+		"OmegaRangeUnits": 4,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Basic Attack",
+			"Skills": [
+				{
+					"Name": "Sea Scorpion Basic Attack III",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 30
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Toxic Skewer III",
+			"TotalDurationMs": 700,
+			"Skills": [
+				{
+					"Name": "Damage Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 60
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "+",
+									"Operands": [
+										{
+											"Operation": "*",
+											"Operands": [
+												{
+													"Percentage": 20,
+													"Stat": "MaxHealth",
+													"StatSource": "Receiver"
+												},
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												}
+											]
+										},
+										{
+											"Operation": "*",
+											"Operands": [
+												400000,
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												}
+											]
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Ryplance",
+	"DisplayDescription": "Ryplance strikes its target with its stinger, dealing <MaxHealth>20%</> (<OmegaPowerPercentage></>) of target's Max Health + <AttackPhysicalDamage>400</> (<OmegaPowerPercentage></>) as Physical Damage.\r\n\r\nDamage: <MaxHealth>20%</> max <MaxHealth></> (<OmegaPowerPercentage></>) + <AttackPhysicalDamage>400</> (<OmegaPowerPercentage></>)",
+	"Intro": "Beneath the surface of Crimson Waste, deep under the scorching red dunes, lie simmering vats of acid emitting a vivid neon-green glow. These toxic pools release foul fumes that impair nearby creatures, clouding their minds. However, some beings resist such toxins, like the green-splattered Ryplance, which deftly swings its tail, targeting the crackling electromagnetic plants that hover above.",
+	"Summary": "The Ryplance thrives in the toxic depths of the Crimson Waste, adorned with purple-plated armor splattered with neon lime hues, a cycloptic yellow eye, and colossal claws. It manipulates venomous toxins, experimenting with plant components to enhance its deadly arsenal. With an acid-resistant shell and the ability to endure long periods without food, the Ryplance is a formidable predator capable of scaling walls and crafting complex venomous mixtures.",
+	"Biology": {
+		"Physiology": "The Ryplance's cycloptic eye radiates a brilliant yellow hue, mirroring the neon lime splatters on its purple-plated carapace. Its colossal claws, as long as its torso, possess an unyielding death grip. Green vapour emanates from its armoured body, laden with venom. Its formidable stinger, dangling beneath its substantial weight, is connected to a thick, whip-like tail. Tipped with poison, it can penetrate the most resilient hide, injecting victims with excruciating, liquid torment.",
+		"Behaviour": "The Ryplance enhances its poison by impaling toxic plants with its tail, enabling it to alter the components of its toxins and concoct new effects. Occasionally, it develops a mixture with beneficial properties but continues experimenting until it regains its deadly potency. The Ryplance's shell is acid-resistant, and it is often seen zipping through acid pools in search of novel ingredients. With a low metabolic rate when it is resting, the Ryplance may survive for over 18 months of dormancy without feeding."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/SeaScorpionStage3/SeaScorpionStage3_default_default_webp.3840x2160/SeaScorpionStage3_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/SeaScorpionStage3/SeaScorpionStage3_default_default_hls.m3u8/SeaScorpionStage3_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Ryplance moves with astonishing speed, capable of scaling cave walls and traversing arched ceilings.",
+			"The Ryplance's shell is acid-resistant, and it is often seen zipping through acid pools in search of novel ingredients.",
+			"The Ryplance experiments with various toxins, and it is capable of self-administering an antidote in event of an accident."
+		],
+		"Buckley": [
+			"The Ryplance's stinging barb can carry up to nine distinct toxins, each with different properties and side effects.",
+			"A network of venom sacs along its tail allows the Ryplance to manipulate chemical compositions, producing a vast array of poisons. It also possesses an antidote sac containing antibodies for various strains of its venom.",
+			"The Ryplance houses reservoirs of specially treated acid connected to a reaction chamber, enabling it to generate pressure and manipulate poisonous plants to concoct new venom mixtures.",
+			"Its eight legs are adapted for synchronized movements, while its two pincers and tail enable coordinated, complex maneuvers.",
+			"The Ryplance's digestive system functions externally, employing acidic venom to liquefy food and absorbing nutrients through enzymatic action."
+		]
+	},
+	"TraitOrderLegacy": [
+		2,
+		1,
+		3,
+		5,
+		6,
+		4
+	],
+	"Description": {
+		"Format": "Ryplance strikes its target with its stinger, dealing <MaxHealth>{MaxHealthDamage}%</> (<OmegaPowerPercentage></>) of target's Max Health + <AttackPhysicalDamage>{FlatDamage}</> (<OmegaPowerPercentage></>) as Physical Damage.\r\n\r\nDamage: <MaxHealth>{MaxHealthDamage}%</> max <MaxHealth></> (<OmegaPowerPercentage></>) + <AttackPhysicalDamage>{FlatDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"MaxHealthDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0].Operands[0].Percentage"
+			},
+			"FlatDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[1].Operands[0]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Ryplance strikes its target with its stinger, dealing 20% () of target's Max Health + 400 () as Physical Damage.\r\n\r\nDamage: 20% max () + 400 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 2,
+			"AttackSpeed": 1,
+			"Health": 3,
+			"MovementSpeed": 5,
+			"OmegaPower": 6,
+			"Resistance": 4
+		}
+	}
+}

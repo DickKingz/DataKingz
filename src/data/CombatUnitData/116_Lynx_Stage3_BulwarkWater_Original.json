@@ -1,0 +1,205 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Lynx",
+	"Stage": 3,
+	"Path": "BulwarkWater",
+	"Variation": "Original",
+	"Tier": 2,
+	"CombatAffinity": "Water",
+	"CombatClass": "Bulwark",
+	"DominantCombatAffinity": "Water",
+	"DominantCombatClass": "Bulwark",
+	"SizeUnits": 7,
+	"Stats": {
+		"MaxHealth": 2800000,
+		"StartingEnergy": 100000,
+		"EnergyCost": 200000,
+		"PhysicalResist": 60,
+		"EnergyResist": 65,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 170000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 60,
+		"MoveSpeedSubUnits": 2500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 5,
+		"OmegaRangeUnits": 5,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Bulwark Water Lynx Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 45
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Cresting Boom",
+			"TotalDurationMs": 1500,
+			"Skills": [
+				{
+					"Name": "Roar",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 70
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 24,
+						"DurationMs": 500,
+						"FrequencyMs": 500,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										450000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Stun",
+								"DurationMs": 2000
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Stoic Hydrolynx",
+	"DisplayDescription": "Stoic Hydrolynx roars, dealing <AttackPhysicalDamage>450</> (<OmegaPowerPercentage></>) Physical Damage and Stunning all enemies in 24-hexes for 2 seconds.\r\n\r\nDamage: <AttackPhysicalDamage>450</> (<OmegaPowerPercentage></>)",
+	"Intro": "The ocean water around Crystal Shores reflects the glistening pink of a giant crystal wave and the prism shards that rise up from the water all around. Sharp and deadly, there are many large pointed slabs, but even more dangerous are the tiny floating fragments that can pierce skin and lacerate swimmers without them noticing. These pieces are so small, they wear away at even the toughest shells. Few can brave these waters, but the Stoic Hydrolynx glides around with ease.",
+	"Summary": "The Stoic Hydrolynx is a predator that excels in both aquatic and terrestrial environments around Crystal Shores, a region marked by sharp crystal fragments and pink prismatic formations. This powerful creature has an ultramarine mane, pale blue coat with curved markings, and a luminous forehead gem, combining elegant appearance with practical adaptations. While it moves steadily on land and uses its keen sense of smell to track both terrestrial and aquatic prey, it also possesses specialised features for underwater activity, including a complex glandular system that creates protective water currents when submerged, and advanced vocalisation capabilities through an enlarged larynx and internal water chamber for sonar navigation. The species is notably resilient, with a thick hide that resists damage from sharp surfaces, and possesses unique adaptations including magnetic field detection through internal mineral stores.",
+	"Biology": {
+		"Physiology": "The Stoic Hydrolynx carries the might of the ocean in its vibrant forehead gem and its sparkling eyes, with its big ears pointed high and distinct watery markings upon its face. This noble Illuvial may be bulkier and bushier than most Lynxes, but it is one of the most elegant. Moving fluidly on all fours, it carries the weight of its luxurious, ultramarine mane and tail with grace. The Stoic Hydrolynx has a pale blue coat with curvy, round markings in a richer blue that covers the side of its strong legs and back paws. A sleek streak of liquid blue outlines its tail with the same watery glow of its claws, giving the Stoic Hydrolynx the ability to manipulate its way around the water.",
+		"Behaviour": "The Stoic Hydrolynx swims effortlessly in the water, capable of washing away any debris from its fur with a consistent stream of currents expelled from its fur. This ability only manifests when it is completely submerged, but it also has high resilience to physical injury on land. The Stoic Hydrolynx moves steadily when it is out of the water, using its keen sense of smell to track down both aquatic and land-based prey. With specialised muscles in its jaws and neck, it can deliver a powerful bite."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3BulwarkWater/LynxStage3BulwarkWater_default_default_webp.3840x2160/LynxStage3BulwarkWater_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3BulwarkWater/LynxStage3BulwarkWater_default_default_hls.m3u8/LynxStage3BulwarkWater_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Stoic Hydrolynx moves much faster in water than on land. Its absorbent coat soaks up water, which weighs it down on the surface. However, when it is swimming, the water it holds is constantly released in a current around its body that offers it excess protection against hazards.",
+			"The Stoic Hydrolynx can be found swimming against rough coral surfaces and sharp crystal shards, unaffected by hazards because it is protected by its thick hide.",
+			"The Stoic Hydrolynx's forehead orb and the drop-shaped markings on its face glow brighter when it is underwater. This warns other Illuvials of its presence and gives them time to move out of its way as it swims past speedily."
+		],
+		"Buckley": [
+			"The Stoic Hydrolynx has a complex network of glands on its body that is capable of absorbing and expelling water.",
+			"The Stoic Hydrolynx has an internal chamber for storing water that it uses to aid its vocalizations.",
+			"The Stoic Hydrolynx has a sonar system that allows it to emit pulsing roars and use echolocation to determine its proximity to other objects in the water.",
+			"The Stoic Hydrolynx has an enlarged adapted larynx that gives it the ability to produce pressure waves during intense vocalizations.",
+			"The Stoic Hydrolynx has mineral stores in its body, including iron-containing materials that allow it to identify magnetic fields."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		4,
+		1,
+		6,
+		3,
+		2
+	],
+	"Description": {
+		"Format": "Stoic Hydrolynx roars, dealing <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Physical Damage and Stunning all enemies in {StunRadius}-hexes for {StunDuration} seconds.\r\n\r\nDamage: <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"StunRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Zone.RadiusUnits"
+			},
+			"StunDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Stoic Hydrolynx roars, dealing 450 () Physical Damage and Stunning all enemies in 24-hexes for 2 seconds.\r\n\r\nDamage: 450 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 4,
+			"Health": 1,
+			"MovementSpeed": 6,
+			"OmegaPower": 3,
+			"Resistance": 2
+		}
+	}
+}

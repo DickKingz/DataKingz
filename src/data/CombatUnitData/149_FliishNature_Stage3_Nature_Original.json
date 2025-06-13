@@ -1,0 +1,232 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "FliishNature",
+	"Stage": 3,
+	"Path": "Nature",
+	"Variation": "Original",
+	"Tier": 0,
+	"CombatAffinity": "Nature",
+	"CombatClass": "Psion",
+	"DominantCombatAffinity": "Nature",
+	"DominantCombatClass": "Psion",
+	"SizeUnits": 6,
+	"Stats": {
+		"MaxHealth": 1550000,
+		"StartingEnergy": 20000,
+		"EnergyCost": 120000,
+		"PhysicalResist": 35,
+		"EnergyResist": 35,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 125000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 70,
+		"MoveSpeedSubUnits": 2350,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 60,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Nature Fliish Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 50
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 10000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Budding Beam III",
+			"TotalDurationMs": 1800,
+			"Skills": [
+				{
+					"Name": "Damage beam",
+					"Targeting": {
+						"Type": "DistanceCheck",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"Group": "Enemy",
+						"Lowest": false,
+						"Num": 1
+					},
+					"PercentageOfAbilityDuration": 100,
+					"ChannelTimeMs": 2000,
+					"Deployment": {
+						"Type": "Beam",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 0
+					},
+					"Beam": {
+						"WidthUnits": 10,
+						"FrequencyMs": 200,
+						"ApplyOnce": false,
+						"IsHoming": true,
+						"IsBlockable": true,
+						"BlockAllegiance": "Enemy"
+					},
+					"EffectPackage": {
+						"Attributes": {
+							"RotateToTarget": true
+						},
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										125000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Exalted Nature Fliish",
+	"DisplayDescription": "Exalted Nature Fliish fires a beam at the furthest enemy, dealing <AttackEnergyDamage>1,250</> (<OmegaPowerPercentage></>) Energy Damage to the first enemy hit over 2 seconds.\r\n\r\nDamage: <AttackEnergyDamage>1,250</> = <AttackEnergyDamage>125</>/0.2s (<OmegaPowerPercentage></>)",
+	"Intro": "Brightland Steppes is full of streaming waterfalls that cascade down grassy platforms, held up by purple roots. These small currents spilling over ledges fill the landscape as bubbles, seeds, and massive clouds drift by. Bounding from one watercourse to the next, the Exalted Nature Fliish makes its way up the fields, hopping higher and higher up the root islands.",
+	"Summary": "The Exalted Nature Fliish lives in the Brightland Steppes, hopping between waterfalls and grassy platforms supported by purple roots. This green creature with pink eyes and a horned crown of tendrils hunts Morphopods using its sticky sap-covered tail and long tongue, often working with others of its kind. It absorbs solar energy through its skin and crown, using it to power its tail, and has a 270-degree field of vision for detecting prey.",
+	"Biology": {
+		"Physiology": "The Exalted Nature Fliish is green with pink eyes and a wide gaping mouth, its long tongue dangling out from the side. It has round bumpy toes on its feet, and its hind legs are often bent in a crouch. Upon its head is a crown made of brown tendrils with small green leaves sprouting from twin, horn-like sprigs. Its tail is made up of the same branch-like material, with a wreath at its end that has a pink flower suspended in the centre.",
+		"Behaviour": "The Exalted Nature Fliish often has its long tongue sticking out, eager to catch Morphopods that are attracted to the blossom upon its tail. It hops around until it finds a prime hunting spot, one with enough sunlight to open up its blooming flower. When Morphopod prey wanders close enough, it flicks its tongue to catch them. Another advantage it has, is the extremely sticky sap on the branch-like ring of its tail, which helps it trap its prey. Sometimes, it works with others of its kind and feeds on the Morphopods stuck on one another's tails."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/FliishStage3Nature/FliishStage3Nature_default_default_webp.3840x2160/FliishStage3Nature_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/FliishStage3Nature/FliishStage3Nature_default_default_hls.m3u8/FliishStage3Nature_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Exalted Nature Fliish has a floating blossom at the centre of the branch-like ring on its tail, which appears to bloom when it is near the sun.",
+			"The Exalted Nature Fliish has wide peripheral vision and changes lenses quickly to observe its environment from varying distances.",
+			"The Exalted Nature Fliish sticks its tongue out when it is at ease, sometimes as a friendly greeting to other Illuvials."
+		],
+		"Buckley": [
+			"The Exalted Nature Fliish's skin absorbs solar energy and it has a secondary circulatory system that directs this energy to its tail.",
+			"The Exalted Nature Fliish has a field of vision of 270 degrees, allowing it to identify objects in motion in its periphery.",
+			"The Exalted Nature Fliish's tongue has taste receptacles that detect the flavor of fruiting plants in its environment just by sampling the air, allowing it to determine the location of its next meal.",
+			"The Exalted Nature Fliish has a crown of intertwined branches and leaves that can undergo photosynthesis.",
+			"The ringed tail of the Exalted Nature Fliish is capable of vibrating at varying frequencies, likely as complex signals that it uses to communicate with others of its kind."
+		]
+	},
+	"TraitOrderLegacy": [
+		3,
+		2,
+		4,
+		6,
+		1,
+		5
+	],
+	"Description": {
+		"Format": "Exalted Nature Fliish fires a beam at the furthest enemy, dealing <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Energy Damage to the first enemy hit over {BeamDuration} seconds.\r\n\r\nDamage: <AttackEnergyDamage>{OmegaDamage}</> = <AttackEnergyDamage>{SplitDamage}</>/0.2s (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.01
+			},
+			"BeamDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].ChannelTimeMs",
+				"ValueMultiplier": 0.001
+			},
+			"SplitDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Exalted Nature Fliish fires a beam at the furthest enemy, dealing 1,250 () Energy Damage to the first enemy hit over 2 seconds.\r\n\r\nDamage: 1,250 = 125/0.2s ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 3,
+			"AttackSpeed": 2,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 5
+		}
+	}
+}

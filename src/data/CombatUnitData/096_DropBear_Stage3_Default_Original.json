@@ -1,0 +1,259 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "DropBear",
+	"Stage": 3,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 1,
+	"CombatAffinity": "Wildfire",
+	"CombatClass": "Predator",
+	"DominantCombatAffinity": "Fire",
+	"DominantCombatClass": "Rogue",
+	"SizeUnits": 4,
+	"Stats": {
+		"MaxHealth": 2100000,
+		"StartingEnergy": 50000,
+		"EnergyCost": 150000,
+		"PhysicalResist": 55,
+		"EnergyResist": 65,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 155000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 70,
+		"MoveSpeedSubUnits": 2450,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 3,
+		"OmegaRangeUnits": 3,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Drop Bear Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 43
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 10000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Rising Ash III",
+			"TotalDurationMs": 1300,
+			"Skills": [
+				{
+					"Name": "Attack Current Focus",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 0,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										750000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Becomes untargetable",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 5,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "PositiveState",
+								"PositiveState": "Untargetable",
+								"DurationMs": 1300
+							}
+						]
+					}
+				},
+				{
+					"Name": "AOE Blind",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 20
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 25,
+						"DurationMs": 1000,
+						"FrequencyMs": 1000,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Blind",
+								"DurationMs": 2500
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Chukoondi",
+	"DisplayDescription": "Chukoondi vanishes in a cloud of smoke, Blinding enemies in 25-hexes for 1.3 seconds and then reappears, dealing <AttackPhysicalDamage>750</> (<OmegaPowerPercentage></>) Physical Damage to its target.\r\n\r\nDamage: <AttackPhysicalDamage>750</> (<OmegaPowerPercentage></>)",
+	"Intro": "Eruptive sparks ascend from the magma vents of Shardbluff Labyrinth, serving as a potent reminder of the perilous consequences of a misstep. The incessant rise of steam from the molten lava challenges the breath, particularly for those unaccustomed to this harsh environment. Safe passage lies only across the bridging rock pillars, yet the Chukoondi fearlessly flings itself from one pillar to another, achieving astounding leaps despite its considerable bulk.",
+	"Summary": "In the fiery realm of Shardbluff Labyrinth, the Chukoondi, with its robust physique and charred fur emitting smoke, navigates treacherous magma vents and rock pillars with astounding leaps. Its imposing appearance includes glowing eyes, a white mask, and leaf-like neck adornments. Commanding respect with fiery displays and territorial markings, the Chukoondi is solitary yet protective, using its teleportation ability and powerful claws to assert dominance.",
+	"Biology": {
+		"Physiology": "The Chukoondi boasts a robust and hefty physique, its smouldering eyes and billowing plumes of black smoke that waft from its charred fur adding to its formidable appearance. Its expansive round ears and elongated nose are a stark black, contrasting against the white mask that adorns its face, set against its bark-like, scorched skin. Around its glowing neck, leaf-like appendages fan out in a decorative mane. The Chukoondi's mighty arms nearly match the size of its torso and legs combined, their forearms adorned with white spiral patterns that simmer with an underlying red glow. Its searing palms wield mastery over lava and flame, leaving trails of burning claw marks suspended in the air. The Chukoondi's fiery path and fearsome skeleton-like face strike dread in all who cross its path.",
+		"Behaviour": "The Chukoondi commands respect, its fiery stare silencing even the rowdiest of Illuvials. After successful combat, it adorns its body with markings from its radiant palms as a symbol of its dominance. The Chukoondi is typically a solitary creature, shrouded in thick black smoke that veils the majority of its body. However, it can often be heard growling protectively from afar, keeping watch over the younger members of its species. Employing a combination of teleportation and adept climbing, the Chukoondi navigates its terrain, its exceptional gripping abilities facilitating its lofty perch from where it surveys all below."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/DropBearStage3/DropBearStage3_default_default_webp.3840x2160/DropBearStage3_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/DropBearStage3/DropBearStage3_default_default_hls.m3u8/DropBearStage3_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"When the Chukoondi dances, it starts a fire beneath its feet. It often begins its dances alone and others of its line join to form a circle around its display.",
+			"The Chukoondi uses its fiery claws to etch runic patterns into the landscape, a clear declaration of its territory.",
+			"The Chukoondi's vocalisations can carry over great distances, and it's believed to use these calls for communication with others of its species."
+		],
+		"Buckley": [
+			"The Chukoondi's fur is coated with a thick layer of ash that provides thermal protection against the intense fires it generates.",
+			"Its enlarged respiratory system, complete with four lungs, facilitates swift oxygen and hydrogen filtration from the surrounding atmosphere, directing it into its internal combustion chamber.",
+			"The Chukoondi's palms have a specialised pad that expels highly pressurised flammable gas.",
+			"The Chukoondi's skull consists of large amounts of cerebrospinal fluid, allowing it to absorb shock and minor distortions caused by teleportation. This fluid also functions as a coolant for the brain.",
+			"The Chukoondi has proportionally longer upper limbs and powerful muscles which contribute to its climbing abilities."
+		]
+	},
+	"TraitOrderLegacy": [
+		2,
+		1,
+		3,
+		6,
+		5,
+		4
+	],
+	"Description": {
+		"Format": "Chukoondi vanishes in a cloud of smoke, Blinding enemies in {BlindRadius}-hexes for {BlindDuration} seconds and then reappears, dealing <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Physical Damage to its target.\r\n\r\nDamage: <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"BlindRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[2].Zone.RadiusUnits"
+			},
+			"BlindDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Chukoondi vanishes in a cloud of smoke, Blinding enemies in 25-hexes for 1.3 seconds and then reappears, dealing 750 () Physical Damage to its target.\r\n\r\nDamage: 750 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 2,
+			"AttackSpeed": 1,
+			"Health": 3,
+			"MovementSpeed": 6,
+			"OmegaPower": 5,
+			"Resistance": 4
+		}
+	}
+}

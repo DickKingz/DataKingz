@@ -1,0 +1,174 @@
+{
+	"Name": "AquaBlaster",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Normal",
+	"CombatAffinity": "Water",
+	"CombatClass": "Psion",
+	"DominantCombatAffinity": "Water",
+	"DominantCombatClass": "Psion",
+	"Stats": {
+		"MaxHealth": 500000,
+		"StartingEnergy": 60000,
+		"EnergyCost": 120000,
+		"PhysicalResist": 20,
+		"EnergyResist": 40,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 90000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 80,
+		"MoveSpeedSubUnits": 0,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 60,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Blaster Attack I",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"PreDeploymentDelayPercentage": 40
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 10000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Vapourshot",
+			"TotalDurationMs": 1500,
+			"Skills": [
+				{
+					"Name": "Fat bolt",
+					"PercentageOfAbilityDuration": 100,
+					"Targeting": {
+						"Type": "DistanceCheck",
+						"Guidance": [
+							"Ground"
+						],
+						"Group": "Enemy",
+						"Lowest": false,
+						"Num": 1
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground"
+						],
+						"PreDeploymentDelayPercentage": 75
+					},
+					"Projectile": {
+						"SizeUnits": 3,
+						"IsHoming": false,
+						"SpeedSubUnits": 10000,
+						"IsBlockable": true,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"ID": "HydroOverload",
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										600000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"ID": "GlacialGrip",
+								"Type": "NegativeState",
+								"NegativeState": "Stun",
+								"DurationMs": 0
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Aqua Blaster",
+	"DisplayDescription": "The Ranger takes aim at the furthest enemy for 1.5 seconds, firing a bolt that ripples through the air, dealing <AttackPhysicalDamage>600</> (<OmegaPowerPercentage></>) Physical Damage to the first enemy hit.",
+	"Description": {
+		"Format": "The Ranger takes aim at the furthest enemy for 1.5 seconds, firing a bolt that ripples through the air, dealing <AttackPhysicalDamage>{Damage}</> (<OmegaPowerPercentage></>) Physical Damage to the first enemy hit.",
+		"Parameters": {
+			"Damage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "The Ranger takes aim at the furthest enemy for 1.5 seconds, firing a bolt that ripples through the air, dealing 600 () Physical Damage to the first enemy hit."
+}

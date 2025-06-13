@@ -1,0 +1,195 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "VolanteWater",
+	"Stage": 1,
+	"Path": "Water",
+	"Variation": "Original",
+	"Tier": 0,
+	"CombatAffinity": "Water",
+	"CombatClass": "Rogue",
+	"DominantCombatAffinity": "Water",
+	"DominantCombatClass": "Rogue",
+	"SizeUnits": 3,
+	"Stats": {
+		"MaxHealth": 950000,
+		"StartingEnergy": 40000,
+		"EnergyCost": 120000,
+		"PhysicalResist": 25,
+		"EnergyResist": 30,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 85000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 65,
+		"MoveSpeedSubUnits": 2100,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 2,
+		"OmegaRangeUnits": 2,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Water Volante Basic Attack I",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 40
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Sinking Psyche I",
+			"TotalDurationMs": 1200,
+			"Skills": [
+				{
+					"Name": "Claw slash",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 90
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										400000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Silenced",
+								"DurationMs": 1000
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Lesser Water Volante",
+	"DisplayDescription": "Lesser Water Volante rakes its claws at the target, dealing <AttackPhysicalDamage>400</> (<OmegaPowerPercentage></>) Physical Damage and Silencing it for 1 second.\r\n\r\nDamage: <AttackPhysicalDamage>400</> (<OmegaPowerPercentage></>)",
+	"Intro": "The pristine waters of Halcyon Sea are so full of nutrients and life, it is said to absorb the pain of the injured. Every year, massive swarms of the Lesser Water Volante travel along the coasts and leap into the sea. Swimming at the surface, they engage in mass battle. Those who are weakened in combat swim back to the shore, and the triumphant victors can choose among themselves who to fuse with.",
+	"Summary": "The nutrient-rich waters of Halcyon Sea attract massive swarms of Lesser Water Volantes each year, where they engage in mass battles before the victors choose fusion partners. These slender blue Illuvials, with flat heads, yellow eyes, and bright orange stripes, possess webbed limbs and sharp yellow fins. Adapted for survival, they have unique features like a siphon-like tail for jet propulsion, toxin-absorbing markings, and mineral-storing capabilities that support their active and communal lifestyle.",
+	"Biology": {
+		"Physiology": "The Lesser Water Volante has a flat head with beady yellow eyes, with bright orange stripes protruding along its slender blue body. There are webbed membranes between its thin, stick-like limbs and a sharp yellow fin rises from its orange-coated back. Its slim tail curls up behind it, dark blue stripes dripping in water. With big, chunky white claws on its feet, the Lesser Water Volante can spring across far distances on nimble legs. Its striped membranes help it glide in air and water.",
+		"Behaviour": "The Lesser Water Volante stays hidden for most of the year, sleeping in a cocoon made of its own mucus. However, when the time is right, it gathers in huge numbers, travelling to the sea and gliding just above the water with its tail whipping beneath the surface. They emerge from distant caves and pools to the same coast and hunt in unison during Morphopod breeding season. Even bigger and stronger creatures that are caught in between can be swept away. After the coral dust is settled, the Lesser Water Volantes rest in harmony, floating in the water together."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/VolanteStage1Water/VolanteStage1Water_default_default_webp.3840x2160/VolanteStage1Water_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/VolanteStage1Water/VolanteStage1Water_default_default_hls.m3u8/VolanteStage1Water_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Lesser Water Volante glides through the air just above the water, whipping its tail beneath the surface. It can propel itself forward by shooting out beams of water from its tail.",
+			"The Lesser Water Volante hides from predators by swimming just below the surface with its yellowfin protruding out. Its large fin tricks land Illuvials into thinking that it is a larger creature and its belly lightens to camouflage with the light of the surface to underwater predators.",
+			"The Lesser Water Volante are attracted to pools with a large variety of minerals. It can be observed combing the shore for shells and colourful rocks, gathering them into its pool as a display of its status to others of its kind."
+		],
+		"Buckley": [
+			"The Lesser Water Volante has a siphon-like adaptation in its tail with multiple pipes that allows it to intake water and use jet propulsion in order to propel itself forward.",
+			"The Lesser Water Volante's stomach has a coating of clay that protects it from the toxins of poison-secreting plants.",
+			"The Lesser Water Volante's bright orange markings store any excess toxins it absorbs from its environment.",
+			"The Lesser Water Volante has mineral stores in its body and an extensive digestive system that transforms them into usable energy. They are connected to tear ducts that allow the Lesser Water Volante to remove excess minerals by crying them out.",
+			"The Lesser Water Volante has a swim bladder that allows it to control its buoyancy and membranes along its body that extend its surface area. When used together, it is capable of gliding above the water."
+		]
+	},
+	"TraitOrderLegacy": [
+		2,
+		1,
+		3,
+		6,
+		4,
+		5
+	],
+	"Description": {
+		"Format": "Lesser Water Volante rakes its claws at the target, dealing <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Physical Damage and Silencing it for {EffectDuration} second.\r\n\r\nDamage: <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"EffectDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Lesser Water Volante rakes its claws at the target, dealing 400 () Physical Damage and Silencing it for 1 second.\r\n\r\nDamage: 400 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 2,
+			"AttackSpeed": 1,
+			"Health": 3,
+			"MovementSpeed": 6,
+			"OmegaPower": 4,
+			"Resistance": 5
+		}
+	}
+}

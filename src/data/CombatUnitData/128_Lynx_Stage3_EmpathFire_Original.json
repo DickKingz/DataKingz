@@ -1,0 +1,311 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Lynx",
+	"Stage": 3,
+	"Path": "EmpathFire",
+	"Variation": "Original",
+	"Tier": 2,
+	"CombatAffinity": "Fire",
+	"CombatClass": "Empath",
+	"DominantCombatAffinity": "Fire",
+	"DominantCombatClass": "Empath",
+	"SizeUnits": 7,
+	"Stats": {
+		"MaxHealth": 2050000,
+		"StartingEnergy": 80000,
+		"EnergyCost": 160000,
+		"PhysicalResist": 50,
+		"EnergyResist": 50,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 155000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 65,
+		"MoveSpeedSubUnits": 2500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 40,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Empath Fire Lynx Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 55
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 10000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Unfurling Swoon",
+			"TotalDurationMs": 1000,
+			"Skills": [
+				{
+					"Name": "Zone Area Healing",
+					"Targeting": {
+						"Type": "Self",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 0
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 28,
+						"DurationMs": 4000,
+						"FrequencyMs": 1000,
+						"GrowthRateSubUnits": 0,
+						"ApplyOnce": false
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantHeal",
+								"HealType": "Normal",
+								"Expression": {
+									"Operation": "%",
+									"Operands": [
+										{
+											"Operation": "*",
+											"Operands": [
+												4,
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												}
+											]
+										},
+										{
+											"Operation": "-",
+											"Operands": [
+												{
+													"Stat": "MaxHealth",
+													"StatSource": "Receiver"
+												},
+												{
+													"Stat": "CurrentHealth",
+													"StatSource": "Receiver"
+												}
+											]
+										}
+									]
+								}
+							},
+							{
+								"Type": "InstantHeal",
+								"HealType": "Normal",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										60000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "%",
+									"Operands": [
+										{
+											"Operation": "*",
+											"Operands": [
+												4,
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												}
+											]
+										},
+										{
+											"Operation": "-",
+											"Operands": [
+												{
+													"Stat": "MaxHealth",
+													"StatSource": "Receiver"
+												},
+												{
+													"Stat": "CurrentHealth",
+													"StatSource": "Receiver"
+												}
+											]
+										}
+									]
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										60000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Virtuous Emberlynx",
+	"DisplayDescription": "Virtuous Emberlynx creates a 28-hexes zone for 4 seconds, healing allies for <MaxHealth>60</> (<OmegaPowerPercentage></>) Health + <MaxHealth>4%</> (<OmegaPowerPercentage></>) of their missing Health per second.\r\n\r\nEnemies within the zone take <AttackEnergyDamage>60</> (<OmegaPowerPercentage></>) + <AttackEnergyDamage>4%</> (<OmegaPowerPercentage></>) of their missing Health as Energy Damage per second.\r\n\r\nHeal: <MaxHealth>60</> (<OmegaPowerPercentage></>) + <MaxHealth>4%</> (<MaxHealth></><OmegaPowerPercentage></>)\r\n\r\nDamage: <AttackEnergyDamage>60</> (<OmegaPowerPercentage></>) + <AttackEnergyDamage>4%</> (<MaxHealth></><OmegaPowerPercentage></>)",
+	"Intro": "Cave-dwellers in Crimson Waste experience a vastly different habitat than that of the surface. Instead of harsh winds, they see only peaceful sandfalls and vibrant plants aglow in the dark passages. However, danger still lurks beneath the surface. In the underground Magnopass, there are wide acid pools and crackling electrified plants that injure many unsuspecting Illuvials. The Virtuous Emberlynx lies in wait, ready to heal wounded Illuvials in exchange for their loyalty and confidence.",
+	"Summary": "The Virtuous Emberlynx thrives in the underground sanctuary of Magnopass within Crimson Waste. It maintains a moderate temperature and uses its flame for both warmth and communication. Through mimicry and healing, it builds alliances with neighboring Illuvials, expanding its vast territory harmoniously. Adaptable and non-confrontational, it navigates its environment silently with fire-resistant paw pads and manipulates its flame to suit its surroundings.",
+	"Biology": {
+		"Physiology": "The Virtuous Emberlynx has molten eyes and blazing flames from the tip of its ears to the end of its tail, with furling spikes along its spine. Despite having the fieriest fur out of all the Emberlynxes, it has a warmer, more welcoming and moderate temperature throughout its body. It holds most of its body heat in the smouldering sphere of flame between its long, front-leaning ears. This makes Illuvials of other affinities less afraid to approach it. Its claws are small and hidden beneath its dark fur. There are serrated red stripes along its fur and its magnificent multi-layered man. The crimson markings on its face are in the shape of flames, unfurling around its eyes and along its lengthy hanging fur.",
+		"Behaviour": "The Virtuous Emberlynx has a large, expansive territory that overlaps with many other Illuvials' territories. Non-confrontational by nature, the Virtuous Emberlynx's massive range is upheld through a symbiotic relationship with others. It practices mimicry in replicating the territory markings of other Illuvials and heals any injuries they have, a masterful strategy that allows it to maintain harmony with its neighbours and grow its territory. Capable of manipulating its flame to suit its environment, the Virtuous Emberlynx is the least destructive of all the Emberlynxes."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3EmpathFire/LynxStage3EmpathFire_default_default_webp.3840x2160/LynxStage3EmpathFire_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3EmpathFire/LynxStage3EmpathFire_default_default_hls.m3u8/LynxStage3EmpathFire_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Virtuous Emberlynx is adaptable to different terrain, and capable of climbing trees or staying on the ground. It mimics the behaviour of others in order to gain their trust.",
+			"The Virtuous Emberlynx adjusts its flame and the external temperature to the comfort level of the life forms around it.",
+			"The Virtuous Emberlynx is the only Virtuous Lynx that does not leave traces of its healing light around its territory. It prefers to offer its gifts face-to-face so that those it helps become submissive to it."
+		],
+		"Buckley": [
+			"The Virtuous Emberlynx has stores of coolants and combustible gas beneath its skin that allow it to manipulate the size and shape of the flame on its body.",
+			"The Virtuous Emberlynx has a section of its brain dedicated to mimicking the movements of other living things, allowing it to build a rapport with different species of Illuvials.",
+			"The Virtuous Emberlynx has thick paw pads that are fire-resistant and muffle sound, allowing it to move silently and discreetly across varying terrain.",
+			"The Virtuous Emberlynx's luminous orb can communicate with others of its kind by sending a wave of energy that triggers biochemical changes and stimulates emotions.",
+			"The Virtuous Emberlynx's ears and nose have specialised receptors that are hyper-attuned to biological changes, including heartbeats, hormonal shifts, illness, and injury."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		2,
+		3,
+		6,
+		1,
+		4
+	],
+	"Description": {
+		"Format": "Virtuous Emberlynx creates a {OmegaRadius}-hexes zone for {OmegaDuration} seconds, healing allies for <MaxHealth>{HealFlatValue}</> (<OmegaPowerPercentage></>) Health + <MaxHealth>{HealValue}%</> (<OmegaPowerPercentage></>) of their missing Health per second.\r\n\r\nEnemies within the zone take <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) + <AttackEnergyDamage>{HealValue}%</> (<OmegaPowerPercentage></>) of their missing Health as Energy Damage per second.\r\n\r\nHeal: <MaxHealth>{HealFlatValue}</> (<OmegaPowerPercentage></>) + <MaxHealth>{HealValue}%</> (<MaxHealth></><OmegaPowerPercentage></>)\r\n\r\nDamage: <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) + <AttackEnergyDamage>{HealValue}%</> (<MaxHealth></><OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Zone.RadiusUnits"
+			},
+			"OmegaDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Zone.DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"HealFlatValue": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"HealValue": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0].Operands[0]"
+			},
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[3].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Virtuous Emberlynx creates a 28-hexes zone for 4 seconds, healing allies for 60 () Health + 4% () of their missing Health per second.\r\n\r\nEnemies within the zone take 60 () + 4% () of their missing Health as Energy Damage per second.\r\n\r\nHeal: 60 () + 4% ()\r\n\r\nDamage: 60 () + 4% ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 2,
+			"Health": 3,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 4
+		}
+	}
+}

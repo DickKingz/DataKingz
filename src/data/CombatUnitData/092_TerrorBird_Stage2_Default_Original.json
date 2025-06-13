@@ -1,0 +1,218 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "TerrorBird",
+	"Stage": 2,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 5,
+	"CombatAffinity": "Bloom",
+	"CombatClass": "Fighter",
+	"DominantCombatAffinity": "Nature",
+	"DominantCombatClass": "Fighter",
+	"SizeUnits": 4,
+	"Stats": {
+		"MaxHealth": 2050000,
+		"StartingEnergy": 0,
+		"EnergyCost": 80000,
+		"PhysicalResist": 60,
+		"EnergyResist": 55,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 150000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 90,
+		"MoveSpeedSubUnits": 3400,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 6,
+		"OmegaRangeUnits": 6,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Terror Bird Basic Attack II",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 55
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Ghosting Scream II",
+			"TotalDurationMs": 200,
+			"Skills": [
+				{
+					"Name": "Ghostly Beak",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 47
+					},
+					"Projectile": {
+						"SizeUnits": 5,
+						"SpeedSubUnits": 10000,
+						"IsHoming": false,
+						"IsBlockable": false,
+						"ApplyToAll": true,
+						"ContinueAfterTarget": true
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Attributes": {
+							"RotateToTarget": true
+						},
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "+",
+									"Operands": [
+										{
+											"Operation": "*",
+											"Operands": [
+												250000,
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												}
+											]
+										},
+										{
+											"Stat": "AttackDamage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Phorus",
+	"DisplayDescription": "Phorus fires a ghostly beak through its target, dealing dealing <AttackPhysicalDamage>400</> (<OmegaPowerPercentage></><AttackDamage></>) Physical Damage to all enemies hit.\r\n\r\nDamage: <AttackPhysicalDamage>400</> = <AttackPhysicalDamage>250</> (<OmegaPowerPercentage></>) + <AttackPhysicalDamage>150</> (<AttackDamage></>)",
+	"Intro": "The sloping land of Crystal Shores is full of sharp, intricate formations that shimmer in the sunlight. These dangerous protrusions stand in the way of tunnel entrances, making it difficult to traverse this glittering realm. There are many who mistake these obstacles for dead ends and turn back, but the diligent discover beautiful secrets underground. The Phorus vaults its way over prism slabs and strides confidently towards a crystal oasis.",
+	"Summary": "The Phorus navigates the glittering terrain of Crystal Shores with razor-sharp talons and a stunning display of colors. It warns intruders with a bellowing caw, and can move so swiftly that it creates illusions to confuse and capture prey. With muscular legs designed for precise kicks, it sharpens its talons on crystal formations and even on the remains of adversaries, showcasing its ferocity and adaptability in this treacherous environment.",
+	"Biology": {
+		"Physiology": "The spiky Phorus has a razor-sharp mind and even sharper talons to match. It is a burst of colour, with amber eyes gawking out of a stained glass face and a pronounced beak of yellow and purple. The serrated outlines of its face trace the orange pattern beside its eyes and the white and pink of its cheeks. Its feathers come in various colours and textures, from the rounded green and purple framing its face to the crisp layered white of its long neck and the downy yellow lime of its underbelly. Most of the Phorus' body is green, but it has swashes of pointy red upon its head and short wings. Its tail cascades down in long elegant streams with multicoloured blue, purple, white, and green gradients, all tipped in red. The Phorus often holds one muscled leg up, orange-yellow and pronged with talons, ready to strike.",
+		"Behaviour": "The ill-tempered Phorus warns others who approach it with a loud, jarring caw. Sometimes a brave and curious Pho approaches to inspect its gorgeous tail, only to get kicked in the face. This dangerous feathered Illuvial can move so quickly that it is incomprehensible to the Valain eye, creating phantom versions of itself that appear to travel in front of it. These mirror images distract its prey and allow it to hunt with greater efficiency. Horrifyingly enough, it has been observed sharpening its talons upon Valain skeletons and the remains of others who roused its temper."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/TerrorBirdStage2/TerrorBirdStage2_default_default_webp.3840x2160/TerrorBirdStage2_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/TerrorBirdStage2/TerrorBirdStage2_default_default_hls.m3u8/TerrorBirdStage2_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Phorus has an extremely loud and jarring caw, an unnerving sound that can often be heard echoing in the caves of Crystal Shores.",
+			"The Phorus cannot lift itself with its wings but it can run up walls by puncturing crystal formations with its sharp talons.",
+			"The Phorus moves so quickly that it is incomprehensible to the Valain eye, creating phantom versions of itself that appear to travel in front of it."
+		],
+		"Buckley": [
+			"The Phorus has pigment cells in its feathers called melanosomes that give them a diverse range of colours.",
+			"The Phorus has an extremely robust muscular structure in its legs which allow it to flex and kick with lethal precision.",
+			"The Phorus has a specialised respiratory system with advanced air sacs that enables it to take in more oxygen. Its circulatory system is optimized for delivering oxygen to its powerful muscles, enabling it to run at high speeds for extended periods of time.",
+			"The Phorus' skeletal system has special modifications in its spine and ribcage to provide extra support for the large leg muscles.",
+			"The Phorus is flightless, with vestigial wings that provide support for balancing. However, its powerful legs are capable of travelling long distances without tiring."
+		]
+	},
+	"TraitOrderLegacy": [
+		2,
+		1,
+		4,
+		6,
+		3,
+		5
+	],
+	"Description": {
+		"Format": "Phorus fires a ghostly beak through its target, dealing dealing <AttackPhysicalDamage>400</> (<OmegaPowerPercentage></><AttackDamage></>) Physical Damage to all enemies hit.\r\n\r\nDamage: <AttackPhysicalDamage>400</> = <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) + <AttackPhysicalDamage>{AtkDamage}</> (<AttackDamage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0].Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"AtkDamage": {
+				"ParameterPath": "Stats.AttackPhysicalDamage",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Phorus fires a ghostly beak through its target, dealing dealing 400 () Physical Damage to all enemies hit.\r\n\r\nDamage: 400 = 250 () + 150 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 2,
+			"AttackSpeed": 1,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 3,
+			"Resistance": 5
+		}
+	}
+}

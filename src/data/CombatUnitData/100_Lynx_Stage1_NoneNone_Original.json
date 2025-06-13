@@ -1,0 +1,248 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Lynx",
+	"Stage": 1,
+	"Path": "NoneNone",
+	"Variation": "Original",
+	"Tier": 2,
+	"CombatAffinity": "None",
+	"CombatClass": "None",
+	"DominantCombatAffinity": "None",
+	"DominantCombatClass": "None",
+	"SizeUnits": 3,
+	"Stats": {
+		"MaxHealth": 1400000,
+		"StartingEnergy": 0,
+		"EnergyCost": 100000,
+		"PhysicalResist": 30,
+		"EnergyResist": 30,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": -5000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 125000,
+		"AttackSpeed": 70,
+		"MoveSpeedSubUnits": 2400,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 2,
+		"OmegaRangeUnits": 2,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Lynx Basic Attack I",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 37
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Scything",
+			"TotalDurationMs": 1500,
+			"Skills": [
+				{
+					"Name": "Slash",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 30
+					},
+					"PercentageOfAbilityDuration": 33,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										150000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Slash",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 10
+					},
+					"PercentageOfAbilityDuration": 33,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										150000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Slash",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 5
+					},
+					"PercentageOfAbilityDuration": 33,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										150000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Lynx",
+	"DisplayDescription": "Lynx slashes the target 3 times, dealing <AttackPureDamage>150</> (<OmegaPowerPercentage></>) Pure Damage per slash.\r\n\r\nDamage: <AttackPureDamage>450</> = <AttackPureDamage>150</> x3 (<OmegaPowerPercentage></>)",
+	"Intro": "Despite the lack of rain, there are shallow puddles scattered everywhere along the jagged mountain ridges of Shardbluff Labyrinth. Low-hanging mist creeps across the rocky surfaces and a salty thickness lingers in the air. Occasionally, a disorienting rumble can be heard as waves crash against the cliffs facing the water. The Lynx stands on the edge of the escarpment, enjoying the cool ocean spray.",
+	"Summary": "In the misty Shardbluff Labyrinth, the Lynx enjoys the cool ocean spray from the cliffs amidst the jagged mountain ridges. This adaptable predator has captivating mismatched eyes, a luminescent green orb on its head, and thick tawny fur with retractable claws for hunting and grooming. Its nervous system is linked to the glowing orb, and its specialized vision and sharp claws make it a formidable and adaptable Illuvial.",
+	"Biology": {
+		"Physiology": "The Lynx slinks on four short legs, often peering around with captivating eyes of mismatched blue and yellow. It has an orb of green light in the middle of its head which changes luminosity depending on its movements. With drop-shaped ears and a bristly tail, it has thick tawny fur all over its body marked with brown and cream. The Lynx has long whiskers and even longer fur that grows down from the sides of its face. Its paws have retractable claws which it uses to both scratch and groom.",
+		"Behaviour": "Sometimes intimidating, sometimes playful, the Lynx is just as likely to prowl on all fours as it is to roll around in a field. The Lynx enjoys lounging along the bluffs, napping for most of the day. Afterwards, it gets a sudden burst of energy and romps up and down the cliffs, pouncing at creeping Tentifung in the moonlight. It frequently crosses the borders of Brightland Steppes and Crimson Waste, adaptable to the varying terrain in both. As an ambush predator, it hides behind large pieces of Tentifung and leaps upon unsuspecting prey. It may hunt smaller prey alone or work with other Lynxes to take down larger Illuvials."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage1/LynxStage1_default_default_webp.3840x2160/LynxStage1_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage1/LynxStage1_default_default_hls.m3u8/LynxStage1_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Lynx will roll on its back and display its cream underbelly when it feels safe. It is the most vulnerable part of its body.",
+			"The Lynx's mood can shift very quickly for no particular reason. It can be extremely curious about a new plaything only to be utterly aloof moments later.",
+			"The Lynx is often elusive, avoiding contact with others. Occasionally it may approach another creature in a friendly manner, but only when it is the one to initiate an encounter."
+		],
+		"Buckley": [
+			"The Lynx's nervous system is directly connected to the luminous orb upon its forehead, which can light up in varying degrees of illumination corresponding to its mental activity, particularly those involving social interaction.",
+			"The Lynx has specialised cones in each of its eyes that allow it to differentiate between minute differences in the electromagnetic spectrum as vastly different outputs which are undetectable to most life forms.",
+			"The Lynx's large paws offer lots of padding and protection, enabling it to traverse through various terrain.",
+			"The Lynx's pointed ears have muscles that allow it to pivot towards the source of a sound.",
+			"The Lynx has sharp and retractile claws which have the same keratin-chrovium composition as its 28 teeth."
+		]
+	},
+	"TraitOrderLegacy": [
+		2,
+		1,
+		3,
+		6,
+		5,
+		4
+	],
+	"Description": {
+		"Format": "Lynx slashes the target 3 times, dealing <AttackPureDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Pure Damage per slash.\r\n\r\nDamage: <AttackPureDamage>{OmegaDamageFull}</> = <AttackPureDamage>{OmegaDamage}</> x3 (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"OmegaDamageFull": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.003
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Lynx slashes the target 3 times, dealing 150 () Pure Damage per slash.\r\n\r\nDamage: 450 = 150 x3 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 2,
+			"AttackSpeed": 1,
+			"Health": 3,
+			"MovementSpeed": 6,
+			"OmegaPower": 5,
+			"Resistance": 4
+		}
+	}
+}

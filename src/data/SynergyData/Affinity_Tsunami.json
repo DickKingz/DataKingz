@@ -1,0 +1,165 @@
+{
+	"CombatAffinity": "Tsunami",
+	"CombatAffinityComponents": [
+		"Water",
+		"Water"
+	],
+	"SynergyThresholds": [
+		2,
+		3,
+		4
+	],
+	"SynergyThresholdsAbilities": {
+		"Variables": [
+			{
+				"Name": "Tsunami_RefundEnergy",
+				"Values": [
+					20,
+					25,
+					30
+				]
+			},
+			{
+				"Name": "Tsunami_AOEDamage",
+				"Values": [
+					200000,
+					250000,
+					300000
+				]
+			},
+			{
+				"Name": "Tsunami_Vampiric",
+				"Values": [
+					0,
+					0,
+					15
+				]
+			}
+		],
+		"TeamAbilities": [],
+		"UnitAbilities": [
+			{
+				"Name": "TsunamiSynergy_Ability1",
+				"ActivationTrigger": {
+					"TriggerType": "OnActivateXAbilities",
+					"AbilityTypes": [
+						"Omega"
+					],
+					"EveryX": true,
+					"NumberOfAbilitiesActivated": 1
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Tsunami - Refund Energy",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "Self"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "InstantEnergyGain",
+									"Expression": {
+										"Operation": "%",
+										"Operands": [
+											"{Tsunami_RefundEnergy}",
+											{
+												"Stat": "EnergyCost",
+												"StatSource": "Sender"
+											}
+										]
+									}
+								}
+							]
+						}
+					},
+					{
+						"Name": "Tsunami - Deal AOE Damage",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "InZone",
+							"Group": "Enemy",
+							"RadiusUnits": 25
+						},
+						"EffectPackage": {
+							"Attributes": {
+								"VampiricPercentage": "{Tsunami_Vampiric}"
+							},
+							"Effects": [
+								{
+									"Type": "InstantDamage",
+									"DamageType": "Energy",
+									"Expression": "{Tsunami_AOEDamage}"
+								}
+							]
+						}
+					}
+				]
+			}
+		]
+	},
+	"IntrinsicAbilities": [],
+	"DisplayName": "Tsunami",
+	"DisplayDescription": "\r\nOn Omega, Tsunami units refund a percentage of their <EnergyCost>Energy Cost</> and create a water splash, dealing <AttackEnergyDamage>Energy Damage</> in 25-hexes.\r\n\r\n(4) Water Splash heals for <MaxHealth>15%</> of the damage dealt.\r\n",
+	"DisplayDescriptionThresholds": [
+		"Refund <EnergyCost>20%</><EnergyCost></>. Deal <AttackEnergyDamage>200</><AttackEnergyDamage></>",
+		"Refund <EnergyCost>25%</><EnergyCost></>. Deal <AttackEnergyDamage>250</><AttackEnergyDamage></>",
+		"Refund <EnergyCost>30%</><EnergyCost></>. Deal <AttackEnergyDamage>300</><AttackEnergyDamage></>"
+	],
+	"Description": {
+		"Format": "\r\nOn Omega, Tsunami units refund a percentage of their <EnergyCost>Energy Cost</> and create a water splash, dealing <AttackEnergyDamage>Energy Damage</> in {SplashRadius}-hexes.\r\n\r\n(4) Water Splash heals for <MaxHealth>{Tsunami_Vampiric}%</> of the damage dealt.\r\n",
+		"Parameters": {
+			"SplashRadius": {
+				"ParameterPath": "SynergyThresholdsAbilities.UnitAbilities[0].Skills[1].Targeting.RadiusUnits",
+				"ValueMultiplier": 1.0
+			},
+			"Tsunami_Vampiric": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[2].Values[2]",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DescriptionThresholds": {
+		"Format": "Refund <EnergyCost>{Tsunami_RefundEnergy}%</><EnergyCost></>. Deal <AttackEnergyDamage>{Tsunami_AOEDamage}</><AttackEnergyDamage></>",
+		"Parameters": [
+			{
+				"Tsunami_RefundEnergy": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[0]"
+				},
+				"Tsunami_AOEDamage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[0]",
+					"ValueMultiplier": 0.001
+				}
+			},
+			{
+				"Tsunami_RefundEnergy": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[1]"
+				},
+				"Tsunami_AOEDamage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[1]",
+					"ValueMultiplier": 0.001
+				}
+			},
+			{
+				"Tsunami_RefundEnergy": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[2]"
+				},
+				"Tsunami_AOEDamage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[2]",
+					"ValueMultiplier": 0.001
+				}
+			}
+		]
+	},
+	"DisplayDescriptionNormalized": "On Omega, Tsunami units refund a percentage of their Energy Cost and create a water splash, dealing Energy Damage in 25-hexes.\r\n\r\n(4) Water Splash heals for 15% of the damage dealt.",
+	"DisplayDescriptionThresholdsNormalized": [
+		"Refund 20%. Deal 200",
+		"Refund 25%. Deal 250",
+		"Refund 30%. Deal 300"
+	]
+}

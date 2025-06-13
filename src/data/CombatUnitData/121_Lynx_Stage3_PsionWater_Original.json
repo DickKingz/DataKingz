@@ -1,0 +1,209 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Lynx",
+	"Stage": 3,
+	"Path": "PsionWater",
+	"Variation": "Original",
+	"Tier": 2,
+	"CombatAffinity": "Water",
+	"CombatClass": "Psion",
+	"DominantCombatAffinity": "Water",
+	"DominantCombatClass": "Psion",
+	"SizeUnits": 7,
+	"Stats": {
+		"MaxHealth": 1900000,
+		"StartingEnergy": 60000,
+		"EnergyCost": 120000,
+		"PhysicalResist": 40,
+		"EnergyResist": 45,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 180000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 60,
+		"MoveSpeedSubUnits": 2500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 50,
+		"OmegaRangeUnits": 50,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Psion Water Lynx Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 60
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 10000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Tidal Sling",
+			"TotalDurationMs": 2500,
+			"Skills": [
+				{
+					"Name": "Wave",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 75
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 10,
+						"DurationMs": 3000,
+						"FrequencyMs": 100,
+						"MovementSpeedSubUnits": 8000,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 90,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										1000000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Arcane Hydrolynx",
+	"DisplayDescription": "Arcane Hydrolynx sends out a wave towards its target, dealing <AttackEnergyDamage>1,000</> (<OmegaPowerPercentage></>) Energy Damage to all enemies hit.\r\n\r\nDamage: <AttackEnergyDamage>1,000</> (<OmegaPowerPercentage></>)",
+	"Intro": "Halcyon Sea is full of mysteries and shell-like structures that grow more massive further within the region. One, in particular, leads to a vast underground maze with a spongey ground and wet walls covered in transparent slime. The water dripping from the ceiling echoes throughout the tunnel, which is hauntingly quiet except for the heavy breathing of its visitors. Should one hear the tremor or scratching from deep within, perhaps they have stumbled upon the resting spot of an Arcane Hydrolynx.",
+	"Summary": "Halcyon Sea hosts the elusive Arcane Hydrolynx, distinguished by its light mane and luminous blue energy orb. This Illuvial, more terrestrial than aquatic, navigates damp caves with ease, marking its territory with unique liquids. Solitary by nature, it possesses superior senses, using its sharp eyes and acute smell to strategically hunt and defend against intruders.",
+	"Biology": {
+		"Physiology": "The Arcane Hydrolynx has a light mane, slender ears, and a lithe body that can easily climb up and down complex terrain. Above its head is a crystal blue ball of energy, shining with the same splendour as the array of blue marks on the sides of its face. Its fur coat has a subtle gradient of white to pale indigo, with long curvy patterns of ultramarine. More angular than the other Hydrolynxes, the Arcane Hydrolynx has sharp blue eyes that can identify a trespasser from afar, even in the dark. It does not have sharp claws to strike with and uses the energy in the glowing orb above its head instead.",
+		"Behaviour": "The Arcane Hydrolynx is the only Hydrolynx that spends more time on land than in water. It has been observed staying in land-based caves more than the many bodies of water in the Halcyon Sea. However, the places it chooses to frequent are often damp with an abundance of moisture in the atmosphere. As a solitary Illuvial, it rarely interacts with others, even those of its kind. It has a superior sense of sight and smell than the others, aiding its ability to attack strategically from a distance. The Arcane Hydrolynx marks its territory with a special liquid to deter trespassers."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3PsionWater/LynxStage3PsionWater_default_default_webp.3840x2160/LynxStage3PsionWater_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3PsionWater/LynxStage3PsionWater_default_default_hls.m3u8/LynxStage3PsionWater_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Arcane Hydrolynx is the only Hydrolynx that spends more time on land than in water. It has been observed staying in land-based caves more than the many bodies of water in the Halcyon Sea. However, the places it chooses to frequent are often damp with an abundance of moisture in the atmosphere.",
+			"The Arcane Hydrolynx marks its territory with a special liquid that it also uses as a wayfinding device in complex tunnels.",
+			"The Arcane Hydrolynx is a solitary Illuvial and rarely interacts with others, even those of its kind. It has a superior sense of sight and smell than the others, aiding its ability to attack strategically from a distance."
+		],
+		"Buckley": [
+			"The Arcane Hydrolynx's energy orb is capable of absorbing moisture from the atmosphere.",
+			"The Arcane Hydrolynx has a scent gland in its paws that allows it to leave liquid scent marks around its territory. This scent mark can rub off easily, allowing the Arcane Hydrolynx to track any intruders.",
+			"The Arcane Hydrolynx's facial water markings hold pure distilled water and it is a signifier for its health.",
+			"The Arcane Hydrolynx's long ears are capable of directing the flow of energy in the sphere upon its head, enabling it to respond quickly to target sounds in its environment.",
+			"The Arcane Hydrolynx's eyes have large lenses that are specially adapted to enable them to hone in on targets across vast distances. Its dual foveas and its retinas, which are densely packed with cones, allow it to focus on its peripheral vision."
+		]
+	},
+	"TraitOrderLegacy": [
+		3,
+		2,
+		4,
+		6,
+		1,
+		5
+	],
+	"Description": {
+		"Format": "Arcane Hydrolynx sends out a wave towards its target, dealing <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Energy Damage to all enemies hit.\r\n\r\nDamage: <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Arcane Hydrolynx sends out a wave towards its target, dealing 1,000 () Energy Damage to all enemies hit.\r\n\r\nDamage: 1,000 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 3,
+			"AttackSpeed": 2,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 5
+		}
+	}
+}

@@ -1,0 +1,219 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "DokaFire",
+	"Stage": 3,
+	"Path": "Fire",
+	"Variation": "Original",
+	"Tier": 0,
+	"CombatAffinity": "Fire",
+	"CombatClass": "Fighter",
+	"DominantCombatAffinity": "Fire",
+	"DominantCombatClass": "Fighter",
+	"SizeUnits": 4,
+	"Stats": {
+		"MaxHealth": 1950000,
+		"StartingEnergy": 0,
+		"EnergyCost": 80000,
+		"PhysicalResist": 45,
+		"EnergyResist": 45,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 155000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 70,
+		"MoveSpeedSubUnits": 2500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 5,
+		"OmegaRangeUnits": 5,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Fire Doka Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 37
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Scorching Smash III",
+			"TotalDurationMs": 1500,
+			"Skills": [
+				{
+					"Name": "Fist slam",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 53
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										600000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "It then gains 15% Attack Speed for 4 seconds and the next 4 Attacks give 4 additional Energy.",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 20
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "AttackSpeed",
+								"DurationMs": 3000,
+								"Expression": {
+									"Percentage": 50,
+									"Stat": "AttackSpeed",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Exalted Fire Doka",
+	"DisplayDescription": "Exalted Fire Doka slams fists into the target, dealing <AttackPhysicalDamage>600</> (<OmegaPowerPercentage></>) Physical Damage, gaining <AttackSpeed>50%</> Attack Speed for 3 seconds.\r\n\r\nDamage: <AttackPhysicalDamage>600</> (<OmegaPowerPercentage></>)",
+	"Intro": "Swirling winds of ash and red dust rage upon Crimson Waste, beating down on those who tread the surface. The ghastly grey sky hosts periodic cracks of thunder, which gives off a faint light diffused by the thick clouds. Sometimes, one may hear a booming clap, followed by a series of slams with no lightning at all. The Exalted Fire Dokas exchange blows with one another, maintaining their fighting stance despite the storm.",
+	"Summary": "This stocky Illuvial has dark brown fur, bright red facial markings, and blazing tendrils of hair that glow with fire when it strikes. Known for its fierce training and messy eating habits, the Exalted Fire Doka grows brighter with each victory. Its physiology includes internal reserves of flammable fuel, a heat compression mechanism for powerful punches, and an endocrine system that boosts endorphins and adrenaline during intense activity.",
+	"Biology": {
+		"Physiology": "The Exalted Fire Doka is a stocky Illuvial with a flat head, sturdy fists, and two feet planted firmly on the ground. It has dark brown fur with a cream underbelly, and its face is illuminated by bright red markings above and under its eyes. Growing from its head to the small of its back are thick, blazing tendrils of hair. They curl with flames that dance above its head, shining with the same fire that streaks from the Exalted Fire Doka's claws when it strikes. Wide-set and packed with muscles, this fighter Illuvial has a slight belly and a wide, curling tail to match.",
+		"Behaviour": "The Exalted Fire Doka stands with its knees bent, hopping in place with its fists ready to strike. It can be found taking swings at various structures, determined to leave its mark on even the hardest surfaces. The Exalted Fire Doka often trains with others of its kind, exchanging blows and practising its jumps. The more battles an Exalted Fire Doka wins, the brighter its fire burns. Ones that are dimmer must spend prolonged time regrowing their strength. At the end of the year, the Exalted Fire Dokas that are the dimmest train alone until they are strong enough to train amongst the others."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/DokaStage3Fire/DokaStage3Fire_default_default_webp.3840x2160/DokaStage3Fire_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/DokaStage3Fire/DokaStage3Fire_default_default_hls.m3u8/DokaStage3Fire_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Exalted Fire Doka has an intense rivalry with others of its kind and their regular fighting creates clouds of red dust in Crimson Waste.",
+			"The Exalted Fire Doka can enter a fighting frenzy, its facial markings and claws glowing brighter as its strikes repeatedly at its target.",
+			"The Exalted Fire Doka is a messy eater that smashes open luminescent mushrooms before devouring their insides, often ending up with melted goo on its fur."
+		],
+		"Buckley": [
+			"The Exalted Fire Doka's abdomen has internal reserves of flammable fuel which is what gives its belly its slight swell. These reserves help it maintain a sizable amount of fire within its palm and upon its head.",
+			"The Exalted Fire Doka has a heat compression mechanism in its bicep which allows it to lock its arm in and release for maximum impact. It is connected to the fire vents in its knuckles, enabling a powerful punch.",
+			"The Exalted Fire Doka has small openings in its knuckles that release fire, which reacts with the cavitation bubbles within its fists, using the pockets of combustible gas as fuel.",
+			"The Exalted Fire Doka's endocrine system has a mechanism for releasing 5x more endorphins and adrenaline than the average Illuvial during periods of high activity.",
+			"The Exalted Fire Doka has a specialised olfactory system that enables it to detect the pheromones of other Illuvials."
+		]
+	},
+	"TraitOrderLegacy": [
+		2,
+		1,
+		3,
+		6,
+		5,
+		4
+	],
+	"Description": {
+		"Format": "Exalted Fire Doka slams fists into the target, dealing <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Physical Damage, gaining <AttackSpeed>{AttackSpeedBuff}%</> Attack Speed for {BuffDuration} seconds.\r\n\r\nDamage: <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"AttackSpeedBuff": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].Expression.Percentage"
+			},
+			"BuffDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Exalted Fire Doka slams fists into the target, dealing 600 () Physical Damage, gaining 50% Attack Speed for 3 seconds.\r\n\r\nDamage: 600 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 2,
+			"AttackSpeed": 1,
+			"Health": 3,
+			"MovementSpeed": 6,
+			"OmegaPower": 5,
+			"Resistance": 4
+		}
+	}
+}

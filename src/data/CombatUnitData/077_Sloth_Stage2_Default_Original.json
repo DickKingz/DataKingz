@@ -1,0 +1,249 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Sloth",
+	"Stage": 2,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 3,
+	"CombatAffinity": "Verdant",
+	"CombatClass": "Bulwark",
+	"DominantCombatAffinity": "Nature",
+	"DominantCombatClass": "Bulwark",
+	"SizeUnits": 4,
+	"Stats": {
+		"MaxHealth": 2400000,
+		"StartingEnergy": 80000,
+		"EnergyCost": 180000,
+		"PhysicalResist": 65,
+		"EnergyResist": 55,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 125000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 50,
+		"MoveSpeedSubUnits": 1150,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 3,
+		"OmegaRangeUnits": 3,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Sloth Basic Attack II",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 50
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Underoot II",
+			"TotalDurationMs": 3500,
+			"Skills": [
+				{
+					"Name": "Root and damage",
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground"
+						],
+						"PreDeploymentDelayPercentage": 80
+					},
+					"Targeting": {
+						"Type": "DistanceCheck",
+						"Guidance": [
+							"Ground"
+						],
+						"Group": "Enemy",
+						"Lowest": false,
+						"Num": 2
+					},
+					"PercentageOfAbilityDuration": 85,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Root",
+								"ActivationsUntilExpiry": 1,
+								"DurationMs": 3000
+							},
+							{
+								"Type": "DOT",
+								"DamageType": "Energy",
+								"DurationMs": 3000,
+								"FrequencyMs": 1000,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										250000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Knock up targets",
+					"Targeting": {
+						"Type": "PreviousTargetList"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 85
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 18,
+						"DurationMs": 100,
+						"FrequencyMs": 100,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 15,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Displacement",
+								"DisplacementType": "KnockUp",
+								"DurationMs": 750,
+								"OverlapProcessType": "Merge"
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Twine",
+	"DisplayDescription": "Twine slams the ground, channeling roots to the 2 furthest enemies, Rooting them and dealing <AttackEnergyDamage>250</> (<OmegaPowerPercentage></>) Energy Damage over 3 seconds.\r\n\r\nAfter 3 seconds, the roots erupt Stunning enemies in 18-hexes for 0.75 seconds.\r\n\r\nDamage: <AttackEnergyDamage>250</> (<OmegaPowerPercentage></>)\r\n\r\nRoot: Cannot move while affected.",
+	"Intro": "Waterfalls run down the spines of fossilized giants in Brightland Steppes as massive clouds roll through the plateaus. The water flows between these enormous structures, creating a rushing echo that masks the sounds of movement through the area. Covered in green, the Twine climbs its way down an ancient skull, wrapping its gangly limbs upon its mossy surface.",
+	"Summary": "The Twine, a lumbering creature of vines and roots, wraps its long limbs around ancient skulls as it explores the Brightland Steppes with glowing yellow eyes. Known for its forgetful nature, it often revisits familiar places with renewed wonder, sleeping so long that it becomes overgrown with plant life. Its slow pace belies its ability to draw energy from these plants and swim swiftly, using its extended roots for defense in emergencies.",
+	"Biology": {
+		"Physiology": "The Twine is a lumbering mass of brown and green with long leafy tendrils that hang off its muscular form. Dots of yellow light line its body, adding sparkle to its body of tightly wound roots and vines. With drooping green leaves for hair, broad shoulders, and gigantic hands bigger than its head, the Twine is a creature of peculiar proportions. Its arms are so long that it often drags its heavy hands on the ground, leaving a knuckle trail in the moss. Constantly slouching, the Twine's expansive upper half is offset by shorter legs that trudge on wide, clawed feet. With glowing yellow eyes and a small, curved smile, the good-natured Twine is welcome wherever it goes.",
+		"Behaviour": "The forgetful Twine spends its days napping and 'exploring' the same places it's visited before, each time with the same sense of discovery. It plants its roots down and wraps its arms around branches or rocks before it sleeps, refusing to move until it is fully rested. It can sleep for so long that it becomes overgrown with flowers and various plantlife, which saps energy from its body as they sprout, making it even more lethargic. However, in times of emergency, the Twine can access the life energy of these growths and extend its roots further in self-defence."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/SlothStage2/SlothStage2_default_default_webp.3840x2160/SlothStage2_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/SlothStage2/SlothStage2_default_default_hls.m3u8/SlothStage2_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Twine plants its roots down and wraps its arms around the branch of a tree before it sleeps. If the Twine is resting and falls from a branch, it continues to sleep until it is fully rested. The Twine can sleep so long that it becomes overgrown with flowers and various plantlife.",
+			"The Twine can swim much faster than it walks and it does not need to breathe for extended periods of time.",
+			"The Twine is quite forgetful, frequently 'exploring' the same places it's visited before, each time with the same sense of discovery."
+		],
+		"Buckley": [
+			"The Twine's roots can draw up water from deep underground to offset the heat its heavy body retains.",
+			"The Twine's digestive system is connected to the plants growing upon its body, allowing it to draw upon energy absorbed through photosynthesis.",
+			"The Twine's roots have rapid growth capabilities that allows it to reach remote resting sites.",
+			"Due to the Twine's slow heart rate and gradual use of oxygen, it does not require fresh oxygen for up to an hour. This enables it to swim underwater much more efficiently.",
+			"The Twine has specialised joints that can lock in, allowing them to hang from trees without using excess energy."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		4,
+		1,
+		6,
+		3,
+		2
+	],
+	"Description": {
+		"Format": "Twine slams the ground, channeling roots to the {TargetNum} furthest enemies, Rooting them and dealing <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Energy Damage over {DamageRootDuration} seconds.\r\n\r\nAfter {KnockupDelay} seconds, the roots erupt Stunning enemies in {RootRadius}-hexes for {KnockupDuration} seconds.\r\n\r\nDamage: <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)\r\n\r\nRoot: Cannot move while affected.",
+		"Parameters": {
+			"TargetNum": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Targeting.Num"
+			},
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"DamageRootDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"KnockupDelay": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"RootRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].Zone.RadiusUnits"
+			},
+			"KnockupDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Twine slams the ground, channeling roots to the 2 furthest enemies, Rooting them and dealing 250 () Energy Damage over 3 seconds.\r\n\r\nAfter 3 seconds, the roots erupt Stunning enemies in 18-hexes for 0.75 seconds.\r\n\r\nDamage: 250 ()\r\n\r\nRoot: Cannot move while affected.",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 4,
+			"Health": 1,
+			"MovementSpeed": 6,
+			"OmegaPower": 3,
+			"Resistance": 2
+		}
+	}
+}

@@ -1,0 +1,304 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "KomodoDragon",
+	"Stage": 1,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 3,
+	"CombatAffinity": "Nature",
+	"CombatClass": "Bulwark",
+	"DominantCombatAffinity": "Nature",
+	"DominantCombatClass": "Bulwark",
+	"SizeUnits": 3,
+	"Stats": {
+		"MaxHealth": 1650000,
+		"StartingEnergy": 90000,
+		"EnergyCost": 240000,
+		"PhysicalResist": 40,
+		"EnergyResist": 45,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 105000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 60,
+		"MoveSpeedSubUnits": 1000,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 3,
+		"OmegaRangeUnits": 3,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Komodo Dragon Basic Attack I",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 45
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Misty Shield I",
+			"TotalDurationMs": 6200,
+			"Skills": [
+				{
+					"Name": "Cloud",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"Guidance": [
+							"Ground",
+							"Airborne",
+							"Underground"
+						],
+						"PreDeploymentDelayPercentage": 20
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 22,
+						"DurationMs": 4000,
+						"FrequencyMs": 100,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 25,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "SpawnMark",
+								"MarkType": "Beneficial",
+								"DurationMs": 4000,
+								"AttachedAbilities": [
+									{
+										"Name": "Blind and debuff enemy on hit",
+										"ActivationTrigger": {
+											"TriggerType": "OnHit",
+											"AbilityTypes": [
+												"Attack"
+											],
+											"SenderAllegiance": "Enemy",
+											"ReceiverAllegiance": "Self"
+										},
+										"TotalDurationMs": 0,
+										"Skills": [
+											{
+												"Name": "Attack speed debug and blind state",
+												"Deployment": {
+													"Type": "Direct"
+												},
+												"Targeting": {
+													"Type": "Activator"
+												},
+												"EffectPackage": {
+													"Effects": [
+														{
+															"Type": "NegativeState",
+															"NegativeState": "Blind",
+															"DurationMs": 1000
+														}
+													]
+												}
+											}
+										]
+									}
+								]
+							},
+							{
+								"Type": "SpawnMark",
+								"MarkType": "Beneficial",
+								"DurationMs": 4000,
+								"AttachedAbilities": [
+									{
+										"Name": "Damage Enemies in AOE",
+										"ActivationTrigger": {
+											"TriggerType": "EveryXTime",
+											"ActivateEveryTimeMs": 1000
+										},
+										"TotalDurationMs": 0,
+										"Skills": [
+											{
+												"Name": "Damage Enemies in AOE",
+												"Deployment": {
+													"Type": "Direct"
+												},
+												"Targeting": {
+													"Type": "InZone",
+													"Group": "Enemy",
+													"RadiusUnits": 22
+												},
+												"EffectPackage": {
+													"Effects": [
+														{
+															"Type": "InstantDamage",
+															"DamageType": "Energy",
+															"Expression": {
+																"Operation": "*",
+																"Operands": [
+																	60000,
+																	{
+																		"Stat": "OmegaPowerPercentage",
+																		"StatSource": "Sender"
+																	}
+																]
+															}
+														}
+													]
+												}
+											}
+										]
+									}
+								]
+							},
+							{
+								"Type": "Buff",
+								"Stat": "VulnerabilityPercentage",
+								"OverlapProcessType": "Highest",
+								"DurationMs": 4000,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										{
+											"Percentage": 10,
+											"Stat": "VulnerabilityPercentage",
+											"StatSource": "Receiver"
+										},
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Headi",
+	"DisplayDescription": "Pollen billows around Headi forming a 22-hexes cloud for 4 seconds, causing all enemies hitting Headi to be Blinded for 1 seconds.\r\n\r\nAllies within the cloud gain <DamageReduction>10%</> (<OmegaPowerPercentage></>) Damage Reduction and enemies are dealt <AttackEnergyDamage>60</> (<OmegaPowerPercentage></>) Energy Damage per second.\r\n\r\nDMG Reduction: <DamageReduction>10%</> (<OmegaPowerPercentage></>)\r\nDamage: <AttackEnergyDamage>60</> (<OmegaPowerPercentage></>)",
+	"Intro": "Purple roots sprawl across Brightland Steppes, forming intricate structures that lift mossy stairways into the sky. Without anything to hold them steady, they can be tricky to ascend. They wobble from shifting weight, sending those without a strong grip tumbling down. Those who are lucky may come across a trail of sticky slime, which helps them hold on. The one who leaves such a gift is none other than the Headi.",
+	"Summary": "The Headi is a small creature with sprig horns adorned with flowers, emerald eyes, a wide grinning mouth, and a body covered in moss, violet roots, and mushrooms. It scampers around, leaving light trails, emits glowing vapors, and communicates through bitemarks and slime trails. The Headi's abilities include changing its skin texture, tasting electromagnetic radiation, and producing a sap-like slime for flexibility, with a symbiotic relationship with the plants on its body.",
+	"Biology": {
+		"Physiology": "The Headi has two sprig horns that sprout a lovely arrangement of white flowers and violet buds, along with little indigo leaves and tendrils. Its face is made up of big emerald eyes and a wide, grinning mouth with a forked tongue flickering out. At the back of its head is a dewlap of green leaves, and below is a trail of vibrant violet mushrooms. Fuzzy moss covers its back and a coil of violet roots spiral in and out of its tail. A green shiny streak dances around them, the same colour as the light from the bark-like patterns of its legs. Its skin is sometimes dry and sometimes covered in slime.",
+		"Behaviour": "Headis scamper around, their tails leaving light trails for others to follow, and often crawl through crevices too narrow for others Illuvials to follow. The Headi may stop to smell flowers and small mushrooms, giving careful attention to little growths that are often overlooked. When one gets too excited, it emits a partially spiralled pattern out of leaves and light."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/KomodoDragonStage1/KomodoDragonStage1_default_default_webp.3840x2160/KomodoDragonStage1_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/KomodoDragonStage1/KomodoDragonStage1_default_default_hls.m3u8/KomodoDragonStage1_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Headi pulls in luminous energy from its surroundings and breathes out a glowing vapour. It often emits light trails with intricate patterns.",
+			"The Headi leaves bitemarks and slime trails in its territory to communicate with others of its kind.",
+			"The plant-like configurations on Headi's head produce different types of slimes that vary in consistency when it encounters other Headis, environmental threats, or new sources of food."
+		],
+		"Buckley": [
+			"The Headi's tail is the same length as its head and torso, but it holds five times as many papillae, enabling it to change the texture of its skin to resemble the trees in its environment.",
+			"The Headi has specialised receptors on its tongue that allow it to 'taste' electromagnetic radiation across the ultraviolet spectrum.",
+			"The Headi produces a sap-like slime that functions as a lubricant, making its body more slippery and flexible, allowing it to enter small enclosures.",
+			"The Headi has a symbiotic relationship with the plants growing from its body, which undergoes photosynthesis and regulates its energy stores.",
+			"The Headi has cryptochromes in its eyes that enable it to detect magnetic fields and orient itself based on the planet's poles."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		4,
+		1,
+		6,
+		3,
+		2
+	],
+	"Description": {
+		"Format": "Pollen billows around Headi forming a {OmegaRadius}-hexes cloud for {OmegaDuration} seconds, causing all enemies hitting Headi to be Blinded for {BlindDuration} seconds.\r\n\r\nAllies within the cloud gain <DamageReduction>{DamageReduction}%</> (<OmegaPowerPercentage></>) Damage Reduction and enemies are dealt <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Energy Damage per second.\r\n\r\nDMG Reduction: <DamageReduction>{DamageReduction}%</> (<OmegaPowerPercentage></>)\r\nDamage: <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Zone.RadiusUnits"
+			},
+			"OmegaDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Zone.DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"BlindDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].AttachedAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"DamageReduction": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[2].Expression.Operands[0].Percentage",
+				"ValueMultiplier": 1.0
+			},
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].AttachedAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Pollen billows around Headi forming a 22-hexes cloud for 4 seconds, causing all enemies hitting Headi to be Blinded for 1 seconds.\r\n\r\nAllies within the cloud gain 10% () Damage Reduction and enemies are dealt 60 () Energy Damage per second.\r\n\r\nDMG Reduction: 10% ()\r\nDamage: 60 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 4,
+			"Health": 1,
+			"MovementSpeed": 6,
+			"OmegaPower": 3,
+			"Resistance": 2
+		}
+	}
+}

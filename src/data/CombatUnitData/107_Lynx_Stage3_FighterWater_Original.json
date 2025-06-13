@@ -1,0 +1,192 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Lynx",
+	"Stage": 3,
+	"Path": "FighterWater",
+	"Variation": "Original",
+	"Tier": 2,
+	"CombatAffinity": "Water",
+	"CombatClass": "Fighter",
+	"DominantCombatAffinity": "Water",
+	"DominantCombatClass": "Fighter",
+	"SizeUnits": 7,
+	"Stats": {
+		"MaxHealth": 2300000,
+		"StartingEnergy": 40000,
+		"EnergyCost": 80000,
+		"PhysicalResist": 55,
+		"EnergyResist": 60,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 170000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 80,
+		"MoveSpeedSubUnits": 2500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 5,
+		"OmegaRangeUnits": 5,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Fighter Water Lynx Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 38
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Ascending Maul",
+			"TotalDurationMs": 1500,
+			"Skills": [
+				{
+					"Name": "Maul",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 69
+					},
+					"PercentageOfAbilityDuration": 80,
+					"EffectPackage": {
+						"Attributes": {
+							"VampiricPercentage": 30
+						},
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										825000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Relentless Hydrolynx",
+	"DisplayDescription": "Relentless Hydrolynx mauls their target, dealing <AttackPhysicalDamage>825</> (<OmegaPowerPercentage></>) Physical Damage and healing for <Omnivamp>30%</> of the damage dealt.\r\n\r\nDamage: <AttackPhysicalDamage>825</> (<OmegaPowerPercentage></>)",
+	"Intro": "Halcyon Sea is a watery paradise, home to various shell-like formations and massive coral structures. Many of them have peculiar grooves and indents, some the result of natural growth, while others were made from the gnawing and scratching of the Relentless Hydrolynx. When it emerges from the ocean, it releases the pent-up energy it carries over from the tides on the toughest pillar it encounters.",
+	"Summary": "This Illuvial emerges from the sea with stored tidal energy, releasing it on resilient pillars. Physiologically, it boasts a majestic appearance with a blue mane, flowing tail, and water-imbued features that empower its claws. In behavior, the Relentless Hydrolynx dominates aquatic environments, adeptly hunting prey like Illuvials and Morphopods, utilizing its fluid agility until forced to retreat due to sustained injuries.",
+	"Biology": {
+		"Physiology": "The Relentless Hydrolynx stands on all fours, with a magnificent blue mane and a flowing tail awash with running water. Its bright eyes glisten like pools, matching the markings on its face and the aqua orb on its forehead, which resonates with power. This majestic marine Illuvial has a swash of dripping cerulean along its absorbent coat of white fur, which can easily take in water and harness energy into its shining claws. The surging waves along its front legs are teeming with aquatic power and it is quick to expend it. Its white-tipped ears are sensitive to the sound of a worthy opponent who may test its sharp instinct and keen reflexes.",
+		"Behaviour": "The Relentless Hydrolynx is a dominant swimmer, with the ability to hold on to the power of the currents. It can hunt from water banks, jumping on aquatic Illuvial and Morphopod prey. Moving fluidly, it can adapt to the shape of any opening, eager to explore hidden tunnels and caves. It is a fearsome beast in battle, its form solid while it attacks its opponents, but its movements are as fluid as a rushing current. It stands its ground until it has sustained too many injuries to continue."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3FighterWater/LynxStage3FighterWater_default_default_webp.3840x2160/LynxStage3FighterWater_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3FighterWater/LynxStage3FighterWater_default_default_hls.m3u8/LynxStage3FighterWater_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Relentless Hydrolynx expands in water. When it enters a pool, its absorbent fur soaks in high amounts of water into its coat.",
+			"The Relentless Hydrolynx is extremely flexible, capable of squeezing itself into narrow caves that appear to be half its width.",
+			"The Relentless Hydrolynx scratches hard surfaces as a territorial marker. Its claws grow rapidly, so it must constantly scratch them to maintain a functional length."
+		],
+		"Buckley": [
+			"The Relentless Hydrolynx is densely packed with water reserves along its back and limbs. It can expel water to propel itself forward or shrink its body mass to enter narrow openings.",
+			"The Relentless Hydrolynx has growth hormones that are triggered by the chemicals in the rain and large bodies of water.",
+			"The Relentless Hydrolynx's body is extremely absorbent with advanced distillation organs that allow it to separate nutrients from the water around it.",
+			"The Relentless Hydrolynx has specialised cones in each of its eyes that detect different types of light waves. Its left eye can detect infrared light and its right eye can detect interdimensional rifts, allowing it to respond to heat signatures and movement from other dimensions.",
+			"The Relentless Hydrolynx's nervous system is directly connected to the luminous orb upon its forehead, which can light up in varying degrees of illumination corresponding to its mental activity, particularly those involving ambushing prey."
+		]
+	},
+	"TraitOrderLegacy": [
+		2,
+		1,
+		4,
+		6,
+		3,
+		5
+	],
+	"Description": {
+		"Format": "Relentless Hydrolynx mauls their target, dealing <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Physical Damage and healing for <Omnivamp>{Vampiric}%</> of the damage dealt.\r\n\r\nDamage: <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"Vampiric": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Attributes.VampiricPercentage"
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Relentless Hydrolynx mauls their target, dealing 825 () Physical Damage and healing for 30% of the damage dealt.\r\n\r\nDamage: 825 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 2,
+			"AttackSpeed": 1,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 3,
+			"Resistance": 5
+		}
+	}
+}

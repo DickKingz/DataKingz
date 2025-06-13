@@ -1,0 +1,55 @@
+{
+	"Name": "Colossus",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "SynergyBonus",
+	"CombatClasses": {
+		"Colossus": 1
+	},
+	"Abilities": [
+		{
+			"Name": "Colossus Imprint Stats",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Colossus Imprint Stat List",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "PhysicalResist",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 20
+							},
+							{
+								"Type": "Buff",
+								"Stat": "EnergyResist",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 20
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Colossus Imprint",
+	"DisplayDescription": "The holder gains the Colossus Composite Class and 20 <Resistance>Resistances</>.",
+	"Description": {
+		"Format": "The holder gains the Colossus Composite Class and 20 <Resistance>Resistances</>.",
+		"Parameters": {}
+	},
+	"DisplayDescriptionNormalized": "The holder gains the Colossus Composite Class and 20 Resistances."
+}

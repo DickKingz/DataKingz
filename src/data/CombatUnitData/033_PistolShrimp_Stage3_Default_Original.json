@@ -1,0 +1,255 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "PistolShrimp",
+	"Stage": 3,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 5,
+	"CombatAffinity": "Steam",
+	"CombatClass": "Invoker",
+	"DominantCombatAffinity": "Water",
+	"DominantCombatClass": "Psion",
+	"SizeUnits": 6,
+	"Stats": {
+		"MaxHealth": 1950000,
+		"StartingEnergy": 40000,
+		"EnergyCost": 140000,
+		"PhysicalResist": 40,
+		"EnergyResist": 50,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 115000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 75,
+		"MoveSpeedSubUnits": 2500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 70,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "PistolShrimp Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 35
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 10000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Devouring Stream III",
+			"TotalDurationMs": 6000,
+			"Skills": [
+				{
+					"Name": "Damage beam",
+					"Targeting": {
+						"Type": "DistanceCheck",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"Group": "Enemy",
+						"Lowest": false,
+						"Num": 1
+					},
+					"PercentageOfAbilityDuration": 100,
+					"ChannelTimeMs": 4000,
+					"Deployment": {
+						"Type": "Beam",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 12
+					},
+					"Beam": {
+						"WidthUnits": 18,
+						"FrequencyMs": 200,
+						"ApplyOnce": false,
+						"IsHoming": true,
+						"IsBlockable": false
+					},
+					"EffectPackage": {
+						"Attributes": {
+							"RotateToTarget": true
+						},
+						"Effects": [
+							{
+								"Type": "Debuff",
+								"Stat": "EnergyResist",
+								"OverlapProcessType": "Merge",
+								"DurationMs": 500,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										{
+											"Percentage": 15,
+											"Stat": "EnergyResist",
+											"StatSource": "Receiver"
+										},
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										80000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Dualeph",
+	"DisplayDescription": "Dualeph shoots a powerful water beam at the furthest enemy, dealing <AttackEnergyDamage>1,600</> (<OmegaPowerPercentage></>) Energy Damage over 4 seconds to all enemies in its path. While hit by the beam, enemies lose <EnergyResist>15%</> (<OmegaPowerPercentage></>) Energy Resistance.\r\n\r\nDamage: <AttackEnergyDamage>1,600</> = <AttackEnergyDamage>80</>/0.2s (<OmegaPowerPercentage></>)\r\nEnergy Resist: <EnergyResist>15%</> (<OmegaPowerPercentage></>)",
+	"Intro": "The beaches of Crystal Shores are sparkling, with mostly gentle waves. There's always a risk of stepping on the shards along the coast, especially when a rising current knocks visitors off their feet. But much more alarming is the presence of Dualeph. Determined to keep its area clear of debris, it launches energy blasts from its cannon-like claws, sometimes accidentally impaling a passerby on large crystal spikes.",
+	"Summary": "The Dualeph inhabits Crystal Shores, characterized by its stunning seafoam and white-shelled appearance adorned with distinctive blue spikes and formidable claws. It keeps its territory meticulously clean, using its powerful, steam-powered cannon claws to eliminate debris. Despite its striking beauty, the Dualeph prefers solitude and will forcefully defend its space, with a keen ability to sense environmental changes and regenerate its claws if damaged.",
+	"Biology": {
+		"Physiology": "The Dualeph is undoubtedly beautiful, with a gorgeous seafoam shell rimmed in white, with indigo splotches at the base. A pair of blue spiralled spikes jut out atop its head, and its face has two red and lilac antennae. Holding two daunting weapons in its arsenal, the Dualeph's twin red and white claws are triple the size of its six segmented legs. A brilliant, lightning strike marking shines along its claws, starkly contrasting its legs' red and deep indigo. The Dualeph has a sharp pincher underneath its plated tail which helps it keep balance when it launches its steam-powered cannon claws.",
+		"Behaviour": "The Dualeph mostly keeps to itself, with its massive claws folded in front of it. However, its stunning appearance often attracts unwanted attention from light-seeking Illuvials. The Dualeph politely clicks its legs to ask others to leave, but if that doesn't work, it fires a powerful jet of scalding water at any nuisances in its way. The pincher on its plated tail is used for tidying, picking up bits and pieces that don't belong in its territory. It frequently removes the parts and carcasses of trespassers it has eliminated to maintain an orderly court."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/PistolShrimpStage3/PistolShrimpStage3_default_default_webp.3840x2160/PistolShrimpStage3_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/PistolShrimpStage3/PistolShrimpStage3_default_default_hls.m3u8/PistolShrimpStage3_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Dualeph is constantly busy with meticulous cleaning, clearing sections of the shores from anything the waves wash up. One is recommended to keep a wide distance to avoid being seen as part of the debris, which will be disintegrated and sometimes eaten.",
+			"The Dualeph must carefully calibrate its blasters every morning. Otherwise, the slightest interaction can set it off.",
+			"The Dualeph maintains control over its claws while sleeping and can instinctually defend its territory while resting."
+		],
+		"Buckley": [
+			"The Dualeph's antennae can sense the vibrations from the molecular reactions in its environment, allowing it to detect minute changes within its living environment.",
+			"The Dualeph's giant claws have a spring mechanism with multiple latches, allowing it to adjust the strength of its blasts.",
+			"The Dualeph's shell can withstand high internal pressure, allowing it to maintain its stability during its energy blasts.",
+			"The Dualeph has a unique regenerative system with stores of undifferentiated cells ready to regrow its claws if it is damaged or lost.",
+			"The Dualeph has enough energy built up in its dominant claw to generate sonoluminescence, which is the emission of light from imploding bubbles."
+		]
+	},
+	"TraitOrderLegacy": [
+		3,
+		2,
+		4,
+		6,
+		1,
+		5
+	],
+	"Description": {
+		"Format": "Dualeph shoots a powerful water beam at the furthest enemy, dealing <AttackEnergyDamage>{OmegaDamageFull}</> (<OmegaPowerPercentage></>) Energy Damage over {OmegaDuration} seconds to all enemies in its path. While hit by the beam, enemies lose <EnergyResist>{DebuffValue}%</> (<OmegaPowerPercentage></>) Energy Resistance.\r\n\r\nDamage: <AttackEnergyDamage>{OmegaDamageFull}</> = <AttackEnergyDamage>{OmegaDamage}</>/0.2s (<OmegaPowerPercentage></>)\r\nEnergy Resist: <EnergyResist>{DebuffValue}%</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamageFull": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].Expression.Operands[0]",
+				"ValueMultiplier": 0.02
+			},
+			"OmegaDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].ChannelTimeMs",
+				"ValueMultiplier": 0.001
+			},
+			"DebuffValue": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0].Percentage",
+				"ValueMultiplier": 1.0
+			},
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Dualeph shoots a powerful water beam at the furthest enemy, dealing 1,600 () Energy Damage over 4 seconds to all enemies in its path. While hit by the beam, enemies lose 15% () Energy Resistance.\r\n\r\nDamage: 1,600 = 80/0.2s ()\r\nEnergy Resist: 15% ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 3,
+			"AttackSpeed": 2,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 5
+		}
+	}
+}

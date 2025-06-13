@@ -1,0 +1,21 @@
+{
+	"Name": "Tsunami",
+	"Stage": 3,
+	"Type": "Game",
+	"DisplayName": "Tsunami Matrix",
+	"DisplayDescription": "Gain a Tsunami Imprint.",
+	"Description": {
+		"Format": "Gain a Tsunami Imprint.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Tsunami",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

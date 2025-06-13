@@ -1,0 +1,306 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Lynx",
+	"Stage": 3,
+	"Path": "RogueWater",
+	"Variation": "Original",
+	"Tier": 2,
+	"CombatAffinity": "Water",
+	"CombatClass": "Rogue",
+	"DominantCombatAffinity": "Water",
+	"DominantCombatClass": "Rogue",
+	"SizeUnits": 7,
+	"Stats": {
+		"MaxHealth": 2150000,
+		"StartingEnergy": 40000,
+		"EnergyCost": 100000,
+		"PhysicalResist": 45,
+		"EnergyResist": 50,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 175000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 70,
+		"MoveSpeedSubUnits": 2500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 5,
+		"OmegaRangeUnits": 5,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Rogue Water Lynx Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 45
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Cinqwave Scything",
+			"TotalDurationMs": 1200,
+			"Skills": [
+				{
+					"Name": "Slash",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 40
+					},
+					"PercentageOfAbilityDuration": 20,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										250000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Slash",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 20
+					},
+					"PercentageOfAbilityDuration": 20,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										250000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Slash",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 20
+					},
+					"PercentageOfAbilityDuration": 20,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										250000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Slash",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 20
+					},
+					"PercentageOfAbilityDuration": 20,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										250000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Slash",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 40
+					},
+					"PercentageOfAbilityDuration": 20,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										250000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Nimble Hydrolynx",
+	"DisplayDescription": "Nimble Hydrolynx slashes the target 5 times, dealing <AttackPhysicalDamage>250</> (<OmegaPowerPercentage></>) Physical Damage per slash.\r\n\r\nDamage: <AttackPhysicalDamage>1,250</> = <AttackPhysicalDamage>250</> x5 (<OmegaPowerPercentage></>)",
+	"Intro": "There is a peculiar place in Abyssal Basin where giant trees gush out waterfalls from ragged openings at the top of their trunk. Instead of long leafy branches, they have sharp stubs around a major hollow where a rushing current pours out. The water pools on the ground, streaming alongside multicoloured soil and various plants. The wettest parts of the forest floor are often marked by the wet puddle footprints of the Nimble Hydrolynx.",
+	"Summary": "This Illuvial is a keen ambush predator, adept at tracking prey on land and underwater, utilizing teleportation for strategic hunting. With sensory adaptations including secondary ear canals and a spongey nose, the Nimble Hydrolynx swiftly responds to threats and movements, disappearing into mist when danger looms. Its malleable body and bioluminescent capabilities make it well-suited for deep-water environments, enhancing its hunting prowess and survival.",
+	"Biology": {
+		"Physiology": "The Nimble Hydrolynx has bold eyes that shine with the same dynamic power emanating from the orb on its forehead. Its large ears and pointy multi-layered mane can sense vibrations from the water around it. Slinking on all fours, the Nimble Hydrolynx's thick white coat has dripping blue marks and there's a swash of water strewn from its back to its tail. Leading with its nose, the Nimble Hydrolynx's blue muzzle and sharp chin are buffetted on both sides by long hanging fur, aglow with a bright pattern. ",
+		"Behaviour": "The Nimble Hydrolynx is highly attuned to the slightest sound or movement within its environment. Its eyes are always roaming around, its nose often sniffing, and its ears twitch in response to any sudden noises. As an ambush predator, it can move quickly, jumping and turning to catch its prey. Capable of dissipating in a splash of wet mist, the Nimble Hydrolynx disappears when threatened and reappears behind a potential enemy. This rogue Illuvial travels on land and water with equal grace, sometimes using teleportation as part of its hunting technique."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3RogueWater/LynxStage3RogueWater_default_default_webp.3840x2160/LynxStage3RogueWater_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3RogueWater/LynxStage3RogueWater_default_default_hls.m3u8/LynxStage3RogueWater_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Nimble Hydrolynx can track prey by scent with the same efficiency underwater as on land.",
+			"The Nimble Hydrolynx is often hyperactive. It can be found rapidly climbing trees, running across fields, and diving into the water in manic sprints.",
+			"The Nimble Hydrolynx is one of the most bioluminescent Illuvials to swim in deep waters, bringing light to the dark depths."
+		],
+		"Buckley": [
+			"The Nimble Hydrolynx has a secondary pair of ear canals that are connected with receptors on its long fur tufts. They help it detect minute changes in its environment, allowing it to determine the movements of a potential threat quickly.",
+			"The Nimble Hydrolynx's nose is padded with a layer of spongey material that improves its ability to take in scents underwater, and a large internal chamber that allows it to sift through various materials without disrupting its respiratory processes.",
+			"The Nimble Hydrolynx has a unique adaption in its eyes that allows it to see in low-light conditions. Its luminous patterns also provide extra light to support its visual acuity.",
+			"The Nimble Hydrolynx's body is malleable and capable of withstanding high amounts of pressure, enabling it to navigate dark spaces deep underwater.",
+			"The Nimble Hydrolynx has a highly vascularized muscular system that allows it to travel in bursts of speed."
+		]
+	},
+	"TraitOrderLegacy": [
+		3,
+		1,
+		4,
+		6,
+		2,
+		5
+	],
+	"Description": {
+		"Format": "Nimble Hydrolynx slashes the target 5 times, dealing <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Physical Damage per slash.\r\n\r\nDamage: <AttackPhysicalDamage>{OmegaDamageFull}</> = <AttackPhysicalDamage>{OmegaDamage}</> x5 (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"OmegaDamageFull": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.005
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Nimble Hydrolynx slashes the target 5 times, dealing 250 () Physical Damage per slash.\r\n\r\nDamage: 1,250 = 250 x5 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 3,
+			"AttackSpeed": 1,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 2,
+			"Resistance": 5
+		}
+	}
+}

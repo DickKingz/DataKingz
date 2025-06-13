@@ -1,0 +1,21 @@
+{
+	"Name": "Templar",
+	"Stage": 3,
+	"Type": "Game",
+	"DisplayName": "Templar Matrix",
+	"DisplayDescription": "Gain a Templar Imprint.",
+	"Description": {
+		"Format": "Gain a Templar Imprint.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Templar",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

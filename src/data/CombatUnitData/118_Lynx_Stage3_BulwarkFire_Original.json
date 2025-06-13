@@ -1,0 +1,205 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Lynx",
+	"Stage": 3,
+	"Path": "BulwarkFire",
+	"Variation": "Original",
+	"Tier": 2,
+	"CombatAffinity": "Fire",
+	"CombatClass": "Bulwark",
+	"DominantCombatAffinity": "Fire",
+	"DominantCombatClass": "Bulwark",
+	"SizeUnits": 7,
+	"Stats": {
+		"MaxHealth": 2800000,
+		"StartingEnergy": 100000,
+		"EnergyCost": 200000,
+		"PhysicalResist": 60,
+		"EnergyResist": 60,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 175000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 60,
+		"MoveSpeedSubUnits": 2500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 5,
+		"OmegaRangeUnits": 5,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Bulwark Fire Lynx Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 45
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Broiling Boom",
+			"TotalDurationMs": 1500,
+			"Skills": [
+				{
+					"Name": "Roar",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 70
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 24,
+						"DurationMs": 500,
+						"FrequencyMs": 500,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										475000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Stun",
+								"DurationMs": 2000
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Stoic Emberlynx",
+	"DisplayDescription": "Stoic Emberlynx roars, dealing <AttackPhysicalDamage>475</> (<OmegaPowerPercentage></>) Physical Damage and Stunning all enemies in 24-hexes for 2 seconds.\r\n\r\nDamage: <AttackPhysicalDamage>475</> (<OmegaPowerPercentage></>)",
+	"Intro": "The hottest place in Illuvium is on the surface of Crimson Waste. A torrid blend of ash and red dust make up the sand dunes in this region. Hostile to all life, the air is like fire and the raging winds create a near-impenetrable layer of smog in the atmosphere. The Stoic Emberlynx is the King of Crimson Waste, slowly advancing through the vast variety of terrain within the biome, from the worst of the sandstorms to underground water pools and crystal caves.",
+	"Summary": "The Stoic Emberlynx rules over the scorching Crimson Waste, its ashen coat adorned with crimson markings and fiery adornments like blazing eyes and a flaming ball on its forehead. It thrives in extreme heat, capable of wading through pools while maintaining its internal fire. With retractable, heated claws and a vigilant stance against intruders, the Stoic Emberlynx dominates its harsh environment with unmatched resilience and aggression.",
+	"Biology": {
+		"Physiology": "The Stoic Emberlynx holds dominion over the torrid biome of Crimson Waste, as both the heaviest and most resilient Illuvial in the region. With intense blazing eyes and a fiery ball on its forehead, its immense power is distributed evenly to protect its body. Its ashen coat is marked by vivid crimson slashes, and these patterns curl around its face and lengthy hanging fur. However, its thick mane is completely dark, reflecting only the light from its flaming ears and tail. Despite having the least open flames on its body compared to other Emberlynxes, the Stoic Emberlynx can maintain the heat in its fire for far longer, come rain or enemy ambush.",
+		"Behaviour": "The Stoic Emberlynx may form loose colonies with others of its kind or lead a solitary lifestyle. One of the least 'stoic' of the Stoic Lynxes, this fire Illuvial is prone to aggression towards others of its kind, often competing for social status. The Stoic Emberlynx is largely nocturnal, with developed hearing that can discern a naturally occurring flame with that of another Illuvial. It marks its territory with scorch marks and respects the territory markings of other Emberlynxes. Those who venture too close to its territory are given a warning growl before it uses its flame."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3BulwarkFire/LynxStage3BulwarkFire_default_default_webp.3840x2160/LynxStage3BulwarkFire_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3BulwarkFire/LynxStage3BulwarkFire_default_default_hls.m3u8/LynxStage3BulwarkFire_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Stoic Emberlynx is the only Emberlynx that can comfortably wade in a pool of water while retaining its heat and maintaining its flame.",
+			"The Stoic Emberlynx listens diligently for other Emberlynxes and occasionally calls out to them. It can often be found competing with others of its kind for social status.",
+			"The Stoic Emberlynx has the tallest tail flame of all the Emberlynxes."
+		],
+		"Buckley": [
+			"The Stoic Emberlynx's lengthy mane traps sand and acts as a filter for toxins in the atmosphere, preventing them from entering its eyes and other extremities. Its long fur covers the pads of its feet, protecting it from the hot sand.",
+			"The Stoic Emberlynx's enormous ears have sophisticated ear canals that can pick up subtle sounds in their environment.",
+			"The Stoic Emberlynx has specialised glands that secrete a fire-proof solution to protect its fur and vital internal organs.",
+			"The Stoic Emberlynx has heated, retractable claws that are capable of burning into prey Illuvials.",
+			"The Stoic Emberlynx's nervous system is directly connected to the enflamed orb upon its forehead, which can light up in varying degrees of illumination corresponding to its mental activity, particularly those involving territorial defence and protection of companions."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		4,
+		1,
+		6,
+		3,
+		2
+	],
+	"Description": {
+		"Format": "Stoic Emberlynx roars, dealing <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Physical Damage and Stunning all enemies in {StunRadius}-hexes for {StunDuration} seconds.\r\n\r\nDamage: <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"StunRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Zone.RadiusUnits"
+			},
+			"StunDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Stoic Emberlynx roars, dealing 475 () Physical Damage and Stunning all enemies in 24-hexes for 2 seconds.\r\n\r\nDamage: 475 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 4,
+			"Health": 1,
+			"MovementSpeed": 6,
+			"OmegaPower": 3,
+			"Resistance": 2
+		}
+	}
+}

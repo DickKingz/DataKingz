@@ -1,0 +1,21 @@
+{
+	"Name": "Inferno",
+	"Stage": 3,
+	"Type": "Game",
+	"DisplayName": "Inferno Matrix",
+	"DisplayDescription": "Gain a Inferno Imprint.",
+	"Description": {
+		"Format": "Gain a Inferno Imprint.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Inferno",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

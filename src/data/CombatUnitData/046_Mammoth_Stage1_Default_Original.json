@@ -1,0 +1,231 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Mammoth",
+	"Stage": 1,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 4,
+	"CombatAffinity": "Air",
+	"CombatClass": "Psion",
+	"DominantCombatAffinity": "Air",
+	"DominantCombatClass": "Psion",
+	"SizeUnits": 4,
+	"Stats": {
+		"MaxHealth": 1750000,
+		"StartingEnergy": 40000,
+		"EnergyCost": 200000,
+		"PhysicalResist": 45,
+		"EnergyResist": 45,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 70000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 60,
+		"MoveSpeedSubUnits": 2250,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 5,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 9,
+		"OmegaRangeUnits": 13,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Mammoth Basic Attack I",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 43
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Incisorise I",
+			"TotalDurationMs": 2000,
+			"Skills": [
+				{
+					"Name": "Throw to high density",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 75,
+						"PreDeploymentRetargetingPercentage": 60
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 20,
+						"DurationMs": 2000,
+						"FrequencyMs": 2000,
+						"MovementSpeedSubUnits": 12000,
+						"GrowthRateSubUnits": 0,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Displacement",
+								"DisplacementType": "ThrowToHighestEnemyDensity",
+								"DurationMs": 2000,
+								"OnFinished": {
+									"Name": "AoE Damage",
+									"Deployment": {
+										"Type": "Zone"
+									},
+									"Zone": {
+										"Shape": "Hexagon",
+										"RadiusUnits": 20,
+										"DurationMs": 100,
+										"FrequencyMs": 100,
+										"ApplyOnce": true
+									},
+									"Targeting": {
+										"Type": "Self"
+									},
+									"EffectPackage": {
+										"Effects": [
+											{
+												"Type": "InstantDamage",
+												"DamageType": "Physical",
+												"Expression": {
+													"Operation": "*",
+													"Operands": [
+														250000,
+														{
+															"Stat": "OmegaPowerPercentage",
+															"StatSource": "Sender"
+														}
+													]
+												}
+											},
+											{
+												"Type": "NegativeState",
+												"NegativeState": "Stun",
+												"DurationMs": 500
+											}
+										]
+									}
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Mah'mu",
+	"DisplayDescription": "Mah'mu tusk tosses the closest enemy at the largest group of enemies. Upon impact, all enemies within 20-hexes are Stunned for 0.5 seconds and dealt <AttackEnergyDamage>250</> (<OmegaPowerPercentage></>) Energy Damage.\r\n\r\nDamage: <AttackEnergyDamage>250</> (<OmegaPowerPercentage></>)",
+	"Intro": "Taiga Boreal dazzles with its stunning snowy peaks, yet nestled within are three mountains that might easily be missed. Crafted from black rock and cloaked in ice, they catch the light, shimmering like pearls under the sun's careful glance. As dusk settles over the winter landscape, these opaline peaks bask in a flood of iridescent lights, performing a celestial ballet above the Everclouds. Amidst this spectacle, a herd of Mah'mu stands tall, their tusks raised in reverence to the light's otherworldly glow.",
+	"Summary": "The woolly Mah'mu, with its sandy grey coat and floating tusk segments, has a distinctive skullcap and blue, light-emitting eyes, indicating its cognitive abilities linked to natural light displays. Mah'mus travel in herds, greeting each other by intertwining trunks and performing synchronized movements in response to the northern lights. They exhibit complex behaviors such as telepathic communication, storm anticipation, and lightweight skeletal adaptations.",
+	"Biology": {
+		"Physiology": "The shaggy Mah'mu, with its long, curved trunk and tusks that break into individual floating segments, boasts a woolly coat of sandy grey, streaked with charcoal from neck to tail. Standing on four sturdy legs that support its hefty frame, the Mah'mu's most remarkable feature is a distinctive skullcap, housing an oversized brain. Flanked by two flappy, pointed ears and nestled within a thick patch of fur, this skullcap is a testament to the Mah'mu's mental prowess. The blue light emanating from its eyes and the segments of its tusks, shimmering in sync with the celestial dance above, highlights the deep connection between the Mah'mu's cognitive abilities and the natural light displays of their environment.",
+		"Behaviour": "The Mah'mu travels the snowy plains of Taiga Boreal in herds and maintains close bonds with others of its kind. It intertwines its trunk with other Mah'mu in greeting and lifts its trunk to salute the Mah'mut. Every community of Mah'mu have unique community rituals, but every Mah'mu swings its trunk in response to the movement of the northern lights. Entire herds move their heads in unison, joining other herds below the shimmering sky."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/MammothStage1/MammothStage1_default_default_webp.3840x2160/MammothStage1_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/MammothStage1/MammothStage1_default_default_hls.m3u8/MammothStage1_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Mah'mu stays close to others of its kind and runs together in herds whenever it senses a coming storm. Its stampedes may cause avalanches before the storm even arrives.",
+			"The Mah'mu shakes its head and swings its trunk in response to the movement of lights in the sky. Oftentimes, many Mah'mu will move their heads in unison.",
+			"The Mah'mu intertwines its trunk with other Mah'mu and lifts its trunk to salute the Mah'mut."
+		],
+		"Buckley": [
+			"The Mah'mu has an expanded neo-cortex, allowing for complex telepathic communication with others of its kind. Its skull is widened to house its enormous brain, with additional bone growth that forms a dome-like structure.",
+			"The Mah'mu has fatty tissue in its feet that allows it to sense infrasound travelling through the ground across vast distances.",
+			"The Mah'mu's skeletal structure has porous sections that allow it to maintain a relatively lightweight in proportion to its size."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		4,
+		2,
+		6,
+		1,
+		3
+	],
+	"Description": {
+		"Format": "Mah'mu tusk tosses the closest enemy at the largest group of enemies. Upon impact, all enemies within {OmegaRadius}-hexes are Stunned for {StunDuration} seconds and dealt <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Energy Damage.\r\n\r\nDamage: <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].OnFinished.EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"StunDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].OnFinished.EffectPackage.Effects[1].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"OmegaRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Zone.RadiusUnits"
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Mah'mu tusk tosses the closest enemy at the largest group of enemies. Upon impact, all enemies within 20-hexes are Stunned for 0.5 seconds and dealt 250 () Energy Damage.\r\n\r\nDamage: 250 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 4,
+			"Health": 2,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 3
+		}
+	}
+}

@@ -1,0 +1,131 @@
+{
+	"Name": "ImmunityPrism",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Normal",
+	"Abilities": [
+		{
+			"Name": "ImmunityPrism_Stats",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "ImmunityPrism - List of Stats",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "MaxHealth",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 100000
+							},
+							{
+								"Type": "Buff",
+								"Stat": "OmegaPowerPercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 10
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"Name": "ImmunityPrism_Ability1",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "ImmunityPrism - Immune",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "PositiveState",
+								"PositiveState": "Immune",
+								"DurationMs": 15000
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"Name": "ImmunityPrism_Ability2",
+			"ActivationTrigger": {
+				"TriggerType": "EveryXTime",
+				"ActivateEveryTimeMs": 1000,
+				"MaxActivations": 15
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "ImmunityPrism - Buff Omega Power",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "CombatStatCheck",
+						"Group": "Ally",
+						"Stat": "AttackSpeed",
+						"Lowest": false,
+						"Num": 1
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "OmegaPowerPercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 2
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Immunity Prism",
+	"DisplayDescription": "Combat Start: Become Immune for 15 seconds.\r\n\r\nDuring this effect, the highest <AttackSpeed>Attack Speed</> ally gains <OmegaPowerPercentage>2</> <OmegaPowerPercentage>Omega Power</> per second.\r\n\r\nStats:\r\n+100 <MaxHealth>Health</>\r\n+10 <OmegaPowerPercentage>Omega Power</>\r\n\r\n<Italic>Immune: Cannot be affected by negative effects.</>",
+	"Description": {
+		"Format": "Combat Start: Become Immune for {ImmuneDuration} seconds.\r\n\r\nDuring this effect, the highest <AttackSpeed>Attack Speed</> ally gains <OmegaPowerPercentage>{OPValue}</> <OmegaPowerPercentage>Omega Power</> per second.\r\n\r\nStats:\r\n+{Stat_Health} <MaxHealth>Health</>\r\n+{Stat_OP} <OmegaPowerPercentage>Omega Power</>\r\n\r\n<Italic>Immune: Cannot be affected by negative effects.</>",
+		"Parameters": {
+			"ImmuneDuration": {
+				"ParameterPath": "Abilities[1].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"OPValue": {
+				"ParameterPath": "Abilities[2].Skills[0].EffectPackage.Effects[0].Expression",
+				"ValueMultiplier": 1.0
+			},
+			"Stat_Health": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].Expression",
+				"ValueMultiplier": 0.001
+			},
+			"Stat_OP": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[1].Expression",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Combat Start: Become Immune for 15 seconds.\r\n\r\nDuring this effect, the highest Attack Speed ally gains 2 Omega Power per second.\r\n\r\nStats:\r\n+100 Health\r\n+10 Omega Power\r\n\r\nImmune: Cannot be affected by negative effects."
+}

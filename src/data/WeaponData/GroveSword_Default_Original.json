@@ -1,0 +1,202 @@
+{
+	"Name": "GroveSword",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Normal",
+	"CombatAffinity": "Nature",
+	"CombatClass": "Fighter",
+	"DominantCombatAffinity": "Nature",
+	"DominantCombatClass": "Fighter",
+	"Stats": {
+		"MaxHealth": 750000,
+		"StartingEnergy": 20000,
+		"EnergyCost": 120000,
+		"PhysicalResist": 45,
+		"EnergyResist": 35,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 100000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 100,
+		"MoveSpeedSubUnits": 0,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 2,
+		"OmegaRangeUnits": 2,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Sword Attack I",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 50
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Quickgrowth Strike",
+			"TotalDurationMs": 2000,
+			"Skills": [
+				{
+					"Name": "Damage attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 50
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"ID": "CrushingMomentum",
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "+",
+									"Operands": [
+										{
+											"Stat": "AttackPhysicalDamage",
+											"StatSource": "Sender"
+										},
+										{
+											"Operation": "*",
+											"Operands": [
+												300000,
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												}
+											]
+										}
+									]
+								}
+							},
+							{
+								"ID": "Ironbind",
+								"Type": "NegativeState",
+								"NegativeState": "Stun",
+								"DurationMs": 0
+							}
+						]
+					}
+				},
+				{
+					"Name": "Attack speed bonus",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 0,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"ID": "FrenziedGale",
+								"Type": "Buff",
+								"Stat": "AttackSpeed",
+								"DurationMs": 3000,
+								"Expression": {
+									"Percentage": 35,
+									"Stat": "AttackSpeed",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							},
+							{
+								"ID": "SavageRhythm",
+								"Type": "Buff",
+								"Stat": "AttackPureDamage",
+								"DurationMs": 3000,
+								"Expression": 0
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Grove Sword",
+	"DisplayDescription": "The Ranger launches a powerful strike at their target, dealing <AttackPhysicalDamage>100%</> of Attack Physical Damage + <AttackPhysicalDamage>300</> (<OmegaPowerPercentage></>) as Physical Damage and gaining <AttackSpeed>35%</> Attack Speed for 3 seconds.",
+	"Description": {
+		"Format": "The Ranger launches a powerful strike at their target, dealing <AttackPhysicalDamage>100%</> of Attack Physical Damage + <AttackPhysicalDamage>{Damage}</> (<OmegaPowerPercentage></>) as Physical Damage and gaining <AttackSpeed>{SpeedValue}%</> Attack Speed for {Duration} seconds.",
+		"Parameters": {
+			"Damage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[1].Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"SpeedValue": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].Expression.Percentage",
+				"ValueMultiplier": 1.0
+			},
+			"Duration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "The Ranger launches a powerful strike at their target, dealing 100% of Attack Physical Damage + 300 () as Physical Damage and gaining 35% Attack Speed for 3 seconds."
+}

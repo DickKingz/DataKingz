@@ -1,0 +1,57 @@
+{
+	"Name": "Energizer",
+	"Stage": 2,
+	"Type": "Simulation",
+	"Abilities": [
+		{
+			"Name": "All allied units gain 8 Energy Regen.",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "All allied units gain 8 Energy Regen.",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Allegiance",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						],
+						"Group": "Ally"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "EnergyRegeneration",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 300
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Energizer II",
+	"DisplayDescription": "All allied units gain 3 Energy Regen.",
+	"Description": {
+		"Format": "All allied units gain {EnergyVal} Energy Regen.",
+		"Parameters": {
+			"EnergyVal": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].Expression",
+				"ValueMultiplier": 0.01
+			}
+		}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [],
+		"GrantedCredits": 0
+	}
+}

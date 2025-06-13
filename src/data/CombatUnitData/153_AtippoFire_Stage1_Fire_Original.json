@@ -1,0 +1,299 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "AtippoFire",
+	"Stage": 1,
+	"Path": "Fire",
+	"Variation": "Original",
+	"Tier": 0,
+	"CombatAffinity": "Fire",
+	"CombatClass": "Empath",
+	"DominantCombatAffinity": "Fire",
+	"DominantCombatClass": "Empath",
+	"SizeUnits": 3,
+	"Stats": {
+		"MaxHealth": 1050000,
+		"StartingEnergy": 40000,
+		"EnergyCost": 140000,
+		"PhysicalResist": 25,
+		"EnergyResist": 25,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 70000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 60,
+		"MoveSpeedSubUnits": 1500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 40,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Fire Atippo Basic Attack I",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 55
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 8000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Counterflame I",
+			"TotalDurationMs": 2000,
+			"Skills": [
+				{
+					"Name": "Orb pulse",
+					"Targeting": {
+						"Type": "Self",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 60
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 24,
+						"DurationMs": 4000,
+						"FrequencyMs": 1000,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 100,
+					"ChannelTimeMs": 2000,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Debuff",
+								"Stat": "AttackSpeed",
+								"DurationMs": 2500,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										{
+											"Percentage": 10,
+											"Stat": "AttackSpeed",
+											"StatSource": "Receiver"
+										},
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										125000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Shield Allies",
+					"PercentageOfAbilityDuration": 0,
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 0
+					},
+					"Targeting": {
+						"Type": "InZone",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						],
+						"Group": "Ally",
+						"RadiusUnits": 24,
+						"Self": true
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "SpawnShield",
+								"DurationMs": 4000,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										125000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Lesser Fire Atippo",
+	"DisplayDescription": "Lesser Fire Atippo throws its orb into the air, granting all allies within 24-hexes a <StartingShield>125</> (<OmegaPowerPercentage></>) Shield for 4 seconds. Enemies hit by the orb take <AttackEnergyDamage>125</> (<OmegaPowerPercentage></>) Energy Damage and reducing their Attack Speed by <AttackSpeed>10</> (<OmegaPowerPercentage></>) for 2.5 seconds.\r\n\r\nShield: <StartingShield>125</> (<OmegaPowerPercentage></>)\r\nDamage: <AttackEnergyDamage>125</> (<OmegaPowerPercentage></>)\r\nAttack Speed: <AttackSpeed>10%</> (<OmegaPowerPercentage></>)",
+	"Intro": "The dusty skies of Crimson Waste are a grim sight, but one only needs to look beneath the surface to find paradise. Under the vast stretches of sand, there are tunnel systems that are peaceful and pleasant to explore, with hanging vines and flourishing plant life. Most wonderful of all is the extensive knee-deep water system, which runs a beautiful translucent green. It's here that one may find the Lesser Fire Atippo, relaxing beneath a small waterfall and letting off steam with its single, massive curved horn.",
+	"Summary": "The dusty skies of Crimson Waste hide an underground paradise of tunnels with hanging vines, plant life, and a beautiful knee-deep water system where the Lesser Fire Atippo relaxes. This fire Illuvial is characterized by a large, brown, scoop-shaped horn with fiery slits and a yellow orb, a crusted rock body, and dark red eyes. The Lesser Fire Atippo uses its horn for various tasks, communicates discreetly through high-frequency sounds, and has flame-resistant cells and conductive mineral deposits for channeling heat.",
+	"Biology": {
+		"Physiology": "The Lesser Fire Atippo's crowning glory is a large, scoop-shaped horn on its head that's roughly the same size as the rest of its body. It balloons out like a collapsed mushroom, brown in colour with a knobbed bark texture with fiery slits along the rim. Floating above the horn's inverted curve is a yellow orb, ringed with red heat ready to burst, just like the incendiary tip of its tail. The rest of the Lesser Fire Atippo's body is covered with crusted rock that pebbles along its back. Standing on four stout legs with small glowing claws, this fire Illuvial looks up with its dark red eyes, twitching its thin ears.",
+		"Behaviour": "The Lesser Fire Atippo collects nuts with its giant horn and uses its flame to roast them. It sometimes offers roasted nuts to other Atippos, eating one another's offerings as a form of bonding. The Lesser Fire Atippo often plays by shooting flames out of its horn with energy blasts from its orb. It is capable of controlling the strength of its blasts, from playful taps to rough warnings. When the Lesser Fire Atippo is overcome with adrenaline, it sends out bursts of vitality to other Illuvials in its vicinity."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/AtippoStage1Fire/AtippoStage1Fire_default_default_webp.3840x2160/AtippoStage1Fire_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/AtippoStage1Fire/AtippoStage1Fire_default_default_hls.m3u8/AtippoStage1Fire_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Lesser Fire Atippo can lower its flame to collect items from underground caverns on its horn, from fallen leaves to petals and seeds. During spring, fire-resistant plants grow upon its horn but they fall away by summer.",
+			"The Lesser Fire Atippo gathers in groups and wades in pools together, shooting blasts of flame and steaming water out in a patterned formation like a living fountain. This ritual allows them to gather energy and share it in abundance with each other, their light orbs glowing in unison.",
+			"The Lesser Fire Atippo spends most of its time lying down, burning plant matter with its horn to create a smoke signal to others of its kind."
+		],
+		"Buckley": [
+			"The Lesser Fire Atippo's respiratory system functions by taking in high-temperature air through its scoop-shaped horn, which has an internal combustion valve for fire production.",
+			"The Lesser Fire Atippo's luminous orb can emit a layer of sound that is a higher frequency than the hearing range of most organic life forms, allowing it to communicate discreetly with others of its kind.",
+			"The Lesser Fire Atippo's horn processes vibratory sensations and acts as a tuning fork for detecting the electromagnetic impulse of life around it. The closer it is to the ground, the stronger the vibrations and the richer the natural sound it detects.",
+			"The Lesser Fire Atippo's cells have a flame-resistant marker that can be turned off in the event of an infection, allowing the Lesser Fire Atippo's to burn away infected cells and maintain the structural integrity of healthy cells nearby.",
+			"The Lesser Fire Atippo has highly conductive mineral deposits upon its body which allow it to channel intense heat and energy through them."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		2,
+		3,
+		6,
+		1,
+		4
+	],
+	"Description": {
+		"Format": "Lesser Fire Atippo throws its orb into the air, granting all allies within {OmegaRadius}-hexes a <StartingShield>{ShieldValue}</> (<OmegaPowerPercentage></>) Shield for {ShieldDuration} seconds. Enemies hit by the orb take <AttackEnergyDamage>{OrbDamage}</> (<OmegaPowerPercentage></>) Energy Damage and reducing their Attack Speed by <AttackSpeed>{ASVal}</> (<OmegaPowerPercentage></>) for {EffectDuration} seconds.\r\n\r\nShield: <StartingShield>{ShieldValue}</> (<OmegaPowerPercentage></>)\r\nDamage: <AttackEnergyDamage>{OrbDamage}</> (<OmegaPowerPercentage></>)\r\nAttack Speed: <AttackSpeed>{ASVal}%</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Zone.RadiusUnits"
+			},
+			"ShieldValue": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"ShieldDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Zone.DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"OrbDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"ASVal": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0].Percentage",
+				"ValueMultiplier": 1.0
+			},
+			"EffectDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Lesser Fire Atippo throws its orb into the air, granting all allies within 24-hexes a 125 () Shield for 4 seconds. Enemies hit by the orb take 125 () Energy Damage and reducing their Attack Speed by 10 () for 2.5 seconds.\r\n\r\nShield: 125 ()\r\nDamage: 125 ()\r\nAttack Speed: 10% ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 2,
+			"Health": 3,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 4
+		}
+	}
+}

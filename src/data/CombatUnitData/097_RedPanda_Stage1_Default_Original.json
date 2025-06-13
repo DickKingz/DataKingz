@@ -1,0 +1,446 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "RedPanda",
+	"Stage": 1,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 1,
+	"CombatAffinity": "Fire",
+	"CombatClass": "Fighter",
+	"DominantCombatAffinity": "Fire",
+	"DominantCombatClass": "Fighter",
+	"SizeUnits": 3,
+	"Stats": {
+		"MaxHealth": 1300000,
+		"StartingEnergy": 0,
+		"EnergyCost": 80000,
+		"PhysicalResist": 40,
+		"EnergyResist": 35,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 90000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 80,
+		"MoveSpeedSubUnits": 2250,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 2,
+		"OmegaRangeUnits": 2,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Red Panda Basic Attack I",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 50
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "SelfHealthCheck",
+	"OmegaAbilitiesActivationCheckValue": 50,
+	"OmegaAbilities": [
+		{
+			"Name": "Kazeblaze I",
+			"TotalDurationMs": 100,
+			"Skills": [
+				{
+					"Name": "Beneficial Mark",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 50,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "SpawnMark",
+								"MarkType": "Beneficial",
+								"DurationMs": -1,
+								"AttachedAbilities": [
+									{
+										"Name": "When above 50% Health these Attacks Steal (3*OP) Attack Damage and share them with the Ally with the Highest Attack Speed",
+										"ActivationTrigger": {
+											"TriggerType": "OnHit",
+											"AbilityTypes": [
+												"Attack"
+											],
+											"SenderAllegiance": "Self",
+											"ReceiverAllegiance": "Enemy",
+											"MaxActivations": 2
+										},
+										"TotalDurationMs": 0,
+										"Skills": [
+											{
+												"Name": "Add (3*OP) Attack Damage",
+												"Deployment": {
+													"Type": "Direct"
+												},
+												"Targeting": {
+													"Type": "CombatStatCheck",
+													"Group": "Ally",
+													"Self": false,
+													"Stat": "AttackSpeed",
+													"Lowest": false,
+													"Num": 1
+												},
+												"EffectPackage": {
+													"Effects": [
+														{
+															"Type": "Buff",
+															"Stat": "AttackPhysicalDamage",
+															"OverlapProcessType": "Sum",
+															"DurationMs": -1,
+															"Expression": {
+																"Operation": "*",
+																"Operands": [
+																	4000,
+																	{
+																		"Stat": "OmegaPowerPercentage",
+																		"StatSource": "SenderFocus"
+																	}
+																]
+															}
+														}
+													]
+												}
+											},
+											{
+												"Name": "Add (3*OP) Attack Damage",
+												"Deployment": {
+													"Type": "Direct"
+												},
+												"Targeting": {
+													"Type": "Self"
+												},
+												"EffectPackage": {
+													"Effects": [
+														{
+															"Type": "Buff",
+															"Stat": "AttackPhysicalDamage",
+															"OverlapProcessType": "Sum",
+															"DurationMs": -1,
+															"Expression": {
+																"Operation": "*",
+																"Operands": [
+																	4000,
+																	{
+																		"Stat": "OmegaPowerPercentage",
+																		"StatSource": "SenderFocus"
+																	}
+																]
+															}
+														}
+													]
+												}
+											}
+										]
+									}
+								]
+							}
+						]
+					}
+				},
+				{
+					"Name": "Life Binding I",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 50,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Empower",
+								"ActivatedBy": "Attack",
+								"IsConsumable": true,
+								"ActivationsUntilExpiry": 2,
+								"AttachedEffects": [
+									{
+										"Type": "Debuff",
+										"DurationMs": -1,
+										"Stat": "AttackPhysicalDamage",
+										"OverlapProcessType": "Sum",
+										"Expression": {
+											"Operation": "*",
+											"Operands": [
+												4000,
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												}
+											]
+										}
+									}
+								]
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"Name": "Share max health when below 50% Health",
+			"TotalDurationMs": 100,
+			"Skills": [
+				{
+					"Name": "Beneficial Mark",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 0,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "SpawnMark",
+								"MarkType": "Beneficial",
+								"DurationMs": -1,
+								"AttachedAbilities": [
+									{
+										"Name": "When below 50% Health they Steal 1% Max Health and share with the Lowest % Health Ally.",
+										"ActivationTrigger": {
+											"TriggerType": "OnHit",
+											"AbilityTypes": [
+												"Attack"
+											],
+											"SenderAllegiance": "Self",
+											"ReceiverAllegiance": "Enemy",
+											"MaxActivations": 2
+										},
+										"TotalDurationMs": 0,
+										"Skills": [
+											{
+												"Name": "Add 1% MaxHealth",
+												"Deployment": {
+													"Type": "Direct"
+												},
+												"Targeting": {
+													"Type": "CombatStatCheck",
+													"Group": "Ally",
+													"Self": false,
+													"Stat": "AttackSpeed",
+													"Lowest": false,
+													"Num": 1
+												},
+												"EffectPackage": {
+													"Effects": [
+														{
+															"Type": "Buff",
+															"Stat": "MaxHealth",
+															"OverlapProcessType": "Sum",
+															"DurationMs": -1,
+															"Expression": {
+																"Operation": "%",
+																"Operands": [
+																	1,
+																	{
+																		"Stat": "MaxHealth",
+																		"StatSource": "SenderFocus"
+																	}
+																]
+															}
+														}
+													]
+												}
+											},
+											{
+												"Name": "Add 1% MaxHealth",
+												"Deployment": {
+													"Type": "Direct"
+												},
+												"Targeting": {
+													"Type": "Self"
+												},
+												"EffectPackage": {
+													"Effects": [
+														{
+															"Type": "Buff",
+															"Stat": "MaxHealth",
+															"OverlapProcessType": "Sum",
+															"DurationMs": -1,
+															"Expression": {
+																"Operation": "%",
+																"Operands": [
+																	1,
+																	{
+																		"Stat": "MaxHealth",
+																		"StatSource": "SenderFocus"
+																	}
+																]
+															}
+														}
+													]
+												}
+											}
+										]
+									}
+								]
+							}
+						]
+					}
+				},
+				{
+					"Name": "Empower with debuff",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 50,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Empower",
+								"ActivatedBy": "Attack",
+								"IsConsumable": true,
+								"ActivationsUntilExpiry": 2,
+								"AttachedEffects": [
+									{
+										"Type": "Debuff",
+										"DurationMs": -1,
+										"Stat": "MaxHealth",
+										"OverlapProcessType": "Sum",
+										"Expression": {
+											"Percentage": 1,
+											"Stat": "MaxHealth",
+											"StatSource": "Receiver"
+										}
+									}
+								]
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Rai",
+	"DisplayDescription": "Rai redirects power into its next 2 attacks, stealing different stats based on its Health.\r\n\r\nAbove <MaxHealth>50%</> Health, steal <AttackPhysicalDamage>4</> (<OmegaPowerPercentage></>) Physical Attack Damage and share with the highest <AttackSpeed>Attack Speed</> ally.\r\n\r\nBelow <MaxHealth>50%</> Health, steal <MaxHealth>1%</> (<OmegaPowerPercentage></>) Health and share with the lowest <MaxHealth>Health</> ally.\r\n\r\nSteal AD: <AttackPhysicalDamage>4</> (<OmegaPowerPercentage></>)\r\nSteal HP: <MaxHealth>1%</> (<OmegaPowerPercentage></>)",
+	"Intro": "The air in Crimson Waste is hot as fire, with swirling winds and red dust mixing with ash. Lightning flashes between the dark clouds and the entire region is illuminated by a faint haunting glow. This is a place hostile to life, yet the Rai rolls about in the dunes as though it is its playground. Sand gets into its nose and it sneezes, its tail igniting with flame.",
+	"Summary": "This eerie creature has spooky illuminated eyes, a fuzzy red and white coat, and an ember spiral on its chest, expressing itself through its white-tipped ears and brows. The Rai is resourceful, using its explosive punches to cook hidden Morphopods, creating tools, and engaging in playful social bonding. Known for its proficiency in climbing and marking territory with scorch marks, the Rai's physiology includes flammable and fire-resistant fur layers snf opposable thumbs.",
+	"Biology": {
+		"Physiology": "The Rai is cute but eerie, with spooky illuminated eyes, sharp fangs, and a fuzzy coat of red and white. It walks on all fours but sometimes stands on its hind legs, showing off the ember spiral on its chest and its charcoal underbelly. The Rai's white-tipped ears and brows furl upwards, full of expression, with a white flame pattern along its back.",
+		"Behaviour": "The Rai is a smart and resourceful Illuvial that can be found burning up rocks and sand to cook the Morphopods hiding within. It has an explosive punch that can break open land masses, but it is also capable of creating rudimentary tools. When it attacks, it clenches its fists and ignites them, its bushy tail bursting into blazing stripes. The Rai likes to roll around and act playfully as a form of social bonding. It ignites the fur of one another to get rid of parasites and strengthen their relationship."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/RedPandaStage1/RedPandaStage1_default_default_webp.3840x2160/RedPandaStage1_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/RedPandaStage1/RedPandaStage1_default_default_hls.m3u8/RedPandaStage1_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Rai is a proficient climber, capable of scaling rock formations with ease despite the harsh winds. It makes long treks up mountains to expose itself to high wind speeds and spread fire across its body to cleanse itself of parasites.",
+			"The Rai can be found pummeling rocks, pounding them with its fists and leaving searing marks with its explosive power. It burns various insignias into its fist and marks the rock walls with its powerful punch.",
+			"The Rai uses the flames on its tail to create scorch marks on rocks and melt sand, creating a garden collection to attract fusion mates. Sometimes, it throws sand in the air and sets them on fire to display its flames."
+		],
+		"Buckley": [
+			"The Rai has different types of fur on its body, with flammable secretions in the top layers of its fur and durable, fire-resistant underlayers.",
+			"The Rai has opposable thumbs on its hands and it is capable of walking upright, allowing it to grasp objects and use tools.",
+			"The Rai is omnivorous, with a diet that also includes rock and coal. Traces of Pop Spores, Ringnuts, various rocks, and morphopods can be found in its digestive tract.",
+			"The Rai has oil secretions in its palm which enables it to shoot fireballs.",
+			"The Rai's nose is adapted to take in high amounts of oxygen for use in the exothermic chemical process of combustion."
+		]
+	},
+	"TraitOrderLegacy": [
+		2,
+		1,
+		3,
+		5,
+		6,
+		4
+	],
+	"Description": {
+		"Format": "Rai redirects power into its next {AttackNum} attacks, stealing different stats based on its Health.\r\n\r\nAbove <MaxHealth>{HealthThreshold}%</> Health, steal <AttackPhysicalDamage>{StealAD}</> (<OmegaPowerPercentage></>) Physical Attack Damage and share with the highest <AttackSpeed>Attack Speed</> ally.\r\n\r\nBelow <MaxHealth>{HealthThreshold}%</> Health, steal <MaxHealth>{StealHealth}%</> (<OmegaPowerPercentage></>) Health and share with the lowest <MaxHealth>Health</> ally.\r\n\r\nSteal AD: <AttackPhysicalDamage>{StealAD}</> (<OmegaPowerPercentage></>)\r\nSteal HP: <MaxHealth>{StealHealth}%</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"AttackNum": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].AttachedAbilities[0].ActivationTrigger.MaxActivations"
+			},
+			"HealthThreshold": {
+				"ParameterPath": "OmegaAbilitiesActivationCheckValue"
+			},
+			"StealAD": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].AttachedAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"StealHealth": {
+				"ParameterPath": "OmegaAbilities[1].Skills[0].EffectPackage.Effects[0].AttachedAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]"
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Rai redirects power into its next 2 attacks, stealing different stats based on its Health.\r\n\r\nAbove 50% Health, steal 4 () Physical Attack Damage and share with the highest Attack Speed ally.\r\n\r\nBelow 50% Health, steal 1% () Health and share with the lowest Health ally.\r\n\r\nSteal AD: 4 ()\r\nSteal HP: 1% ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 2,
+			"AttackSpeed": 1,
+			"Health": 3,
+			"MovementSpeed": 5,
+			"OmegaPower": 6,
+			"Resistance": 4
+		}
+	}
+}

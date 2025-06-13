@@ -1,0 +1,61 @@
+{
+	"Name": "LeviathansFury",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "GreaterPower",
+	"Abilities": [
+		{
+			"Name": "LeviathansFury_Ability1",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "LeviathansFury - Empowered Attack",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Empower",
+								"ActivatedBy": "Attack",
+								"DurationMs": -1,
+								"IsConsumable": false,
+								"ActivationsUntilExpiry": 1,
+								"AttachedEffects": [
+									{
+										"Type": "InstantDamage",
+										"DamageType": "Pure",
+										"Expression": {
+											"Percentage": 6,
+											"Stat": "MaxHealth",
+											"StatSource": "Sender"
+										}
+									}
+								]
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Leviathan's Fury",
+	"DisplayDescription": "Attacks deal <MaxHealth>6%</> of holder's Max Health as additional Pure Damage.",
+	"Description": {
+		"Format": "Attacks deal <MaxHealth>{DamageVal}%</> of holder's Max Health as additional Pure Damage.",
+		"Parameters": {
+			"DamageVal": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].AttachedEffects[0].Expression.Percentage",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Attacks deal 6% of holder's Max Health as additional Pure Damage."
+}

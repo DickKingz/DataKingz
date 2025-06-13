@@ -1,0 +1,166 @@
+{
+	"CombatClass": "Invoker",
+	"CombatClassComponents": [
+		"Psion",
+		"Psion"
+	],
+	"SynergyThresholds": [
+		2,
+		3,
+		4
+	],
+	"SynergyThresholdsAbilities": {
+		"Variables": [
+			{
+				"Name": "Invoker_OmegaPower",
+				"Values": [
+					16,
+					18,
+					20
+				]
+			},
+			{
+				"Name": "Invoker_Shield",
+				"Values": [
+					0,
+					0,
+					300
+				]
+			}
+		],
+		"TeamAbilities": [],
+		"UnitAbilities": [
+			{
+				"Name": "InvokerSynergy_Ability1",
+				"ActivationTrigger": {
+					"TriggerType": "OnActivateXAbilities",
+					"AbilityTypes": [
+						"Omega"
+					],
+					"EveryX": true,
+					"NumberOfAbilitiesActivated": 1
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Invoker - Omega Power",
+						"Deployment": {
+							"Type": "Direct",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							]
+						},
+						"Targeting": {
+							"Type": "Synergy",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							],
+							"Group": "Ally",
+							"Self": true,
+							"CombatClass": "Invoker"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Buff",
+									"Stat": "OmegaPowerPercentage",
+									"DurationMs": -1,
+									"OverlapProcessType": "Stacking",
+									"Expression": {
+										"Operation": "*",
+										"Operands": [
+											{
+												"Operation": "/",
+												"Operands": [
+													{
+														"Percentage": "{Invoker_OmegaPower}",
+														"Stat": "EnergyCost",
+														"StatSource": "Sender"
+													},
+													1000
+												]
+											}
+										]
+									}
+								}
+							]
+						}
+					},
+					{
+						"Name": "Invoker - Shield",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "Self"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "SpawnShield",
+									"DurationMs": 4000,
+									"Expression": {
+										"Percentage": "{Invoker_Shield}",
+										"Stat": "EnergyCost",
+										"StatSource": "Receiver"
+									}
+								}
+							]
+						}
+					}
+				]
+			}
+		]
+	},
+	"IntrinsicAbilities": [],
+	"DisplayName": "Invoker",
+	"DisplayDescription": "\r\nOn Omega, Invokers grant all Invokers a percentage of the caster's <EnergyCost>Energy Cost</> as <OmegaPowerPercentage>Omega Power</>.\r\n\r\n(4) On Omega, gain a Shield equal to <EnergyCost>300%</> of <EnergyCost>Energy Cost</> for 4 seconds.\r\n",
+	"DisplayDescriptionThresholds": [
+		"Gain <EnergyCost>16%</><EnergyCost></> as <OmegaPowerPercentage></>",
+		"Gain <EnergyCost>18%</><EnergyCost></> as <OmegaPowerPercentage></>",
+		"Gain <EnergyCost>20%</><EnergyCost></> as <OmegaPowerPercentage></>"
+	],
+	"Description": {
+		"Format": "\r\nOn Omega, Invokers grant all Invokers a percentage of the caster's <EnergyCost>Energy Cost</> as <OmegaPowerPercentage>Omega Power</>.\r\n\r\n(4) On Omega, gain a Shield equal to <EnergyCost>{Invoker_Shield}%</> of <EnergyCost>Energy Cost</> for {ShieldDuration} seconds.\r\n",
+		"Parameters": {
+			"Invoker_Shield": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[2]",
+				"ValueMultiplier": 1.0
+			},
+			"ShieldDuration": {
+				"ParameterPath": "SynergyThresholdsAbilities.UnitAbilities[0].Skills[1].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DescriptionThresholds": {
+		"Format": "Gain <EnergyCost>{OmegaPowerBuff}%</><EnergyCost></> as <OmegaPowerPercentage></>",
+		"Parameters": [
+			{
+				"OmegaPowerBuff": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[0]"
+				}
+			},
+			{
+				"OmegaPowerBuff": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[1]"
+				}
+			},
+			{
+				"OmegaPowerBuff": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[2]"
+				}
+			}
+		]
+	},
+	"DisplayDescriptionNormalized": "On Omega, Invokers grant all Invokers a percentage of the caster's Energy Cost as Omega Power.\r\n\r\n(4) On Omega, gain a Shield equal to 300% of Energy Cost for 4 seconds.",
+	"DisplayDescriptionThresholdsNormalized": [
+		"Gain 16% as",
+		"Gain 18% as",
+		"Gain 20% as"
+	]
+}

@@ -1,0 +1,231 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Mammoth",
+	"Stage": 2,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 4,
+	"CombatAffinity": "Tempest",
+	"CombatClass": "Psion",
+	"DominantCombatAffinity": "Air",
+	"DominantCombatClass": "Psion",
+	"SizeUnits": 5,
+	"Stats": {
+		"MaxHealth": 2300000,
+		"StartingEnergy": 40000,
+		"EnergyCost": 200000,
+		"PhysicalResist": 55,
+		"EnergyResist": 55,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 95000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 60,
+		"MoveSpeedSubUnits": 2250,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 10,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 13,
+		"OmegaRangeUnits": 17,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Mammoth Basic Attack II",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 43
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Incisorise II",
+			"TotalDurationMs": 2000,
+			"Skills": [
+				{
+					"Name": "Throw to high density",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 75,
+						"PreDeploymentRetargetingPercentage": 60
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 22,
+						"DurationMs": 2000,
+						"FrequencyMs": 2000,
+						"MovementSpeedSubUnits": 12000,
+						"GrowthRateSubUnits": 0,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Displacement",
+								"DisplacementType": "ThrowToHighestEnemyDensity",
+								"DurationMs": 2000,
+								"OnFinished": {
+									"Name": "AoE Damage",
+									"Deployment": {
+										"Type": "Zone"
+									},
+									"Zone": {
+										"Shape": "Hexagon",
+										"RadiusUnits": 22,
+										"DurationMs": 100,
+										"FrequencyMs": 100,
+										"ApplyOnce": true
+									},
+									"Targeting": {
+										"Type": "Self"
+									},
+									"EffectPackage": {
+										"Effects": [
+											{
+												"Type": "InstantDamage",
+												"DamageType": "Physical",
+												"Expression": {
+													"Operation": "*",
+													"Operands": [
+														300000,
+														{
+															"Stat": "OmegaPowerPercentage",
+															"StatSource": "Sender"
+														}
+													]
+												}
+											},
+											{
+												"Type": "NegativeState",
+												"NegativeState": "Stun",
+												"DurationMs": 750
+											}
+										]
+									}
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Mah'tu",
+	"DisplayDescription": "Mah'tu tusk tosses the closest enemy at the largest group of enemies. Upon impact, all enemies within 22-hexes are Stunned for 0.75 seconds and dealt <AttackEnergyDamage>300</> (<OmegaPowerPercentage></>) Energy Damage.\r\n\r\nDamage: <AttackEnergyDamage>300</> (<OmegaPowerPercentage></>)",
+	"Intro": "In Taiga Boreal, it's common to hear the crashes and cracks of icebergs colliding together or breaking apart from the mainland. Collapsing glaciers and roaring winds make a recurring symphony, chilling to the bones. These sounds can be especially deafening when snowstorms subside. However, another force of nature is often at play. Sometimes a devastating snowslide results from the Mah'tu testing its strength against a wall of ice.",
+	"Summary": "The Mah'tu, with its long downy fur and sharp, telepathically bonded tusks that glow orange and green, has a distinctive appearance marked by a skullcap and bushy features. The Mah'tu charges into ice walls to dislodge prey and engages in dangerous tusk battles with other Mah'tu, often causing collateral damage. Its cognitive abilities are enhanced by an enlarged frontal lobe, enabling problem-solving and social interactions, and its fur adapts to temperature changes for optimal insulation.",
+	"Biology": {
+		"Physiology": "The Mah'tu, cloaked in its long, downy fur, carries two formidable weapons?its sharp, angular tusks. These imposing tusks, longer than its trunk, resemble hooked spears emerging from its face, their appearance of fractured shards telepathically bonded, casting an orange glow akin to the haunting light from its eyes and the brooch adorning its forehead. In moments of defense, this warm glow shifts to a ghostly green. Adorned with a distinctive skullcap to accommodate its enlarged brain, the Mah'tu's appearance is further characterised by bushy ears and lengthy whiskers that drape its face. Its fleecy grey fur, trailing behind as it moves, cloaks its legs entirely, adding to its mystique.",
+		"Behaviour": "The Mah'tu is an unruly brute, often charging into ice walls to dislodge morphopods from their crevices. It swings its tusks as a show of aggression and might, throwing its head toward any who presents a challenge. It is common to find the Mah'tu butting heads with other Mah'tu, roughhousing with its tusks. These fights are perilous for nearby creatures who may get trampled."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/MammothStage2/MammothStage2_default_default_webp.3840x2160/MammothStage2_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/MammothStage2/MammothStage2_default_default_hls.m3u8/MammothStage2_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Mah'tu can recognise its reflection in the ice lake, often watching the movements of its tusks while preening.",
+			"The Mah'tu bonds with others by roughhousing and charging into ice walls.",
+			"The Mah'tu also display a keen interest in their environment, often seen tracing patterns in the snow with their tusks resembling the terrain around them."
+		],
+		"Buckley": [
+			"The Mah'tu's splintered tusks are held together by psionic energy and its pieces can extend to further distances at will.",
+			"The Mah'tu's thick, downy fur possesses unique thermal-regulating properties. The fur can adjust its insulation capacity in response to external temperatures.",
+			"The Mah'tu possesses an enlarged frontal lobe. This brain structure is linked to high cognitive functions, including problem-solving, social interaction, and environmental awareness."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		4,
+		2,
+		6,
+		1,
+		3
+	],
+	"Description": {
+		"Format": "Mah'tu tusk tosses the closest enemy at the largest group of enemies. Upon impact, all enemies within {OmegaRadius}-hexes are Stunned for {StunDuration} seconds and dealt <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Energy Damage.\r\n\r\nDamage: <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].OnFinished.EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"StunDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].OnFinished.EffectPackage.Effects[1].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"OmegaRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Zone.RadiusUnits"
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Mah'tu tusk tosses the closest enemy at the largest group of enemies. Upon impact, all enemies within 22-hexes are Stunned for 0.75 seconds and dealt 300 () Energy Damage.\r\n\r\nDamage: 300 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 4,
+			"Health": 2,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 3
+		}
+	}
+}

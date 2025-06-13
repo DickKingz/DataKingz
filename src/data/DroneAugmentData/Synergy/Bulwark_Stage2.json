@@ -1,0 +1,26 @@
+{
+	"Name": "Bulwark",
+	"Stage": 2,
+	"Type": "Game",
+	"DisplayName": "Bulwark Matrix",
+	"DisplayDescription": "Gain a Bulwark Imprint and Guardian's Grid.",
+	"Description": {
+		"Format": "Gain a Bulwark Imprint and Guardian's Grid.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Bulwark",
+				"Stage": 0,
+				"Variation": "Original"
+			},
+			{
+				"Name": "GuardiansGrid",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

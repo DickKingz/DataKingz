@@ -1,0 +1,255 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "PistolShrimp",
+	"Stage": 2,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 5,
+	"CombatAffinity": "Water",
+	"CombatClass": "Invoker",
+	"DominantCombatAffinity": "Water",
+	"DominantCombatClass": "Psion",
+	"SizeUnits": 5,
+	"Stats": {
+		"MaxHealth": 1450000,
+		"StartingEnergy": 40000,
+		"EnergyCost": 140000,
+		"PhysicalResist": 30,
+		"EnergyResist": 40,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 90000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 75,
+		"MoveSpeedSubUnits": 2250,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 70,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "PistolShrimp Basic Attack II",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 25
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 10000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Devouring Stream II",
+			"TotalDurationMs": 6000,
+			"Skills": [
+				{
+					"Name": "Damage beam",
+					"Targeting": {
+						"Type": "DistanceCheck",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"Group": "Enemy",
+						"Lowest": false,
+						"Num": 1
+					},
+					"PercentageOfAbilityDuration": 100,
+					"ChannelTimeMs": 4000,
+					"Deployment": {
+						"Type": "Beam",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 12
+					},
+					"Beam": {
+						"WidthUnits": 15,
+						"FrequencyMs": 200,
+						"ApplyOnce": false,
+						"IsHoming": true,
+						"IsBlockable": false
+					},
+					"EffectPackage": {
+						"Attributes": {
+							"RotateToTarget": true
+						},
+						"Effects": [
+							{
+								"Type": "Debuff",
+								"Stat": "EnergyResist",
+								"OverlapProcessType": "Merge",
+								"DurationMs": 500,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										{
+											"Percentage": 15,
+											"Stat": "EnergyResist",
+											"StatSource": "Receiver"
+										},
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										62500,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Synalph",
+	"DisplayDescription": "Synalph shoots a powerful water beam at the furthest enemy, dealing <AttackEnergyDamage>1,250</> (<OmegaPowerPercentage></>) Energy Damage over 4 seconds to all enemies in its path. While hit by the beam, enemies lose <EnergyResist>15%</> (<OmegaPowerPercentage></>) Energy Resistance.\r\n\r\nDamage: <AttackEnergyDamage>1,250</> = <AttackEnergyDamage>62.5</>/0.2s (<OmegaPowerPercentage></>)\r\nEnergy Resist: <EnergyResist>15%</> (<OmegaPowerPercentage></>)",
+	"Intro": "The colourful pools in Halcyon Sea come in many vibrant hues, but their colours do not intermix. Each pool has a dominant organism, a single type of coral that bears a distinctive chroma. Certain creatures are attracted to different colours, but the Synalph holds no single preference. It dips its feet in all of them, scuttling along on a clockwork schedule to visit every pool in the area.",
+	"Summary": "The Synalph is a colorful creature with vibrant purple and blue features across its body, equipped with an enormous right claw capable of shooting powerful water jets. It meticulously follows a daily schedule, visiting pools matching the colors of its body segments to regulate its movements and energy. While generally pacifist, the Synalph uses its claw defensively to blast obstacles or intruders out of its path.",
+	"Biology": {
+		"Physiology": "The Synalph has oval eyes, a vibrant shell and six colourful legs, but its most notable feature is its death-dealing claw. It holds its enormous right claw up, carefully balancing the weight of the formidable firearm with the rest of its body. Its bulgy red shell has streaks of yellow, while its bulky pincher claws and nimble legs have purple segments that are tipped with blue. The Synalph has a pair of purple and blue antennae often twitch, sensitive to the vibrations of its environment.",
+		"Behaviour": "The Synalph is an orderly creature with a strict schedule to keep. Every day it walks around on its six colourful legs, clicking on rocks and sand to get to its destination. First, it visits red pools that match the base of its body, and then purple pools that are similar to its arms and legs. Its final stops are the blue pools, that match the tip of its claws and feet. With oval eyes focused on where it needs to be, the Synalph's claw surges with energy, ready to blow at a moment's notice and eliminate obstacles in its way."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/PistolShrimpStage2/PistolShrimpStage2_default_default_webp.3840x2160/PistolShrimpStage2_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/PistolShrimpStage2/PistolShrimpStage2_default_default_hls.m3u8/PistolShrimpStage2_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Synalph travels throughout its territory, touring touchpoints that match the colours of its body.",
+			"The Synalph occasionally blasts obstacles or other creatures out of its way with its claw. However, it prefers a pacifist approach as the impact of the explosions can veer it off course.",
+			"The Synalph travels in water through the cavitation bubbles that it creates with high-speed energy blasts."
+		],
+		"Buckley": [
+			"The Synalph's compound eyes have billions of individual lenses that allow it to detect light across the entire electromagnetic spectrum and polarized light.",
+			"The Synalph has a unique organ within its claw that produces intense pressure bubbles and harnesses the residue heat from its blasts. This is what allows it to use its claw as a pneumatic drill and break through the shells of prey.",
+			"The Synalph has a unique anatomy with asymmetrical claws. Its larger claw is capable of producing a blast of up to 160 decibels.",
+			"The Synalph has excess calcium and keratin stores in its body which allows it to grow back its claw after extensive wear and tear.",
+			"The Synalph has a cavity within its enlarged right claw which fills up with water for use during energy blasts."
+		]
+	},
+	"TraitOrderLegacy": [
+		3,
+		2,
+		4,
+		6,
+		1,
+		5
+	],
+	"Description": {
+		"Format": "Synalph shoots a powerful water beam at the furthest enemy, dealing <AttackEnergyDamage>{OmegaDamageFull}</> (<OmegaPowerPercentage></>) Energy Damage over {OmegaDuration} seconds to all enemies in its path. While hit by the beam, enemies lose <EnergyResist>{DebuffValue}%</> (<OmegaPowerPercentage></>) Energy Resistance.\r\n\r\nDamage: <AttackEnergyDamage>{OmegaDamageFull}</> = <AttackEnergyDamage>{OmegaDamage}</>/0.2s (<OmegaPowerPercentage></>)\r\nEnergy Resist: <EnergyResist>{DebuffValue}%</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamageFull": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].Expression.Operands[0]",
+				"ValueMultiplier": 0.02
+			},
+			"OmegaDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].ChannelTimeMs",
+				"ValueMultiplier": 0.001
+			},
+			"DebuffValue": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0].Percentage",
+				"ValueMultiplier": 1.0
+			},
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Synalph shoots a powerful water beam at the furthest enemy, dealing 1,250 () Energy Damage over 4 seconds to all enemies in its path. While hit by the beam, enemies lose 15% () Energy Resistance.\r\n\r\nDamage: 1,250 = 62.5/0.2s ()\r\nEnergy Resist: 15% ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 3,
+			"AttackSpeed": 2,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 5
+		}
+	}
+}

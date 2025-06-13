@@ -1,0 +1,96 @@
+{
+	"Name": "CelestialInfusion",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Amplifier",
+	"Stats": {
+		"PhysicalResist": 0,
+		"EnergyResist": 0,
+		"MaxHealth": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 0,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 0,
+		"AttackDodgeChancePercentage": 0,
+		"MoveSpeedSubUnits": 0,
+		"OmegaPowerPercentage": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"StartingEnergy": 0,
+		"StartingShield": 0,
+		"CritChancePercentage": 0,
+		"CritAmplificationPercentage": 0,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0
+	},
+	"Abilities": [
+		{
+			"Name": "Celestial Infusion",
+			"ActivationTrigger": {
+				"TriggerType": "OnActivateXAbilities",
+				"AbilityTypes": [
+					"Attack"
+				],
+				"EveryX": true,
+				"NumberOfAbilitiesActivated": 15
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Xenolink - Omega Power",
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						]
+					},
+					"Targeting": {
+						"Type": "InZone",
+						"Group": "Ally",
+						"Self": true,
+						"RadiusUnits": 20,
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						]
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "OmegaPowerPercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 50
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Celestial Infusion",
+	"DisplayDescription": "Every 15th attack, grant <OmegaPowerPercentage>50</> Omega Power to allies within 20-radius.",
+	"Description": {
+		"Format": "Every {AttackNum}th attack, grant <OmegaPowerPercentage>{OPVal}</> Omega Power to allies within {Radius}-radius.",
+		"Parameters": {
+			"AttackNum": {
+				"ParameterPath": "Abilities[0].ActivationTrigger.NumberOfAbilitiesActivated"
+			},
+			"OPVal": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].Expression"
+			},
+			"Radius": {
+				"ParameterPath": "Abilities[0].Skills[0].Targeting.RadiusUnits"
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Every 15th attack, grant 50 Omega Power to allies within 20-radius."
+}

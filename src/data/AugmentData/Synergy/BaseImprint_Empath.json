@@ -1,0 +1,47 @@
+{
+	"Name": "Empath",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "SynergyBonus",
+	"CombatClasses": {
+		"Empath": 1
+	},
+	"Abilities": [
+		{
+			"Name": "Empath Imprint Stats",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Empath Imprint Stat List",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "MaxHealth",
+								"DurationMs": -1,
+								"Expression": 100000
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Empath Imprint",
+	"DisplayDescription": "The holder gains the Empath Class and 100 <MaxHealth>Max Health</>.",
+	"Description": {
+		"Format": "The holder gains the Empath Class and 100 <MaxHealth>Max Health</>.",
+		"Parameters": {}
+	},
+	"DisplayDescriptionNormalized": "The holder gains the Empath Class and 100 Max Health."
+}

@@ -1,0 +1,223 @@
+{
+	"CombatClass": "Colossus",
+	"CombatClassComponents": [
+		"Bulwark",
+		"Bulwark"
+	],
+	"SynergyThresholds": [
+		2,
+		3,
+		4
+	],
+	"SynergyThresholdsAbilities": {
+		"Variables": [
+			{
+				"Name": "Colossus_Health",
+				"Values": [
+					20,
+					30,
+					45
+				]
+			},
+			{
+				"Name": "Colossus_TauntTrigger",
+				"Values": [
+					6000,
+					6000,
+					6000
+				]
+			},
+			{
+				"Name": "Colossus_TauntDuration",
+				"Values": [
+					3000,
+					3000,
+					3000
+				]
+			},
+			{
+				"Name": "Colossus_Thorns",
+				"Values": [
+					20000,
+					30000,
+					0
+				]
+			},
+			{
+				"Name": "Colossus_SpecialThorns",
+				"Values": [
+					0,
+					0,
+					10
+				]
+			}
+		],
+		"TeamAbilities": [],
+		"UnitAbilities": [
+			{
+				"Name": "ColossusSynergy_Ability1",
+				"ActivationTrigger": {
+					"TriggerType": "OnBattleStart"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Colossus - Max Health",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "Self"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Buff",
+									"Stat": "MaxHealth",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Colossus_Health}",
+										"Stat": "MaxHealth",
+										"StatSource": "Receiver"
+									}
+								}
+							]
+						}
+					}
+				]
+			},
+			{
+				"Name": "ColossusSynergy_Ability2",
+				"ActivationTrigger": {
+					"TriggerType": "EveryXTime",
+					"ActivateEveryTimeMs": "{Colossus_TauntTrigger}"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Colossus - Taunt",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "InZone",
+							"Group": "Enemy",
+							"RadiusUnits": 25
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "NegativeState",
+									"NegativeState": "Taunted",
+									"DurationMs": "{Colossus_TauntDuration}"
+								}
+							]
+						}
+					},
+					{
+						"Name": "Colossus - Thorns",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "Self"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Buff",
+									"Stat": "Thorns",
+									"DurationMs": "{Colossus_TauntDuration}",
+									"Expression": "{Colossus_Thorns}"
+								},
+								{
+									"Type": "Buff",
+									"Stat": "Thorns",
+									"DurationMs": "{Colossus_TauntDuration}",
+									"Expression": {
+										"Operation": "/",
+										"Operands": [
+											{
+												"Percentage": "{Colossus_SpecialThorns}",
+												"Stat": "MaxHealth",
+												"StatSource": "Receiver"
+											},
+											10
+										]
+									}
+								}
+							]
+						}
+					}
+				]
+			}
+		]
+	},
+	"IntrinsicAbilities": [],
+	"DisplayName": "Colossus",
+	"DisplayDescription": "\r\nColossus units gain additional <MaxHealth>Max Health</>. Every 6 seconds, Taunt enemies in 25-hexes and gain <Thorns>Thorns</> for 3 seconds.\r\n\r\n(4) Instead, gain <Thorns>Thorns</> equal to <MaxHealth>1%</> of Max Health and Taunt every 6 seconds.\r\n",
+	"DisplayDescriptionThresholds": [
+		"Gain <MaxHealth>20%</><MaxHealth></> and <Thorns>20</><Thorns></>",
+		"Gain <MaxHealth>30%</><MaxHealth></> and <Thorns>30</><Thorns></>",
+		"Gain <MaxHealth>45%</><MaxHealth></> and <Thorns>0</><Thorns></>"
+	],
+	"Description": {
+		"Format": "\r\nColossus units gain additional <MaxHealth>Max Health</>. Every {Colossus_TauntTrigger} seconds, Taunt enemies in {TauntRadius}-hexes and gain <Thorns>Thorns</> for {Colossus_TauntDuration} seconds.\r\n\r\n(4) Instead, gain <Thorns>Thorns</> equal to <MaxHealth>{Colossus_SpecialThorns}%</> of Max Health and Taunt every {Colossus_TauntTrigger} seconds.\r\n",
+		"Parameters": {
+			"Colossus_TauntTrigger": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[0]",
+				"ValueMultiplier": 0.001
+			},
+			"TauntRadius": {
+				"ParameterPath": "SynergyThresholdsAbilities.UnitAbilities[1].Skills[0].Targeting.RadiusUnits",
+				"ValueMultiplier": 1.0
+			},
+			"Colossus_TauntDuration": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[2].Values[0]",
+				"ValueMultiplier": 0.001
+			},
+			"Colossus_SpecialThorns": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[4].Values[2]",
+				"ValueMultiplier": 0.1
+			}
+		}
+	},
+	"DescriptionThresholds": {
+		"Format": "Gain <MaxHealth>{Colossus_Health}%</><MaxHealth></> and <Thorns>{Colossus_Thorns}</><Thorns></>",
+		"Parameters": [
+			{
+				"Colossus_Health": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[0]"
+				},
+				"Colossus_Thorns": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[3].Values[0]",
+					"ValueMultiplier": 0.001
+				}
+			},
+			{
+				"Colossus_Health": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[1]"
+				},
+				"Colossus_Thorns": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[3].Values[1]",
+					"ValueMultiplier": 0.001
+				}
+			},
+			{
+				"Colossus_Health": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[2]"
+				},
+				"Colossus_Thorns": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[3].Values[2]",
+					"ValueMultiplier": 0.001
+				}
+			}
+		]
+	},
+	"DisplayDescriptionNormalized": "Colossus units gain additional Max Health. Every 6 seconds, Taunt enemies in 25-hexes and gain Thorns for 3 seconds.\r\n\r\n(4) Instead, gain Thorns equal to 1% of Max Health and Taunt every 6 seconds.",
+	"DisplayDescriptionThresholdsNormalized": [
+		"Gain 20% and 20",
+		"Gain 30% and 30",
+		"Gain 45% and 0"
+	]
+}

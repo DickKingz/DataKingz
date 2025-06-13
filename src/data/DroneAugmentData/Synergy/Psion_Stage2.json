@@ -1,0 +1,26 @@
+{
+	"Name": "Psion",
+	"Stage": 2,
+	"Type": "Game",
+	"DisplayName": "Psion Matrix",
+	"DisplayDescription": "Gain a Psion Imprint and Apex Supercharger.",
+	"Description": {
+		"Format": "Gain a Psion Imprint and Apex Supercharger.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Psion",
+				"Stage": 0,
+				"Variation": "Original"
+			},
+			{
+				"Name": "ApexSupercharger",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

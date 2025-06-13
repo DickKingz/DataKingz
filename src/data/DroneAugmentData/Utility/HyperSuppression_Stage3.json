@@ -1,0 +1,51 @@
+{
+	"Name": "HyperSuppression",
+	"Stage": 3,
+	"Type": "Simulation",
+	"Abilities": [
+		{
+			"Name": "HyperSuppression 3 - Ability",
+			"ActivationTrigger": {
+				"TriggerType": "EveryXTime",
+				"ActivateEveryTimeMs": 100,
+				"MaxActivations": 6000
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "HyperSuppression 3 - Heal",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Allegiance",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						],
+						"Group": "Enemy"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantHyperBurn",
+								"Expression": 2000000
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Hyper Suppression III",
+	"DisplayDescription": "Enemies cannot generate Hyper.",
+	"Description": {
+		"Format": "Enemies cannot generate Hyper.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [],
+		"GrantedCredits": 0
+	}
+}

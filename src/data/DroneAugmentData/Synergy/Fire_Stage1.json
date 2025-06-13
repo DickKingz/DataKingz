@@ -1,0 +1,21 @@
+{
+	"Name": "Fire",
+	"Stage": 1,
+	"Type": "Game",
+	"DisplayName": "Fire Module",
+	"DisplayDescription": "Gain a Fire Imprint.",
+	"Description": {
+		"Format": "Gain a Fire Imprint.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Fire",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

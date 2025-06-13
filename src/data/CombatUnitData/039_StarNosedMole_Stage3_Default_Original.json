@@ -1,0 +1,249 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "StarNosedMole",
+	"Stage": 3,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 3,
+	"CombatAffinity": "Bloom",
+	"CombatClass": "Vanguard",
+	"DominantCombatAffinity": "Earth",
+	"DominantCombatClass": "Rogue",
+	"SizeUnits": 6,
+	"Stats": {
+		"MaxHealth": 2600000,
+		"StartingEnergy": 60000,
+		"EnergyCost": 200000,
+		"PhysicalResist": 70,
+		"EnergyResist": 65,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 160000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 65,
+		"MoveSpeedSubUnits": 3250,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 5,
+		"OmegaRangeUnits": 5,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "StarNosed Mole Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 38
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Whirlwind Bloom III",
+			"TotalDurationMs": 3000,
+			"Skills": [
+				{
+					"Name": "Becomes untargetable",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 30,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "PositiveState",
+								"PositiveState": "Untargetable",
+								"DurationMs": 3000
+							}
+						]
+					}
+				},
+				{
+					"Name": "AOE Stun",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 50
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 25,
+						"DurationMs": 1000,
+						"FrequencyMs": 1000,
+						"GrowthRateSubUnits": 0,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 30,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Charm",
+								"DurationMs": 3000
+							}
+						]
+					}
+				},
+				{
+					"Name": "AoE Damage",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 50
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 25,
+						"DurationMs": 1000,
+						"FrequencyMs": 1000,
+						"GrowthRateSubUnits": 0,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 40,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										650000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Malura",
+	"DisplayDescription": "Malura burrows underground, becoming Untargetable for 3 seconds, exposing only its flower nose to Charm enemies within 25-hexes. After 3 seconds, Malura emerges and deals <AttackPhysicalDamage>650</> (<OmegaPowerPercentage></>) Physical Damage within 25-hexes.\r\n\r\nDamage: <AttackPhysicalDamage>650</> (<OmegaPowerPercentage></>)\r\n\r\nCharm: Forces the unit to move towards the source",
+	"Intro": "The coast of Crystal Shores is a beautiful sight to behold, with floating prisms and growths of purple polygons that shimmer in the sun. Crashing waves splatter against the pink prism shards, and then back out into the ocean. The sound of the shores is almost enough to mask the rumbling in the ground. A pit forms in the sand and a white and pink flower emerges, the snout of the Malura.",
+	"Summary": "The coastal beauty of Crystal Shores is interrupted by the emergence of Malura, a heavyset Illuvial with crystal knobs and a vibrant flower on its trunk. Capable of digging vast tunnel networks underground, Malura moves swiftly to ambush prey and intimidate rivals with its trumpeting snarl. Malura's claws, composed of a specialized compound, can transfer energy effectively. Its sensory adaptations include detecting scents underwater and sensing seismic vibrations through its rocky bumps.",
+	"Biology": {
+		"Physiology": "The Malura is a thick, heavyset Illuvial with crystal knobs on its back and lobed leaves framing the flower blooming from its trunk. It has vast, muscular arms with white light wisping from its big claws, illuminating the ground it digs out of. The Malura stands on two stocky legs, with knobbed imprints on its knees and glowing cobblestone on the underside of its limbs. Mostly purple with a reddish underbelly and long growths of green, there is also a bulging pink cone nestled in the leaves at the end of its tail. The Malura has a long face with brown ridges and pink tendrils on its trunk, which sprouts a bed of green to support its delicate blossom.",
+		"Behaviour": "The Malura can dig extremely fast, often diving into the ground as though entering the water. It can jump out just as quickly and has been observed ambushing Illuvial prey above ground. It bellows with a big trumpeting snarl to intimidate others and scare them away from its digging areas. With massive arms that can displace huge amounts of earth, the Malura creates vast tunnel networks that rival the advanced root systems in Illuvium. It digs so deep underground that it can cross oceans and enter different continents, often carrying spores of mushrooms and helping them spread across the region."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/StarNosedMoleStage3/StarNosedMoleStage3_default_default_webp.3840x2160/StarNosedMoleStage3_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/StarNosedMoleStage3/StarNosedMoleStage3_default_default_hls.m3u8/StarNosedMoleStage3_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Malura travels by digging, and its tunnels often interact with structures under and above ground, from the hyphae and stem of Titanicus Mushrooms in Abyssal Basin to the Tentifung and rocky pillars in Shardbluff Labyrinth.",
+			"The Malura follows its nose wherever it goes. When it sniffs out special minerals in other Illuvials, it does not hesitate to rip them out.",
+			"The Malura creates entire underground dens dedicated to storing the fur, horn, or limbs of trespassing Illuvials in its tunnels."
+		],
+		"Buckley": [
+			"The Malura's front flower has root-like tendrils with over 500,000 nerve fibres. Although the petal appendages are located on its snout, it has a stronger sense of touch than smell.",
+			"The Malura's claws are composed of keratin and traces of a Vanavium-Tellevium compound. This allows it to transfer heat and other forms of energy out of its body with ease.",
+			"The Malura's pink cone tail functions as a seed bank that can transfer seeds to its snout once its front flower reaches the end of its life cycle.",
+			"The Malura has a special adaptation in its snout that allows it to exhale thick oily bubbles underwater and re-inhale them to detect scents.",
+			"The Malura has many rock-shaped bumps upon its body that supports its ability to sense seismic wave vibrations."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		3,
+		1,
+		6,
+		4,
+		2
+	],
+	"Description": {
+		"Format": "Malura burrows underground, becoming Untargetable for {OmegaDuration} seconds, exposing only its flower nose to Charm enemies within {OmegaRadius}-hexes. After {OmegaDuration} seconds, Malura emerges and deals <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Physical Damage within {OmegaRadius}-hexes.\r\n\r\nDamage: <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)\r\n\r\nCharm: Forces the unit to move towards the source",
+		"Parameters": {
+			"OmegaDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"OmegaRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].Zone.RadiusUnits"
+			},
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[2].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Malura burrows underground, becoming Untargetable for 3 seconds, exposing only its flower nose to Charm enemies within 25-hexes. After 3 seconds, Malura emerges and deals 650 () Physical Damage within 25-hexes.\r\n\r\nDamage: 650 ()\r\n\r\nCharm: Forces the unit to move towards the source",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 3,
+			"Health": 1,
+			"MovementSpeed": 6,
+			"OmegaPower": 4,
+			"Resistance": 2
+		}
+	}
+}

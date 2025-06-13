@@ -1,0 +1,242 @@
+{
+	"Name": "SproutGuard",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Normal",
+	"CombatAffinity": "Earth",
+	"CombatClass": "Psion",
+	"DominantCombatAffinity": "Earth",
+	"DominantCombatClass": "Psion",
+	"Stats": {
+		"MaxHealth": 1000000,
+		"StartingEnergy": 80000,
+		"EnergyCost": 200000,
+		"PhysicalResist": 60,
+		"EnergyResist": 50,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 90000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 80,
+		"MoveSpeedSubUnits": 0,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 2,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Guard Attack I",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 50
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Photoshock Barrier",
+			"TotalDurationMs": 3000,
+			"Skills": [
+				{
+					"Name": "Self shield",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 10
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"ID": "PetalDetonation",
+								"Type": "SpawnShield",
+								"DurationMs": 3000,
+								"Expression": {
+									"Operation": "+",
+									"Operands": [
+										{
+											"Operation": "*",
+											"Operands": [
+												400000,
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Receiver"
+												}
+											]
+										},
+										{
+											"Percentage": 5,
+											"Stat": "MaxHealth",
+											"StatSource": "Receiver"
+										}
+									]
+								},
+								"OnDestroy": {
+									"Name": "SpellweaversAegis - Gain Omega Power on expire",
+									"Targeting": {
+										"Type": "Self"
+									},
+									"Deployment": {
+										"Type": "Zone"
+									},
+									"Zone": {
+										"Shape": "Hexagon",
+										"RadiusUnits": 20,
+										"DurationMs": 100,
+										"FrequencyMs": 100,
+										"ApplyOnce": true
+									},
+									"EffectPackage": {
+										"Effects": [
+											{
+												"Type": "InstantDamage",
+												"DamageType": "Energy",
+												"Expression": 0
+											}
+										]
+									}
+								}
+							},
+							{
+								"Type": "SpawnMark",
+								"MarkType": "Beneficial",
+								"DurationMs": 3000,
+								"AttachedAbilities": [
+									{
+										"Name": "Damage Enemies in AOE",
+										"ActivationTrigger": {
+											"TriggerType": "EveryXTime",
+											"ActivateEveryTimeMs": 1000
+										},
+										"TotalDurationMs": 0,
+										"Skills": [
+											{
+												"Name": "Damage Enemies in AOE",
+												"Deployment": {
+													"Type": "Direct"
+												},
+												"Targeting": {
+													"Type": "InZone",
+													"Group": "Enemy",
+													"RadiusUnits": 15
+												},
+												"EffectPackage": {
+													"Effects": [
+														{
+															"Type": "InstantDamage",
+															"DamageType": "Energy",
+															"Expression": {
+																"Operation": "*",
+																"Operands": [
+																	100000,
+																	{
+																		"Stat": "OmegaPowerPercentage",
+																		"StatSource": "Sender"
+																	}
+																]
+															}
+														}
+													]
+												}
+											}
+										]
+									}
+								]
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Sprout Guard",
+	"DisplayDescription": "The Ranger hides behind the shield as it starts to rotate quickly, radiating stored energy from blocked attacks to create a <MaxHealth>400</> (<OmegaPowerPercentage></>) + <MaxHealth>5%</> Max Health Shield for 3 seconds.\r\nEnemies within 15-radius take <AttackEnergyDamage>300</> (<OmegaPowerPercentage></>) Energy Damage over 3 seconds.",
+	"Description": {
+		"Format": "The Ranger hides behind the shield as it starts to rotate quickly, radiating stored energy from blocked attacks to create a <MaxHealth>{FlatShield}</> (<OmegaPowerPercentage></>) + <MaxHealth>{PercentShield}%</> Max Health Shield for {Duration} seconds.\r\nEnemies within {Radius}-radius take <AttackEnergyDamage>{Damage}</> (<OmegaPowerPercentage></>) Energy Damage over {Duration} seconds.",
+		"Parameters": {
+			"FlatShield": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0].Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"PercentShield": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[1].Percentage",
+				"ValueMultiplier": 1.0
+			},
+			"Duration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"Radius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].AttachedAbilities[0].Skills[0].Targeting.RadiusUnits",
+				"ValueMultiplier": 1.0
+			},
+			"Damage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].AttachedAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.003
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "The Ranger hides behind the shield as it starts to rotate quickly, radiating stored energy from blocked attacks to create a 400 () + 5% Max Health Shield for 3 seconds.\r\nEnemies within 15-radius take 300 () Energy Damage over 3 seconds."
+}

@@ -1,0 +1,154 @@
+{
+	"Name": "Blightfire",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "GreaterPower",
+	"Abilities": [
+		{
+			"Name": "Blightfire_Stats",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Blightfire - List of Stats",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "MaxHealth",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 300000
+							},
+							{
+								"Type": "Buff",
+								"Stat": "PhysicalResist",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 30
+							},
+							{
+								"Type": "Buff",
+								"Stat": "EnergyResist",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 30
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"Name": "Blightfire_Ability1",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Blightfire - Burn",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Aura",
+								"AttachedEffects": [
+									{
+										"Type": "Debuff",
+										"Stat": "HealthGainEfficiencyPercentage",
+										"OverlapProcessType": "Sum",
+										"DurationMs": -1,
+										"RadiusUnits": 25,
+										"FrequencyMs": 1000,
+										"Expression": {
+											"Percentage": 50,
+											"Stat": "HealthGainEfficiencyPercentage",
+											"StatSource": "Receiver"
+										}
+									}
+								]
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"Name": "Blightfire_Ability2",
+			"ActivationTrigger": {
+				"TriggerType": "EveryXTime",
+				"ActivateEveryTimeMs": 1000
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Blightfire - Poison",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "InZone",
+						"Group": "Enemy",
+						"RadiusUnits": 25
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Percentage": 2,
+									"Stat": "MaxHealth",
+									"StatSource": "Receiver"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Blightfire",
+	"DisplayDescription": "Gain <MaxHealth>300</> <MaxHealth>Max Health</> and <Resistance>30</> <Resistance>Resistances</>. Burn and Poison enemies within 25-hexes with increased effectiveness.\r\n\r\n<Italic>Burn: Reduces healing received by </><Hyper>50%</>\r\n\r\n<Italic>Poison: Deals </><Hyper>2%</> <Italic>of target's Max Health as Pure Damage per second</>",
+	"Description": {
+		"Format": "Gain <MaxHealth>{HealthVal}</> <MaxHealth>Max Health</> and <Resistance>{ResistVal}</> <Resistance>Resistances</>. Burn and Poison enemies within {Radius}-hexes with increased effectiveness.\r\n\r\n<Italic>Burn: Reduces healing received by </><Hyper>{BurnVal}%</>\r\n\r\n<Italic>Poison: Deals </><Hyper>{PoisonVal}%</> <Italic>of target's Max Health as Pure Damage per second</>",
+		"Parameters": {
+			"HealthVal": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].Expression",
+				"ValueMultiplier": 0.001
+			},
+			"ResistVal": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[1].Expression",
+				"ValueMultiplier": 1.0
+			},
+			"Radius": {
+				"ParameterPath": "Abilities[1].Skills[0].EffectPackage.Effects[0].AttachedEffects[0].RadiusUnits",
+				"ValueMultiplier": 1.0
+			},
+			"BurnVal": {
+				"ParameterPath": "Abilities[1].Skills[0].EffectPackage.Effects[0].AttachedEffects[0].Expression.Percentage",
+				"ValueMultiplier": 1.0
+			},
+			"PoisonVal": {
+				"ParameterPath": "Abilities[2].Skills[0].EffectPackage.Effects[0].Expression.Percentage",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Gain 300 Max Health and 30 Resistances. Burn and Poison enemies within 25-hexes with increased effectiveness.\r\n\r\nBurn: Reduces healing received by50%\r\n\r\nPoison: Deals2% of target's Max Health as Pure Damage per second"
+}

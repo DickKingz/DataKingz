@@ -1,0 +1,212 @@
+{
+	"CombatClass": "Behemoth",
+	"CombatClassComponents": [
+		"Fighter",
+		"Bulwark"
+	],
+	"SynergyThresholds": [
+		2,
+		3,
+		4
+	],
+	"SynergyThresholdsAbilities": {
+		"Variables": [
+			{
+				"Name": "Behemoth_MaxHealth",
+				"Values": [
+					12,
+					16,
+					20
+				]
+			},
+			{
+				"Name": "Behemoth_MaxHealthDamage",
+				"Values": [
+					12,
+					16,
+					20
+				]
+			},
+			{
+				"Name": "Behemoth_StunDuration",
+				"Values": [
+					1000,
+					1250,
+					1500
+				]
+			},
+			{
+				"Name": "Behemoth_AttackSpeed",
+				"Values": [
+					0,
+					0,
+					10
+				]
+			}
+		],
+		"TeamAbilities": [],
+		"UnitAbilities": [
+			{
+				"Name": "BehemothSynergy_Ability1",
+				"ActivationTrigger": {
+					"TriggerType": "OnBattleStart"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Behemoth - Max Health",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "Self"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Buff",
+									"Stat": "MaxHealth",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Behemoth_MaxHealth}",
+										"Stat": "MaxHealth",
+										"StatSource": "Receiver"
+									}
+								}
+							]
+						}
+					}
+				]
+			},
+			{
+				"Name": "BehemothSynergy_Ability2",
+				"ActivationTrigger": {
+					"TriggerType": "OnActivateXAbilities",
+					"AbilityTypes": [
+						"Attack"
+					],
+					"EveryX": true,
+					"NumberOfAbilitiesActivated": 4
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Behemoth - Empowered Attack",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "Self"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Empower",
+									"IsConsumable": true,
+									"ActivationsUntilExpiry": 1,
+									"ActivatedBy": "Attack",
+									"AttachedEffects": [
+										{
+											"Type": "NegativeState",
+											"NegativeState": "Stun",
+											"DurationMs": "{Behemoth_StunDuration}"
+										},
+										{
+											"Type": "InstantDamage",
+											"DamageType": "Physical",
+											"Expression": {
+												"Percentage": "{Behemoth_MaxHealthDamage}",
+												"Stat": "MaxHealth",
+												"StatSource": "Sender"
+											}
+										}
+									]
+								},
+								{
+									"Type": "Buff",
+									"Stat": "AttackSpeed",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Behemoth_AttackSpeed}",
+										"Stat": "AttackSpeed",
+										"StatSource": "Receiver",
+										"StatEvaluationType": "Base"
+									}
+								}
+							]
+						}
+					}
+				]
+			}
+		]
+	},
+	"IntrinsicAbilities": [],
+	"DisplayName": "Behemoth",
+	"DisplayDescription": "\r\nBehemoths gain permanent <MaxHealth>Max Health</>. Every 4 attacks, they deal a percentage of their <MaxHealth>Max Health</> as additional <AttackPhysicalDamage>Physical Damage</> and Stun the target for a duration\r\n\r\n(4) Empowered attacks grant <AttackSpeed>10%</> <AttackSpeed>Attack Speed</>.\r\n",
+	"DisplayDescriptionThresholds": [
+		"Gain 12%<MaxHealth></>. Deal 12%<MaxHealth></> as <AttackPhysicalDamage></>. Stun for 1 seconds",
+		"Gain 16%<MaxHealth></>. Deal 16%<MaxHealth></> as <AttackPhysicalDamage></>. Stun for 1.25 seconds",
+		"Gain 20%<MaxHealth></>. Deal 20%<MaxHealth></> as <AttackPhysicalDamage></>. Stun for 1.5 seconds"
+	],
+	"Description": {
+		"Format": "\r\nBehemoths gain permanent <MaxHealth>Max Health</>. Every {AttackNum} attacks, they deal a percentage of their <MaxHealth>Max Health</> as additional <AttackPhysicalDamage>Physical Damage</> and Stun the target for a duration\r\n\r\n(4) Empowered attacks grant <AttackSpeed>{Behemoth_AttackSpeed}%</> <AttackSpeed>Attack Speed</>.\r\n",
+		"Parameters": {
+			"AttackNum": {
+				"ParameterPath": "SynergyThresholdsAbilities.UnitAbilities[1].ActivationTrigger.NumberOfAbilitiesActivated",
+				"ValueMultiplier": 1.0
+			},
+			"Behemoth_AttackSpeed": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[3].Values[2]",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DescriptionThresholds": {
+		"Format": "Gain {Behemoth_MaxHealth}%<MaxHealth></>. Deal {Behemoth_MaxHealthDamage}%<MaxHealth></> as <AttackPhysicalDamage></>. Stun for {Behemoth_StunDuration} seconds",
+		"Parameters": [
+			{
+				"Behemoth_MaxHealth": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[0]"
+				},
+				"Behemoth_MaxHealthDamage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[0]"
+				},
+				"Behemoth_StunDuration": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[2].Values[0]",
+					"ValueMultiplier": 0.001
+				}
+			},
+			{
+				"Behemoth_MaxHealth": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[1]"
+				},
+				"Behemoth_MaxHealthDamage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[1]"
+				},
+				"Behemoth_StunDuration": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[2].Values[1]",
+					"ValueMultiplier": 0.001
+				}
+			},
+			{
+				"Behemoth_MaxHealth": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[2]"
+				},
+				"Behemoth_MaxHealthDamage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[2]"
+				},
+				"Behemoth_StunDuration": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[2].Values[2]",
+					"ValueMultiplier": 0.001
+				}
+			}
+		]
+	},
+	"DisplayDescriptionNormalized": "Behemoths gain permanent Max Health. Every 4 attacks, they deal a percentage of their Max Health as additional Physical Damage and Stun the target for a duration\r\n\r\n(4) Empowered attacks grant 10% Attack Speed.",
+	"DisplayDescriptionThresholdsNormalized": [
+		"Gain 12%. Deal 12% as . Stun for 1 seconds",
+		"Gain 16%. Deal 16% as . Stun for 1.25 seconds",
+		"Gain 20%. Deal 20% as . Stun for 1.5 seconds"
+	]
+}

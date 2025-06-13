@@ -1,0 +1,95 @@
+.icon-img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+  transition: transform 0.1s;
+  padding: 0;
+}
+.icon-filter-btn {
+  min-width: 32px;
+  min-height: 32px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #fff;
+  background: none;
+  border: 2px solid transparent;
+  border-radius: 0.5rem;
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: border 0.2s, background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.icon-filter-btn.selected {
+  border-color: #7c3aed;
+  background: #ede9fe;
+  color: #7c3aed;
+}
+.icon-filter-btn:hover {
+  border-color: #a78bfa;
+  background: #ede9fe;
+  color: #7c3aed;
+}
+.clear-filters-btn {
+  background: #7c3aed;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1.2rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  box-shadow: 0 2px 8px 0 rgba(124,58,237,0.10);
+}
+.clear-filters-btn:hover {
+  background: #ede9fe;
+  color: #7c3aed;
+}
+.icon-filter-bar {
+  background: #7c3aed;
+  color: #fff;
+}
+.pill-btn {
+  border-radius: 9999px;
+  padding: 0.25rem 1rem;
+  font-weight: 600;
+  border-width: 2px;
+  border-style: solid;
+  background: none;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+}
+.pill-btn-cost {
+  border-color: #6b7280; /* Tailwind gray-500 */
+  color: #d1d5db; /* Tailwind gray-300 */
+}
+.pill-btn-cost.selected, .pill-btn-cost:hover {
+  background: #6b7280;
+  color: #fff;
+  border-color: #a1a1aa; /* Tailwind gray-400 */
+}
+.pill-btn-affinity {
+  border-color: #2563eb; /* Tailwind blue-600 */
+  color: #60a5fa; /* Tailwind blue-400 */
+}
+.pill-btn-affinity.selected, .pill-btn-affinity:hover {
+  background: #2563eb;
+  color: #fff;
+  border-color: #60a5fa;
+}
+.pill-btn-class {
+  border-color: #a21caf; /* Tailwind purple-800 */
+  color: #c084fc; /* Tailwind purple-400 */
+}
+.pill-btn-class.selected, .pill-btn-class:hover {
+  background: #a21caf;
+  color: #fff;
+  border-color: #c084fc;
+}
+.test-pill {
+  background: red !important;
+  color: white !important;
+} 

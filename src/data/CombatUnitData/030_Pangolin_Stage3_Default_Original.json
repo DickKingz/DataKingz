@@ -1,0 +1,247 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Pangolin",
+	"Stage": 3,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 4,
+	"CombatAffinity": "Magma",
+	"CombatClass": "Behemoth",
+	"DominantCombatAffinity": "Fire",
+	"DominantCombatClass": "Bulwark",
+	"SizeUnits": 5,
+	"Stats": {
+		"MaxHealth": 3100000,
+		"StartingEnergy": 80000,
+		"EnergyCost": 180000,
+		"PhysicalResist": 80,
+		"EnergyResist": 60,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 220000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 65,
+		"MoveSpeedSubUnits": 2750,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 5,
+		"OmegaRangeUnits": 5,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Pangolin Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 36
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Spurnado III",
+			"TotalDurationMs": 4000,
+			"MovementLock": false,
+			"Skills": [
+				{
+					"Name": "Temp increased Phy and Enrg Resist",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 0,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "VulnerabilityPercentage",
+								"OverlapProcessType": "Merge",
+								"DurationMs": 4000,
+								"Expression": 20
+							}
+						]
+					}
+				},
+				{
+					"Name": "Zone Damage",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 25,
+						"DurationMs": 4000,
+						"FrequencyMs": 1100,
+						"Attach": true,
+						"ApplyOnce": false
+					},
+					"ChannelTimeMs": 4000,
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "+",
+									"Operands": [
+										{
+											"Operation": "*",
+											"Operands": [
+												120000,
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												}
+											]
+										},
+										{
+											"Operation": "/",
+											"Operands": [
+												{
+													"Stat": "AttackPhysicalDamage",
+													"StatSource": "Sender"
+												},
+												2
+											]
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Sear",
+	"DisplayDescription": "Sear spins for 4 seconds, gaining <DamageReduction>20%</> Damage Reduction and dealing <AttackPhysicalDamage>230</> (<OmegaPowerPercentage></><AttackPhysicalDamage></>) Physical Damage per second to all enemies within 25-hexes.\r\n\r\nDamage: <AttackPhysicalDamage>920</> = <AttackPhysicalDamage>120</>/s (<OmegaPowerPercentage></>) + <AttackPhysicalDamage>110</>/s (50%<AttackPhysicalDamage></>)",
+	"Intro": "The black stone pillars of Shardbluff Labyrinth's Moongate slide back when moonlight touches the area. Through these, one can follow a steep path up the mountain with massive stone pillars along the way. At the very top, the land is filled with dense white smoke. The Sear's silhouette can be seen by the rocky columns, which crumble when it swings its tail.",
+	"Summary": "The Sear, a volcanic giant, exudes molten magma from its cracked charcoal-like form, supported by muscular feet and broad, igneous-plated shoulders. It leaves a blazing trail of lava, constantly swaying its massive tail to navigate and maintain balance, while also searching for rare minerals within magma pools. Despite its ferocity, the Sear avoids conflicts with its kind but displays dominance through territorial displays and social gatherings in neutral magma pools.",
+	"Biology": {
+		"Physiology": "The Sear is a volcanic colossus, with eyes burning bright under a dark brow and a smouldering snout. From afar, it resembles a glowing hulk of cracked charcoal, dripping molten magma. The Sear stands on two muscular feet, carrying the weight of the blade-like scales on its mountainous back and wide-plated tail.  Its broad shoulders arc over its vast upper body, which is covered in gleaming igneous plates. Veins of glowing magma light up in between the scales on its back, shoulders, and forearms.",
+		"Behaviour": "The hulking, burning Sear leaves a sizzling trail of lava wherever it walks and it is constantly swaying its enormous tail to maintain its centre of gravity. It is often searching for rare minerals within the magma and other Illuvials defer to its whims, even bringing offerings of minerals to calm the beast. If the Sear is left alone, it may erupt in ferocious rampages in its search as a display of its fitness and social status to others of its kind. Every Sear has clearly defined territories and avoids battling with others of its kind. They do, however, share magma pools as a neutral gathering area."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/PangolinStage3/PangolinStage3_default_default_webp.3840x2160/PangolinStage3_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/PangolinStage3/PangolinStage3_default_default_hls.m3u8/PangolinStage3_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Sear attacks invasive species that enter its region by battering them with its massive tail or fists.",
+			"An unaccompanied Sear goes on ferocious rampages looking for rare minerals, ripping the land apart to aid its search. To avoid disaster for the region, some Illuvials follow it around and help it look through smaller nooks and crannies.",
+			"The Sear must constantly sway its enormous tail to maintain its centre of gravity. Sometimes it knocks over pillars of rocks and those in its way."
+		],
+		"Buckley": [
+			"The Sear's internal biology is adapted to utilize the centrifugal force from its spinning to expel lava.",
+			"The Sear's body carries the remnants of lava from its baths, which is why the underside of its tail glows with the heat of magma.",
+			"The Sear has a set of overlapping, bladed scales that are flexible but incredibly dense. Its heavy-plated armour weighs as much as an entire exploration vessel.",
+			"The Sear has glands at the base of its tail that can emit a noxious, chemical scent similar to burning waste.",
+			"The Sear's muscular hindlegs are capable of supporting its entire body weight and allow for bipedal movements. It is also supported by its large tail, which helps it maintain its balance."
+		]
+	},
+	"TraitOrderLegacy": [
+		3,
+		4,
+		1,
+		5,
+		6,
+		2
+	],
+	"Description": {
+		"Format": "Sear spins for {SpinDuration} seconds, gaining <DamageReduction>{DamageRed}%</> Damage Reduction and dealing <AttackPhysicalDamage>230</> (<OmegaPowerPercentage></><AttackPhysicalDamage></>) Physical Damage per second to all enemies within {OmegaRadius}-hexes.\r\n\r\nDamage: <AttackPhysicalDamage>920</> = <AttackPhysicalDamage>{OmegaDamage}</>/s (<OmegaPowerPercentage></>) + <AttackPhysicalDamage>{PhysicalDamage}</>/s (50%<AttackPhysicalDamage></>)",
+		"Parameters": {
+			"SpinDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].Zone.DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"OmegaRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].Zone.RadiusUnits"
+			},
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].Expression.Operands[0].Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"DamageRed": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression"
+			},
+			"PhysicalDamage": {
+				"ParameterPath": "Stats.AttackPhysicalDamage",
+				"ValueMultiplier": 0.0005
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Sear spins for 4 seconds, gaining 20% Damage Reduction and dealing 230 () Physical Damage per second to all enemies within 25-hexes.\r\n\r\nDamage: 920 = 120/s () + 110/s (50%)",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 3,
+			"AttackSpeed": 4,
+			"Health": 1,
+			"MovementSpeed": 5,
+			"OmegaPower": 6,
+			"Resistance": 2
+		}
+	}
+}

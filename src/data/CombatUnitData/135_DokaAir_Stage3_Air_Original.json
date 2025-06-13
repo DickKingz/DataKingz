@@ -1,0 +1,219 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "DokaAir",
+	"Stage": 3,
+	"Path": "Air",
+	"Variation": "Original",
+	"Tier": 0,
+	"CombatAffinity": "Air",
+	"CombatClass": "Fighter",
+	"DominantCombatAffinity": "Air",
+	"DominantCombatClass": "Fighter",
+	"SizeUnits": 4,
+	"Stats": {
+		"MaxHealth": 1950000,
+		"StartingEnergy": 0,
+		"EnergyCost": 80000,
+		"PhysicalResist": 45,
+		"EnergyResist": 45,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 150000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 70,
+		"MoveSpeedSubUnits": 2500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 5,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 5,
+		"OmegaRangeUnits": 5,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Air Doka Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 37
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Confounding Blow III",
+			"TotalDurationMs": 1500,
+			"Skills": [
+				{
+					"Name": "Fist slam",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 53
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										600000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "It then gains 15% Attack Speed for 4 seconds and the next 4 Attacks give 4 additional Energy.",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 20
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "AttackSpeed",
+								"DurationMs": 3000,
+								"Expression": {
+									"Percentage": 50,
+									"Stat": "AttackSpeed",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Exalted Air Doka",
+	"DisplayDescription": "Exalted Air Doka slams fists into the target, dealing <AttackPhysicalDamage>600</> (<OmegaPowerPercentage></>) Physical Damage, gaining <AttackSpeed>50%</> Attack Speed for 3 seconds.\r\n\r\nDamage: <AttackPhysicalDamage>600</> (<OmegaPowerPercentage></>)",
+	"Intro": "In the fragmented cove of Crystal Shores, there is an immense crystal wall that curls up like a tidal wave frozen in time. Looming ominously over the water, one could almost imagine them as the curved scales of a sea beast that has abandoned its skin. This awe-inspiring sight does not intimidate the Exalted Air Doka, who climbs up the jagged, concave wall, appearing as though it is walking sideways.",
+	"Summary": "This stocky Illuvial has dark teal fur, bold turquoise markings, and luminous hair tendrils, with powerful arms and a thick tail aiding its agility. It excels at running up vertical inclines, navigating underground paths, and catching flying prey. The Exalted Air Doka's abilities include defying gravity with porous foot pads, delivering powerful air-assisted punches, and using its tail to redirect threats, all while being lightweight and highly mobile.",
+	"Biology": {
+		"Physiology": "The Exalted Air Doka is a stocky Illuvial with a flat head, sturdy fists, and two feet planted firmly on the ground. It has dark teal fur with a white underbelly, and its face is illuminated by bold turquoise markings above and under its pink eyes. Growing from its head are tendrils of hair, with a luminous cloud of air that drift above it. They shine with the same light as the Exalted Air Doka's claws when it strikes. Wide-set and packed with muscles, this fighter Illuvial has a slight belly and a thick tail to match.",
+		"Behaviour": "The Exalted Air Doka can run up nearly vertical inclines and punch obstacles out of its way with its powerful arms in pursuit of Morphopod prey. Not only is it adept at navigating strange paths underground, but it also traverses moving platforms with ease and catches flying Morphopods with ease. The Exalted Air Doka makes hopping down steep drops and manoeuvring crystal spires look easy. Sometimes it engages in friendly battles with others of its kind in these perilous environments without any concern for slipping. Hunting grounds are fiercely protected territory. The most sure-footed of all the Dokas, the Exalted Air Doka is constantly on the move, manipulating the wind to keep its balance and to find its next meal."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/DokaStage3Air/DokaStage3Air_default_default_webp.3840x2160/DokaStage3Air_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/DokaStage3Air/DokaStage3Air_default_default_hls.m3u8/DokaStage3Air_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Exalted Air Doka can move as though defying gravity, walking along the sides of crystal outcroppings and across the ceiling of caves.",
+			"The Exalted Air Doka often smashes various crystal structures in its territory, gathering pink dust on its fists that it releases with a blast of cool air.",
+			"The Exalted Air Doka can buffet opponents with harsh bursts of air to steer their attacks in the wrong direction."
+		],
+		"Buckley": [
+			"The Exalted Air Doka is extremely lightweight despite its stocky form, with porous pads upon its feet that can expel air to aid its movements.",
+			"The Exalted Air Doka has an air-pressured compression mechanism in its bicep which allows it to lock its arm in and release for maximum impact. It is connected to the air vents in its knuckles, enabling a powerful punch.",
+			"The Exalted Air Doka's tail is capable of unleashing torrents of air in any direction, allowing it to draw attention away from its target and redirect threats.",
+			"The Exalted Air Doka has microscopic hair on its feet that helps it stick to surfaces, allowing it to climb easily.",
+			"The Exalted Air Doka has a specialised olfactory system that enables it to detect the pheromones of other Illuvials."
+		]
+	},
+	"TraitOrderLegacy": [
+		2,
+		1,
+		3,
+		6,
+		5,
+		4
+	],
+	"Description": {
+		"Format": "Exalted Air Doka slams fists into the target, dealing <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Physical Damage, gaining <AttackSpeed>{AttackSpeedBuff}%</> Attack Speed for {BuffDuration} seconds.\r\n\r\nDamage: <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"AttackSpeedBuff": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].Expression.Percentage"
+			},
+			"BuffDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Exalted Air Doka slams fists into the target, dealing 600 () Physical Damage, gaining 50% Attack Speed for 3 seconds.\r\n\r\nDamage: 600 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 2,
+			"AttackSpeed": 1,
+			"Health": 3,
+			"MovementSpeed": 6,
+			"OmegaPower": 5,
+			"Resistance": 4
+		}
+	}
+}

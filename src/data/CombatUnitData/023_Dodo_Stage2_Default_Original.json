@@ -1,0 +1,253 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Dodo",
+	"Stage": 2,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 1,
+	"CombatAffinity": "Air",
+	"CombatClass": "Enchanter",
+	"DominantCombatAffinity": "Air",
+	"DominantCombatClass": "Empath",
+	"SizeUnits": 3,
+	"Stats": {
+		"MaxHealth": 1500000,
+		"StartingEnergy": 20000,
+		"EnergyCost": 160000,
+		"PhysicalResist": 30,
+		"EnergyResist": 35,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 110000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 85,
+		"MoveSpeedSubUnits": 3000,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 5,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 8,
+		"OmegaRangeUnits": 14,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Dodo Basic Attack II",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 39
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Whirlwind II",
+			"TotalDurationMs": 800,
+			"Skills": [
+				{
+					"Name": "Tornado knock-up and stun with EnergyDamage",
+					"Targeting": {
+						"Type": "DistanceCheck",
+						"Guidance": [
+							"Ground",
+							"Underground"
+						],
+						"Group": "Enemy",
+						"Lowest": true,
+						"Num": 1
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground",
+							"Underground"
+						],
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 0,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Stun",
+								"DurationMs": 3000
+							},
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Focused",
+								"DurationMs": 3000
+							},
+							{
+								"Type": "Debuff",
+								"Stat": "VulnerabilityPercentage",
+								"OverlapProcessType": "Merge",
+								"DurationMs": 3000,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										{
+											"Percentage": 15,
+											"Stat": "VulnerabilityPercentage",
+											"StatSource": "Receiver"
+										},
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Shield",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "SpawnShield",
+								"DurationMs": 4000,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										175000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Kukkulus",
+	"DisplayDescription": "Kukkulus gains a 175 (<OmegaPowerPercentage></>) Shield for 4 seconds and suspends the closest enemy in the air.\r\n\r\nThe suspended enemy takes <DamageAmplification>15%</> (<OmegaPowerPercentage></>) extra damage, becoming Stunned and Focused for 3 seconds.\r\n\r\nShield: 175 (<OmegaPowerPercentage></>)\r\nExtra Damage: <DamageAmplification>15%</> (<OmegaPowerPercentage></>)\r\n\r\n<Italic>Focused: Causes all allies within range to attack the Focused unit.</>",
+	"Intro": "As clouds meander through Taiga Boreal, the crisp winds weave among the mountains, unveiling a hidden spectacle. Against the ebony night sky, an enthralling array of dancing lights bedazzle fortunate observers below. The radiant hues sway in the upper atmosphere, a celestial reflection of a particular creature residing beneath? the resplendent Kukkulus, poised amidst the blinding white snow.",
+	"Summary": "In Taiga Boreal, the Kukkulus mirrors the celestial dance of the northern lights with its resplendent presence. Adorned with stately, curved tail feathers and scarlet head feathers, its enormous, yellow chest contrasts with its teal sides. The Kukkulus uses its unique ability to manipulate air currents for fleeting flights and navigation, relying on its thick feathers and fur to protect against the cold. Its feathers and plumage are equipped with air vents and cavities for air storage, enhancing its agility.",
+	"Biology": {
+		"Physiology": "The Kukkulus' stately tail feathers cascade outwards and encircle it, their gracefully curved shape framing it like a mystical blossom. Smaller scarlet feathers with a similar decorative form sprout from its head, akin to petals with an engorged beak at the base. These feathers frame its diminutive eyes like a mask, concealing the Kukkulus' visage above its thick neck. Its enormous body puffs out at the chest, which is yellow and fluffy in contrast to the teal of its sides. The Kukkulus boasts crimson talons and large, hooked feet of green and yellow at the bottom of its sturdy legs. Its petite fan-like wings are neatly tucked within its ornate form.",
+		"Behaviour": "The Kukkulus remains in near-constant motion, seldom pausing for long. Though it can take flight, these aerial forays are fleeting and made possible only through its unique ability to manipulate air currents. Lacking the natural prowess of an adept runner, the Kukkulus relies on bolstering its movements with air currents to navigate its environment with grace and agility."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/DodoStage2/DodoStage2_default_default_webp.3840x2160/DodoStage2_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/DodoStage2/DodoStage2_default_default_hls.m3u8/DodoStage2_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Kukkulus' strange, layered wings aren't big enough to give flight, but they can harness the power of the gusty winds coming its way.",
+			"The Kukkulus' tail feathers move swiftly with the direction of the wind, helping it glide through the air.",
+			"The Kukkulus' thick layers of feathers and fur protect it from the cold so well that it tends to overheat. It has been found swallowing large amounts of snow and storing ice in its protruding chest to regulate its temperature."
+		],
+		"Buckley": [
+			"The Kukkulus has air vents beneath its plumage that it uses to manipulate air currents.",
+			"The Kukkulus' eyes are tiny but incredibly powerful, with multiple inner eyelids that filter its view and allow it to sense the intricate movement of airwaves.",
+			"The Kukkulus' feathers are multilayered, with cavities in between that can store large amounts of air.",
+			"The Kukkulus has facial discs upon its head which collect sound waves and direct them towards the ears. It is capable of adjusting the shape of these feathers, allowing it to hone in on sounds from different points in space.",
+			"The Kukkulus' legs are too short to run effectively and it must use its air supply and feathers to manoeuvre its environment."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		4,
+		2,
+		6,
+		1,
+		3
+	],
+	"Description": {
+		"Format": "Kukkulus gains a {ShieldValue} (<OmegaPowerPercentage></>) Shield for {ShieldDuration} seconds and suspends the closest enemy in the air.\r\n\r\nThe suspended enemy takes <DamageAmplification>{ExtraDamage}%</> (<OmegaPowerPercentage></>) extra damage, becoming Stunned and Focused for {StunDuration} seconds.\r\n\r\nShield: {ShieldValue} (<OmegaPowerPercentage></>)\r\nExtra Damage: <DamageAmplification>{ExtraDamage}%</> (<OmegaPowerPercentage></>)\r\n\r\n<Italic>Focused: Causes all allies within range to attack the Focused unit.</>",
+		"Parameters": {
+			"ShieldValue": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"ShieldDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"StunDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"ExtraDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[2].Expression.Operands[0].Percentage"
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Kukkulus gains a 175 () Shield for 4 seconds and suspends the closest enemy in the air.\r\n\r\nThe suspended enemy takes 15% () extra damage, becoming Stunned and Focused for 3 seconds.\r\n\r\nShield: 175 ()\r\nExtra Damage: 15% ()\r\n\r\nFocused: Causes all allies within range to attack the Focused unit.",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 4,
+			"Health": 2,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 3
+		}
+	}
+}

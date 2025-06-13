@@ -1,0 +1,208 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "SeaScorpion",
+	"Stage": 2,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 3,
+	"CombatAffinity": "Toxic",
+	"CombatClass": "Fighter",
+	"DominantCombatAffinity": "Water",
+	"DominantCombatClass": "Fighter",
+	"SizeUnits": 5,
+	"Stats": {
+		"MaxHealth": 1900000,
+		"StartingEnergy": 0,
+		"EnergyCost": 80000,
+		"PhysicalResist": 50,
+		"EnergyResist": 55,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 125000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 80,
+		"MoveSpeedSubUnits": 2500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 2,
+		"OmegaRangeUnits": 2,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Sea Scorpion Basic Attack II",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 44
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Toxic Skewer II",
+			"TotalDurationMs": 700,
+			"Skills": [
+				{
+					"Name": "Damage Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 60
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "+",
+									"Operands": [
+										{
+											"Operation": "*",
+											"Operands": [
+												{
+													"Percentage": 15,
+													"Stat": "MaxHealth",
+													"StatSource": "Receiver"
+												},
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												}
+											]
+										},
+										{
+											"Operation": "*",
+											"Operands": [
+												300000,
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												}
+											]
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Rypterus",
+	"DisplayDescription": "Rypterus strikes its target with its stinger, dealing <MaxHealth>15%</> (<OmegaPowerPercentage></>) of target's Max Health + <AttackPhysicalDamage>300</> (<OmegaPowerPercentage></>) as Physical Damage.\r\n\r\nDamage: <MaxHealth>15%</> max <MaxHealth></> (<OmegaPowerPercentage></>) + <AttackPhysicalDamage>300</> (<OmegaPowerPercentage></>)",
+	"Intro": "Cascading waterfalls descend the lush grasslands of Brightland Steppes, originating from islands held aloft by striking purple roots. In the effervescent landlocked pools, creatures seek a refreshing respite while keeping an eye open for lurking monsters. This serene, stream-filled region harbours some of the most formidable monstrosities, such as the belligerent Rypterus, ever-seeking its next confrontation.",
+	"Summary": "The Rypterus hunts stealthily, using venom to incapacitate Illuvials and Morphopods, aided by its keen orange eye and swift reflexes. Its lightning-quick speed often make it difficult to catch a glimpse of, while its adaptive physiology and regenerative capabilities make it one of the most difficult Illvuials to harm. In combat, Rypterus strikes with hooked claws and venomous tail, leveraging its ambush prowess and environmental camouflage.",
+	"Biology": {
+		"Physiology": "The Rypterus is a repugnant green terror that brandishes massive snapping claws as sharp as its reflexes. Its carapace is a blend of mottled jade and shimmering emerald, adorned with luminescent spikes. Armed with a deadly stinging barb, its tail is poised high above, ready to inject venom into its adversaries. Possessing a single, piercing orange eye and eight segmented legs, the Rypterus is a terrifying sight to behold.",
+		"Behaviour": "The Rypterus is an ambush predator that eats a variety of Illuvials and Morphopods, using its venom to subdue them. Upon spotting a potential adversary, the Rypterus' eye attentively tracks every move, gauging the target's vitality as suitable food. If deemed suitable, it advances, brandishing its tail to signal its imminent assault. The stealthy Rypterus easily catches others off-guard, with its green shell blending in with its environment."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/SeaScorpionStage2/SeaScorpionStage2_default_default_webp.3840x2160/SeaScorpionStage2_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/SeaScorpionStage2/SeaScorpionStage2_default_default_hls.m3u8/SeaScorpionStage2_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Rypterus exhibits astonishing speed, rendering ambushes from other Illuvials nearly futile. It can detect movements in its surroundings, even from behind.",
+			"The Rypterus' venom can induce psychosis and mental instability in its victims long after their physical recovery. Some remain immobile for weeks, traumatized by the shock to their nervous systems.",
+			"The Rypterus is an ambush predator that eats a variety of Illuvials and Morphopods, using its venom to subdue them."
+		],
+		"Buckley": [
+			"The Rypterus possesses a sophisticated venom system featuring four pairs of venom glands within its stinger, capable of mixing combinations of toxins with various effects.",
+			"The Rypterus' outer shell contains trace amounts of a Rubivium-Pallavium compound. This corrosive mineral forms small, absorbent grooves in its carapace, effectively diffusing its toxins across the exoskeleton.",
+			"A secondary, smaller tail lies embedded within the Rypterus' exoskeleton, facilitating rapid regrowth of its external tail.",
+			"The Rypterus' antidote sacs are adapted to release antibodies and treat injections from other toxic sources.",
+			"Its vertical slit pupil, equipped with multi-focal structures, allows it to differentiate objects from its foreground and background. In addition, it shields the Rypterus from intense light and enhances its night vision capabilities."
+		]
+	},
+	"TraitOrderLegacy": [
+		2,
+		1,
+		3,
+		5,
+		6,
+		4
+	],
+	"Description": {
+		"Format": "Rypterus strikes its target with its stinger, dealing <MaxHealth>{MaxHealthDamage}%</> (<OmegaPowerPercentage></>) of target's Max Health + <AttackPhysicalDamage>{FlatDamage}</> (<OmegaPowerPercentage></>) as Physical Damage.\r\n\r\nDamage: <MaxHealth>{MaxHealthDamage}%</> max <MaxHealth></> (<OmegaPowerPercentage></>) + <AttackPhysicalDamage>{FlatDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"MaxHealthDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0].Operands[0].Percentage"
+			},
+			"FlatDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[1].Operands[0]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Rypterus strikes its target with its stinger, dealing 15% () of target's Max Health + 300 () as Physical Damage.\r\n\r\nDamage: 15% max () + 300 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 2,
+			"AttackSpeed": 1,
+			"Health": 3,
+			"MovementSpeed": 5,
+			"OmegaPower": 6,
+			"Resistance": 4
+		}
+	}
+}

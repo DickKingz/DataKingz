@@ -1,0 +1,226 @@
+{
+	"CombatClass": "Enchanter",
+	"CombatClassComponents": [
+		"Empath",
+		"Psion"
+	],
+	"SynergyThresholds": [
+		2,
+		3,
+		4
+	],
+	"SynergyThresholdsAbilities": {
+		"Variables": [
+			{
+				"Name": "Enchancer_Heal",
+				"Values": [
+					3,
+					6,
+					8
+				]
+			},
+			{
+				"Name": "Enchanter_Damage",
+				"Values": [
+					50000,
+					75000,
+					100000
+				]
+			},
+			{
+				"Name": "Enchanter_DamageAmp",
+				"Values": [
+					0,
+					0,
+					2
+				]
+			}
+		],
+		"TeamAbilities": [],
+		"UnitAbilities": [
+			{
+				"Name": "EnchanterSynergy_Ability1",
+				"ActivationTrigger": {
+					"TriggerType": "OnActivateXAbilities",
+					"AbilityTypes": [
+						"Omega"
+					],
+					"EveryX": true,
+					"NumberOfAbilitiesActivated": 1
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Enchanter_PureDamage",
+						"Deployment": {
+							"Type": "Zone"
+						},
+						"Zone": {
+							"Shape": "Hexagon",
+							"RadiusUnits": 17,
+							"DurationMs": 100,
+							"FrequencyMs": 200,
+							"MovementSpeedSubUnits": 0,
+							"GrowthRateSubUnits": 0,
+							"ApplyOnce": false
+						},
+						"Targeting": {
+							"Type": "Allegiance",
+							"Group": "Ally",
+							"Self": true
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "InstantDamage",
+									"DamageType": "Pure",
+									"Expression": "{Enchanter_Damage}"
+								}
+							]
+						}
+					},
+					{
+						"Name": "Enchanter - Heal and Damage Amp",
+						"Deployment": {
+							"Type": "Direct",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							]
+						},
+						"Targeting": {
+							"Type": "Allegiance",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							],
+							"Group": "Ally",
+							"Self": true
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "InstantHeal",
+									"HealType": "Normal",
+									"Expression": {
+										"Percentage": "{Enchancer_Heal}",
+										"Stat": "MaxHealth",
+										"StatSource": "Sender"
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "AttackPhysicalDamage",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Enchanter_DamageAmp}",
+										"Stat": "AttackPhysicalDamage",
+										"StatSource": "Receiver"
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "AttackEnergyDamage",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Enchanter_DamageAmp}",
+										"Stat": "AttackEnergyDamage",
+										"StatSource": "Receiver"
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "AttackPureDamage",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Enchanter_DamageAmp}",
+										"Stat": "AttackPureDamage",
+										"StatSource": "Receiver"
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "OmegaDamagePercentage",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Enchanter_DamageAmp}",
+										"Stat": "OmegaDamagePercentage",
+										"StatSource": "Receiver"
+									}
+								}
+							]
+						}
+					}
+				]
+			}
+		]
+	},
+	"IntrinsicAbilities": [],
+	"DisplayName": "Enchanter",
+	"DisplayDescription": "\r\nOn Omega, Enchanters heal all allies for a percentage of their <MaxHealth>Max Health</> and deal Pure Damage in 17-hexes around them.\r\n\r\n(4) On Omega, grant all allies <DamageAmplification>2%</> <DamageAmplification>Damage Amp</>.\r\n",
+	"DisplayDescriptionThresholds": [
+		"Heal <MaxHealth>3%</><MaxHealth></>. Deal <AttackPureDamage>50</><AttackPureDamage></>",
+		"Heal <MaxHealth>6%</><MaxHealth></>. Deal <AttackPureDamage>75</><AttackPureDamage></>",
+		"Heal <MaxHealth>8%</><MaxHealth></>. Deal <AttackPureDamage>100</><AttackPureDamage></>"
+	],
+	"Description": {
+		"Format": "\r\nOn Omega, Enchanters heal all allies for a percentage of their <MaxHealth>Max Health</> and deal Pure Damage in {Enchanter_Radius}-hexes around them.\r\n\r\n(4) On Omega, grant all allies <DamageAmplification>{Enchanter_DamageAmp}%</> <DamageAmplification>Damage Amp</>.\r\n",
+		"Parameters": {
+			"Enchanter_Radius": {
+				"ParameterPath": "SynergyThresholdsAbilities.UnitAbilities[0].Skills[0].Zone.RadiusUnits",
+				"ValueMultiplier": 1.0
+			},
+			"Enchanter_DamageAmp": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[2].Values[2]",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DescriptionThresholds": {
+		"Format": "Heal <MaxHealth>{Enchancer_Heal}%</><MaxHealth></>. Deal <AttackPureDamage>{Enchanter_Damage}</><AttackPureDamage></>",
+		"Parameters": [
+			{
+				"Enchancer_Heal": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[0]",
+					"ValueMultiplier": 1.0
+				},
+				"Enchanter_Damage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[0]",
+					"ValueMultiplier": 0.001
+				}
+			},
+			{
+				"Enchancer_Heal": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[1]",
+					"ValueMultiplier": 1.0
+				},
+				"Enchanter_Damage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[1]",
+					"ValueMultiplier": 0.001
+				}
+			},
+			{
+				"Enchancer_Heal": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[2]",
+					"ValueMultiplier": 1.0
+				},
+				"Enchanter_Damage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[2]",
+					"ValueMultiplier": 0.001
+				}
+			}
+		]
+	},
+	"DisplayDescriptionNormalized": "On Omega, Enchanters heal all allies for a percentage of their Max Health and deal Pure Damage in 17-hexes around them.\r\n\r\n(4) On Omega, grant all allies 2% Damage Amp.",
+	"DisplayDescriptionThresholdsNormalized": [
+		"Heal 3%. Deal 50",
+		"Heal 6%. Deal 75",
+		"Heal 8%. Deal 100"
+	]
+}

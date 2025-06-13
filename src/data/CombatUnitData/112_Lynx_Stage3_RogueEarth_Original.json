@@ -1,0 +1,306 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Lynx",
+	"Stage": 3,
+	"Path": "RogueEarth",
+	"Variation": "Original",
+	"Tier": 2,
+	"CombatAffinity": "Earth",
+	"CombatClass": "Rogue",
+	"DominantCombatAffinity": "Earth",
+	"DominantCombatClass": "Rogue",
+	"SizeUnits": 7,
+	"Stats": {
+		"MaxHealth": 2150000,
+		"StartingEnergy": 40000,
+		"EnergyCost": 100000,
+		"PhysicalResist": 50,
+		"EnergyResist": 45,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 175000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 70,
+		"MoveSpeedSubUnits": 2500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 5,
+		"OmegaRangeUnits": 5,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Rogue Earth Lynx Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 45
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Quakennial Scything",
+			"TotalDurationMs": 1200,
+			"Skills": [
+				{
+					"Name": "Slash",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 40
+					},
+					"PercentageOfAbilityDuration": 20,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										250000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Slash",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 20
+					},
+					"PercentageOfAbilityDuration": 20,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										250000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Slash",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 20
+					},
+					"PercentageOfAbilityDuration": 20,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										250000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Slash",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 20
+					},
+					"PercentageOfAbilityDuration": 20,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										250000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Slash",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 40
+					},
+					"PercentageOfAbilityDuration": 20,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										250000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Nimble Terralynx",
+	"DisplayDescription": "Nimble Terralynx slashes the target 5 times, dealing <AttackPhysicalDamage>250</> (<OmegaPowerPercentage></>) Physical Damage per slash.\r\n\r\nDamage: <AttackPhysicalDamage>1,250</> = <AttackPhysicalDamage>250</> x5 (<OmegaPowerPercentage></>)",
+	"Intro": "The strange realm of Crystal Shores has been morphed by crystals over time, resulting in bizarre spire structures and prism shards scattered all across the region. Among the pink and purple sand dunes, the glow of pink crystals and the sharp edges of purple spikes can be easily dismissed as part of the landscape. For this reason, the Nimble Terralynx is often overlooked as a trick of the eye, disappearing in a blink and reappearing somewhere in the distance.",
+	"Summary": "The Nimble Terralynx thrives in the crystal-laden realm of Crystal Shores, blending seamlessly with the landscape of pink sands and purple spikes. With its swift and agile build adorned in rock plates and glowing pink accents, it excels in stealth and ambush tactics. This Illuvial's keen senses detect tremors and subtle movements, aiding its solitary hunting style. Its ability to teleport using subspace and synchronize with its environment's energy make it a formidable predator in this unique habitat.",
+	"Biology": {
+		"Physiology": "The Nimble Terralynx is quick and spiry, with plates of rocks upon its face and along its spine, branching around its torso like a ribcage exoskeleton. It has dark purple fur, a spikey mane, and a glowing pink orb on its forehead that matches the splendour of its illuminated horns, which peek out from the tips of its long ears and the long fur hanging from its face. There are pieces of rock that clump upon these horns, made of the same material as the slab sheets upon its legs. The Nimble Terralynx's pink eyes shine especially bright before an ambush, and its mid-length tail helps it maintain its balance when it springs up.",
+		"Behaviour": "The Nimble Terralynx can jump across vast distances, disappearing mid-leap and reappearing elsewhere. However, vanishing into thin air take a lot of effort and energy. This is typically done to ambush a rival or larger prey during a hunt. More often than not, it relies on its stealth and padded paws to move quietly in order to catch a meal. Aggressive towards others of its kind, it prefers to hunt on its own and devour its prey before scavengers and rivals have the opportunity to steal a bigger share."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3RogueEarth/LynxStage3RogueEarth_default_default_webp.3840x2160/LynxStage3RogueEarth_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3RogueEarth/LynxStage3RogueEarth_default_default_hls.m3u8/LynxStage3RogueEarth_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Nimble Terralynx walks with a steady crouch, keeping its front legs low to the ground in order to better sense the tremors of movement in its territory.",
+			"The Nimble Terralynx has a wider berth than other Nimble Lynxes, giving it a weighty advantage over them when they wrestle.",
+			"The Nimble Terralynx occasionally hunts in packs, but this may result in infighting and intense rivalries over the shared meal. It is most efficient as a solitary Illuvial."
+		],
+		"Buckley": [
+			"The Nimble Terralynx has an extended nervous system and specially adapted organs that allow it to teleport via a form of subspace, which enables it to travel between two locations almost instantaneously.",
+			"The Nimble Terralynx's luminous orb is capable of synchronizing colour and energy vibrations with the crystal fragments in its environment.",
+			"The Nimble Terralynx has rock plates on its body that function as a sounding board for tremors on the ground, enabling it to better sense detailed movement in its territory and the overall movement in the region.",
+			"The Nimble Terralynx's eyes can process a much higher visual processing rate than the average Valain, enabling it to observe minute changes in its environment and respond almost instantaneously. To the Nimble Terralynx, many life forms move in slow motion.",
+			"The Nimble Terralynx's brain is directly connected to the luminous orb upon its forehead, which can light up in varying degrees of illumination corresponding to its mental activity, particularly those involving environmental assessment and teleportation."
+		]
+	},
+	"TraitOrderLegacy": [
+		3,
+		1,
+		4,
+		6,
+		2,
+		5
+	],
+	"Description": {
+		"Format": "Nimble Terralynx slashes the target 5 times, dealing <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Physical Damage per slash.\r\n\r\nDamage: <AttackPhysicalDamage>{OmegaDamageFull}</> = <AttackPhysicalDamage>{OmegaDamage}</> x5 (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"OmegaDamageFull": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.005
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Nimble Terralynx slashes the target 5 times, dealing 250 () Physical Damage per slash.\r\n\r\nDamage: 1,250 = 250 x5 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 3,
+			"AttackSpeed": 1,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 2,
+			"Resistance": 5
+		}
+	}
+}

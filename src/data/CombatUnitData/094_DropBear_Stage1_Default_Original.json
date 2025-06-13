@@ -1,0 +1,259 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "DropBear",
+	"Stage": 1,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 1,
+	"CombatAffinity": "Fire",
+	"CombatClass": "Rogue",
+	"DominantCombatAffinity": "Fire",
+	"DominantCombatClass": "Rogue",
+	"SizeUnits": 3,
+	"Stats": {
+		"MaxHealth": 1200000,
+		"StartingEnergy": 0,
+		"EnergyCost": 150000,
+		"PhysicalResist": 30,
+		"EnergyResist": 40,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 85000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 70,
+		"MoveSpeedSubUnits": 2150,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 2,
+		"OmegaRangeUnits": 2,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Drop Bear Basic Attack I",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 43
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 10000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Rising Ash I",
+			"TotalDurationMs": 1300,
+			"Skills": [
+				{
+					"Name": "Attack Current Focus",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 0,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										300000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Becomes untargetable",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 5,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "PositiveState",
+								"PositiveState": "Untargetable",
+								"DurationMs": 1300
+							}
+						]
+					}
+				},
+				{
+					"Name": "AOE Blind",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 20
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 21,
+						"DurationMs": 1000,
+						"FrequencyMs": 1000,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Blind",
+								"DurationMs": 1500
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Chucco",
+	"DisplayDescription": "Chucco vanishes in a cloud of smoke, Blinding enemies in 21-hexes for 1.3 seconds and then reappears, dealing <AttackPhysicalDamage>300</> (<OmegaPowerPercentage></>) Physical Damage to its target.\r\n\r\nDamage: <AttackPhysicalDamage>300</> (<OmegaPowerPercentage></>)",
+	"Intro": "In the heart of Crimson Waste, an unending sandstorm howls, forcing creatures to find refuge under shelters crafted from rocks. Sand trickles down from the ceilings, as the walls, speckled with crystals, mirror the star-filled night sky. Luminescent clusters of Orbonium bathe the shadows in a colourful light. Along the rocky edges, the Chucco holds firm against the wind. At the right moment, it drops down on the unsuspecting creatures below.",
+	"Summary": "In the Crimson Waste, the Chucco, a small creature with a fluffy grey body, periodically bursts into flames amidst the unending sandstorm and crystal-speckled rock shelters. With red eyes glowing bright white, the Chucco's flames can extend across its large ears, creating a brilliant yellow fire, while its chin emits a constant glow. It dashes on short legs, climbing steep slopes and igniting into a blaze when finding minerals, with its flames growing larger in the company of others.",
+	"Biology": {
+		"Physiology": "The small Chucco's fluffy grey body periodically bursts into flames, encapsulating its large head and causing its red eyes to glow bright white. The flames often extend across its big round ears, creating a brilliant yellow fire that towers twice its size. Typically, it burns red and low, with small triangular flames dancing on the top of its head and down its back. Its chin emits a constant, soft glow, while the rest of its body remains a dark charcoal hue. With its short legs, sharp claws, and four pointed fangs, it guards the most sensitive part of its body - its tall, flat nose.",
+		"Behaviour": "The Chucco dashes on four stubby legs, often bounding with excitement towards a new structure to climb. It sniffs out plants and minerals as fuel for its flames, adeptly ascending steep slopes hundreds of times its height. When it stumbles upon a worthwhile find, it bursts into a blazing fire. The Chucco's flames grow larger and hotter when in the company of its own kind, overwhelming the local flora. It's not uncommon for it to squabble with others when it's feeling excited, using its sharp claws and fangs to leave noticeable scars. A trail of scorched terrain is a clear sign that a Chucco has recently passed by."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/DropBearStage1/DropBearStage1_default_default_webp.3840x2160/DropBearStage1_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/DropBearStage1/DropBearStage1_default_default_hls.m3u8/DropBearStage1_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Chucco has been observed climbing different rock formations and erupting into flames around mineral deposits.",
+			"The Chucco can jump up three times its height, which is exceedingly high for an Illuvial with such stout legs.",
+			"The Chucco has a sensitive nose and often sneezes, especially when sand gets inside its nostrils. Sometimes, it can abruptly disappear after a sneeze and reappear a few metres from where it stood."
+		],
+		"Buckley": [
+			"The Chucco's combustion system draws ignition from the minerals it absorbs and uses plant-based oil to maintain its flame. This results in a different flame colour and consistency depending on the composition of minerals in its diet.",
+			"The Chucco's nose is a complex sensory organ that is capable of identifying different types of minerals.",
+			"The Chucco expels the mineral waste formed during combustion by sneezing.",
+			"The Chucco has specialised scent glands on its chest which secretes a combustible vapour, leaving behind a distinct individual signature for territorial marking.",
+			"The Chucco's immune system uses its natural heat to burn pathogens and eliminate harmful bacteria."
+		]
+	},
+	"TraitOrderLegacy": [
+		2,
+		1,
+		3,
+		6,
+		5,
+		4
+	],
+	"Description": {
+		"Format": "Chucco vanishes in a cloud of smoke, Blinding enemies in {BlindRadius}-hexes for {BlindDuration} seconds and then reappears, dealing <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Physical Damage to its target.\r\n\r\nDamage: <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"BlindRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[2].Zone.RadiusUnits"
+			},
+			"BlindDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Chucco vanishes in a cloud of smoke, Blinding enemies in 21-hexes for 1.3 seconds and then reappears, dealing 300 () Physical Damage to its target.\r\n\r\nDamage: 300 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 2,
+			"AttackSpeed": 1,
+			"Health": 3,
+			"MovementSpeed": 6,
+			"OmegaPower": 5,
+			"Resistance": 4
+		}
+	}
+}

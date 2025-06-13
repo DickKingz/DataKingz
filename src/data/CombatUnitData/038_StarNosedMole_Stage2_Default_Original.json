@@ -1,0 +1,249 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "StarNosedMole",
+	"Stage": 2,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 3,
+	"CombatAffinity": "Bloom",
+	"CombatClass": "Rogue",
+	"DominantCombatAffinity": "Earth",
+	"DominantCombatClass": "Rogue",
+	"SizeUnits": 5,
+	"Stats": {
+		"MaxHealth": 1900000,
+		"StartingEnergy": 60000,
+		"EnergyCost": 200000,
+		"PhysicalResist": 55,
+		"EnergyResist": 45,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 115000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 65,
+		"MoveSpeedSubUnits": 3000,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 3,
+		"OmegaRangeUnits": 3,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "StarNosed Mole Basic Attack II",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 42
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Whirlwind Bloom II",
+			"TotalDurationMs": 2500,
+			"Skills": [
+				{
+					"Name": "Becomes untargetable",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 35,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "PositiveState",
+								"PositiveState": "Untargetable",
+								"DurationMs": 2500
+							}
+						]
+					}
+				},
+				{
+					"Name": "AOE Stun",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 40
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 23,
+						"DurationMs": 1000,
+						"FrequencyMs": 1000,
+						"GrowthRateSubUnits": 0,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 0,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Charm",
+								"DurationMs": 2500
+							}
+						]
+					}
+				},
+				{
+					"Name": "AoE Damage",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 45
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 23,
+						"DurationMs": 1000,
+						"FrequencyMs": 1000,
+						"GrowthRateSubUnits": 0,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 65,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										450000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Loulura",
+	"DisplayDescription": "Lolura burrows underground, becoming Untargetable for 2.5 seconds, exposing only its flower nose to Charm enemies within 23-hexes. After 2.5 seconds, Lolura emerges and deals <AttackPhysicalDamage>450</> (<OmegaPowerPercentage></>) Physical Damage within 23-hexes.\r\n\r\nDamage: <AttackPhysicalDamage>450</> (<OmegaPowerPercentage></>)\r\n\r\nCharm: Forces the unit to move towards the source",
+	"Intro": "On the south side of Abyssal Basin, Titanicus Mushrooms grow wide before erupting from the swamp. They share nutrients with one another through gigantic root systems intertwined deep underground. The Lolura digs its way down to sample the roots from the very end. It sniffs them with its floral nose, taking care not to damage them as it takes a sip.",
+	"Summary": "In the southern Abyssal Basin, Lolura thrives underground, using bioluminescent scent marks. When excited, Lolura announces its discoveries with hooting grunts, fostering social bonds among its kind. This burrowing Illuvial plays a crucial role in its ecosystem by aerating soil and influencing plant growth, despite being a carrier for morphopod parasites. Its specialized claws illuminate tunnels and aid in uprooting plants, showcasing its adaptability and unique contributions to its habitat.",
+	"Biology": {
+		"Physiology": "The Lolura has a flexible trunk with a full blossom sprouting at its end, balanced by its tail of similar length with its glowing pink bulb. Its dark purple body is intertwined with root-like material which sprawls up its sides and around its four limbs. The Lolura has big palms and long claws, which are white-tipped with a gradient of pink and purple, lighting up its trail as it digs deep into the ground. It has purple crystal deposits on its grassy back and small leafy mane, making it easy to blend in with its environment whenever it chooses to surface.",
+		"Behaviour": "The Lolura spends much of its time underground, exploring the root systems of Abyssal Basins and sniffing out various mineral deposits. Its claws illuminate the dark tunnels, and it often leaves glowing scent marks that act as a guide for other Illuvials. The Lolura gets visibly excited and its nose twitches when it finds new paths that lead to something that smells nice and shiny. When the Lolura finds a particularly beautiful patch of crystals, it makes a series of hooting grunts and a trumpeting sound with its trunk. This burrowing Illuvial announces the crystals it finds to others of its kind as a form of social bonding."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/StarNosedMoleStage2/StarNosedMoleStage2_default_default_webp.3840x2160/StarNosedMoleStage2_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/StarNosedMoleStage2/StarNosedMoleStage2_default_default_hls.m3u8/StarNosedMoleStage2_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Lolura appears to enjoy sniffing bioluminescent plants or other illuminated Illuvials. It leaves scent marks for other Loluras, communicating in its own mysterious language.",
+			"The Lolura moves its limbs so quickly when it digs that it creates an air tunnel behind it. Sometimes it catches the roots of plants while it is digging and they end up growing upon its body.",
+			"When the Lolura is underground with only its flower out, other Illuvials often approach to sniff. Its goal, however, is to attract Morphopod prey and make a quick meal out of them."
+		],
+		"Buckley": [
+			"The Lolura's snout is encased in a protective bark-like material that is made of dead tissues and living, regenerative cells. These living cells are adaptable and capable of adjusting to the Lolura as it moves its snout.",
+			"The Lolura has polydactyl forepaws, with opposing thumbs capable of grasping and uprooting plants to reach an area of interest.",
+			"The Lolura has energy stores in its gemstones which it uses to replenish the energy it spends digging at top speeds through harsh environments. This energy can also nourish the plants growing upon the Lolura's body.",
+			"The Lolura's diet consists of subterranean morphopods which normally prey on plant roots, making it a contributor to soil health in its environment.",
+			"The Lolura is a carrier of morphopod parasites which feed on the plants growing upon its body. These morphopods may carry pathogens that the Lolura could pass on to Illuvials of other species."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		3,
+		1,
+		6,
+		4,
+		2
+	],
+	"Description": {
+		"Format": "Lolura burrows underground, becoming Untargetable for {OmegaDuration} seconds, exposing only its flower nose to Charm enemies within {OmegaRadius}-hexes. After {OmegaDuration} seconds, Lolura emerges and deals <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Physical Damage within {OmegaRadius}-hexes.\r\n\r\nDamage: <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)\r\n\r\nCharm: Forces the unit to move towards the source",
+		"Parameters": {
+			"OmegaDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"OmegaRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].Zone.RadiusUnits"
+			},
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[2].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Lolura burrows underground, becoming Untargetable for 2.5 seconds, exposing only its flower nose to Charm enemies within 23-hexes. After 2.5 seconds, Lolura emerges and deals 450 () Physical Damage within 23-hexes.\r\n\r\nDamage: 450 ()\r\n\r\nCharm: Forces the unit to move towards the source",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 3,
+			"Health": 1,
+			"MovementSpeed": 6,
+			"OmegaPower": 4,
+			"Resistance": 2
+		}
+	}
+}

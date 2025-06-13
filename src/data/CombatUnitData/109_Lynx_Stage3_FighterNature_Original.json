@@ -1,0 +1,192 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Lynx",
+	"Stage": 3,
+	"Path": "FighterNature",
+	"Variation": "Original",
+	"Tier": 2,
+	"CombatAffinity": "Nature",
+	"CombatClass": "Fighter",
+	"DominantCombatAffinity": "Nature",
+	"DominantCombatClass": "Fighter",
+	"SizeUnits": 7,
+	"Stats": {
+		"MaxHealth": 2400000,
+		"StartingEnergy": 40000,
+		"EnergyCost": 80000,
+		"PhysicalResist": 55,
+		"EnergyResist": 55,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 170000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 80,
+		"MoveSpeedSubUnits": 2500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 5,
+		"OmegaRangeUnits": 5,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Fighter Nature Lynx Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 38
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Abundant Maul",
+			"TotalDurationMs": 1500,
+			"Skills": [
+				{
+					"Name": "Maul",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 69
+					},
+					"PercentageOfAbilityDuration": 80,
+					"EffectPackage": {
+						"Attributes": {
+							"VampiricPercentage": 30
+						},
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										825000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Relentless Floralynx",
+	"DisplayDescription": "Relentless Floralynx mauls their target, dealing <AttackPhysicalDamage>825</> (<OmegaPowerPercentage></>) Physical Damage and healing for <Omnivamp>30%</> of the damage dealt.\r\n\r\nDamage: <AttackPhysicalDamage>825</> (<OmegaPowerPercentage></>)",
+	"Intro": "There is a small island off the coast of Shardbluff Labyrinth where faded bits of grass grow despite the lightning overhead. Peering out into the water, the Relentless Floralynx is a rare sight of green in the dark and dreary Shardbluff Labyrinth. It stands upon a valley overlooking rockpools where floating eggs sway in the water, a brighter orange than the moss covering the pillars all around.",
+	"Summary": "The Relentless Floralynx, a rare and verdant presence amidst Shardbluff Labyrinth, thrives on an island off its stormy coast. Adorned with a leafy mane and root-like growths, it exhibits acute senses and a deep connection to the natural world. With its unique abilities to influence plant life and detect subtle environmental changes, it navigates this hostile region with strategic prowess and protective instincts towards the floating eggs it guards.",
+	"Biology": {
+		"Physiology": "The Relentless Floralynx is overgrown with life, sprouting a leafy mane tipped in pink and encircled with root-like growths around its body. Its luminous eyes shine with the same sublime green as the orb on its forehead. Twitching at the slightest sounds, its long ears are extremely sensitive, tipped in roots and pink barbs that can feel the vitality of other life forms. Its root claws can dig into the ground and absorb nutrients from plant life to heal.",
+		"Behaviour": "With agile instincts, the Relentless Floralynx seemingly reacts to danger before it happens, leaping away on all fours. Attuned to all plant life, it can tap into the consciousness of the great Tentifung of Shardbluff Labyrinth and feel its every intention. This gives the Relentless Floralynx ample time to jump to safety before the organism releases its grasp on a piece of land. With an affinity for nature and new life, it cares for the eggs floating in the water and protects them from other Illuvials. For this reason, the Leviathan lurking in the sea allows the Relentless Floralynx safe passage. "
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3FighterNature/LynxStage3FighterNature_default_default_webp.3840x2160/LynxStage3FighterNature_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3FighterNature/LynxStage3FighterNature_default_default_hls.m3u8/LynxStage3FighterNature_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Relentless Floralynx is often chased by hostile Illuvials that underestimate its abilities. They do not realize that the Relentless Floralynx is leading them into a trap, goading them to the end of a cliff and timing their fall with the movement of Tentifung.",
+			"The Relentless Floralynx has no territory of its own in Shardbluff Labyrinth, a region primarily inhabited by fire and earth Illuvials. It is the safest in the water where it can ambush enemies and pull them into the sea to drown.",
+			"The Relentless Floralynx has the ability to influence the movements of Tentifung and other plant life in Shardbluff Labyrinth. Although it has mild restorative abilities compared to other Floralynxes, its powers are difficult to come by in this region and all the more powerful because of its rarity."
+		],
+		"Buckley": [
+			"The Relentless Floralynx has root claws that are capable of drawing nutrients from the ground and extending its own nutrient stores to share energy with local plant life. Its roots have an adaptable structure that allows it to take energy from other life forms, such as enemy Illuvials.",
+			"The Relentless Floralynx's ears have an extra canal that gives it acute hearing, enabling it to detect micro-vibrations in its environment moments before any visible change is experienced, such as the shifting of Tentifung.",
+			"The Relentless Floralynx has a living coat of leaves that require regular exposure to water and sunlight to thrive.",
+			"The Relentless Floralynx has specialised cones in each of its eyes that detect different types of light waves. Its left eye can detect infrared light and its right eye can detect interdimensional rifts, allowing it to respond to heat signatures and movement from other dimensions.",
+			"The Relentless Floralynx's nervous system is directly connected to the luminous orb upon its forehead, which can light up in varying degrees of illumination corresponding to its mental activity, particularly those involving ambushing prey."
+		]
+	},
+	"TraitOrderLegacy": [
+		2,
+		1,
+		4,
+		6,
+		3,
+		5
+	],
+	"Description": {
+		"Format": "Relentless Floralynx mauls their target, dealing <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Physical Damage and healing for <Omnivamp>{Vampiric}%</> of the damage dealt.\r\n\r\nDamage: <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"Vampiric": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Attributes.VampiricPercentage"
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Relentless Floralynx mauls their target, dealing 825 () Physical Damage and healing for 30% of the damage dealt.\r\n\r\nDamage: 825 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 2,
+			"AttackSpeed": 1,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 3,
+			"Resistance": 5
+		}
+	}
+}

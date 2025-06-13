@@ -1,0 +1,313 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Tiktaalik",
+	"Stage": 1,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 4,
+	"CombatAffinity": "Water",
+	"CombatClass": "Empath",
+	"DominantCombatAffinity": "Water",
+	"DominantCombatClass": "Empath",
+	"SizeUnits": 3,
+	"Stats": {
+		"MaxHealth": 1500000,
+		"StartingEnergy": 0,
+		"EnergyCost": 200000,
+		"PhysicalResist": 30,
+		"EnergyResist": 55,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 5000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 10,
+		"MoveSpeedSubUnits": 1000,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 70,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 1200,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Gushing Cure I",
+			"TotalDurationMs": 2000,
+			"Skills": [
+				{
+					"Name": "Damage three lowest health enemies",
+					"Targeting": {
+						"Type": "Allegiance",
+						"Guidance": [
+							"Ground",
+							"Airborne",
+							"Underground"
+						],
+						"Group": "Enemy"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground",
+							"Airborne",
+							"Underground"
+						],
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "DOT",
+								"DamageType": "Energy",
+								"DurationMs": 4000,
+								"FrequencyMs": 500,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										120000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Heal three lowest health allies and perm increase OP",
+					"Targeting": {
+						"Type": "Allegiance",
+						"Guidance": [
+							"Ground",
+							"Airborne",
+							"Underground"
+						],
+						"Group": "Ally",
+						"Self": true
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground",
+							"Airborne",
+							"Underground"
+						],
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "HOT",
+								"HealType": "Normal",
+								"DurationMs": 4000,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										120000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"InnateAbilities": [
+		{
+			"Name": "Cute Conversion I",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Convert Stats to Omega Power",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "OmegaPowerPercentage",
+								"OverlapProcessType": "Sum",
+								"FrequencyMs": 100,
+								"DurationMs": -1,
+								"Expression": {
+									"Operation": "/",
+									"Operands": [
+										{
+											"Percentage": 100,
+											"Stat": "AttackPhysicalDamage",
+											"StatSource": "Receiver"
+										},
+										1000
+									]
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "OmegaPowerPercentage",
+								"OverlapProcessType": "Sum",
+								"FrequencyMs": 100,
+								"DurationMs": -1,
+								"Expression": {
+									"Operation": "/",
+									"Operands": [
+										{
+											"Percentage": 100,
+											"Stat": "AttackEnergyDamage",
+											"StatSource": "Receiver"
+										},
+										1000
+									]
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "OmegaPowerPercentage",
+								"OverlapProcessType": "Sum",
+								"FrequencyMs": 100,
+								"DurationMs": -1,
+								"Expression": {
+									"Operation": "/",
+									"Operands": [
+										{
+											"Percentage": 100,
+											"Stat": "AttackPureDamage",
+											"StatSource": "Receiver"
+										},
+										1000
+									]
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "OmegaPowerPercentage",
+								"OverlapProcessType": "Sum",
+								"FrequencyMs": 100,
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 100,
+									"Stat": "AttackSpeed",
+									"StatSource": "Receiver"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "OmegaPowerPercentage",
+								"OverlapProcessType": "Sum",
+								"FrequencyMs": 100,
+								"DurationMs": -1,
+								"Expression": {
+									"Operation": "/",
+									"Operands": [
+										{
+											"Percentage": 100,
+											"Stat": "MoveSpeedSubUnits",
+											"StatSource": "Receiver"
+										},
+										100
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Ebb",
+	"DisplayDescription": "Ebb propels a deluge of water into the sky, Healing all allies for <MaxHealth>120</> Health and dealing <AttackEnergyDamage>120</> Energy Damage to all enemies over 4 seconds.\r\n\r\nEbb chooses not to Attack or Move, but converts all Attack Damage, Attack Speed, and Movement Speed into <OmegaPowerPercentage>Omega Power</> increasing the potency of its water eruptions.\r\n\r\nHeal: <MaxHealth>120</> (<OmegaPowerPercentage></>)\r\n\r\nDamage: <AttackEnergyDamage>120</> (<OmegaPowerPercentage></>)",
+	"Intro": "The stromatolite structures of Halcyon Sea gush out water from their folds, creating waterholes below. All manner of life gathers there, drinking, swimming, and cooling down from the tropical sun. The Ebb flaps its flippers in delight at the lively commotion all around. The illuvials around it greet it with friendliness, and it pleases it to be at the heart of this thriving community.",
+	"Summary": "The Ebb, residing in the lively Halcyon Sea, is a round-eyed Illuvial with a flat head and absorbent body capable of filling with healing water from vents on its back. Despite its vulnerability when immobile, it forms close bonds with other Illuvials by sharing its healing abilities. Covered in a film-like liquid that enhances its healing and adhesive properties, the Ebb navigates its surroundings clumsily with short flippers and a wide, gaping mouth.",
+	"Biology": {
+		"Physiology": "The round-eyed Ebb has a flat head and a floppy body, capable of filling up with healing water that it shoots from the orange stem-like vents on its back. It is clumsy with its short stubby flippers with virtually no way of defending against attacks, relying upon other Illuvials to protect it from danger. The Ebb has a dark blue body and a white streak on its back, dotted with orange between its vents. Shell-like fins adorn its short tail and limbs, rimmed in bright blue and orange. It flaps them around when it's excited, and its vents glow with a mystical blue light when it spouts water.",
+		"Behaviour": "The Ebb has an absorbent body that becomes twice as heavy when completely filled with water, rendering it immobile. This leaves it vulnerable to attacks, but fortunately, it can rely on allies to defend it from harm. It forms close bonds with other Illuvials by sharing its healing water, which expels from its vents. With a wide gaping mouth, the Ebb occasionally drools and leaves behind a trail of water in the short distances it can travel. Its body is covered by a layer of film-like liquid that speeds up its healing rate, allowing it to withstand damage in battle without feeling pain. Many Illuvials keep a close watch on the Ebb, eager to revigorate themselves with the touch of its healing water. The Ebb feeds on the offerings of other Illuvials, as it has a strong mutualistic relationship with other species."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/TiktaalikStage1/TiktaalikStage1_default_default_webp.3840x2160/TiktaalikStage1_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/TiktaalikStage1/TiktaalikStage1_default_default_hls.m3u8/TiktaalikStage1_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Ebb leaves behind a trail of soothing, healing water in the short distances it is capable of travelling.",
+			"The Ebb can form close bonds with other Illuvials, who go to it when they need to be healed. It has multiple companions who check in on it daily since it cannot move far on its own.",
+			"The Ebb appears blissfully unaware of the danger around it, even when it is under attack. It is likely that its superior healing properties have freed it from any permanent effects of taking damage."
+		],
+		"Buckley": [
+			"The Ebb has an extremely wide mouth that is connected to an advanced vascular system, helping it circulate nutrient water throughout its body.",
+			"The Ebb's body soaks up water like a sponge. It can become twice as heavy when it is completely filled with water.",
+			"The Ebb is covered by a layer of film-like water, produced by an internal gland to speed up its healing rate. It is also a minor adhesive that allows it to stick to coral structures and other environmental features.",
+			"The Ebb has eardrums known as otic notches on its skull roof which enable it to detect vibrations in water but are unresponsive to airborne sound.",
+			"A scan of the Ebb's skeletal system reveals the development of rudimentary digits within its fins, but it is not yet strong enough to support its weight on land."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		4,
+		1,
+		6,
+		3,
+		2
+	],
+	"Description": {
+		"Format": "Ebb propels a deluge of water into the sky, Healing all allies for <MaxHealth>{HealAmount}</> Health and dealing <AttackEnergyDamage>{DamageAmount}</> Energy Damage to all enemies over {HealDuration} seconds.\r\n\r\nEbb chooses not to Attack or Move, but converts all Attack Damage, Attack Speed, and Movement Speed into <OmegaPowerPercentage>Omega Power</> increasing the potency of its water eruptions.\r\n\r\nHeal: <MaxHealth>{HealAmount}</> (<OmegaPowerPercentage></>)\r\n\r\nDamage: <AttackEnergyDamage>{DamageAmount}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"HealAmount": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"DamageAmount": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"HealDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Ebb propels a deluge of water into the sky, Healing all allies for 120 Health and dealing 120 Energy Damage to all enemies over 4 seconds.\r\n\r\nEbb chooses not to Attack or Move, but converts all Attack Damage, Attack Speed, and Movement Speed into Omega Power increasing the potency of its water eruptions.\r\n\r\nHeal: 120 ()\r\n\r\nDamage: 120 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 4,
+			"Health": 1,
+			"MovementSpeed": 6,
+			"OmegaPower": 3,
+			"Resistance": 2
+		}
+	}
+}

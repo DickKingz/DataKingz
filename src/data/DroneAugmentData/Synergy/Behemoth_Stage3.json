@@ -1,0 +1,21 @@
+{
+	"Name": "Behemoth",
+	"Stage": 3,
+	"Type": "Game",
+	"DisplayName": "Behemoth Matrix",
+	"DisplayDescription": "Gain a Behemoth Imprint",
+	"Description": {
+		"Format": "Gain a Behemoth Imprint",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Behemoth",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

@@ -1,0 +1,21 @@
+{
+	"Name": "Berserker",
+	"Stage": 3,
+	"Type": "Game",
+	"DisplayName": "Berserker Matrix",
+	"DisplayDescription": "Gain a Berserker Imprint.",
+	"Description": {
+		"Format": "Gain a Berserker Imprint.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Berserker",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

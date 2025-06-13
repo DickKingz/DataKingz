@@ -1,0 +1,21 @@
+{
+	"Name": "Mystic",
+	"Stage": 3,
+	"Type": "Game",
+	"DisplayName": "Mystic Matrix",
+	"DisplayDescription": "Gain a Mystic Imprint.",
+	"Description": {
+		"Format": "Gain a Mystic Imprint.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Mystic",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

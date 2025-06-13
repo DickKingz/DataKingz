@@ -1,0 +1,174 @@
+{
+	"Name": "ShieldBane",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Normal",
+	"Abilities": [
+		{
+			"Name": "ShieldBane_Stats",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "ShieldBane - List of Stats",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "AttackPhysicalDamage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackEnergyDamage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackPureDamage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackPureDamage",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "OmegaPowerPercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 10
+							},
+							{
+								"Type": "InstantEnergyGain",
+								"Expression": 10000
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"Name": "ShieldBane_Ability1",
+			"ActivationTrigger": {
+				"TriggerType": "OnShieldHit",
+				"SenderAllegiance": "Self",
+				"ReceiverAllegiance": "Enemy",
+				"AbilityTypes": [
+					"Attack",
+					"Omega"
+				]
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "ShieldBane - Damage Amp",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "AttackPhysicalDamage",
+								"DurationMs": 4000,
+								"Expression": {
+									"Percentage": 30,
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Receiver"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackEnergyDamage",
+								"DurationMs": 4000,
+								"Expression": {
+									"Percentage": 30,
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Receiver"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackPureDamage",
+								"DurationMs": 4000,
+								"Expression": {
+									"Percentage": 30,
+									"Stat": "AttackPureDamage",
+									"StatSource": "Receiver"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "OmegaDamagePercentage",
+								"DurationMs": 4000,
+								"Expression": {
+									"Percentage": 30,
+									"Stat": "OmegaDamagePercentage",
+									"StatSource": "Receiver"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Shield Bane",
+	"DisplayDescription": "After damaging a Shield, gain <DamageAmplification>30%</> aditional <DamageAmplification>Damage Amp</> for 4 seconds.\r\n\r\nStats:\r\n+10% <AttackDamage>Attack Damage</>\r\n+10 <OmegaPowerPercentage>Omega Power</>\r\n+10 <StartingEnergy>Starting Energy</>",
+	"Description": {
+		"Format": "After damaging a Shield, gain <DamageAmplification>{DamageVal}%</> aditional <DamageAmplification>Damage Amp</> for {Duration} seconds.\r\n\r\nStats:\r\n+{Stat_AD}% <AttackDamage>Attack Damage</>\r\n+{Stat_OP} <OmegaPowerPercentage>Omega Power</>\r\n+{Stat_Energy} <StartingEnergy>Starting Energy</>",
+		"Parameters": {
+			"DamageVal": {
+				"ParameterPath": "Abilities[1].Skills[0].EffectPackage.Effects[0].Expression.Percentage",
+				"ValueMultiplier": 1.0
+			},
+			"Duration": {
+				"ParameterPath": "Abilities[1].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"Stat_AD": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].Expression.Percentage",
+				"ValueMultiplier": 1.0
+			},
+			"Stat_OP": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[3].Expression",
+				"ValueMultiplier": 1.0
+			},
+			"Stat_Energy": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[4].Expression",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "After damaging a Shield, gain 30% aditional Damage Amp for 4 seconds.\r\n\r\nStats:\r\n+10% Attack Damage\r\n+10 Omega Power\r\n+10 Starting Energy"
+}

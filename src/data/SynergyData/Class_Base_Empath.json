@@ -1,0 +1,533 @@
+{
+	"CombatClass": "Empath",
+	"CombatClassComponents": [],
+	"SynergyThresholds": [
+		2,
+		4,
+		7,
+		10
+	],
+	"SynergyThresholdsAbilities": {
+		"Variables": [
+			{
+				"Name": "Empath_AllyShield",
+				"Values": [
+					4,
+					9,
+					15,
+					25
+				]
+			},
+			{
+				"Name": "Empath_EmpathShield",
+				"Values": [
+					8,
+					18,
+					30,
+					50
+				]
+			},
+			{
+				"Name": "Empath_LastThreshold",
+				"Values": [
+					0,
+					0,
+					0,
+					20
+				]
+			}
+		],
+		"UnitAbilities": [
+			{
+				"Name": "EmpathClass_SelfandSpecialAbility1",
+				"ActivationTrigger": {
+					"TriggerType": "OnBattleStart"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Empath - Starting Shield",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "Self"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "SpawnShield",
+									"DurationMs": 3000,
+									"AttachedEffects": [
+										{
+											"Type": "Buff",
+											"Stat": "AttackSpeed",
+											"DurationMs": 3000,
+											"Expression": {
+												"Percentage": "{Empath_LastThreshold}",
+												"Stat": "AttackSpeed",
+												"StatSource": "Sender",
+												"StatEvaluationType": "Base"
+											}
+										},
+										{
+											"Type": "Buff",
+											"Stat": "AttackPhysicalDamage",
+											"DurationMs": 3000,
+											"Expression": {
+												"Percentage": "{Empath_LastThreshold}",
+												"Stat": "AttackPhysicalDamage",
+												"StatSource": "Sender",
+												"StatEvaluationType": "Base"
+											}
+										},
+										{
+											"Type": "Buff",
+											"Stat": "AttackEnergyDamage",
+											"DurationMs": 3000,
+											"Expression": {
+												"Percentage": "{Empath_LastThreshold}",
+												"Stat": "AttackEnergyDamage",
+												"StatSource": "Sender",
+												"StatEvaluationType": "Base"
+											}
+										},
+										{
+											"Type": "Buff",
+											"Stat": "AttackPureDamage",
+											"DurationMs": 3000,
+											"Expression": {
+												"Percentage": "{Empath_LastThreshold}",
+												"Stat": "AttackPureDamage",
+												"StatSource": "Sender",
+												"StatEvaluationType": "Base"
+											}
+										}
+									],
+									"Expression": {
+										"Percentage": "{Empath_EmpathShield}",
+										"Stat": "MaxHealth",
+										"StatSource": "Receiver"
+									}
+								}
+							]
+						}
+					}
+				]
+			},
+			{
+				"Name": "EmpathClass_SelfandSpecialAbility2",
+				"ActivationTrigger": {
+					"TriggerType": "EveryXTime",
+					"ActivateEveryTimeMs": 8000
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Empath - Periodic Shield",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "Self"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "SpawnShield",
+									"DurationMs": 3000,
+									"AttachedEffects": [
+										{
+											"Type": "Buff",
+											"Stat": "AttackSpeed",
+											"DurationMs": 3000,
+											"Expression": {
+												"Percentage": "{Empath_LastThreshold}",
+												"Stat": "AttackSpeed",
+												"StatSource": "Sender",
+												"StatEvaluationType": "Base"
+											}
+										},
+										{
+											"Type": "Buff",
+											"Stat": "AttackPhysicalDamage",
+											"DurationMs": 3000,
+											"Expression": {
+												"Percentage": "{Empath_LastThreshold}",
+												"Stat": "AttackPhysicalDamage",
+												"StatSource": "Sender",
+												"StatEvaluationType": "Base"
+											}
+										},
+										{
+											"Type": "Buff",
+											"Stat": "AttackEnergyDamage",
+											"DurationMs": 3000,
+											"Expression": {
+												"Percentage": "{Empath_LastThreshold}",
+												"Stat": "AttackEnergyDamage",
+												"StatSource": "Sender",
+												"StatEvaluationType": "Base"
+											}
+										},
+										{
+											"Type": "Buff",
+											"Stat": "AttackPureDamage",
+											"DurationMs": 3000,
+											"Expression": {
+												"Percentage": "{Empath_LastThreshold}",
+												"Stat": "AttackPureDamage",
+												"StatSource": "Sender",
+												"StatEvaluationType": "Base"
+											}
+										}
+									],
+									"Expression": {
+										"Percentage": "{Empath_EmpathShield}",
+										"Stat": "MaxHealth",
+										"StatSource": "Receiver"
+									}
+								}
+							]
+						}
+					}
+				]
+			}
+		],
+		"TeamAbilities": [
+			{
+				"Name": "EmpathClass_AllyAbility1",
+				"ActivationTrigger": {
+					"TriggerType": "OnBattleStart"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Empath - Ally Starting Shield",
+						"Deployment": {
+							"Type": "Direct",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							]
+						},
+						"Targeting": {
+							"Type": "Synergy",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							],
+							"Group": "Ally",
+							"NotCombatClass": "Empath"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "SpawnShield",
+									"DurationMs": 4000,
+									"Expression": {
+										"Percentage": "{Empath_EmpathShield}",
+										"Stat": "MaxHealth",
+										"StatSource": "Receiver"
+									}
+								}
+							]
+						}
+					}
+				]
+			},
+			{
+				"Name": "EmpathClass_AllyAbility2",
+				"ActivationTrigger": {
+					"TriggerType": "EveryXTime",
+					"ActivateEveryTimeMs": 8000
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Empath - Ally Periodic Shield",
+						"Deployment": {
+							"Type": "Direct",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							]
+						},
+						"Targeting": {
+							"Type": "Synergy",
+							"Guidance": [
+								"Ground",
+								"Underground",
+								"Airborne"
+							],
+							"Group": "Ally",
+							"NotCombatClass": "Empath"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "SpawnShield",
+									"DurationMs": 4000,
+									"Expression": {
+										"Percentage": "{Empath_EmpathShield}",
+										"Stat": "MaxHealth",
+										"StatSource": "Receiver"
+									}
+								}
+							]
+						}
+					}
+				]
+			}
+		]
+	},
+	"IntrinsicAbilities": [],
+	"HyperAbilities": [
+		{
+			"Name": "EmpathHyperProgressAbility",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart",
+				"MaxActivations": 1
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Heal three lowest health allies",
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						]
+					},
+					"Targeting": {
+						"Type": "Self",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						],
+						"Group": "Ally"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "AttackSpeed",
+								"OverlapProcessType": "Stacking",
+								"FrequencyMs": 100,
+								"DurationMs": -1,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										{
+											"Operation": "/",
+											"Operands": [
+												{
+													"Stat": "CurrentSubHyper",
+													"StatSource": "Receiver"
+												},
+												1000
+											]
+										},
+										{
+											"Operation": "%%",
+											"Operands": [
+												{
+													"Stat": "AttackSpeed",
+													"StatSource": "Receiver",
+													"StatEvaluationType": "Base"
+												},
+												50
+											]
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"Name": "EmpathHyperActiveAbility",
+			"ActivationTrigger": {
+				"TriggerType": "OnHyperactive",
+				"MaxActivations": 1
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Heal three lowest health allies",
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						]
+					},
+					"Targeting": {
+						"Type": "Self",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						],
+						"Group": "Ally"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "VulnerabilityPercentage",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 10
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackPhysicalDamage",
+								"OverlapProcessType": "Merge",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Receiver"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackEnergyDamage",
+								"OverlapProcessType": "Merge",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Receiver"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackPureDamage",
+								"OverlapProcessType": "Merge",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackPureDamage",
+									"StatSource": "Receiver"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "OmegaDamagePercentage",
+								"OverlapProcessType": "Merge",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "OmegaDamagePercentage",
+									"StatSource": "Receiver"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Empath",
+	"DisplayDescription": "\r\nCombat start and every 8 seconds, your team gains a Shield equal to a percentage of their <MaxHealth>Max Health</> for 4 seconds. Empath units receive double the amount.\r\n\r\n(10) While Shielded, Empaths gain 20% <AttackSpeed>Attack Speed</> and <AttackDamage>Attack Damage</>.\r\n",
+	"DisplayDescriptionThresholds": [
+		"Gain 4%<MaxHealth></><StartingShield></>",
+		"Gain 9%<MaxHealth></><StartingShield></>",
+		"Gain 15%<MaxHealth></><StartingShield></>",
+		"Gain 25%<MaxHealth></><StartingShield></>"
+	],
+	"Description": {
+		"Format": "\r\nCombat start and every {TriggerTime} seconds, your team gains a Shield equal to a percentage of their <MaxHealth>Max Health</> for {Duration} seconds. Empath units receive double the amount.\r\n\r\n({LastThreshold}) While Shielded, Empaths gain {Empath_LastThreshold}% <AttackSpeed>Attack Speed</> and <AttackDamage>Attack Damage</>.\r\n",
+		"Parameters": {
+			"TriggerTime": {
+				"ParameterPath": "SynergyThresholdsAbilities.TeamAbilities[1].ActivationTrigger.ActivateEveryTimeMs",
+				"ValueMultiplier": 0.001
+			},
+			"Duration": {
+				"ParameterPath": "SynergyThresholdsAbilities.TeamAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"LastThreshold": {
+				"ParameterPath": "SynergyThresholds[3]",
+				"ValueMultiplier": 1.0
+			},
+			"Empath_LastThreshold": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[2].Values[3]",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DescriptionThresholds": {
+		"Format": "Gain {Empath_AllyShield}%<MaxHealth></><StartingShield></>",
+		"Parameters": [
+			{
+				"Empath_AllyShield": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[0]",
+					"ValueMultiplier": 1.0
+				}
+			},
+			{
+				"Empath_AllyShield": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[1]",
+					"ValueMultiplier": 1.0
+				}
+			},
+			{
+				"Empath_AllyShield": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[2]",
+					"ValueMultiplier": 1.0
+				}
+			},
+			{
+				"Empath_AllyShield": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[3]",
+					"ValueMultiplier": 1.0
+				}
+			}
+		]
+	},
+	"HyperDisplayDescription": "Hyper Bonus (scaling): <AttackSpeed>0.5%</> <AttackSpeed>Attack Speed</>, up to 50%.\r\n\r\nHyper Bonus (full): 10% <DamageAmplification>Damage Amp</> and <DamageReduction>Damage Reduction</>.\r\n\r\n",
+	"HyperDescription": {
+		"Format": "Hyper Bonus (scaling): <AttackSpeed>0.5%</> <AttackSpeed>Attack Speed</>, up to 50%.\r\n\r\nHyper Bonus (full): 10% <DamageAmplification>Damage Amp</> and <DamageReduction>Damage Reduction</>.\r\n\r\n",
+		"Parameters": {}
+	},
+	"HyperDescriptionParts": [
+		{
+			"StatType": "AttackSpeed",
+			"DisplayDescription": "<AttackSpeed>0.5%</> per Hyper Point, up to 50%.\r\n\r\n",
+			"Description": {
+				"Format": "<AttackSpeed>0.5%</> per Hyper Point, up to 50%.\r\n\r\n",
+				"Parameters": {}
+			},
+			"DisplayDescriptionNormalized": "0.5% per Hyper Point, up to 50%."
+		},
+		{
+			"StatType": "VulnerabilityPercentage",
+			"DisplayDescription": "+10% <DamageAmplification></><DamageReduction></> at Full Hyper.\r\n\r\n",
+			"Description": {
+				"Format": "+10% <DamageAmplification></><DamageReduction></> at Full Hyper.\r\n\r\n",
+				"Parameters": {}
+			},
+			"DisplayDescriptionNormalized": "+10% at Full Hyper."
+		}
+	],
+	"DisplayDescriptionNormalized": "Combat start and every 8 seconds, your team gains a Shield equal to a percentage of their Max Health for 4 seconds. Empath units receive double the amount.\r\n\r\n(10) While Shielded, Empaths gain 20% Attack Speed and Attack Damage.",
+	"DisplayDescriptionThresholdsNormalized": [
+		"Gain 4%",
+		"Gain 9%",
+		"Gain 15%",
+		"Gain 25%"
+	],
+	"HyperDisplayDescriptionNormalized": "Hyper Bonus (scaling): 0.5% Attack Speed, up to 50%.\r\n\r\nHyper Bonus (full): 10% Damage Amp and Damage Reduction."
+}

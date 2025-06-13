@@ -1,0 +1,247 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Pangolin",
+	"Stage": 1,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 4,
+	"CombatAffinity": "Fire",
+	"CombatClass": "Bulwark",
+	"DominantCombatAffinity": "Fire",
+	"DominantCombatClass": "Bulwark",
+	"SizeUnits": 3,
+	"Stats": {
+		"MaxHealth": 1750000,
+		"StartingEnergy": 80000,
+		"EnergyCost": 180000,
+		"PhysicalResist": 55,
+		"EnergyResist": 40,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 115000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 65,
+		"MoveSpeedSubUnits": 2000,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 2,
+		"OmegaRangeUnits": 2,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Pangolin Basic Attack I",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 36
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Spurnado I",
+			"TotalDurationMs": 4000,
+			"MovementLock": false,
+			"Skills": [
+				{
+					"Name": "Temp increased Phy and Enrg Resist",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 0,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "VulnerabilityPercentage",
+								"OverlapProcessType": "Merge",
+								"DurationMs": 4000,
+								"Expression": 10
+							}
+						]
+					}
+				},
+				{
+					"Name": "Zone Damage",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 21,
+						"DurationMs": 4000,
+						"FrequencyMs": 1000,
+						"Attach": true,
+						"ApplyOnce": false
+					},
+					"ChannelTimeMs": 4000,
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "+",
+									"Operands": [
+										{
+											"Operation": "*",
+											"Operands": [
+												60000,
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												}
+											]
+										},
+										{
+											"Operation": "/",
+											"Operands": [
+												{
+													"Stat": "AttackPhysicalDamage",
+													"StatSource": "Sender"
+												},
+												2
+											]
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Flare",
+	"DisplayDescription": "Flare spins for 4 seconds, gaining <DamageReduction>10%</> Damage Reduction and dealing <AttackPhysicalDamage>118</> (<OmegaPowerPercentage></><AttackPhysicalDamage></>) Physical Damage per second to all enemies within 21-hexes.\r\n\r\nDamage: <AttackPhysicalDamage>470</> = <AttackPhysicalDamage>60</>/s (<OmegaPowerPercentage></>) + <AttackPhysicalDamage>57.5</>/s (50%<AttackPhysicalDamage></>)",
+	"Intro": "The jagged cliffside paths of Shardbluff Labyrinth are slippery from algae and orange moss. Pointed slabs fill the landscape in jarring angles, like craggy teeth awaiting the perfect meal. Among the sharp rocks, yellow crystals scuttle about. Standing on its hind legs, the Flare sniffs out special mineral deposits in the rocks. Jackpot! It readies its yellow spiked tail to swing.",
+	"Summary": "The Flare, covered in thick, barbed armor and dark brown scales, navigates adeptly, using its spiked tail to detect and extract mineral deposits. A solitary creature by nature, the Flare is highly specialized in mineral detection, able to differentiate alloys and attract desirable deposits with its magnetic tail. When threatened, it curls into a hardened ball, rolling away at high speeds to evade danger, showcasing both defensive prowess and solitary hunting behaviors.",
+	"Biology": {
+		"Physiology": "The Flare has thick, barbed armour that offers it protection, with dark brown scales covering it from head to tail. Its four limbs are plated with the same tough material and an underbelly with smaller, lighter scales. However, its softest scales are the beige yellow ones that flare around its face and nose, helping it hear and smell better. Upon its tail are three sharp spikes, yellow like its claws. The Flare will not hesitate to use them if it is threatened.",
+		"Behaviour": "The diligent Flare is always sniffing for minerals, climbing up sharp inclines and rolling through narrow tunnels in search of treasure. Typically a solitary Illuvial, the Flare will only approach another of its kind to unearth large clusters of minerals together. Should the Flare encounter danger, it furls into a tight ball to roll away at top speeds, and its compacted form hardens to protect it from hazards. However, the Flare has also been observed disturbing dangerous Illuvials in its search for minerals."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/PangolinStage1/PangolinStage1_default_default_webp.3840x2160/PangolinStage1_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/PangolinStage1/PangolinStage1_default_default_hls.m3u8/PangolinStage1_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Flare has a strange, specialised diet with high concentrations of minerals supplemented by morphopods and plants.",
+			"The Flare is typically a solitary creature, but it occasionally forms social clubs with others to unearth larger clusters of minerals.",
+			"The Flare furls into a tight ball and rolls downhill to escape predators. This compacted form hardens its scales, protecting it against magma and impact from sharp rocks."
+		],
+		"Buckley": [
+			"The Flare is a geophage, as evidenced by the high amounts of soil and rocks in its digestive tract. It eats minerals and burrowing Morphopods at the same time, with a specialised diet that feeds its gut microbes and protects its immune system.",
+			"The Flare's nose has specialised receptors which can differentiate between thousands of minerals in the soil, capable of identifying alloy compositions and traces of minerals embedded deep within the planet.",
+			"The Flare's spiked tail has a magnetic charge that it can manipulate, allowing it to attract desirable mineral deposits and repel undesirable debris.",
+			"The Flare's thick, barbed armour weighs three times as much as the rest of its body. A single scale has the equivalent weight of a Valain skull, yet they are flexible enough to manoeuvre underground.",
+			"The hardest scales on the Flare's body are on its tail, which is connected to a complex network of nerves, allowing it to time its position of impact with its tail."
+		]
+	},
+	"TraitOrderLegacy": [
+		3,
+		4,
+		1,
+		5,
+		6,
+		2
+	],
+	"Description": {
+		"Format": "Flare spins for {SpinDuration} seconds, gaining <DamageReduction>{DamageRed}%</> Damage Reduction and dealing <AttackPhysicalDamage>118</> (<OmegaPowerPercentage></><AttackPhysicalDamage></>) Physical Damage per second to all enemies within {OmegaRadius}-hexes.\r\n\r\nDamage: <AttackPhysicalDamage>470</> = <AttackPhysicalDamage>{OmegaDamage}</>/s (<OmegaPowerPercentage></>) + <AttackPhysicalDamage>{PhysicalDamage}</>/s (50%<AttackPhysicalDamage></>)",
+		"Parameters": {
+			"SpinDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].Zone.DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"DamageRed": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression"
+			},
+			"OmegaRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].Zone.RadiusUnits"
+			},
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].Expression.Operands[0].Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"PhysicalDamage": {
+				"ParameterPath": "Stats.AttackPhysicalDamage",
+				"ValueMultiplier": 0.0005
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Flare spins for 4 seconds, gaining 10% Damage Reduction and dealing 118 () Physical Damage per second to all enemies within 21-hexes.\r\n\r\nDamage: 470 = 60/s () + 57.5/s (50%)",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 3,
+			"AttackSpeed": 4,
+			"Health": 1,
+			"MovementSpeed": 5,
+			"OmegaPower": 6,
+			"Resistance": 2
+		}
+	}
+}

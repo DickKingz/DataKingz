@@ -1,0 +1,311 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Lynx",
+	"Stage": 3,
+	"Path": "EmpathEarth",
+	"Variation": "Original",
+	"Tier": 2,
+	"CombatAffinity": "Earth",
+	"CombatClass": "Empath",
+	"DominantCombatAffinity": "Earth",
+	"DominantCombatClass": "Empath",
+	"SizeUnits": 7,
+	"Stats": {
+		"MaxHealth": 2050000,
+		"StartingEnergy": 80000,
+		"EnergyCost": 160000,
+		"PhysicalResist": 55,
+		"EnergyResist": 50,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 150000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 65,
+		"MoveSpeedSubUnits": 2500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 40,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Empath Earth Lynx Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 55
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 10000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Atoning Swoon",
+			"TotalDurationMs": 1000,
+			"Skills": [
+				{
+					"Name": "Zone Area Healing",
+					"Targeting": {
+						"Type": "Self",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 0
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 28,
+						"DurationMs": 4000,
+						"FrequencyMs": 1000,
+						"GrowthRateSubUnits": 0,
+						"ApplyOnce": false
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantHeal",
+								"HealType": "Normal",
+								"Expression": {
+									"Operation": "%",
+									"Operands": [
+										{
+											"Operation": "*",
+											"Operands": [
+												4,
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												}
+											]
+										},
+										{
+											"Operation": "-",
+											"Operands": [
+												{
+													"Stat": "MaxHealth",
+													"StatSource": "Receiver"
+												},
+												{
+													"Stat": "CurrentHealth",
+													"StatSource": "Receiver"
+												}
+											]
+										}
+									]
+								}
+							},
+							{
+								"Type": "InstantHeal",
+								"HealType": "Normal",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										60000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "%",
+									"Operands": [
+										{
+											"Operation": "*",
+											"Operands": [
+												4,
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												}
+											]
+										},
+										{
+											"Operation": "-",
+											"Operands": [
+												{
+													"Stat": "MaxHealth",
+													"StatSource": "Receiver"
+												},
+												{
+													"Stat": "CurrentHealth",
+													"StatSource": "Receiver"
+												}
+											]
+										}
+									]
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										60000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Virtuous Terralynx",
+	"DisplayDescription": "Virtuous Terralynx creates a 28-hexes zone for 4 seconds, healing allies for <MaxHealth>60</> (<OmegaPowerPercentage></>) Health + <MaxHealth>4%</> (<OmegaPowerPercentage></>) of their missing Health per second.\r\n\r\nEnemies within the zone take <AttackEnergyDamage>60</> (<OmegaPowerPercentage></>) + <AttackEnergyDamage>4%</> (<OmegaPowerPercentage></>) of their missing Health as Energy Damage per second.\r\n\r\nHeal: <MaxHealth>60</> (<OmegaPowerPercentage></>) + <MaxHealth>4%</> (<MaxHealth></><OmegaPowerPercentage></>)\r\n\r\nDamage: <AttackEnergyDamage>60</> (<OmegaPowerPercentage></>) + <AttackEnergyDamage>4%</> (<MaxHealth></><OmegaPowerPercentage></>)",
+	"Intro": "Across the vibrant dunes of Crystal Shores, there are towering prism mountains, spiked structures, and shard fragments as far as the eye can see. The jagged landscape is full of peril, as every sharp point can nick and scratch, or even pierce through one's foot. Those who make their home here must endure the consistent wear and tear. Fortunately, the Virtuous Terralynx makes a habit of imbuing crystals with its restorative abilities, healing the fortunate few who stumble upon its gifts.",
+	"Summary": "The Virtuous Terralynx inhabits Crystal Shores, a region characterised by prism mountains and sharp crystal fragments. This predatory creature has wine-coloured fur, rock-plate armour, and a luminous pink orb on its forehead, along with crystal-tipped ears that enhance its hearing capabilities to detect heartbeats and biological changes in other creatures. Its advanced sensory system includes specialised receptors and the ability to secrete biological compounds that can heal or harm other organisms, while its ability to develop lithic growths allows it to perfectly camouflage with its crystalline surroundings. The species demonstrates complex social behavior through light-based communication and participates in group mourning rituals when members of their kind die, using synchronised light displays and vocalisations to express their loss.",
+	"Biology": {
+		"Physiology": "The Virtuous Terralynx has an unwavering gaze behind its masked face, which is covered in rock plates just like the long fur hanging from its face and its slab-encrusted mane. It has long ears that lean forward, tipped in crystal slabs that are covered with rock fragments. The Virtuous Terralynx is blessed with a powerful pink orb at the centre of its forehead, which shines as brightly as its eyes and the various areas on its body that glow. They emanate a grounding aura, giving those who bask in their light a sense of security. Its dark fur coat is the colour of wine, with rocky armour from its back to its short tail. The Virtuous Terralynx walks on four legs, which have extremely short claws.",
+		"Behaviour": "The Virtuous Terralynx often stands as still as a statue, blending in with the pink and purple landscape when it hunts. As an ambush predator, it mimics its environment so that it may leap upon passing prey. To those with less visual acuity, it may resemble a rock. Its sensitive ears allow it to detect approaching prey and its keen sense of sight enables it to identify camouflaged Illuvials. It is capable of secreting a scented mix of nutrients and hormones to attract different types of prey. This strange ability is not fully understood, but the Virtuous Terralynx is capable of replicating biological components of other species and using it to its advantage, whether to heal or infect."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3EmpathEarth/LynxStage3EmpathEarth_default_default_webp.3840x2160/LynxStage3EmpathEarth_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3EmpathEarth/LynxStage3EmpathEarth_default_default_hls.m3u8/LynxStage3EmpathEarth_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Virtuous Terralynx's long ears often move towards the direction of sound in its environment.",
+			"The Virtuous Terralynx can stay in one position for hours at a time to maintain its camouflage when it hunts.",
+			"The Virtuous Terralynx can communicate with others of its kind by flashing light from the luminous orb above its head. They lament the death of a companion by expelling a ripple of light accompanied by a haunting choral so that others can join in their grief."
+		],
+		"Buckley": [
+			"The Virtuous Terralynx has crystals on its ears that can magnify its auditory abilities. It has such keen hearing that it can sense the heartbeat and micromovements of other Illuvials.",
+			"The Virtuous Terralynx has a mineral-based organ that allows it to develop lithic growths which resemble its environment.",
+			"The Virtuous Terralynx's eyes have receptor cones that can differentiate between slight differences in colour between crystal shards and rocks, allowing it to determine the mineral composition for the nutrients it requires.",
+			"The Virtuous Terralynx's ears and nose have specialised receptors that are hyper-attuned to biological changes, including heartbeats, hormonal shifts, illness, and injury.",
+			"The Virtuous Terralynx secretes unique composite nutrients and hormones from its paws which can affect local flora and fauna in positive or negative ways."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		2,
+		3,
+		6,
+		1,
+		4
+	],
+	"Description": {
+		"Format": "Virtuous Terralynx creates a {OmegaRadius}-hexes zone for {OmegaDuration} seconds, healing allies for <MaxHealth>{HealFlatValue}</> (<OmegaPowerPercentage></>) Health + <MaxHealth>{HealValue}%</> (<OmegaPowerPercentage></>) of their missing Health per second.\r\n\r\nEnemies within the zone take <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) + <AttackEnergyDamage>{HealValue}%</> (<OmegaPowerPercentage></>) of their missing Health as Energy Damage per second.\r\n\r\nHeal: <MaxHealth>{HealFlatValue}</> (<OmegaPowerPercentage></>) + <MaxHealth>{HealValue}%</> (<MaxHealth></><OmegaPowerPercentage></>)\r\n\r\nDamage: <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) + <AttackEnergyDamage>{HealValue}%</> (<MaxHealth></><OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Zone.RadiusUnits"
+			},
+			"OmegaDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Zone.DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"HealFlatValue": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"HealValue": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0].Operands[0]"
+			},
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[3].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Virtuous Terralynx creates a 28-hexes zone for 4 seconds, healing allies for 60 () Health + 4% () of their missing Health per second.\r\n\r\nEnemies within the zone take 60 () + 4% () of their missing Health as Energy Damage per second.\r\n\r\nHeal: 60 () + 4% ()\r\n\r\nDamage: 60 () + 4% ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 2,
+			"Health": 3,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 4
+		}
+	}
+}

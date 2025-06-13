@@ -1,0 +1,264 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Tenrec",
+	"Stage": 1,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 1,
+	"CombatAffinity": "Air",
+	"CombatClass": "Rogue",
+	"DominantCombatAffinity": "Air",
+	"DominantCombatClass": "Rogue",
+	"SizeUnits": 2,
+	"Stats": {
+		"MaxHealth": 1050000,
+		"StartingEnergy": 60000,
+		"EnergyCost": 140000,
+		"PhysicalResist": 25,
+		"EnergyResist": 25,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 65000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 85,
+		"MoveSpeedSubUnits": 1750,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 5,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 60,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Tenrec Basic Attack I",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 43
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 10000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Whirlpedo I",
+			"TotalDurationMs": 1500,
+			"Skills": [
+				{
+					"Name": "dashing to its furthest enemy",
+					"Targeting": {
+						"Type": "DistanceCheck",
+						"Guidance": [
+							"Ground"
+						],
+						"Group": "Enemy",
+						"Lowest": false,
+						"Num": 1
+					},
+					"Deployment": {
+						"Type": "Dash",
+						"Guidance": [
+							"Ground"
+						],
+						"PreDeploymentDelayPercentage": 5
+					},
+					"Dash": {
+						"ApplyToAll": true,
+						"IsPassthrough": true
+					},
+					"PercentageOfAbilityDuration": 80,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										70000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Physical Damage",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "InZone",
+						"Group": "Enemy",
+						"RadiusUnits": 30
+					},
+					"PercentageOfAbilityDuration": 5,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "+",
+									"Operands": [
+										{
+											"Operation": "*",
+											"Operands": [
+												100000,
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												}
+											]
+										},
+										{
+											"Stat": "AttackDamage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Rota",
+	"DisplayDescription": "Rota dashes to the furthest enemy, dealing <AttackPhysicalDamage>70</> (<OmegaPowerPercentage></>) Physical Damage to enemies in its path. At the end of the dash, spikes explode out of its body, dealing <AttackPhysicalDamage>165</> (<OmegaPowerPercentage></><AttackDamage></>) Physical Damage 30-hexes.\r\n\r\nDash Damage: <AttackPhysicalDamage>70</> (<OmegaPowerPercentage></>)\r\nSpike Damage: <AttackPhysicalDamage>165</> = <AttackPhysicalDamage>100</> (<OmegaPowerPercentage></>) + <AttackPhysicalDamage>65</> (<AttackDamage></>)",
+	"Intro": "Abyssal Basin is overgrown with life. The marsh floors are covered with fallen logs and red mushrooms blooming from tree trunks. Swamps are full of lilypads and grass, with leafy branches hanging above. It's hard to move quickly in this chaotic landscape with all the growth and decay everywhere. Somehow, the Rota rolls briskly above and around all the messiness, as though moving on air.",
+	"Summary": "In the lush environment of Abyssal Basin, Rota, a nimble and brightly-eyed Illuvial, navigates effortlessly amidst fallen logs and blooming red mushrooms. With teal-spiked back and a beige-pink body, Rota rolls swiftly and lightly through the chaotic landscape, evading obstacles with its unique ability to climb trees and crash into them to dislodge fruits and nuts. It emits light from its spines for communication and displays playful behavior, often inadvertently injuring others due to its high-speed movements.",
+	"Biology": {
+		"Physiology": "The Rota is bright-eyed and speedy, with a tiny button nose and a small snout. From afar, it looks like a round ball of spikes. The pointed spines on its back are teal with white tips and light pulsing from their base. Up close, one can see its two round ears perk up, and its snout twitch. Some of the spikes on its head appear not fully grown, still flat cylinders or stubby cones. Smaller spikes run along its arms and sprout from the claws of its little paws. Besides the round stubs on its shoulders and thighs, the rest of its body is beige pink, but most only see its as a rolling ball of spikes and blue light.",
+		"Behaviour": "The Rota is constantly spinning, rolling through different regions and running circles around other Illuvials. It crashes into trees to make fruits and nuts fall, snatching them quickly and spinning away. Sometimes it moves so fast that it accidentally injures other Illuvials with its spikes. The Rota's body is light and flexible, making it difficult to hurt. It easily travels through various terrain, rolling up trees and across water surfaces to evade predators. Full of energy and mischief, it goads Morphopod prey into chasing it by flashing its lights, until it changes directions and spins towards its meal."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/TenrecStage1/TenrecStage1_default_default_webp.3840x2160/TenrecStage1_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/TenrecStage1/TenrecStage1_default_default_hls.m3u8/TenrecStage1_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Rota moves so fast that a strong wind forms as it rolls through the terrain. It can move up vertical inclines and climb trees while curled up in a ball, sometimes bumping into other Illuvials.",
+			"The Rota's spikes move up and down when it rolls, enabling it to gain momentum like many feet pushing in the right direction.",
+			"The Rota is very ticklish, and the slightest petal or moss touching its belly can leave it shaking in alarm."
+		],
+		"Buckley": [
+			"The Rota's spines have individual light cones that allow it to emit light in various patterns for various communications and signalling to others of its kind.",
+			"The Rota has otolith blockers in its body that prevent it from experiencing motion sickness when it is rolling. It is capable of synthesizing an anticholinergic which calms its vestibular system during this time.",
+			"The Rota's body is so lightweight that it can lift itself into the air by expelling air from its vents.",
+			"The Rota has a unique respiratory system that allows it to breathe at high altitudes and during high-speed movements.",
+			"The Rota's diet includes aquatic and marsh-based morphopods, which support the health of plants in its environment by eliminating pests."
+		]
+	},
+	"TraitOrderLegacy": [
+		2,
+		1,
+		4,
+		6,
+		3,
+		5
+	],
+	"Description": {
+		"Format": "Rota dashes to the furthest enemy, dealing <AttackPhysicalDamage>{TravelDamage}</> (<OmegaPowerPercentage></>) Physical Damage to enemies in its path. At the end of the dash, spikes explode out of its body, dealing <AttackPhysicalDamage>165</> (<OmegaPowerPercentage></><AttackDamage></>) Physical Damage {AOERadius}-hexes.\r\n\r\nDash Damage: <AttackPhysicalDamage>{TravelDamage}</> (<OmegaPowerPercentage></>)\r\nSpike Damage: <AttackPhysicalDamage>165</> = <AttackPhysicalDamage>{AOEDamage}</> (<OmegaPowerPercentage></>) + <AttackPhysicalDamage>{AtkDamage}</> (<AttackDamage></>)",
+		"Parameters": {
+			"TravelDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"AOERadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].Targeting.RadiusUnits"
+			},
+			"AOEDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].Expression.Operands[0].Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"AtkDamage": {
+				"ParameterPath": "Stats.AttackPhysicalDamage",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Rota dashes to the furthest enemy, dealing 70 () Physical Damage to enemies in its path. At the end of the dash, spikes explode out of its body, dealing 165 () Physical Damage 30-hexes.\r\n\r\nDash Damage: 70 ()\r\nSpike Damage: 165 = 100 () + 65 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 2,
+			"AttackSpeed": 1,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 3,
+			"Resistance": 5
+		}
+	}
+}

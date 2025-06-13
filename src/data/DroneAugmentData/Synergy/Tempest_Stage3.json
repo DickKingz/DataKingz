@@ -1,0 +1,21 @@
+{
+	"Name": "Tempest",
+	"Stage": 3,
+	"Type": "Game",
+	"DisplayName": "Tempest Matrix",
+	"DisplayDescription": "Gain a Tempest Imprint.",
+	"Description": {
+		"Format": "Gain a Tempest Imprint.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Tempest",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

@@ -1,0 +1,26 @@
+{
+	"Name": "Water",
+	"Stage": 2,
+	"Type": "Game",
+	"DisplayName": "Water Matrix",
+	"DisplayDescription": "Gain a Water Imprint and Flow Equalizer.",
+	"Description": {
+		"Format": "Gain a Water Imprint and Flow Equalizer.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Water",
+				"Stage": 0,
+				"Variation": "Original"
+			},
+			{
+				"Name": "FlowEqualizer",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

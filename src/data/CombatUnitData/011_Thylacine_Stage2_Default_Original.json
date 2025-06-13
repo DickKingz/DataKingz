@@ -1,0 +1,244 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Thylacine",
+	"Stage": 2,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 4,
+	"CombatAffinity": "Steam",
+	"CombatClass": "Rogue",
+	"DominantCombatAffinity": "Water",
+	"DominantCombatClass": "Rogue",
+	"SizeUnits": 5,
+	"Stats": {
+		"MaxHealth": 1800000,
+		"StartingEnergy": 0,
+		"EnergyCost": 140000,
+		"PhysicalResist": 50,
+		"EnergyResist": 55,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 130000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 80,
+		"MoveSpeedSubUnits": 3250,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 3,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Thylacine Basic Attack II",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 41
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Wraithstrike II",
+			"TotalDurationMs": 1500,
+			"Skills": [
+				{
+					"Name": "Becomes untargetable",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 10,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "PositiveState",
+								"PositiveState": "Untargetable",
+								"DurationMs": 1500
+							}
+						]
+					}
+				},
+				{
+					"Name": "Ultimate Attack Chain",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 95,
+					"EffectPackage": {
+						"Attributes": {
+							"Propagation": {
+								"PropagationType": "Chain",
+								"ChainDelayMs": 50,
+								"ChainNumber": 3,
+								"PrioritizeNewTargets": true,
+								"OnlyNewTargets": false,
+								"IgnoreFirstPropagationReceiver": false,
+								"TargetingGroup": "Enemy",
+								"EffectPackage": {
+									"Effects": [
+										{
+											"Type": "InstantDamage",
+											"DamageType": "Physical",
+											"Expression": {
+												"Operation": "+",
+												"Operands": [
+													{
+														"Operation": "*",
+														"Operands": [
+															325000,
+															{
+																"Stat": "OmegaPowerPercentage",
+																"StatSource": "Sender"
+															}
+														]
+													},
+													{
+														"Stat": "AttackEnergyDamage",
+														"StatSource": "Sender"
+													},
+													{
+														"Stat": "AttackPhysicalDamage",
+														"StatSource": "Sender"
+													},
+													{
+														"Stat": "AttackPureDamage",
+														"StatSource": "Sender"
+													}
+												]
+											}
+										}
+									]
+								}
+							}
+						},
+						"Effects": []
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Rake",
+	"DisplayDescription": "Rake enters water form, becoming Untargetable and dealing <AttackPhysicalDamage>455</> (<OmegaPowerPercentage></><AttackDamage></>) Physical Damage to the 3 nearest Enemies.\r\n\r\nDamage: <AttackPhysicalDamage>455</> = <AttackPhysicalDamage>325</> (<OmegaPowerPercentage></>) + <AttackPhysicalDamage>130</> (<AttackDamage></>)",
+	"Intro": "One of the biggest geysers in Taiga Boreal is inside a massive ice cavern, with cave walls that are perfectly smooth from the hot water melting the surface. These walls tilt slightly forward or back, creating angular reflections along the floor that reflect the luminosity of the cave's skylight. Some creatures avoid n the geyser bursts, but the Rake runs laps around it, eager for steam.",
+	"Summary": "A formidable presence in Taiga Boreal, Rake thrives amidst icy caverns and geysers with its red fur and glowing blue appendages. Its physiology includes liquid-filled antennae that vaporize water, aiding in prey capture through steam traps. As a pack leader, the Rake defends its territory fiercely and rescues allies, using its steam-producing abilities to enhance speed and attack prowess. It possesses a specialized heat-regulating organ, hydro-vomeronasal apex for scent detection.",
+	"Biology": {
+		"Physiology": "The Rake strikes an imposing figure, with ghostly blue eyes, red fur, and a pair of liquid antennae longer than its torso. Its pointed ears are alert, but its keen instincts come primarily from its blue and purple antennae's heightened ability to sense and perceive. Vapour steams from the ends of these lengthy appendages, while an armour of dark fossilized plates protects its torso. They glow in between each ridge, just as bright as its long tail and antennae. With yellow fur below its nose and along its chest to its underbelly, it stands on four paws, its glowing blue tail streaking behind it.",
+		"Behaviour": "Moving with near supernatural speed, the Rake is often seen as a blur of red with swishing blue appendages steaming at its ends. It can stand in absolute stillness when it watches over its pack, but more often than not, it is bounding towards a new source of water. The Rake pushes its padded nose towards cracks in the ice, capable of inhaling the water beneath to hydrate its liquid antennae. When its antennae are full, it can release steam and cavitation bubbles in the air, trapping morphopod prey. The Rake has also been observed positioning its antennae into the frozen ground and transforming small packets of ice into steam, causing small explosions as the vapour rapidly expands."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/ThylacineStage2/ThylacineStage2_default_default_webp.3840x2160/ThylacineStage2_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/ThylacineStage2/ThylacineStage2_default_default_hls.m3u8/ThylacineStage2_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Rake is protective of its territory and keen to strike first. It quickly stuns opponents before they even realize the battle has begun.",
+			"The Rake has been found purging excess water from its body in the form of steam, allowing it to move faster.",
+			"The Rake is a pack leader and often recruits followers by rescuing them from danger or attacking those in its territory. It guards the injured against attackers, sometimes getting into heavy brawls where it uses excessive force."
+		],
+		"Buckley": [
+			"The Rake has an internal heat-regulating organ that works with its liquid-filled antennae to produce steam.",
+			"The Rake's liquid antennae course with a constant flow of water that vaporizes at its tips. They are capable of detecting changes in temperature, pressure, and humidity, allowing them to sense eruptions of geysers from great distances.",
+			"The Rake's exoskeleton is composed of bone and cartilage coated with a thin layer of hydrophobic membrane. This keeps it from disrupting the flow of water beneath its surface.",
+			"The Rake's nose has a specialised organ called the hydro-vomeronasal apex, which enables them to inhale water, and detect pheromones and other scents within the liquid before passing them into its liquid-filled antennae and tail.",
+			"A scan of the Rake's digestive tract reveals that it is carnivorous, with a diet of Morphopods supplemented by Kukkas. There are traces of feathers, organs, and bones, indicating that it consumes its prey whole."
+		]
+	},
+	"TraitOrderLegacy": [
+		2,
+		1,
+		4,
+		6,
+		3,
+		5
+	],
+	"Description": {
+		"Format": "Rake enters water form, becoming Untargetable and dealing <AttackPhysicalDamage>455</> (<OmegaPowerPercentage></><AttackDamage></>) Physical Damage to the {ChainAmount} nearest Enemies.\r\n\r\nDamage: <AttackPhysicalDamage>455</> = <AttackPhysicalDamage>{FlatDamage}</> (<OmegaPowerPercentage></>) + <AttackPhysicalDamage>{AtkDmg}</> (<AttackDamage></>)",
+		"Parameters": {
+			"ChainAmount": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Attributes.Propagation.ChainNumber"
+			},
+			"FlatDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Attributes.Propagation.EffectPackage.Effects[0].Expression.Operands[0].Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"AtkDmg": {
+				"ParameterPath": "Stats.AttackPhysicalDamage",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Rake enters water form, becoming Untargetable and dealing 455 () Physical Damage to the 3 nearest Enemies.\r\n\r\nDamage: 455 = 325 () + 130 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 2,
+			"AttackSpeed": 1,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 3,
+			"Resistance": 5
+		}
+	}
+}

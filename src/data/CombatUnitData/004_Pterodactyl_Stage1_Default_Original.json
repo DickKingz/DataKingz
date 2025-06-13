@@ -1,0 +1,233 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Pterodactyl",
+	"Stage": 1,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 5,
+	"CombatAffinity": "Fire",
+	"CombatClass": "Rogue",
+	"DominantCombatAffinity": "Fire",
+	"DominantCombatClass": "Rogue",
+	"SizeUnits": 3,
+	"Stats": {
+		"MaxHealth": 1600000,
+		"StartingEnergy": 40000,
+		"EnergyCost": 180000,
+		"PhysicalResist": 50,
+		"EnergyResist": 35,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 110000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 75,
+		"MoveSpeedSubUnits": 2500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 3,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Wing Cleave I",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 44
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Infernal Skyfall I",
+			"TotalDurationMs": 2800,
+			"Skills": [
+				{
+					"Name": "Jumps into air",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 85,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "PlaneChange",
+								"PlaneChange": "Airborne",
+								"DurationMs": 2800
+							}
+						]
+					}
+				},
+				{
+					"Name": "AOE Damage",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 70
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 28,
+						"DurationMs": 500,
+						"FrequencyMs": 500,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 10,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										850000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "Debuff",
+								"Stat": "HealthGainEfficiencyPercentage",
+								"DurationMs": 4000,
+								"Expression": 25
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Rhamphy",
+	"DisplayDescription": "Rhamphy takes to the skies, becoming Airborne for 2.8 seconds. As it descends, it summons a cloud of burning embers within 28-hexes, dealing <AttackEnergyDamage>850</><AttackEnergyDamage></> (<OmegaPowerPercentage></>) Energy Damage and decreasing their Healing effectiveness by <HealthGainEfficiencyPercentage>25%</> for 4 seconds.\r\n\r\nDamage: <AttackEnergyDamage>850</> (<OmegaPowerPercentage></>)",
+	"Intro": "Lava bubbles to the surface of Shardbluff Labyrinth through cracks in the ground that sputters ash. The air is heavy with smog, which nearly covers the fossil-fused pillars of rocks. These skeletons are a grim reminder of the fate that awaits many in these dangerous lands. Yet there are some who rise up to the challenge. Deftly dodging towers of smoke and lava, is the Rhamphy.",
+	"Summary": "In the depths of Shardbluff Labyrinth, the Rhamphy thrives with its molten eyes and bared fangs. It maneuvers skillfully on all fours, utilizing its glowing wings to scale rock columns effortlessly. This cunning predator hunts by luring larger creatures into traps, tricking them with flashy displays. Equipped with vents that fuel its internal flame and hyper-sensitive heat sensors, the Rhamphy is adept at disappearing in flames and reappearing to strike with fiery torrents upon its enemies.",
+	"Biology": {
+		"Physiology": "The Rhamphy's molten eyes gleam, almost as though filled with malice, and its fangs are always bared. It stalks around on all fours, scaling columns with its front claws, which are connected to its short, glowing wings. Covered with burgundy scales and a plated red shell, it fits right into the fiery landscape. Its forked tail is webbed with a glowing membrane, and the flaming horns on its head look like two torches from a distance. This devilish creature has a halo of light around its neck, which shines brightest after a successful hunt.",
+		"Behaviour": "Clever and ruthless, the Rhamphy hunts by playing tricks on others. It can often be found goading larger creatures into following it, creating flashy displays with its wings. The Rhamphy is fast thinking and sets up traps just to trick them into stumbling into lava. Morphopods gather around molten corpses and the Rhamphy uses this opportunity to hunt, surprising them by diving from a high altitude. "
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/PterodactylStage1/PterodactylStage1_default_default_webp.3840x2160/PterodactylStage1_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/PterodactylStage1/PterodactylStage1_default_default_hls.m3u8/PterodactylStage1_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Rhamphy can disappear in a lick of flames and reappear behind its victim. Every time it strikes an enemy, its heat levels build up until it releases a torrent of fire upon those in its vicinity.",
+			"The Rhamphy has been observed taunting other Illuvials and goading them into following it, causing immense stampedes and rockfalls.",
+			"Although the Rhamphy can fly, it frequently gets around on all fours."
+		],
+		"Buckley": [
+			"The Rhamphy's ring is hyper-sensitive to heat signatures in its environment.",
+			"The vents on the Rhamphy's neck allow it to intake oxygen to directly fuel its internal flame. When it absorbs too much energy from the heat, it releases excess energy from the top of its head.",
+			"The Rhamphy's internal flame is always burning, and the red gills around its arms keep its fire evenly distributed so it does not affect its flying.",
+			"The Rhamphy has hollow, lightweight bones, which are connected from its wings to its front legs, allowing it to fly more efficiently with extra surface area for gliding.",
+			"The Rhamphy has a high gas exchange rate given its need to consume oxygen to maintain its flame. Its lungs are connected to voluminous respiratory sacs that permit a unidirectional, constant flow of air towards the lungs."
+		]
+	},
+	"TraitOrderLegacy": [
+		4,
+		3,
+		2,
+		6,
+		1,
+		5
+	],
+	"Description": {
+		"Format": "Rhamphy takes to the skies, becoming Airborne for {AirborneDuration} seconds. As it descends, it summons a cloud of burning embers within {OmegaRadius}-hexes, dealing <AttackEnergyDamage>{OmegaDamage}</><AttackEnergyDamage></> (<OmegaPowerPercentage></>) Energy Damage and decreasing their Healing effectiveness by <HealthGainEfficiencyPercentage>{HealingValue}%</> for {HealingDuration} seconds.\r\n\r\nDamage: <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"AirborneDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"OmegaRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].Zone.RadiusUnits"
+			},
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"HealingValue": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[1].Expression"
+			},
+			"HealingDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[1].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Rhamphy takes to the skies, becoming Airborne for 2.8 seconds. As it descends, it summons a cloud of burning embers within 28-hexes, dealing 850 () Energy Damage and decreasing their Healing effectiveness by 25% for 4 seconds.\r\n\r\nDamage: 850 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 4,
+			"AttackSpeed": 3,
+			"Health": 2,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 5
+		}
+	}
+}

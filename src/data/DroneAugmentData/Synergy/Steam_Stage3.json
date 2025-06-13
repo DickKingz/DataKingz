@@ -1,0 +1,21 @@
+{
+	"Name": "Steam",
+	"Stage": 3,
+	"Type": "Game",
+	"DisplayName": "Steam Matrix",
+	"DisplayDescription": "Gain a Steam Imprint.",
+	"Description": {
+		"Format": "Gain a Steam Imprint.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Steam",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

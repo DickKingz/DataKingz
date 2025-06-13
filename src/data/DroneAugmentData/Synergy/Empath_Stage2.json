@@ -1,0 +1,26 @@
+{
+	"Name": "Empath",
+	"Stage": 2,
+	"Type": "Game",
+	"DisplayName": "Empath Matrix",
+	"DisplayDescription": "Gain a Empath Imprint and Eldersurge.",
+	"Description": {
+		"Format": "Gain a Empath Imprint and Eldersurge.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Empath",
+				"Stage": 0,
+				"Variation": "Original"
+			},
+			{
+				"Name": "Eldersurge",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

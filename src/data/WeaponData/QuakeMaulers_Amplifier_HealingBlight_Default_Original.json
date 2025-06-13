@@ -1,0 +1,127 @@
+{
+	"Name": "QuakeMaulersHealingBlight",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Amplifier",
+	"AmplifierForWeapon": {
+		"Name": "QuakeMaulers",
+		"Stage": 0,
+		"Variation": "Original",
+		"CombatAffinity": "Earth"
+	},
+	"Stats": {
+		"MaxHealth": 500000,
+		"StartingEnergy": 0,
+		"EnergyCost": 0,
+		"PhysicalResist": 0,
+		"EnergyResist": 0,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 0,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 0,
+		"MoveSpeedSubUnits": 0,
+		"HitChancePercentage": 0,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 0,
+		"CritAmplificationPercentage": 0,
+		"OmegaPowerPercentage": 0,
+		"AttackRangeUnits": 0,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 0,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 0,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 0,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [],
+	"InnateAbilities": [
+		{
+			"Name": "HealingBlight",
+			"ActivationTrigger": {
+				"TriggerType": "OnActivateXAbilities",
+				"AbilityTypes": [
+					"Omega"
+				],
+				"EveryX": true,
+				"NumberOfAbilitiesActivated": 1
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "HealingBlight_Ability",
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"PercentageOfAbilityDuration": 0,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Empower",
+								"DurationMs": 4000,
+								"IsConsumable": false,
+								"ActivatedBy": "Attack",
+								"AttachedEffects": [
+									{
+										"Type": "Debuff",
+										"Stat": "HealthGainEfficiencyPercentage",
+										"OverlapProcessType": "Merge",
+										"DurationMs": 3000,
+										"Expression": 50
+									},
+									{
+										"Type": "Debuff",
+										"Stat": "ShieldGainEfficiencyPercentage",
+										"OverlapProcessType": "Merge",
+										"DurationMs": 3000,
+										"Expression": 50
+									}
+								]
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Healing Blight",
+	"DisplayDescription": "+<MaxHealth>500</> Health.\r\nDuring Omega, your attacks reduce target's Healing and Shielding <HealthGainEfficiencyPercentage>50%</> for 3 seconds.",
+	"Description": {
+		"Format": "+<MaxHealth>{Health}</> Health.\r\nDuring Omega, your attacks reduce target's Healing and Shielding <HealthGainEfficiencyPercentage>{Value}%</> for {Duration} seconds.",
+		"Parameters": {
+			"Health": {
+				"ParameterPath": "Stats.MaxHealth",
+				"ValueMultiplier": 0.001
+			},
+			"Value": {
+				"ParameterPath": "InnateAbilities[0].Skills[0].EffectPackage.Effects[0].AttachedEffects[0].Expression",
+				"ValueMultiplier": 1.0
+			},
+			"Duration": {
+				"ParameterPath": "InnateAbilities[0].Skills[0].EffectPackage.Effects[0].AttachedEffects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "+500 Health.\r\nDuring Omega, your attacks reduce target's Healing and Shielding 50% for 3 seconds."
+}

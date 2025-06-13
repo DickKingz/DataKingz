@@ -1,0 +1,344 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "PolarBear",
+	"Stage": 1,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 4,
+	"CombatAffinity": "Air",
+	"CombatClass": "Fighter",
+	"DominantCombatAffinity": "Air",
+	"DominantCombatClass": "Fighter",
+	"SizeUnits": 3,
+	"Stats": {
+		"MaxHealth": 1500000,
+		"StartingEnergy": 0,
+		"EnergyCost": 100000,
+		"PhysicalResist": 40,
+		"EnergyResist": 40,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 110000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 75,
+		"MoveSpeedSubUnits": 1700,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 5,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 3,
+		"OmegaRangeUnits": 3,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Polar Bear Basic Attack I",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 45
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Cataclysmic Crunch I",
+			"TotalDurationMs": 700,
+			"Skills": [
+				{
+					"Name": "Steal stats",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "AttackPhysicalDamage",
+								"DurationMs": 4000,
+								"Expression": {
+									"Percentage": 5,
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "SenderFocus"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackEnergyDamage",
+								"DurationMs": 4000,
+								"Expression": {
+									"Percentage": 5,
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "SenderFocus"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackPureDamage",
+								"DurationMs": 4000,
+								"Expression": {
+									"Percentage": 5,
+									"Stat": "AttackPureDamage",
+									"StatSource": "SenderFocus"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackSpeed",
+								"DurationMs": 4000,
+								"Expression": {
+									"Percentage": 5,
+									"Stat": "AttackSpeed",
+									"StatSource": "SenderFocus"
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Bite",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										300000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Debuffs",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Debuff",
+								"Stat": "AttackPhysicalDamage",
+								"DurationMs": 4000,
+								"Expression": {
+									"Percentage": 5,
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Receiver"
+								}
+							},
+							{
+								"Type": "Debuff",
+								"Stat": "AttackEnergyDamage",
+								"DurationMs": 4000,
+								"Expression": {
+									"Percentage": 5,
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Receiver"
+								}
+							},
+							{
+								"Type": "Debuff",
+								"Stat": "AttackPureDamage",
+								"DurationMs": 4000,
+								"Expression": {
+									"Percentage": 5,
+									"Stat": "AttackPureDamage",
+									"StatSource": "Receiver"
+								}
+							},
+							{
+								"Type": "Debuff",
+								"Stat": "AttackSpeed",
+								"DurationMs": 4000,
+								"Expression": {
+									"Percentage": 5,
+									"Stat": "AttackSpeed",
+									"StatSource": "Receiver"
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Self Heal",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantHeal",
+								"HealType": "Normal",
+								"Expression": {
+									"Operation": "%",
+									"Operands": [
+										10,
+										{
+											"Operation": "-",
+											"Operands": [
+												{
+													"Stat": "MaxHealth",
+													"StatSource": "SenderFocus"
+												},
+												{
+													"Stat": "CurrentHealth",
+													"StatSource": "SenderFocus"
+												}
+											]
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Mjoll",
+	"DisplayDescription": "Mjoll bites its target, dealing 300 (<OmegaPowerPercentage></>) Pure Damage, stealing <AttackDamage>5%</> Attack Damage and <AttackSpeed>5%</> Attack Speed for 4 seconds. Mjoll then heals for <MaxHealth>10%</> of the target's missing Health.\r\n\r\nDamage: 300 (<OmegaPowerPercentage></>)",
+	"Intro": "On the sunniest days, the elegant snowscape of Taiga Boreal is a stretch of blinding white. Mountains glisten from a distance, and pillars of ice shine from all around. But deep below the frozen lake, the frigid waters are as dark as ever. Few are bold enough to venture so far down, especially not creatures of the land. The Mjoll is an exception, playing a game of cannonball and sinking as far into the depths as possible before swimming back up.",
+	"Summary": "The Mjoll thrives in the icy expanse of Taiga Boreal, boasting a thick, white fur coat and ice-adorned claws for hunting morphopods beneath frozen lakes. Energetic and daring, it often breaks through the ice to dive into the frigid waters, where it uses its keen sense of smell and agile movements to track and capture prey. It possesses specialized adaptations like fur insulation, air expulsion organs for deep dives, and heat-siphoning fangs, making it a formidable predator in its frozen domain.",
+	"Biology": {
+		"Physiology": "The Mjoll has a thick coat of white fur with ice claws and blue wisps streaming from its armoured plates. It has ice guards around its eyes shaped like a mask for protection. There are similar frozen segments in the form of chunky arrows along its arms. With a big black nose, the Mjoll can easily sniff out other living things in its environment. It runs on four legs but stands on two when it attacks, swiping its pointy claws and padded paws at its opponent.",
+		"Behaviour": "The Mjoll is daring and energetic, often hopping on its front paws while growling playfully. It stomps on the ground with its front legs to break the frozen surface of the lake, using these openings to dive and hunt morphopods that live in the cold waters. It's constantly looking for a challenge, not caring if it falls on its face trying something new. The Mjoll's round ears and eyes are inquisitive, and its head is always swivelling around, looking for something to climb or dive into."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/PolarBearStage1/PolarBearStage1_default_default_webp.3840x2160/PolarBearStage1_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/PolarBearStage1/PolarBearStage1_default_default_hls.m3u8/PolarBearStage1_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Mjoll is extremely adventurous, and it is often found scaling ice walls and glaciers to find new hunting grounds. It marks the frozen surface with its claws, so it can track its path and go even further next time.",
+			"The Mjoll covers its sensitive nose with its paws when the storms get too strong.",
+			"The Mjoll has been observed joining the dancing rituals of Mah'mu and Mah'mut under the winter lights. It is speculated that this inter-species bonding may help it increase its chances of survival in the harsh environment."
+		],
+		"Buckley": [
+			"The Mjoll has a well-insulated fur coat with multiple layers for maintaining a warm temperature around its body.",
+			"The Mjoll has an organ for expelling excess air from its body that allows it to dive down to immense depths.",
+			"The Mjoll's fangs have a minuscule opening at their tips that enables it to siphon heat from anything it bites.",
+			"The Mjoll's fur is transparent and hollow but appears white because it reflects light. Beneath its fur, its skin is black which helps absorb heat.",
+			"The Mjoll's nose has a high amount of surface area to pick up scents in the air. It is capable of detecting prey over five kilometres away in the right wind conditions."
+		]
+	},
+	"TraitOrderLegacy": [
+		2,
+		1,
+		3,
+		5,
+		6,
+		4
+	],
+	"Description": {
+		"Format": "Mjoll bites its target, dealing {OmegaDamage} (<OmegaPowerPercentage></>) Pure Damage, stealing <AttackDamage>{StealAmount}%</> Attack Damage and <AttackSpeed>{StealAmount}%</> Attack Speed for {StealDuration} seconds. Mjoll then heals for <MaxHealth>{HealAmount}%</> of the target's missing Health.\r\n\r\nDamage: {OmegaDamage} (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"StealAmount": {
+				"ParameterPath": "OmegaAbilities[0].Skills[2].EffectPackage.Effects[0].Expression.Percentage"
+			},
+			"StealDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[2].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"HealAmount": {
+				"ParameterPath": "OmegaAbilities[0].Skills[3].EffectPackage.Effects[0].Expression.Operands[0]"
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Mjoll bites its target, dealing 300 () Pure Damage, stealing 5% Attack Damage and 5% Attack Speed for 4 seconds. Mjoll then heals for 10% of the target's missing Health.\r\n\r\nDamage: 300 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 2,
+			"AttackSpeed": 1,
+			"Health": 3,
+			"MovementSpeed": 5,
+			"OmegaPower": 6,
+			"Resistance": 4
+		}
+	}
+}

@@ -1,0 +1,311 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Lynx",
+	"Stage": 3,
+	"Path": "EmpathNature",
+	"Variation": "Original",
+	"Tier": 2,
+	"CombatAffinity": "Nature",
+	"CombatClass": "Empath",
+	"DominantCombatAffinity": "Nature",
+	"DominantCombatClass": "Empath",
+	"SizeUnits": 7,
+	"Stats": {
+		"MaxHealth": 2150000,
+		"StartingEnergy": 80000,
+		"EnergyCost": 160000,
+		"PhysicalResist": 50,
+		"EnergyResist": 50,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 150000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 65,
+		"MoveSpeedSubUnits": 2500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 40,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Empath Nature Lynx Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 55
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 10000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Sprouting Swoon",
+			"TotalDurationMs": 1000,
+			"Skills": [
+				{
+					"Name": "Zone Area Healing",
+					"Targeting": {
+						"Type": "Self",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 0
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 28,
+						"DurationMs": 4000,
+						"FrequencyMs": 1000,
+						"GrowthRateSubUnits": 0,
+						"ApplyOnce": false
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantHeal",
+								"HealType": "Normal",
+								"Expression": {
+									"Operation": "%",
+									"Operands": [
+										{
+											"Operation": "*",
+											"Operands": [
+												4,
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												}
+											]
+										},
+										{
+											"Operation": "-",
+											"Operands": [
+												{
+													"Stat": "MaxHealth",
+													"StatSource": "Receiver"
+												},
+												{
+													"Stat": "CurrentHealth",
+													"StatSource": "Receiver"
+												}
+											]
+										}
+									]
+								}
+							},
+							{
+								"Type": "InstantHeal",
+								"HealType": "Normal",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										60000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "%",
+									"Operands": [
+										{
+											"Operation": "*",
+											"Operands": [
+												4,
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												}
+											]
+										},
+										{
+											"Operation": "-",
+											"Operands": [
+												{
+													"Stat": "MaxHealth",
+													"StatSource": "Receiver"
+												},
+												{
+													"Stat": "CurrentHealth",
+													"StatSource": "Receiver"
+												}
+											]
+										}
+									]
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										60000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Virtuous Floralynx",
+	"DisplayDescription": "Virtuous Floralynx creates a 28-hexes zone for 4 seconds, healing allies for <MaxHealth>60</> (<OmegaPowerPercentage></>) Health + <MaxHealth>4%</> (<OmegaPowerPercentage></>) of their missing Health per second.\r\n\r\nEnemies within the zone take <AttackEnergyDamage>60</> (<OmegaPowerPercentage></>) + <AttackEnergyDamage>4%</> (<OmegaPowerPercentage></>) of their missing Health as Energy Damage per second.\r\n\r\nHeal: <MaxHealth>60</> (<OmegaPowerPercentage></>) + <MaxHealth>4%</> (<MaxHealth></><OmegaPowerPercentage></>)\r\n\r\nDamage: <AttackEnergyDamage>60</> (<OmegaPowerPercentage></>) + <AttackEnergyDamage>4%</> (<MaxHealth></><OmegaPowerPercentage></>)",
+	"Intro": "In Brightland Steppes, there are caverns made of overgrowth that are so thick, there is no dapple of sunlight beneath their cover. However, little glowing mushrooms known as Small Stars light the walls, dotting tentacle roots and illuminating the dark ceiling. These underground passages can be chilling compared to the sunny fields above. Should a lost Illuvial get too cold, the Virtuous Floralynx is there to provide a green guiding light and healing warmth, but only if it feels like it. ",
+	"Summary": "The Virtuous Floralynx, adorned with a mesmerizing green orb and leafy mane, explores these dark passages to heal injured Illuvials with its warm light, while also feeding on roots. Known for its symbiotic relationships with plants and subterranean dwellers, it communicates through energy waves and mourns lost companions with a haunting choral cry. The Virtuous Floralynx's ears and tail shed light and flowers, showcasing its profound connection to its environment and its role as a healer in times of need.",
+	"Biology": {
+		"Physiology": "The Virtuous Floralynx carries a mesmerizing green orb between its branch-like horns, which swerve forward as extensions of its lengthy ears. Its leafy mane is green with bright pink highlights. Sprawling root tendrils stretch across its back, touching its layered tail of bigger leaves. It has large swashes of pale pink markings across its face and along its hanging ruffs. Some form circles and grooved curves that appear to hold a deeper meaning. A similar marking can be found on the side of its back leg. The Virtuous Floralynx is constantly shedding leaves from its tail, which emanates a faint light, just like its mane.",
+		"Behaviour": "The Virtuous Floralynx frequently explores dark and foggy areas, scanning its environment to find weak and injured Illuvials. It preys on some, but heals others, depending on their level of injury. The Virtuous Floralynx can be spotted slinking into burrows, where subterranean Illuvials live. It feeds upon old root systems and forms symbiotic relationships with both plant life and various Illuvials who rely on its healing abilities to survive times of scarcity."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3EmpathNature/LynxStage3EmpathNature_default_default_webp.3840x2160/LynxStage3EmpathNature_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/LynxStage3EmpathNature/LynxStage3EmpathNature_default_default_hls.m3u8/LynxStage3EmpathNature_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Virtuous Floralynx's long branching ears can sprout flowers during spring if it collects enough seeds and sunlight.",
+			"When the Virtuous Floralynx sleeps, the ground around it glows and its healing energy is transmitted to the land.",
+			"The Virtuous Floralynx can communicate with others of its kind by sending a wave of energy out from the luminous orb above its head. They lament the death of a companion by expelling a ripple of energy accompanied by a haunting choral so that others can join in their grief."
+		],
+		"Buckley": [
+			"The Virtuous Floralynx's ears have a branching apparatus that is capable of sensing the vitality of surrounding life forms.",
+			"The Virtuous Floralynx's leafy mane and tail contain plant cells capable of photosynthesis.",
+			"The Virtuous Floralynx's luminous orb is capable of communicating with others of its kind by sending a wave of energy that triggers biochemical changes and stimulates emotions.",
+			"The Virtuous Floralynx has a root system in its paw pads that is capable of absorbing energy from the plant life around it and transmitting excess nutrients back into the land.",
+			"The Virtuous Floralynx's ears and nose have specialised receptors that are hyper-attuned to biological changes, including heartbeats, hormonal shifts, illness, and injury."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		2,
+		3,
+		6,
+		1,
+		4
+	],
+	"Description": {
+		"Format": "Virtuous Floralynx creates a {OmegaRadius}-hexes zone for {OmegaDuration} seconds, healing allies for <MaxHealth>{HealFlatValue}</> (<OmegaPowerPercentage></>) Health + <MaxHealth>{HealValue}%</> (<OmegaPowerPercentage></>) of their missing Health per second.\r\n\r\nEnemies within the zone take <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) + <AttackEnergyDamage>{HealValue}%</> (<OmegaPowerPercentage></>) of their missing Health as Energy Damage per second.\r\n\r\nHeal: <MaxHealth>{HealFlatValue}</> (<OmegaPowerPercentage></>) + <MaxHealth>{HealValue}%</> (<MaxHealth></><OmegaPowerPercentage></>)\r\n\r\nDamage: <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) + <AttackEnergyDamage>{HealValue}%</> (<MaxHealth></><OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Zone.RadiusUnits"
+			},
+			"OmegaDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Zone.DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"HealFlatValue": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"HealValue": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0].Operands[0]"
+			},
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[3].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Virtuous Floralynx creates a 28-hexes zone for 4 seconds, healing allies for 60 () Health + 4% () of their missing Health per second.\r\n\r\nEnemies within the zone take 60 () + 4% () of their missing Health as Energy Damage per second.\r\n\r\nHeal: 60 () + 4% ()\r\n\r\nDamage: 60 () + 4% ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 2,
+			"Health": 3,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 4
+		}
+	}
+}

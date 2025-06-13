@@ -1,0 +1,21 @@
+{
+	"Name": "Frost",
+	"Stage": 3,
+	"Type": "Game",
+	"DisplayName": "Frost Matrix",
+	"DisplayDescription": "Gain a Frost Imprint.",
+	"Description": {
+		"Format": "Gain a Frost Imprint.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Frost",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

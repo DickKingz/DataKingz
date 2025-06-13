@@ -1,0 +1,259 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "DropBear",
+	"Stage": 2,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 1,
+	"CombatAffinity": "Fire",
+	"CombatClass": "Predator",
+	"DominantCombatAffinity": "Fire",
+	"DominantCombatClass": "Rogue",
+	"SizeUnits": 3,
+	"Stats": {
+		"MaxHealth": 1650000,
+		"StartingEnergy": 0,
+		"EnergyCost": 150000,
+		"PhysicalResist": 40,
+		"EnergyResist": 50,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 110000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 70,
+		"MoveSpeedSubUnits": 2300,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 3,
+		"OmegaRangeUnits": 3,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Drop Bear Basic Attack II",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 43
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 10000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Rising Ash II",
+			"TotalDurationMs": 1300,
+			"Skills": [
+				{
+					"Name": "Attack Current Focus",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 0,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										550000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Becomes untargetable",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 5,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "PositiveState",
+								"PositiveState": "Untargetable",
+								"DurationMs": 1300
+							}
+						]
+					}
+				},
+				{
+					"Name": "AOE Blind",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 20
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 23,
+						"DurationMs": 1000,
+						"FrequencyMs": 1000,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Blind",
+								"DurationMs": 2000
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Chukoorl",
+	"DisplayDescription": "Chukoorl vanishes in a cloud of smoke, Blinding enemies in 23-hexes for 1.3 seconds and then reappears, dealing <AttackPhysicalDamage>550</> (<OmegaPowerPercentage></>) Physical Damage to its target.\r\n\r\nDamage: <AttackPhysicalDamage>550</> (<OmegaPowerPercentage></>)",
+	"Intro": "Colourful acid drips down the tunnel walls beneath Crimson Waste. These labyrinth-like corridors lead to many unknown destinations, but one of them grants access to the narrowest passages in the region. The Howling Rift has high walls and few ledges, but cracks along the sides provide an opportunity for daring climbers. The Chukoorl grabs on, sinking its claws into crevices as it pulls itself up.",
+	"Summary": "The Chukoorl, a stocky Illuvial with grey and white fur ablaze with fire, navigates labyrinthine tunnels of the Crimosn Waste and climbs the treacherous Howling Rift with sharp claws and fangs. It stands on two feet, its fiery tendrils framing blood-red eyes that glow intensely. Social and nocturnal, it climbs with vigor at night, forming gatherings with eerie cries. The Chukoorl's coat is heavily insulated, and it possesses sharp claws for gripping surfaces.",
+	"Biology": {
+		"Physiology": "The stocky Chukoorl stands on two feet, its grey and white body emblazoned with fire. It has sharp claws and fangs, but its round furry ears and thick nose give it a charming, albeit unnerving appearance. Radiant tendrils of flame frame its blood-red eyes, which become white hot when it's burning brightest.  It holds its strong arms in front of it, ready to pummel those in its way. The Chukoorl's charcoal fur has thick white markings on its forehead and arms, which are perfectly symmetrical. Glowing wisps form arrows down its abdomen and up its back, alight even when it's at its dimmest.",
+		"Behaviour": "The Chukoorl is an avid climber that will not hesitate to toss slower illuvials out of their way to get to the top. It is just as keen to clamber up narrow ledges as they are climbing down the deepest depths of Crimson Waste. The Chukoorl has a sharp sense for passageways that most overlook, and it frequently stumbles upon the secret tunnels of other illuvials. As social creatures, it often gathers with others of their kind and chants with an eerie, raspy cry. Highly active at night, it tends to be sleepy and lethargic during the daytime."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/DropBearStage2/DropBearStage2_default_default_webp.3840x2160/DropBearStage2_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/DropBearStage2/DropBearStage2_default_default_hls.m3u8/DropBearStage2_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Chukoorl tends to nap during the day and climb at night, with its flame lighting the way towards high-perched edible plants.",
+			"The Chukoorl forms bonfires in large gatherings with others of their kind. Some gatherings are welcoming of other fire Illuvials, while others are exclusive to Chukoorls. Their most common gatherings involve caregiving Chuccos and sharing fuel and minerals with them.",
+			"The Chukoorl sleeps far underground, preferring to rest in dark areas where it will not be disturbed. Upon awakening, it erupts into flame and climbs to the surface with intense vigour."
+		],
+		"Buckley": [
+			"The Chukoorl has a specialised digestive system that uses flame to cook food within its stomach, allowing it to harness more energy from its diet.",
+			"The Chukoorl has a heavily insulated coat composed of downy top fur and guard hairs to maintain its inner temperature and limit interference with outer combustion.",
+			"The Chukoorl's facial markings secrete a gel used for temperature regulation.",
+			"The Chukoorl has a vestigial tail covered in ash, which is not as adapted to high temperatures as the rest of its body. As a result, it is marred by intense scarring from the Chukoorl's flame.",
+			"The Chukoorl's sharp claws and opposable digits allow it to grasp on to various surfaces with ease."
+		]
+	},
+	"TraitOrderLegacy": [
+		2,
+		1,
+		3,
+		6,
+		5,
+		4
+	],
+	"Description": {
+		"Format": "Chukoorl vanishes in a cloud of smoke, Blinding enemies in {BlindRadius}-hexes for {BlindDuration} seconds and then reappears, dealing <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Physical Damage to its target.\r\n\r\nDamage: <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"BlindRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[2].Zone.RadiusUnits"
+			},
+			"BlindDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Chukoorl vanishes in a cloud of smoke, Blinding enemies in 23-hexes for 1.3 seconds and then reappears, dealing 550 () Physical Damage to its target.\r\n\r\nDamage: 550 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 2,
+			"AttackSpeed": 1,
+			"Health": 3,
+			"MovementSpeed": 6,
+			"OmegaPower": 5,
+			"Resistance": 4
+		}
+	}
+}

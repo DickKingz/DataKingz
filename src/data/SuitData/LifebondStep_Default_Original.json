@@ -1,0 +1,116 @@
+{
+	"Name": "LifebondStep",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Amplifier",
+	"Stats": {
+		"PhysicalResist": 0,
+		"EnergyResist": 0,
+		"MaxHealth": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 0,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 0,
+		"AttackDodgeChancePercentage": 0,
+		"MoveSpeedSubUnits": 0,
+		"OmegaPowerPercentage": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"StartingEnergy": 0,
+		"StartingShield": 0,
+		"CritChancePercentage": 0,
+		"CritAmplificationPercentage": 0,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0
+	},
+	"Abilities": [
+		{
+			"Name": "Lifebond Step",
+			"ActivationTrigger": {
+				"TriggerType": "HealthInRange",
+				"HealthLowerLimitPercentage": 40,
+				"MaxActivations": 1
+			},
+			"TotalDurationMs": 200,
+			"Skills": [
+				{
+					"Name": "Impervium - Blink to ally and Heal",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "ExpressionCheck",
+						"Group": "Ally",
+						"Expression": {
+							"Stat": "CurrentHealth%",
+							"StatSource": "Sender"
+						},
+						"Lowest": true,
+						"Self": false,
+						"Num": 1
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Blink",
+								"BlinkTarget": "BehindReceiver",
+								"BlinkDelayMs": 0,
+								"DurationMs": 100,
+								"BlinkReservePreviousPosition": true
+							},
+							{
+								"Type": "InstantHeal",
+								"HealType": "Normal",
+								"Expression": {
+									"Percentage": 40,
+									"Stat": "MaxHealth",
+									"StatSource": "Receiver"
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Impervium - Heal Self",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantHeal",
+								"HealType": "Normal",
+								"Expression": {
+									"Percentage": 40,
+									"Stat": "MaxHealth",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Lifebond Step",
+	"DisplayDescription": "Once per combat, at <MaxHealth>40%</> Health, blink to the ally with the lowest Health. Both the Ranger and that ally then heal for <MaxHealth>40%</> of their Max Health.",
+	"Description": {
+		"Format": "Once per combat, at <MaxHealth>{Trigger}%</> Health, blink to the ally with the lowest Health. Both the Ranger and that ally then heal for <MaxHealth>{Heal}%</> of their Max Health.",
+		"Parameters": {
+			"Trigger": {
+				"ParameterPath": "Abilities[0].ActivationTrigger.HealthLowerLimitPercentage"
+			},
+			"Heal": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[1].Expression.Percentage"
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Once per combat, at 40% Health, blink to the ally with the lowest Health. Both the Ranger and that ally then heal for 40% of their Max Health."
+}

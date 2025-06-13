@@ -1,0 +1,53 @@
+{
+	"Name": "Berserker",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "SynergyBonus",
+	"CombatClasses": {
+		"Berserker": 1
+	},
+	"Abilities": [
+		{
+			"Name": "Berserker Imprint Stats",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Berserker Imprint Stat List",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "AttackSpeed",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": {
+									"Percentage": 20,
+									"Stat": "AttackSpeed",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Berserker Imprint",
+	"DisplayDescription": "The holder gains the Berserker Composite Class and 20% <AttackSpeed>Attack Speed</>.",
+	"Description": {
+		"Format": "The holder gains the Berserker Composite Class and 20% <AttackSpeed>Attack Speed</>.",
+		"Parameters": {}
+	},
+	"DisplayDescriptionNormalized": "The holder gains the Berserker Composite Class and 20% Attack Speed."
+}

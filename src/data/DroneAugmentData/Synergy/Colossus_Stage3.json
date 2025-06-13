@@ -1,0 +1,21 @@
+{
+	"Name": "Colossus",
+	"Stage": 3,
+	"Type": "Game",
+	"DisplayName": "Colossus Matrix",
+	"DisplayDescription": "Gain a Colossus Imprint.",
+	"Description": {
+		"Format": "Gain a Colossus Imprint.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Colossus",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

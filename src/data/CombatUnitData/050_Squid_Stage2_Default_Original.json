@@ -1,0 +1,247 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Squid",
+	"Stage": 2,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 5,
+	"CombatAffinity": "Shock",
+	"CombatClass": "Psion",
+	"DominantCombatAffinity": "Air",
+	"DominantCombatClass": "Psion",
+	"SizeUnits": 5,
+	"Stats": {
+		"MaxHealth": 1450000,
+		"StartingEnergy": 10000,
+		"EnergyCost": 120000,
+		"PhysicalResist": 30,
+		"EnergyResist": 45,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 90000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 85,
+		"MoveSpeedSubUnits": 1750,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 5,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 60,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Squid Basic Attack II",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 45
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 80000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Electrilink II",
+			"TotalDurationMs": 1500,
+			"Skills": [
+				{
+					"Name": "EnergyDamage",
+					"Targeting": {
+						"Type": "CombatStatCheck",
+						"Group": "Enemy",
+						"Stat": "CurrentHealth",
+						"Lowest": true,
+						"Num": 2
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 60
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										575000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"InnateAbilities": [
+		{
+			"Name": "Takedown Overcharge II",
+			"ActivationTrigger": {
+				"TriggerType": "OnVanquish",
+				"Allegiance": "Self",
+				"ContextRequirement": "DuringOmega",
+				"ActivationCooldownMs": 3000
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Grant full energy",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantEnergyGain",
+								"Expression": {
+									"Percentage": 100,
+									"Stat": "EnergyCost",
+									"StatSource": "Receiver"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Octius",
+	"DisplayDescription": "Octius raises a tentacle calling lightning to strike the 2 lowest Health enemies, dealing <AttackEnergyDamage>575</> (<OmegaPowerPercentage></>) Energy Damage. Squizz casts an additional time if the lightning strike eliminates an enemy. (3s cooldown)\r\n\r\nDamage: <AttackEnergyDamage>575</> (<OmegaPowerPercentage></>)",
+	"Intro": "Halcyon Sea's aquamarine waters are lively, with a serene surface and shallow depths inviting to all. Past the sandbanks and clusters of overgrown coral, massive stromatolite structures clump together. They absorb water from the ground and spurt them back out, raining on plants that grow along the side. An opportunistic Octius climbs up for a refreshing shower.",
+	"Summary": "The Octius, with violet eyes and a striped body, thrives among stromatolite structures and coral reefs of the Halcyon Sea. It uses its electrically charged tentacles to shock adversaries and swiftly evade retaliation, thanks to its remarkable swimming speed and camouflage skills. Octius also enjoys sensory exploration with its tentacles and relaxes by burying them in sandbanks, emitting electric shocks to hunt Morphopods and communicate through small discharges.",
+	"Biology": {
+		"Physiology": "The Octius' violet eyes are set in a perpetual glare by the purple mark of its brow, further emphasized by the diagonal stripes on its white head and body. Upon its head is a mass of purple curls connecting to the creased area where its face meets its tentacles. The Octius keeps two of its tentacles lifted and coiled, while the other six are used to slink or swim. Its eight legs all have a purple underside with pink suckers underneath, unevenly sized. As uniquely shaped as the rarest corals, the Octius fits right in with the reefs.",
+		"Behaviour": "The Octius is curious about other creatures and often uses its tentacles to examine different textures like fur, shell, or fins. This leads to conflict with unwilling Illuvials and the Octius often responds by shocking them into submission. An extremely fast swimmer, the Octius uses the projectiles from its tentacles to launch itself away before the Illuvials can retaliate. Its electric shocks can be felt many metres away, distracting aggressors so that it may also use its striped body to camouflage and hide among the colourful reefs. When it isn't fending off disgruntled Illuvials, the Octius can be found digging holes in the sandbanks and burying its tentacles inside, wriggling around to create a sensation similar to a massage."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/SquidStage2/SquidStage2_default_default_webp.3840x2160/SquidStage2_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/SquidStage2/SquidStage2_default_default_hls.m3u8/SquidStage2_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Octius has been observed wading under waterfalls and emitting electric shocks to hunt Morphopods.",
+			"The Octius can swim extremely fast, using the projectiles from its tentacles to launch itself forward. It also uses this ability to launch itself high up onto structures on land.",
+			"When the Octius is relaxed, it rolls its tentacles upon smooth pebbles and bumpy coral, sometimes digging its tentacles into the sand and wriggling underneath the surface."
+		],
+		"Buckley": [
+			"The Octius secretes a conductive fluid which is used to help generate electricity.",
+			"The Octius' tentacles have enhanced clusters of nerves that are highly sensitive to electric charges. They are also capable of generating small discharges for communication purposes.",
+			"The stripes on the Octius' body are connected to specialised internal organs that function as a battery to store electric energy.",
+			"The Octius has a complex nervous system with a ring-shaped brain around its throat that is protected by an internal shell made of cartilage.",
+			"The Octius has a primary heart dedicated to pumping blood throughout its body, and two additional specialised hearts dedicated to pumping blood to its gills."
+		]
+	},
+	"TraitOrderLegacy": [
+		3,
+		2,
+		4,
+		6,
+		1,
+		5
+	],
+	"Description": {
+		"Format": "Octius raises a tentacle calling lightning to strike the {TargetNum} lowest Health enemies, dealing <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Energy Damage. Squizz casts an additional time if the lightning strike eliminates an enemy. ({Cooldown}s cooldown)\r\n\r\nDamage: <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"TargetNum": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Targeting.Num"
+			},
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"Cooldown": {
+				"ParameterPath": "InnateAbilities[0].ActivationTrigger.ActivationCooldownMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Octius raises a tentacle calling lightning to strike the 2 lowest Health enemies, dealing 575 () Energy Damage. Squizz casts an additional time if the lightning strike eliminates an enemy. (3s cooldown)\r\n\r\nDamage: 575 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 3,
+			"AttackSpeed": 2,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 5
+		}
+	}
+}

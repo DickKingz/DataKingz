@@ -1,0 +1,21 @@
+{
+	"Name": "Invoker",
+	"Stage": 3,
+	"Type": "Game",
+	"DisplayName": "Invoker Matrix",
+	"DisplayDescription": "Gain a Invoker Imprint.",
+	"Description": {
+		"Format": "Gain a Invoker Imprint.",
+		"Parameters": {}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [
+			{
+				"Name": "Invoker",
+				"Stage": 0,
+				"Variation": "Original"
+			}
+		],
+		"GrantedCredits": 0
+	}
+}

@@ -1,0 +1,289 @@
+{
+	"CombatClass": "Revenant",
+	"CombatClassComponents": [
+		"Rogue",
+		"Empath"
+	],
+	"SynergyThresholds": [
+		2,
+		3,
+		4
+	],
+	"SynergyThresholdsAbilities": {
+		"Variables": [
+			{
+				"Name": "Revenant_Shield",
+				"Values": [
+					40000,
+					50000,
+					70000
+				]
+			},
+			{
+				"Name": "Revenant_ShieldDuration",
+				"Values": [
+					3000,
+					3000,
+					3000
+				]
+			},
+			{
+				"Name": "Revenant_SplashDamage",
+				"Values": [
+					40000,
+					50000,
+					70000
+				]
+			},
+			{
+				"Name": "Revenant_AttackSpeedDuration",
+				"Values": [
+					0,
+					0,
+					3000
+				]
+			},
+			{
+				"Name": "Revenant_AttackSpeedReduction",
+				"Values": [
+					0,
+					0,
+					25
+				]
+			}
+		],
+		"TeamAbilities": [],
+		"UnitAbilities": [
+			{
+				"Name": "RevenantSynergy_Ability1",
+				"ActivationTrigger": {
+					"TriggerType": "OnDealCrit"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Revenant - Self Shield and Empower",
+						"Targeting": {
+							"Type": "Self"
+						},
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "SpawnShield",
+									"DurationMs": "{Revenant_ShieldDuration}",
+									"Expression": "{Revenant_Shield}"
+								},
+								{
+									"Type": "Empower",
+									"IsConsumable": true,
+									"ActivationsUntilExpiry": 1,
+									"ActivatedBy": "Attack",
+									"AttachedEffectPackageAttributes": {
+										"Propagation": {
+											"PropagationType": "Splash",
+											"IgnoreFirstPropagationReceiver": false,
+											"SplashRadiusUnits": 20,
+											"EffectPackage": {
+												"Effects": [
+													{
+														"Type": "InstantDamage",
+														"DamageType": "Energy",
+														"Expression": "{Revenant_SplashDamage}"
+													},
+													{
+														"Type": "Debuff",
+														"Stat": "AttackSpeed",
+														"OverlapProcessType": "Merge",
+														"DurationMs": "{Revenant_AttackSpeedDuration}",
+														"Expression": {
+															"Percentage": "{Revenant_AttackSpeedReduction}",
+															"Stat": "AttackSpeed",
+															"StatSource": "Receiver"
+														}
+													}
+												]
+											}
+										}
+									}
+								}
+							]
+						}
+					},
+					{
+						"Name": "Revenant - Ally Shield and Empower",
+						"Targeting": {
+							"Type": "ExpressionCheck",
+							"Guidance": [
+								"Ground",
+								"Airborne",
+								"Underground"
+							],
+							"Group": "Ally",
+							"Lowest": true,
+							"Self": false,
+							"Num": 1,
+							"Expression": {
+								"Stat": "CurrentHealth%",
+								"StatSource": "Sender"
+							}
+						},
+						"Deployment": {
+							"Type": "Direct",
+							"Guidance": [
+								"Ground",
+								"Airborne",
+								"Underground"
+							]
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "SpawnShield",
+									"DurationMs": "{Revenant_ShieldDuration}",
+									"Expression": "{Revenant_Shield}"
+								},
+								{
+									"Type": "Empower",
+									"IsConsumable": true,
+									"ActivationsUntilExpiry": 1,
+									"ActivatedBy": "Attack",
+									"AttachedEffectPackageAttributes": {
+										"Propagation": {
+											"PropagationType": "Splash",
+											"IgnoreFirstPropagationReceiver": false,
+											"SplashRadiusUnits": 20,
+											"EffectPackage": {
+												"Effects": [
+													{
+														"Type": "InstantDamage",
+														"DamageType": "Energy",
+														"Expression": "{Revenant_SplashDamage}"
+													},
+													{
+														"Type": "Debuff",
+														"Stat": "AttackSpeed",
+														"OverlapProcessType": "Merge",
+														"DurationMs": "{Revenant_AttackSpeedDuration}",
+														"Expression": {
+															"Percentage": "{Revenant_AttackSpeedReduction}",
+															"Stat": "AttackSpeed",
+															"StatSource": "Receiver"
+														}
+													}
+												]
+											}
+										}
+									}
+								}
+							]
+						}
+					}
+				]
+			}
+		]
+	},
+	"IntrinsicAbilities": [
+		{
+			"Name": "RevenantSynergy_Blink",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 680,
+			"Skills": [
+				{
+					"Name": "Jumps across",
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Blink",
+								"BlinkTarget": "Across",
+								"BlinkDelayMs": 500,
+								"DurationMs": 680
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Revenant",
+	"DisplayDescription": "\r\nCritical Hits grant Revenants and their lowest percent <MaxHealth>Health</> ally a Shield for 3 seconds and empowers their next attack to deal bonus <AttackEnergyDamage>Energy Damage</> to enemies within 20-hexes.\r\n\r\n(4) Empowered attacks reduces <AttackSpeed>25%</> <AttackSpeed>Attack Speed</> for 3 seconds.\r\n\r\n<Italic>Innate: Blink to the opposite side of the board.</>\r\n",
+	"DisplayDescriptionThresholds": [
+		"Gain <StartingShield>40</><StartingShield></>. Splash deals <AttackEnergyDamage>40</><AttackEnergyDamage></>",
+		"Gain <StartingShield>50</><StartingShield></>. Splash deals <AttackEnergyDamage>50</><AttackEnergyDamage></>",
+		"Gain <StartingShield>70</><StartingShield></>. Splash deals <AttackEnergyDamage>70</><AttackEnergyDamage></>"
+	],
+	"Description": {
+		"Format": "\r\nCritical Hits grant Revenants and their lowest percent <MaxHealth>Health</> ally a Shield for {Revenant_ShieldDuration} seconds and empowers their next attack to deal bonus <AttackEnergyDamage>Energy Damage</> to enemies within {Radius}-hexes.\r\n\r\n(4) Empowered attacks reduces <AttackSpeed>{Revenant_AttackSpeedReduction}%</> <AttackSpeed>Attack Speed</> for {Revenant_AttackSpeedDuration} seconds.\r\n\r\n<Italic>Innate: Blink to the opposite side of the board.</>\r\n",
+		"Parameters": {
+			"Revenant_ShieldDuration": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[0]",
+				"ValueMultiplier": 0.001
+			},
+			"Radius": {
+				"ParameterPath": "SynergyThresholdsAbilities.UnitAbilities[0].Skills[0].EffectPackage.Effects[1].AttachedEffectPackageAttributes.Propagation.SplashRadiusUnits",
+				"ValueMultiplier": 1.0
+			},
+			"Revenant_AttackSpeedDuration": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[3].Values[2]",
+				"ValueMultiplier": 0.001
+			},
+			"Revenant_AttackSpeedReduction": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[4].Values[2]",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DescriptionThresholds": {
+		"Format": "Gain <StartingShield>{Revenant_Shield}</><StartingShield></>. Splash deals <AttackEnergyDamage>{Revenant_SplashDamage}</><AttackEnergyDamage></>",
+		"Parameters": [
+			{
+				"Revenant_Shield": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[0]",
+					"ValueMultiplier": 0.001
+				},
+				"Revenant_SplashDamage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[2].Values[0]",
+					"ValueMultiplier": 0.001
+				}
+			},
+			{
+				"Revenant_Shield": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[1]",
+					"ValueMultiplier": 0.001
+				},
+				"Revenant_SplashDamage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[2].Values[1]",
+					"ValueMultiplier": 0.001
+				}
+			},
+			{
+				"Revenant_Shield": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[2]",
+					"ValueMultiplier": 0.001
+				},
+				"Revenant_SplashDamage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[2].Values[2]",
+					"ValueMultiplier": 0.001
+				}
+			}
+		]
+	},
+	"DisplayDescriptionNormalized": "Critical Hits grant Revenants and their lowest percent Health ally a Shield for 3 seconds and empowers their next attack to deal bonus Energy Damage to enemies within 20-hexes.\r\n\r\n(4) Empowered attacks reduces 25% Attack Speed for 3 seconds.\r\n\r\nInnate: Blink to the opposite side of the board.",
+	"DisplayDescriptionThresholdsNormalized": [
+		"Gain 40. Splash deals 40",
+		"Gain 50. Splash deals 50",
+		"Gain 70. Splash deals 70"
+	]
+}

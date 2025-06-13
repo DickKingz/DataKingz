@@ -1,0 +1,237 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Beetle",
+	"Stage": 2,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 5,
+	"CombatAffinity": "Granite",
+	"CombatClass": "Bulwark",
+	"DominantCombatAffinity": "Earth",
+	"DominantCombatClass": "Bulwark",
+	"SizeUnits": 6,
+	"Stats": {
+		"MaxHealth": 2400000,
+		"StartingEnergy": 100000,
+		"EnergyCost": 300000,
+		"PhysicalResist": 75,
+		"EnergyResist": 55,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 110000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 55,
+		"MoveSpeedSubUnits": 2250,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 3,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Beetle Basic Attack II",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 43
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Momentous Charge II",
+			"TotalDurationMs": 1000,
+			"Skills": [
+				{
+					"Name": "Temp increased Damage Reduction",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 0,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "VulnerabilityPercentage",
+								"OverlapProcessType": "Merge",
+								"DurationMs": 4000,
+								"Expression": 15
+							}
+						]
+					}
+				},
+				{
+					"Name": "Moving damage zone",
+					"Targeting": {
+						"Type": "DistanceCheck",
+						"Group": "Enemy",
+						"Lowest": false,
+						"Num": 1
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 75,
+						"PreDeploymentRetargetingPercentage": 60
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 12,
+						"DurationMs": 2000,
+						"FrequencyMs": 100,
+						"MovementSpeedSubUnits": 4500,
+						"GrowthRateSubUnits": 0,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										350000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Stun",
+								"DurationMs": 1750
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Goliant",
+	"DisplayDescription": "Goliant gains <DamageReduction>15%</> Damage Reduction for 4 seconds and sends a ghostly beetle towards the furthest enemy.\r\n\r\nEnemies hit by the ghostly beetle are Stunned for 1.75 seconds and dealt <AttackPhysicalDamage>350</> (<OmegaPowerPercentage></>) Physical Damage.\r\n\r\nDamage: <AttackPhysicalDamage>350</> (<OmegaPowerPercentage></>)",
+	"Intro": "In the unforgiving landscape of Crimson Waste, red sand dunes stretch into the horizon with no end in sight. The extreme heat and scarce water sources make for a brutal existence in this region. The environment is toxic and treacherous both above and below ground, with various canyons and tunnels leading to an array of extraordinary areas. Amidst this harsh terrain, we find the Goliant, a magnificent creature perfectly adapted to survive in this unforgiving realm.",
+	"Summary": "In the harsh Crimson Waste, the Goliant thrives. It has a greyish-green shell with golden patterns, a trident-shaped head, and massive gold tusks, using its red wings and formidable armor to survive. Fiercely territorial and active mostly at night, the Goliant uses its tusks for digging water sources and its wings to stun prey. The Goliant's specialized physiology includes features like condensation-harvesting wings, rust-resistant wax coating, and vibration-sensitive horns for detecting danger.",
+	"Biology": {
+		"Physiology": "The Goliant has a striking shell of greyish-green and golden patterns that can easily be mistaken for a mythical rock formation. It holds similar properties as certain metals and its head is shaped like a trident and forms a hefty shield, with an angular horn rising from its centre. A pair of massive, shiny gold tusks protrude from both sides of its face, complementing its burning red eyes. Its wings, also of the same red colour, are encased in its extravagant shell. Along its back are smooth and shiny elegant plates, while its legs are encrusted in rougher material. The Goliant's purple skin is almost entirely covered by armour, except for narrow openings along its legs and short tail.",
+		"Behaviour": "Confrontational and headstrong, the Goliant does not back down from an aggressor. It fiercely defends its territory and uses its snout as a warning before charging. It expands its wing shells to appear even larger as an intimidation tactic. Though it is capable of throwing other Illuvials in the air, it prefers to scare them away as its primary means of defence. The Goliant can withstand high temperatures, but it can develop a bad temper in the heat. For this reason, it is most active at night, spending most of the day inside cooler caves."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/BeetleStage2/BeetleStage2_default_default_webp.3840x2160/BeetleStage2_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/BeetleStage2/BeetleStage2_default_default_hls.m3u8/BeetleStage2_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Goliant can use its tusks to dig for underground water sources, revealing new oases for other Illuvials to share.",
+			"The Goliant flits its wings to draw up sand into the air, using bursts of air to stun flying Morphopods and then feed on them.",
+			"The Goliant's pronged horn vibrates when it senses danger and its wings may shiver."
+		],
+		"Buckley": [
+			"The Goliant's red eyes have a specialised lens that can filter out intense glares, allowing it to see when flying in the direction of the sun.",
+			"The Goliant's smooth and shiny plates on its back are able to reflect the sun's rays, keeping its body temperature cool in the scorching heat.",
+			"The Goliant's foot pads are soft and flexible, allowing it to spread its immense weight evenly over a wide area.",
+			"The Goliant's wings have a specialised texture that allows it to harvest water droplets from condensation, keeping it hydrated.",
+			"The Goliant's body has a wax coating which protects its metallic plates from rusting when exposed to oxygen and water."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		4,
+		1,
+		6,
+		3,
+		2
+	],
+	"Description": {
+		"Format": "Goliant gains <DamageReduction>{DamageRed}%</> Damage Reduction for {DamageRedDuration} seconds and sends a ghostly beetle towards the furthest enemy.\r\n\r\nEnemies hit by the ghostly beetle are Stunned for {StunDuration} seconds and dealt <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Physical Damage.\r\n\r\nDamage: <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"StunDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[1].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"DamageRed": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression"
+			},
+			"DamageRedDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Goliant gains 15% Damage Reduction for 4 seconds and sends a ghostly beetle towards the furthest enemy.\r\n\r\nEnemies hit by the ghostly beetle are Stunned for 1.75 seconds and dealt 350 () Physical Damage.\r\n\r\nDamage: 350 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 4,
+			"Health": 1,
+			"MovementSpeed": 6,
+			"OmegaPower": 3,
+			"Resistance": 2
+		}
+	}
+}

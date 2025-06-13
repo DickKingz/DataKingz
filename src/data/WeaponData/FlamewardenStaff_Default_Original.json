@@ -1,0 +1,252 @@
+{
+	"Name": "FlamewardenStaff",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"CombatAffinity": "Fire",
+	"CombatClass": "Empath",
+	"DominantCombatAffinity": "Fire",
+	"DominantCombatClass": "Empath",
+	"Type": "Normal",
+	"Stats": {
+		"MaxHealth": 500000,
+		"StartingEnergy": 50000,
+		"EnergyCost": 160000,
+		"PhysicalResist": 20,
+		"EnergyResist": 20,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 75000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 70,
+		"MoveSpeedSubUnits": 0,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 50,
+		"OmegaRangeUnits": 50,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Staff Attack I",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 50
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 10000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Pyroburst Nova",
+			"TotalDurationMs": 2000,
+			"Skills": [
+				{
+					"Name": "Spinning Projectile",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 45
+					},
+					"Projectile": {
+						"SizeUnits": 3,
+						"IsHoming": true,
+						"SpeedSubUnits": 8000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Attributes": {
+							"Propagation": {
+								"PropagationType": "Splash",
+								"SplashRadiusUnits": 20,
+								"DeploymentGuidance": [
+									"Ground",
+									"Airborne",
+									"Underground"
+								],
+								"EffectPackage": {
+									"Effects": [
+										{
+											"ID": "JudgmentFall",
+											"Type": "InstantDamage",
+											"DamageType": "Energy",
+											"Expression": {
+												"Operation": "+",
+												"Operands": [
+													{
+														"Operation": "*",
+														"Operands": [
+															400000,
+															{
+																"Stat": "OmegaPowerPercentage",
+																"StatSource": "Sender"
+															}
+														]
+													}
+												]
+											}
+										},
+										{
+											"ID": "CrushingAftershock",
+											"Type": "InstantDamage",
+											"DamageType": "Energy",
+											"Expression": {
+												"Operation": "%",
+												"Operands": [
+													0,
+													{
+														"Operation": "-",
+														"Operands": [
+															{
+																"Stat": "MaxHealth",
+																"StatSource": "Receiver"
+															},
+															{
+																"Stat": "CurrentHealth",
+																"StatSource": "Receiver"
+															}
+														]
+													}
+												]
+											}
+										},
+										{
+											"ID": "SearingEcho",
+											"Type": "DOT",
+											"DamageType": "Energy",
+											"DurationMs": 5000,
+											"FrequencyMs": 1000,
+											"Expression": {
+												"Percentage": 0,
+												"Stat": "MaxHealth",
+												"StatSource": "Receiver"
+											}
+										},
+										{
+											"ID": "ShatterWard",
+											"Type": "Debuff",
+											"Stat": "PhysicalResist",
+											"DurationMs": 5000,
+											"Expression": {
+												"Percentage": 0,
+												"Stat": "PhysicalResist",
+												"StatSource": "Receiver"
+											}
+										},
+										{
+											"ID": "ShatterWard1",
+											"Type": "Debuff",
+											"Stat": "EnergyResist",
+											"DurationMs": 5000,
+											"Expression": {
+												"Percentage": 0,
+												"Stat": "EnergyResist",
+												"StatSource": "Receiver"
+											}
+										}
+									]
+								}
+							}
+						},
+						"Effects": []
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Flamewarden Staff",
+	"DisplayDescription": "The Ranger releases a whirling projectile from their staff, dealing <AttackEnergyDamage>400</> (<OmegaPowerPercentage></>) Energy Damage to the target and all enemies within a 20-radius.",
+	"Description": {
+		"Format": "The Ranger releases a whirling projectile from their staff, dealing <AttackEnergyDamage>{Damage}</> (<OmegaPowerPercentage></>) Energy Damage to the target and all enemies within a {Radius}-radius.",
+		"Parameters": {
+			"Damage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Attributes.Propagation.EffectPackage.Effects[0].Expression.Operands[0].Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"Radius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Attributes.Propagation.SplashRadiusUnits",
+				"ValueMultiplier": 1.0
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "The Ranger releases a whirling projectile from their staff, dealing 400 () Energy Damage to the target and all enemies within a 20-radius."
+}

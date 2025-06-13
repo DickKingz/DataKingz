@@ -1,0 +1,141 @@
+{
+	"Name": "ResonantBond",
+	"Stage": 1,
+	"Type": "Simulation",
+	"Abilities": [
+		{
+			"Name": "Resonant Bond 1 - Ability",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Resonant Bond 1 - Empath Target",
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						]
+					},
+					"Targeting": {
+						"Type": "Allegiance",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						],
+						"Group": "Ally"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "SpawnMark",
+								"MarkType": "Beneficial",
+								"DurationMs": -1,
+								"AttachedAbilities": [
+									{
+										"Name": "Resonant Bond 1 - Sub Ability",
+										"ActivationTrigger": {
+											"TriggerType": "EveryXTime",
+											"ActivateEveryTimeMs": 1000
+										},
+										"TotalDurationMs": 0,
+										"Skills": [
+											{
+												"Name": "Resonant Bond 1 - Closest Target and Buffs",
+												"Targeting": {
+													"Type": "DistanceCheck",
+													"Guidance": [
+														"Ground",
+														"Underground",
+														"Airborne"
+													],
+													"Group": "Ally",
+													"Lowest": true,
+													"Num": 1
+												},
+												"Deployment": {
+													"Type": "Direct",
+													"Guidance": [
+														"Ground",
+														"Underground",
+														"Airborne"
+													]
+												},
+												"EffectPackage": {
+													"Effects": [
+														{
+															"Type": "Buff",
+															"Stat": "AttackPhysicalDamage",
+															"OverlapProcessType": "Stacking",
+															"DurationMs": 990,
+															"Expression": {
+																"Percentage": 6,
+																"Stat": "AttackPhysicalDamage",
+																"StatSource": "Receiver"
+															}
+														},
+														{
+															"Type": "Buff",
+															"Stat": "AttackEnergyDamage",
+															"OverlapProcessType": "Stacking",
+															"DurationMs": 990,
+															"Expression": {
+																"Percentage": 6,
+																"Stat": "AttackEnergyDamage",
+																"StatSource": "Receiver"
+															}
+														},
+														{
+															"Type": "Buff",
+															"Stat": "AttackPureDamage",
+															"OverlapProcessType": "Stacking",
+															"DurationMs": 990,
+															"Expression": {
+																"Percentage": 6,
+																"Stat": "AttackPureDamage",
+																"StatSource": "Receiver"
+															}
+														},
+														{
+															"Type": "Buff",
+															"Stat": "OmegaDamagePercentage",
+															"OverlapProcessType": "Stacking",
+															"DurationMs": 990,
+															"Expression": {
+																"Percentage": 6,
+																"Stat": "OmegaDamagePercentage",
+																"StatSource": "Receiver"
+															}
+														}
+													]
+												}
+											}
+										]
+									}
+								]
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Resonant Bond I",
+	"DisplayDescription": "Your units grant 6% Damage Amp to the closest ally.",
+	"Description": {
+		"Format": "Your units grant {DamageAmpBuff}% Damage Amp to the closest ally.",
+		"Parameters": {
+			"DamageAmpBuff": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].AttachedAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Percentage"
+			}
+		}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [],
+		"GrantedCredits": 0
+	}
+}

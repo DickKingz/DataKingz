@@ -1,0 +1,124 @@
+{
+	"Name": "CrashingBastion",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Amplifier",
+	"Stats": {
+		"PhysicalResist": 0,
+		"EnergyResist": 0,
+		"MaxHealth": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 0,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 0,
+		"AttackDodgeChancePercentage": 0,
+		"MoveSpeedSubUnits": 0,
+		"OmegaPowerPercentage": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"StartingEnergy": 0,
+		"StartingShield": 0,
+		"CritChancePercentage": 0,
+		"CritAmplificationPercentage": 0,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0
+	},
+	"Abilities": [
+		{
+			"Name": "Crashing Bastion",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Aerocloak - Shield With Explosion",
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						]
+					},
+					"Targeting": {
+						"Type": "DistanceCheck",
+						"Group": "Ally",
+						"Self": true,
+						"Lowest": false,
+						"Num": 3,
+						"Guidance": [
+							"Ground",
+							"Underground",
+							"Airborne"
+						]
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "SpawnShield",
+								"DurationMs": 5000,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "MaxHealth",
+									"StatSource": "Receiver"
+								},
+								"OnDestroy": {
+									"Name": "Shield Explosion",
+									"Targeting": {
+										"Type": "Self"
+									},
+									"Deployment": {
+										"Type": "Zone"
+									},
+									"Zone": {
+										"Shape": "Hexagon",
+										"RadiusUnits": 20,
+										"DurationMs": 100,
+										"FrequencyMs": 100,
+										"ApplyOnce": true
+									},
+									"EffectPackage": {
+										"Effects": [
+											{
+												"Type": "InstantDamage",
+												"DamageType": "Energy",
+												"Expression": {
+													"Percentage": 10,
+													"Stat": "MaxHealth",
+													"StatSource": "Sender"
+												}
+											}
+										]
+									}
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Crashing Bastion",
+	"DisplayDescription": "On Combat Start, the Ranger and the 3 closest allies gain a Shield equal to <MaxHealth>10%</> of their Max Health for 5 seconds. When the Shields expire, they explode, dealing damage equal to the initial Shield amount.",
+	"Description": {
+		"Format": "On Combat Start, the Ranger and the {AllyNum} closest allies gain a Shield equal to <MaxHealth>{ShieldVal}%</> of their Max Health for {ShieldDuration} seconds. When the Shields expire, they explode, dealing damage equal to the initial Shield amount.",
+		"Parameters": {
+			"AllyNum": {
+				"ParameterPath": "Abilities[0].Skills[0].Targeting.Num"
+			},
+			"ShieldVal": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].Expression.Percentage"
+			},
+			"ShieldDuration": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "On Combat Start, the Ranger and the 3 closest allies gain a Shield equal to 10% of their Max Health for 5 seconds. When the Shields expire, they explode, dealing damage equal to the initial Shield amount."
+}

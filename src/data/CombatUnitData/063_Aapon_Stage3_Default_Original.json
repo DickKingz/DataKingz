@@ -1,0 +1,311 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Aapon",
+	"Stage": 3,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 1,
+	"CombatAffinity": "Mud",
+	"CombatClass": "Mystic",
+	"DominantCombatAffinity": "Earth",
+	"DominantCombatClass": "Empath",
+	"SizeUnits": 5,
+	"Stats": {
+		"MaxHealth": 1900000,
+		"StartingEnergy": 90000,
+		"EnergyCost": 130000,
+		"PhysicalResist": 55,
+		"EnergyResist": 45,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 95000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 75,
+		"MoveSpeedSubUnits": 2000,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 50,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Aapon Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 58
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 10000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Thunderdrum III",
+			"TotalDurationMs": 2000,
+			"Skills": [
+				{
+					"Name": "Roar",
+					"Targeting": {
+						"Type": "Self",
+						"Guidance": [
+							"Ground",
+							"Underground"
+						]
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"Guidance": [
+							"Ground",
+							"Underground"
+						],
+						"PreDeploymentDelayPercentage": 25
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 25,
+						"DurationMs": 500,
+						"FrequencyMs": 500,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Stun",
+								"DurationMs": 1500
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										250000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackPhysicalDamage",
+								"DurationMs": 4000,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										{
+											"Stat": "AttackPhysicalDamage",
+											"Percentage": 20,
+											"StatSource": "Receiver"
+										},
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackEnergyDamage",
+								"DurationMs": 4000,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										{
+											"Stat": "AttackEnergyDamage",
+											"Percentage": 20,
+											"StatSource": "Receiver"
+										},
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackPureDamage",
+								"DurationMs": 4000,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										{
+											"Stat": "AttackPureDamage",
+											"Percentage": 20,
+											"StatSource": "Receiver"
+										},
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "OmegaDamagePercentage",
+								"DurationMs": 4000,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										{
+											"Stat": "OmegaDamagePercentage",
+											"Percentage": 20,
+											"StatSource": "Receiver"
+										},
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Exalted Aapon",
+	"DisplayDescription": "Exalted Aapon beats its chest and roars, unleashing a shockwave within 25-hexes. Allies gain <DamageAmplification>20%</> (<OmegaPowerPercentage></>) Damage Amp for 4 seconds, while enemies take <AttackEnergyDamage>250</> (<OmegaPowerPercentage></>) Energy Damage and are Stunned for 1.5 seconds.\r\n\r\nDamage Amp: <DamageAmplification>20%</> (<OmegaPowerPercentage></>\r\n<AttackEnergyDamage>250</> (<OmegaPowerPercentage></>)",
+	"Intro": "In the shimmering expanse of Crystal Shores, where lightning-struck dunes create floating shards and underground oases hide beneath slight drops, the Aapon cuts an imposing figure. From agile climbers to knuckle-walking behemoths, these remarkable beings navigate the glistening landscape with a blend of physical might and psionic prowess. Their massive boulder tails and glowing features make them unmistakable amidst the refracting sunlight and crystal formations.",
+	"Summary": "The Aapon appears in three distinct forms, each showcasing adaptation to Crystal Shores' unique environment. The smallest type is an nimble climber, while the largest is a formidable presence with telepathic abilities. Each form is characterised by increasing size, complexity of psionic abilities, and the development of their signature feature: a massive, levitating boulder tail. The Aapon's fur ranges from pristine white to crystal blue and indigo, with bioluminescent patterns growing more intricate in larger specimens. These creatures display a mix of solitary meditation and protective behaviours, their psionic abilities allowing for complex interactions with their environment and other Illuvials.",
+	"Biology": {
+		"Physiology": "The Aapon's physiology is a marvel of psionic energy manipulation. The smallest Aapon have rock-plated forearms, a glowing centre horn, and a massive boulder tail that hovers just off the ground. Their white fur and long, gripping toes aid in climbing crystal formations. Mid-sized Aapon develop a more athletic build with blue and grey colouring. Their chests are marked by glowing pink lines, matching the illumination from cracks in their rocky forearms and enormous tails. The largest Aapon boast crystal blue and indigo fur with swirling brown markings. Their long, curved horns and monolithic tails are surrounded by floating slabs and orbs of light. All Aapon possess eyes that emit a pink glow, serving both as a light source and a conduit for their psionic abilities. As they increase in size, they develop more complex energy manipulation skills, with the largest capable of creating and controlling orbs of light and matter. The Aapon swings its massive boulder tail with practiced precision, striking objects and energy orbs with remarkable accuracy. The smallest Aapon often use this technique to dislodge crystal formations or stun prey, while larger specimens can generate impressive force, sending energy spheres hurtling across vast distances. Their control is so fine-tuned that they can adjust the angle and power of each strike, causing their targets to ricochet off crystal walls at calculated trajectories.",
+		"Behaviour": "The Aapon's behaviour evolves with its size, showcasing increasing psionic prowess and strategic thinking. The smallest Aapon are often seen scaling elaborate spiralling structures to meditate atop high points. They carefully manage their tails to prevent structural damage and prefer solitude to minimise psychic interference. Mid-sized Aapon are more socially inclined, offering protection and healing to companions in exchange for help with grooming and debris removal. They move by knuckle-walking and use their psionic abilities to levitate crystal shards and create dazzling light displays. The largest Aapon display the most complex behaviour. They prefer the calm of underground caves, using orbs of light for navigation. Their telepathic abilities allow them to form psychic bridges into the minds of other Illuvials, accessing memories and forming deep connections. Despite their varying sizes, all Aapon share a need for regular rest and meditation to manage their considerable energy reserves. They use their psionic abilities for hunting and defence, environmental manipulation, and even artistic expression through crude rock sculptures or light displays."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/AaponStage3/AaponStage3_default_default_webp.3840x2160/AaponStage3_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/AaponStage3/AaponStage3_default_default_hls.m3u8/AaponStage3_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Exalted Aapon can form light orbs of varying mass, some large enough to carve into cave walls, others small enough to bounce from wall to wall.",
+			"The Exalted Aapon watches the movement of other Illuvials in its territory, sometimes going to the aid of other Aapons.",
+			"The Exalted Aapon beats its chest as a show of aggression, creating small shockwaves that stun other Illuvials. It also uses this ability to stun Morphopods when hunting."
+		],
+		"Buckley": [
+			"The Exalted Aapon's complex brain activity and rapid intake of external neural activity may cause an occasional upsurge of energy that scars its body. It must undergo regular rest and meditation to keep its power from consuming its physical form.",
+			"The Exalted Aapon has luminous orbs floating above its head made of radioactive psionic energy.",
+			"The Exalted Aapon has large quantities of dense red muscle in its forearms, granting it high endurance for carrying the weight of the rocks upon its arms.",
+			"The Exalted Aapon has a specialised immune system that stimulates nerves to regrow, allowing it to recover from wounds quickly.",
+			"The Exalted Aapon has traces of Flintcaps, Morphopods, and small Illuvials in its digestive tract, indicating that it is an opportunistic omnivore."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		1,
+		3,
+		6,
+		2,
+		4
+	],
+	"Description": {
+		"Format": "Exalted Aapon beats its chest and roars, unleashing a shockwave within {OmegaRadius}-hexes. Allies gain <DamageAmplification>{AmpValue}%</> (<OmegaPowerPercentage></>) Damage Amp for {AmpDuration} seconds, while enemies take <AttackEnergyDamage>{ShockwaveDamage}</> (<OmegaPowerPercentage></>) Energy Damage and are Stunned for {StunDuration} seconds.\r\n\r\nDamage Amp: <DamageAmplification>{AmpValue}%</> (<OmegaPowerPercentage></>\r\n<AttackEnergyDamage>{ShockwaveDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"ShockwaveDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"OmegaRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Zone.RadiusUnits"
+			},
+			"AmpValue": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[2].Expression.Operands[0].Percentage"
+			},
+			"AmpDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[2].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"StunDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Exalted Aapon beats its chest and roars, unleashing a shockwave within 25-hexes. Allies gain 20% () Damage Amp for 4 seconds, while enemies take 250 () Energy Damage and are Stunned for 1.5 seconds.\r\n\r\nDamage Amp: 20% (\r\n250 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 1,
+			"Health": 3,
+			"MovementSpeed": 6,
+			"OmegaPower": 2,
+			"Resistance": 4
+		}
+	}
+}

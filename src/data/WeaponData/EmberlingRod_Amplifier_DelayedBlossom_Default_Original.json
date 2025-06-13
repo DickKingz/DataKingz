@@ -1,0 +1,88 @@
+{
+	"Name": "EmberlingRodDelayedBlossom",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Amplifier",
+	"AmplifierForWeapon": {
+		"Name": "EmberlingRod",
+		"Stage": 0,
+		"Variation": "Original",
+		"CombatAffinity": "Nature"
+	},
+	"Stats": {
+		"MaxHealth": 400000,
+		"StartingEnergy": 0,
+		"EnergyCost": 0,
+		"PhysicalResist": 0,
+		"EnergyResist": 0,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 0,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 0,
+		"MoveSpeedSubUnits": 0,
+		"HitChancePercentage": 0,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 0,
+		"CritAmplificationPercentage": 0,
+		"OmegaPowerPercentage": 0,
+		"AttackRangeUnits": 0,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 0,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 0,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 0,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [],
+	"InnateAbilities": [],
+	"EffectsReplacements": [
+		{
+			"ID": "DelayedBlossom",
+			"Type": "InstantDamage",
+			"DamageType": "Energy",
+			"Expression": {
+				"Operation": "*",
+				"Operands": [
+					400000,
+					{
+						"Stat": "OmegaPowerPercentage",
+						"StatSource": "Sender"
+					}
+				]
+			}
+		}
+	],
+	"DisplayName": "Delayed Blossom",
+	"DisplayDescription": "+<MaxHealth>400</> Health.\r\nThe seed blooms again after 1 second, dealing <AttackEnergyDamage>400</> Energy Damage.",
+	"Description": {
+		"Format": "+<MaxHealth>{Health}</> Health.\r\nThe seed blooms again after 1 second, dealing <AttackEnergyDamage>{Damage}</> Energy Damage.",
+		"Parameters": {
+			"Health": {
+				"ParameterPath": "Stats.MaxHealth",
+				"ValueMultiplier": 0.001
+			},
+			"Damage": {
+				"ParameterPath": "EffectsReplacements[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "+400 Health.\r\nThe seed blooms again after 1 second, dealing 400 Energy Damage."
+}

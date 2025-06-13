@@ -1,0 +1,247 @@
+{
+	"CombatClass": "Slayer",
+	"CombatClassComponents": [
+		"Rogue",
+		"Fighter"
+	],
+	"SynergyThresholds": [
+		2,
+		3,
+		4
+	],
+	"SynergyThresholdsAbilities": {
+		"Variables": [
+			{
+				"Name": "Slayer_AttackSpeed",
+				"Values": [
+					25,
+					35,
+					45
+				]
+			},
+			{
+				"Name": "Slayer_AttackDamage",
+				"Values": [
+					25,
+					35,
+					45
+				]
+			},
+			{
+				"Name": "Slayer_PureDamage",
+				"Values": [
+					0,
+					0,
+					25000
+				]
+			}
+		],
+		"TeamAbilities": [],
+		"UnitAbilities": [
+			{
+				"Name": "SlayerSynergy_SpecialAbility",
+				"ActivationTrigger": {
+					"TriggerType": "OnBattleStart"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Slayer - Pure Damage",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "Self"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Buff",
+									"Stat": "AttackPureDamage",
+									"DurationMs": -1,
+									"Expression": "{Slayer_PureDamage}"
+								}
+							]
+						}
+					}
+				]
+			},
+			{
+				"Name": "SlayerSynergy_Ability1",
+				"ActivationTrigger": {
+					"TriggerType": "OnAssist"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Slayer - Attack Speed and Crit Amp on Assist",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "Self"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Buff",
+									"Stat": "AttackSpeed",
+									"DurationMs": -1,
+									"OverlapProcessType": "Stacking",
+									"Expression": {
+										"Percentage": "{Slayer_AttackSpeed}",
+										"Stat": "AttackSpeed",
+										"StatSource": "Receiver",
+										"StatEvaluationType": "Base"
+									}
+								}
+							]
+						}
+					}
+				]
+			},
+			{
+				"Name": "SlayerSynergy_Ability2",
+				"ActivationTrigger": {
+					"TriggerType": "OnVanquish",
+					"Allegiance": "Self"
+				},
+				"TotalDurationMs": 0,
+				"Skills": [
+					{
+						"Name": "Slayer - Attack Damage on Kill",
+						"Deployment": {
+							"Type": "Direct"
+						},
+						"Targeting": {
+							"Type": "Self"
+						},
+						"EffectPackage": {
+							"Effects": [
+								{
+									"Type": "Buff",
+									"Stat": "AttackPhysicalDamage",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Slayer_AttackDamage}",
+										"Stat": "AttackPhysicalDamage",
+										"StatSource": "Receiver",
+										"StatEvaluationType": "Base"
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "AttackEnergyDamage",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Slayer_AttackDamage}",
+										"Stat": "AttackEnergyDamage",
+										"StatSource": "Receiver",
+										"StatEvaluationType": "Base"
+									}
+								},
+								{
+									"Type": "Buff",
+									"Stat": "AttackPureDamage",
+									"OverlapProcessType": "Stacking",
+									"DurationMs": -1,
+									"Expression": {
+										"Percentage": "{Slayer_AttackDamage}",
+										"Stat": "AttackPureDamage",
+										"StatSource": "Receiver",
+										"StatEvaluationType": "Base"
+									}
+								}
+							]
+						}
+					}
+				]
+			}
+		]
+	},
+	"IntrinsicAbilities": [
+		{
+			"Name": "SlayerSynergy_Blink",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 680,
+			"Skills": [
+				{
+					"Name": "Jumps across",
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Blink",
+								"BlinkTarget": "Across",
+								"BlinkDelayMs": 500,
+								"DurationMs": 680
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Slayer",
+	"DisplayDescription": "\r\nSlayers gain <AttackSpeed>Attack Speed</> on Takedown and <AttackDamage>Attack Damage</> after Vanquishing an enemy.\r\n\r\n(4) Attacks deal 25 bonus Pure Damage.\r\n\r\n<Italic>Innate: Blink to the opposite side of the board.</>\r\n",
+	"DisplayDescriptionThresholds": [
+		"Gain <AttackSpeed>25%</><AttackSpeed></> and <AttackDamage>25%</><AttackDamage></>",
+		"Gain <AttackSpeed>35%</><AttackSpeed></> and <AttackDamage>35%</><AttackDamage></>",
+		"Gain <AttackSpeed>45%</><AttackSpeed></> and <AttackDamage>45%</><AttackDamage></>"
+	],
+	"Description": {
+		"Format": "\r\nSlayers gain <AttackSpeed>Attack Speed</> on Takedown and <AttackDamage>Attack Damage</> after Vanquishing an enemy.\r\n\r\n(4) Attacks deal {Slayer_PureDamage} bonus Pure Damage.\r\n\r\n<Italic>Innate: Blink to the opposite side of the board.</>\r\n",
+		"Parameters": {
+			"Slayer_PureDamage": {
+				"ParameterPath": "SynergyThresholdsAbilities.Variables[2].Values[2]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DescriptionThresholds": {
+		"Format": "Gain <AttackSpeed>{Slayer_AttackSpeed}%</><AttackSpeed></> and <AttackDamage>{Slayer_AttackDamage}%</><AttackDamage></>",
+		"Parameters": [
+			{
+				"Slayer_AttackSpeed": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[0]"
+				},
+				"Slayer_AttackDamage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[0]"
+				}
+			},
+			{
+				"Slayer_AttackSpeed": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[1]"
+				},
+				"Slayer_AttackDamage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[1]"
+				}
+			},
+			{
+				"Slayer_AttackSpeed": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[0].Values[2]"
+				},
+				"Slayer_AttackDamage": {
+					"ParameterPath": "SynergyThresholdsAbilities.Variables[1].Values[2]"
+				}
+			}
+		]
+	},
+	"DisplayDescriptionNormalized": "Slayers gain Attack Speed on Takedown and Attack Damage after Vanquishing an enemy.\r\n\r\n(4) Attacks deal 25 bonus Pure Damage.\r\n\r\nInnate: Blink to the opposite side of the board.",
+	"DisplayDescriptionThresholdsNormalized": [
+		"Gain 25% and 25%",
+		"Gain 35% and 35%",
+		"Gain 45% and 45%"
+	]
+}

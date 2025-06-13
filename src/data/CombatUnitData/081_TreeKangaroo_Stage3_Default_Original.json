@@ -1,0 +1,467 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "TreeKangaroo",
+	"Stage": 3,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 1,
+	"CombatAffinity": "Shock",
+	"CombatClass": "Revenant",
+	"DominantCombatAffinity": "Fire",
+	"DominantCombatClass": "Rogue",
+	"SizeUnits": 5,
+	"Stats": {
+		"MaxHealth": 1900000,
+		"StartingEnergy": 0,
+		"EnergyCost": 0,
+		"PhysicalResist": 40,
+		"EnergyResist": 40,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 150000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 75,
+		"MoveSpeedSubUnits": 2300,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 5,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 4,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "TreeKangaroo Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 47
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [],
+	"InnateAbilities": [
+		{
+			"Name": "Kindred Fury III",
+			"ActivationTrigger": {
+				"TriggerType": "OnAssist",
+				"Allegiance": "Self"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "little one does slightly stronger attacks for 4 seconds",
+					"PercentageOfAbilityDuration": 100,
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "AttackPhysicalDamage",
+								"OverlapProcessType": "Sum",
+								"DurationMs": 5000,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										20000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"Name": "Small but Strong III",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Spawn Pet Skill",
+					"PercentageOfAbilityDuration": 50,
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": []
+					},
+					"Deployment": {
+						"Type": "SpawnedCombatUnit",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"SpawnCombatUnit": {
+						"OnReservedPosition": false,
+						"CombatUnit": {
+							"Path": "Default",
+							"Variation": "Original",
+							"Line": "TreeKangarooPet",
+							"Stage": 3,
+							"UnitType": "Pet",
+							"CombatAffinity": "None",
+							"CombatClass": "None",
+							"Tier": 1,
+							"SizeUnits": 2,
+							"Stats": {
+								"MaxHealth": 400000,
+								"StartingEnergy": 20000,
+								"EnergyCost": 100000,
+								"PhysicalResist": 25,
+								"EnergyResist": 25,
+								"TenacityPercentage": 0,
+								"WillpowerPercentage": 0,
+								"Grit": 0,
+								"Resolve": 0,
+								"AttackPhysicalDamage": 80000,
+								"AttackEnergyDamage": 0,
+								"AttackPureDamage": 0,
+								"AttackSpeed": 75,
+								"MoveSpeedSubUnits": 2000,
+								"HitChancePercentage": 100,
+								"AttackDodgeChancePercentage": 0,
+								"CritChancePercentage": 25,
+								"CritAmplificationPercentage": 150,
+								"OmegaPowerPercentage": 100,
+								"AttackRangeUnits": 50,
+								"OmegaRangeUnits": 0,
+								"HealthRegeneration": 0,
+								"EnergyRegeneration": 0,
+								"EnergyGainEfficiencyPercentage": 100,
+								"OnActivationEnergy": 0,
+								"VulnerabilityPercentage": 100,
+								"EnergyPiercingPercentage": 0,
+								"PhysicalPiercingPercentage": 0,
+								"HealthGainEfficiencyPercentage": 100,
+								"PhysicalVampPercentage": 0,
+								"EnergyVampPercentage": 0,
+								"PureVampPercentage": 0,
+								"Thorns": 0,
+								"StartingShield": 0,
+								"CritReductionPercentage": 0
+							},
+							"AttackAbilitiesSelection": "Cycle",
+							"AttackAbilities": [
+								{
+									"Name": "Basic Attack",
+									"Skills": [
+										{
+											"Name": "Attack",
+											"Targeting": {
+												"Type": "CurrentFocus",
+												"Guidance": [
+													"Ground",
+													"Airborne"
+												]
+											},
+											"Deployment": {
+												"Type": "Projectile",
+												"Guidance": [
+													"Ground",
+													"Airborne"
+												],
+												"PreDeploymentDelayPercentage": 58
+											},
+											"Projectile": {
+												"SizeUnits": 0,
+												"IsHoming": true,
+												"SpeedSubUnits": 10000,
+												"IsBlockable": false,
+												"ApplyToAll": false
+											},
+											"EffectPackage": {
+												"Effects": [
+													{
+														"Type": "InstantDamage",
+														"DamageType": "Physical",
+														"Expression": {
+															"Stat": "AttackPhysicalDamage",
+															"StatSource": "Sender"
+														}
+													},
+													{
+														"Type": "InstantDamage",
+														"DamageType": "Energy",
+														"Expression": {
+															"Stat": "AttackEnergyDamage",
+															"StatSource": "Sender"
+														}
+													},
+													{
+														"Type": "InstantDamage",
+														"DamageType": "Pure",
+														"Expression": {
+															"Stat": "AttackPureDamage",
+															"StatSource": "Sender"
+														}
+													}
+												]
+											}
+										}
+									]
+								}
+							],
+							"OmegaAbilitiesSelection": "Cycle",
+							"OmegaAbilities": [
+								{
+									"Name": "Little One Omega",
+									"TotalDurationMs": 0,
+									"Skills": [
+										{
+											"Name": "Buff Attack Speed and give energy",
+											"Deployment": {
+												"Type": "Direct",
+												"Guidance": [
+													"Ground",
+													"Underground",
+													"Airborne"
+												],
+												"PreDeploymentDelayPercentage": 0
+											},
+											"PercentageOfAbilityDuration": 100,
+											"Targeting": {
+												"Type": "InZone",
+												"Guidance": [
+													"Ground",
+													"Underground",
+													"Airborne"
+												],
+												"Group": "Ally",
+												"RadiusUnits": 25,
+												"Self": true
+											},
+											"EffectPackage": {
+												"Effects": [
+													{
+														"Type": "Buff",
+														"Stat": "AttackSpeed",
+														"DurationMs": 5000,
+														"Expression": {
+															"Percentage": 45,
+															"Stat": "AttackSpeed",
+															"StatSource": "Receiver",
+															"StatEvaluationType": "Base"
+														}
+													},
+													{
+														"Type": "InstantEnergyGain",
+														"Expression": 30000
+													}
+												]
+											}
+										}
+									]
+								}
+							],
+							"InnateAbilities": [
+								{
+									"Name": "Gain Attack Damage if TreeKangaroo gets a Takedown",
+									"ActivationTrigger": {
+										"TriggerType": "OnAssist",
+										"Allegiance": "Ally",
+										"OnlyFromParent": true
+									},
+									"TotalDurationMs": 0,
+									"Skills": [
+										{
+											"Name": "little one does slightly stronger attacks for 4 seconds",
+											"PercentageOfAbilityDuration": 100,
+											"Targeting": {
+												"Type": "Self"
+											},
+											"Deployment": {
+												"Type": "Direct"
+											},
+											"EffectPackage": {
+												"Effects": [
+													{
+														"Type": "Buff",
+														"Stat": "AttackEnergyDamage",
+														"OverlapProcessType": "Sum",
+														"DurationMs": 5000,
+														"Expression": {
+															"Operation": "*",
+															"Operands": [
+																10000,
+																{
+																	"Stat": "OmegaPowerPercentage",
+																	"StatSource": "Sender"
+																}
+															]
+														}
+													}
+												]
+											}
+										}
+									]
+								}
+							]
+						}
+					}
+				},
+				{
+					"Name": "Untargetable",
+					"Targeting": {
+						"Type": "Pets",
+						"Group": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "PositiveState",
+								"PositiveState": "Untargetable",
+								"DurationMs": 15000
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Tibi'Rukko",
+	"DisplayDescription": "Tibi'Rukko leaves the Little One on the nearest tile, granting Untargetable for 15 seconds. On Takedown, Tibi'Rukko gains <AttackPhysicalDamage>20</> (<OmegaPowerPercentage></>) Physical Attack Damage for 5 seconds and grants <AttackEnergyDamage>10</> (<OmegaPowerPercentage></>) Energy Attack Damage to the Little One for the same duration.\r\n\r\nLittle One: Grants allies in 25-hexes <EnergyCost>30</> Energy and <AttackSpeed>45%</> Attack Speed for 5 seconds.\r\n\r\nPhysical AD: <AttackPhysicalDamage>20</> (<OmegaPowerPercentage></>)\r\nEnergy AD: <AttackEnergyDamage>10</> (<OmegaPowerPercentage></>)",
+	"Intro": "The pink sands of Crystal Shores gather in dunes that could rival the height of those in Crimson Waste. This glittering region often attracts illuvials from its neighbouring areas, enchanting them with its shiny prisms and mystical floating shards. The Tibi'Rukko in particular, likes to leap from one crystal slab to the next, the lightning from its body shocking loose crystal fragments and suspending them in the air.",
+	"Summary": "The Tibi, with its keen electroreceptive senses and electrifying abilities, relies on its larger sibling, the Rukko, for protection and guidance. The Rukko, crackling with electricity from head to tail, fiercely guards the Tibi and follows its lead with unwavering loyalty. Together, the Tibi'Rukko navigate the terrain with impressive leaps and powerful electric shocks, showcasing a symbiotic relationship where each complements the other's strengths for survival in this dazzling yet perilous environment.",
+	"Biology": {
+		"Physiology": "Tibi: The Tibi is short but sturdy, with thick tendrils of fur curling up from its huge ears, swishing tail, and the back of its fists. It can pack an electrifying punch with its yellow knuckles, which are vibrant just like the ends of its ears and tail. The Tibi's body is mostly reddish brown, with purple on the lower side of its face and covering its back. It has strong hind feet to jump with, but it spends most of its time listening with its long ears and throwing lightning with its hands. \n\n Ruko: The Rukko is a terrifying beast that crackles with electricity from head to tail, with sparks leaping from its eyes and along its spine. It often crouches on all fours, its enormous white fangs bared and its sharp claws ready to shred. The Rukko's vicious appearance is made all the more devastating by the lightning coursing upon its long, whip-like tail, and the wild clustering tendrils of fur sticking up on its body. Its only weakness is its big flat nose, which it uses to sniff out the odour of its sister's lightning and to carry out its will.",
+		"Behaviour": "Tibi: The Tibi leaps on its sister's back to travel difficult terrain, with its flaring ears are quick to pick out the sounds of movements. It generates an electric field that other Illuvials can lightly feel, and it may modulate the waveform to avoid blocking the senses of other shock Illuvials. The Tibi investigates new areas and sounds often, frequently exploring the places in a region that are most difficult to get to, scaling great heights or descending into the deep underground. The Tibi appears unable to generate as much electricity without the Rukko but it has keen electroreceptive senses that can detect weak electrical fields generated by other life forms. \n\n Rukko: The Rukko is a powerful Illuvial that listens only to the Tibi. It leaps great distances and generates powerful shocks in an awe-inspiring display of its prowess. Despite its physical abilities, the Rukko is lost without its sister, who is the brains of the two. The Rukko's ears are smaller and less sensitive to the environment than the Tibi's, which is why it follows its little one's intuition in all that it does. Exceedingly possessive, the Rukko will ferociously attack any who dare to touch its sister. A Rukko without a Tibi may start lightning fires and cause irreparable damage to a region."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/TreeKangarooStage3/TreeKangarooStage3_default_default_webp.3840x2160/TreeKangarooStage3_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/TreeKangarooStage3/TreeKangarooStage3_default_default_hls.m3u8/TreeKangarooStage3_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Tibi'Rukko can leap extremely high and far, often appearing as though they are flying. They can easily be mistaken for flying Illuvial because they move so quickly in the air.",
+			"The Tibi'Rukko is a polymorphic species where the smaller Tibi is protected by the Rukko, and the Rukko relies on the Tibi's hypersensitivity to the environment to hunt and defend the unit more effectively.",
+			"The Rukko touches noses with the Tibi regularly to balance out its electric charge."
+		],
+		"Buckley": [
+			"The Tibi'Rukko's powerful legs expel electric charges that aid their movements, allowing them to propel themselves in the air in synchronized formation and catch one another's wind.",
+			"The Rukko generates a consistent high-voltage current that courses through its back and tail.",
+			"The Tibi generates low-voltage pulses for electrolocation and emits a continuous electric field that extends towards the Rukko, enabling it to sense any changes in its environment.",
+			"The Rukko's body is highly conductive and absorbs charges at a greater rate than the Tibi.",
+			"The Tibi'Rukko is adapted to produce a variety of electric discharges, with the ability to modulate the waveform for communication."
+		]
+	},
+	"TraitOrderLegacy": [
+		2,
+		1,
+		3,
+		6,
+		5,
+		4
+	],
+	"Description": {
+		"Format": "Tibi'Rukko leaves the Little One on the nearest tile, granting Untargetable for {UntargetableDuration} seconds. On Takedown, Tibi'Rukko gains <AttackPhysicalDamage>{TiRuDamage}</> (<OmegaPowerPercentage></>) Physical Attack Damage for {DamageDuration} seconds and grants <AttackEnergyDamage>{LittleDamage}</> (<OmegaPowerPercentage></>) Energy Attack Damage to the Little One for the same duration.\r\n\r\nLittle One: Grants allies in {LittleRadius}-hexes <EnergyCost>{LittleEnergy}</> Energy and <AttackSpeed>{LittleAttackSpeed}%</> Attack Speed for {LittleDuration} seconds.\r\n\r\nPhysical AD: <AttackPhysicalDamage>{TiRuDamage}</> (<OmegaPowerPercentage></>)\r\nEnergy AD: <AttackEnergyDamage>{LittleDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"UntargetableDuration": {
+				"ParameterPath": "InnateAbilities[1].Skills[1].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"TiRuDamage": {
+				"ParameterPath": "InnateAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"DamageDuration": {
+				"ParameterPath": "InnateAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"LittleDamage": {
+				"ParameterPath": "InnateAbilities[1].Skills[0].SpawnCombatUnit.CombatUnit.InnateAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"LittleRadius": {
+				"ParameterPath": "InnateAbilities[1].Skills[0].SpawnCombatUnit.CombatUnit.OmegaAbilities[0].Skills[0].Targeting.RadiusUnits"
+			},
+			"LittleEnergy": {
+				"ParameterPath": "InnateAbilities[1].Skills[0].SpawnCombatUnit.CombatUnit.OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].Expression",
+				"ValueMultiplier": 0.001
+			},
+			"LittleAttackSpeed": {
+				"ParameterPath": "InnateAbilities[1].Skills[0].SpawnCombatUnit.CombatUnit.OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Percentage"
+			},
+			"LittleDuration": {
+				"ParameterPath": "InnateAbilities[1].Skills[0].SpawnCombatUnit.CombatUnit.OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Tibi'Rukko leaves the Little One on the nearest tile, granting Untargetable for 15 seconds. On Takedown, Tibi'Rukko gains 20 () Physical Attack Damage for 5 seconds and grants 10 () Energy Attack Damage to the Little One for the same duration.\r\n\r\nLittle One: Grants allies in 25-hexes 30 Energy and 45% Attack Speed for 5 seconds.\r\n\r\nPhysical AD: 20 ()\r\nEnergy AD: 10 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 2,
+			"AttackSpeed": 1,
+			"Health": 3,
+			"MovementSpeed": 6,
+			"OmegaPower": 5,
+			"Resistance": 4
+		}
+	}
+}

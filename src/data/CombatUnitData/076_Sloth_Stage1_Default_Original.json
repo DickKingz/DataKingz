@@ -1,0 +1,249 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Sloth",
+	"Stage": 1,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 3,
+	"CombatAffinity": "Nature",
+	"CombatClass": "Bulwark",
+	"DominantCombatAffinity": "Nature",
+	"DominantCombatClass": "Bulwark",
+	"SizeUnits": 3,
+	"Stats": {
+		"MaxHealth": 1750000,
+		"StartingEnergy": 80000,
+		"EnergyCost": 180000,
+		"PhysicalResist": 50,
+		"EnergyResist": 40,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 85000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 50,
+		"MoveSpeedSubUnits": 1250,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 2,
+		"OmegaRangeUnits": 3,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Sloth Basic Attack I",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 50
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Underoot I",
+			"TotalDurationMs": 3500,
+			"Skills": [
+				{
+					"Name": "Root and damage",
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground"
+						],
+						"PreDeploymentDelayPercentage": 80
+					},
+					"Targeting": {
+						"Type": "DistanceCheck",
+						"Guidance": [
+							"Ground"
+						],
+						"Group": "Enemy",
+						"Lowest": false,
+						"Num": 2
+					},
+					"PercentageOfAbilityDuration": 85,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Root",
+								"ActivationsUntilExpiry": 1,
+								"DurationMs": 3000
+							},
+							{
+								"Type": "DOT",
+								"DamageType": "Energy",
+								"DurationMs": 3000,
+								"FrequencyMs": 1000,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										175000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Knock up targets",
+					"Targeting": {
+						"Type": "PreviousTargetList"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 85
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 16,
+						"DurationMs": 100,
+						"FrequencyMs": 100,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 15,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Displacement",
+								"DisplacementType": "KnockUp",
+								"DurationMs": 500,
+								"OverlapProcessType": "Merge"
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Cling",
+	"DisplayDescription": "Cling slams the ground, channeling roots to the 2 furthest enemies, Rooting them and dealing <AttackEnergyDamage>175</> (<OmegaPowerPercentage></>) Energy Damage over 3 seconds.\r\n\r\nAfter 3 seconds, the roots erupt Stunning enemies in 16-hexes for 0.5 seconds.\r\n\r\nDamage: <AttackEnergyDamage>175</> (<OmegaPowerPercentage></>)\r\n\r\nRoot: Cannot move while affected.",
+	"Intro": "The purple roots of Brightland Steppes sprawl upon mossy boulders and fields of green dotted with petals and plants. They reach up to the fluffy cloud-filled sky, where giant teeth and bone stick out from the top of the trees. These fantastical structures cast shadows upon the flowery fields and streams, making it hard to notice one moving so slowly. Gradually making its way across a  stretch of water is the Cling.",
+	"Summary": "Brightland Steppes is home to the Cling, a leisurely Illuvial with root-like limbs and a charming, fuzzy face. It moves slowly across the landscape, absorbing nutrients and sunlight, often staying in one spot long enough for seeds to sprout and wilt. Covered in leaves and moss, the Cling supports various plant life on its back and has a slow heart rate to conserve energy. Its diet includes algae from its fur, and it often travels by attaching itself to other creatures like the Twine.",
+	"Biology": {
+		"Physiology": "The Cling has a messy mop of leaves with curly roots and vines for limbs. Green and brown all over, it keeps its tummy low to the ground and crawls on all fours at a leisurely pace. It has a big, smooth leaf on its head and mossy roots around its peaceful eyes. Brown tendrils continue growing down its cheeks, branching off and hanging like hooks below them.",
+		"Behaviour": "With a charming smile and a broad fuzzy face, the Cling puts others at ease, emanating the feeling of dream-like whimsy. The Cling is an easygoing Illuvial with root-like limbs that grow attached to the surface it's on, taking in nutrients from the ground or nearby trees. It also gathers energy from sunbathing, absorbing light into its leaves. The Cling often stays in an area for so long that seeds sprout into blossoms and wilt before it passes by. It also experiences growth upon its own body in the form of thick leaves, which flourish in the company of other nature Illuvials."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/SlothStage1/SlothStage1_default_default_webp.3840x2160/SlothStage1_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/SlothStage1/SlothStage1_default_default_hls.m3u8/SlothStage1_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Cling naps for long hours every day, and even when it awakens it barely moves. The Cling stays in an area for so long that it can see new seeds sprout, grow, and wilt with the passing seasons.",
+			"The Cling spends much of its day sunbathing, either rooting itself in the ground or upon another plant structure. It moves so slowly that winged morphopods lay eggs and algae grows in its fur.",
+			"The Cling occasionally attaches itself to the Twine in order to travel to new destinations."
+		],
+		"Buckley": [
+			"The Cling's body has enough surface area to support up to 8 kg of vegetation on its back. Its diet includes the specialised algae which grow in its fur, as evidenced by the traces found in its digestive tract.",
+			"The Cling has an extremely slow heart rate which is about half the rate of the average Illuvial.",
+			"The Cling's root-like limbs are capable of rapid growth in soil.",
+			"The Cling has a four-chambered stomach that allows it to digest tough leaves and fruits. It cannot process too much energy at a time and it must move slowly to conserve energy.",
+			"The Cling possesses a secondary digestive system that utilizes the leaves on its back to gather energy via photosynthesis. While it is undergoing photosynthesis, it is not capable of muscular movement."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		4,
+		1,
+		6,
+		3,
+		2
+	],
+	"Description": {
+		"Format": "Cling slams the ground, channeling roots to the {TargetNum} furthest enemies, Rooting them and dealing <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Energy Damage over {DamageRootDuration} seconds.\r\n\r\nAfter {KnockupDelay} seconds, the roots erupt Stunning enemies in {RootRadius}-hexes for {KnockupDuration} seconds.\r\n\r\nDamage: <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)\r\n\r\nRoot: Cannot move while affected.",
+		"Parameters": {
+			"TargetNum": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Targeting.Num"
+			},
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"DamageRootDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"KnockupDelay": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"RootRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].Zone.RadiusUnits"
+			},
+			"KnockupDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Cling slams the ground, channeling roots to the 2 furthest enemies, Rooting them and dealing 175 () Energy Damage over 3 seconds.\r\n\r\nAfter 3 seconds, the roots erupt Stunning enemies in 16-hexes for 0.5 seconds.\r\n\r\nDamage: 175 ()\r\n\r\nRoot: Cannot move while affected.",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 4,
+			"Health": 1,
+			"MovementSpeed": 6,
+			"OmegaPower": 3,
+			"Resistance": 2
+		}
+	}
+}

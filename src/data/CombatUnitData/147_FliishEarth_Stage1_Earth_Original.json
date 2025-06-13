@@ -1,0 +1,232 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "FliishEarth",
+	"Stage": 1,
+	"Path": "Earth",
+	"Variation": "Original",
+	"Tier": 0,
+	"CombatAffinity": "Earth",
+	"CombatClass": "Psion",
+	"DominantCombatAffinity": "Earth",
+	"DominantCombatClass": "Psion",
+	"SizeUnits": 3,
+	"Stats": {
+		"MaxHealth": 850000,
+		"StartingEnergy": 20000,
+		"EnergyCost": 120000,
+		"PhysicalResist": 25,
+		"EnergyResist": 20,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 60000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 70,
+		"MoveSpeedSubUnits": 1950,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 60,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Earth Fliish Basic Attack I",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 50
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 10000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Brutal Beam I",
+			"TotalDurationMs": 2000,
+			"Skills": [
+				{
+					"Name": "Damage beam",
+					"Targeting": {
+						"Type": "DistanceCheck",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"Group": "Enemy",
+						"Lowest": false,
+						"Num": 1
+					},
+					"PercentageOfAbilityDuration": 100,
+					"ChannelTimeMs": 2000,
+					"Deployment": {
+						"Type": "Beam",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 0
+					},
+					"Beam": {
+						"WidthUnits": 10,
+						"FrequencyMs": 200,
+						"ApplyOnce": false,
+						"IsHoming": true,
+						"IsBlockable": true,
+						"BlockAllegiance": "Enemy"
+					},
+					"EffectPackage": {
+						"Attributes": {
+							"RotateToTarget": true
+						},
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										52500,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Lesser Earth Fliish",
+	"DisplayDescription": "Lesser Earth Fliish fires a beam at the furthest enemy, dealing <AttackEnergyDamage>525</> (<OmegaPowerPercentage></>) Energy Damage to the first enemy hit over 2 seconds.\r\n\r\nDamage: <AttackEnergyDamage>525</> = <AttackEnergyDamage>52.5</>/0.2s (<OmegaPowerPercentage></>)",
+	"Intro": "The mystical region of Crystal Shores shimmers and shines like no other. Among the dazzling lights reflected off the crystal shards, one may miss the muted shine of the Lesser Earth Fliish. Its ringed tail holds a small piece of rounded crystal, which twinkles when it is communicating with another of its kind. It is especially attuned to the light of its species, which blinks in warning when a dangerous Illuvial is sighted.",
+	"Summary": "The Lesser Earth Fliish inhabits the dazzling Crystal Shores, blending in with the shimmering crystals and communicating through the twinkling of its ringed tail crystal. This earth-affinity creature has a purple and pink body, orange eyes, and a trident-shaped crown, using its sticky feet to climb surfaces despite often losing grip due to sand. It toughens its skin to rock-like hardness, sharpens its horns on crystals, and camouflages by synchronizing its tail light.",
+	"Biology": {
+		"Physiology": "The Lesser Earth Fliish is purple and pink, with orange eyes and a wide gaping mouth, its long, translucent tongue dangling out from the side. It has round bumpy toes on its feet, and its hind legs are often bent in a crouch. Upon its head, lining the upper side of its big eyes is a trident-shaped crown made of dark, horned protrusions. Its tail is lined with rock that forms a ring at its end, glowing pink on the inside with floating fragments of crystal.",
+		"Behaviour": "The Lesser Earth Fliish spends the least time in water compared to other types of Fliish. It can often be found hopping in crystal caves, leaping beneath sandfalls or ascending time-stuck, floating plants. The Lesser Earth Fliish has sticky feet which act as an adhesive to the diagonal surfaces it climbs. However, it often gets lots of sand stuck on them and loses its grip. Fortunately, its helmeted head is more resilient to falls than others of its kind. This Illuvial can be found with its tongue sticking out, searching for Morphopods in crystal cavities and holes in the ground."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/FliishStage1Earth/FliishStage1Earth_default_default_webp.3840x2160/FliishStage1Earth_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/FliishStage1Earth/FliishStage1Earth_default_default_hls.m3u8/FliishStage1Earth_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Lesser Earth Fliish can toughen its skin to become as hard as rocks.",
+			"The Lesser Earth Fliish is often found sharpening its horns on crystal structures.",
+			"The Lesser Earth Fliish synchronizes the light of its ringed tail to its surroundings as a form of camouflage."
+		],
+		"Buckley": [
+			"The Lesser Earth Fliish's eyes are capable of detecting the electromagnetic field of crystals, allowing it to navigate its environment based on land formations.",
+			"The Lesser Earth Fliish has mirror neurons that allow it to coordinate its behavior with others of its kind.",
+			"The Lesser Earth Fliish's horned head has scarring and marks that are likely produced through tussling with its own kind.",
+			"The ringed tail of the Lesser Earth Fliish is capable of vibrating at varying frequencies, likely as complex signals that it uses to communicate with others of its kind.",
+			"The Lesser Earth Fliish has mineral-rich armor that enables it to regulate its temperature."
+		]
+	},
+	"TraitOrderLegacy": [
+		3,
+		2,
+		4,
+		6,
+		1,
+		5
+	],
+	"Description": {
+		"Format": "Lesser Earth Fliish fires a beam at the furthest enemy, dealing <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Energy Damage to the first enemy hit over {BeamDuration} seconds.\r\n\r\nDamage: <AttackEnergyDamage>{OmegaDamage}</> = <AttackEnergyDamage>{SplitDamage}</>/0.2s (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.01
+			},
+			"BeamDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].ChannelTimeMs",
+				"ValueMultiplier": 0.001
+			},
+			"SplitDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Lesser Earth Fliish fires a beam at the furthest enemy, dealing 525 () Energy Damage to the first enemy hit over 2 seconds.\r\n\r\nDamage: 525 = 52.5/0.2s ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 3,
+			"AttackSpeed": 2,
+			"Health": 4,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 5
+		}
+	}
+}

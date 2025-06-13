@@ -1,0 +1,138 @@
+{
+	"Name": "Overguard",
+	"Stage": 0,
+	"Tier": 0,
+	"Variation": "Original",
+	"Type": "Normal",
+	"Abilities": [
+		{
+			"Name": "Overguard_Stats",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Overguard - List of Stats",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "MaxHealth",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 200000
+							},
+							{
+								"Type": "Buff",
+								"Stat": "Grit",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 10000
+							},
+							{
+								"Type": "Buff",
+								"Stat": "Resolve",
+								"OverlapProcessType": "Stacking",
+								"DurationMs": -1,
+								"Expression": 10000
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"Name": "Overguard_Ability1",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Overguard - Gain Shield",
+					"Deployment": {
+						"Type": "Direct"
+					},
+					"Targeting": {
+						"Type": "Self"
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "SpawnShield",
+								"DurationMs": 6000,
+								"Expression": {
+									"Percentage": 15,
+									"Stat": "MaxHealth",
+									"StatSource": "Receiver"
+								},
+								"OnDestroy": {
+									"Name": "Overguard - Gain Resistance on Expire",
+									"Deployment": {
+										"Type": "Direct"
+									},
+									"Targeting": {
+										"Type": "Self"
+									},
+									"EffectPackage": {
+										"Effects": [
+											{
+												"Type": "Buff",
+												"Stat": "PhysicalResist",
+												"OverlapProcessType": "Stacking",
+												"DurationMs": -1,
+												"Expression": 20
+											},
+											{
+												"Type": "Buff",
+												"Stat": "EnergyResist",
+												"OverlapProcessType": "Stacking",
+												"DurationMs": -1,
+												"Expression": 20
+											}
+										]
+									}
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Overguard",
+	"DisplayDescription": "Combat Start: Gain a Shield equal to <MaxHealth>15%</> of <MaxHealth>Max Health</> for 6 seconds. When the Shield expires, gain <Resistance>20</> <Resistance>Resistances</>.\r\n\r\nStats:\r\n+200 <MaxHealth>Health</>\r\n+10 <Grit>Mitigation</>\r\n\r\n<Italic>Mitigation: Reduces incoming damage by a flat value.</>",
+	"Description": {
+		"Format": "Combat Start: Gain a Shield equal to <MaxHealth>{ShieldVal}%</> of <MaxHealth>Max Health</> for {Duration} seconds. When the Shield expires, gain <Resistance>{ResistVal}</> <Resistance>Resistances</>.\r\n\r\nStats:\r\n+{Stat_Health} <MaxHealth>Health</>\r\n+{Stat_Mitigation} <Grit>Mitigation</>\r\n\r\n<Italic>Mitigation: Reduces incoming damage by a flat value.</>",
+		"Parameters": {
+			"ShieldVal": {
+				"ParameterPath": "Abilities[1].Skills[0].EffectPackage.Effects[0].Expression.Percentage",
+				"ValueMultiplier": 1.0
+			},
+			"Duration": {
+				"ParameterPath": "Abilities[1].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"ResistVal": {
+				"ParameterPath": "Abilities[1].Skills[0].EffectPackage.Effects[0].OnDestroy.EffectPackage.Effects[0].Expression",
+				"ValueMultiplier": 1.0
+			},
+			"Stat_Health": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].Expression",
+				"ValueMultiplier": 0.001
+			},
+			"Stat_Mitigation": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[1].Expression",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Combat Start: Gain a Shield equal to 15% of Max Health for 6 seconds. When the Shield expires, gain 20 Resistances.\r\n\r\nStats:\r\n+200 Health\r\n+10 Mitigation\r\n\r\nMitigation: Reduces incoming damage by a flat value."
+}

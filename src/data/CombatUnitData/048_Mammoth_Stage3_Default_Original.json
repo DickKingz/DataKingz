@@ -1,0 +1,233 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Mammoth",
+	"Stage": 3,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 4,
+	"CombatAffinity": "Tempest",
+	"CombatClass": "Harbinger",
+	"DominantCombatAffinity": "Air",
+	"DominantCombatClass": "Psion",
+	"SizeUnits": 7,
+	"Stats": {
+		"MaxHealth": 3100000,
+		"StartingEnergy": 40000,
+		"EnergyCost": 200000,
+		"PhysicalResist": 75,
+		"EnergyResist": 75,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 140000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 60,
+		"MoveSpeedSubUnits": 2250,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 10,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 16,
+		"OmegaRangeUnits": 20,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Mammoth Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 43
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Incisorise III",
+			"TotalDurationMs": 2000,
+			"Skills": [
+				{
+					"Name": "Throw to high density",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 75,
+						"PreDeploymentRetargetingPercentage": 60
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 24,
+						"DurationMs": 2000,
+						"FrequencyMs": 2000,
+						"MovementSpeedSubUnits": 12000,
+						"GrowthRateSubUnits": 0,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Displacement",
+								"DisplacementType": "ThrowToHighestEnemyDensity",
+								"DurationMs": 2000,
+								"OnFinished": {
+									"Name": "AoE Damage",
+									"Deployment": {
+										"Type": "Zone"
+									},
+									"Zone": {
+										"Shape": "Hexagon",
+										"RadiusUnits": 24,
+										"DurationMs": 100,
+										"FrequencyMs": 100,
+										"ApplyOnce": true
+									},
+									"Targeting": {
+										"Type": "Self"
+									},
+									"EffectPackage": {
+										"Effects": [
+											{
+												"Type": "InstantDamage",
+												"DamageType": "Physical",
+												"Expression": {
+													"Operation": "*",
+													"Operands": [
+														500000,
+														{
+															"Stat": "OmegaPowerPercentage",
+															"StatSource": "Sender"
+														}
+													]
+												}
+											},
+											{
+												"Type": "NegativeState",
+												"NegativeState": "Stun",
+												"DurationMs": 1000
+											}
+										]
+									}
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Mah'mut",
+	"DisplayDescription": "Mah'mut tusk tosses the closest enemy at the largest group of enemies. Upon impact, all enemies within 24-hexes are Stunned for 1 seconds and dealt <AttackEnergyDamage>500</> (<OmegaPowerPercentage></>) Energy Damage.\r\n\r\nDamage: <AttackEnergyDamage>500</> (<OmegaPowerPercentage></>)",
+	"Intro": "The thick ice sheets of Taiga Boreal can withstand the battering of storms and the padded footsteps of an immense creature. But even in areas where the ice thins, a behemoth crosses unharmed. Geysers may blast through the surface, but the Mah'mut glides around them with ease. One with the wind, the Mah'mut is an enlightened beast capable of mercy despite having the face of a boorish barbarian.",
+	"Summary": "In Taiga Boreal, the colossal Mah'mut traverses even the thinnest ice unharmed, gliding past geysers with ease and embodying an enlightened spirit despite its intimidating appearance. This giant, with its glowing red eyes and tusks marked with divine patterns, guides herds of Mah'mu and shelters the smaller Illuvial from harsh weather. Respected by both Mah'mu and Mah'tu, the Mah'mut is greeted with bows and trunk curls and leads complex dances in honor of the northern lights.",
+	"Biology": {
+		"Physiology": "The Mah'mut is a hulking giant that bears four fearsome tusks lined with divine markings of light. It has complex patterns of the tribal ceremony along the floating segments of its tusk, similar to the ones on the base of its trunk and the tough, knotted membrane surrounding its exposed brain. The Mah'mut's cloak of fur is dark brown, with silver at the top. Its red eyes, tusks, and the oval gem at the centre of its forehead glow celestial blue when it is at its most powerful.",
+		"Behaviour": "The Mah'mut guides herds of Mah'mu through the blistering winds of Taiga Boreal, sheltering the smaller Illuvial from the worst of the snow. It keeps the peace within the herd and throws its tusks in the air as a warning to those who cause trouble. Often breaking up fights between combative Mah'tu, it stands between them in battle and endures their attacks while using its psionic abilities to levitate them apart. The Mah'mu and Mah'tu deeply respect the Mah'mut and greet it with bows and trunk curls. When the northern lights the sky during winter sunsets, the Mah'mut leads a complex dance in its honour."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/MammothStage3/MammothStage3_default_default_webp.3840x2160/MammothStage3_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/MammothStage3/MammothStage3_default_default_hls.m3u8/MammothStage3_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Mah'mut has a strong memory and knowledge of the terrain. Many Mah'mu in its herd relies on it to guide them through storms and find shelter.",
+			"When the Mah'mut walks past a Mah'tu or Mah'mu, it is greeted by bows and raised trunk curls of respect. It leads a complex dance with groups of Mah'mu in honour of the iridescent lights that grace the sky during winter sunsets.",
+			"The Mah'mut throws its four formidable tusks in the air and flares its ears out as a warning to those who disturb the peace. It is often breaking up fights between combative Mah'tu."
+		],
+		"Buckley": [
+			"The Mah'mut's tusks are held together by psionic energy and its many pieces are capable of extending forward through psionic manipulation.",
+			"The Mah'mut has an adapted neural system with secondary functions for processing telekinetic energy into complex and coordinated movements. In addition, it has a hyperspecialized amygdala that enables minor precognition of attacks, allowing it to aim precisely and predict where its target may move.",
+			"The Mah'mut's trunk has the telekinetic ability to manipulate objects in its environment.",
+			"The Mah'mut's long fur is free of snow, dirt, and other debris but holds residue energy from its telekinetic orb. This suggests that its fine strands are groomed regularly through the use of telekinesis.",
+			"The Mah'mut's luminous orb contains an Osvium-Tellvium compound which amplifies psionic energy while maintaining a lightweight form"
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		4,
+		2,
+		6,
+		1,
+		3
+	],
+	"Description": {
+		"Format": "Mah'mut tusk tosses the closest enemy at the largest group of enemies. Upon impact, all enemies within {OmegaRadius}-hexes are Stunned for {StunDuration} seconds and dealt <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Energy Damage.\r\n\r\nDamage: <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].OnFinished.EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"StunDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].OnFinished.EffectPackage.Effects[1].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"OmegaRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Zone.RadiusUnits"
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Mah'mut tusk tosses the closest enemy at the largest group of enemies. Upon impact, all enemies within 24-hexes are Stunned for 1 seconds and dealt 500 () Energy Damage.\r\n\r\nDamage: 500 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 4,
+			"Health": 2,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 3
+		}
+	}
+}

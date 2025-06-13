@@ -1,0 +1,97 @@
+{
+	"Name": "RejuvenatingPulse",
+	"Stage": 2,
+	"Type": "Simulation",
+	"Abilities": [
+		{
+			"Name": "RejuvenatingPulse2_Ability1",
+			"ActivationTrigger": {
+				"TriggerType": "OnBattleStart"
+			},
+			"TotalDurationMs": 0,
+			"Skills": [
+				{
+					"Name": "Rejuvenating Pulse 2 - Targeting",
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground",
+							"Airborne",
+							"Underground"
+						]
+					},
+					"Targeting": {
+						"Type": "Allegiance",
+						"Group": "Ally",
+						"Guidance": [
+							"Ground",
+							"Airborne",
+							"Underground"
+						]
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "SpawnMark",
+								"MarkType": "Beneficial",
+								"DurationMs": -1,
+								"AttachedAbilities": [
+									{
+										"Name": "Rejuvenating Pulse 2 - SubAbility",
+										"ActivationTrigger": {
+											"TriggerType": "EveryXTime",
+											"ActivateEveryTimeMs": 3000
+										},
+										"TotalDurationMs": 0,
+										"Skills": [
+											{
+												"Name": "Rejuvenating Pulse 2 - Restore Health",
+												"Deployment": {
+													"Type": "Direct"
+												},
+												"Targeting": {
+													"Type": "Self"
+												},
+												"EffectPackage": {
+													"Effects": [
+														{
+															"Type": "InstantHeal",
+															"HealType": "Normal",
+															"Expression": {
+																"Percentage": 3,
+																"Stat": "MaxHealth",
+																"StatSource": "Receiver"
+															}
+														}
+													]
+												}
+											}
+										]
+									}
+								]
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Rejuvenating Pulse II",
+	"DisplayDescription": "Your team restores 3% of their Max Health every 3 seconds.",
+	"Description": {
+		"Format": "Your team restores {HealVal}% of their Max Health every {TriggerTime} seconds.",
+		"Parameters": {
+			"HealVal": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].AttachedAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Percentage"
+			},
+			"TriggerTime": {
+				"ParameterPath": "Abilities[0].Skills[0].EffectPackage.Effects[0].AttachedAbilities[0].ActivationTrigger.ActivateEveryTimeMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"RuntimeBonus": {
+		"GrantedAugments": [],
+		"GrantedCredits": 0
+	}
+}

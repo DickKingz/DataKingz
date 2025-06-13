@@ -1,0 +1,344 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "PolarBear",
+	"Stage": 2,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 4,
+	"CombatAffinity": "Frost",
+	"CombatClass": "Fighter",
+	"DominantCombatAffinity": "Air",
+	"DominantCombatClass": "Fighter",
+	"SizeUnits": 5,
+	"Stats": {
+		"MaxHealth": 2000000,
+		"StartingEnergy": 0,
+		"EnergyCost": 100000,
+		"PhysicalResist": 50,
+		"EnergyResist": 55,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 145000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 75,
+		"MoveSpeedSubUnits": 2080,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 5,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 3,
+		"OmegaRangeUnits": 3,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Polar Bear Basic Attack II",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 47
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Cataclysmic Crunch II",
+			"TotalDurationMs": 700,
+			"Skills": [
+				{
+					"Name": "Steal stats",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "AttackPhysicalDamage",
+								"DurationMs": 5000,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "SenderFocus"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackEnergyDamage",
+								"DurationMs": 5000,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "SenderFocus"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackPureDamage",
+								"DurationMs": 5000,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackPureDamage",
+									"StatSource": "SenderFocus"
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackSpeed",
+								"DurationMs": 5000,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackSpeed",
+									"StatSource": "SenderFocus"
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Bite",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										450000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Debuffs",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Debuff",
+								"Stat": "AttackPhysicalDamage",
+								"DurationMs": 5000,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Receiver"
+								}
+							},
+							{
+								"Type": "Debuff",
+								"Stat": "AttackEnergyDamage",
+								"DurationMs": 5000,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Receiver"
+								}
+							},
+							{
+								"Type": "Debuff",
+								"Stat": "AttackPureDamage",
+								"DurationMs": 5000,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackPureDamage",
+									"StatSource": "Receiver"
+								}
+							},
+							{
+								"Type": "Debuff",
+								"Stat": "AttackSpeed",
+								"DurationMs": 5000,
+								"Expression": {
+									"Percentage": 10,
+									"Stat": "AttackSpeed",
+									"StatSource": "Receiver"
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Self Heal",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantHeal",
+								"HealType": "Normal",
+								"Expression": {
+									"Operation": "%",
+									"Operands": [
+										15,
+										{
+											"Operation": "-",
+											"Operands": [
+												{
+													"Stat": "MaxHealth",
+													"StatSource": "SenderFocus"
+												},
+												{
+													"Stat": "CurrentHealth",
+													"StatSource": "SenderFocus"
+												}
+											]
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Jokull",
+	"DisplayDescription": "Jokull bites its target, dealing 450 (<OmegaPowerPercentage></>) Pure Damage, stealing <AttackDamage>10%</> Attack Damage and <AttackSpeed>10%</> Attack Speed for 5 seconds. Jokull then heals for <MaxHealth>15%</> of the target's missing Health.\r\n\r\nDamage: 450 (<OmegaPowerPercentage></>)",
+	"Intro": "The highest waterfall on the entire planet resides in Taiga Boreal, a magnificent sight to behold. The surface is frozen but has a liquid core of constantly flowing water. Occasionally, water sprays through cracks in the ice, turning into snowflakes that drift down onto the nose of the Jokull. Without a care in the world, it lounges in a dormant geyser, enjoying the feeling of its ice fur melting and reforming.",
+	"Summary": "The Jokull boasts a formidable appearance with giant crystal claws and icy adornments on its snow-white fur. Despite its intimidating stature, it is more inclined to lazily lounge around. Known for its ability to mimic sounds of its environment, it has a complex respiratory system, six lungs for buoyancy control, and specialized adaptations for both cold and warm climates.",
+	"Biology": {
+		"Physiology": "The Jokull is an intimidating sight to behold, with giant crystal claws and icy spikes lining the back of its snow-white fur. With a hulking, frosted form, its soft round ears and padded nose are the only parts of its body that aren't coated in ice. The Jokull has a sleek frozen wave upon its chest and arrow-shaped ice protrusions along its arms. There are two pointed slabs above its glowing eyes, with smaller crystal prisms surrounding its underside.",
+		"Behaviour": "Despite its unwieldy frame and giant crystal claws, the Jokull is likelier to yawn and roll over than to hurt anyone unless provoked. It lies down most of the day, leaving imprints in the snow from the icy protrusions on its chest and arms. The Jokull is more level-headed than the Mjoll and often puts its ear to the ground to listen for prey beneath. It can use its frost abilities to freeze Morphopods in the water and pull them out for consumption. Capable of sleeping through geyser eruptions and blizzards, the Jokull often soaks its fur in hot springs to relax. It can mimic the various sounds of Taiga Boreal, roaring like the whipping winds."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/PolarBearStage2/PolarBearStage2_default_default_webp.3840x2160/PolarBearStage2_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/PolarBearStage2/PolarBearStage2_default_default_hls.m3u8/PolarBearStage2_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"After a hunt, the Jokull can sleep through loud noises and hostile storms, snoring through the entire ordeal.",
+			"The Jokull makes various sounds, from rumbling growls to rhythmic howls. It has a daily routine of taking deep breaths and calling out to stay in touch with other Jokull across the mountain ranges.",
+			"The Jokull hunts by using its frost abilities to freeze Morphopods in the water and then pulling them out for consumption."
+		],
+		"Buckley": [
+			"The Jokull has a complex respiratory system with six lungs throughout its body, allowing it to control its buoyancy during swims and dives.",
+			"The Jokull has hyper-absorbant cells adapted to store large quantities of air and water to release throughout its body.",
+			"The Jokull's body has a high tolerance for both cold and warm temperatures, allowing it to function effectively in various climates.",
+			"The Jokull's teeth have tiny pinholes coated with bacteria that help it absorb heat and nutrients from anything it bites.",
+			"The Jokull's large paw pads are covered with soft papillae, or dermal bumps which create friction and allow it to grasp slippery surfaces to maintain its stance."
+		]
+	},
+	"TraitOrderLegacy": [
+		2,
+		1,
+		3,
+		5,
+		6,
+		4
+	],
+	"Description": {
+		"Format": "Jokull bites its target, dealing {OmegaDamage} (<OmegaPowerPercentage></>) Pure Damage, stealing <AttackDamage>{StealAmount}%</> Attack Damage and <AttackSpeed>{StealAmount}%</> Attack Speed for {StealDuration} seconds. Jokull then heals for <MaxHealth>{HealAmount}%</> of the target's missing Health.\r\n\r\nDamage: {OmegaDamage} (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"StealAmount": {
+				"ParameterPath": "OmegaAbilities[0].Skills[2].EffectPackage.Effects[0].Expression.Percentage"
+			},
+			"StealDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[2].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"HealAmount": {
+				"ParameterPath": "OmegaAbilities[0].Skills[3].EffectPackage.Effects[0].Expression.Operands[0]"
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Jokull bites its target, dealing 450 () Pure Damage, stealing 10% Attack Damage and 10% Attack Speed for 5 seconds. Jokull then heals for 15% of the target's missing Health.\r\n\r\nDamage: 450 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 2,
+			"AttackSpeed": 1,
+			"Health": 3,
+			"MovementSpeed": 5,
+			"OmegaPower": 6,
+			"Resistance": 4
+		}
+	}
+}

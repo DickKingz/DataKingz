@@ -1,0 +1,237 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Beetle",
+	"Stage": 1,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 5,
+	"CombatAffinity": "Earth",
+	"CombatClass": "Bulwark",
+	"DominantCombatAffinity": "Earth",
+	"DominantCombatClass": "Bulwark",
+	"SizeUnits": 4,
+	"Stats": {
+		"MaxHealth": 1850000,
+		"StartingEnergy": 100000,
+		"EnergyCost": 300000,
+		"PhysicalResist": 55,
+		"EnergyResist": 45,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 95000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 55,
+		"MoveSpeedSubUnits": 1750,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 3,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Beetle Basic Attack I",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 45
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Momentous Charge I",
+			"TotalDurationMs": 1000,
+			"Skills": [
+				{
+					"Name": "Temp increased Damage Reduction",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 0,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "VulnerabilityPercentage",
+								"OverlapProcessType": "Merge",
+								"DurationMs": 4000,
+								"Expression": 10
+							}
+						]
+					}
+				},
+				{
+					"Name": "Moving damage zone",
+					"Targeting": {
+						"Type": "DistanceCheck",
+						"Group": "Enemy",
+						"Lowest": false,
+						"Num": 1
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 75,
+						"PreDeploymentRetargetingPercentage": 60
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 10,
+						"DurationMs": 2000,
+						"FrequencyMs": 100,
+						"MovementSpeedSubUnits": 4500,
+						"GrowthRateSubUnits": 0,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										275000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Stun",
+								"DurationMs": 1500
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Scarabok",
+	"DisplayDescription": "Scarabok gains <DamageReduction>10%</> Damage Reduction for 4 seconds and sends a ghostly beetle towards the furthest enemy.\r\n\r\nEnemies hit by the ghostly beetle are Stunned for 1.5 seconds and dealt <AttackPhysicalDamage>275</> (<OmegaPowerPercentage></>) Physical Damage.\r\n\r\nDamage: <AttackPhysicalDamage>275</> (<OmegaPowerPercentage></>)",
+	"Intro": "Welcome to the mysterious and foreboding Shardbluff Labyrinth, a land of jagged rocks and broken structures that protrude from the ground. The constant mist in the air, combined with the angular grey and black stones, creates a suffocating feeling throughout the region. This ominous landscape is home to an array of unique and peculiar Illuvials, including the Scarabok, a truly remarkable specimen.",
+	"Summary": "In the eerie Shardbluff Labyrinth, amidst jagged rocks and perpetual mist, the unique Scarabok thrives. This Illuvial features jewel-like eyes, a multi-layered indigo shell with red webbed wings, and a golden-embellished tusk, with purple skin visible on its face and feet. Its physiology includes piston-like wings for high maneuverability, a strong exoskeleton, and the ability to lift objects much heavier than itself, alongside its unique ability to project ghostly illusions.",
+	"Biology": {
+		"Physiology": "The Scarabok is a fascinating Illuvial to behold. With jewel-like eyes and a multi-layered indigo shell, it appears more suited for the ground. However, its red webbed wings fold neatly into its shell, enabling it to take to the skies. It moves on four armour-plated legs, leading with an elegant tusk that curves up like a hook. The shell is adorned with golden embellishments, most notably on the upper head plate and tusk. Beneath its layers of segmented armour, it has purple skin, which is only visible on its face and feet.",
+		"Behaviour": "The Scarabok is a formidable creature when it comes to territorial behaviour. Quick to size up other Illuvials, it uses a variety of vocalizations and gestures as it approaches, opening its outer shell and flitting on its wings while pawing the ground. It can also project phantom light images of itself to intimidate opponents. However, if the opponent does not retreat, the Scarabok will usually submit unless it feels threatened. In such instances, the other Illuvial will soon realise the Scarabok can deliver crushing blows."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/BeetleStage1/BeetleStage1_default_default_webp.3840x2160/BeetleStage1_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/BeetleStage1/BeetleStage1_default_default_hls.m3u8/BeetleStage1_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"When the Scarabok charges, it can rupture rock walls and create openings into caves, providing a unique way of navigating the labyrinth.",
+			"The Scarabok uses its double-pronged golden tusk to scratch the roof of caves to search for mushrooms, plants, and crawling Morphopods to eat.",
+			"The Scarabok sheds its armour from time to time, and the remains of its used shells can be found around its territory."
+		],
+		"Buckley": [
+			"The Scarabok's pink inner wings utilise a piston-like structure, allowing for surprisingly high manoeuvrability.",
+			"The Scarabok has several interconnected skeletal structures and overlapping armour, providing exceptional protection.",
+			"The Scarabok is strong enough to lift objects a hundred times its own weight off the ground. Its wings can support ten times its entire weight during flight.",
+			"The Scarabok's plated exoskeleton and wings can coordinate complex movements that produce various sounds.",
+			"The Scarabok has a projection organ that creates phantom-like illusions of its body."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		4,
+		1,
+		6,
+		3,
+		2
+	],
+	"Description": {
+		"Format": "Scarabok gains <DamageReduction>{DamageRed}%</> Damage Reduction for {DamageRedDuration} seconds and sends a ghostly beetle towards the furthest enemy.\r\n\r\nEnemies hit by the ghostly beetle are Stunned for {StunDuration} seconds and dealt <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Physical Damage.\r\n\r\nDamage: <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"StunDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[1].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"DamageRed": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression"
+			},
+			"DamageRedDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Scarabok gains 10% Damage Reduction for 4 seconds and sends a ghostly beetle towards the furthest enemy.\r\n\r\nEnemies hit by the ghostly beetle are Stunned for 1.5 seconds and dealt 275 () Physical Damage.\r\n\r\nDamage: 275 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 4,
+			"Health": 1,
+			"MovementSpeed": 6,
+			"OmegaPower": 3,
+			"Resistance": 2
+		}
+	}
+}

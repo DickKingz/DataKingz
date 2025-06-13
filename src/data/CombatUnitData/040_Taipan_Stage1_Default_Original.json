@@ -1,0 +1,247 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Taipan",
+	"Stage": 1,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 4,
+	"CombatAffinity": "Fire",
+	"CombatClass": "Psion",
+	"DominantCombatAffinity": "Fire",
+	"DominantCombatClass": "Psion",
+	"SizeUnits": 3,
+	"Stats": {
+		"MaxHealth": 1250000,
+		"StartingEnergy": 20000,
+		"EnergyCost": 130000,
+		"PhysicalResist": 45,
+		"EnergyResist": 30,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 105000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 75,
+		"MoveSpeedSubUnits": 1750,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 60,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Taipan Basic Attack I",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 40
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 10000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Molten Spew I",
+			"TotalDurationMs": 500,
+			"Skills": [
+				{
+					"Name": "Increase EnergyDamage",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 100
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "AttackEnergyDamage",
+								"DurationMs": 6000,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										40000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Receiver"
+										}
+									]
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "AttackSpeed",
+								"DurationMs": 6000,
+								"Expression": {
+									"Percentage": 20,
+									"Stat": "AttackSpeed",
+									"StatSource": "Receiver",
+									"StatEvaluationType": "Base"
+								}
+							},
+							{
+								"Type": "Empower",
+								"ActivatedBy": "Attack",
+								"DurationMs": 6000,
+								"AttachedEffectPackageAttributes": {
+									"Propagation": {
+										"PropagationType": "Splash",
+										"IgnoreFirstPropagationReceiver": true,
+										"SplashRadiusUnits": 15,
+										"EffectPackage": {
+											"Effects": [
+												{
+													"Type": "InstantDamage",
+													"DamageType": "Energy",
+													"Expression": {
+														"Stat": "AttackEnergyDamage",
+														"StatSource": "Sender"
+													}
+												}
+											]
+										}
+									}
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Phyri",
+	"DisplayDescription": "Phyri activates its molten core, gaining <AttackEnergyDamage>40</> (<OmegaPowerPercentage></>) Energy Attack Damage and <AttackSpeed>20%</> Attack Speed for 6 seconds and causing all attacks to explode in 15-hexes.\r\n\r\nEnergy Attack Damage: <AttackEnergyDamage>40</> (<OmegaPowerPercentage></>)",
+	"Intro": "The persistent swirling winds of Crimson Waste keep the sands moving. No dune ever stays the same and even the largest sand formations change over time from the stifling currents. Some may avoid the dust, averting their eyes from the ash drifting in the air. The Phyri looks to the sky, an invisible membrane protecting its eyes from debris. Certain that no one is around, it moves in a circle and then dives into the sand.",
+	"Summary": "The Phyri, a limbless creature of Crimson Waste, navigates its harsh environment using its fiery horns and keen senses. It tunnels beneath the shifting sands in helical patterns, rarely surfacing except to drink rainwater and hunt subterranean Morphopods. Equipped with a flexible skeletal structure and neurotoxic venom, it senses vibrations and detects scents with specialized receptor pads.",
+	"Biology": {
+		"Physiology": "The Phyri is scaly and limbless with dark round eyes and curved horns on its head and neck. Atop its head and the tip of its tail is red flames. It has mainly black scales, with red around its eyes and a yellow-plated underbelly. The scales on top of its eyes protect it from the blowing sand. The Phyri has six horns along its head and neck, but it is rarely seen because it spends most of its time under the sand. ",
+		"Behaviour": "The Phyri is excitable and sensitive to movement, frequently turning to see if anyone is following it. Slithering around, it buried itself in dunes and digs tunnels deep underground. The Phyri is responsible for digging many small passages beneath Crimson Waste. While it can explore vast areas through its tunnels, its flames shrink with less access to combustible oxygen. The Phyri may consume high amounts of oxygen in the tunnel to render subterranean Morphopod prey unconscious as a hunting technique.  When the Phyri is above ground, it travels through sidewinding movements and zigzags while facing perpendicularly to the direction it is heading. This enables it to climb dunes effectively, and when the time is right, it spreads its body flat so it can gather rare drops of rainwater to drink."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/TaipanStage1/TaipanStage1_default_default_webp.3840x2160/TaipanStage1_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/TaipanStage1/TaipanStage1_default_default_hls.m3u8/TaipanStage1_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Phyri digs by repeatedly rotating its body in a helical manner, making tunnels shaped like corkscrews that only it can enter. When a Phyri tunnels near another of its kind, they can intertwine their corkscrew tunnels without directly intersecting.",
+			"The Phyri rarely bites, preferring to run and hide. However, it will retaliate and leave a nasty scar if it is afraid.",
+			"The Phyri sometimes tunnels into Shardbluff Labyrinth and zigzags on top of magma pools with sidewinding movements. When it leaves, the molten sand on its body cools into glass pebbles that slowly drop off."
+		],
+		"Buckley": [
+			"The Phyri has an inner ear connected to its jawbone that enables it to sense vibrations in the sand and its proximity towards any movement that touches the ground.",
+			"The Phyri is limbless and elongated with a flexible skeletal structure that supports its movement in any direction. Along its spine, it has a narrow pipe that transports combustible gas to fuel the flame on its head and the tip of its tail.",
+			"The Phyri has receptor pads in its mouth that can identify different scent signatures on its tongue, allowing it to sample the air for threats.",
+			"The Phyri's fire vents have receptors that detect the amount of oxygen in its environment. It is capable of adapting combustion output accordingly and increasing internal oxygen stores in times of scarcity.",
+			"The Phyri possesses a neurotoxic venom which is capable of paralysing a victim, rendering them incapable of escaping its fire projectiles. All captured Illuvials are given antidote vaccinations to allow for continued combat in the arena."
+		]
+	},
+	"TraitOrderLegacy": [
+		2,
+		1,
+		5,
+		6,
+		3,
+		4
+	],
+	"Description": {
+		"Format": "Phyri activates its molten core, gaining <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Energy Attack Damage and <AttackSpeed>{AttackSpeedBuff}%</> Attack Speed for {BuffDuration} seconds and causing all attacks to explode in {SplashRadius}-hexes.\r\n\r\nEnergy Attack Damage: <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"AttackSpeedBuff": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].Expression.Percentage"
+			},
+			"BuffDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[2].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"SplashRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[2].AttachedEffectPackageAttributes.Propagation.SplashRadiusUnits"
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Phyri activates its molten core, gaining 40 () Energy Attack Damage and 20% Attack Speed for 6 seconds and causing all attacks to explode in 15-hexes.\r\n\r\nEnergy Attack Damage: 40 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 2,
+			"AttackSpeed": 1,
+			"Health": 5,
+			"MovementSpeed": 6,
+			"OmegaPower": 3,
+			"Resistance": 4
+		}
+	}
+}

@@ -1,0 +1,304 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "KomodoDragon",
+	"Stage": 2,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 3,
+	"CombatAffinity": "Wildfire",
+	"CombatClass": "Bulwark",
+	"DominantCombatAffinity": "Nature",
+	"DominantCombatClass": "Bulwark",
+	"SizeUnits": 5,
+	"Stats": {
+		"MaxHealth": 2250000,
+		"StartingEnergy": 90000,
+		"EnergyCost": 240000,
+		"PhysicalResist": 50,
+		"EnergyResist": 55,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 130000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 60,
+		"MoveSpeedSubUnits": 1100,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 4,
+		"OmegaRangeUnits": 4,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Komodo Dragon Basic Attack II",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 48
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Misty Shield II",
+			"TotalDurationMs": 6500,
+			"Skills": [
+				{
+					"Name": "Cloud",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"Guidance": [
+							"Ground",
+							"Airborne",
+							"Underground"
+						],
+						"PreDeploymentDelayPercentage": 20
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 25,
+						"DurationMs": 4000,
+						"FrequencyMs": 100,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 25,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "SpawnMark",
+								"MarkType": "Beneficial",
+								"DurationMs": 4000,
+								"AttachedAbilities": [
+									{
+										"Name": "Blind and debuff enemy on hit",
+										"ActivationTrigger": {
+											"TriggerType": "OnHit",
+											"AbilityTypes": [
+												"Attack"
+											],
+											"SenderAllegiance": "Enemy",
+											"ReceiverAllegiance": "Self"
+										},
+										"TotalDurationMs": 0,
+										"Skills": [
+											{
+												"Name": "Attack speed debug and blind state",
+												"Deployment": {
+													"Type": "Direct"
+												},
+												"Targeting": {
+													"Type": "Activator"
+												},
+												"EffectPackage": {
+													"Effects": [
+														{
+															"Type": "NegativeState",
+															"NegativeState": "Blind",
+															"DurationMs": 1100
+														}
+													]
+												}
+											}
+										]
+									}
+								]
+							},
+							{
+								"Type": "SpawnMark",
+								"MarkType": "Beneficial",
+								"DurationMs": 4000,
+								"AttachedAbilities": [
+									{
+										"Name": "Damage Enemies in AOE",
+										"ActivationTrigger": {
+											"TriggerType": "EveryXTime",
+											"ActivateEveryTimeMs": 1000
+										},
+										"TotalDurationMs": 0,
+										"Skills": [
+											{
+												"Name": "Damage Enemies in AOE",
+												"Deployment": {
+													"Type": "Direct"
+												},
+												"Targeting": {
+													"Type": "InZone",
+													"Group": "Enemy",
+													"RadiusUnits": 25
+												},
+												"EffectPackage": {
+													"Effects": [
+														{
+															"Type": "InstantDamage",
+															"DamageType": "Energy",
+															"Expression": {
+																"Operation": "*",
+																"Operands": [
+																	80000,
+																	{
+																		"Stat": "OmegaPowerPercentage",
+																		"StatSource": "Sender"
+																	}
+																]
+															}
+														}
+													]
+												}
+											}
+										]
+									}
+								]
+							},
+							{
+								"Type": "Buff",
+								"Stat": "VulnerabilityPercentage",
+								"OverlapProcessType": "Highest",
+								"DurationMs": 4000,
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										{
+											"Percentage": 12,
+											"Stat": "VulnerabilityPercentage",
+											"StatSource": "Receiver"
+										},
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Krunk",
+	"DisplayDescription": "Pollen billows around Krunk forming a 25-hexes cloud for 4 seconds, causing all enemies hitting Krunk to be Blinded for 1.1 seconds.\r\n\r\nAllies within the cloud gain <DamageReduction>12%</> (<OmegaPowerPercentage></>) Damage Reduction and enemies are dealt <AttackEnergyDamage>80</> (<OmegaPowerPercentage></>) Energy Damage per second.\r\n\r\nDMG Reduction: <DamageReduction>12%</> (<OmegaPowerPercentage></>)\r\nDamage: <AttackEnergyDamage>80</> (<OmegaPowerPercentage></>)",
+	"Intro": "The thick smog of Crimson Waste makes it difficult to breathe, especially with the swirling winds blowing sand in every direction. A landscape of black and red, it is a desolate view to behold. However, one only needs to look closer to see glowing plants underneath clusters of rocks, growing despite the harsh conditions. An even closer look reveals that something behind the rocks is moving? the lazy Krunk puffing smoke.",
+	"Summary": "In the harsh landscape of Crimson Waste, the Krunk can be found moving lazily behind rocks, exhaling smoke amidst the swirling sand and thick smog. It has a long, low body with branch-like horns, evergreen leaves, and bark-like skin that radiates heat from glowing grooves. It burns plants and Morphopods in its venting holes, releases depressant smoke to alleviate stress, and has a unique internal combustion system that cooks food before digestion and handles environmental toxins efficiently.",
+	"Biology": {
+		"Physiology": "The Krunk burns with smouldering heat beneath its tough hide with steam billowing from the holes in its long tail. Its lengthy body is low to the ground and it crawls on all fours. Upon its head, it has two horns that resemble branches, the tallest parts of its body. Behind them are a patch of evergreen leaves. Mostly covered in hard, bark-like skin, a glowing warmth shines through the textured grooves of its horns, feet, and underbelly, red at the top and yellow-orange at the bottom. The Krunk's warm eyes and mouth radiate with heat, and the same yellow glow is visible from the sides of its neck through crater-like holes.",
+		"Behaviour": "The Krunk takes its time to cross the hot sand dunes, walking slowly and steadily. It can often be found lazing on the surface of Crimson Waste, basking in the smokey air. Taking deep breaths, the Krunk expels steam from its mouth and the holes on its tail. It isn't easily fazed, with a calm disposition no matter what life springs at them. The Krunk is one of the few Illuvials in Crimson Waste that prefers spending most of its time above ground, unbothered by the smog or the sandstorms. Smaller illuvials often travel alongside it, using its lengthy body as a windbreaker."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/KomodoDragonStage2/KomodoDragonStage2_default_default_webp.3840x2160/KomodoDragonStage2_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/KomodoDragonStage2/KomodoDragonStage2_default_default_hls.m3u8/KomodoDragonStage2_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Krunk burns plants and Morphopods that enter its venting holes, inhaling toxins from the atmosphere and exhaling a depressant that alleviates the stress of those around it.",
+			"The warmer the Krunk's environment is, the more lethargic it becomes. Sometimes it crawls so slowly that other Illuvials use its body as a temporary shelter or resting spot.",
+			"The Krunk flicks its tongue out as a friendly greeting. It can be seen greeting other Illuvials, even aggressive Illuvials that have attacked it in the past."
+		],
+		"Buckley": [
+			"The Krunk has an internal combustion system that releases heavy smoke into the atmosphere with traces of distilled Basket Fruit nectar. The atmosphere of Crimson Waste has a high concentration of Krunk smoke, with some areas more saturated than others.",
+			"The Krunk's organs have many folds which allow it to dissipate heat easier. Despite this, its brain still overheats regularly, inhibiting its long-term memory.",
+			"The Krunk's body is host to a corrosive mineral, Rubivium. This allows it to dissolve the toxins it inhales from the environment with greater efficiency.",
+			"The Krunk's digestive system is so hot all food cooks before digestion.",
+			"The Krunk has stores of toxic smoke that it can release as a defence mechanism."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		4,
+		1,
+		6,
+		3,
+		2
+	],
+	"Description": {
+		"Format": "Pollen billows around Krunk forming a {OmegaRadius}-hexes cloud for {OmegaDuration} seconds, causing all enemies hitting Krunk to be Blinded for {BlindDuration} seconds.\r\n\r\nAllies within the cloud gain <DamageReduction>{DamageReduction}%</> (<OmegaPowerPercentage></>) Damage Reduction and enemies are dealt <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Energy Damage per second.\r\n\r\nDMG Reduction: <DamageReduction>{DamageReduction}%</> (<OmegaPowerPercentage></>)\r\nDamage: <AttackEnergyDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaRadius": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Zone.RadiusUnits"
+			},
+			"OmegaDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].Zone.DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[1].AttachedAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"DamageReduction": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[2].Expression.Operands[0].Percentage",
+				"ValueMultiplier": 1.0
+			},
+			"BlindDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].AttachedAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Pollen billows around Krunk forming a 25-hexes cloud for 4 seconds, causing all enemies hitting Krunk to be Blinded for 1.1 seconds.\r\n\r\nAllies within the cloud gain 12% () Damage Reduction and enemies are dealt 80 () Energy Damage per second.\r\n\r\nDMG Reduction: 12% ()\r\nDamage: 80 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 4,
+			"Health": 1,
+			"MovementSpeed": 6,
+			"OmegaPower": 3,
+			"Resistance": 2
+		}
+	}
+}

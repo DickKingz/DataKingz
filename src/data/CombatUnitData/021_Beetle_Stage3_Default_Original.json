@@ -1,0 +1,237 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Beetle",
+	"Stage": 3,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 5,
+	"CombatAffinity": "Granite",
+	"CombatClass": "Colossus",
+	"DominantCombatAffinity": "Earth",
+	"DominantCombatClass": "Bulwark",
+	"SizeUnits": 7,
+	"Stats": {
+		"MaxHealth": 3450000,
+		"StartingEnergy": 100000,
+		"EnergyCost": 300000,
+		"PhysicalResist": 105,
+		"EnergyResist": 65,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 140000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 55,
+		"MoveSpeedSubUnits": 2500,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 4,
+		"OmegaRangeUnits": 0,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Beetle Basic Attack III",
+			"Skills": [
+				{
+					"Name": "Attack",
+					"Targeting": {
+						"Type": "CurrentFocus"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 40
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Momentous Charge III",
+			"TotalDurationMs": 1000,
+			"Skills": [
+				{
+					"Name": "Temp increased Damage Reduction",
+					"Targeting": {
+						"Type": "Self"
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 0,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "Buff",
+								"Stat": "VulnerabilityPercentage",
+								"OverlapProcessType": "Merge",
+								"DurationMs": 4000,
+								"Expression": 25
+							}
+						]
+					}
+				},
+				{
+					"Name": "Moving damage zone",
+					"Targeting": {
+						"Type": "DistanceCheck",
+						"Group": "Enemy",
+						"Lowest": false,
+						"Num": 1
+					},
+					"Deployment": {
+						"Type": "Zone",
+						"PreDeploymentDelayPercentage": 75,
+						"PreDeploymentRetargetingPercentage": 60
+					},
+					"Zone": {
+						"Shape": "Hexagon",
+						"RadiusUnits": 15,
+						"DurationMs": 2000,
+						"FrequencyMs": 100,
+						"MovementSpeedSubUnits": 4500,
+						"GrowthRateSubUnits": 0,
+						"ApplyOnce": true
+					},
+					"PercentageOfAbilityDuration": 100,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Operation": "*",
+									"Operands": [
+										525000,
+										{
+											"Stat": "OmegaPowerPercentage",
+											"StatSource": "Sender"
+										}
+									]
+								}
+							},
+							{
+								"Type": "NegativeState",
+								"NegativeState": "Stun",
+								"DurationMs": 2000
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Titanor",
+	"DisplayDescription": "Titanor gains <DamageReduction>25%</> Damage Reduction for 4 seconds and sends a ghostly beetle towards the furthest enemy.\r\n\r\nEnemies hit by the ghostly beetle are Stunned for 2 seconds and dealt <AttackPhysicalDamage>525</> (<OmegaPowerPercentage></>) Physical Damage.\r\n\r\nDamage: <AttackPhysicalDamage>525</> (<OmegaPowerPercentage></>)",
+	"Intro": "In the craggy canyons of Shardbluff Labyrinth, the vast black and grey landscape creates an atmosphere of mystery and danger. As the mist flows through this ominous stone forest, the rumbling of falling rocks is not uncommon. Amidst the collage of angular stone, many strange creatures can be found, but one of the most striking is the massive lumbering Titanor.",
+	"Summary": "Covered in stony armor plates with a jagged skull-like head and a pronged horn holding a luminous orb, the Titanor fiercely guards its territory and uses its horn to excavate plants and dislodge prey. It allows certain creatures to pass but remains vigilant and protective, using sensitive foot pads to detect vibrations and communicate through seismic tremors. The Titanor's dense, bony horns and hinged exoskeleton provide exceptional defense.",
+	"Biology": {
+		"Physiology": "The Titanor is a hulking giant covered in stony, bulging armour plates. Its terrifying, jagged head resembles an enormous grey skull, with two ridged tusks jutting from the sides. It has a sizeable pronged horn protruding from its nose, which holds a levitating luminous orb, the same colour as its piercing eyes. The Titanor walks on four stocky legs with giant claws on its feet. Its elaborate shell has a series of curved spikes along its spine, and its purple skin is mainly hidden, encased in rocky armour, but visible along its mid-length tail.",
+		"Behaviour": "The Titanor is a vigilant guardian of its territory, often pawing the ground to feel for the tremor of crumbling rock or foreign movement. It fiercely chases away trespassers, charging into rocky walls and leaving sizeable indents as a warning. It allows Scaraboks and Goliants to pass through its territory but is guarded when encountering other Titanors. Though it is rare for it to bond with others, it is exceedingly loyal and protective once it does. The Titanor has been observed to use its massive horn to excavate plants, digging deep into the rocky terrain to uncover buried sources of nutrition."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/BeetleStage3/BeetleStage3_default_default_webp.3840x2160/BeetleStage3_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/BeetleStage3/BeetleStage3_default_default_hls.m3u8/BeetleStage3_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"The Titanor is known to slam its massive horn against cliffs to dislodge Morphopods and eat the fallen prey.",
+			"When threatened, the Titanor's spectral form slightly shifts from its physical form.",
+			"The Titanor sleeps with its underbelly against hard surfaces, positioning its shell outward for protection."
+		],
+		"Buckley": [
+			"The Titanor's horns are made of a dense, bony material laced with stone, which hardens upon impact and provides exceptional resistance to physical stress.",
+			"The Titanor's feet are equipped with sensitive pads that are highly attuned to vibrations from the ground, enabling it to communicate with others of its kind through seismic tremours.",
+			"The Titanor has an enormous head with two ridged tusks jutting from the sides.",
+			"The blue orb levitating between the Titanor's two-pronged horn vibrates at high frequencies, indicating the level of energy it holds.",
+			"The Titanor has hinges in its layered exoskeleton which allows parts of its armour to open up and uncover its wings."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		4,
+		1,
+		6,
+		3,
+		2
+	],
+	"Description": {
+		"Format": "Titanor gains <DamageReduction>{DamageRed}%</> Damage Reduction for {DamageRedDuration} seconds and sends a ghostly beetle towards the furthest enemy.\r\n\r\nEnemies hit by the ghostly beetle are Stunned for {StunDuration} seconds and dealt <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>) Physical Damage.\r\n\r\nDamage: <AttackPhysicalDamage>{OmegaDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"OmegaDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].Expression.Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"StunDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[1].DurationMs",
+				"ValueMultiplier": 0.001
+			},
+			"DamageRed": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression"
+			},
+			"DamageRedDuration": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].DurationMs",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Titanor gains 25% Damage Reduction for 4 seconds and sends a ghostly beetle towards the furthest enemy.\r\n\r\nEnemies hit by the ghostly beetle are Stunned for 2 seconds and dealt 525 () Physical Damage.\r\n\r\nDamage: 525 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 4,
+			"Health": 1,
+			"MovementSpeed": 6,
+			"OmegaPower": 3,
+			"Resistance": 2
+		}
+	}
+}

@@ -1,0 +1,354 @@
+{
+	"UnitType": "Illuvial",
+	"Line": "Elk",
+	"Stage": 1,
+	"Path": "Default",
+	"Variation": "Original",
+	"Tier": 5,
+	"CombatAffinity": "Nature",
+	"CombatClass": "Empath",
+	"DominantCombatAffinity": "Nature",
+	"DominantCombatClass": "Empath",
+	"SizeUnits": 3,
+	"Stats": {
+		"MaxHealth": 1300000,
+		"StartingEnergy": 60000,
+		"EnergyCost": 180000,
+		"PhysicalResist": 35,
+		"EnergyResist": 35,
+		"TenacityPercentage": 0,
+		"WillpowerPercentage": 0,
+		"Grit": 0,
+		"Resolve": 0,
+		"AttackPhysicalDamage": 50000,
+		"AttackEnergyDamage": 0,
+		"AttackPureDamage": 0,
+		"AttackSpeed": 70,
+		"OmegaRangeUnits": 0,
+		"MoveSpeedSubUnits": 2000,
+		"HitChancePercentage": 100,
+		"AttackDodgeChancePercentage": 0,
+		"CritChancePercentage": 25,
+		"CritAmplificationPercentage": 150,
+		"OmegaPowerPercentage": 100,
+		"AttackRangeUnits": 70,
+		"HealthRegeneration": 0,
+		"EnergyRegeneration": 0,
+		"EnergyGainEfficiencyPercentage": 100,
+		"OnActivationEnergy": 0,
+		"VulnerabilityPercentage": 100,
+		"EnergyPiercingPercentage": 0,
+		"PhysicalPiercingPercentage": 0,
+		"HealthGainEfficiencyPercentage": 100,
+		"PhysicalVampPercentage": 0,
+		"EnergyVampPercentage": 0,
+		"PureVampPercentage": 0,
+		"Thorns": 0,
+		"StartingShield": 0,
+		"CritReductionPercentage": 0
+	},
+	"AttackAbilitiesSelection": "Cycle",
+	"AttackAbilities": [
+		{
+			"Name": "Elk Basic Attack I",
+			"Skills": [
+				{
+					"Name": "Basic Attack",
+					"Targeting": {
+						"Type": "CurrentFocus",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						]
+					},
+					"Deployment": {
+						"Type": "Projectile",
+						"Guidance": [
+							"Ground",
+							"Airborne"
+						],
+						"PreDeploymentDelayPercentage": 41
+					},
+					"Projectile": {
+						"SizeUnits": 0,
+						"IsHoming": true,
+						"SpeedSubUnits": 10000,
+						"IsBlockable": false,
+						"ApplyToAll": false
+					},
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Physical",
+								"Expression": {
+									"Stat": "AttackPhysicalDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Stat": "AttackEnergyDamage",
+									"StatSource": "Sender"
+								}
+							},
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Pure",
+								"Expression": {
+									"Stat": "AttackPureDamage",
+									"StatSource": "Sender"
+								}
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"OmegaAbilitiesSelection": "Cycle",
+	"OmegaAbilities": [
+		{
+			"Name": "Bright Flourish I",
+			"TotalDurationMs": 2000,
+			"Skills": [
+				{
+					"Name": "Damage three lowest health enemies",
+					"Targeting": {
+						"Type": "ExpressionCheck",
+						"Guidance": [
+							"Ground",
+							"Airborne",
+							"Underground"
+						],
+						"Group": "Enemy",
+						"Lowest": true,
+						"Num": 3,
+						"Expression": {
+							"Stat": "CurrentHealth%",
+							"StatSource": "Sender"
+						}
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground",
+							"Airborne",
+							"Underground"
+						],
+						"PreDeploymentDelayPercentage": 100
+					},
+					"PercentageOfAbilityDuration": 50,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantDamage",
+								"DamageType": "Energy",
+								"Expression": {
+									"Operation": "+",
+									"Operands": [
+										{
+											"Operation": "*",
+											"Operands": [
+												{
+													"Operation": "%",
+													"Operands": [
+														8,
+														{
+															"Operation": "-",
+															"Operands": [
+																{
+																	"Stat": "MaxHealth",
+																	"StatSource": "Receiver"
+																},
+																{
+																	"Stat": "CurrentHealth",
+																	"StatSource": "Receiver"
+																}
+															]
+														}
+													]
+												},
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												}
+											]
+										},
+										{
+											"Operation": "*",
+											"Operands": [
+												100000,
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												}
+											]
+										}
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"Name": "Heal three lowest health allies",
+					"Targeting": {
+						"Type": "ExpressionCheck",
+						"Guidance": [
+							"Ground",
+							"Airborne",
+							"Underground"
+						],
+						"Group": "Ally",
+						"Lowest": true,
+						"Self": true,
+						"Num": 3,
+						"Expression": {
+							"Stat": "CurrentHealth%",
+							"StatSource": "Sender"
+						}
+					},
+					"Deployment": {
+						"Type": "Direct",
+						"Guidance": [
+							"Ground",
+							"Airborne",
+							"Underground"
+						],
+						"PreDeploymentDelayPercentage": 0
+					},
+					"PercentageOfAbilityDuration": 50,
+					"EffectPackage": {
+						"Effects": [
+							{
+								"Type": "InstantHeal",
+								"HealType": "Normal",
+								"Expression": {
+									"Operation": "+",
+									"Operands": [
+										{
+											"Operation": "*",
+											"Operands": [
+												{
+													"Operation": "%",
+													"Operands": [
+														8,
+														{
+															"Operation": "-",
+															"Operands": [
+																{
+																	"Stat": "MaxHealth",
+																	"StatSource": "Receiver"
+																},
+																{
+																	"Stat": "CurrentHealth",
+																	"StatSource": "Receiver"
+																}
+															]
+														}
+													]
+												},
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												}
+											]
+										},
+										{
+											"Operation": "*",
+											"Operands": [
+												100000,
+												{
+													"Stat": "OmegaPowerPercentage",
+													"StatSource": "Sender"
+												}
+											]
+										}
+									]
+								}
+							},
+							{
+								"Type": "Buff",
+								"Stat": "OmegaPowerPercentage",
+								"DurationMs": -1,
+								"OverlapProcessType": "Stacking",
+								"Expression": 5
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"DisplayName": "Ador",
+	"DisplayDescription": "Ador summons 3 spotlights, targeting the 3 lowest Health allies and enemies.\r\n\r\nAllies are healed <MaxHealth>8%</> (<OmegaPowerPercentage></>) of their missing Health + <MaxHealth>100</> (<OmegaPowerPercentage></>) Health and gain <OmegaPowerPercentage>5</> Omega Power.\r\n\r\nEnemies are dealt <AttackEnergyDamage>8%</> (<OmegaPowerPercentage></>) of their missing Health + <AttackEnergyDamage>100</> (<OmegaPowerPercentage></>) Energy Damage.\r\n\r\nHeal%: 8% (<MaxHealth></><OmegaPowerPercentage></>)\r\nFlat Heal: <MaxHealth>100</> (<OmegaPowerPercentage></>)\r\nDamage%: 8% (<MaxHealth></><OmegaPowerPercentage></>)\r\nFlat Damage: <AttackEnergyDamage>100</> (<OmegaPowerPercentage></>)",
+	"Intro": "The rocky grasslands of Brightland Steppes hold many surprises, from large floating bubbles to peculiar boulders held up by a vast network of never-ending roots. The lush green valleys are in a constant state of flow as the wind blows water through tall grasslands, and clouds roll in and out from various directions. Within this surreal landscape, the Ador abounds, galloping with whimsy through a truly stunning landscape.",
+	"Summary": "The Ador is a delicate, dark green creature with luminous pink antlers and fin-shaped horns, fitting seamlessly into its magical surroundings. Its antlers can summon light and emit a healing mist, aiding other creatures and enhancing plant growth, while it remains vigilant against predators. The Ador's physiology includes bioluminescent bacteria, toxic purple segments, and a specialized digestive system that produces regenerative antibodies.",
+	"Biology": {
+		"Physiology": "Delicate in stature, the Ador is dark green with small purple streaks and cream sections across its torso. Atop its head are two luminous pink antlers, surrounded with clusters of fern-like growths that glow aquamarine. At the centre of this vibrant crown are a pair of large fin-shaped horns that line up side by side. With floppy ears and large black eyes accented with purple, the Ador fits right in with the magical landscape.",
+		"Behaviour": "The Ador's enchanting pink antlers can summon light in even the darkest places, helping bioluminescent plants glow brighter. It leaves behind a trail of healing mist that the winds spread across the plains, helping Illuvials in need. The Ador is skittish and often runs from aggressors when it is alone. However, it will stand its ground and defend its allies when in a herd. It is vigilant in watching for predators and quick to alert others to a threat. When at ease, it enjoys nuzzling flowers and watching them bloom from the flourishing energy of its antlers."
+	},
+	"ImageURL": "https://media.illuvium.io/web/NFT/Illuvials/ElkStage1/ElkStage1_default_default_webp.3840x2160/ElkStage1_default_default.webp",
+	"AnimationURL": "https://media.illuvium.io/web/NFT/Illuvials/ElkStage1/ElkStage1_default_default_hls.m3u8/ElkStage1_default_default_master.m3u8",
+	"Facts": {
+		"Kol": [
+			"When the Ador is relaxed, its antlers release a glowing, healing mist that alleviates the pain.",
+			"The Ador's restorative abilities amplify when it is with other empathic Illuvials. Herds of Ador are so powerful that they can grow thick tendrils of plants that are strong enough to carry them across bodies of water.",
+			"The Ador's ears perk up when curious and flatten when afraid. Nearby plants often grow or shrink in response to their moods."
+		],
+		"Buckley": [
+			"The Ador's antlers are full of bioluminescent bacteria with regenerative abilities that are released in plumes. Its purple segments are toxic to most other life forms but do not harm the bacteria.",
+			"The fern-like growths on Ador's head are separate organisms that offer immune protection to their host body. They are capable of drawing nutrients from neighbouring plants when they sense danger.",
+			"The Ador has a specialised digestive system that filters out living stem cells from its plant-based diet to produce universal regenerative antibodies.",
+			"The Ador has stores of nitrogen-rich fertilizers in its body that can be released in mist form and stimulate the growth of plants in its environment.",
+			"The Ador's hormonal glands are capable of mimicking target plant or Illuvial hormones to manipulate their health."
+		]
+	},
+	"TraitOrderLegacy": [
+		5,
+		3,
+		2,
+		6,
+		1,
+		4
+	],
+	"Description": {
+		"Format": "Ador summons {TargetNum} spotlights, targeting the {TargetNum} lowest Health allies and enemies.\r\n\r\nAllies are healed <MaxHealth>{HealPercent}%</> (<OmegaPowerPercentage></>) of their missing Health + <MaxHealth>{FlatHeal}</> (<OmegaPowerPercentage></>) Health and gain <OmegaPowerPercentage>{OmegaPowerBuff}</> Omega Power.\r\n\r\nEnemies are dealt <AttackEnergyDamage>{DamagePercent}%</> (<OmegaPowerPercentage></>) of their missing Health + <AttackEnergyDamage>{FlatDamage}</> (<OmegaPowerPercentage></>) Energy Damage.\r\n\r\nHeal%: {HealPercent}% (<MaxHealth></><OmegaPowerPercentage></>)\r\nFlat Heal: <MaxHealth>{FlatHeal}</> (<OmegaPowerPercentage></>)\r\nDamage%: {DamagePercent}% (<MaxHealth></><OmegaPowerPercentage></>)\r\nFlat Damage: <AttackEnergyDamage>{FlatDamage}</> (<OmegaPowerPercentage></>)",
+		"Parameters": {
+			"TargetNum": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].Targeting.Num"
+			},
+			"HealPercent": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].Expression.Operands[0].Operands[0].Operands[0]"
+			},
+			"FlatHeal": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[0].Expression.Operands[1].Operands[0]",
+				"ValueMultiplier": 0.001
+			},
+			"OmegaPowerBuff": {
+				"ParameterPath": "OmegaAbilities[0].Skills[1].EffectPackage.Effects[1].Expression"
+			},
+			"DamagePercent": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[0].Operands[0].Operands[0]"
+			},
+			"FlatDamage": {
+				"ParameterPath": "OmegaAbilities[0].Skills[0].EffectPackage.Effects[0].Expression.Operands[1].Operands[0]",
+				"ValueMultiplier": 0.001
+			}
+		}
+	},
+	"DisplayDescriptionNormalized": "Ador summons 3 spotlights, targeting the 3 lowest Health allies and enemies.\r\n\r\nAllies are healed 8% () of their missing Health + 100 () Health and gain 5 Omega Power.\r\n\r\nEnemies are dealt 8% () of their missing Health + 100 () Energy Damage.\r\n\r\nHeal%: 8% ()\r\nFlat Heal: 100 ()\r\nDamage%: 8% ()\r\nFlat Damage: 100 ()",
+	"TraitOrder": {
+		"Arena": {
+			"AttackDamage": 5,
+			"AttackSpeed": 3,
+			"Health": 2,
+			"MovementSpeed": 6,
+			"OmegaPower": 1,
+			"Resistance": 4
+		}
+	}
+}
