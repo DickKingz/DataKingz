@@ -65,13 +65,15 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         // Initialize Passport client
         const passport = new Passport({
           baseConfig: {
-            environment: import.meta.env.VITE_ENVIRONMENT === 'production' ? 'production' : 'sandbox',
+            environment: 'production',
             publishableKey: import.meta.env.VITE_PUBLISHABLE_KEY || '',
           },
           clientId: import.meta.env.VITE_PASSPORT_CLIENT_ID || '',
           redirectUri: window.location.origin + '/redirect',
-          scope: 'openid offline_access email profile',
+          logoutMode: 'redirect',
           logoutRedirectUri: window.location.origin + '/logout',
+          audience: 'platform_api',
+          scope: 'openid offline_access email profile',
         });
 
         setPassportClient(passport);

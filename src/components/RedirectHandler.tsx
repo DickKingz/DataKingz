@@ -10,7 +10,6 @@ const RedirectHandler: React.FC = () => {
         window.location.replace('/');
       });
     }
-    // eslint-disable-next-line
   }, [isLoading, login]);
 
   return (
