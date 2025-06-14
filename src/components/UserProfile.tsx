@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { User, LogOut, Settings, Shield, Wallet, Mail, Calendar, Crown, Hash } from 'lucide-react';
+import { User, LogOut, Settings, Shield, Wallet, Mail, Calendar, Crown, Hash, Copy } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 
 interface UserProfileProps {
@@ -10,6 +10,7 @@ interface UserProfileProps {
 const UserProfile: React.FC<UserProfileProps> = ({ isOpen, onClose }) => {
   const { user, logout, isLoading } = useAuth();
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
+  const [copiedField, setCopiedField] = useState<string | null>(null);
 
   const handleLogout = async () => {
     try {
@@ -35,6 +36,15 @@ const UserProfile: React.FC<UserProfileProps> = ({ isOpen, onClose }) => {
     return `${address.slice(0, 6)}...${address.slice(-4)}`;
   };
 
+  const handleCopy = (value: string, field: string) => {
+    navigator.clipboard.writeText(value);
+    setCopiedField(field);
+    setTimeout(() => setCopiedField(null), 1500);
+  };
+
+  // Prefer nickname, fallback to email prefix
+  const displayName = user.nickname || user.email.split('@')[0] || 'User';
+
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
       <div className="bg-gray-900 rounded-2xl border border-gray-700 max-w-md w-full mx-4 overflow-hidden">
@@ -55,7 +65,7 @@ const UserProfile: React.FC<UserProfileProps> = ({ isOpen, onClose }) => {
               <User className="w-8 h-8 text-white" />
             </div>
             <div>
-              <h3 className="text-white text-lg font-semibold">{user.nickname}</h3>
+              <h3 className="text-white text-lg font-semibold">{displayName}</h3>
               <div className="flex items-center gap-2">
                 <span className="text-purple-200 text-sm">ID: {user.playerId}</span>
                 {user.isAdmin && (
@@ -80,7 +90,13 @@ const UserProfile: React.FC<UserProfileProps> = ({ isOpen, onClose }) => {
                 <Hash className="w-5 h-5 text-gray-400" />
                 <div>
                   <div className="text-gray-400 text-sm">Player ID</div>
-                  <div className="text-white font-mono">{user.playerId}</div>
+                  <div className="text-white font-mono flex items-center gap-2">
+                    {user.playerId}
+                    <button onClick={() => handleCopy(user.playerId, 'playerId')} title="Copy Player ID">
+                      <Copy className="w-4 h-4 text-gray-300 hover:text-white" />
+                    </button>
+                    {copiedField === 'playerId' && <span className="text-green-400 text-xs ml-1">Copied!</span>}
+                  </div>
                 </div>
               </div>
 
@@ -96,7 +112,15 @@ const UserProfile: React.FC<UserProfileProps> = ({ isOpen, onClose }) => {
                 <Wallet className="w-5 h-5 text-gray-400" />
                 <div>
                   <div className="text-gray-400 text-sm">Wallet Address</div>
-                  <div className="text-white font-mono text-sm">{truncateAddress(user.walletAddress)}</div>
+                  <div className="text-white font-mono text-sm flex items-center gap-2">
+                    {user.walletAddress ? truncateAddress(user.walletAddress) : 'No wallet connected'}
+                    {user.walletAddress && (
+                      <button onClick={() => handleCopy(user.walletAddress, 'walletAddress')} title="Copy Wallet Address">
+                        <Copy className="w-4 h-4 text-gray-300 hover:text-white" />
+                      </button>
+                    )}
+                    {copiedField === 'walletAddress' && <span className="text-green-400 text-xs ml-1">Copied!</span>}
+                  </div>
                 </div>
               </div>
 

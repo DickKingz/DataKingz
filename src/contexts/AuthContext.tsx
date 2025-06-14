@@ -182,13 +182,78 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   };
 
+  const loginCallback = async () => {
+    if (!passportClient) {
+      console.error('Passport client not initialized');
+      return;
+    }
+    try {
+      await passportClient.loginCallback();
+      const userInfo = await passportClient.getUserInfo();
+      if (userInfo) {
+        // Fetch Illuvium profile by nickname
+        let illuviumProfile: { id?: string; walletAddress?: string; nickname?: string } | null = null;
+        if (userInfo.nickname) {
+          try {
+            const res = await fetch(`https://api.illuvium-game.io/gamedata/players/search?nickname=${encodeURIComponent(userInfo.nickname)}`);
+            const data = await res.json();
+            if (data && data.length > 0) {
+              illuviumProfile = data[0];
+            }
+          } catch (apiErr) {
+            console.error('Failed to fetch Illuvium profile:', apiErr);
+          }
+        }
+        // Get linked addresses from Passport
+        let linkedAddresses: string[] = [];
+        try {
+          linkedAddresses = await passportClient.getLinkedAddresses();
+        } catch (err) {
+          console.warn('Could not fetch linked addresses:', err);
+        }
+        // Build a complete User object
+        const now = new Date().toISOString();
+        const id = illuviumProfile?.id || userInfo.sub;
+        const email = userInfo.email || '';
+        const playerId = userInfo.sub;
+        const nickname = illuviumProfile?.nickname || userInfo.nickname || email.split('@')[0] || 'User';
+        const walletAddress = illuviumProfile?.walletAddress || (userInfo as any).passportAddress || linkedAddresses[0] || '';
+        const isAdmin = ADMIN_EMAILS.includes(email.toLowerCase());
+        const userData: User = {
+          id,
+          email,
+          walletAddress,
+          playerId,
+          nickname,
+          isAdmin,
+          createdAt: now,
+          lastLogin: now,
+          // Optionally add adminLevel if you want
+        };
+        setUser(userData);
+        console.log('User logged in via callback:', userData, { linkedAddresses });
+        // Log to Firestore
+        await setDoc(doc(db, 'logins', userData.id), {
+          ...userData,
+          linkedAddresses,
+          loginTime: now,
+        });
+      } else {
+        console.error('No user info returned from Passport');
+      }
+    } catch (error) {
+      console.error('Login callback failed:', error);
+    }
+  };
+
   const value: AuthContextType = {
     user,
     isLoading,
     isAuthenticated: !!user,
     login,
     logout,
-    checkAdminStatus
+    checkAdminStatus,
+    loginCallback
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

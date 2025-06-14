@@ -213,4 +213,5 @@ export interface AuthContextType {
   login: () => Promise<void>;
   logout: () => Promise<void>;
   checkAdminStatus: (email: string) => boolean;
+  loginCallback: () => Promise<void>;
 }
