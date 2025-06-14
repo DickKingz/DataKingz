@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { User, LogOut, Settings, Shield, Wallet, Mail, Calendar, Crown, Hash, Copy } from 'lucide-react';
+import { User, LogOut, Settings, Shield, Wallet, Mail, Calendar, Crown, Hash, Copy, X } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 
 interface UserProfileProps {
@@ -11,6 +11,9 @@ const UserProfile: React.FC<UserProfileProps> = ({ isOpen, onClose }) => {
   const { user, logout, isLoading } = useAuth();
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const [copiedField, setCopiedField] = useState<string | null>(null);
+
+  // Debug user object for nickname/wallet issues
+  console.log('UserProfile user:', user);
 
   const handleLogout = async () => {
     try {
@@ -46,35 +49,37 @@ const UserProfile: React.FC<UserProfileProps> = ({ isOpen, onClose }) => {
   const displayName = user.nickname || user.email.split('@')[0] || 'User';
 
   return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
-      <div className="bg-gray-900 rounded-2xl border border-gray-700 max-w-md w-full mx-4 overflow-hidden">
-        {/* Header */}
-        <div className="bg-gradient-to-br from-purple-600 to-blue-700 p-6">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-white text-xl font-bold">Profile</h2>
-            <button
-              onClick={onClose}
-              className="text-white/80 hover:text-white transition-colors"
-            >
-              <Settings className="w-5 h-5" />
-            </button>
+    <div
+      className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50"
+      onClick={onClose}
+    >
+      <div
+        className="bg-gradient-to-br from-purple-600 to-blue-700 p-6"
+        onClick={e => e.stopPropagation()}
+      >
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-white text-xl font-bold">Profile</h2>
+          <button
+            onClick={onClose}
+            className="text-white/80 hover:text-white transition-colors"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+        <div className="flex items-center gap-4">
+          <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center">
+            <User className="w-8 h-8 text-white" />
           </div>
-          
-          <div className="flex items-center gap-4">
-            <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center">
-              <User className="w-8 h-8 text-white" />
-            </div>
-            <div>
-              <h3 className="text-white text-lg font-semibold">{displayName}</h3>
-              <div className="flex items-center gap-2">
-                <span className="text-purple-200 text-sm">ID: {user.playerId}</span>
-                {user.isAdmin && (
-                  <div className="bg-yellow-500/20 border border-yellow-500/30 rounded-full px-2 py-1 flex items-center gap-1">
-                    <Crown className="w-3 h-3 text-yellow-400" />
-                    <span className="text-yellow-400 text-xs font-medium">ADMIN</span>
-                  </div>
-                )}
-              </div>
+          <div>
+            <h3 className="text-white text-lg font-semibold">{displayName}</h3>
+            <div className="flex items-center gap-2">
+              <span className="text-purple-200 text-sm">ID: {user.playerId}</span>
+              {user.isAdmin && (
+                <div className="bg-yellow-500/20 border border-yellow-500/30 rounded-full px-2 py-1 flex items-center gap-1">
+                  <Crown className="w-3 h-3 text-yellow-400" />
+                  <span className="text-yellow-400 text-xs font-medium">ADMIN</span>
+                </div>
+              )}
             </div>
           </div>
         </div>
