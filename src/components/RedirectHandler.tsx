@@ -2,14 +2,16 @@ import { useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 
 const RedirectHandler: React.FC = () => {
-  const { login } = useAuth();
+  const { login, isLoading } = useAuth();
 
   useEffect(() => {
-    login().then(() => {
-      window.location.replace('/');
-    });
+    if (!isLoading) {
+      login().then(() => {
+        window.location.replace('/');
+      });
+    }
     // eslint-disable-next-line
-  }, []);
+  }, [isLoading, login]);
 
   return (
     <div style={{ color: 'white', textAlign: 'center', marginTop: '2rem' }}>
