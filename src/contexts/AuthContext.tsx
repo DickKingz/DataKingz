@@ -70,10 +70,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           },
           clientId: import.meta.env.VITE_PASSPORT_CLIENT_ID || '',
           redirectUri: window.location.origin + '/redirect',
-          logoutMode: 'redirect',
           logoutRedirectUri: window.location.origin + '/logout',
+          logoutMode: 'redirect',
           audience: 'platform_api',
-          scope: 'openid offline_access email profile',
+          scope: 'openid offline_access email transact',
         });
 
         setPassportClient(passport);
