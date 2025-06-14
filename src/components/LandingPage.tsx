@@ -112,8 +112,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                 {/* Enhanced logo container with bigger size and rounded edges */}
                 <div className="w-40 h-40 rounded-3xl flex items-center justify-center mx-auto mb-6 relative overflow-hidden bg-gradient-to-br from-purple-600/10 via-blue-600/10 to-cyan-500/10 backdrop-blur-sm border border-purple-500/20">
                   <img 
-                    src="/Illuvilyticslogo.png" 
-                    alt="Illuvilytics" 
+                    src="/DataKingzLogo.png" 
+                    alt="DataKingz" 
                     className="w-36 h-36 object-contain filter drop-shadow-2xl animate-pulse rounded-2xl"
                   />
                   {/* Enhanced glow effects */}
@@ -129,10 +129,10 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             <div className={`mb-6 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
               <h1 className="text-7xl md:text-8xl font-black mb-4">
                 <span className="bg-gradient-to-r from-white via-gray-200 to-gray-300 bg-clip-text text-transparent">
-                  Illuvi
+                  Data
                 </span>
                 <span className="bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                  lytics
+                  Kingz
                 </span>
               </h1>
               <div className="flex items-center justify-center gap-3 mb-6">
@@ -257,7 +257,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                 <span className="text-gray-500">Always Updated</span>
               </div>
               <p className="text-gray-400 leading-relaxed">
-                Built by Rangers, for Rangers. Join thousands of players using Illuvilytics to master the meta, 
+                Built by Rangers, for Rangers. Join thousands of players using DataKingz to master the meta, 
                 climb the ranks, and dominate the Gauntlet. Your journey to becoming a legendary Ranger starts here.
               </p>
             </div>

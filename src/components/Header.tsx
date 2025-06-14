@@ -426,8 +426,8 @@ const Header: React.FC<HeaderProps> = ({
                 <div className="relative">
                   <div className="w-14 h-14 rounded-2xl flex items-center justify-center shadow-2xl group-hover:shadow-purple-500/40 transition-all duration-300 group-hover:scale-105 overflow-hidden bg-gradient-to-br from-purple-500/10 via-blue-500/10 to-cyan-400/10 backdrop-blur-sm border border-purple-500/20">
                     <img 
-                      src="/Illuvilyticslogo.png" 
-                      alt="Illuvilytics" 
+                      src="/DataKingzLogo.png" 
+                      alt="DataKingz" 
                       className="w-12 h-12 object-contain filter drop-shadow-lg group-hover:drop-shadow-xl transition-all duration-300 rounded-xl"
                     />
                   </div>
@@ -436,7 +436,7 @@ const Header: React.FC<HeaderProps> = ({
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="text-white font-bold text-xl bg-gradient-to-r from-white via-purple-200 to-cyan-200 bg-clip-text text-transparent">
-                    <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">Illuvi</span>lytics
+                    <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">Data</span>Kingz
                   </span>
                   <div className="relative">
                     <span className="bg-gradient-to-r from-purple-500 to-cyan-500 text-white text-xs px-3 py-1 rounded-full font-medium shadow-lg">
@@ -898,8 +898,8 @@ const Header: React.FC<HeaderProps> = ({
               <div className="relative group">
                 <div className="w-20 h-20 rounded-2xl flex items-center justify-center shadow-2xl group-hover:shadow-purple-500/40 transition-all duration-300 group-hover:scale-105 overflow-hidden bg-gradient-to-br from-purple-500/10 via-blue-500/10 to-cyan-400/10 backdrop-blur-sm border border-purple-500/20">
                   <img 
-                    src="/Illuvilyticslogo.png" 
-                    alt="Illuvilytics" 
+                    src="/DataKingzLogo.png" 
+                    alt="DataKingz" 
                     className="w-16 h-16 object-contain filter drop-shadow-lg group-hover:drop-shadow-xl transition-all duration-300 rounded-xl"
                   />
                 </div>

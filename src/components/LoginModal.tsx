@@ -92,8 +92,8 @@ Safari:
         <div className="text-center mb-8">
           <div className="w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-4 relative overflow-hidden bg-gradient-to-br from-purple-500/10 via-blue-500/10 to-cyan-400/10 backdrop-blur-sm border border-purple-500/20">
             <img 
-              src="/Illuvilyticslogo.png" 
-              alt="Illuvilytics" 
+              src="/DataKingzLogo.png" 
+              alt="DataKingz" 
               className="w-16 h-16 object-contain filter drop-shadow-lg rounded-xl"
             />
             <div className="absolute inset-0 bg-gradient-to-br from-purple-500/30 via-blue-500/30 to-cyan-400/30 rounded-2xl blur-lg opacity-50" />
