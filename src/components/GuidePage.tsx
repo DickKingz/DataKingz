@@ -3,6 +3,7 @@ import { ArrowLeft, Search, BookOpen, HelpCircle, Trophy, TrendingUp, Map, Coins
 
 interface GuidePageProps {
   onBack: () => void;
+  initialGuide?: string;
 }
 
 interface DictionaryEntry {
@@ -15,8 +16,8 @@ interface FAQEntry {
   answer: string;
 }
 
-const GuidePage: React.FC<GuidePageProps> = ({ onBack }) => {
-  const [activeGuide, setActiveGuide] = useState<string>('gauntlet-knowledge');
+const GuidePage: React.FC<GuidePageProps> = ({ onBack, initialGuide }) => {
+  const [activeGuide, setActiveGuide] = useState<string>(initialGuide || 'dictionary');
   const [searchQuery, setSearchQuery] = useState('');
 
   // Dictionary data
@@ -120,13 +121,6 @@ const GuidePage: React.FC<GuidePageProps> = ({ onBack }) => {
   ];
 
   const guideItems = [
-    { 
-      id: 'gauntlet-knowledge', 
-      name: 'Gauntlet Knowledge', 
-      icon: <Trophy className="w-5 h-5" />, 
-      description: 'Tournament rules & rewards',
-      gradient: 'from-yellow-500 to-orange-500'
-    },
     { 
       id: 'dictionary', 
       name: 'Dictionary', 
@@ -690,36 +684,6 @@ const GuidePage: React.FC<GuidePageProps> = ({ onBack }) => {
                 </div>
               </div>
             </div>
-
-            {/* Guide Categories Preview */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-gray-800/50 backdrop-blur-xl rounded-xl p-6 border border-gray-700/50 hover:border-indigo-500/30 transition-all duration-300 group">
-                <div className="flex items-center gap-3 mb-2">
-                  <BookOpen className="w-6 h-6 text-indigo-400 group-hover:scale-110 transition-transform duration-200" />
-                  <span className="text-gray-300 font-medium">Game Mechanics</span>
-                </div>
-                <span className="text-white text-3xl font-bold">6</span>
-                <div className="text-indigo-400 text-sm mt-1">Core Systems</div>
-              </div>
-
-              <div className="bg-gray-800/50 backdrop-blur-xl rounded-xl p-6 border border-gray-700/50 hover:border-purple-500/30 transition-all duration-300 group">
-                <div className="flex items-center gap-3 mb-2">
-                  <HelpCircle className="w-6 h-6 text-purple-400 group-hover:scale-110 transition-transform duration-200" />
-                  <span className="text-gray-300 font-medium">FAQ & Dictionary</span>
-                </div>
-                <span className="text-white text-3xl font-bold">2</span>
-                <div className="text-purple-400 text-sm mt-1">Quick Reference</div>
-              </div>
-
-              <div className="bg-gray-800/50 backdrop-blur-xl rounded-xl p-6 border border-gray-700/50 hover:border-blue-500/30 transition-all duration-300 group">
-                <div className="flex items-center gap-3 mb-2">
-                  <Trophy className="w-6 h-6 text-blue-400 group-hover:scale-110 transition-transform duration-200" />
-                  <span className="text-gray-300 font-medium">Strategy Guides</span>
-                </div>
-                <span className="text-white text-3xl font-bold">1</span>
-                <div className="text-blue-400 text-sm mt-1">Tournament Info</div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -778,7 +742,7 @@ const GuidePage: React.FC<GuidePageProps> = ({ onBack }) => {
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes float {
           0%, 100% { transform: translateY(0px) rotate(0deg); }
           50% { transform: translateY(-15px) rotate(180deg); }

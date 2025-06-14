@@ -16,6 +16,8 @@ import TournamentCreator from './components/TournamentCreator';
 import TournamentView from './components/TournamentView';
 import { IlluvialsPage, AugmentsPage, WeaponsPage, Set1LandingPage, LegendaryAugmentsPage, DroneAugmentsPage } from './components/Set1Pages';
 import { mockAugments, mockCompositions, mockItems, mockGauntletData } from './data/mockData';
+import AnalyticsPage from './components/AnalyticsPage';
+import SynergyAugmentsPage from './components/Set1Pages/SynergyAugmentsPage';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<'landing' | 'app'>('landing');
@@ -30,19 +32,50 @@ function App() {
   
   // Set 1 page states
   const [showSet1Page, setShowSet1Page] = useState<string | null>(null);
+  const [showAnalytics, setShowAnalytics] = useState(false);
+  const [guideTopic, setGuideTopic] = useState<string>('dictionary');
 
-  const handleNavigateFromLanding = (destination: 'guides' | 'tierlist' | 'tournaments') => {
+  const handleNavigateFromLanding = (destination: string) => {
     setCurrentPage('app');
-    
+    // Reset all sub-page states
+    setShowGuidePage(false);
+    setShowCompBuilder(false);
+    setShowCommunitySubmissions(false);
+    setShowTournaments(false);
+    setShowTournamentCreator(false);
+    setSelectedComp(null);
+    setSelectedTournament(null);
+    setShowSet1Page(null);
+    setShowAnalytics(false);
+
     switch (destination) {
-      case 'guides':
-        setShowGuidePage(true);
+      case 'analytics':
+        setShowAnalytics(true);
         break;
       case 'tierlist':
         setActiveTab('comps');
         break;
+      case 'guides':
+        setShowGuidePage(true);
+        break;
+      case 'community':
+        setShowCommunitySubmissions(true);
+        break;
       case 'tournaments':
         setShowTournaments(true);
+        break;
+      case 'set1':
+        setShowSet1Page('main');
+        break;
+      case 'illuvials':
+      case 'augments':
+      case 'legendary-augments':
+      case 'weapons':
+      case 'drone-augments':
+      case 'amplifiers':
+        setShowSet1Page(destination);
+        break;
+      default:
         break;
     }
   };
@@ -67,8 +100,7 @@ function App() {
   };
 
   // Enhanced navigation handlers for specific actions
-  const handleShowGuides = () => {
-    // Reset all other states
+  const handleShowGuides = (topic: string = 'dictionary') => {
     setShowCompBuilder(false);
     setShowCommunitySubmissions(false);
     setShowTournaments(false);
@@ -76,8 +108,7 @@ function App() {
     setSelectedComp(null);
     setSelectedTournament(null);
     setShowSet1Page(null);
-    
-    // Show guides
+    setGuideTopic(topic);
     setShowGuidePage(true);
     setCurrentPage('app');
   };
@@ -201,6 +232,9 @@ function App() {
   };
 
   const renderContent = () => {
+    if (showAnalytics) {
+      return <AnalyticsPage onBack={() => setShowAnalytics(false)} />;
+    }
     // Set 1 pages take priority
     if (showSet1Page) {
       switch (showSet1Page) {
@@ -221,6 +255,8 @@ function App() {
           return <WeaponsPage onBack={() => setShowSet1Page('main')} />;
         case 'drone-augments':
           return <DroneAugmentsPage onBack={() => setShowSet1Page('main')} />;
+        case 'synergy-augments':
+          return <SynergyAugmentsPage onBack={() => setShowSet1Page('main')} />;
         default:
           return (
             <div className="p-8 text-center">
@@ -238,7 +274,7 @@ function App() {
     }
 
     if (showGuidePage) {
-      return <GuidePage onBack={() => setShowGuidePage(false)} />;
+      return <GuidePage onBack={() => setShowGuidePage(false)} initialGuide={guideTopic} />;
     }
 
     if (showCompBuilder) {
@@ -337,6 +373,7 @@ function App() {
             onShowTournaments={handleShowTournaments}
             onShowSet1Page={handleShowSet1Page}
             onShowSet1Main={handleShowSet1Main}
+            onShowAnalytics={() => setShowAnalytics(true)}
             showTabNavigation={shouldShowTabNavigation()}
             currentPage={pageContext.currentPage}
             currentSubPage={pageContext.currentSubPage}

@@ -53,15 +53,6 @@ const Set1LandingPage: React.FC<Set1LandingPageProps> = ({ onBack, onNavigateToP
           features: ['Melee Weapons', 'Ranged Weapons', 'Magic Weapons', 'Special Abilities']
         },
         { 
-          key: 'weapon-amplifiers',
-          name: 'Weapon Amplifiers', 
-          icon: <Gem className="w-8 h-8" />, 
-          description: 'Enhance weapon effectiveness with powerful modifiers',
-          count: '30+',
-          gradient: 'from-emerald-500 to-green-500',
-          features: ['Damage Boost', 'Special Effects', 'Stat Bonuses', 'Unique Mechanics']
-        },
-        { 
           key: 'drone-augments',
           name: 'Drone Augments', 
           icon: <Bot className="w-8 h-8" />, 
@@ -274,7 +265,7 @@ const Set1LandingPage: React.FC<Set1LandingPageProps> = ({ onBack, onNavigateToP
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes float {
           0%, 100% { transform: translateY(0px) rotate(0deg); }
           50% { transform: translateY(-15px) rotate(180deg); }

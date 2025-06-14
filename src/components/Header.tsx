@@ -9,10 +9,11 @@ interface HeaderProps {
   onTabChange: (tab: 'augments' | 'comps' | 'items' | 'gauntlet' | 'tournaments') => void;
   onShowBuilder?: () => void;
   onShowCommunity?: () => void;
-  onShowGuides?: () => void;
+  onShowGuides?: (topic: string) => void;
   onShowTournaments?: () => void;
   onShowSet1Page?: (page: string) => void;
   onShowSet1Main?: () => void;
+  onShowAnalytics?: () => void;
   showTabNavigation?: boolean; // New prop to control tab navigation visibility
   // New props for dynamic header content
   currentPage?: string;
@@ -28,6 +29,7 @@ const Header: React.FC<HeaderProps> = ({
   onShowTournaments,
   onShowSet1Page,
   onShowSet1Main,
+  onShowAnalytics,
   showTabNavigation = true, // Default to true for backward compatibility
   currentPage,
   currentSubPage
@@ -290,16 +292,15 @@ const Header: React.FC<HeaderProps> = ({
 
   const headerContent = getHeaderContent();
 
-  const guideItems = [
-    { name: 'Gauntlet Knowledge', icon: <Trophy className="w-4 h-4" />, description: 'Tournament rules & rewards' },
-    { name: 'Dictionary', icon: <BookOpen className="w-4 h-4" />, description: 'Terms & terminology' },
-    { name: 'FAQ', icon: <HelpCircle className="w-4 h-4" />, description: 'Frequently asked questions' },
-    { name: 'Game Progression', icon: <TrendingUp className="w-4 h-4" />, description: 'Level & economy strategy' },
-    { name: 'Shop Values', icon: <Coins className="w-4 h-4" />, description: 'Pricing & probabilities' },
-    { name: 'Hyper', icon: <Zap className="w-4 h-4" />, description: 'Hyper system mechanics' },
-    { name: 'Regions', icon: <Map className="w-4 h-4" />, description: 'Regional differences' },
-    { name: 'Match Flow', icon: <Crown className="w-4 h-4" />, description: 'Round progression' },
-    { name: 'PvE Rounds', icon: <Swords className="w-4 h-4" />, description: 'Neutral round strategies' },
+  const guideTopics = [
+    { key: 'dictionary', name: 'Dictionary', icon: <BookOpen className="w-5 h-5 text-blue-400" />, description: 'Terms & terminology' },
+    { key: 'faq', name: 'FAQ', icon: <HelpCircle className="w-5 h-5 text-green-400" />, description: 'Frequently asked questions' },
+    { key: 'game-progression', name: 'Game Progression', icon: <TrendingUp className="w-5 h-5 text-pink-400" />, description: 'Level & economy strategy' },
+    { key: 'shop-values', name: 'Shop Values', icon: <Coins className="w-5 h-5 text-yellow-400" />, description: 'Pricing & probabilities' },
+    { key: 'hyper', name: 'Hyper', icon: <Zap className="w-5 h-5 text-purple-400" />, description: 'Hyper system mechanics' },
+    { key: 'regions', name: 'Regions', icon: <Map className="w-5 h-5 text-cyan-400" />, description: 'Regional differences' },
+    { key: 'match-flow', name: 'Match Flow', icon: <Crown className="w-5 h-5 text-pink-400" />, description: 'Round progression' },
+    { key: 'pve-rounds', name: 'PvE Rounds', icon: <Swords className="w-5 h-5 text-orange-400" />, description: 'Neutral round strategies' },
   ];
 
   const gauntletItems = [
@@ -350,14 +351,6 @@ const Header: React.FC<HeaderProps> = ({
           description: 'Combat equipment for your Illuvials',
           count: '45+',
           gradient: 'from-red-500 to-pink-500'
-        },
-        { 
-          key: 'weapon-amplifiers',
-          name: 'Weapon Amplifiers', 
-          icon: <Gem className="w-5 h-5" />, 
-          description: 'Enhance weapon effectiveness',
-          count: '30+',
-          gradient: 'from-emerald-500 to-green-500'
         },
         { 
           key: 'drone-augments',
@@ -417,7 +410,7 @@ const Header: React.FC<HeaderProps> = ({
             <div className="flex items-center gap-8">
               {/* Logo with enhanced styling and navigation */}
               <button
-                onClick={() => onShowGuides?.()}
+                onClick={() => onShowGuides?.('guides')}
                 className="flex items-center gap-3 group cursor-pointer hover:scale-105 transition-all duration-300"
               >
                 <div className="relative">
@@ -452,6 +445,14 @@ const Header: React.FC<HeaderProps> = ({
                 >
                   <span className="relative z-10">Tierlist</span>
                   <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-xl blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-300" />
+                </button>
+                {/* Analytics Button */}
+                <button
+                  onClick={onShowAnalytics}
+                  className="relative group bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-6 py-2.5 rounded-xl font-bold hover:from-blue-400 hover:to-cyan-400 transition-all duration-300 shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:scale-105"
+                >
+                  <span className="relative z-10">Analytics</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-300" />
                 </button>
 
                 {/* Set 1 Dropdown */}
@@ -577,23 +578,16 @@ const Header: React.FC<HeaderProps> = ({
                       : 'opacity-0 scale-95 -translate-y-2 pointer-events-none z-[-1]'
                   }`}>
                     <div className="p-3">
-                      {guideItems.map((item, idx) => (
+                      {guideTopics.map(topic => (
                         <button
-                          key={idx}
-                          onClick={() => {
-                            onShowGuides?.();
-                            setShowGuidesDropdown(false);
-                          }}
-                          className="w-full flex items-start gap-3 px-4 py-3 text-slate-300 hover:text-white hover:bg-slate-700/50 transition-all duration-200 text-left rounded-lg group"
+                          key={topic.key}
+                          className="flex items-center gap-3 w-full px-4 py-2 hover:bg-slate-700/40 rounded-lg transition-all duration-200"
+                          onClick={() => onShowGuides?.(topic.key)}
                         >
-                          <div className="text-purple-400 group-hover:text-purple-300 mt-0.5 group-hover:scale-110 transition-all duration-200">
-                            {item.icon}
-                          </div>
-                          <div className="flex-1">
-                            <div className="font-medium text-sm">{item.name}</div>
-                            <div className="text-xs text-slate-400 group-hover:text-slate-300 mt-0.5">
-                              {item.description}
-                            </div>
+                          {topic.icon}
+                          <div>
+                            <div className="font-semibold text-white">{topic.name}</div>
+                            <div className="text-xs text-slate-400">{topic.description}</div>
                           </div>
                         </button>
                       ))}

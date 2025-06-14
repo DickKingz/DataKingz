@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Shield, Sparkles, Users, Trophy, Zap, Star, ArrowRight, Play, BookOpen, Target, Gem, Bot, Layers } from 'lucide-react';
+import { Shield, Sparkles, Users, Trophy, Zap, Star, ArrowRight, Play, BookOpen, Target, Gem, Bot, Layers, BarChart } from 'lucide-react';
 
 interface LandingPageProps {
-  onNavigate: (destination: 'guides' | 'tierlist' | 'tournaments') => void;
+  onNavigate: (destination: string) => void;
 }
 
 const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
@@ -22,38 +22,42 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
 
   const features = [
     {
-      icon: <Trophy className="w-8 h-8" />,
-      title: "Tournament Hub",
-      description: "Create, join, and compete in community tournaments",
-      gradient: "from-yellow-400 to-orange-500"
+      icon: <BarChart className="w-8 h-8" />,
+      title: "Analytics",
+      description: "Meta stats, player activity, and match data",
+      gradient: "from-blue-400 to-cyan-500",
+      destination: 'analytics',
     },
     {
       icon: <Target className="w-8 h-8" />,
       title: "Tier Lists",
       description: "Comprehensive rankings for all game elements",
-      gradient: "from-purple-400 to-pink-500"
+      gradient: "from-purple-400 to-pink-500",
+      destination: 'tierlist',
     },
     {
       icon: <BookOpen className="w-8 h-8" />,
       title: "Strategy Guides",
       description: "In-depth guides and meta analysis",
-      gradient: "from-blue-400 to-cyan-500"
+      gradient: "from-blue-400 to-cyan-500",
+      destination: 'guides',
     },
     {
       icon: <Users className="w-8 h-8" />,
       title: "Community Tools",
       description: "Build and share compositions with the community",
-      gradient: "from-green-400 to-emerald-500"
-    }
+      gradient: "from-green-400 to-emerald-500",
+      destination: 'community',
+    },
   ];
 
   const gameElements = [
-    { icon: <Users className="w-6 h-6" />, name: "Illuvials", count: "150+", color: "text-purple-400" },
-    { icon: <Sparkles className="w-6 h-6" />, name: "Augments", count: "80+", color: "text-cyan-400" },
-    { icon: <Star className="w-6 h-6" />, name: "Legendary", count: "12", color: "text-yellow-400" },
-    { icon: <Zap className="w-6 h-6" />, name: "Weapons", count: "45+", color: "text-red-400" },
-    { icon: <Gem className="w-6 h-6" />, name: "Amplifiers", count: "30+", color: "text-emerald-400" },
-    { icon: <Bot className="w-6 h-6" />, name: "Drones", count: "25+", color: "text-indigo-400" }
+    { icon: <Users className="w-6 h-6" />, name: "Illuvials", count: "150+", color: "text-purple-400", destination: 'illuvials' },
+    { icon: <Sparkles className="w-6 h-6" />, name: "Augments", count: "80+", color: "text-cyan-400", destination: 'augments' },
+    { icon: <Star className="w-6 h-6" />, name: "Legendary", count: "12", color: "text-yellow-400", destination: 'legendary-augments' },
+    { icon: <Zap className="w-6 h-6" />, name: "Weapons", count: "45+", color: "text-red-400", destination: 'weapons' },
+    { icon: <Gem className="w-6 h-6" />, name: "Amplifiers", count: "30+", color: "text-emerald-400", destination: 'amplifiers' },
+    { icon: <Bot className="w-6 h-6" />, name: "Drones", count: "25+", color: "text-indigo-400", destination: 'drone-augments' },
   ];
 
   return (
@@ -155,31 +159,23 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             <div className={`mb-12 transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
                 {features.map((feature, index) => (
-                  <div
+                  <button
                     key={index}
-                    className={`relative group transition-all duration-500 ${
-                      currentFeature === index ? 'scale-105' : 'scale-100'
-                    }`}
+                    className={`relative group transition-all duration-500 w-full text-left focus:outline-none ${currentFeature === index ? 'scale-105' : 'scale-100'}`}
+                    onClick={() => onNavigate(feature.destination)}
+                    tabIndex={0}
                   >
-                    <div className={`bg-gray-950/70 backdrop-blur-xl rounded-2xl p-6 border transition-all duration-500 ${
-                      currentFeature === index 
-                        ? 'border-purple-500/30 shadow-2xl shadow-purple-900/20' 
-                        : 'border-gray-800/50 hover:border-gray-700/50'
-                    }`}>
-                      <div className={`w-16 h-16 bg-gradient-to-br ${feature.gradient} rounded-xl flex items-center justify-center mb-4 mx-auto transition-all duration-300 ${
-                        currentFeature === index ? 'scale-110' : 'group-hover:scale-105'
-                      }`}>
-                        <div className="text-white">
-                          {feature.icon}
-                        </div>
+                    <div className={`bg-gray-950/70 backdrop-blur-xl rounded-2xl p-6 border transition-all duration-500 ${currentFeature === index ? 'border-purple-500/30 shadow-2xl shadow-purple-900/20' : 'border-gray-800/50 hover:border-gray-700/50'}`}>
+                      <div className={`w-16 h-16 bg-gradient-to-br ${feature.gradient} rounded-xl flex items-center justify-center mb-4 mx-auto transition-all duration-300 ${currentFeature === index ? 'scale-110' : 'group-hover:scale-105'}`}>
+                        {feature.icon}
                       </div>
                       <h3 className="text-white font-bold text-lg mb-2">{feature.title}</h3>
                       <p className="text-gray-500 text-sm">{feature.description}</p>
                     </div>
                     {currentFeature === index && (
-                      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/10 to-cyan-900/10 rounded-2xl animate-pulse" />
+                      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/10 to-cyan-900/10 rounded-2xl animate-pulse pointer-events-none" />
                     )}
-                  </div>
+                  </button>
                 ))}
               </div>
             </div>
@@ -190,17 +186,18 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                 <h3 className="text-white font-bold text-2xl mb-6">Complete Set 1: Genesis Coverage</h3>
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
                   {gameElements.map((element, index) => (
-                    <div
+                    <button
                       key={index}
-                      className="text-center group hover:scale-105 transition-all duration-300"
+                      className="text-center group hover:scale-105 transition-all duration-300 focus:outline-none"
                       style={{ animationDelay: `${index * 0.1}s` }}
+                      onClick={() => onNavigate(element.destination)}
                     >
                       <div className={`w-12 h-12 bg-gray-900/50 rounded-xl flex items-center justify-center mb-3 mx-auto group-hover:bg-gray-800/50 transition-colors ${element.color}`}>
                         {element.icon}
                       </div>
                       <div className="text-white font-semibold text-lg">{element.count}</div>
                       <div className="text-gray-500 text-sm">{element.name}</div>
-                    </div>
+                    </button>
                   ))}
                 </div>
               </div>
@@ -210,17 +207,16 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             <div className={`transition-all duration-1000 delay-1100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
               <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
                 <button
-                  onClick={() => onNavigate('tierlist')}
+                  onClick={() => onNavigate('set1')}
                   className="group relative bg-gradient-to-r from-purple-700 to-blue-700 hover:from-purple-600 hover:to-blue-600 text-white px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-300 hover:scale-105 shadow-2xl shadow-purple-900/25 hover:shadow-purple-900/40"
                 >
                   <span className="relative z-10 flex items-center gap-3">
-                    <Trophy className="w-6 h-6" />
-                    Explore Tier Lists
+                    <Gem className="w-6 h-6" />
+                    Explore Set 1
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </span>
                   <div className="absolute inset-0 bg-gradient-to-r from-purple-700 to-blue-700 rounded-2xl blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-300" />
                 </button>
-
                 <button
                   onClick={() => onNavigate('tournaments')}
                   className="group relative bg-gradient-to-r from-yellow-600 to-orange-600 hover:from-yellow-500 hover:to-orange-500 text-white px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-300 hover:scale-105 shadow-2xl shadow-yellow-900/25 hover:shadow-yellow-900/40"
@@ -232,7 +228,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                   </span>
                   <div className="absolute inset-0 bg-gradient-to-r from-yellow-600 to-orange-600 rounded-2xl blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-300" />
                 </button>
-
                 <button
                   onClick={() => onNavigate('guides')}
                   className="group relative bg-gray-900/50 backdrop-blur-xl hover:bg-gray-800/50 text-white px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-300 hover:scale-105 border border-gray-800/50 hover:border-gray-700/50"
