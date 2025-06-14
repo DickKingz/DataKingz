@@ -70,27 +70,36 @@ export interface Tournament {
   description: string;
   organizer: string;
   status: 'upcoming' | 'registration' | 'live' | 'completed';
-  type: 'standard' | 'custom' | 'practice';
-  format: 'single-elimination' | 'double-elimination' | 'swiss' | 'round-robin';
+  type: 'standard' | 'custom' | 'practice' | 'gauntlet';
+  format: 'single-elimination' | 'double-elimination' | 'swiss' | 'round-robin' | 'gauntlet';
   maxParticipants: number;
   currentParticipants: number;
   prizePool: string;
-  registrationStart: string;
-  registrationEnd: string;
-  startTime: string;
-  endTime?: string;
+  registrationStart: string | null;
+  registrationEnd: string | null;
+  startTime: string | null;
+  endTime?: string | null;
   rounds: TournamentRound[];
   rules: string;
   hostPlatform: string;
   participants: TournamentParticipant[];
   bracket?: TournamentBracket;
+  phases?: TournamentPhase[];
+  divisions?: TournamentDivision[];
+  scoringSystem?: ScoringSystem;
+  checkInRequired?: boolean;
+  checkInStartTime?: string | null;
+  checkInEndTime?: string | null;
+  timeSlots?: TimeSlot[];
+  tiebreakers?: TiebreakerRule[];
+  prizeBreakdown?: { division: string; prize: string }[];
 }
 
 export interface TournamentRound {
   roundNumber: number;
   name: string;
   format: 'bo1' | 'bo3' | 'bo5';
-  startTime: string;
+  startTime: string | null;
   advancingPlayers: number;
   status: 'pending' | 'live' | 'completed';
 }
@@ -100,8 +109,11 @@ export interface TournamentParticipant {
   rangerName: string;
   illuviumPlayerId: string;
   registrationTime: string;
-  status: 'registered' | 'checked-in' | 'eliminated' | 'advanced';
+  status: 'pending' | 'registered' | 'checked-in' | 'eliminated' | 'advanced' | 'rejected';
   currentRound?: number;
+  divisionId?: string;
+  points?: number;
+  matchesPlayed?: number;
 }
 
 export interface TournamentBracket {
@@ -123,6 +135,64 @@ export interface BracketMatch {
   startTime?: string;
 }
 
+export interface TournamentPhase {
+  id: string;
+  name: string;
+  type: 'qualification' | 'sit-n-go' | 'knockout' | 'finals';
+  startTime: string | null;
+  endTime: string | null;
+  status: 'pending' | 'live' | 'completed';
+  format: 'gauntlet' | 'bracket' | 'swiss';
+  minMatches?: number;
+  maxMatches?: number;
+  advancingPlayers?: number;
+  bonusPoints?: {
+    rank: number;
+    points: number;
+  }[];
+}
+
+export interface TournamentDivision {
+  id: string;
+  name: string;
+  eloRange: {
+    min: number;
+    max: number;
+  };
+  expectedPopulation: 'high' | 'medium' | 'low' | 'very-low';
+  prizePool: number;
+  rewards: {
+    placement: number;
+    reward: number;
+  }[];
+}
+
+export interface ScoringSystem {
+  type: 'placement' | 'elo' | 'custom';
+  points: {
+    placement: number;
+    points: number;
+  }[];
+  minMatchesRequired?: number;
+  maxMatchesCounted?: number;
+  negativePoints?: boolean;
+}
+
+export interface TimeSlot {
+  id: string;
+  name: string;
+  startTime: string | null;
+  endTime: string | null;
+  maxParticipants?: number;
+  currentParticipants: number;
+}
+
+export interface TiebreakerRule {
+  order: number;
+  type: 'highest-single-score' | 'last-round-score' | 'lowest-hp-lost' | 'strongest-opponents' | 'random';
+  description: string;
+}
+
 // Authentication Types
 export interface User {
   id: string;
@@ -133,6 +203,7 @@ export interface User {
   isAdmin: boolean;
   createdAt: string;
   lastLogin: string;
+  adminLevel?: 'master' | 'tournament';
 }
 
 export interface AuthContextType {

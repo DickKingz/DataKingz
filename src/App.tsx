@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { AuthProvider } from './contexts/AuthContext';
@@ -18,6 +18,10 @@ import { IlluvialsPage, AugmentsPage, WeaponsPage, Set1LandingPage, LegendaryAug
 import { mockAugments, mockCompositions, mockItems, mockGauntletData } from './data/mockData';
 import AnalyticsPage from './components/AnalyticsPage';
 import SynergyAugmentsPage from './components/Set1Pages/SynergyAugmentsPage';
+import { Tournament } from './types';
+import { collection, onSnapshot, addDoc, deleteDoc, doc } from 'firebase/firestore';
+import { db } from './data/firebase';
+import { Toaster, toast } from 'react-hot-toast';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<'landing' | 'app'>('landing');
@@ -34,6 +38,23 @@ function App() {
   const [showSet1Page, setShowSet1Page] = useState<string | null>(null);
   const [showAnalytics, setShowAnalytics] = useState(false);
   const [guideTopic, setGuideTopic] = useState<string>('dictionary');
+
+  // Add tournaments state
+  const [tournaments, setTournaments] = useState<Tournament[]>([]);
+
+  // Real-time Firestore listener for tournaments
+  useEffect(() => {
+    const normalizeTournament = (raw: any): Tournament => ({
+      ...raw,
+      status: (raw.status === 'upcoming' || raw.status === 'registration' || raw.status === 'live' || raw.status === 'completed') ? raw.status : 'upcoming',
+      type: (raw.type === 'standard' || raw.type === 'custom' || raw.type === 'practice' || raw.type === 'gauntlet') ? raw.type : 'standard',
+    });
+    const unsub = onSnapshot(collection(db, 'tournaments'), (snapshot) => {
+      const data = snapshot.docs.map(doc => normalizeTournament({ id: doc.id, ...doc.data() })) as Tournament[];
+      setTournaments(data);
+    });
+    return () => unsub();
+  }, []);
 
   const handleNavigateFromLanding = (destination: string) => {
     setCurrentPage('app');
@@ -232,6 +253,29 @@ function App() {
     return { currentPage: 'tierlist', currentSubPage: undefined };
   };
 
+  const handleDeleteTournament = async (tournamentId: string) => {
+    try {
+      await deleteDoc(doc(db, 'tournaments', tournamentId));
+      toast.success('Tournament deleted successfully!');
+    } catch (err) {
+      toast.error('Failed to delete tournament.');
+      console.error(err);
+    }
+  };
+
+  const handleCreateTournament = async (tournament: Partial<Tournament>) => {
+    try {
+      // Remove id if present, Firestore will generate one
+      const { id, ...tournamentData } = tournament;
+      await addDoc(collection(db, 'tournaments'), tournamentData);
+      setShowTournamentCreator(false);
+      toast.success('Tournament created successfully!');
+    } catch (err) {
+      toast.error('Failed to create tournament.');
+      console.error(err);
+    }
+  };
+
   const renderContent = () => {
     if (showAnalytics) {
       return <AnalyticsPage onBack={() => setShowAnalytics(false)} />;
@@ -291,11 +335,7 @@ function App() {
         return (
           <TournamentCreator 
             onBack={() => setShowTournamentCreator(false)}
-            onCreateTournament={(tournament) => {
-              console.log('Creating tournament:', tournament);
-              setShowTournamentCreator(false);
-              // Here you would typically save to backend
-            }}
+            onCreateTournament={handleCreateTournament}
           />
         );
       }
@@ -305,22 +345,20 @@ function App() {
           <TournamentView
             tournamentId={selectedTournament}
             onBack={() => setSelectedTournament(null)}
-            onJoinTournament={(tournamentId) => {
-              console.log('Joining tournament:', tournamentId);
-              // Here you would handle tournament registration
-            }}
           />
         );
       }
 
       return (
         <TournamentList
+          tournaments={tournaments}
           onCreateTournament={() => setShowTournamentCreator(true)}
           onJoinTournament={(tournamentId) => {
             console.log('Joining tournament:', tournamentId);
             // Here you would handle tournament registration
           }}
           onViewTournament={(tournamentId) => setSelectedTournament(tournamentId)}
+          onDeleteTournament={handleDeleteTournament}
         />
       );
     }
@@ -365,6 +403,7 @@ function App() {
     <AuthProvider>
       <DndProvider backend={HTML5Backend}>
         <div className="min-h-screen bg-gray-950">
+          <Toaster position="top-right" />
           <Header 
             activeTab={showTournaments ? 'tournaments' : activeTab} 
             onTabChange={handleTabChange}

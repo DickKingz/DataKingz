@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { Passport } from '@imtbl/sdk/passport';
 import { AuthContextType, User } from '../types';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { db } from '../data/firebase';
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
@@ -13,6 +15,10 @@ const ADMIN_EMAILS = [
   'richard.reyes@illuvium.io'
 ];
 
+// Test mode configuration
+const TEST_MODE = import.meta.env.VITE_TEST_MODE === 'true';
+const TEST_ADMIN_EMAIL = 'test.admin@illuvium.io';
+
 interface AuthProviderProps {
   children: ReactNode;
 }
@@ -20,44 +26,61 @@ interface AuthProviderProps {
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [passportInstance, setPassportInstance] = useState<any>(null);
+  const [passportClient, setPassportClient] = useState<Passport | null>(null);
 
-  // Initialize Passport
+  // Fetch adminLevel from Firestore users collection
+  const fetchAdminLevel = async (uid: string, email: string) => {
+    const userRef = doc(db, 'users', uid);
+    const userSnap = await getDoc(userRef);
+    if (userSnap.exists()) {
+      return userSnap.data().adminLevel || undefined;
+    } else {
+      // Auto-create user doc if not exists
+      await setDoc(userRef, { email, adminLevel: null });
+      return undefined;
+    }
+  };
+
   useEffect(() => {
     const initPassport = async () => {
       try {
-        // Get environment from env vars, default to sandbox
-        const environment = import.meta.env.VITE_ENVIRONMENT === 'production' 
-          ? 'production'
-          : 'sandbox';
+        if (TEST_MODE) {
+          // Create test admin user
+          const testUser: User = {
+            id: 'test-admin-id',
+            email: TEST_ADMIN_EMAIL,
+            walletAddress: '0xTestWalletAddress',
+            playerId: 'test-player-id',
+            nickname: 'Test Admin',
+            isAdmin: true,
+            createdAt: new Date().toISOString(),
+            lastLogin: new Date().toISOString(),
+            adminLevel: 'master',
+          };
+          setUser(testUser);
+          setIsLoading(false);
+          return;
+        }
 
-        // Initialize Passport with configurable environment
-        const passportConfig = {
+        // Initialize Passport client
+        const passport = new Passport({
           baseConfig: {
-            environment,
-            publishableKey: import.meta.env.VITE_PUBLISHABLE_KEY || 'pk_imapik-RqdtsHMXYynIbGe$2sL0',
+            environment: import.meta.env.VITE_ENVIRONMENT === 'production' ? 'production' : 'sandbox',
+            publishableKey: import.meta.env.VITE_PUBLISHABLE_KEY || '',
           },
-          clientId: import.meta.env.VITE_CLIENT_ID || '4GnLLWvnWPXIs17rD1eSxvjsSnMVAiUS',
-          redirectUri: `${window.location.origin}/redirect`,
+          clientId: import.meta.env.VITE_PASSPORT_CLIENT_ID || '',
+          redirectUri: window.location.origin,
+          scope: 'openid offline_access email profile',
           logoutRedirectUri: window.location.origin,
-          audience: 'platform_api',
-          scope: 'openid offline_access email transact'
-        };
-
-        console.log('Initializing Passport with config:', {
-          environment: passportConfig.baseConfig.environment,
-          clientId: passportConfig.clientId,
-          publishableKey: passportConfig.baseConfig.publishableKey?.substring(0, 20) + '...'
         });
 
-        const passportClient = new Passport(passportConfig);
-        setPassportInstance(passportClient);
+        setPassportClient(passport);
 
         // Check if user is already logged in
         try {
-          const accessToken = await passportClient.getAccessToken();
+          const accessToken = await passport.getAccessToken();
           if (accessToken) {
-            const userInfo = await passportClient.getUserInfo();
+            const userInfo = await passport.getUserInfo();
             if (userInfo) {
               const userData = await createUserFromPassport(userInfo);
               setUser(userData);
@@ -82,92 +105,78 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const createUserFromPassport = async (userInfo: any): Promise<User> => {
     const email = userInfo.email || '';
-    const playerId = userInfo.sub || ''; // This is the player ID from IMX Passport
+    const playerId = userInfo.sub || '';
     const walletAddress = userInfo.wallet_address || userInfo.sub || '';
-    
-    console.log('Creating user from IMX Passport User Info:', {
-      sub: userInfo.sub,
-      email: userInfo.email,
-      nickname: userInfo.nickname,
-      wallet_address: userInfo.wallet_address,
-      preferred_username: userInfo.preferred_username
-    });
-    
+    const uid = userInfo.sub || '';
+    const adminLevel = await fetchAdminLevel(uid, email);
     return {
-      id: userInfo.sub,
+      id: uid,
       email,
       walletAddress,
-      playerId, // This is the key field for tournament rewards distribution
+      playerId,
       nickname: userInfo.nickname || userInfo.preferred_username || email.split('@')[0] || 'User',
-      isAdmin: checkAdminStatus(email),
+      isAdmin: ADMIN_EMAILS.includes(email.toLowerCase()),
       createdAt: new Date().toISOString(),
-      lastLogin: new Date().toISOString()
+      lastLogin: new Date().toISOString(),
+      adminLevel,
     };
   };
 
   const checkAdminStatus = (email: string): boolean => {
-    return ADMIN_EMAILS.includes(email.toLowerCase());
+    return ADMIN_EMAILS.includes(email.toLowerCase()) || (TEST_MODE && email === TEST_ADMIN_EMAIL);
   };
 
-  const login = async (): Promise<void> => {
-    try {
-      setIsLoading(true);
-      
-      if (!passportInstance) {
-        throw new Error('IMX Passport not initialized. Please refresh the page and try again.');
-      }
+  const login = async () => {
+    if (TEST_MODE) {
+      // Simulate test admin login
+      const testUser: User = {
+        id: 'test-admin-id',
+        email: TEST_ADMIN_EMAIL,
+        walletAddress: '0xTestWalletAddress',
+        playerId: 'test-player-id',
+        nickname: 'Test Admin',
+        isAdmin: true,
+        createdAt: new Date().toISOString(),
+        lastLogin: new Date().toISOString(),
+        adminLevel: 'master',
+      };
+      setUser(testUser);
+      return;
+    }
 
-      console.log('Initiating IMX Passport login...');
-      
-      // Check if popups are likely to be blocked
-      const testPopup = window.open('', '_blank', 'width=1,height=1');
-      if (!testPopup || testPopup.closed || typeof testPopup.closed === 'undefined') {
-        testPopup?.close();
-        throw new Error('POPUP_BLOCKED');
+    if (!passportClient) {
+      throw new Error('Passport client not initialized');
+    }
+
+    try {
+      await passportClient.login();
+      const userInfo = await passportClient.getUserInfo();
+      if (userInfo) {
+        const userData = await createUserFromPassport(userInfo);
+        setUser(userData);
       }
-      testPopup.close();
-      
-      // Real IMX Passport login - this will redirect to Passport
-      // Note: This performs a full page redirect, so no code after this will execute
-      await passportInstance.login();
-      
-      // The code below will never execute because login() redirects the page
-      // User authentication will be handled by the useEffect hook after redirect
-    } catch (error: any) {
+    } catch (error) {
       console.error('Login failed:', error);
-      setIsLoading(false);
-      
-      // Handle specific error cases
-      if (error.message === 'POPUP_BLOCKED') {
-        throw new Error('Popup blocked by browser. Please allow popups for this site and try again.');
-      } else if (error.message && error.message.includes('disposed window')) {
-        throw new Error('Authentication window was closed. Please allow popups and try again.');
-      } else if (error.message && error.message.includes('navigate')) {
-        throw new Error('Browser blocked the authentication process. Please check your popup blocker settings.');
-      } else {
-        throw new Error('Failed to connect with IMX Passport. Please check your browser settings and try again.');
-      }
+      throw error;
     }
   };
 
-  const logout = async (): Promise<void> => {
-    try {
-      setIsLoading(true);
-      
-      if (passportInstance) {
-        console.log('Logging out from IMX Passport...');
-        await passportInstance.logout();
-      }
-      
-      // Clear local state
+  const logout = async () => {
+    if (TEST_MODE) {
       setUser(null);
-      console.log('Logout successful');
+      return;
+    }
+
+    if (!passportClient) {
+      throw new Error('Passport client not initialized');
+    }
+
+    try {
+      await passportClient.logout();
+      setUser(null);
     } catch (error) {
       console.error('Logout failed:', error);
-      // Still clear local state even if logout fails
-      setUser(null);
-    } finally {
-      setIsLoading(false);
+      throw error;
     }
   };
 
@@ -180,14 +189,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     checkAdminStatus
   };
 
-  return (
-    <AuthContext.Provider value={value}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
-export const useAuth = (): AuthContextType => {
+export const useAuth = () => {
   const context = useContext(AuthContext);
   if (context === undefined) {
     throw new Error('useAuth must be used within an AuthProvider');

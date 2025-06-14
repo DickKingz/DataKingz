@@ -460,7 +460,6 @@ const Header: React.FC<HeaderProps> = ({
                 <button
                   onClick={() => {
                     onShowAnalytics?.();
-                    onTabChange('comps'); // Reset to a default tab when showing analytics
                   }}
                   className="relative group bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-6 py-2.5 rounded-xl font-bold hover:from-blue-400 hover:to-cyan-400 transition-all duration-300 shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:scale-105"
                 >

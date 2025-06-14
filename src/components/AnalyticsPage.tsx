@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { collection, getDocs, getCountFromServer, query, orderBy, limit, doc, getDoc } from 'firebase/firestore';
 import { db } from '../data/firebase';
 import {
@@ -7,6 +7,10 @@ import {
 import { legendaryAugmentImageMap } from '../data/AugmentData/Legendary/legendaryAugmentImageMap';
 import { synergyImprintImageMap } from '../data/AugmentData/Synergy/synergyImprintImageMap';
 import axios from 'axios';
+import { ChevronDownIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
+import AnalyticsOverviewTab from './AnalyticsOverviewTab';
+import AnalyticsMetaTab from './AnalyticsMetaTab';
+import AnalyticsMatchHistoryTab from './AnalyticsMatchHistoryTab';
 
 interface MatchResult {
   id: string;
@@ -91,6 +95,50 @@ function getAugmentImageUrl(name: string) {
 const API_URL = 'http://localhost:3001/api/gauntlet';
 const AUTH_TOKEN = 'v4.public.eyJqdGkiOiJmMmE2ZWZjZTRjYzA0NmYzOGUxN2NiOTRjNjMxNTAwNyIsImlzcyI6ImdhdGV3YXkuaWx2LnByb2QiLCJhdWQiOiJnYXRld2F5LmlsdiIsInN1YiI6ImQ0NDMyODM2OWVmYTQ3YjdhZWZjNDIwOGE4ZDU1NzRmIiwiZXhwIjoiMjAyNi0wNi0xMlQwODoxNzowNS40NzE0NzY0WiIsInBhcnRuZXI6aWQiOiJkNDQzMjgzNjllZmE0N2I3YWVmYzQyMDhhOGQ1NTc0ZiIsInBhcnRuZXI6bmFtZSI6IlJpY2giLCJlcDphcmVuYTpsb2JieTpjcmVhdGUiOiJUcnVlIiwiZXA6YXJlbmE6Z2F1bnRsZXQ6c2VhcmNoIjoiVHJ1ZSJ9q-afHUr8WhtcMbdIRtV_7iz5aBWhFKDIy5271wAysd3KftsG4heY7vareIdNh9GyrSs12QjAxEAUixT6jnNqDQ.ZDQ0MzI4MzY5ZWZhNDdiN2FlZmM0MjA4YThkNTU3NGY';
 
+// Helper to get winner from results
+function getWinner(game: any): string {
+  if (!Array.isArray(game.results) || game.results.length === 0) return '-';
+  // Winner is the player with the highest rating or rank 1
+  const byRank = game.results.find((r: any) => r.rank === 1);
+  if (byRank) return byRank.player || '-';
+  const byRating = [...game.results].sort((a: any, b: any) => (b.rating || 0) - (a.rating || 0))[0];
+  return byRating?.player || '-';
+}
+
+// Pie chart colors
+const regionColors = ['#8884d8', '#82ca9d', '#ffc658', '#ff8042', '#00C49F', '#FFBB28', '#0088FE', '#FF4444'];
+
+// Add a simple tooltip component
+const TooltipComponent: React.FC<{ text: string; children: React.ReactNode }> = ({ text, children }) => (
+  <span className="relative group cursor-help">
+    {children}
+    <span className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 w-max max-w-xs px-2 py-1 rounded bg-gray-900 text-xs text-white opacity-0 group-hover:opacity-100 pointer-events-none z-50 shadow-lg border border-blue-700 transition-opacity duration-200">
+      {text}
+    </span>
+  </span>
+);
+
+// Helper to get player avatar color
+function getAvatarColor(name: string) {
+  // Simple hash to color
+  const colors = [
+    'bg-blue-500', 'bg-cyan-500', 'bg-purple-500', 'bg-pink-500', 'bg-green-500', 'bg-yellow-500', 'bg-orange-500', 'bg-red-500', 'bg-indigo-500', 'bg-teal-500'
+  ];
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) hash = name.charCodeAt(i) + ((hash << 5) - hash);
+  return colors[Math.abs(hash) % colors.length];
+}
+
+// Add a simple spinner component
+const Spinner: React.FC = () => (
+  <div className="flex items-center justify-center h-full w-full">
+    <svg className="animate-spin h-8 w-8 text-blue-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
+    </svg>
+  </div>
+);
+
 const AnalyticsPage: React.FC<AnalyticsPageProps> = ({ onBack }) => {
   const [matchResults, setMatchResults] = useState<MatchResult[]>([]);
   const [matches, setMatches] = useState<Match[]>([]);
@@ -128,169 +176,434 @@ const AnalyticsPage: React.FC<AnalyticsPageProps> = ({ onBack }) => {
   const [topPlayersSort, setTopPlayersSort] = useState<'wins' | 'rating' | 'games'>('wins');
   const [topPlayersData, setTopPlayersData] = useState<any[]>([]);
 
-  const [endDate, setEndDate] = useState<Date>(new Date());
+  const [recentMatchesFilter, setRecentMatchesFilter] = useState<'24h' | '3d' | '1w' | '30d'>('24h');
   const [startDate, setStartDate] = useState<Date>(() => {
     const date = new Date();
-    date.setDate(date.getDate() - 30);
+    date.setDate(date.getDate() - 1);
     return date;
   });
+  const [endDate, setEndDate] = useState<Date>(new Date());
 
+  // State for expanded match
+  const [expandedMatchIdx, setExpandedMatchIdx] = useState<number | null>(null);
+
+  // State for player search
+  const [searchedPlayer, setSearchedPlayer] = useState<string>('');
+  const [playerMatches, setPlayerMatches] = useState<any[]>([]);
+  const [playerStats, setPlayerStats] = useState<any | null>(null);
+
+  const [activeTab, setActiveTab] = useState<'overview' | 'meta' | 'history'>('overview');
+
+  // Add state for pagination
+  const [fetchingAllPages, setFetchingAllPages] = useState(false);
+
+  // Update startDate when recentMatchesFilter changes
   useEffect(() => {
-    setLoading(true);
-    const startDateStr = startDate.toISOString();
-    const endDateStr = endDate.toISOString();
-    const requestBody = {
-      startDate: startDateStr,
-      endDate: endDateStr
-    };
-    console.log('Sending request to proxy:', requestBody);
-    axios.post(API_URL, requestBody)
-      .then(res => {
-        console.log('Received response from proxy:', res.data);
-        const games = res.data.games || [];
-        setGames(games);
+    const now = new Date();
+    let newStart = new Date(now);
+    if (recentMatchesFilter === '24h') newStart.setDate(now.getDate() - 1);
+    else if (recentMatchesFilter === '3d') newStart.setDate(now.getDate() - 3);
+    else if (recentMatchesFilter === '1w') newStart.setDate(now.getDate() - 7);
+    else if (recentMatchesFilter === '30d') newStart.setDate(now.getDate() - 30);
+    setStartDate(newStart);
+    setEndDate(now);
+  }, [recentMatchesFilter]);
 
-        // Total matches
-        const totalMatches = games.length;
-
-        // Unique players
-        const allPlayers = games.flatMap((game: any) => game.players);
-        const uniquePlayers = [...new Set(allPlayers)];
-        const totalPlayers = uniquePlayers.length;
-
-        // Average match time (in seconds)
-        const matchTimes = games.map((game: any) =>
-          new Date(game.endTime).getTime() - new Date(game.startTime).getTime()
-        );
-        const avgMatchTime = matchTimes.length
-          ? (matchTimes.reduce((a: number, b: number) => a + b, 0) / matchTimes.length) / 1000
-          : 0;
-
-        setTotals({
-          matches: totalMatches,
-          players: totalPlayers,
-          matchResults: totalMatches,
-          rounds: 0, // You can compute this if you have round data
-        });
-        setAvgMatchTime(avgMatchTime);
-
-        // --- Top Players Calculation ---
-        // Aggregate player stats
-        const playerStats: Record<string, { wins: number; games: number; rating: number }> = {};
-        games.forEach((game: any) => {
-          if (Array.isArray(game.results)) {
-            // Find the highest rating in this game (winner)
-            let winner = null;
-            let maxRating = -Infinity;
-            game.results.forEach((result: any) => {
-              if (!playerStats[result.player]) {
-                playerStats[result.player] = { wins: 0, games: 0, rating: 0 };
-              }
-              playerStats[result.player].games += 1;
-              playerStats[result.player].rating = result.rating;
-              if (result.rating > maxRating) {
-                maxRating = result.rating;
-                winner = result.player;
-              }
-            });
-            if (winner) {
-              playerStats[winner].wins += 1;
-            }
-          }
-        });
-        // Convert to array
-        let playersArr = Object.entries(playerStats).map(([name, stats]) => ({ name, ...stats }));
-        // Sort by selected sort
-        if (topPlayersSort === 'wins') {
-          playersArr = playersArr.sort((a, b) => b.wins - a.wins);
-        } else if (topPlayersSort === 'rating') {
-          playersArr = playersArr.sort((a, b) => b.rating - a.rating);
-        } else if (topPlayersSort === 'games') {
-          playersArr = playersArr.sort((a, b) => b.games - a.games);
-        }
-        setTopPlayersData(playersArr);
-
-        // You can also extract top players, illuvials, augments, etc. as needed
-
-        // --- DAU (Daily Active Users) ---
-        const dauMap: Record<string, Set<string>> = {};
-        games.forEach((game: any) => {
-          const day = new Date(game.startTime).toISOString().slice(0, 10); // YYYY-MM-DD
-          if (!dauMap[day]) dauMap[day] = new Set();
-          if (Array.isArray(game.players)) {
-            game.players.forEach((p: string) => dauMap[day].add(p));
-          }
-        });
-        const dauData = Object.entries(dauMap).map(([date, players]) => ({ date, users: players.size }));
-        setDauData(dauData);
-
-        // --- MAU (Monthly Active Users) ---
-        const mauSet = new Set<string>();
-        games.forEach((game: any) => {
-          if (Array.isArray(game.players)) {
-            game.players.forEach((p: string) => mauSet.add(p));
-          }
-        });
-        setMauData([{ month: 'This Month', users: mauSet.size }]);
-
-        // --- Player Activity (Top 20) ---
-        const playerGameCounts: Record<string, number> = {};
-        games.forEach((game: any) => {
-          if (Array.isArray(game.players)) {
-            game.players.forEach((p: string) => {
-              playerGameCounts[p] = (playerGameCounts[p] || 0) + 1;
-            });
-          }
-        });
-        const playerActivity = Object.entries(playerGameCounts)
-          .map(([playerId, count]) => ({ playerId, count }))
-          .sort((a, b) => b.count - a.count)
-          .slice(0, 20);
-        setPlayerActivity(playerActivity);
-
-        // --- Matches Played (by Day) ---
-        const matchesByDay: Record<string, number> = {};
-        games.forEach((game: any) => {
-          const day = new Date(game.startTime).toISOString().slice(0, 10);
-          matchesByDay[day] = (matchesByDay[day] || 0) + 1;
-        });
-        const matchesPlayed = Object.entries(matchesByDay)
-          .map(([date, count]) => ({ date, count }))
-          .sort((a, b) => a.date.localeCompare(b.date));
-        setMatchesPlayed(matchesPlayed);
-
-        setLoading(false);
-      })
-      .catch(error => {
-        console.error('API fetch error:', error);
-        if (error.response) {
-          // The request was made and the server responded with a status code
-          // that falls out of the range of 2xx
-          console.error('Error response data:', error.response.data);
-          console.error('Error response status:', error.response.status);
-          console.error('Error response headers:', error.response.headers);
-        } else if (error.request) {
-          // The request was made but no response was received
-          console.error('Error request:', error.request);
-        } else {
-          // Something happened in setting up the request that triggered an Error
-          console.error('Error message:', error.message);
-        }
-        setLoading(false);
-      });
+  // Refetch data when startDate or endDate changes
+  useEffect(() => {
+    fetchAnalyticsData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [startDate, endDate]);
 
-  const handlePlayerSearch = async () => {
-    if (!searchQuery.trim()) return;
+  // Compute recentMatches from games (no longer filter by date, just sort)
+  const recentMatches = useMemo(() => {
+    return [...games].sort((a: any, b: any) => new Date(b.startTime).getTime() - new Date(a.startTime).getTime());
+  }, [games]);
+
+  // Helper to get match duration in mm:ss
+  function getDuration(game: any): string {
+    if (!game.startTime || !game.endTime) return '-';
+    const ms = new Date(game.endTime).getTime() - new Date(game.startTime).getTime();
+    if (isNaN(ms) || ms < 0) return '-';
+    const sec = Math.floor(ms / 1000);
+    const min = Math.floor(sec / 60);
+    const remSec = sec % 60;
+    return `${min}:${remSec.toString().padStart(2, '0')}`;
+  }
+
+  // --- Fun Facts ---
+  const funFacts = useMemo(() => {
+    if (!games.length) return [];
+    let longestMatch: any = null;
+    let shortestMatch: any = null;
+    let maxDuration = -Infinity;
+    let minDuration = Infinity;
+    let mostFrequentWinner = null;
+    let mostWins = 0;
+    let biggestUpset: any = null;
+    let maxRatingChange = -Infinity;
+    const winnerCounts: Record<string, number> = {};
+    const regionCounts: Record<string, number> = {};
+    let mostPlayedRegion = null;
+    let mostPlayedRegionCount = 0;
+    let totalPlayers = 0;
+    const uniqueRegions = new Set<string>();
+    const playerGameCounts: Record<string, number> = {};
+    let mostActivePlayer = null;
+    let mostGamesPlayed = 0;
+
+    games.forEach((game: any) => {
+      // Duration
+      if (game.startTime && game.endTime) {
+        const duration = new Date(game.endTime).getTime() - new Date(game.startTime).getTime();
+        if (duration > maxDuration) {
+          maxDuration = duration;
+          longestMatch = game;
+        }
+        if (duration < minDuration) {
+          minDuration = duration;
+          shortestMatch = game;
+        }
+      }
+      // Winner
+      if (Array.isArray(game.results) && game.results.length > 0) {
+        const byRank = game.results.find((r: any) => r.rank === 1);
+        const winner = byRank ? byRank.player : (game.results[0]?.player || null);
+        if (winner) {
+          winnerCounts[winner] = (winnerCounts[winner] || 0) + 1;
+          if (winnerCounts[winner] > mostWins) {
+            mostWins = winnerCounts[winner];
+            mostFrequentWinner = winner;
+          }
+        }
+        // Biggest rating change for winner
+        if (byRank && typeof byRank.ratingChange === 'number' && Math.abs(byRank.ratingChange) > maxRatingChange) {
+          maxRatingChange = Math.abs(byRank.ratingChange);
+          biggestUpset = { ...game, winner: byRank.player, ratingChange: byRank.ratingChange };
+        }
+      }
+      // Region
+      const region = game.regionId || game.region || 'Unknown';
+      regionCounts[region] = (regionCounts[region] || 0) + 1;
+      if (regionCounts[region] > mostPlayedRegionCount) {
+        mostPlayedRegionCount = regionCounts[region];
+        mostPlayedRegion = region;
+      }
+      uniqueRegions.add(region);
+      // Players
+      if (Array.isArray(game.players)) {
+        totalPlayers += game.players.length;
+        game.players.forEach((p: string) => {
+          playerGameCounts[p] = (playerGameCounts[p] || 0) + 1;
+          if (playerGameCounts[p] > mostGamesPlayed) {
+            mostGamesPlayed = playerGameCounts[p];
+            mostActivePlayer = p;
+          }
+        });
+      }
+    });
+    return [
+      {
+        label: 'Longest Match',
+        value: longestMatch ? getDuration(longestMatch) : '-',
+        sub: longestMatch ? `${Array.isArray(longestMatch.players) ? longestMatch.players.join(', ') : '-'} (${longestMatch.regionId || longestMatch.region || '-'})` : ''
+      },
+      {
+        label: 'Shortest Match',
+        value: shortestMatch ? getDuration(shortestMatch) : '-',
+        sub: shortestMatch ? `${Array.isArray(shortestMatch.players) ? shortestMatch.players.join(', ') : '-'} (${shortestMatch.regionId || shortestMatch.region || '-'})` : ''
+      },
+      {
+        label: 'Most Frequent Winner',
+        value: mostFrequentWinner || '-',
+        sub: mostFrequentWinner ? `${mostWins} wins` : ''
+      },
+      {
+        label: 'Biggest Rating Upset',
+        value: biggestUpset ? `${biggestUpset.winner} (${biggestUpset.ratingChange > 0 ? '+' : ''}${biggestUpset.ratingChange})` : '-',
+        sub: biggestUpset ? `${Array.isArray(biggestUpset.players) ? biggestUpset.players.join(', ') : '-'} (${biggestUpset.regionId || biggestUpset.region || '-'})` : ''
+      },
+      {
+        label: 'Most Played Region',
+        value: mostPlayedRegion || '-',
+        sub: mostPlayedRegion ? `${mostPlayedRegionCount} matches` : ''
+      },
+      {
+        label: 'Most Active Player',
+        value: mostActivePlayer || '-',
+        sub: mostActivePlayer ? `${mostGamesPlayed} games` : ''
+      },
+      {
+        label: 'Avg Players per Match',
+        value: games.length ? (totalPlayers / games.length).toFixed(2) : '-',
+        sub: ''
+      },
+      {
+        label: 'Unique Regions Played',
+        value: uniqueRegions.size,
+        sub: ''
+      }
+    ];
+  }, [games]);
+
+  // Memoized region data
+  const regionData = useMemo(() => {
+    const regionCounts: Record<string, number> = {};
+    games.forEach((game: any) => {
+      const region = game.regionId || game.region || 'Unknown';
+      regionCounts[region] = (regionCounts[region] || 0) + 1;
+    });
+    return Object.entries(regionCounts).map(([region, count]) => ({ region, count }));
+  }, [games]);
+
+  // Refactored fetch function with pagination
+  const fetchAnalyticsData = async () => {
     setLoading(true);
-    const playerRef = doc(db, 'players', searchQuery.trim());
-    const playerSnap = await getDoc(playerRef);
-    if (playerSnap.exists()) {
-      setPlayerData(playerSnap.data());
-    } else {
-      setPlayerData(null);
+    setFetchingAllPages(true);
+    const startDateStr = startDate.toISOString();
+    const endDateStr = endDate.toISOString();
+    const count = 100; // Max per page
+    let cursor: string | undefined = undefined;
+    let allGames: any[] = [];
+    let page = 0;
+    let keepFetching = true;
+    while (keepFetching) {
+      const requestBody: any = {
+        startDate: startDateStr,
+        endDate: endDateStr,
+        players: [],
+        mode: "Ranked",
+        count,
+        cursor
+      };
+      console.log(`[Analytics] Fetching page ${page + 1} with request body:`, requestBody);
+      try {
+        const res: any = await axios.post(API_URL, requestBody);
+        let responseData: any = res.data;
+        if (typeof res.data === 'string') {
+          try {
+            responseData = JSON.parse(res.data);
+          } catch (e) {
+            console.error('Failed to parse response data:', e);
+            break;
+          }
+        }
+        let games: any[] = [];
+        if (Array.isArray(responseData.games)) {
+          games = responseData.games.map((game: any) => {
+            let gameData: any = game;
+            if (typeof game === 'string') {
+              try { gameData = JSON.parse(game); } catch (e) { return null; }
+            }
+            return {
+              ...gameData,
+              players: Array.isArray(gameData.players) ? gameData.players : [],
+              results: Array.isArray(gameData.results) ? gameData.results : [],
+              startTime: gameData.startTime || gameData.start_time || gameData.createdAt || gameData.created_at,
+              endTime: gameData.endTime || gameData.end_time || gameData.updatedAt || gameData.updated_at
+            };
+          }).filter(Boolean);
+        }
+        allGames = [...allGames, ...games];
+        cursor = responseData.cursor || responseData.nextCursor || responseData.next_cursor;
+        keepFetching = !!cursor && games.length === count;
+        page++;
+        if (!keepFetching) break;
+      } catch (error) {
+        console.error('API fetch error:', error);
+        break;
+      }
     }
+    setGames([...allGames]);
+    setFetchingAllPages(false);
     setLoading(false);
+
+    // Total matches
+    const totalMatches = games.length;
+    console.log('Total matches:', totalMatches);
+
+    // Unique players
+    const allPlayers = games.flatMap((game: any) => {
+      try {
+        // Handle different possible player data structures
+        if (Array.isArray(game.players)) return game.players;
+        if (Array.isArray(game.results)) return game.results.map((r: any) => r.player).filter(Boolean);
+        if (game.player) return [game.player];
+        return [];
+      } catch (e) {
+        console.error('Error processing players for game:', e);
+        return [];
+      }
+    });
+    const uniquePlayers = [...new Set(allPlayers)];
+    const totalPlayers = uniquePlayers.length;
+    console.log('Total unique players:', totalPlayers);
+
+    // Average match time (in seconds)
+    const matchTimes = games.map((game: any) => {
+      try {
+        if (!game.startTime || !game.endTime) return 0;
+        return new Date(game.endTime).getTime() - new Date(game.startTime).getTime();
+      } catch (e) {
+        console.error('Error calculating match time:', e);
+        return 0;
+      }
+    });
+    const avgMatchTime = matchTimes.length
+      ? (matchTimes.reduce((a: number, b: number) => a + b, 0) / matchTimes.length) / 1000
+      : 0;
+    console.log('Average match time:', avgMatchTime);
+
+    setTotals({
+      matches: totalMatches,
+      players: totalPlayers,
+      matchResults: totalMatches,
+      rounds: 0,
+    });
+    setAvgMatchTime(avgMatchTime);
+
+    // --- Top Players Calculation ---
+    const playerStats: Record<string, { wins: number; games: number; rating: number }> = {};
+    games.forEach((game: any) => {
+      try {
+        if (Array.isArray(game.results) && game.results.length > 0) {
+        // Find the highest rating in this game (winner)
+        let winner = null;
+        let maxRating = -Infinity;
+        game.results.forEach((result: any) => {
+            const player = result.player || result.name || result.id;
+            const rating = result.rating || result.score || 0;
+            if (!player) return;
+            if (!playerStats[player]) {
+              playerStats[player] = { wins: 0, games: 0, rating: 0 };
+            }
+            playerStats[player].games += 1;
+            playerStats[player].rating = rating;
+            if (rating > maxRating) {
+              maxRating = rating;
+              winner = player;
+          }
+        });
+        if (winner) {
+          playerStats[winner].wins += 1;
+        }
+        }
+      } catch (e) {
+        console.error('Error processing player stats:', e);
+      }
+    });
+
+    // Convert to array and sort
+    let playersArr = Object.entries(playerStats).map(([name, stats]) => ({ name, ...stats }));
+    console.log('Top players data:', playersArr.slice(0, 5));
+    if (topPlayersSort === 'wins') {
+      playersArr = playersArr.sort((a, b) => b.wins - a.wins);
+    } else if (topPlayersSort === 'rating') {
+      playersArr = playersArr.sort((a, b) => b.rating - a.rating);
+    } else if (topPlayersSort === 'games') {
+      playersArr = playersArr.sort((a, b) => b.games - a.games);
+    }
+    setTopPlayersData([...playersArr]);
+
+    // --- DAU (Daily Active Users) ---
+    const dauMap: Record<string, Set<string>> = {};
+    games.forEach((game: any) => {
+      try {
+        if (!game.startTime) return;
+        const day = new Date(game.startTime).toISOString().slice(0, 10);
+      if (!dauMap[day]) dauMap[day] = new Set();
+        // Add all players from the game
+        allPlayers.forEach((p: string) => dauMap[day].add(p));
+      } catch (e) {
+        console.error('Error processing DAU data:', e);
+      }
+    });
+    const dauData = Object.entries(dauMap).map(([date, players]) => ({ date, users: players.size }));
+    console.log('DAU data:', dauData);
+    setDauData([...dauData]);
+
+    // --- MAU (Monthly Active Users) ---
+    const mauSet = new Set<string>();
+    allPlayers.forEach((p: string) => mauSet.add(p));
+    setMauData([{ month: 'This Month', users: mauSet.size }]);
+
+    // --- Player Activity (Top 20) ---
+    const playerGameCounts: Record<string, number> = {};
+    allPlayers.forEach((p: string) => {
+          playerGameCounts[p] = (playerGameCounts[p] || 0) + 1;
+    });
+    const playerActivity = Object.entries(playerGameCounts)
+      .map(([playerId, count]) => ({ playerId, count }))
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 20);
+    console.log('Player activity data:', playerActivity);
+    setPlayerActivity([...playerActivity]);
+
+    // --- Matches Played (by Day) ---
+    const matchesByDay: Record<string, number> = {};
+    games.forEach((game: any) => {
+      try {
+        if (!game.startTime) return;
+      const day = new Date(game.startTime).toISOString().slice(0, 10);
+      matchesByDay[day] = (matchesByDay[day] || 0) + 1;
+      } catch (e) {
+        console.error('Error processing matches by day:', e);
+      }
+    });
+    const matchesPlayed = Object.entries(matchesByDay)
+      .map(([date, count]) => ({ date, count }))
+      .sort((a, b) => a.date.localeCompare(b.date));
+    console.log('Matches played data:', matchesPlayed);
+    setMatchesPlayed([...matchesPlayed]);
+
+    console.log(`[Analytics] Received ${games.length} matches for range ${startDateStr} to ${endDateStr}`);
+  };
+
+  useEffect(() => {
+    fetchAnalyticsData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Only run on mount
+
+  // Handle player search (exact match, case-insensitive)
+  const handlePlayerSearch = () => {
+    const query = searchQuery.trim();
+    if (!query) return;
+    setSearchedPlayer(query);
+    // Find matches where player is in game.players or game.results[].player (exact, case-insensitive)
+    const matches = games.filter((game: any) => {
+      const inPlayers = Array.isArray(game.players) && game.players.some((p: string) => p.toLowerCase() === query.toLowerCase());
+      const inResults = Array.isArray(game.results) && game.results.some((r: any) => (r.player || '').toLowerCase() === query.toLowerCase());
+      return inPlayers || inResults;
+    });
+    setPlayerMatches(matches);
+    // Compute stats
+    let total = matches.length;
+    let wins = 0;
+    let rankSum = 0;
+    let rankCount = 0;
+    let regionCounts: Record<string, number> = {};
+    matches.forEach((game: any) => {
+      if (Array.isArray(game.results)) {
+        const playerResult = game.results.find((r: any) => (r.player || '').toLowerCase() === query.toLowerCase());
+        if (playerResult) {
+          if (playerResult.rank === 1) wins++;
+          if (typeof playerResult.rank === 'number') {
+            rankSum += playerResult.rank;
+            rankCount++;
+          }
+        }
+      }
+      const region = game.regionId || game.region || 'Unknown';
+      regionCounts[region] = (regionCounts[region] || 0) + 1;
+    });
+    setPlayerStats({
+      name: query,
+      total,
+      wins,
+      avgRank: rankCount ? (rankSum / rankCount).toFixed(2) : '-',
+      winRate: total ? ((wins / total) * 100).toFixed(1) + '%' : '-',
+      mostPlayedRegion: Object.entries(regionCounts).sort((a, b) => b[1] - a[1])[0]?.[0] || '-'
+    });
   };
 
   return (
@@ -301,267 +614,100 @@ const AnalyticsPage: React.FC<AnalyticsPageProps> = ({ onBack }) => {
       >
         Back
       </button>
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8 gap-4">
-        <h1 className="text-4xl font-bold">Analytics Dashboard</h1>
+      {/* Tab Bar */}
+      <div className="flex gap-2 mb-8 border-b border-gray-800">
+        <button
+          className={`px-6 py-2 font-bold rounded-t-xl transition-all duration-200 shadow-md relative
+            ${activeTab === 'overview'
+              ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg z-10 scale-105'
+              : 'bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-white'}
+          `}
+          onClick={() => setActiveTab('overview')}
+        >
+          Overview
+        </button>
+        <button
+          className={`px-6 py-2 font-bold rounded-t-xl transition-all duration-200 shadow-md relative
+            ${activeTab === 'meta'
+              ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg z-10 scale-105'
+              : 'bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-white'}
+          `}
+          onClick={() => setActiveTab('meta')}
+        >
+          Meta
+        </button>
+        <button
+          className={`px-6 py-2 font-bold rounded-t-xl transition-all duration-200 shadow-md relative
+            ${activeTab === 'history'
+              ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg z-10 scale-105'
+              : 'bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-white'}
+          `}
+          onClick={() => setActiveTab('history')}
+        >
+          Match History
+        </button>
       </div>
-      {loading ? (
-        <div className="min-h-[60vh] flex flex-col items-center justify-center">
-          <div className="relative w-32 h-32 mb-8">
-            {/* Outer ring */}
-            <div className="absolute inset-0 border-4 border-blue-500/20 rounded-full animate-spin-slow" />
-            <div className="absolute inset-0 border-4 border-t-blue-500 rounded-full animate-spin" />
-            
-            {/* Middle ring */}
-            <div className="absolute inset-4 border-4 border-purple-500/20 rounded-full animate-spin-slow-reverse" />
-            <div className="absolute inset-4 border-4 border-t-purple-500 rounded-full animate-spin-reverse" />
-            
-            {/* Inner ring */}
-            <div className="absolute inset-8 border-4 border-cyan-500/20 rounded-full animate-spin-slow" />
-            <div className="absolute inset-8 border-4 border-t-cyan-500 rounded-full animate-spin" />
-            
-            {/* Center dot */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-4 h-4 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full animate-pulse" />
-            </div>
-          </div>
-          
-          <div className="text-center">
-            <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent mb-2">
-              Loading Analytics
-            </h2>
-            <p className="text-slate-400 text-sm">
-              Fetching the latest data from the Illuvium network
-            </p>
-          </div>
-          
-          {/* Loading bar */}
-          <div className="w-64 h-1 bg-slate-800 rounded-full mt-8 overflow-hidden">
-            <div className="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 rounded-full animate-loading-bar" />
-          </div>
-          
-          {/* Loading stats */}
-          <div className="grid grid-cols-3 gap-8 mt-8">
-            {[
-              { label: 'Matches', value: '...' },
-              { label: 'Players', value: '...' },
-              { label: 'Data Points', value: '...' }
-            ].map((stat, idx) => (
-              <div key={idx} className="text-center">
-                <div className="text-2xl font-bold text-slate-400 animate-pulse">{stat.value}</div>
-                <div className="text-sm text-slate-500">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      ) : (
-        <>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          <div className="bg-gray-900 rounded-2xl p-6 shadow-lg flex flex-col items-center">
-            <span className="text-xs uppercase tracking-widest text-blue-400 font-bold mb-1">Total Matches</span>
-            <span className="text-4xl font-extrabold">{totals.matches}</span>
-          </div>
-          <div className="bg-gray-900 rounded-2xl p-6 shadow-lg flex flex-col items-center">
-            <span className="text-xs uppercase tracking-widest text-blue-400 font-bold mb-1">Total Players</span>
-            <span className="text-4xl font-extrabold">{totals.players}</span>
-          </div>
-          <div className="bg-gray-900 rounded-2xl p-6 shadow-lg flex flex-col items-center">
-            <span className="text-xs uppercase tracking-widest text-blue-400 font-bold mb-1">Average Match Time</span>
-            <span className="text-4xl font-extrabold">{avgMatchTime} <span className="text-lg font-normal">sec</span></span>
-          </div>
-          <div className="bg-gray-900 rounded-2xl p-6 shadow-lg flex flex-col items-center">
-            <span className="text-xs uppercase tracking-widest text-blue-400 font-bold mb-1">Total Match Results</span>
-            <span className="text-4xl font-extrabold">{totals.matchResults}</span>
-          </div>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          <div className="bg-gray-900 rounded-2xl p-6 shadow-lg">
-            <h2 className="text-xl font-bold mb-4">Daily Active Users (DAU)</h2>
-            <ResponsiveContainer width="100%" height={250}>
-              <BarChart data={dauData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
-                <XAxis dataKey="date" tick={{ fill: '#fff', fontSize: 12 }} />
-                <YAxis tick={{ fill: '#fff', fontSize: 12 }} />
-                <Tooltip />
-                <Bar dataKey="users" fill="#8884d8" radius={[8, 8, 0, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
-          <div className="bg-gray-900 rounded-2xl p-6 shadow-lg">
-            <h2 className="text-xl font-bold mb-4">Monthly Active Users (MAU)</h2>
-            <ResponsiveContainer width="100%" height={250}>
-              <BarChart data={mauData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
-                <XAxis dataKey="month" tick={{ fill: '#fff', fontSize: 12 }} />
-                <YAxis tick={{ fill: '#fff', fontSize: 12 }} />
-                <Tooltip />
-                <Bar dataKey="users" fill="#82ca9d" radius={[8, 8, 0, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          <div className="bg-gray-900 rounded-2xl p-6 shadow-lg">
-            <h2 className="text-xl font-bold mb-4">Player Activity (Top 20)</h2>
-            <ResponsiveContainer width="100%" height={250}>
-              <BarChart data={playerActivity} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
-                <XAxis dataKey="playerId" tick={{ fill: '#fff', fontSize: 10 }} interval={0} angle={-30} textAnchor="end" height={60} />
-                <YAxis tick={{ fill: '#fff', fontSize: 12 }} />
-                <Tooltip />
-                <Bar dataKey="count" fill="#ffc658" radius={[8, 8, 0, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
-          <div className="bg-gray-900 rounded-2xl p-6 shadow-lg">
-            <h2 className="text-xl font-bold mb-4">Matches Played (by Day)</h2>
-            <ResponsiveContainer width="100%" height={250}>
-              <LineChart data={matchesPlayed} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
-                <XAxis dataKey="date" tick={{ fill: '#fff', fontSize: 12 }} />
-                <YAxis tick={{ fill: '#fff', fontSize: 12 }} />
-                <Tooltip />
-                <Line type="monotone" dataKey="count" stroke="#82ca9d" strokeWidth={3} dot={false} />
-                <CartesianGrid stroke="#444" strokeDasharray="3 3" />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          <div className="bg-gray-900 rounded-2xl p-6 shadow-lg">
-            <h2 className="text-xl font-bold mb-4">Top Players (Top 100)</h2>
-            <div className="flex gap-2 mb-4">
-              {[
-                { label: 'Most Wins', value: 'wins' },
-                { label: 'Highest Rating', value: 'rating' },
-                { label: 'Most Games', value: 'games' }
-              ].map(opt => (
-                <button
-                  key={opt.value}
-                  onClick={() => setTopPlayersSort(opt.value as 'wins' | 'rating' | 'games')}
-                  className={`px-3 py-1 rounded-full text-sm font-bold ${topPlayersSort === opt.value ? 'bg-blue-500 text-white' : 'bg-gray-700 text-gray-300'}`}
-                >
-                  {opt.label}
-                </button>
-              ))}
-            </div>
-            <div className="space-y-2 max-h-96 overflow-y-auto">
-              {topPlayersData.slice(0, 100).map((player, idx) => (
-                <div key={player.name || idx} className="flex items-center gap-4">
-                  <span className="text-lg font-bold text-yellow-400">#{idx + 1}</span>
-                  <span className="text-white font-bold">{player.name}</span>
-                  <span className="text-gray-400">Wins: {player.wins}</span>
-                  <span className="text-gray-400">Rating: {player.rating}</span>
-                  <span className="text-gray-400">Games: {player.games}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="bg-gray-900 rounded-2xl p-6 shadow-lg">
-            <h2 className="text-xl font-bold mb-4">Top Illuvials</h2>
-            <div className="flex gap-2 mb-4">
-              {[{ label: 'All Tiers', value: 'All' }, { label: 'Tier 1', value: 1 }, { label: 'Tier 2', value: 2 }, { label: 'Tier 3', value: 3 }, { label: 'Tier 4', value: 4 }, { label: 'Tier 5', value: 5 }].map(({ label, value }) => (
-                <button
-                  key={value}
-                  onClick={() => setIlluvialTierFilter(value as 'All' | 1 | 2 | 3 | 4 | 5)}
-                  className={`px-3 py-1 rounded-full text-sm font-bold ${illuvialTierFilter === value ? 'bg-blue-500 text-white' : 'bg-gray-700 text-gray-300'}`}
-                >
-                  {label}
-                </button>
-              ))}
-            </div>
-            <div className="space-y-4 max-h-96 overflow-y-auto">
-              {topIlluvials
-                .filter(illuvial => illuvialTierFilter === 'All' || getIlluvialTier(illuvial.name, topIlluvials) === illuvialTierFilter)
-                .map((illuvial, index) => (
-                  <div key={index} className="flex items-center gap-4">
-                    <span className="text-2xl font-bold text-yellow-400">#{index + 1}</span>
-                    <img src={getIlluvialImageUrl(illuvial)} alt={illuvial.name} className="w-12 h-12 rounded-full bg-gray-800 object-contain" onError={e => (e.currentTarget.src = '/image.png')} />
-                    <span className="text-white font-bold">{illuvial.name}</span>
-                    <span className="text-gray-400">{illuvial.usage || illuvial.picks || illuvial.count || '-'}</span>
-                  </div>
-                ))}
-            </div>
-          </div>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          <div className="bg-gray-900 rounded-2xl p-6 shadow-lg">
-            <h2 className="text-xl font-bold mb-4">Top Augments</h2>
-            <div className="flex gap-2 mb-4">
-              {['All', 'Synergy', 'Legendary', 'Imprint'].map(type => (
-                <button
-                  key={type}
-                  onClick={() => setAugmentTypeFilter(type)}
-                  className={`px-3 py-1 rounded-full text-sm font-bold ${augmentTypeFilter === type ? 'bg-blue-500 text-white' : 'bg-gray-700 text-gray-300'}`}
-                >
-                  {type}
-                </button>
-              ))}
-            </div>
-            <div className="space-y-4 max-h-96 overflow-y-auto">
-              {topAugments
-                .filter(augment => augmentTypeFilter === 'All' || getAugmentType(augment.name, topAugments) === augmentTypeFilter)
-                .map((augment, index) => (
-                  <div key={index} className="flex items-center gap-4">
-                    <span className="text-2xl font-bold text-yellow-400">#{index + 1}</span>
-                    <img src={getAugmentImageUrl(augment.name)} alt={augment.name} className="w-12 h-12 rounded-full bg-gray-800 object-contain" onError={e => (e.currentTarget.src = '/image.png')} />
-                    <span className="text-white font-bold">{augment.name}</span>
-                    <span className="text-gray-400">{augment.usage || augment.picks || augment.count || '-'}</span>
-                  </div>
-                ))}
-            </div>
-          </div>
-        </div>
-        <div className="bg-gray-900 rounded-2xl p-6 shadow-lg mt-8">
-          <h2 className="text-xl font-bold mb-4">Player Search</h2>
-          <div className="flex gap-2 mb-4">
-            <input
-              type="text"
-              className="px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:outline-none focus:border-blue-400"
-              placeholder="Enter player name or ID..."
-              value={searchQuery}
-              onChange={e => setSearchQuery(e.target.value)}
-              onKeyDown={e => { if (e.key === 'Enter') handlePlayerSearch(); }}
-            />
-            <button
-              className="px-4 py-2 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-all"
-              onClick={handlePlayerSearch}
-            >
-              Search
-            </button>
-          </div>
-          {playerData && (
-            <div className="bg-gray-800 rounded-xl p-4 mt-4">
-              <div className="font-bold text-lg mb-2">{playerData.name || playerData.id}</div>
-              <div className="text-gray-400">Rating: {playerData.rating || '-'}</div>
-              <div className="text-gray-400">Matches: {playerData.matches || playerData.count || '-'}</div>
-              {/* Add more player stats here as needed */}
-            </div>
-          )}
-          {playerData === null && searchQuery && (
-            <div className="text-red-400 mt-2">No player found with that name or ID.</div>
-          )}
-        </div>
-        <div className="bg-gray-900 rounded-2xl p-6 shadow-lg mt-8">
-          <h2 className="text-xl font-bold mb-4">Date Range</h2>
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-2">
-              <label className="text-sm font-medium text-gray-700">Start Date:</label>
-              <input
-                type="date"
-                value={startDate.toISOString().split('T')[0]}
-                onChange={(e) => setStartDate(new Date(e.target.value))}
-                className="rounded-md border border-gray-300 px-3 py-2 text-sm"
-              />
-            </div>
-            <div className="flex items-center space-x-2">
-              <label className="text-sm font-medium text-gray-700">End Date:</label>
-              <input
-                type="date"
-                value={endDate.toISOString().split('T')[0]}
-                onChange={(e) => setEndDate(new Date(e.target.value))}
-                className="rounded-md border border-gray-300 px-3 py-2 text-sm"
-              />
-            </div>
-          </div>
-        </div>
-        </>
+      {/* Tab Content */}
+      {activeTab === 'overview' && (
+        <AnalyticsOverviewTab
+          totals={totals}
+          avgMatchTime={avgMatchTime}
+          funFacts={funFacts}
+          dauData={dauData}
+          mauData={mauData}
+          regionData={regionData}
+          regionColors={regionColors}
+          matchesPlayed={matchesPlayed}
+          playerActivity={playerActivity}
+        />
       )}
+      {activeTab === 'meta' && (
+        <AnalyticsMetaTab
+          topIlluvials={topIlluvials}
+          topAugments={topAugments}
+          illuvialTierFilter={illuvialTierFilter}
+          setIlluvialTierFilter={setIlluvialTierFilter}
+          augmentTypeFilter={augmentTypeFilter}
+          setAugmentTypeFilter={setAugmentTypeFilter}
+          getIlluvialTier={getIlluvialTier}
+          getIlluvialImageUrl={getIlluvialImageUrl}
+          getAugmentType={getAugmentType}
+          getAugmentImageUrl={getAugmentImageUrl}
+        />
+      )}
+      <div className="relative">
+        {(loading || fetchingAllPages) && (
+          <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 rounded-lg">
+            <Spinner />
+          </div>
+        )}
+        {/* Match History Section */}
+        {activeTab === 'history' && (
+          <AnalyticsMatchHistoryTab
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            handlePlayerSearch={handlePlayerSearch}
+            playerStats={playerStats}
+            searchedPlayer={searchedPlayer}
+            playerMatches={playerMatches}
+            expandedMatchIdx={expandedMatchIdx}
+            setExpandedMatchIdx={setExpandedMatchIdx}
+            getAvatarColor={getAvatarColor}
+            getDuration={getDuration}
+            getWinner={getWinner}
+            TooltipComponent={TooltipComponent}
+            recentMatches={recentMatches}
+            recentMatchesFilter={recentMatchesFilter}
+            setRecentMatchesFilter={setRecentMatchesFilter}
+          />
+        )}
+        {/* Recent Matches Section (if not in history tab) */}
+        {activeTab !== 'history' && (
+          <div className="mt-6">
+            {/* Place your Recent Matches card/table here, wrapped in the same relative/overlay logic if needed */}
+          </div>
+        )}
+      </div>
     </div>
   );
 };
