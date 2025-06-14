@@ -54,39 +54,38 @@ const UserProfile: React.FC<UserProfileProps> = ({ isOpen, onClose }) => {
       onClick={onClose}
     >
       <div
-        className="bg-gradient-to-br from-purple-600 to-blue-700 p-6"
+        className="bg-gray-900 rounded-2xl border border-gray-700 max-w-md w-full mx-4 overflow-hidden"
         onClick={e => e.stopPropagation()}
       >
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-white text-xl font-bold">Profile</h2>
-          <button
-            onClick={onClose}
-            className="text-white/80 hover:text-white transition-colors"
-          >
-            <X className="w-5 h-5" />
-          </button>
-        </div>
-        <div className="flex items-center gap-4">
-          <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center">
-            <User className="w-8 h-8 text-white" />
+        <div className="bg-gradient-to-br from-purple-600 to-blue-700 p-6">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-white text-xl font-bold">Profile</h2>
+            <button
+              onClick={onClose}
+              className="text-white/80 hover:text-white transition-colors"
+            >
+              <X className="w-5 h-5" />
+            </button>
           </div>
-          <div>
-            <h3 className="text-white text-lg font-semibold">{displayName}</h3>
-            <div className="flex items-center gap-2">
-              <span className="text-purple-200 text-sm">ID: {user.playerId}</span>
-              {user.isAdmin && (
-                <div className="bg-yellow-500/20 border border-yellow-500/30 rounded-full px-2 py-1 flex items-center gap-1">
-                  <Crown className="w-3 h-3 text-yellow-400" />
-                  <span className="text-yellow-400 text-xs font-medium">ADMIN</span>
-                </div>
-              )}
+          <div className="flex items-center gap-4">
+            <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center">
+              <User className="w-8 h-8 text-white" />
+            </div>
+            <div>
+              <h3 className="text-white text-lg font-semibold">{displayName}</h3>
+              <div className="flex items-center gap-2">
+                <span className="text-purple-200 text-sm">ID: {user.playerId}</span>
+                {user.isAdmin && (
+                  <div className="bg-yellow-500/20 border border-yellow-500/30 rounded-full px-2 py-1 flex items-center gap-1">
+                    <Crown className="w-3 h-3 text-yellow-400" />
+                    <span className="text-yellow-400 text-xs font-medium">ADMIN</span>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
-
-        {/* Profile Details */}
         <div className="p-6 space-y-6">
-          {/* Account Info */}
           <div className="space-y-4">
             <h4 className="text-white font-semibold">Account Information</h4>
             
@@ -147,7 +146,6 @@ const UserProfile: React.FC<UserProfileProps> = ({ isOpen, onClose }) => {
             </div>
           </div>
 
-          {/* Admin Status */}
           {user.isAdmin && (
             <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-4">
               <div className="flex items-center gap-3 mb-2">
@@ -160,7 +158,6 @@ const UserProfile: React.FC<UserProfileProps> = ({ isOpen, onClose }) => {
             </div>
           )}
 
-          {/* Security Info */}
           <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-4">
             <div className="flex items-center gap-3 mb-2">
               <Shield className="w-5 h-5 text-blue-400" />
@@ -171,7 +168,6 @@ const UserProfile: React.FC<UserProfileProps> = ({ isOpen, onClose }) => {
             </div>
           </div>
 
-          {/* Logout Button */}
           <button
             onClick={() => setShowLogoutConfirm(true)}
             disabled={isLoading}
@@ -182,7 +178,6 @@ const UserProfile: React.FC<UserProfileProps> = ({ isOpen, onClose }) => {
           </button>
         </div>
 
-        {/* Logout Confirmation Modal */}
         {showLogoutConfirm && (
           <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
             <div className="bg-gray-800 rounded-xl p-6 border border-gray-700 max-w-sm w-full mx-4">
