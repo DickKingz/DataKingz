@@ -18,6 +18,7 @@ interface HeaderProps {
   // New props for dynamic header content
   currentPage?: string;
   currentSubPage?: string;
+  isAnalytics?: boolean;
 }
 
 const Header: React.FC<HeaderProps> = ({ 
@@ -32,7 +33,8 @@ const Header: React.FC<HeaderProps> = ({
   onShowAnalytics,
   showTabNavigation = true, // Default to true for backward compatibility
   currentPage,
-  currentSubPage
+  currentSubPage,
+  isAnalytics = false
 }) => {
   const { user, isAuthenticated } = useAuth();
   const [searchQuery, setSearchQuery] = useState('');
@@ -171,6 +173,14 @@ const Header: React.FC<HeaderProps> = ({
 
   // Function to get dynamic header content based on current page
   const getHeaderContent = () => {
+    if (isAnalytics) {
+      return {
+        title: 'ANALYTICS',
+        subtitle: 'DASHBOARD',
+        info: 'Meta, player, and match data',
+        searchPlaceholder: 'Search analytics...'
+      };
+    }
     // Set 1 pages
     if (currentPage === 'set1') {
       if (currentSubPage === 'illuvials') {
@@ -448,7 +458,10 @@ const Header: React.FC<HeaderProps> = ({
                 </button>
                 {/* Analytics Button */}
                 <button
-                  onClick={onShowAnalytics}
+                  onClick={() => {
+                    onShowAnalytics?.();
+                    onTabChange('comps'); // Reset to a default tab when showing analytics
+                  }}
                   className="relative group bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-6 py-2.5 rounded-xl font-bold hover:from-blue-400 hover:to-cyan-400 transition-all duration-300 shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:scale-105"
                 >
                   <span className="relative z-10">Analytics</span>
@@ -925,7 +938,7 @@ const Header: React.FC<HeaderProps> = ({
               </div>
               
               {/* Enhanced Filter buttons - Only show when tab navigation is visible */}
-              {showTabNavigation && (
+              {showTabNavigation && !isAnalytics && (
                 <>
                   {activeTab === 'augments' && (
                     <div className="flex gap-3">
@@ -977,7 +990,7 @@ const Header: React.FC<HeaderProps> = ({
           </div>
 
           {/* Enhanced Tab Navigation - Only show when showTabNavigation is true */}
-          {showTabNavigation && activeTab !== 'tournaments' && (
+          {showTabNavigation && !isAnalytics && activeTab !== 'tournaments' && (
             <div className="flex items-center gap-8">
               {[
                 { key: 'comps', label: 'Comps', icon: <Users className="w-4 h-4" /> },

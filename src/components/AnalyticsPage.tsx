@@ -305,7 +305,54 @@ const AnalyticsPage: React.FC<AnalyticsPageProps> = ({ onBack }) => {
         <h1 className="text-4xl font-bold">Analytics Dashboard</h1>
       </div>
       {loading ? (
-        <div>Loading data...</div>
+        <div className="min-h-[60vh] flex flex-col items-center justify-center">
+          <div className="relative w-32 h-32 mb-8">
+            {/* Outer ring */}
+            <div className="absolute inset-0 border-4 border-blue-500/20 rounded-full animate-spin-slow" />
+            <div className="absolute inset-0 border-4 border-t-blue-500 rounded-full animate-spin" />
+            
+            {/* Middle ring */}
+            <div className="absolute inset-4 border-4 border-purple-500/20 rounded-full animate-spin-slow-reverse" />
+            <div className="absolute inset-4 border-4 border-t-purple-500 rounded-full animate-spin-reverse" />
+            
+            {/* Inner ring */}
+            <div className="absolute inset-8 border-4 border-cyan-500/20 rounded-full animate-spin-slow" />
+            <div className="absolute inset-8 border-4 border-t-cyan-500 rounded-full animate-spin" />
+            
+            {/* Center dot */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="w-4 h-4 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full animate-pulse" />
+            </div>
+          </div>
+          
+          <div className="text-center">
+            <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent mb-2">
+              Loading Analytics
+            </h2>
+            <p className="text-slate-400 text-sm">
+              Fetching the latest data from the Illuvium network
+            </p>
+          </div>
+          
+          {/* Loading bar */}
+          <div className="w-64 h-1 bg-slate-800 rounded-full mt-8 overflow-hidden">
+            <div className="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 rounded-full animate-loading-bar" />
+          </div>
+          
+          {/* Loading stats */}
+          <div className="grid grid-cols-3 gap-8 mt-8">
+            {[
+              { label: 'Matches', value: '...' },
+              { label: 'Players', value: '...' },
+              { label: 'Data Points', value: '...' }
+            ].map((stat, idx) => (
+              <div key={idx} className="text-center">
+                <div className="text-2xl font-bold text-slate-400 animate-pulse">{stat.value}</div>
+                <div className="text-sm text-slate-500">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
       ) : (
         <>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">

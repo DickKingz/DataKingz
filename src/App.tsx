@@ -91,6 +91,7 @@ function App() {
     setSelectedComp(null);
     setSelectedTournament(null);
     setShowSet1Page(null);
+    setShowAnalytics(false);
     
     // Set the new active tab
     setActiveTab(tab);
@@ -377,6 +378,7 @@ function App() {
             showTabNavigation={shouldShowTabNavigation()}
             currentPage={pageContext.currentPage}
             currentSubPage={pageContext.currentSubPage}
+            isAnalytics={showAnalytics}
           />
           {renderContent()}
         </div>
